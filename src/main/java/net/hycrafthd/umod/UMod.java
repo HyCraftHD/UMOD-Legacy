@@ -1,6 +1,8 @@
 package net.hycrafthd.umod;
 
+import net.hycrafthd.umod.event.RayEvent;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
@@ -20,6 +22,7 @@ public class UMod {
 	public void init(FMLInitializationEvent event) {
 		new UItems();
 		new UBlocks();
+		MinecraftForge.EVENT_BUS.register(new RayEvent());
 	}
 
 	@EventHandler

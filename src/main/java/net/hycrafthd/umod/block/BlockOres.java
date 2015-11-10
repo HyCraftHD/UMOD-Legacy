@@ -51,15 +51,15 @@ public class BlockOres extends Block {
 
 	@Override
 	public void onLanded(World world, Entity entity) {
-		EnumTypeBaseStuff type = EnumTypeBaseStuff.byMetadata(world.getBlockState(entity.getPosition().add(0, -1, 0)).getBlock().getMetaFromState(world.getBlockState(entity.getPosition().add(0, -1, 0))));
-		if (type.getName() == "uran") {
-			if (entity instanceof EntityLivingBase && !world.isRemote) {
-				EntityLivingBase base = (EntityLivingBase) entity;
-				// TODO Strahlung
-				base.addPotionEffect(new PotionEffect(Potion.poison.getId(), 120, 2, false, false));
-				base.addPotionEffect(new PotionEffect(Potion.confusion.getId(), 120, 2, false, false));
-			}
-		}
+//		EnumTypeBaseStuff type = EnumTypeBaseStuff.byMetadata(world.getBlockState(entity.getPosition().add(0, -1, 0)).getBlock().getMetaFromState(world.getBlockState(entity.getPosition().add(0, -1, 0))));
+//		if (type.getName() == "uran") {
+//			if (entity instanceof EntityLivingBase && !world.isRemote) {
+//				EntityLivingBase base = (EntityLivingBase) entity;
+//				// TODO Strahlung
+//				base.addPotionEffect(new PotionEffect(Potion.poison.getId(), 120, 2, false, false));
+//				base.addPotionEffect(new PotionEffect(Potion.confusion.getId(), 120, 2, false, false));
+//			}
+//		}
 		super.onLanded(world, entity);
 	}
 

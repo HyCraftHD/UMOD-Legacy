@@ -22,11 +22,12 @@ public class UMod {
 	public void init(FMLInitializationEvent event) {
 		new UItems();
 		new UBlocks();
-		MinecraftForge.EVENT_BUS.register(new RayEvent());
+		UReference.eventManager = new UEvent();
 	}
 
 	@EventHandler
 	public void postinit(FMLPostInitializationEvent event) {
+		UReference.eventManager.register();
 		new URecipes();
 		UReference.proxy.registerModels();
 	}

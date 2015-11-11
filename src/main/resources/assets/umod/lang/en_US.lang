@@ -3,7 +3,7 @@ itemGroup.utab=UMod Tab
 
 #Items
 #Ingots
-item.Dustaluminium.name=Aluminium Ingot
+item.ingotaluminium.name=Aluminium Ingot
 item.ingotcopper.name=Copper Ingot
 item.ingotlead.name=Lead Ingot
 item.ingotmangan.name=Mangan Ingot

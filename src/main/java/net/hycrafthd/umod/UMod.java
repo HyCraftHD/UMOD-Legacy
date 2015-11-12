@@ -10,6 +10,7 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
 
 @Mod(modid = UReference.modid, version = UReference.version, name = UReference.name)
 public class UMod {
@@ -22,14 +23,14 @@ public class UMod {
 	public void init(FMLInitializationEvent event) {
 		new UItems();
 		new UBlocks();
-		new UPotion();
-		UReference.eventManager = new UEvent();
+		MinecraftForge.EVENT_BUS.register(new RayEvent());
 	}
 
 	@EventHandler
 	public void postinit(FMLPostInitializationEvent event) {
-		UReference.eventManager.register();
+		new UTiles();
 		new URecipes();
+		NetworkRegistry.INSTANCE.registerGuiHandler(UReference.modid, new UGuiHandler());
 		UReference.proxy.registerModels();
 	}
 }

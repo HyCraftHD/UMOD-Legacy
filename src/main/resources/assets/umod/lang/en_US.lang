@@ -3,7 +3,7 @@ itemGroup.utab=UMod Tab
 
 #Items
 #Ingots
-item.ingotaluminium.name=Aluminium Ingot
+item.Dustaluminium.name=Aluminium Ingot
 item.ingotcopper.name=Copper Ingot
 item.ingotlead.name=Lead Ingot
 item.ingotmangan.name=Mangan Ingot
@@ -31,6 +31,7 @@ item.dustsulphur.name=Sulphur Dust
 item.dusttin.name=Tin Dust
 item.dusturan.name=Uran Dust
 item.dustzinc.name=Zinc Dust
+item.cdust.name=Cobblestone Dust
 
 #Blocks
 #Ores
@@ -62,3 +63,5 @@ tile.blocksulphur.name=Sulphur Block
 tile.blocktin.name=Tin Block
 tile.blockuran.name=Uran Block
 tile.blockzinc.name=Zinc Block
+#Pulverizer
+tile.pulver.name=Pulverizer

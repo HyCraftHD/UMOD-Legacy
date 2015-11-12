@@ -19,7 +19,5 @@ public class UReference {
 	public static CommonProxy proxy = new CommonProxy();
 	
 	public static CreativeTabs tab = new UTab();
-	
-	public static UEvent eventManager;
 
 }

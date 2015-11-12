@@ -5,6 +5,7 @@ import net.hycrafthd.umod.enumtype.EnumTypeBaseStuff;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.BlockPos;
@@ -17,6 +18,11 @@ public class RayEvent {
 	@SubscribeEvent
 	public void onUpdate(LivingUpdateEvent event){
 		EntityLivingBase base = event.entityLiving;
+		
+		if(base instanceof EntityPlayerMP){
+			EntityPlayerMP sp = (EntityPlayerMP) base;
+			if(sp.capabilities.isCreativeMode) return;
+		}
 		
 		World world = base.worldObj;
 		
@@ -42,5 +48,7 @@ public class RayEvent {
 				base.addPotionEffect(new PotionEffect(Potion.confusion.getId(), 120, 2, false, false));
 			}
 		}
+		
 	}
+	
 }

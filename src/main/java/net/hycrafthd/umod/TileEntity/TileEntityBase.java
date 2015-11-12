@@ -10,10 +10,11 @@ import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.server.gui.IUpdatePlayerListBox;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntityLockable;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.IChatComponent;
 
-public abstract class TileEntityBase extends TileEntity implements ISidedInventory, IUpdatePlayerListBox{
+public abstract class TileEntityBase extends TileEntityLockable implements ISidedInventory, IUpdatePlayerListBox{
 	
 	public String customname = null;
 

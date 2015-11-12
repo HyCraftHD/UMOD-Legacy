@@ -2,10 +2,14 @@ package net.hycrafthd.umod.gui;
 
 import java.io.IOException;
 
+import org.lwjgl.opengl.GL11;
+
 import net.hycrafthd.umod.UReference;
 import net.hycrafthd.umod.container.ContainerPulverizer;
 import net.hycrafthd.umod.tileentity.TileEntityPulverizer;
 import net.minecraft.client.gui.GuiButton;
+import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
@@ -38,6 +42,9 @@ public class GuiPulverizer extends GuiBase{
 		}else{
 			((GuiButton)buttonList.get(0)).displayString = "Sign with Player";
 		}
+		int l = (width - xSize) / 2;
+		int i1 = (height - ySize) / 2;
+		drawColour(l + 32, i1 + 8, 11, 11, 16711680);
 	}
 	
 	@Override
@@ -54,5 +61,20 @@ public class GuiPulverizer extends GuiBase{
     	   }
     	   break;
        }
+	}
+	
+	public void drawColour(int x, int y, int width, int height, int par4)
+	{
+		WorldRenderer renderer = Tessellator.getInstance().getWorldRenderer();
+		GL11.glDisable(GL11.GL_TEXTURE_2D);
+		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+		renderer.startDrawingQuads();
+		renderer.setColorOpaque_I(par4);
+		renderer.addVertex(x, y, 0.0D);
+		renderer.addVertex(x, y + height, 0.0D);
+		renderer.addVertex(x + width, y + height, 0.0D);
+		renderer.addVertex(x + width, y, 0.0D);
+		Tessellator.getInstance().draw();
+		GL11.glEnable(GL11.GL_TEXTURE_2D);
 	}
 }

@@ -39,7 +39,20 @@ public class ContainerBase extends Container{
           {
           	super.addSlotToContainer(new Slot(pl.inventory, i, 8 + i * 18, 142));
           }
-          this.detectAndSendChanges();
+	}
+	
+	@Override
+	public ItemStack transferStackInSlot(EntityPlayer playerIn, int slotNum) {
+
+		ItemStack itemCopy = null;
+		Slot slot = (Slot) this.inventorySlots.get(slotNum);
+
+		if (slot == null || !slot.getHasStack())
+		{
+		   	return null;
+		}
+
+		return itemCopy;
 	}
 	
 	@Override
@@ -48,7 +61,25 @@ public class ContainerBase extends Container{
 	}
 	
 	@Override
-	public boolean canMergeSlot(ItemStack p_94530_1_, Slot p_94530_2_) {
+	protected void retrySlotClick(int p_75133_1_, int p_75133_2_, boolean p_75133_3_, EntityPlayer p_75133_4_) {}
+	
+	@Override
+	public void onContainerClosed(EntityPlayer entityPlayer)
+	{
+		super.onContainerClosed(entityPlayer);
+		((IInventory) this.ent).closeInventory(entityPlayer);
+	}
+	
+	@Override
+	public boolean canDragIntoSlot(Slot p_94531_1_) {
 		return true;
 	}
+	
+	
+	@Override
+	public ItemStack slotClick(int slotId, int clickedButton, int mode, EntityPlayer playerIn) {
+		// TODO Auto-generated method stub
+		return super.slotClick(slotId, clickedButton, mode, playerIn);
+	}
+	
 }

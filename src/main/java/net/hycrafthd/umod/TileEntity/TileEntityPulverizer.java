@@ -4,9 +4,13 @@ import akka.util.Index;
 import net.hycrafthd.umod.UModRegistery;
 import net.hycrafthd.umod.api.PulverizerRecepie;
 import net.hycrafthd.umod.block.BlockOres;
+import net.hycrafthd.umod.container.ContainerPulverizer;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockOre;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.inventory.Container;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -250,4 +254,14 @@ public class TileEntityPulverizer extends TileEntityBase{
 		return false;
 	}
 
+	@Override
+	public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn) {
+		return new ContainerPulverizer((IInventory) playerIn.worldObj.getTileEntity(pos), playerIn, playerIn.worldObj);
+	}
+
+	@Override
+	public String getGuiID() {
+		return "0";
+	}
+	
 }

@@ -29,4 +29,6 @@ public class BaseOreInputSlot extends Slot{
 	public boolean canTakeStack(EntityPlayer playerIn) {
 		return true;
 	}
+
+	
 }

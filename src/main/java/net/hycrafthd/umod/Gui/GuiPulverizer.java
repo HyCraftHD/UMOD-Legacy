@@ -10,6 +10,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
@@ -22,7 +24,7 @@ public class GuiPulverizer extends GuiBase{
 	@Override
 	public void initGui() {
 		super.initGui();
-		GuiButton btn = new GuiButton(0, 100, 20,50,20, "Sign with Player");
+		GuiButton btn = new GuiButton(0, 200, 20,85,20, "Sign with Player");
 		buttonList.add(btn);
 	}
 
@@ -33,6 +35,8 @@ public class GuiPulverizer extends GuiBase{
 		fontRendererObj.drawString(((TileEntityPulverizer)this.ent).getTime() + "%", 240, 64, 0x00000);
 		if(p.getSigndPlayerName() != null){
 			((GuiButton)buttonList.get(0)).displayString = "Unsign";
+		}else{
+			((GuiButton)buttonList.get(0)).displayString = "Sign with Player";
 		}
 	}
 	
@@ -45,6 +49,7 @@ public class GuiPulverizer extends GuiBase{
     	   p.signPlayer(play);
     	   button.displayString = "Unsign";
     	   }else{
+    	   play.addChatMessage(new ChatComponentText(EnumChatFormatting.RED + "Unsigned Pulverizer"));
     	   p.signPlayer(null);
     	   }
     	   break;

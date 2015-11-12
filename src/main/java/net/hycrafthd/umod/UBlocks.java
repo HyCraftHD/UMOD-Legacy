@@ -6,6 +6,7 @@ import net.hycrafthd.umod.block.BlockPulverizer;
 import net.hycrafthd.umod.item.ItemBlockBlocks;
 import net.hycrafthd.umod.item.ItemBlockOres;
 import net.minecraft.block.Block;
+import net.minecraft.item.ItemBlock;
 
 public class UBlocks {
 
@@ -37,7 +38,7 @@ public class UBlocks {
 		// Blocks
 		UUtils.registerBlock(blocks, ItemBlockBlocks.class);
 		//Pulverizer
-        UUtils.registerBlock(pulver);
+        UUtils.registerBlock(pulver,ItemBlock.class);
 	}
 
 	private void oredirectionary() {

@@ -1,5 +1,5 @@
 {
     "variants": {
-        "normal": { "model": "umod:blockpulver" }
+        "normal": { "model": "umod:pulver" }
     }
 }

@@ -1,5 +1,6 @@
 package net.hycrafthd.umod.API;
 
+import net.hycrafthd.umod.UItems;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import scala.util.Random;
@@ -33,7 +34,7 @@ public class PulverizerRecepie {
 	}
 	
 	public ItemStack getSecondOutput() {
-		return new ItemStack(Blocks.cobblestone);
+		return new ItemStack(UItems.cdust);
 	}
 	
 	@Override

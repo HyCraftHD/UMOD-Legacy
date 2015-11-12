@@ -78,6 +78,8 @@ public abstract class BlockBase extends Block implements ITileEntityProvider{
     	return false;
     }
     
+    
+    
     @Override
 	public int isProvidingStrongPower(IBlockAccess w, BlockPos pos, IBlockState state, EnumFacing side) {
 		return Container.calcRedstoneFromInventory((IInventory) w.getTileEntity(pos));

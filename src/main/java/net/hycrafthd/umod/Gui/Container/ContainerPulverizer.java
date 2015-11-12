@@ -6,6 +6,7 @@ import net.minecraft.client.gui.GuiButton;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumChatFormatting;
@@ -28,5 +29,10 @@ public class ContainerPulverizer extends ContainerBase{
 	@Override
 	public boolean canInteractWith(EntityPlayer playerIn) {
 		return ((IInventory)ent).isUseableByPlayer(playerIn);
+	}
+	
+	@Override
+	public ItemStack transferStackInSlot(EntityPlayer playerIn, int index) {
+		return ((ItemStack) this.inventorySlots.get(index)).copy();
 	}
 }

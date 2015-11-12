@@ -37,7 +37,9 @@ public class ClientProxy extends CommonProxy {
 		
 		//Pulverizer
 		this.registerModelRenderer(UBlocks.pulver);
-
+		
+		//Cobble Dust
+		this.registerModelRenderer(UItems.cdust);
 	}
 
 	private void registerModelRenderer(Object obj) {

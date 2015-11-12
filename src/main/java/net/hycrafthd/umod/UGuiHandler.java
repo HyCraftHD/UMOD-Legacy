@@ -1,7 +1,7 @@
 package net.hycrafthd.umod;
 
-import net.hycrafthd.umod.Gui.GuiPulverizer;
-import net.hycrafthd.umod.Gui.Container.ContainerPulverizer;
+import net.hycrafthd.umod.container.ContainerPulverizer;
+import net.hycrafthd.umod.gui.GuiPulverizer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.tileentity.TileEntity;

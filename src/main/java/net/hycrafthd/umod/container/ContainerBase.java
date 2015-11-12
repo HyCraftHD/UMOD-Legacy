@@ -1,4 +1,4 @@
-package net.hycrafthd.umod.Gui.Container;
+package net.hycrafthd.umod.container;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;

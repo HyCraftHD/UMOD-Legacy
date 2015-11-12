@@ -1,4 +1,4 @@
-package net.hycrafthd.umod.TileEntity;
+package net.hycrafthd.umod.tileentity;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;

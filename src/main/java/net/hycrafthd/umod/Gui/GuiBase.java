@@ -1,4 +1,4 @@
-package net.hycrafthd.umod.Gui;
+package net.hycrafthd.umod.gui;
 
 import java.io.IOException;
 

@@ -1,10 +1,10 @@
-package net.hycrafthd.umod.Gui;
+package net.hycrafthd.umod.gui;
 
 import java.io.IOException;
 
 import net.hycrafthd.umod.UReference;
-import net.hycrafthd.umod.Gui.Container.ContainerPulverizer;
-import net.hycrafthd.umod.TileEntity.TileEntityPulverizer;
+import net.hycrafthd.umod.container.ContainerPulverizer;
+import net.hycrafthd.umod.tileentity.TileEntityPulverizer;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;

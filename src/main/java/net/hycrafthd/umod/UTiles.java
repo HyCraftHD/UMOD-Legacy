@@ -1,6 +1,6 @@
 package net.hycrafthd.umod;
 
-import net.hycrafthd.umod.TileEntity.TileEntityPulverizer;
+import net.hycrafthd.umod.tileentity.TileEntityPulverizer;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class UTiles {

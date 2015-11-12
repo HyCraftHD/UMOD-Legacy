@@ -1,7 +1,7 @@
-package net.hycrafthd.umod.Gui.Container;
+package net.hycrafthd.umod.container;
 
-import net.hycrafthd.umod.Gui.inventory.BaseOreInputSlot;
-import net.hycrafthd.umod.Gui.inventory.BaseSlotOutput;
+import net.hycrafthd.umod.inventory.BaseOreInputSlot;
+import net.hycrafthd.umod.inventory.BaseSlotOutput;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;

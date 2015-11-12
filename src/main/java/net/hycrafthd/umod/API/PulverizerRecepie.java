@@ -1,4 +1,4 @@
-package net.hycrafthd.umod.API;
+package net.hycrafthd.umod.api;
 
 import net.hycrafthd.umod.UItems;
 import net.minecraft.init.Blocks;

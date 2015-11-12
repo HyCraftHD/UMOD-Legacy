@@ -1,7 +1,7 @@
 package net.hycrafthd.umod.block;
 
 import net.hycrafthd.umod.UReference;
-import net.hycrafthd.umod.TileEntity.TileEntityPulverizer;
+import net.hycrafthd.umod.tileentity.TileEntityPulverizer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;

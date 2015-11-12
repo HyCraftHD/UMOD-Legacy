@@ -1,4 +1,4 @@
-package net.hycrafthd.umod.Gui.inventory;
+package net.hycrafthd.umod.inventory;
 
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.entity.player.EntityPlayer;

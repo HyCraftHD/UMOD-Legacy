@@ -1,4 +1,4 @@
-package net.hycrafthd.umod.Gui.inventory;
+package net.hycrafthd.umod.inventory;
 
 import net.hycrafthd.umod.block.BlockOres;
 import net.minecraft.block.Block;

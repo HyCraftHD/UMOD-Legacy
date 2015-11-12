@@ -1,8 +1,8 @@
-package net.hycrafthd.umod.TileEntity;
+package net.hycrafthd.umod.tileentity;
 
 import akka.util.Index;
 import net.hycrafthd.umod.UModRegistery;
-import net.hycrafthd.umod.API.PulverizerRecepie;
+import net.hycrafthd.umod.api.PulverizerRecepie;
 import net.hycrafthd.umod.block.BlockOres;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockOre;

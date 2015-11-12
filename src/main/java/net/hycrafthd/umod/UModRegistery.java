@@ -2,7 +2,7 @@ package net.hycrafthd.umod;
 
 import java.util.ArrayList;
 
-import net.hycrafthd.umod.API.PulverizerRecepie;
+import net.hycrafthd.umod.api.PulverizerRecepie;
 import net.minecraft.item.ItemStack;
 
 public class UModRegistery {

@@ -22,6 +22,7 @@ public class UMod {
 	public void init(FMLInitializationEvent event) {
 		new UItems();
 		new UBlocks();
+		new UPotion();
 		UReference.eventManager = new UEvent();
 	}
 

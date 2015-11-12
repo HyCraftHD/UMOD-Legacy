@@ -1,5 +1,6 @@
 package net.hycrafthd.umod.event;
 
+import net.hycrafthd.umod.UBlocks;
 import net.hycrafthd.umod.enumtype.EnumTypeBaseStuff;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -34,6 +35,7 @@ public class RayEvent {
 			BlockPos pos = new BlockPos(xPos, yPos, zPos);
 			IBlockState blockcks = world.getBlockState(pos);
 			Block block = blockcks.getBlock();
+			if(block != UBlocks.ores) continue;
 			EnumTypeBaseStuff type = EnumTypeBaseStuff.byMetadata(block.getMetaFromState(blockcks));
 			if (type.getName() == "uran") {
 				base.addPotionEffect(new PotionEffect(Potion.poison.getId(), 120, 2, false, false));
@@ -41,5 +43,4 @@ public class RayEvent {
 			}
 		}
 	}
-	
 }

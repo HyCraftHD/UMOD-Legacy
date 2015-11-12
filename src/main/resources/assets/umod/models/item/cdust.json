@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-        "layer0": "umod:items/cobblestone_dust"
+        "layer0": "umod:items/dust/cobblestone_dust"
     },
     "display": {
         "thirdperson": {

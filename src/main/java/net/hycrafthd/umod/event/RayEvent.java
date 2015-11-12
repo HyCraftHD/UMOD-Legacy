@@ -1,9 +1,15 @@
 package net.hycrafthd.umod.event;
 
+import net.hycrafthd.umod.UBlocks;
+import net.hycrafthd.umod.UItems;
+import net.hycrafthd.umod.UMod;
 import net.hycrafthd.umod.enumtype.EnumTypeBaseStuff;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.EnumDyeColor;
+import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.BlockPos;
@@ -16,7 +22,6 @@ public class RayEvent {
 	@SubscribeEvent
 	public void onUpdate(LivingUpdateEvent event){
 		EntityLivingBase base = event.entityLiving;
-		
 		World world = base.worldObj;
 		
 		double x = base.posX;
@@ -40,6 +45,7 @@ public class RayEvent {
 				base.addPotionEffect(new PotionEffect(Potion.confusion.getId(), 120, 2, false, false));
 			}
 		}
+		
 	}
 	
 }

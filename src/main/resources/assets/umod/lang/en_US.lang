@@ -62,3 +62,5 @@ tile.blocksulphur.name=Sulphur Block
 tile.blocktin.name=Tin Block
 tile.blockuran.name=Uran Block
 tile.blockzinc.name=Zinc Block
+#Pulverizer
+tile.pulver.name=Pulverizer

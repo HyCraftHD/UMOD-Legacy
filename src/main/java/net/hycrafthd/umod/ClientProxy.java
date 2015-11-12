@@ -34,6 +34,9 @@ public class ClientProxy extends CommonProxy {
 			ModelBakery.addVariantName(UItems.dusts, UReference.resource + "dust" + EnumTypeBaseStuff.byMetadata(i).getName());
 			this.registerModelRenderer(UItems.dusts, i, new ModelResourceLocation(UReference.resource + "dust" + EnumTypeBaseStuff.byMetadata(i).getName(), "inventory"));
 		}
+		
+		//Pulverizer
+		this.registerModelRenderer(UBlocks.pulver);
 
 	}
 

@@ -1,6 +1,8 @@
 package net.hycrafthd.umod.api;
 
-public interface IPowerProvieder {
+import net.minecraft.server.gui.IUpdatePlayerListBox;
+
+public interface IPowerProvieder extends IUpdatePlayerListBox{
 
 	public int getStoredPower();
 	

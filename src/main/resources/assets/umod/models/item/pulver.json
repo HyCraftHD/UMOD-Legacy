@@ -1,5 +1,5 @@
 {
-    "parent": "umod:block/blockpulver",
+    "parent": "umod:block/pulver",
     "display": {
           "thirdperson": {
               "rotation": [ -90, 0, 0 ],

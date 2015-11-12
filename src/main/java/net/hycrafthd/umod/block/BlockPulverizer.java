@@ -30,4 +30,25 @@ public class BlockPulverizer extends BlockBase{
     	playerIn.openGui(UReference.modid, 0, worldIn, pos.getX(), pos.getY(), pos.getZ());
     	return true;
     }
+    
+    @Override
+    public boolean isOpaqueCube() {
+    	return false;
+    }
+    
+    @Override
+    public boolean isFullCube() {
+    	return true;
+    }
+    
+    @Override
+    public boolean isFullBlock() {
+    	return true;
+    }
+    
+    @Override
+    public IBlockState getStateForEntityRender(IBlockState state) {
+    	return this.getDefaultState();
+    }
+    
 }

@@ -33,6 +33,6 @@ public class ContainerPulverizer extends ContainerBase{
 	
 	@Override
 	public ItemStack transferStackInSlot(EntityPlayer playerIn, int index) {
-		return ((ItemStack) this.inventorySlots.get(index)).copy();
+		return ((Slot) this.inventorySlots.get(index)).getStack().copy();
 	}
 }

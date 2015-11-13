@@ -2,14 +2,20 @@ package net.hycrafthd.umod.gui;
 
 import java.io.IOException;
 
+<<<<<<< HEAD
 import org.lwjgl.opengl.GL11;
 
+=======
+>>>>>>> 64322378d8be2401f632ecef38717edb27145f2f
 import net.hycrafthd.umod.UReference;
 import net.hycrafthd.umod.container.ContainerPulverizer;
 import net.hycrafthd.umod.tileentity.TileEntityPulverizer;
 import net.minecraft.client.gui.GuiButton;
+<<<<<<< HEAD
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.WorldRenderer;
+=======
+>>>>>>> 64322378d8be2401f632ecef38717edb27145f2f
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
@@ -42,7 +48,10 @@ public class GuiPulverizer extends GuiBase{
 		}else{
 			((GuiButton)buttonList.get(0)).displayString = "Sign with Player";
 		}
+<<<<<<< HEAD
 		
+=======
+>>>>>>> 64322378d8be2401f632ecef38717edb27145f2f
 	}
 	
 	@Override
@@ -57,6 +66,7 @@ public class GuiPulverizer extends GuiBase{
     	   play.addChatMessage(new ChatComponentText(EnumChatFormatting.RED + "Unsigned Pulverizer"));
     	   p.signPlayer(null);
     	   }
+<<<<<<< HEAD
     	   p.markDirty();
     	   break;
        }
@@ -77,4 +87,9 @@ public class GuiPulverizer extends GuiBase{
 		Tessellator.getInstance().draw();
 		GL11.glEnable(GL11.GL_TEXTURE_2D);
 	}
+=======
+    	   break;
+       }
+	}
+>>>>>>> 64322378d8be2401f632ecef38717edb27145f2f
 }

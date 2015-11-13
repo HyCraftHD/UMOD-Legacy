@@ -22,9 +22,13 @@ public class BaseSlotOutput extends Slot{
 		return true;
 	}
 	
+<<<<<<< HEAD
 	@Override
 	public void onSlotChanged() {
 		super.onSlotChanged();
 		this.inventory.markDirty();
 	}
+=======
+	
+>>>>>>> 64322378d8be2401f632ecef38717edb27145f2f
 }

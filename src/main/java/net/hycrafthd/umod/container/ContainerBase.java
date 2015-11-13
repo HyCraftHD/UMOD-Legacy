@@ -39,6 +39,7 @@ public class ContainerBase extends Container{
           {
           	super.addSlotToContainer(new Slot(pl.inventory, i, 8 + i * 18, 142));
           }
+<<<<<<< HEAD
 	}
 	
 	@Override
@@ -54,6 +55,9 @@ public class ContainerBase extends Container{
 		itemCopy = slot.getStack();
 
 		return itemCopy;
+=======
+          this.detectAndSendChanges();
+>>>>>>> 64322378d8be2401f632ecef38717edb27145f2f
 	}
 	
 	@Override
@@ -62,6 +66,7 @@ public class ContainerBase extends Container{
 	}
 	
 	@Override
+<<<<<<< HEAD
 	protected void retrySlotClick(int p_75133_1_, int p_75133_2_, boolean p_75133_3_, EntityPlayer p_75133_4_) {}
 	
 	@Override
@@ -85,4 +90,9 @@ public class ContainerBase extends Container{
 		return super.slotClick(slotId, clickedButton, mode, playerIn);
 	}
 	
+=======
+	public boolean canMergeSlot(ItemStack p_94530_1_, Slot p_94530_2_) {
+		return true;
+	}
+>>>>>>> 64322378d8be2401f632ecef38717edb27145f2f
 }

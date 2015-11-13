@@ -4,6 +4,7 @@ import akka.util.Index;
 import net.hycrafthd.umod.UModRegistery;
 import net.hycrafthd.umod.api.PulverizerRecepie;
 import net.hycrafthd.umod.block.BlockOres;
+<<<<<<< HEAD
 import net.hycrafthd.umod.container.ContainerPulverizer;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockOre;
@@ -17,6 +18,14 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
+=======
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockOre;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
+>>>>>>> 64322378d8be2401f632ecef38717edb27145f2f
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.EnumFacing;
@@ -48,6 +57,7 @@ public class TileEntityPulverizer extends TileEntityBase{
 
 	@Override
 	public ItemStack getStackInSlotOnClosing(int index) {
+<<<<<<< HEAD
 		 if (this.stack[index] != null)
 	        {
 	            ItemStack itemstack = this.stack[index];
@@ -58,12 +68,16 @@ public class TileEntityPulverizer extends TileEntityBase{
 	        {
 	            return null;
 	        }
+=======
+		return stack[index];
+>>>>>>> 64322378d8be2401f632ecef38717edb27145f2f
 	}
 
 	@Override
 	public void setInventorySlotContents(int index, ItemStack stack) {
 		this.stack[index] = stack;
 	}
+<<<<<<< HEAD
 	
 	@Override
 	public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
@@ -78,6 +92,8 @@ public class TileEntityPulverizer extends TileEntityBase{
 	    	this.writeToNBT(tag);
 	    	return new S35PacketUpdateTileEntity(getPos(), getBlockMetadata(), tag);
     }
+=======
+>>>>>>> 64322378d8be2401f632ecef38717edb27145f2f
 
 	@Override
 	public int getInventoryStackLimit() {
@@ -129,6 +145,7 @@ public class TileEntityPulverizer extends TileEntityBase{
 	}
 
 	@Override
+<<<<<<< HEAD
 	public void openInventory(EntityPlayer player) {
 		if(pl != null && !player.getName().equals(pl)){
 			player.closeScreen();
@@ -137,6 +154,8 @@ public class TileEntityPulverizer extends TileEntityBase{
 	}
 	
 	@Override
+=======
+>>>>>>> 64322378d8be2401f632ecef38717edb27145f2f
 	public void setField(int id, int value) {
 		time = value;
 	}
@@ -148,10 +167,14 @@ public class TileEntityPulverizer extends TileEntityBase{
 
 	@Override
 	public void clear() {
+<<<<<<< HEAD
 		for (int i = 0; i < this.stack.length; ++i)
         {
             this.stack[i] = null;
         }
+=======
+		stack = new ItemStack[this.getSizeInventory()];
+>>>>>>> 64322378d8be2401f632ecef38717edb27145f2f
 	}
 	
 	@Override
@@ -223,7 +246,14 @@ public class TileEntityPulverizer extends TileEntityBase{
 	@Override
 	public void writeToNBT(NBTTagCompound compound) {
 		super.writeToNBT(compound);
+<<<<<<< HEAD
 		System.out.println("WRITE TO NBT");
+=======
+		compound.setInteger("Time", time);
+		if(pl != null){
+		compound.setString("Player", pl);
+		}
+>>>>>>> 64322378d8be2401f632ecef38717edb27145f2f
 		 NBTTagList nbttaglist = new NBTTagList();
 
 	     for (int i = 0; i < this.stack.length; ++i)
@@ -231,36 +261,55 @@ public class TileEntityPulverizer extends TileEntityBase{
 	         if (this.stack[i] != null)
 	         {
 	             NBTTagCompound nbttagcompound1 = new NBTTagCompound();
+<<<<<<< HEAD
 	             nbttagcompound1.setInteger("Slot", i);
+=======
+	             nbttagcompound1.setByte("Slot", (byte)i);
+>>>>>>> 64322378d8be2401f632ecef38717edb27145f2f
 	             this.stack[i].writeToNBT(nbttagcompound1);
 	             nbttaglist.appendTag(nbttagcompound1);
 	         }
 	     }
 
 	     compound.setTag("Items", nbttaglist);
+<<<<<<< HEAD
 		 compound.setInteger("Time", time);
 	     if(pl != null){
 	     compound.setString("Player", pl);
 	     }
+=======
+>>>>>>> 64322378d8be2401f632ecef38717edb27145f2f
 	}
 
 	@Override
 	public void readFromNBT(NBTTagCompound compound) {
 		super.readFromNBT(compound);
+<<<<<<< HEAD
 		System.out.println("READ FROM NBT");
+=======
+		if(compound.hasKey("Player")){
+			this.pl = compound.getString("Player");
+		}
+		this.time = compound.getInteger("Time");
+>>>>>>> 64322378d8be2401f632ecef38717edb27145f2f
 		NBTTagList nbttaglist = compound.getTagList("Items", 10);
         this.stack = new ItemStack[this.getSizeInventory()];
 
         for (int i = 0; i < nbttaglist.tagCount(); ++i)
         {
             NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
+<<<<<<< HEAD
             int b0 = nbttagcompound1.getInteger("Slot");
+=======
+            byte b0 = nbttagcompound1.getByte("Slot");
+>>>>>>> 64322378d8be2401f632ecef38717edb27145f2f
 
             if (b0 >= 0 && b0 < this.stack.length)
             {
                 this.stack[b0] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
            }
         }
+<<<<<<< HEAD
 		if(compound.hasKey("Player")){
 			System.out.println("PLAYER LOCK DETECTED");
 			this.pl = compound.getString("Player");
@@ -268,6 +317,8 @@ public class TileEntityPulverizer extends TileEntityBase{
 			System.out.println(compound.getString("Player"));
 		}
 		this.time = compound.getInteger("Time");
+=======
+>>>>>>> 64322378d8be2401f632ecef38717edb27145f2f
 	}
 
 	@Override
@@ -296,6 +347,7 @@ public class TileEntityPulverizer extends TileEntityBase{
 		return false;
 	}
 
+<<<<<<< HEAD
 	@Override
 	public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn) {
 		return new ContainerPulverizer((IInventory) playerIn.worldObj.getTileEntity(pos), playerIn, playerIn.worldObj);
@@ -306,4 +358,6 @@ public class TileEntityPulverizer extends TileEntityBase{
 		return "0";
 	}
 	
+=======
+>>>>>>> 64322378d8be2401f632ecef38717edb27145f2f
 }

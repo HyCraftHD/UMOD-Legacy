@@ -10,11 +10,18 @@ import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.server.gui.IUpdatePlayerListBox;
 import net.minecraft.tileentity.TileEntity;
+<<<<<<< HEAD
 import net.minecraft.tileentity.TileEntityLockable;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.IChatComponent;
 
 public abstract class TileEntityBase extends TileEntityLockable implements ISidedInventory, IUpdatePlayerListBox{
+=======
+import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.IChatComponent;
+
+public abstract class TileEntityBase extends TileEntity implements ISidedInventory, IUpdatePlayerListBox{
+>>>>>>> 64322378d8be2401f632ecef38717edb27145f2f
 	
 	public String customname = null;
 
@@ -33,6 +40,39 @@ public abstract class TileEntityBase extends TileEntityLockable implements ISide
 
 	@Override
 	public void closeInventory(EntityPlayer player) {}
+<<<<<<< HEAD
+=======
+
+	@Override
+	public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
+		NBTTagCompound tag = pkt.getNbtCompound();
+    	this.readFromNBT(tag);
+	}
+	
+	@Override
+	public void readFromNBT(NBTTagCompound compound) {
+		super.readFromNBT(compound);
+		 if (compound.hasKey("name", 8))
+	     {
+	       this.customname = compound.getString("name");
+	     }
+	}
+	
+	@Override
+    public Packet getDescriptionPacket() {
+	    	NBTTagCompound tag = new NBTTagCompound();
+	    	this.writeToNBT(tag);
+	    	return new S35PacketUpdateTileEntity(getPos(), getBlockMetadata(), tag);
+    }
+	
+	@Override
+	public void writeToNBT(NBTTagCompound compound) {
+		super.writeToNBT(compound);
+		if(this.hasCustomName()){
+		compound.setString("name", customname);
+		}
+	}
+>>>>>>> 64322378d8be2401f632ecef38717edb27145f2f
 	
 	@Override
 	public IChatComponent getDisplayName() {

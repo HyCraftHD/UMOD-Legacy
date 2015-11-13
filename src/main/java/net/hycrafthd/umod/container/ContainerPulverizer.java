@@ -19,6 +19,7 @@ public class ContainerPulverizer extends ContainerBase{
 	
 	public ContainerPulverizer(IInventory inv, EntityPlayer pl, World wo) {
 		super(inv, pl, ((TileEntity) inv).getPos(), wo);
+<<<<<<< HEAD
 		output[0] = this.addSlotToContainer(new BaseSlotOutput(inv, 0, 116, 24));
 		output[1] = this.addSlotToContainer(new BaseSlotOutput(inv, 1, 98, 54));
 		output[2] = this.addSlotToContainer(new BaseSlotOutput(inv, 2, 126, 54));
@@ -26,4 +27,22 @@ public class ContainerPulverizer extends ContainerBase{
 				
 	}
 	
+=======
+		input = super.addSlotToContainer(new BaseOreInputSlot(inv, 3, 30, 23));
+		output[0] = super.addSlotToContainer(new BaseSlotOutput(inv, 0, 116, 24));
+		output[1] = super.addSlotToContainer(new BaseSlotOutput(inv, 1, 98, 54));
+		output[2] = super.addSlotToContainer(new BaseSlotOutput(inv, 2, 126, 54));
+				
+	}
+
+	@Override
+	public boolean canInteractWith(EntityPlayer playerIn) {
+		return ((IInventory)ent).isUseableByPlayer(playerIn);
+	}
+	
+	@Override
+	public ItemStack transferStackInSlot(EntityPlayer playerIn, int index) {
+		return ((Slot) this.inventorySlots.get(index)).getStack().copy();
+	}
+>>>>>>> 64322378d8be2401f632ecef38717edb27145f2f
 }

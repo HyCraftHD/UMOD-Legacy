@@ -3,7 +3,7 @@ itemGroup.utab=UMod Tab
 
 #Items
 #Ingots
-item.Dustaluminium.name=Aluminium Ingot
+item.ingotaluminium.name=Aluminium Ingot
 item.ingotcopper.name=Copper Ingot
 item.ingotlead.name=Lead Ingot
 item.ingotmangan.name=Mangan Ingot
@@ -32,6 +32,12 @@ item.dusttin.name=Tin Dust
 item.dusturan.name=Uran Dust
 item.dustzinc.name=Zinc Dust
 item.cdust.name=Cobblestone Dust
+
+#Radiation Suit
+item.radiationsuithelmet.name=Radiation Suit Mask
+item.radiationsuitchestplate.name=Radiation Suit Chestplate
+item.radiationsuitleggings.name=Radiation Suit Leggings
+item.radiationsuitboots.name=Radiation Suit Boots
 
 #Blocks
 #Ores
@@ -63,5 +69,9 @@ tile.blocksulphur.name=Sulphur Block
 tile.blocktin.name=Tin Block
 tile.blockuran.name=Uran Block
 tile.blockzinc.name=Zinc Block
+#Infected
+tile.infectedgrass.name=Infected Grass
+tile.infecteddirt.name=Infected Dirt
+
 #Pulverizer
 tile.pulver.name=Pulverizer

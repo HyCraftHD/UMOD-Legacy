@@ -45,6 +45,10 @@ public class ClientProxy extends CommonProxy {
 		this.registerModelRenderer(UArmor.radiationSuitChestplate);
 		this.registerModelRenderer(UArmor.radiationSuitLeggings);
 		this.registerModelRenderer(UArmor.radiationSuitBoots);
+		
+		//Infected
+		this.registerModelRenderer(UBlocks.infectedGrass);
+		this.registerModelRenderer(UBlocks.infectedDirt);
 	}
 
 	private void registerModelRenderer(Object obj) {

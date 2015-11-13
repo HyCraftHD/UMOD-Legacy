@@ -1,8 +1,8 @@
 package net.hycrafthd.umod;
 
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.Mod.Instance;
+import net.minecraftforge.fml.common.SidedProxy;
 
 public class UReference {
 	
@@ -20,4 +20,6 @@ public class UReference {
 	
 	public static CreativeTabs tab = new UTab();
 
+	public static UEvent eventManager = new UEvent();
+	
 }

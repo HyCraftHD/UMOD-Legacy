@@ -1,7 +1,6 @@
 package net.hycrafthd.umod;
 
 import net.hycrafthd.umod.event.RayEvent;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -22,14 +21,20 @@ public class UMod {
 		new UBlocks();
 		new UArmor();
 		new UBiom();
-		new UEvent();
+		registerEvents();
 	}
 
 	@EventHandler
 	public void postinit(FMLPostInitializationEvent event) {
 		new UTiles();
 		new URecipes();
+		UReference.eventManager.register();
 		NetworkRegistry.INSTANCE.registerGuiHandler(UReference.modid, new UGuiHandler());
 		UReference.proxy.registerModels();
 	}
+	
+	public void registerEvents(){
+		UReference.eventManager.addEvent(new RayEvent());
+	}
+	
 }

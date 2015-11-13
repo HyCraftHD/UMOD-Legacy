@@ -1,11 +1,13 @@
 package net.hycrafthd.umod.event;
 
 import net.hycrafthd.umod.UBlocks;
+import net.hycrafthd.umod.armor.RadiationArmor;
 import net.hycrafthd.umod.enumtype.EnumTypeBaseStuff;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.BlockPos;
@@ -19,9 +21,19 @@ public class RayEvent {
 	public void onUpdate(LivingUpdateEvent event){
 		EntityLivingBase base = event.entityLiving;
 		
-		if(base instanceof EntityPlayerMP){
-			EntityPlayerMP sp = (EntityPlayerMP) base;
+		if(base instanceof EntityPlayer){
+			EntityPlayer sp = (EntityPlayer) base;
 			if(sp.capabilities.isCreativeMode) return;
+			boolean full = false;
+			for(ItemStack armor : sp.inventory.armorInventory){
+				if(armor != null && (armor.getItem() instanceof RadiationArmor)){
+					full = true;
+				}else{
+					full = false;
+					break;
+				}
+			}
+			if(full) return;
 		}
 		
 		World world = base.worldObj;

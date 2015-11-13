@@ -21,8 +21,8 @@ public class UMod {
 		new UItems();
 		new UBlocks();
 		new UArmor();
-		MinecraftForge.EVENT_BUS.register(new RayEvent());
 		new UBiom();
+		new UEvent();
 	}
 
 	@EventHandler

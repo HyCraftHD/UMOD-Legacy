@@ -40,6 +40,11 @@ public class ClientProxy extends CommonProxy {
 		
 		//Cobble Dust
 		this.registerModelRenderer(UItems.cdust);
+		
+		this.registerModelRenderer(UArmor.radiationSuitHelmet);
+		this.registerModelRenderer(UArmor.radiationSuitChestplate);
+		this.registerModelRenderer(UArmor.radiationSuitLeggings);
+		this.registerModelRenderer(UArmor.radiationSuitBoots);
 	}
 
 	private void registerModelRenderer(Object obj) {

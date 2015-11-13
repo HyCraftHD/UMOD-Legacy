@@ -1,0 +1,17 @@
+{
+    "variants": {
+        "type=aluminium": { "model": "umod:orealuminium" },
+        "type=copper": { "model": "umod:orecopper" },
+        "type=lead": { "model": "umod:orelead" },
+        "type=mangan": { "model": "umod:oremangan" },
+        "type=mercury": { "model": "umod:oremercury" },
+        "type=nickel": { "model": "umod:orenickel" },
+        "type=platinum": { "model": "umod:oreplatinum" },
+        "type=silicium": { "model": "umod:oresilicium" },
+        "type=silver": { "model": "umod:oresilver" },
+        "type=sulphur": { "model": "umod:oresulphur" },
+        "type=tin": { "model": "umod:oretin" },
+        "type=uran": { "model": "umod:oreuran" },
+        "type=zinc": { "model": "umod:orezinc" }
+    }
+}

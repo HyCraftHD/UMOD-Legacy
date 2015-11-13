@@ -1,0 +1,16 @@
+[
+{
+  "modid": "umod",
+  "name": "UMOD",
+  "description": "Modding mit Zuschauern!",
+  "version": "0.1",
+  "mcversion": "1.8",
+  "url": "http://www.hycrafthd.net/#nochnichtvorhanden",
+  "updateUrl": "",
+  "authorList": ["Youtube Zuschauer", "HyCraftHD"],
+  "credits": "Youtube Zuschauer + HyCraftHD",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

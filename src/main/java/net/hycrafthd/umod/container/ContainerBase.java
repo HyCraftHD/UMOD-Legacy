@@ -51,6 +51,7 @@ public class ContainerBase extends Container{
 		{
 		   	return null;
 		}
+		itemCopy = slot.getStack();
 
 		return itemCopy;
 	}
@@ -75,10 +76,12 @@ public class ContainerBase extends Container{
 		return true;
 	}
 	
+	public void onSlotChanged(){
+		ent.markDirty();
+	}
 	
 	@Override
 	public ItemStack slotClick(int slotId, int clickedButton, int mode, EntityPlayer playerIn) {
-		// TODO Auto-generated method stub
 		return super.slotClick(slotId, clickedButton, mode, playerIn);
 	}
 	

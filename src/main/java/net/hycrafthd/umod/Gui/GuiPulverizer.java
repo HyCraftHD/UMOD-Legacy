@@ -42,9 +42,7 @@ public class GuiPulverizer extends GuiBase{
 		}else{
 			((GuiButton)buttonList.get(0)).displayString = "Sign with Player";
 		}
-		int l = (width - xSize) / 2;
-		int i1 = (height - ySize) / 2;
-		drawColour(l + 32, i1 + 8, 11, 11, 16711680);
+		
 	}
 	
 	@Override
@@ -59,9 +57,11 @@ public class GuiPulverizer extends GuiBase{
     	   play.addChatMessage(new ChatComponentText(EnumChatFormatting.RED + "Unsigned Pulverizer"));
     	   p.signPlayer(null);
     	   }
+    	   p.markDirty();
     	   break;
        }
 	}
+
 	
 	public void drawColour(int x, int y, int width, int height, int par4)
 	{

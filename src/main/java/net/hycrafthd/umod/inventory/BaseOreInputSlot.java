@@ -29,6 +29,12 @@ public class BaseOreInputSlot extends Slot{
 	public boolean canTakeStack(EntityPlayer playerIn) {
 		return true;
 	}
+	
+	@Override
+	public void onSlotChanged() {
+		super.onSlotChanged();
+		this.inventory.markDirty();
+	}
 
 	
 }

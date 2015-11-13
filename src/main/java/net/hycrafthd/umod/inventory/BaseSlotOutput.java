@@ -22,5 +22,9 @@ public class BaseSlotOutput extends Slot{
 		return true;
 	}
 	
-	
+	@Override
+	public void onSlotChanged() {
+		super.onSlotChanged();
+		this.inventory.markDirty();
+	}
 }

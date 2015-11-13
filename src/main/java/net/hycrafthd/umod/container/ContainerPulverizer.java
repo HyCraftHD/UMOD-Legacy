@@ -25,10 +25,5 @@ public class ContainerPulverizer extends ContainerBase{
 		input = this.addSlotToContainer(new BaseOreInputSlot(inv, 3, 30, 23));
 				
 	}
-
-	@Override
-	public boolean canInteractWith(EntityPlayer playerIn) {
-		return ((IInventory)ent).isUseableByPlayer(playerIn);
-	}
 	
 }

@@ -33,36 +33,6 @@ public abstract class TileEntityBase extends TileEntityLockable implements ISide
 
 	@Override
 	public void closeInventory(EntityPlayer player) {}
-
-	@Override
-	public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
-		NBTTagCompound tag = pkt.getNbtCompound();
-    	this.readFromNBT(tag);
-	}
-	
-	@Override
-	public void readFromNBT(NBTTagCompound compound) {
-		super.readFromNBT(compound);
-		 if (compound.hasKey("name", 8))
-	     {
-	       this.customname = compound.getString("name");
-	     }
-	}
-	
-	@Override
-    public Packet getDescriptionPacket() {
-	    	NBTTagCompound tag = new NBTTagCompound();
-	    	this.writeToNBT(tag);
-	    	return new S35PacketUpdateTileEntity(getPos(), getBlockMetadata(), tag);
-    }
-	
-	@Override
-	public void writeToNBT(NBTTagCompound compound) {
-		super.writeToNBT(compound);
-		if(this.hasCustomName()){
-		compound.setString("name", customname);
-		}
-	}
 	
 	@Override
 	public IChatComponent getDisplayName() {

@@ -14,6 +14,9 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.Packet;
+import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.EnumFacing;
@@ -45,13 +48,36 @@ public class TileEntityPulverizer extends TileEntityBase{
 
 	@Override
 	public ItemStack getStackInSlotOnClosing(int index) {
-		return stack[index];
+		 if (this.stack[index] != null)
+	        {
+	            ItemStack itemstack = this.stack[index];
+	            this.stack[index] = null;
+	            return itemstack;
+	        }
+	        else
+	        {
+	            return null;
+	        }
 	}
 
 	@Override
 	public void setInventorySlotContents(int index, ItemStack stack) {
 		this.stack[index] = stack;
 	}
+	
+	@Override
+	public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
+		NBTTagCompound tag = pkt.getNbtCompound();
+    	this.readFromNBT(tag);
+	}
+
+	
+	@Override
+    public Packet getDescriptionPacket() {
+	    	NBTTagCompound tag = new NBTTagCompound();
+	    	this.writeToNBT(tag);
+	    	return new S35PacketUpdateTileEntity(getPos(), getBlockMetadata(), tag);
+    }
 
 	@Override
 	public int getInventoryStackLimit() {
@@ -103,6 +129,14 @@ public class TileEntityPulverizer extends TileEntityBase{
 	}
 
 	@Override
+	public void openInventory(EntityPlayer player) {
+		if(pl != null && !player.getName().equals(pl)){
+			player.closeScreen();
+			player.addChatMessage(new ChatComponentText(EnumChatFormatting.RED + "THIS PULVERIZER IS LOCKED BY " + pl));
+		}
+	}
+	
+	@Override
 	public void setField(int id, int value) {
 		time = value;
 	}
@@ -114,7 +148,10 @@ public class TileEntityPulverizer extends TileEntityBase{
 
 	@Override
 	public void clear() {
-		stack = new ItemStack[this.getSizeInventory()];
+		for (int i = 0; i < this.stack.length; ++i)
+        {
+            this.stack[i] = null;
+        }
 	}
 	
 	@Override
@@ -186,10 +223,7 @@ public class TileEntityPulverizer extends TileEntityBase{
 	@Override
 	public void writeToNBT(NBTTagCompound compound) {
 		super.writeToNBT(compound);
-		compound.setInteger("Time", time);
-		if(pl != null){
-		compound.setString("Player", pl);
-		}
+		System.out.println("WRITE TO NBT");
 		 NBTTagList nbttaglist = new NBTTagList();
 
 	     for (int i = 0; i < this.stack.length; ++i)
@@ -197,35 +231,43 @@ public class TileEntityPulverizer extends TileEntityBase{
 	         if (this.stack[i] != null)
 	         {
 	             NBTTagCompound nbttagcompound1 = new NBTTagCompound();
-	             nbttagcompound1.setByte("Slot", (byte)i);
+	             nbttagcompound1.setInteger("Slot", i);
 	             this.stack[i].writeToNBT(nbttagcompound1);
 	             nbttaglist.appendTag(nbttagcompound1);
 	         }
 	     }
 
 	     compound.setTag("Items", nbttaglist);
+		 compound.setInteger("Time", time);
+	     if(pl != null){
+	     compound.setString("Player", pl);
+	     }
 	}
 
 	@Override
 	public void readFromNBT(NBTTagCompound compound) {
 		super.readFromNBT(compound);
-		if(compound.hasKey("Player")){
-			this.pl = compound.getString("Player");
-		}
-		this.time = compound.getInteger("Time");
+		System.out.println("READ FROM NBT");
 		NBTTagList nbttaglist = compound.getTagList("Items", 10);
         this.stack = new ItemStack[this.getSizeInventory()];
 
         for (int i = 0; i < nbttaglist.tagCount(); ++i)
         {
             NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
-            byte b0 = nbttagcompound1.getByte("Slot");
+            int b0 = nbttagcompound1.getInteger("Slot");
 
             if (b0 >= 0 && b0 < this.stack.length)
             {
                 this.stack[b0] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
            }
         }
+		if(compound.hasKey("Player")){
+			System.out.println("PLAYER LOCK DETECTED");
+			this.pl = compound.getString("Player");
+		}else{
+			System.out.println(compound.getString("Player"));
+		}
+		this.time = compound.getInteger("Time");
 	}
 
 	@Override

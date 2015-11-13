@@ -34,20 +34,17 @@ public class ClientProxy extends CommonProxy {
 			ModelBakery.addVariantName(UItems.dusts, UReference.resource + "dust" + EnumTypeBaseStuff.byMetadata(i).getName());
 			this.registerModelRenderer(UItems.dusts, i, new ModelResourceLocation(UReference.resource + "dust" + EnumTypeBaseStuff.byMetadata(i).getName(), "inventory"));
 		}
-		
-		//Pulverizer
+
+		// Pulverizer
 		this.registerModelRenderer(UBlocks.pulver);
-		
-		//Cobble Dust
+
+		// Cobble Dust
 		this.registerModelRenderer(UItems.cdust);
-<<<<<<< HEAD
-=======
-		
+
 		this.registerModelRenderer(UArmor.radiationSuitHelmet);
 		this.registerModelRenderer(UArmor.radiationSuitChestplate);
 		this.registerModelRenderer(UArmor.radiationSuitLeggings);
 		this.registerModelRenderer(UArmor.radiationSuitBoots);
->>>>>>> 64322378d8be2401f632ecef38717edb27145f2f
 	}
 
 	private void registerModelRenderer(Object obj) {

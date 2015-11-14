@@ -1,7 +1,20 @@
 {
     "textures": {
-        "0": "umod:items/infested/fruit",
-        "1": "umod:items/infested/fruitstem"
+        "0": "umod:items/infested/crop",
+        "1": "umod:items/infested/cropstem",
+        "particle": "umod:items/infested/crop"
+    },
+    "display": {
+        "thirdperson": {
+            "rotation": [ -90, 0, 0 ],
+            "translation": [ 0, 2, -4.5 ],
+            "scale": [ 1.55, 1.55, 1.55 ]
+        },
+        "firstperson": {
+            "rotation": [ 0, -135, 25 ],
+            "translation": [ 10, 7.5, 3 ],
+            "scale": [ 5.0, 5.0, 5.0 ]
+        }
     },
     "elements": [
         {

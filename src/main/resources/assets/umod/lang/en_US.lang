@@ -39,6 +39,9 @@ item.radiationsuitchestplate.name=Radiation Suit Chestplate
 item.radiationsuitleggings.name=Radiation Suit Leggings
 item.radiationsuitboots.name=Radiation Suit Boots
 
+#Infested
+item.infestedfruit.name=Infested Fruit
+
 #Blocks
 #Ores
 tile.orealuminium.name=Aluminium Ore
@@ -75,5 +78,6 @@ tile.infecteddirt.name=Infected Dirt
 tile.infectedlog.name=Infected Log
 tile.infectedleave.name=Infected Leave
 tile.infectedplank.name=Infected Plank
+tile.infectedfruit.name=Infected Fruit
 #Pulverizer
 tile.pulver.name=Pulverizer

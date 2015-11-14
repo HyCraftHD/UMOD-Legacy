@@ -2,6 +2,7 @@ package net.hycrafthd.umod;
 
 import net.hycrafthd.umod.item.ItemDusts;
 import net.hycrafthd.umod.item.ItemFundamental;
+import net.hycrafthd.umod.item.ItemInfectedFruit;
 import net.hycrafthd.umod.item.ItemIngots;
 import net.minecraft.item.Item;
 
@@ -16,6 +17,9 @@ public class UItems {
 	// Cobble Dust
 	public static Item cdust;
 
+	// Infected
+	public static Item infectedFruitItem;
+
 	public UItems() {
 		init();
 		register();
@@ -29,6 +33,8 @@ public class UItems {
 		dusts = new ItemDusts().setUnlocalizedName("dusts");
 		// Cobble Dust
 		cdust = new ItemFundamental().setUnlocalizedName("cdust");
+		// Infected
+		infectedFruitItem = new ItemInfectedFruit().setUnlocalizedName("infectedfruititem");
 	}
 
 	private void register() {
@@ -38,6 +44,8 @@ public class UItems {
 		UUtils.registerItem(dusts);
 		// Cobble Dust
 		UUtils.registerItem(cdust);
+		// Infected
+		UUtils.registerItem(infectedFruitItem);
 	}
 
 	private void oredirectionary() {
@@ -47,6 +55,8 @@ public class UItems {
 		UUtils.registerOredirectionary(dusts);
 		// Cobble Dust
 		UUtils.registerOredirectionary(cdust);
+		// Infected
+		UUtils.registerOredirectionary(infectedFruitItem);
 	}
 
 }

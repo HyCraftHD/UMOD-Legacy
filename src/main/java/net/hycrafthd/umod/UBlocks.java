@@ -2,6 +2,7 @@ package net.hycrafthd.umod;
 
 import net.hycrafthd.umod.block.BlockBlocks;
 import net.hycrafthd.umod.block.BlockInfectedDirt;
+import net.hycrafthd.umod.block.BlockInfectedFruit;
 import net.hycrafthd.umod.block.BlockInfectedGrass;
 import net.hycrafthd.umod.block.BlockInfectedLeave;
 import net.hycrafthd.umod.block.BlockInfectedLog;
@@ -29,6 +30,7 @@ public class UBlocks {
 	public static Block infectedLog;
 	public static Block infectedLeave;
 	public static Block infectedPlank;
+	public static Block infectedFruit;
 
 	public UBlocks() {
 		init();
@@ -51,6 +53,7 @@ public class UBlocks {
 		infectedLog = new BlockInfectedLog().setUnlocalizedName("infectedlog");
 		infectedLeave = new BlockInfectedLeave().setUnlocalizedName("infectedleave");
 		infectedPlank = new BlockInfectedPlank().setUnlocalizedName("infectedplank");
+		infectedFruit = new BlockInfectedFruit().setUnlocalizedName("infectedfruit");
 	}
 
 	private void register() {
@@ -68,6 +71,7 @@ public class UBlocks {
 		UUtils.registerBlock(infectedLog);
 		UUtils.registerBlock(infectedLeave);
 		UUtils.registerBlock(infectedPlank);
+		UUtils.registerBlock(infectedFruit);
 	}
 
 	private void oredirectionary() {
@@ -85,6 +89,7 @@ public class UBlocks {
 		UUtils.registerOredirectionary(infectedLog);
 		UUtils.registerOredirectionary(infectedLeave);
 		UUtils.registerOredirectionary(infectedPlank);
+		UUtils.registerOredirectionary(infectedFruit);
 	}
 
 }

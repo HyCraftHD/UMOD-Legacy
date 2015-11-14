@@ -11,17 +11,20 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
+import net.minecraft.server.gui.IUpdatePlayerListBox;
+import net.minecraft.tileentity.TileEntityLockable;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.EnumFacing;
 
-public class TileEntityPulverizer extends TileEntityBase implements IPowerProvieder{
+public class TileEntityPulverizer extends TileEntityLockable implements ISidedInventory ,IPowerProvieder{
 
 	private ItemStack[] stack = new ItemStack[4];
 	private String pl = null;
@@ -33,7 +36,6 @@ public class TileEntityPulverizer extends TileEntityBase implements IPowerProvie
 
 	@Override
 	public ItemStack getStackInSlot(int index) {
-		UMod.log.info("Returnd ItemStack:" + stack[index]);
 		return stack[index];
 	}
 
@@ -41,9 +43,7 @@ public class TileEntityPulverizer extends TileEntityBase implements IPowerProvie
 	public ItemStack decrStackSize(int index, int count) {
 	    if(stack[index].stackSize > count){
 	    	stack[index].stackSize -= count;
-			UMod.log.info("decreded " + stack[index] + " with " + count);
 	    }else{
-			UMod.log.info("Set " + stack[index] + " to null");
 	    	stack[index] = null;
 	    }
 		return stack[index];
@@ -65,7 +65,6 @@ public class TileEntityPulverizer extends TileEntityBase implements IPowerProvie
 
 	@Override
 	public void setInventorySlotContents(int index, ItemStack stack) {
-		UMod.log.info("Sets " + this.stack[index] + " to " + stack);
 		this.stack[index] = stack;
 	}
 	
@@ -309,7 +308,7 @@ public class TileEntityPulverizer extends TileEntityBase implements IPowerProvie
 		return "0";
 	}
 
-	public int strpo;
+	public int strpo = 0;
 	public String error;
 	public static final int MAXIMUM_POWER = 5000;
 	
@@ -357,5 +356,25 @@ public class TileEntityPulverizer extends TileEntityBase implements IPowerProvie
 	public boolean hasPower() {
 		return strpo > 0;
 	}
+
+	@Override
+	public void closeInventory(EntityPlayer player) {}
+
+	@Override
+	public boolean hasCustomName() {
+		return false;
+	}
 	
+	@Override
+	public void updateContainingBlockInfo()
+	{
+		super.updateContainingBlockInfo();
+	}
+	
+	@Override
+	public void invalidate()
+	{
+		this.updateContainingBlockInfo();
+		super.invalidate();
+	}
 }

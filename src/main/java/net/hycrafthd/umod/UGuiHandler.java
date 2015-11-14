@@ -3,6 +3,7 @@ package net.hycrafthd.umod;
 import net.hycrafthd.umod.api.IPowerProvieder;
 import net.hycrafthd.umod.container.ContainerPulverizer;
 import net.hycrafthd.umod.gui.GuiPulverizer;
+import net.hycrafthd.umod.gui.GuiSecondPulverizer;
 import net.hycrafthd.umod.gui.GuiSolarPanel;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -30,9 +31,11 @@ public class UGuiHandler implements IGuiHandler{
 		TileEntity ent = world.getTileEntity(p);
 		switch (ID) {
 		case 0:
-			return new GuiPulverizer(player, (IInventory) ent, world);
+			return new GuiPulverizer(player, (IInventory) ent, world,p);
 		case 1:
 			return new GuiSolarPanel((IPowerProvieder) ent);
+		case 2:
+			return new GuiSecondPulverizer((IPowerProvieder) ent, player,p);
 		}
 		return null;
 	}

@@ -7,7 +7,7 @@ import net.minecraft.tileentity.TileEntityLockable;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.IChatComponent;
 
-public abstract class TileEntityBase extends TileEntityLockable implements ISidedInventory, IUpdatePlayerListBox{
+public abstract class TileEntityBase extends TileEntityLockable{
 	
 	public String customname = null;
 

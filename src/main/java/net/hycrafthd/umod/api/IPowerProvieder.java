@@ -19,4 +19,6 @@ public interface IPowerProvieder extends IUpdatePlayerListBox{
 	public boolean isWorking();
 	
 	public String getErrorMessage();
+	
+	public boolean hasPower();
 }

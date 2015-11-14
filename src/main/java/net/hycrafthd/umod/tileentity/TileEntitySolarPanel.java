@@ -124,4 +124,9 @@ public class TileEntitySolarPanel extends TileEntity implements IPowerProvieder{
 	public String getErrorMessage() {
 		return er;
 	}
+
+	@Override
+	public boolean hasPower() {
+		return storedpower > 0;
+	}
 }

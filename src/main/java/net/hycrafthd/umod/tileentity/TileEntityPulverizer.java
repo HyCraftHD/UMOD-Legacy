@@ -2,6 +2,7 @@ package net.hycrafthd.umod.tileentity;
 
 import net.hycrafthd.umod.UMod;
 import net.hycrafthd.umod.UModRegistery;
+import net.hycrafthd.umod.UUtils;
 import net.hycrafthd.umod.api.IPowerProvieder;
 import net.hycrafthd.umod.api.PulverizerRecepie;
 import net.hycrafthd.umod.block.BlockOres;
@@ -48,6 +49,7 @@ public class TileEntityPulverizer extends TileEntityLockable implements ISidedIn
 	    }else{
 	    	stack[index] = null;
 	    }
+	    UMod.log.info("Decraded");
 		return stack[index];
 	}
 
@@ -170,15 +172,17 @@ public class TileEntityPulverizer extends TileEntityLockable implements ISidedIn
 	
 	private int time = 0;
 	public boolean work = false;
+	public boolean wasfull = false;
 	
 	@Override
 	public void update() {
-		IPowerProvieder prow = getNeighbourPowerProvider(pos, worldObj);
-		if(prow != null && this.canAddPower(2) && prow.canGetPower(2)){
-			strpo += prow.getPower(2);
+		if(strpo == 2500){
+			wasfull = true;
+		}else if(strpo <= 10){
+			wasfull = false;
 		}
 		ItemStack[] args = UModRegistery.isRecepie(new PulverizerRecepie(stack[3], null, null));
-		if(args != null && strpo >= 10){
+		if(args != null && wasfull){
 			if(stack[2] != null && stack[2].stackSize > 64){
 				time = 0;
 				return;
@@ -219,6 +223,10 @@ public class TileEntityPulverizer extends TileEntityLockable implements ISidedIn
 		}else{
 		    work = false;
 			time = 0;
+		}
+		IPowerProvieder prow = UUtils.getNeighbourPowerProvider(pos, worldObj);
+		if(prow != null && this.canAddPower(2) && prow.canGetPower(2)){
+			this.addPower(prow.getPower(2));
 		}
 	}
 	
@@ -318,7 +326,7 @@ public class TileEntityPulverizer extends TileEntityLockable implements ISidedIn
 
 	public int strpo = 0;
 	public String error;
-	public static final int MAXIMUM_POWER = 5000;
+	public static final int MAXIMUM_POWER = 4000;
 	
 	@Override
 	public int getStoredPower() {
@@ -327,6 +335,9 @@ public class TileEntityPulverizer extends TileEntityLockable implements ISidedIn
 
 	@Override
 	public void addPower(int power) {
+		if(strpo >= MAXIMUM_POWER){
+			return;
+		}
 		strpo += power;
 	}
 
@@ -342,7 +353,7 @@ public class TileEntityPulverizer extends TileEntityLockable implements ISidedIn
 
 	@Override
 	public boolean canAddPower(int power) {
-		return strpo + power >= MAXIMUM_POWER;
+		return strpo + power <= MAXIMUM_POWER;
 	}
 
 	@Override
@@ -384,27 +395,5 @@ public class TileEntityPulverizer extends TileEntityLockable implements ISidedIn
 	{
 		this.updateContainingBlockInfo();
 		super.invalidate();
-	}
-	
-	public IPowerProvieder getNeighbourPowerProvider(BlockPos p,World w){
-		if(w.getTileEntity(p.east()) instanceof IPowerProvieder){
-			return (IPowerProvieder) w.getTileEntity(p.east()); 
-		}
-		if(w.getTileEntity(p.south()) instanceof IPowerProvieder){
-			return (IPowerProvieder) w.getTileEntity(p.south()); 
-		}
-		if(w.getTileEntity(p.north()) instanceof IPowerProvieder){
-			return (IPowerProvieder) w.getTileEntity(p.north()); 
-		}
-		if(w.getTileEntity(p.west()) instanceof IPowerProvieder){
-			return (IPowerProvieder) w.getTileEntity(p.west()); 
-		}
-		if(w.getTileEntity(p.up()) instanceof IPowerProvieder){
-			return (IPowerProvieder) w.getTileEntity(p.up()); 
-		}
-		if(w.getTileEntity(p.down()) instanceof IPowerProvieder){
-			return (IPowerProvieder) w.getTileEntity(p.down()); 
-		}
-		return null;
 	}
 }

@@ -1,7 +1,6 @@
 package net.hycrafthd.umod.api;
 
 import net.hycrafthd.umod.UItems;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import scala.util.Random;
 

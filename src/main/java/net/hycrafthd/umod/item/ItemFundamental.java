@@ -2,7 +2,7 @@ package net.hycrafthd.umod.item;
 
 import java.util.Random;
 
-import net.hycrafthd.umod.world.InfectedTreeGen;
+import net.hycrafthd.umod.UReference;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockPos;
@@ -17,10 +17,8 @@ public class ItemFundamental extends ItemBase {
 	@Override
 	public ItemStack onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn) {
 		BlockPos pos = new BlockPos(playerIn.posX, playerIn.posY, playerIn.posZ);
-//		USchematic.testSchematic.generate(worldIn, pos.getX(), pos.getY(), pos.getZ());
-		InfectedTreeGen gen = new InfectedTreeGen(false, 5, 0, 0, false);
-		gen.generate(worldIn, new Random(), pos);
-		System.out.println("Test");
+		
+		UReference.infectedTreeGen.generate(worldIn, new Random(), pos);
 		return super.onItemRightClick(itemStackIn, worldIn, playerIn);
 	}
 }

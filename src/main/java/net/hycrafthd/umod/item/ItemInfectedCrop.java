@@ -8,9 +8,9 @@ import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 
-public class ItemInfectedFruit extends ItemFood {
+public class ItemInfectedCrop extends ItemFood {
 
-	public ItemInfectedFruit() {
+	public ItemInfectedCrop() {
 		super(1, 0.2F, false);
 		this.setCreativeTab(UReference.tab);
 		this.setPotionEffect(Potion.poison.getId(), 5, 1, 1.0F);

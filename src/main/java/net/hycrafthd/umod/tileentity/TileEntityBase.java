@@ -1,18 +1,21 @@
 package net.hycrafthd.umod.tileentity;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.server.gui.IUpdatePlayerListBox;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityLockable;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.IChatComponent;
 
-public abstract class TileEntityBase extends TileEntityLockable implements ISidedInventory, IUpdatePlayerListBox {
-
+public abstract class TileEntityBase extends TileEntityLockable implements ISidedInventory, IUpdatePlayerListBox{
+	
 	public String customname = null;
 
 	@Override
@@ -26,42 +29,11 @@ public abstract class TileEntityBase extends TileEntityLockable implements ISide
 	}
 
 	@Override
-	public void openInventory(EntityPlayer player) {
-	}
+	public void openInventory(EntityPlayer player) {}
 
 	@Override
-	public void closeInventory(EntityPlayer player) {
-	}
-
-	@Override
-	public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
-		NBTTagCompound tag = pkt.getNbtCompound();
-		this.readFromNBT(tag);
-	}
-
-	@Override
-	public void readFromNBT(NBTTagCompound compound) {
-		super.readFromNBT(compound);
-		if (compound.hasKey("name", 8)) {
-			this.customname = compound.getString("name");
-		}
-	}
-
-	@Override
-	public Packet getDescriptionPacket() {
-		NBTTagCompound tag = new NBTTagCompound();
-		this.writeToNBT(tag);
-		return new S35PacketUpdateTileEntity(getPos(), getBlockMetadata(), tag);
-	}
-
-	@Override
-	public void writeToNBT(NBTTagCompound compound) {
-		super.writeToNBT(compound);
-		if (this.hasCustomName()) {
-			compound.setString("name", customname);
-		}
-	}
-
+	public void closeInventory(EntityPlayer player) {}
+	
 	@Override
 	public IChatComponent getDisplayName() {
 		return new ChatComponentText(this.getName());

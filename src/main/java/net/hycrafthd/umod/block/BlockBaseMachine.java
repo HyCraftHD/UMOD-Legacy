@@ -20,6 +20,7 @@ public abstract class BlockBaseMachine extends BlockBase implements ITileEntityP
 	public BlockBaseMachine() {
 		super(Material.iron);
 		this.isBlockContainer = true;
+		this.setHarvestLevel("pickaxe", 3);
 	}
 
 	@Override

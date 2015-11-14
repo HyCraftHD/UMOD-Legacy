@@ -1,6 +1,8 @@
 package net.hycrafthd.umod.tileentity;
 
+import net.hycrafthd.umod.UMod;
 import net.hycrafthd.umod.UModRegistery;
+import net.hycrafthd.umod.UUtils;
 import net.hycrafthd.umod.api.IPowerProvieder;
 import net.hycrafthd.umod.api.PulverizerRecepie;
 import net.hycrafthd.umod.block.BlockOres;
@@ -10,17 +12,22 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
+import net.minecraft.server.gui.IUpdatePlayerListBox;
+import net.minecraft.tileentity.TileEntityLockable;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.world.World;
 
-public class TileEntityPulverizer extends TileEntityBase implements IPowerProvieder{
+public class TileEntityPulverizer extends TileEntityLockable implements ISidedInventory ,IPowerProvieder{
 
 	private ItemStack[] stack = new ItemStack[4];
 	private String pl = null;
@@ -42,6 +49,7 @@ public class TileEntityPulverizer extends TileEntityBase implements IPowerProvie
 	    }else{
 	    	stack[index] = null;
 	    }
+	    UMod.log.info("Decraded");
 		return stack[index];
 	}
 
@@ -163,11 +171,18 @@ public class TileEntityPulverizer extends TileEntityBase implements IPowerProvie
 	}
 	
 	private int time = 0;
+	public boolean work = false;
+	public boolean wasfull = false;
 	
 	@Override
 	public void update() {
+		if(strpo == 2500){
+			wasfull = true;
+		}else if(strpo <= 10){
+			wasfull = false;
+		}
 		ItemStack[] args = UModRegistery.isRecepie(new PulverizerRecepie(stack[3], null, null));
-		if(args != null && this.hasPower()){
+		if(args != null && wasfull){
 			if(stack[2] != null && stack[2].stackSize > 64){
 				time = 0;
 				return;
@@ -185,6 +200,8 @@ public class TileEntityPulverizer extends TileEntityBase implements IPowerProvie
 			    	finishItem(2, args[2]);
 			    	time = 0;
 			    }
+			    strpo -= 10;
+			    work = true;
 			    return;
 			}
 			if(stack[0].stackSize <= 64 - args[0].stackSize && stack[1].stackSize <= 64 - args[1].stackSize){
@@ -199,10 +216,17 @@ public class TileEntityPulverizer extends TileEntityBase implements IPowerProvie
 		    	finishItem(1, args[1]);
 		    	finishItem(2, args[2]);
 		    	time = 0;
+			    work = true;
+			    strpo -= 10;
 		    }
 			}
 		}else{
+		    work = false;
 			time = 0;
+		}
+		IPowerProvieder prow = UUtils.getNeighbourPowerProvider(pos, worldObj);
+		if(prow != null && this.canAddPower(2) && prow.canGetPower(2)){
+			this.addPower(prow.getPower(2));
 		}
 	}
 	
@@ -300,8 +324,9 @@ public class TileEntityPulverizer extends TileEntityBase implements IPowerProvie
 		return "0";
 	}
 
-	public int strpo;
-	public static final int MAXIMUM_POWER = 5000;
+	public int strpo = 0;
+	public String error;
+	public static final int MAXIMUM_POWER = 4000;
 	
 	@Override
 	public int getStoredPower() {
@@ -310,6 +335,9 @@ public class TileEntityPulverizer extends TileEntityBase implements IPowerProvie
 
 	@Override
 	public void addPower(int power) {
+		if(strpo >= MAXIMUM_POWER){
+			return;
+		}
 		strpo += power;
 	}
 
@@ -325,31 +353,47 @@ public class TileEntityPulverizer extends TileEntityBase implements IPowerProvie
 
 	@Override
 	public boolean canAddPower(int power) {
-		return false;
+		return strpo + power <= MAXIMUM_POWER;
 	}
 
 	@Override
 	public int getMaximalPower() {
-		// TODO Auto-generated method stub
-		return 0;
+		return MAXIMUM_POWER;
 	}
 
 	@Override
 	public boolean isWorking() {
-		// TODO Auto-generated method stub
-		return false;
+		return work;
 	}
 
 	@Override
 	public String getErrorMessage() {
-		// TODO Auto-generated method stub
-		return null;
+		return error;
 	}
 
 	@Override
 	public boolean hasPower() {
-		// TODO Auto-generated method stub
+		return strpo > 0;
+	}
+
+	@Override
+	public void closeInventory(EntityPlayer player) {}
+
+	@Override
+	public boolean hasCustomName() {
 		return false;
 	}
 	
+	@Override
+	public void updateContainingBlockInfo()
+	{
+		super.updateContainingBlockInfo();
+	}
+	
+	@Override
+	public void invalidate()
+	{
+		this.updateContainingBlockInfo();
+		super.invalidate();
+	}
 }

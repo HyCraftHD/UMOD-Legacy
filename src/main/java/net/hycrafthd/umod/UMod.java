@@ -1,5 +1,7 @@
 package net.hycrafthd.umod;
 
+import org.apache.logging.log4j.Logger;
+
 import net.hycrafthd.umod.event.RayEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -11,9 +13,12 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 
 @Mod(modid = UReference.modid, version = UReference.version, name = UReference.name)
 public class UMod {
+	
+	public static Logger log;
 
 	@EventHandler
 	public void preinit(FMLPreInitializationEvent event) {
+		log = event.getModLog();
 	}
 
 	@EventHandler
@@ -23,6 +28,8 @@ public class UMod {
 		new UBlocks();
 		new UArmor();
 		new UBiom();
+		new UPotion();
+		new UDamageSource();
 		registerEvents();
 	}
 

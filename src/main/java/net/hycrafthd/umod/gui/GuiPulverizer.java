@@ -8,35 +8,36 @@ import net.hycrafthd.umod.tileentity.TileEntityPulverizer;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
 public class GuiPulverizer extends GuiBase{
+	
+	public BlockPos pos;
 
-	public GuiPulverizer(EntityPlayer pl, IInventory tile,World w) {
+	public GuiPulverizer(EntityPlayer pl, IInventory tile,World w,BlockPos pos) {
 		super(new ResourceLocation(UReference.modid, "textures/gui/pulver.png"), pl, tile, new ContainerPulverizer(tile, pl, w));
+		this.pos = pos;
 	}
 	
 	@Override
 	public void initGui() {
 		super.initGui();
-		GuiButton btn = new GuiButton(0, this.width/2-42, 20,85,20, "Sign with Player");
-		buttonList.add(btn);
+		GuiButton ba = new GuiButton(1, this.width/2-(this.xSize/2), 20,20,20, "<");
+		GuiButton fo = new GuiButton(2, this.width/2+(this.xSize/2)-20, 20,20,20, ">");
+		buttonList.add(ba);
+		buttonList.add(fo);
+
 	}
 
 	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
 		super.drawScreen(mouseX, mouseY, partialTicks);
  	    TileEntityPulverizer p = (TileEntityPulverizer) this.ent;
-		fontRendererObj.drawString(((TileEntityPulverizer)this.ent).getTime() + "%", 240, 64, 0x00000);
-		if(p.getSigndPlayerName() != null){
-			((GuiButton)buttonList.get(0)).displayString = "Unsign";
-		}else{
-			((GuiButton)buttonList.get(0)).displayString = "Sign with Player";
-		}
-		
+		fontRendererObj.drawString(((TileEntityPulverizer)this.ent).getTime() + "%", this.width/2-5, 64, 0x00000);
 	}
 	
 	@Override
@@ -53,6 +54,10 @@ public class GuiPulverizer extends GuiBase{
     	   }
     	   p.markDirty();
     	   break;
+       case 1:
+       case 2:
+    	   this.play.closeScreen();
+    	   this.play.openGui(UReference.modid, 2, this.play.worldObj, this.pos.getX(), this.pos.getY(),this.pos.getZ());
        }
 	}
 }

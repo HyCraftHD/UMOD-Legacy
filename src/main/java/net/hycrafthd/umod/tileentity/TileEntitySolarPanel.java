@@ -26,7 +26,8 @@ public class TileEntitySolarPanel extends TileEntity implements IPowerProvieder{
 
 	@Override
 	public int getPower(int powerneed) {
-		return (storedpower -= powerneed);
+		storedpower -= powerneed;
+		return storedpower;
 	}
 
 	@Override
@@ -47,7 +48,7 @@ public class TileEntitySolarPanel extends TileEntity implements IPowerProvieder{
 
 	@Override
 	public void update() {
-		if(this.worldObj.canBlockSeeSky(getPos())){
+		if(this.worldObj.canSeeSky(this.pos)){
 			er = "Can't see sky";
 			work = false;
 			return;
@@ -57,7 +58,7 @@ public class TileEntitySolarPanel extends TileEntity implements IPowerProvieder{
 			work = false;
 			return;
 		}
-		if(this.worldObj.getLight(pos) >= 4){
+		if(this.worldObj.getLight(this.pos) >= 4){
 			er = "It's Night";
 			work = false;
 			return;

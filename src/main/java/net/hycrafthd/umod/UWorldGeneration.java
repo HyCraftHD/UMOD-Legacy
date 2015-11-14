@@ -20,8 +20,18 @@ public class UWorldGeneration implements IWorldGenerator {
 	}
 
 	private void overworld(Random random, int x, int y, World world) {
-		gen(UBlocks.ores.getStateFromMeta(EnumTypeBaseStuff.ALUMINIUM.getMetadata()), random, x, y, world, 8, 0, 64, 1, 6);
-		// TODO All Ores
+		gen(UBlocks.ores.getStateFromMeta(EnumTypeBaseStuff.ALUMINIUM.getMetadata()), random, x, y, world, 14, 0, 64, 2, 8);
+		gen(UBlocks.ores.getStateFromMeta(EnumTypeBaseStuff.COPPER.getMetadata()), random, x, y, world, 14, 0, 64, 2, 8);
+		gen(UBlocks.ores.getStateFromMeta(EnumTypeBaseStuff.LEAD.getMetadata()), random, x, y, world, 8, 0, 22, 2, 6);
+		gen(UBlocks.ores.getStateFromMeta(EnumTypeBaseStuff.MANGAN.getMetadata()), random, x, y, world, 10, 0, 64, 2, 8);
+		gen(UBlocks.ores.getStateFromMeta(EnumTypeBaseStuff.MERCURY.getMetadata()), random, x, y, world, 8, 0, 22, 2, 6);
+		gen(UBlocks.ores.getStateFromMeta(EnumTypeBaseStuff.NICKEL.getMetadata()), random, x, y, world, 8, 0, 30, 2, 8);
+		gen(UBlocks.ores.getStateFromMeta(EnumTypeBaseStuff.PLATINUM.getMetadata()), random, x, y, world, 4, 4, 22, 1, 8);
+		gen(UBlocks.ores.getStateFromMeta(EnumTypeBaseStuff.SILICIUM.getMetadata()), random, x, y, world, 8, 0, 30, 2, 6);
+		gen(UBlocks.ores.getStateFromMeta(EnumTypeBaseStuff.SILVER.getMetadata()), random, x, y, world, 10, 0, 30, 2, 6);
+		gen(UBlocks.ores.getStateFromMeta(EnumTypeBaseStuff.TIN.getMetadata()), random, x, y, world, 14, 0, 64, 2, 8);
+		gen(UBlocks.ores.getStateFromMeta(EnumTypeBaseStuff.URAN.getMetadata()), random, x, y, world, 4, 4, 22, 1, 4);
+		gen(UBlocks.ores.getStateFromMeta(EnumTypeBaseStuff.ZINC.getMetadata()), random, x, y, world, 8, 0, 30, 2, 8);
 	}
 
 	private void end(Random random, int x, int y, World world) {

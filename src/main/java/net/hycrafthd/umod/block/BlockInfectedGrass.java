@@ -59,7 +59,8 @@ public class BlockInfectedGrass extends BlockBase {
 	@Override
 	public void updateTick(World worldIn, BlockPos pos, IBlockState state,Random rand) {
 		if(!worldIn.isRemote){
-			if(worldIn.getLightFromNeighbors(pos.up()) < 4 && worldIn.getBlockState(pos.up()).getBlock().getLightOpacity(worldIn, pos.up()) > 2){
+			BlockPos BlockPos2 = pos.add(0, 1, 0);
+			if(worldIn.getBlockState(BlockPos2).getBlock() != Blocks.air){
 				worldIn.setBlockState(pos, UBlocks.infectedDirt.getDefaultState());
 			}else{
 				if(worldIn.getLightFromNeighbors(pos.up()) >= 9){
@@ -68,7 +69,10 @@ public class BlockInfectedGrass extends BlockBase {
 						Block block = worldIn.getBlockState(blockPos1.up()).getBlock();
 						IBlockState iBlockState1 = worldIn.getBlockState(blockPos1);
 						if(iBlockState1.getBlock() == UBlocks.infectedDirt && worldIn.getLightFromNeighbors(blockPos1.up()) >= 4 && block.getLightOpacity(worldIn, blockPos1.up()) <= 2){
-							worldIn.setBlockState(blockPos1, UBlocks.infectedGrass.getDefaultState());
+							BlockPos pBlockPos2 = blockPos1.add(0, 1, 0);
+							if(worldIn.getBlockState(pBlockPos2).getBlock() == Blocks.air){
+								worldIn.setBlockState(blockPos1, UBlocks.infectedGrass.getDefaultState());
+							}
 						}
 					}
 				}

@@ -5,8 +5,10 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IInteractionObject;
+import net.minecraft.world.WorldServer;
 
 public class TileEntitySolarPanel extends TileEntity implements IPowerProvieder{
 	
@@ -48,13 +50,28 @@ public class TileEntitySolarPanel extends TileEntity implements IPowerProvieder{
 
 	@Override
 	public void update() {
+		if(!worldObj.isRemote){
+			er = "World isn't Remoted";
+			work = false;
+			return;
+		}
 		if(!worldObj.canSeeSky(pos)){
 			er = "Can't see sky";
 			work = false;
 			return;
 		}
-		if(!worldObj.isDaytime()){
+		if(!worldObj.provider.isSurfaceWorld()){
+			er = "Your not in Surface";
+			work = false;
+			return;
+		}
+		if(!worldObj.provider.isDaytime()){
 			er = "It's Night";
+			work = false;
+			return;
+		}
+		if(!worldObj.isRaining()){
+			er = "It's Rainig";
 			work = false;
 			return;
 		}
@@ -106,5 +123,10 @@ public class TileEntitySolarPanel extends TileEntity implements IPowerProvieder{
 	@Override
 	public String getErrorMessage() {
 		return er;
+	}
+
+	@Override
+	public boolean hasPower() {
+		return storedpower > 0;
 	}
 }

@@ -27,6 +27,7 @@ public class BlockPulverizer extends BlockBaseMachine{
     @Override
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,
     		EnumFacing side, float hitX, float hitY, float hitZ) {
+    	worldIn.getTileEntity(pos).setWorldObj(worldIn);
     	playerIn.openGui(UReference.modid, 0, worldIn, pos.getX(), pos.getY(), pos.getZ());
     	return true;
     }

@@ -1,9 +1,13 @@
 {
-  "parent": "block/orientable",
+"parent": "block/cube",
     "textures": {
-        "top": "umod:blocks/solarpanel_top",
-        "bottom": "umod:blocks/solarpanel_bottom",
-        "side": "umod:blocks/solarpanel_side"
+      "particle": "umod:blocks/solarpanel_top",
+        "down": "umod:blocks/solarpanel_bottom",
+        "up": "umod:blocks/solarpanel_top",
+        "north": "umod:blocks/solarpanel_side",
+        "east": "umod:blocks/solarpanel_side",
+        "south": "umod:blocks/solarpanel_side",
+        "west": "umod:blocks/solarpanel_side"
     }
 
 

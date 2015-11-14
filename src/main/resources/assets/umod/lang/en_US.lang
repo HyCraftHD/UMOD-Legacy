@@ -72,6 +72,8 @@ tile.blockzinc.name=Zinc Block
 #Infected
 tile.infectedgrass.name=Infected Grass
 tile.infecteddirt.name=Infected Dirt
-
+tile.infectedlog.name=Infected Log
+tile.infectedleave.name=Infected Leave
+tile.infectedplank.name=Infected Plank
 #Pulverizer
 tile.pulver.name=Pulverizer

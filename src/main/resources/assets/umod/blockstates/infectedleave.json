@@ -1,6 +1,8 @@
 {
     "variants": {
-        "normal": { "model": "umod:infectedleave" },
-        "normal": { "model": "umod:infectedleave" }
+        "check_decay=true,decayable=true": { "model": "umod:infectedleave" },
+        "check_decay=true,decayable=false": { "model": "umod:infectedleave" },
+        "check_decay=false,decayable=true": { "model": "umod:infectedleave" },
+        "check_decay=false,decayable=false": { "model": "umod:infectedleave" }
     }
 }

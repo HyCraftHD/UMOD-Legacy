@@ -39,21 +39,7 @@ public class ContainerBase extends Container{
          	super.addSlotToContainer(new Slot(pl.inventory, i, 8 + i * 18, 142));
          }
 	}
-	
-	@Override
-	public ItemStack transferStackInSlot(EntityPlayer playerIn, int slotNum) {
 
-		ItemStack itemCopy = null;
-		Slot slot = (Slot) this.inventorySlots.get(slotNum);
-
-		if (slot == null || !slot.getHasStack())
-		{
-		   	return null;
-		}
-		itemCopy = slot.getStack();
-
-		return itemCopy;
-	}
 	
 	@Override
 	public boolean canInteractWith(EntityPlayer playerIn) {

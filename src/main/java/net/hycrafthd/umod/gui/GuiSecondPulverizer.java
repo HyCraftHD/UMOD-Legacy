@@ -33,19 +33,19 @@ public class GuiSecondPulverizer extends GuiScreen{
 	
 	@Override
 	public void initGui() {
+		super.initGui();
 		GuiButton btn = new GuiButton(0, this.width/2-42, 20,85,20, "Sign with Player");
 		buttonList.add(btn);
 		GuiButton ba = new GuiButton(1, this.width/2-(this.xSize/2), 20,20,20, "<");
-		GuiButton fo = new GuiButton(2, this.width/2+(this.xSize/2), 20,20,20, ">");
+		GuiButton fo = new GuiButton(2, this.width/2+(this.xSize/2)-20, 20,20,20, ">");
 		buttonList.add(ba);
 		buttonList.add(fo);
-
-
 	}
 	
 	
 	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
+		super.drawScreen(mouseX, mouseY, partialTicks);
 		this.mc.getTextureManager().bindTexture(new ResourceLocation(UReference.modid,"textures/gui/solar.png"));
 		   int k = (this.width - this.xSize) / 2;
 	       int l = (this.height - this.ySize) / 2;

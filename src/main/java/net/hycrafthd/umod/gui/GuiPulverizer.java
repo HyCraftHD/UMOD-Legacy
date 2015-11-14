@@ -27,7 +27,7 @@ public class GuiPulverizer extends GuiBase{
 	public void initGui() {
 		super.initGui();
 		GuiButton ba = new GuiButton(1, this.width/2-(this.xSize/2), 20,20,20, "<");
-		GuiButton fo = new GuiButton(2, this.width/2+(this.xSize/2), 20,20,20, ">");
+		GuiButton fo = new GuiButton(2, this.width/2+(this.xSize/2)-20, 20,20,20, ">");
 		buttonList.add(ba);
 		buttonList.add(fo);
 

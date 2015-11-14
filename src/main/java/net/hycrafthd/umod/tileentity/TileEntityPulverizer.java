@@ -20,9 +20,11 @@ import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.server.gui.IUpdatePlayerListBox;
 import net.minecraft.tileentity.TileEntityLockable;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.world.World;
 
 public class TileEntityPulverizer extends TileEntityLockable implements ISidedInventory ,IPowerProvieder{
 
@@ -171,8 +173,12 @@ public class TileEntityPulverizer extends TileEntityLockable implements ISidedIn
 	
 	@Override
 	public void update() {
+		IPowerProvieder prow = getNeighbourPowerProvider(pos, worldObj);
+		if(prow != null && this.canAddPower(2) && prow.canGetPower(2)){
+			strpo += prow.getPower(2);
+		}
 		ItemStack[] args = UModRegistery.isRecepie(new PulverizerRecepie(stack[3], null, null));
-		if(args != null && this.hasPower()){
+		if(args != null && strpo >= 10){
 			if(stack[2] != null && stack[2].stackSize > 64){
 				time = 0;
 				return;
@@ -190,6 +196,7 @@ public class TileEntityPulverizer extends TileEntityLockable implements ISidedIn
 			    	finishItem(2, args[2]);
 			    	time = 0;
 			    }
+			    strpo -= 10;
 			    work = true;
 			    return;
 			}
@@ -206,6 +213,7 @@ public class TileEntityPulverizer extends TileEntityLockable implements ISidedIn
 		    	finishItem(2, args[2]);
 		    	time = 0;
 			    work = true;
+			    strpo -= 10;
 		    }
 			}
 		}else{
@@ -376,5 +384,27 @@ public class TileEntityPulverizer extends TileEntityLockable implements ISidedIn
 	{
 		this.updateContainingBlockInfo();
 		super.invalidate();
+	}
+	
+	public IPowerProvieder getNeighbourPowerProvider(BlockPos p,World w){
+		if(w.getTileEntity(p.east()) instanceof IPowerProvieder){
+			return (IPowerProvieder) w.getTileEntity(p.east()); 
+		}
+		if(w.getTileEntity(p.south()) instanceof IPowerProvieder){
+			return (IPowerProvieder) w.getTileEntity(p.south()); 
+		}
+		if(w.getTileEntity(p.north()) instanceof IPowerProvieder){
+			return (IPowerProvieder) w.getTileEntity(p.north()); 
+		}
+		if(w.getTileEntity(p.west()) instanceof IPowerProvieder){
+			return (IPowerProvieder) w.getTileEntity(p.west()); 
+		}
+		if(w.getTileEntity(p.up()) instanceof IPowerProvieder){
+			return (IPowerProvieder) w.getTileEntity(p.up()); 
+		}
+		if(w.getTileEntity(p.down()) instanceof IPowerProvieder){
+			return (IPowerProvieder) w.getTileEntity(p.down()); 
+		}
+		return null;
 	}
 }

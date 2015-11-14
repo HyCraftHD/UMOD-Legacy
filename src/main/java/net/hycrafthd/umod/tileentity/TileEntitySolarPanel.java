@@ -26,7 +26,8 @@ public class TileEntitySolarPanel extends TileEntity implements IPowerProvieder{
 
 	@Override
 	public int getPower(int powerneed) {
-		return (storedpower -= powerneed);
+		storedpower -= powerneed;
+		return storedpower;
 	}
 
 	@Override

@@ -24,6 +24,11 @@ public abstract class BlockBaseMachine extends BlockBase implements ITileEntityP
 	}
 
 	@Override
+	public boolean hasTileEntity() {
+		return true;
+	}
+	
+	@Override
 	public int getComparatorInputOverride(World world, BlockPos pos) {
 		TileEntity tileEntity = world.getTileEntity(pos);
 		return Container.calcRedstone(tileEntity);

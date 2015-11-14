@@ -60,6 +60,7 @@ public class ClientProxy extends CommonProxy {
 		this.registerModelRenderer(UBlocks.infectedLog);
 		this.registerModelRenderer(UBlocks.infectedLeave);
 		this.registerModelRenderer(UBlocks.infectedPlank);
+		this.registerModelRenderer(UBlocks.infectedSapling);
 		this.registerModelRenderer(UBlocks.infectedFruit);
 		this.registerModelRenderer(UItems.infectedcrop);
 	}

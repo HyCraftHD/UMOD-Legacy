@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import net.hycrafthd.umod.UBlocks;
 import net.hycrafthd.umod.UReference;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockPlanks;
@@ -118,8 +119,7 @@ public class BlockInfectedLeave extends BlockLeaves {
 	
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune) {
-		//TODO Sapplings
-		return Item.getItemFromBlock(this);
+		return Item.getItemFromBlock(UBlocks.infectedSapling);
 	}
 	
 	@Override

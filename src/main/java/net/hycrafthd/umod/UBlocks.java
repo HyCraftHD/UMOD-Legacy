@@ -7,6 +7,7 @@ import net.hycrafthd.umod.block.BlockInfectedGrass;
 import net.hycrafthd.umod.block.BlockInfectedLeave;
 import net.hycrafthd.umod.block.BlockInfectedLog;
 import net.hycrafthd.umod.block.BlockInfectedPlank;
+import net.hycrafthd.umod.block.BlockInfectedSapling;
 import net.hycrafthd.umod.block.BlockOres;
 import net.hycrafthd.umod.block.BlockPulverizer;
 import net.hycrafthd.umod.block.BlockSolarPanel;
@@ -30,6 +31,7 @@ public class UBlocks {
 	public static Block infectedDirt;
 	public static Block infectedLog;
 	public static Block infectedLeave;
+	public static Block infectedSapling;
 	public static Block infectedPlank;
 	public static Block infectedFruit;
 
@@ -53,6 +55,7 @@ public class UBlocks {
 		infectedDirt = new BlockInfectedDirt().setUnlocalizedName("infecteddirt");
 		infectedLog = new BlockInfectedLog().setUnlocalizedName("infectedlog");
 		infectedLeave = new BlockInfectedLeave().setUnlocalizedName("infectedleave");
+		infectedSapling = new BlockInfectedSapling().setUnlocalizedName("infectedsapling");
 		infectedPlank = new BlockInfectedPlank().setUnlocalizedName("infectedplank");
 		infectedFruit = new BlockInfectedFruit().setUnlocalizedName("infectedfruit");
 	}
@@ -63,14 +66,15 @@ public class UBlocks {
 		// Blocks
 		UUtils.registerBlock(blocks, ItemBlockBlocks.class);
 		// Pulverizer
-		UUtils.registerBlock(pulver,ItemBlockBase.class);
+		UUtils.registerBlock(pulver, ItemBlockBase.class);
 		// SolarPanel
-		UUtils.registerBlock(solar,ItemBlockBase.class);
+		UUtils.registerBlock(solar, ItemBlockBase.class);
 		// Infected
 		UUtils.registerBlock(infectedGrass);
 		UUtils.registerBlock(infectedDirt);
 		UUtils.registerBlock(infectedLog);
 		UUtils.registerBlock(infectedLeave);
+		UUtils.registerBlock(infectedSapling);
 		UUtils.registerBlock(infectedPlank);
 		UUtils.registerBlock(infectedFruit);
 	}
@@ -89,6 +93,7 @@ public class UBlocks {
 		UUtils.registerOredirectionary(infectedDirt);
 		UUtils.registerOredirectionary(infectedLog);
 		UUtils.registerOredirectionary(infectedLeave);
+		UUtils.registerOredirectionary(infectedSapling);
 		UUtils.registerOredirectionary(infectedPlank);
 		UUtils.registerOredirectionary(infectedFruit);
 	}

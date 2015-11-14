@@ -5,6 +5,7 @@ import net.minecraft.block.BlockLog;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.init.Blocks;
 
 public class BlockInfectedLog extends BlockLog {
 
@@ -14,6 +15,7 @@ public class BlockInfectedLog extends BlockLog {
 		this.setHardness(2.0F);
 		this.setStepSound(soundTypeWood);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(LOG_AXIS, BlockLog.EnumAxis.Y));
+		Blocks.fire.setFireInfo(this, 5, 5);
 	}
 
 	public IBlockState getStateFromMeta(int meta) {

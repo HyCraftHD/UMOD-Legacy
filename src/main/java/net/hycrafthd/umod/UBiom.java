@@ -1,6 +1,7 @@
 package net.hycrafthd.umod;
 
 import net.hycrafthd.umod.biom.InfestedBiom;
+import net.hycrafthd.umod.world.InfectedTreeGen;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.common.BiomeManager.BiomeEntry;

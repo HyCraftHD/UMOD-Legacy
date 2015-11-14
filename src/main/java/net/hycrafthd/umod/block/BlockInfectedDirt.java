@@ -10,9 +10,9 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 
-public class InfectedDirt extends BlockBase {
+public class BlockInfectedDirt extends BlockBase {
 
-	public InfectedDirt() {
+	public BlockInfectedDirt() {
 		super(Material.ground);
 		this.setHarvestLevel("spade", 2);
 		this.setHardness(0.6F);

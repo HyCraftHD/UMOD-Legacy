@@ -4,9 +4,9 @@ import net.hycrafthd.umod.block.BlockBlocks;
 import net.hycrafthd.umod.block.BlockOres;
 import net.hycrafthd.umod.block.BlockPulverizer;
 import net.hycrafthd.umod.block.BlockSolarPanel;
-import net.hycrafthd.umod.block.InfectedDirt;
-import net.hycrafthd.umod.block.InfectedGrass;
-import net.hycrafthd.umod.block.InfectedLog;
+import net.hycrafthd.umod.block.BlockInfectedDirt;
+import net.hycrafthd.umod.block.BlockInfectedGrass;
+import net.hycrafthd.umod.block.BlockInfectedLog;
 import net.hycrafthd.umod.item.ItemBlockBlocks;
 import net.hycrafthd.umod.item.ItemBlockOres;
 import net.minecraft.block.Block;
@@ -42,9 +42,9 @@ public class UBlocks {
 		//SolarPanel
 		solar = new BlockSolarPanel().setUnlocalizedName("solar");
 		// Infected
-		infectedGrass = new InfectedGrass().setUnlocalizedName("infectedgrass");
-		infectedDirt = new InfectedDirt().setUnlocalizedName("infecteddirt");
-		infectedLog = new InfectedLog().setUnlocalizedName("infectedlog");
+		infectedGrass = new BlockInfectedGrass().setUnlocalizedName("infectedgrass");
+		infectedDirt = new BlockInfectedDirt().setUnlocalizedName("infecteddirt");
+		infectedLog = new BlockInfectedLog().setUnlocalizedName("infectedlog");
 	}
 
 	private void register() {

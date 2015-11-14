@@ -6,9 +6,9 @@ import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
 
-public class InfectedLog extends BlockLog {
+public class BlockInfectedLog extends BlockLog {
 
-	public InfectedLog() {
+	public BlockInfectedLog() {
 		this.setCreativeTab(UReference.tab);
 		this.setHarvestLevel("axe", 2);
 		this.setHardness(2.0F);
@@ -37,7 +37,7 @@ public class InfectedLog extends BlockLog {
 	}
 
 	public int getMetaFromState(IBlockState state) {
-		return InfectedLog.SwitchEnumAxis.AXIS_LOOKUP[((InfectedLog.EnumAxis) state.getValue(LOG_AXIS)).ordinal()];
+		return BlockInfectedLog.SwitchEnumAxis.AXIS_LOOKUP[((BlockInfectedLog.EnumAxis) state.getValue(LOG_AXIS)).ordinal()];
 
 	}
 

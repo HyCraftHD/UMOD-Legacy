@@ -18,9 +18,9 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 
-public class InfectedGrass extends BlockBase {
+public class BlockInfectedGrass extends BlockBase {
 
-	public InfectedGrass() {
+	public BlockInfectedGrass() {
 		super(Material.grass);
 		this.setHarvestLevel("spade", 2);
 		this.setHardness(0.6F);

@@ -7,6 +7,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
 @Mod(modid = UReference.modid, version = UReference.version, name = UReference.name)
 public class UMod {
@@ -28,14 +29,14 @@ public class UMod {
 	public void postinit(FMLPostInitializationEvent event) {
 		new UTiles();
 		new URecipes();
-		new UWorldGeneration();
+		GameRegistry.registerWorldGenerator(new UWorldGeneration(), 0);
 		UReference.eventManager.register();
 		NetworkRegistry.INSTANCE.registerGuiHandler(UReference.modid, new UGuiHandler());
 		UReference.proxy.registerModels();
 	}
-	
-	public void registerEvents(){
+
+	public void registerEvents() {
 		UReference.eventManager.addEvent(new RayEvent());
 	}
-	
+
 }

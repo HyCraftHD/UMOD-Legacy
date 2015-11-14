@@ -3,14 +3,15 @@ package net.hycrafthd.umod.item;
 import java.util.List;
 
 import net.hycrafthd.umod.UReference;
+import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 
-public abstract class ItemBase extends Item {
+public class ItemBlockBase extends ItemBlock {
 
-	public ItemBase() {
-		this.setCreativeTab(UReference.tab);
+	public ItemBlockBase(Block block) {
+		super(block);
 	}
 
 	@Override

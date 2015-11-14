@@ -5,7 +5,6 @@ import java.util.Random;
 
 import net.hycrafthd.umod.UItems;
 import net.hycrafthd.umod.enumtype.EnumTypeBaseStuff;
-import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
@@ -13,16 +12,13 @@ import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.Potion;
-import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-public class BlockOres extends Block {
+public class BlockOres extends BlockBase {
 
 	public static final PropertyEnum TYPE = PropertyEnum.create("type", EnumTypeBaseStuff.class);
 
@@ -51,15 +47,21 @@ public class BlockOres extends Block {
 
 	@Override
 	public void onLanded(World world, Entity entity) {
-//		EnumTypeBaseStuff type = EnumTypeBaseStuff.byMetadata(world.getBlockState(entity.getPosition().add(0, -1, 0)).getBlock().getMetaFromState(world.getBlockState(entity.getPosition().add(0, -1, 0))));
-//		if (type.getName() == "uran") {
-//			if (entity instanceof EntityLivingBase && !world.isRemote) {
-//				EntityLivingBase base = (EntityLivingBase) entity;
-//				// TODO Strahlung
-//				base.addPotionEffect(new PotionEffect(Potion.poison.getId(), 120, 2, false, false));
-//				base.addPotionEffect(new PotionEffect(Potion.confusion.getId(), 120, 2, false, false));
-//			}
-//		}
+		// EnumTypeBaseStuff type =
+		// EnumTypeBaseStuff.byMetadata(world.getBlockState(entity.getPosition().add(0,
+		// -1,
+		// 0)).getBlock().getMetaFromState(world.getBlockState(entity.getPosition().add(0,
+		// -1, 0))));
+		// if (type.getName() == "uran") {
+		// if (entity instanceof EntityLivingBase && !world.isRemote) {
+		// EntityLivingBase base = (EntityLivingBase) entity;
+		// // TODO Strahlung
+		// base.addPotionEffect(new PotionEffect(Potion.poison.getId(), 120, 2,
+		// false, false));
+		// base.addPotionEffect(new PotionEffect(Potion.confusion.getId(), 120,
+		// 2, false, false));
+		// }
+		// }
 		super.onLanded(world, entity);
 	}
 

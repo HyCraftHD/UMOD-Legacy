@@ -7,7 +7,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-public class ItemIngots extends Item {
+public class ItemIngots extends ItemBase {
 
 	public ItemIngots() {
 		super();

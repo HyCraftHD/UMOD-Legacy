@@ -1,10 +1,8 @@
 package net.hycrafthd.umod.block;
 
 import java.util.List;
-import java.util.Random;
 
 import net.hycrafthd.umod.enumtype.EnumTypeBaseStuff;
-import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
@@ -13,10 +11,8 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.BlockPos;
-import net.minecraft.world.World;
 
-public class BlockBlocks extends Block {
+public class BlockBlocks extends BlockBase {
 
 	public static final PropertyEnum TYPE = PropertyEnum.create("type", EnumTypeBaseStuff.class);
 

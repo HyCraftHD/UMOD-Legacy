@@ -8,7 +8,6 @@ import net.hycrafthd.umod.block.InfectedGrass;
 import net.hycrafthd.umod.item.ItemBlockBlocks;
 import net.hycrafthd.umod.item.ItemBlockOres;
 import net.minecraft.block.Block;
-import net.minecraft.item.ItemBlock;
 
 public class UBlocks {
 
@@ -16,9 +15,9 @@ public class UBlocks {
 	public static Block ores;
 	// Blocks
 	public static Block blocks;
-	//Pulverizer
+	// Pulverizer
 	public static Block pulver;
-	//Infected
+	// Infected
 	public static Block infectedGrass;
 	public static Block infectedDirt;
 
@@ -30,14 +29,14 @@ public class UBlocks {
 
 	private void init() {
 		// Ore
-		ores = new BlockOres().setUnlocalizedName("ores").setCreativeTab(UReference.tab);
+		ores = new BlockOres().setUnlocalizedName("ores");
 		// Blocks
-		blocks = new BlockBlocks().setUnlocalizedName("blocks").setCreativeTab(UReference.tab);
-		//Pulverizer
-		pulver = new BlockPulverizer();
+		blocks = new BlockBlocks().setUnlocalizedName("blocks");
+		// Pulverizer
+		pulver = new BlockPulverizer().setUnlocalizedName("pulver");
 		// Infected
-		infectedGrass = new InfectedGrass();
-		infectedDirt = new InfectedDirt();
+		infectedGrass = new InfectedGrass().setUnlocalizedName("infectedgrass");
+		infectedDirt = new InfectedDirt().setUnlocalizedName("infecteddirt");
 	}
 
 	private void register() {
@@ -45,11 +44,11 @@ public class UBlocks {
 		UUtils.registerBlock(ores, ItemBlockOres.class);
 		// Blocks
 		UUtils.registerBlock(blocks, ItemBlockBlocks.class);
-		//Pulverizer
-        UUtils.registerBlock(pulver,ItemBlock.class);
-        // Infected
-        UUtils.registerBlock(infectedGrass);
-        UUtils.registerBlock(infectedDirt);
+		// Pulverizer
+		UUtils.registerBlock(pulver);
+		// Infected
+		UUtils.registerBlock(infectedGrass);
+		UUtils.registerBlock(infectedDirt);
 	}
 
 	private void oredirectionary() {
@@ -57,9 +56,9 @@ public class UBlocks {
 		UUtils.registerOredirectionary(ores);
 		// Blocks
 		UUtils.registerOredirectionary(blocks);
-		//Pulverizer
-        UUtils.registerOredirectionary(pulver);
-        // Infected
+		// Pulverizer
+		UUtils.registerOredirectionary(pulver);
+		// Infected
 		UUtils.registerOredirectionary(infectedGrass);
 		UUtils.registerOredirectionary(infectedDirt);
 	}

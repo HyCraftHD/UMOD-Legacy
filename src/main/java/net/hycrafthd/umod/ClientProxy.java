@@ -1,11 +1,16 @@
 package net.hycrafthd.umod;
 
+import java.util.List;
+
 import net.hycrafthd.umod.enumtype.EnumTypeBaseStuff;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.client.resources.model.ModelBakery;
 import net.minecraft.client.resources.model.ModelResourceLocation;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 
 public class ClientProxy extends CommonProxy {
 
@@ -45,8 +50,8 @@ public class ClientProxy extends CommonProxy {
 		this.registerModelRenderer(UArmor.radiationSuitChestplate);
 		this.registerModelRenderer(UArmor.radiationSuitLeggings);
 		this.registerModelRenderer(UArmor.radiationSuitBoots);
-		
-		//Infected
+
+		// Infected
 		this.registerModelRenderer(UBlocks.infectedGrass);
 		this.registerModelRenderer(UBlocks.infectedDirt);
 	}
@@ -81,6 +86,11 @@ public class ClientProxy extends CommonProxy {
 		} else {
 			throw new IllegalArgumentException("Only instances of block or items!");
 		}
+	}
+
+	@Override
+	public void addTooltip(ItemStack stack, EntityPlayer player, List tooltip, boolean advanced) {
+		tooltip.add(I18n.format("tooltip." + stack.getUnlocalizedName()));
 	}
 
 }

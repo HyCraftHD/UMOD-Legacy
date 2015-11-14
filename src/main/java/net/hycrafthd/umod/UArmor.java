@@ -7,21 +7,23 @@ import net.minecraftforge.common.util.EnumHelper;
 
 public class UArmor {
 
+	// Radiation Suit
 	public static ArmorMaterial radiationSuitMaterial;
-	
+
 	public static Item radiationSuitHelmet;
 	public static Item radiationSuitChestplate;
 	public static Item radiationSuitLeggings;
 	public static Item radiationSuitBoots;
-	
+
 	public UArmor() {
 		init();
 		register();
 	}
 
 	private void init() {
-		radiationSuitMaterial = EnumHelper.addArmorMaterial("RADIATIONARMOR", "", 5, new int[] {1,3,1,1}, 1);
-		
+		// Radiation Suit
+		radiationSuitMaterial = EnumHelper.addArmorMaterial("RADIATIONARMOR", "", 5, new int[] { 1, 3, 1, 1 }, 1);
+
 		radiationSuitHelmet = new RadiationArmor(radiationSuitMaterial, 0).setUnlocalizedName("radiationsuithelmet");
 		radiationSuitChestplate = new RadiationArmor(radiationSuitMaterial, 1).setUnlocalizedName("radiationsuitchestplate");
 		radiationSuitLeggings = new RadiationArmor(radiationSuitMaterial, 2).setUnlocalizedName("radiationsuitleggings");
@@ -29,10 +31,11 @@ public class UArmor {
 	}
 
 	private void register() {
+		// Radiation Suit
 		UUtils.registerItem(radiationSuitHelmet);
 		UUtils.registerItem(radiationSuitChestplate);
 		UUtils.registerItem(radiationSuitLeggings);
 		UUtils.registerItem(radiationSuitBoots);
 	}
-	
+
 }

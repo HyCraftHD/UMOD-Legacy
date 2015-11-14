@@ -1,7 +1,7 @@
 package net.hycrafthd.umod;
 
-import net.hycrafthd.umod.item.ItemBase;
 import net.hycrafthd.umod.item.ItemDusts;
+import net.hycrafthd.umod.item.ItemFundamental;
 import net.hycrafthd.umod.item.ItemIngots;
 import net.minecraft.item.Item;
 
@@ -12,8 +12,8 @@ public class UItems {
 
 	// Dust
 	public static Item dusts;
-	
-	//Cobble Dust
+
+	// Cobble Dust
 	public static Item cdust;
 
 	public UItems() {
@@ -24,11 +24,11 @@ public class UItems {
 
 	private void init() {
 		// Ingot
-		ingots = new ItemIngots().setUnlocalizedName("ingots").setCreativeTab(UReference.tab);
+		ingots = new ItemIngots().setUnlocalizedName("ingots");
 		// Dust
-		dusts = new ItemDusts().setUnlocalizedName("dusts").setCreativeTab(UReference.tab);
-		//Cobble Dust
-		cdust = new ItemBase("cdust");
+		dusts = new ItemDusts().setUnlocalizedName("dusts");
+		// Cobble Dust
+		cdust = new ItemFundamental().setUnlocalizedName("cdust");
 	}
 
 	private void register() {
@@ -36,7 +36,7 @@ public class UItems {
 		UUtils.registerItem(ingots);
 		// Dust
 		UUtils.registerItem(dusts);
-		//Cobble Dust
+		// Cobble Dust
 		UUtils.registerItem(cdust);
 	}
 
@@ -45,7 +45,7 @@ public class UItems {
 		UUtils.registerOredirectionary(ingots);
 		// Dust
 		UUtils.registerOredirectionary(dusts);
-		//Cobble Dust
+		// Cobble Dust
 		UUtils.registerOredirectionary(cdust);
 	}
 

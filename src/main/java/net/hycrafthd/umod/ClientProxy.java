@@ -45,6 +45,9 @@ public class ClientProxy extends CommonProxy {
 
 		// Cobble Dust
 		this.registerModelRenderer(UItems.cdust);
+		
+		//SolarPanel
+		this.registerModelRenderer(UBlocks.solar);
 
 		this.registerModelRenderer(UArmor.radiationSuitHelmet);
 		this.registerModelRenderer(UArmor.radiationSuitChestplate);

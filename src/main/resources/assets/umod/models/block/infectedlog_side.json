@@ -1,5 +1,5 @@
 {
-    "parent": "block/cube_column",
+    "parent": "block/column_side",
     "textures": {
         "end": "umod:blocks/infectedlog/infectedlog_top",
         "side": "umod:blocks/infectedlog/infectedlog_side"

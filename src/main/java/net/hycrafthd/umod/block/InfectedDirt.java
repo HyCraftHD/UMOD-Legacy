@@ -13,7 +13,7 @@ import net.minecraft.world.World;
 public class InfectedDirt extends BlockBase {
 
 	public InfectedDirt() {
-		super(Material.grass);
+		super(Material.ground);
 		this.setHarvestLevel("spade", 2);
 		this.setHardness(0.6F);
 		this.setStepSound(soundTypeGrass);

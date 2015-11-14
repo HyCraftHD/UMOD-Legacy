@@ -54,6 +54,7 @@ public class ClientProxy extends CommonProxy {
 		// Infected
 		this.registerModelRenderer(UBlocks.infectedGrass);
 		this.registerModelRenderer(UBlocks.infectedDirt);
+		this.registerModelRenderer(UBlocks.infectedLog);
 	}
 
 	private void registerModelRenderer(Object obj) {

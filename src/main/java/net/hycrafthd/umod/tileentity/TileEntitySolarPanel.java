@@ -13,7 +13,7 @@ import net.minecraft.world.WorldServer;
 public class TileEntitySolarPanel extends TileEntity implements IPowerProvieder{
 	
 	public int storedpower = 0;
-	public static final int MAXIMUM_POWER = 3000;
+	public int MAXIMUM_POWER = 3000;
 	public boolean work;
 	public String er = null;
 
@@ -50,27 +50,22 @@ public class TileEntitySolarPanel extends TileEntity implements IPowerProvieder{
 
 	@Override
 	public void update() {
-		if(!worldObj.isRemote){
-			er = "World isn't Remoted";
-			work = false;
-			return;
-		}
-		if(worldObj.canSeeSky(pos)){
+		if(this.worldObj.canBlockSeeSky(getPos())){
 			er = "Can't see sky";
 			work = false;
 			return;
 		}
-		if(!worldObj.provider.isSurfaceWorld()){
+		if(!this.worldObj.provider.isSurfaceWorld()){
 			er = "Your not in Surface";
 			work = false;
 			return;
 		}
-		if(!worldObj.provider.isDaytime()){
+		if(this.worldObj.getLight(pos) >= 4){
 			er = "It's Night";
 			work = false;
 			return;
 		}
-		if(worldObj.isRaining()){
+		if(this.worldObj.isRaining()){
 			er = "It's Rainig";
 			work = false;
 			return;
@@ -84,6 +79,12 @@ public class TileEntitySolarPanel extends TileEntity implements IPowerProvieder{
 			work = false;
 		}
 	}
+	
+	@Override
+	public NBTTagCompound getTileData() {
+		return ((S35PacketUpdateTileEntity)getDescriptionPacket()).getNbtCompound();
+	}
+	
 	@Override
 	public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
 		NBTTagCompound tag = pkt.getNbtCompound();
@@ -100,14 +101,14 @@ public class TileEntitySolarPanel extends TileEntity implements IPowerProvieder{
 	
 	@Override
 	public void writeToNBT(NBTTagCompound compound) {
-		super.writeToNBT(compound);
 		compound.setInteger("Stored", storedpower);
+		super.writeToNBT(compound);
 	}
 	
 	@Override
 	public void readFromNBT(NBTTagCompound compound) {
-		super.readFromNBT(compound);
 		this.storedpower = compound.getInteger("Stored");
+		super.readFromNBT(compound);
 	}
 
 	@Override

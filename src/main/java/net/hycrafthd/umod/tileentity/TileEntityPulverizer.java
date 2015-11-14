@@ -2,6 +2,7 @@ package net.hycrafthd.umod.tileentity;
 
 import akka.util.Index;
 import net.hycrafthd.umod.UModRegistery;
+import net.hycrafthd.umod.api.IPowerProvieder;
 import net.hycrafthd.umod.api.PulverizerRecepie;
 import net.hycrafthd.umod.block.BlockOres;
 import net.hycrafthd.umod.container.ContainerPulverizer;
@@ -21,7 +22,7 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.EnumFacing;
 
-public class TileEntityPulverizer extends TileEntityBase{
+public class TileEntityPulverizer extends TileEntityBase implements IPowerProvieder{
 
 	private ItemStack[] stack = new ItemStack[4];
 	private String pl = null;
@@ -168,7 +169,7 @@ public class TileEntityPulverizer extends TileEntityBase{
 	@Override
 	public void update() {
 		ItemStack[] args = UModRegistery.isRecepie(new PulverizerRecepie(stack[3], null, null));
-		if(args != null){
+		if(args != null && this.hasPower()){
 			if(stack[2] != null && stack[2].stackSize > 64){
 				time = 0;
 				return;
@@ -239,7 +240,9 @@ public class TileEntityPulverizer extends TileEntityBase{
 
 	     compound.setTag("Items", nbttaglist);
 		 compound.setInteger("Time", time);
+		 if(pl != null){
 	     compound.setString("Player", pl);
+		 }
 	}
 
 	@Override
@@ -259,9 +262,8 @@ public class TileEntityPulverizer extends TileEntityBase{
                 this.stack[b0] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
            }
         }
-			this.pl = compound.getString("Player");
-			System.out.println(compound.getString("Player"));
             this.time = compound.getInteger("Time");
+			this.pl = compound.getString("Player");
 	}
 
 	@Override
@@ -298,6 +300,58 @@ public class TileEntityPulverizer extends TileEntityBase{
 	@Override
 	public String getGuiID() {
 		return "0";
+	}
+
+	public int strpo;
+	public static final int MAXIMUM_POWER = 5000;
+	
+	@Override
+	public int getStoredPower() {
+		return strpo;
+	}
+
+	@Override
+	public void addPower(int power) {
+		strpo += power;
+	}
+
+	@Override
+	public int getPower(int powerneed) {
+		return 0;
+	}
+
+	@Override
+	public boolean canGetPower(int power) {
+		return false;
+	}
+
+	@Override
+	public boolean canAddPower(int power) {
+		return false;
+	}
+
+	@Override
+	public int getMaximalPower() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public boolean isWorking() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public String getErrorMessage() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean hasPower() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 	
 }

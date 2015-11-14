@@ -23,6 +23,8 @@ public class UMod {
 		new UBlocks();
 		new UArmor();
 		new UBiom();
+		new UPotion();
+		new UDamageSource();
 		registerEvents();
 	}
 

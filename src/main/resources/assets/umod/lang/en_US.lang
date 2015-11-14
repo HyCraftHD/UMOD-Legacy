@@ -86,3 +86,9 @@ tile.solar.name=Solarpanel
 #Tooltip
 tooltip.tile.solar=Products 3UE/t
 tooltip.tile.pulver=Needs 10UE/t
+
+#Potion
+potion.radiation.name=Radiation
+
+#DamageSource
+death.attack.radiation=%1$s died from Radiation

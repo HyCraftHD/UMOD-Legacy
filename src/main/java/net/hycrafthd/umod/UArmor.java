@@ -22,7 +22,7 @@ public class UArmor {
 
 	private void init() {
 		// Radiation Suit
-		radiationSuitMaterial = EnumHelper.addArmorMaterial("RADIATIONARMOR", "", 5, new int[] { 1, 3, 1, 1 }, 1);
+		radiationSuitMaterial = EnumHelper.addArmorMaterial("RADIATIONARMOR", "", 10, new int[] { 1, 3, 1, 1 }, 1);
 
 		radiationSuitHelmet = new RadiationArmor(radiationSuitMaterial, 0).setUnlocalizedName("radiationsuithelmet");
 		radiationSuitChestplate = new RadiationArmor(radiationSuitMaterial, 1).setUnlocalizedName("radiationsuitchestplate");

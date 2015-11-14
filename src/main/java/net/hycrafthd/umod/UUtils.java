@@ -3,7 +3,6 @@ package net.hycrafthd.umod;
 import net.hycrafthd.umod.item.ItemBlockBase;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 
@@ -13,7 +12,7 @@ public class UUtils {
 		GameRegistry.registerBlock(block, ItemBlockBase.class, block.getUnlocalizedName().substring(5));
 	}
 
-	public static void registerBlock(Block block, Class<? extends ItemBlock> itemclass) {
+	public static void registerBlock(Block block, Class<? extends ItemBlockBase> itemclass) {
 		GameRegistry.registerBlock(block, itemclass, block.getUnlocalizedName().substring(5));
 	}
 

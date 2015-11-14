@@ -1,10 +1,9 @@
 package net.hycrafthd.umod;
 
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 
-public class UTab extends CreativeTabs{
+public class UTab extends CreativeTabs {
 
 	public UTab() {
 		super("utab");
@@ -12,7 +11,7 @@ public class UTab extends CreativeTabs{
 
 	@Override
 	public Item getTabIconItem() {
-		return Items.diamond;
+		return Item.getItemFromBlock(UBlocks.pulver);
 	}
 
 }

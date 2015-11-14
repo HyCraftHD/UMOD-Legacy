@@ -28,6 +28,7 @@ public class UMod {
 	public void postinit(FMLPostInitializationEvent event) {
 		new UTiles();
 		new URecipes();
+		new UWorldGeneration();
 		UReference.eventManager.register();
 		NetworkRegistry.INSTANCE.registerGuiHandler(UReference.modid, new UGuiHandler());
 		UReference.proxy.registerModels();

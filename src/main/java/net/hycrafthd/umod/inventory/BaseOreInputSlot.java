@@ -2,7 +2,6 @@ package net.hycrafthd.umod.inventory;
 
 import net.hycrafthd.umod.block.BlockOres;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockOre;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;

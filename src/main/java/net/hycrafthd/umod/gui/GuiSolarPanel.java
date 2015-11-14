@@ -1,13 +1,13 @@
 package net.hycrafthd.umod.gui;
 
-import org.lwjgl.opengl.GL11;
-
 import net.hycrafthd.umod.UReference;
 import net.hycrafthd.umod.api.IPowerProvieder;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.util.ResourceLocation;
+
+import org.lwjgl.opengl.GL11;
 
 public class GuiSolarPanel extends GuiScreen{
 	

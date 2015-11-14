@@ -1,12 +1,10 @@
 package net.hycrafthd.umod.tileentity;
 
-import akka.util.Index;
 import net.hycrafthd.umod.UModRegistery;
 import net.hycrafthd.umod.api.PulverizerRecepie;
 import net.hycrafthd.umod.block.BlockOres;
 import net.hycrafthd.umod.container.ContainerPulverizer;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockOre;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;

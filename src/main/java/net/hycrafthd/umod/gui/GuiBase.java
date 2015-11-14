@@ -2,7 +2,6 @@ package net.hycrafthd.umod.gui;
 
 import java.io.IOException;
 
-import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;

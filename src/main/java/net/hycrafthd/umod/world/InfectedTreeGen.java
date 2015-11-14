@@ -14,13 +14,9 @@ import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 
 public class InfectedTreeGen extends WorldGenAbstractTree
 {
-    /** The minimum height of a generated tree. */
     private final int minTreeHeight;
-    /** True if this tree should grow Vines. */
     private final boolean vinesGrow;
-    /** The metadata value of the wood to use in tree generation. */
     private final int metaWood;
-    /** The metadata value of the leaves to use in tree generation. */
     private final int metaLeaves;
     private static final String __OBFID = "CL_00000438";
 
@@ -239,6 +235,20 @@ public class InfectedTreeGen extends WorldGenAbstractTree
         }
     }
 
+    @Override
+    protected boolean func_150523_a(Block p_150523_1_) {
+    	 return p_150523_1_.getMaterial() == Material.air || p_150523_1_ == UBlocks.infectedLeave  || p_150523_1_ == UBlocks.infectedGrass || p_150523_1_ == UBlocks.infectedDirt;
+    }
+    
+    @Override
+	protected void func_175921_a(World worldIn, BlockPos p_175921_2_)
+    {
+        if (worldIn.getBlockState(p_175921_2_).getBlock() != UBlocks.infectedDirt)
+        {
+            this.func_175903_a(worldIn, p_175921_2_, UBlocks.infectedDirt.getDefaultState());
+        }
+    }
+    
     private void func_175923_a(World worldIn, BlockPos p_175923_2_, int p_175923_3_)
     {
         this.func_175905_a(worldIn, p_175923_2_, Blocks.vine, p_175923_3_);
@@ -250,4 +260,12 @@ public class InfectedTreeGen extends WorldGenAbstractTree
             p_175923_2_ = p_175923_2_.down();
         }
     }
+    
+    @Override
+    public boolean isReplaceable(World world, BlockPos pos) {
+    	net.minecraft.block.state.IBlockState state = world.getBlockState(pos);
+    	if(state.getBlock().isAir(world, pos) || func_150523_a(state.getBlock())) return true;
+        return false;
+    }
+    
 }

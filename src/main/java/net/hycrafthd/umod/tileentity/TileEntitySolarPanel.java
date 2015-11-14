@@ -5,10 +5,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.IInteractionObject;
-import net.minecraft.world.WorldServer;
 
 public class TileEntitySolarPanel extends TileEntity implements IPowerProvieder{
 	

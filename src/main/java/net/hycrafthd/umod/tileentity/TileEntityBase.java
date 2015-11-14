@@ -1,15 +1,8 @@
 package net.hycrafthd.umod.tileentity;
 
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.NetworkManager;
-import net.minecraft.network.Packet;
-import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.server.gui.IUpdatePlayerListBox;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityLockable;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.IChatComponent;

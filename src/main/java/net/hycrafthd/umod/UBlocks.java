@@ -12,7 +12,6 @@ import net.hycrafthd.umod.block.BlockPulverizer;
 import net.hycrafthd.umod.block.BlockSolarPanel;
 import net.hycrafthd.umod.item.ItemBlockBase;
 import net.hycrafthd.umod.item.ItemBlockBlocks;
-import net.hycrafthd.umod.item.ItemBlockInformation;
 import net.hycrafthd.umod.item.ItemBlockOres;
 import net.minecraft.block.Block;
 

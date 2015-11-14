@@ -1,5 +1,6 @@
 package net.hycrafthd.umod.tileentity;
 
+import net.hycrafthd.umod.UMod;
 import net.hycrafthd.umod.UModRegistery;
 import net.hycrafthd.umod.api.IPowerProvieder;
 import net.hycrafthd.umod.api.PulverizerRecepie;
@@ -32,6 +33,7 @@ public class TileEntityPulverizer extends TileEntityBase implements IPowerProvie
 
 	@Override
 	public ItemStack getStackInSlot(int index) {
+		UMod.log.info("Returnd ItemStack:" + stack[index]);
 		return stack[index];
 	}
 
@@ -39,7 +41,9 @@ public class TileEntityPulverizer extends TileEntityBase implements IPowerProvie
 	public ItemStack decrStackSize(int index, int count) {
 	    if(stack[index].stackSize > count){
 	    	stack[index].stackSize -= count;
+			UMod.log.info("decreded " + stack[index] + " with " + count);
 	    }else{
+			UMod.log.info("Set " + stack[index] + " to null");
 	    	stack[index] = null;
 	    }
 		return stack[index];
@@ -61,6 +65,7 @@ public class TileEntityPulverizer extends TileEntityBase implements IPowerProvie
 
 	@Override
 	public void setInventorySlotContents(int index, ItemStack stack) {
+		UMod.log.info("Sets " + this.stack[index] + " to " + stack);
 		this.stack[index] = stack;
 	}
 	

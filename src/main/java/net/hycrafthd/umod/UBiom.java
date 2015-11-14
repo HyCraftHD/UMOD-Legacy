@@ -1,7 +1,7 @@
 package net.hycrafthd.umod;
 
-import net.hycrafthd.umod.biom.InfestedBiom;
-import net.hycrafthd.umod.world.InfectedTreeGen;
+import net.hycrafthd.umod.biome.BiomeInfested;
+import net.hycrafthd.umod.world.GenInfectedTree;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.common.BiomeManager.BiomeEntry;
@@ -19,7 +19,7 @@ public class UBiom {
 
 	private void init() {
 		infestedBiomId = 80;
-		infestedBiomBase = new InfestedBiom(infestedBiomId);
+		infestedBiomBase = new BiomeInfested(infestedBiomId);
 	}
 	
 	private void register() {

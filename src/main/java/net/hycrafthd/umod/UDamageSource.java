@@ -1,6 +1,6 @@
 package net.hycrafthd.umod;
 
-import net.hycrafthd.umod.potion.RadiationDamageSource;
+import net.hycrafthd.umod.potion.DamageSourceRadiation;
 import net.minecraft.util.DamageSource;
 
 public class UDamageSource {
@@ -12,7 +12,7 @@ public class UDamageSource {
 	}
 
 	private void init() {
-		radiationDamageSource = new RadiationDamageSource();
+		radiationDamageSource = new DamageSourceRadiation();
 	}
 	
 }

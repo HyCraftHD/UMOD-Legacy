@@ -1,6 +1,6 @@
 package net.hycrafthd.umod;
 
-import net.hycrafthd.umod.world.InfectedTreeGen;
+import net.hycrafthd.umod.world.GenInfectedTree;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.fml.common.Mod.Instance;
 import net.minecraftforge.fml.common.SidedProxy;

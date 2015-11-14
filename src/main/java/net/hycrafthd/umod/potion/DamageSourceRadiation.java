@@ -2,9 +2,9 @@ package net.hycrafthd.umod.potion;
 
 import net.minecraft.util.DamageSource;
 
-public class RadiationDamageSource extends DamageSource{
+public class DamageSourceRadiation extends DamageSource{
 
-	public RadiationDamageSource() {
+	public DamageSourceRadiation() {
 		super("radiation");
 	}
 

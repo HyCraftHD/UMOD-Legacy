@@ -8,9 +8,9 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 
-public class RadiationArmor extends ItemArmor {
+public class ArmorRadiation extends ItemArmor {
 
-	public RadiationArmor(ArmorMaterial material, int armorType) {
+	public ArmorRadiation(ArmorMaterial material, int armorType) {
 		super(material, 0, armorType);
 		this.setCreativeTab(UReference.tab);
 	}

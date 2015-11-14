@@ -1,6 +1,6 @@
 package net.hycrafthd.umod;
 
-import net.hycrafthd.umod.armor.RadiationArmor;
+import net.hycrafthd.umod.armor.ArmorRadiation;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraftforge.common.util.EnumHelper;
@@ -24,10 +24,10 @@ public class UArmor {
 		// Radiation Suit
 		radiationSuitMaterial = EnumHelper.addArmorMaterial("RADIATIONARMOR", "", 10, new int[] { 1, 3, 1, 1 }, 1);
 
-		radiationSuitHelmet = new RadiationArmor(radiationSuitMaterial, 0).setUnlocalizedName("radiationsuithelmet");
-		radiationSuitChestplate = new RadiationArmor(radiationSuitMaterial, 1).setUnlocalizedName("radiationsuitchestplate");
-		radiationSuitLeggings = new RadiationArmor(radiationSuitMaterial, 2).setUnlocalizedName("radiationsuitleggings");
-		radiationSuitBoots = new RadiationArmor(radiationSuitMaterial, 3).setUnlocalizedName("radiationsuitboots");
+		radiationSuitHelmet = new ArmorRadiation(radiationSuitMaterial, 0).setUnlocalizedName("radiationsuithelmet");
+		radiationSuitChestplate = new ArmorRadiation(radiationSuitMaterial, 1).setUnlocalizedName("radiationsuitchestplate");
+		radiationSuitLeggings = new ArmorRadiation(radiationSuitMaterial, 2).setUnlocalizedName("radiationsuitleggings");
+		radiationSuitBoots = new ArmorRadiation(radiationSuitMaterial, 3).setUnlocalizedName("radiationsuitboots");
 	}
 
 	private void register() {

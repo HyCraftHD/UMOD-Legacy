@@ -1,21 +1,21 @@
-package net.hycrafthd.umod.biom;
+package net.hycrafthd.umod.biome;
 
 import java.util.Random;
 
 import net.hycrafthd.umod.UBlocks;
-import net.hycrafthd.umod.world.InfectedTreeGen;
+import net.hycrafthd.umod.world.GenInfectedTree;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 
-public class InfestedBiom extends BiomeGenBase {
+public class BiomeInfested extends BiomeGenBase {
 
 	private final String name = "Infested Biome";
-	private InfectedTreeGen tree;
+	private GenInfectedTree tree;
 
-	public InfestedBiom(int id) {
+	public BiomeInfested(int id) {
 		super(id);
 		this.setBiomeName(name);
-		this.tree = new InfectedTreeGen(false);
+		this.tree = new GenInfectedTree(false);
 		this.topBlock = UBlocks.infectedGrass.getDefaultState();
 		this.fillerBlock = UBlocks.infectedDirt.getDefaultState();
 		this.spawnableCreatureList.clear();

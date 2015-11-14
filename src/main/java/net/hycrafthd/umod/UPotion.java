@@ -1,6 +1,6 @@
 package net.hycrafthd.umod;
 
-import net.hycrafthd.umod.potion.RadiationPotion;
+import net.hycrafthd.umod.potion.PotionRadiation;
 import net.minecraft.potion.Potion;
 
 public class UPotion {
@@ -12,7 +12,7 @@ public class UPotion {
 	}
 
 	private void init() {
-		radiationPotion = new RadiationPotion();
+		radiationPotion = new PotionRadiation();
 	}
 	
 }

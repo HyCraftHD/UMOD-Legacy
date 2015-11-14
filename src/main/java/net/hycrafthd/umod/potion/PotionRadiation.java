@@ -4,9 +4,9 @@ import net.minecraft.potion.Potion;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 
-public class RadiationPotion extends Potion {
+public class PotionRadiation extends Potion {
 
-	public RadiationPotion() {
+	public PotionRadiation() {
 		super(24, new ResourceLocation(""), true, 0x2ee14b);
 	}
 	

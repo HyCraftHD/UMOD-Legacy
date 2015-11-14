@@ -5,7 +5,7 @@ import java.util.HashMap;
 import net.hycrafthd.umod.UBlocks;
 import net.hycrafthd.umod.UDamageSource;
 import net.hycrafthd.umod.UPotion;
-import net.hycrafthd.umod.armor.RadiationArmor;
+import net.hycrafthd.umod.armor.ArmorRadiation;
 import net.hycrafthd.umod.enumtype.EnumTypeBaseStuff;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -20,7 +20,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-public class RayEvent {
+public class EventRay {
 
 	private HashMap<EntityPlayer, Long> timer = new HashMap<EntityPlayer, Long>();
 	
@@ -71,7 +71,7 @@ public class RayEvent {
 				if(sp.capabilities.isCreativeMode) return;
 				boolean full = false;
 				for(ItemStack armor : sp.inventory.armorInventory){
-					if(armor != null && (armor.getItem() instanceof RadiationArmor)){
+					if(armor != null && (armor.getItem() instanceof ArmorRadiation)){
 						full = true;
 					}else{
 						full = false;

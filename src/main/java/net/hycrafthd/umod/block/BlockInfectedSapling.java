@@ -4,7 +4,7 @@ import java.util.Random;
 
 import net.hycrafthd.umod.UBlocks;
 import net.hycrafthd.umod.UReference;
-import net.hycrafthd.umod.world.InfectedTreeGen;
+import net.hycrafthd.umod.world.GenInfectedTree;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.BlockSapling;
@@ -50,7 +50,7 @@ public class BlockInfectedSapling extends BlockBush implements IGrowable {
 	}
 
 	public void generateTree(World world, BlockPos pos, IBlockState state, Random rand) {
-		new InfectedTreeGen(true, MathHelper.getRandomIntegerInRange(rand, 4, 6), 0, 0, false).generate(world, rand, pos);
+		new GenInfectedTree(true, MathHelper.getRandomIntegerInRange(rand, 4, 6), 0, 0, false).generate(world, rand, pos);
 	}
 
 	public boolean canPlaceBlockAt(World world, BlockPos pos) {

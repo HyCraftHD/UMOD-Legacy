@@ -2,7 +2,7 @@ package net.hycrafthd.umod;
 
 import org.apache.logging.log4j.Logger;
 
-import net.hycrafthd.umod.event.RayEvent;
+import net.hycrafthd.umod.event.EventRay;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -44,7 +44,7 @@ public class UMod {
 	}
 
 	public void registerEvents() {
-		UReference.eventManager.addEvent(new RayEvent());
+		UReference.eventManager.addEvent(new EventRay());
 	}
 
 }

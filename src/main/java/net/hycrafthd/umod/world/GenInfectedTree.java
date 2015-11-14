@@ -13,18 +13,18 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 
-public class InfectedTreeGen extends WorldGenAbstractTree {
+public class GenInfectedTree extends WorldGenAbstractTree {
 
 	private final int minTreeHeight;
 	private final boolean vinesGrow;
 	private final int metaWood;
 	private final int metaLeaves;
 
-	public InfectedTreeGen(boolean blocknotify) {
+	public GenInfectedTree(boolean blocknotify) {
 		this(blocknotify, 4, 0, 0, false);
 	}
 
-	public InfectedTreeGen(boolean blocknotify, int minY, int wood, int leaves, boolean vines) {
+	public GenInfectedTree(boolean blocknotify, int minY, int wood, int leaves, boolean vines) {
 		super(blocknotify);
 		this.minTreeHeight = minY;
 		this.metaWood = wood;

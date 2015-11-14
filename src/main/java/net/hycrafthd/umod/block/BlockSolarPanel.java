@@ -32,4 +32,24 @@ public class BlockSolarPanel extends BlockBaseMachine{
 	public int isProvidingStrongPower(IBlockAccess w, BlockPos pos, IBlockState state, EnumFacing side) {
 		return 0;
 	}
+	
+	@Override
+	public boolean isOpaqueCube() {
+		return true;
+	}
+	
+	@Override
+	public boolean isFullBlock() {
+		return true;
+	}
+	
+	@Override
+	public boolean isSolidFullCube() {
+		return true;
+	}
+	
+	@Override
+	public boolean isFullCube() {
+		return true;
+	}
 }

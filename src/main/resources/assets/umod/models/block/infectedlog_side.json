@@ -1,7 +1,7 @@
 {
     "parent": "block/column_side",
     "textures": {
-        "end": "umod:blocks/infectedlog/infectedlog_top",
-        "side": "umod:blocks/infectedlog/infectedlog_side"
+        "end": "umod:blocks/infected/log_top",
+        "side": "umod:blocks/infected/log_side"
     }
 }

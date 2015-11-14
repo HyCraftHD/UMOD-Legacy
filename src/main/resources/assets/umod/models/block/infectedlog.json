@@ -1,0 +1,11 @@
+{ 
+    "parent": "block/cube", "textures": { 
+    "particle": "umod:blocks/infectedlog/infectedlog_side",
+    "down": "umod:blocks/infectedlog/infectedlog_top",
+    "up": "umod:blocks/infectedlog/infectedlog_top", 
+    "north": "umod:blocks/infectedlog/infectedlog_side", 
+    "east": "umod:blocks/infectedlog/infectedlog_side", 
+    "south": "umod:blocks/infectedlog/infectedlog_side", 
+    "west": "umod:blocks/infectedlog/infectedlog_side" 
+   }
+}

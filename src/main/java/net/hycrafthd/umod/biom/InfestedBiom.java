@@ -19,7 +19,7 @@ public class InfestedBiom extends BiomeGenBase{
 		spawnableWaterCreatureList.clear();
 		setHeight(new Height(0.3F, 0.3F));
 	}
-
+	
 	@Override
 	public int getSkyColorByTemp(float p_76731_1_) {
 		return 0xA5F2CF;

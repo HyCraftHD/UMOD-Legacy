@@ -55,7 +55,7 @@ public class TileEntitySolarPanel extends TileEntity implements IPowerProvieder{
 			work = false;
 			return;
 		}
-		if(!worldObj.canSeeSky(pos)){
+		if(worldObj.canSeeSky(pos)){
 			er = "Can't see sky";
 			work = false;
 			return;
@@ -70,7 +70,7 @@ public class TileEntitySolarPanel extends TileEntity implements IPowerProvieder{
 			work = false;
 			return;
 		}
-		if(!worldObj.isRaining()){
+		if(worldObj.isRaining()){
 			er = "It's Rainig";
 			work = false;
 			return;

@@ -239,9 +239,7 @@ public class TileEntityPulverizer extends TileEntityBase{
 
 	     compound.setTag("Items", nbttaglist);
 		 compound.setInteger("Time", time);
-	     if(pl != null){
 	     compound.setString("Player", pl);
-	     }
 	}
 
 	@Override

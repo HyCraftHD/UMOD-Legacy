@@ -50,6 +50,11 @@ public class TileEntitySolarPanel extends TileEntity implements IPowerProvieder{
 
 	@Override
 	public void update() {
+		if(!worldObj.isRemote){
+			er = "World isn't Remoted";
+			work = false;
+			return;
+		}
 		if(!worldObj.canSeeSky(pos)){
 			er = "Can't see sky";
 			work = false;
@@ -62,6 +67,11 @@ public class TileEntitySolarPanel extends TileEntity implements IPowerProvieder{
 		}
 		if(!worldObj.provider.isDaytime()){
 			er = "It's Night";
+			work = false;
+			return;
+		}
+		if(!worldObj.isRaining()){
+			er = "It's Rainig";
 			work = false;
 			return;
 		}

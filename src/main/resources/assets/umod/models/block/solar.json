@@ -1,0 +1,10 @@
+{
+  "parent": "block/orientable",
+    "textures": {
+        "top": "umod:blocks/solarpanel_top",
+        "bottom": "umod:blocks/solarpanel_bottom",
+        "side": "umod:blocks/solarpanel_side"
+    }
+
+
+}

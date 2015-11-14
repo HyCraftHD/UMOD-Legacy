@@ -1,5 +1,8 @@
 {
     "variants": {
-        "normal": { "model": "umod:infectedlog" }
+        "axis=y":    { "model": "umod:infectedlog" },
+        "axis=z":     { "model": "umod:infectedlog_side" },
+        "axis=x":     { "model": "umod:infectedlog_side", "y": 90 },
+        "axis=none":   { "model": "umod:infectedlog_bark" }
     }
 }

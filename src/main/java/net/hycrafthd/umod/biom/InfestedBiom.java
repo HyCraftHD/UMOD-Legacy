@@ -5,7 +5,7 @@ import net.minecraft.world.biome.BiomeGenBase;
 
 public class InfestedBiom extends BiomeGenBase{
 
-	private final String name = "Infested Biom";
+	private final String name = "Infested Biome";
 	
 	public InfestedBiom(int id) {
 		super(id);

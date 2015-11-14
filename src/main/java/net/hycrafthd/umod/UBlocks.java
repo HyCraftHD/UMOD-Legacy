@@ -2,8 +2,11 @@ package net.hycrafthd.umod;
 
 import net.hycrafthd.umod.block.BlockBlocks;
 import net.hycrafthd.umod.block.BlockInfectedDirt;
+import net.hycrafthd.umod.block.BlockInfectedFruit;
 import net.hycrafthd.umod.block.BlockInfectedGrass;
+import net.hycrafthd.umod.block.BlockInfectedLeave;
 import net.hycrafthd.umod.block.BlockInfectedLog;
+import net.hycrafthd.umod.block.BlockInfectedPlank;
 import net.hycrafthd.umod.block.BlockOres;
 import net.hycrafthd.umod.block.BlockPulverizer;
 import net.hycrafthd.umod.block.BlockSolarPanel;
@@ -25,6 +28,9 @@ public class UBlocks {
 	public static Block infectedGrass;
 	public static Block infectedDirt;
 	public static Block infectedLog;
+	public static Block infectedLeave;
+	public static Block infectedPlank;
+	public static Block infectedFruit;
 
 	public UBlocks() {
 		init();
@@ -45,6 +51,9 @@ public class UBlocks {
 		infectedGrass = new BlockInfectedGrass().setUnlocalizedName("infectedgrass");
 		infectedDirt = new BlockInfectedDirt().setUnlocalizedName("infecteddirt");
 		infectedLog = new BlockInfectedLog().setUnlocalizedName("infectedlog");
+		infectedLeave = new BlockInfectedLeave().setUnlocalizedName("infectedleave");
+		infectedPlank = new BlockInfectedPlank().setUnlocalizedName("infectedplank");
+		infectedFruit = new BlockInfectedFruit().setUnlocalizedName("infectedfruit");
 	}
 
 	private void register() {
@@ -60,6 +69,9 @@ public class UBlocks {
 		UUtils.registerBlock(infectedGrass);
 		UUtils.registerBlock(infectedDirt);
 		UUtils.registerBlock(infectedLog);
+		UUtils.registerBlock(infectedLeave);
+		UUtils.registerBlock(infectedPlank);
+		UUtils.registerBlock(infectedFruit);
 	}
 
 	private void oredirectionary() {
@@ -75,6 +87,9 @@ public class UBlocks {
 		UUtils.registerOredirectionary(infectedGrass);
 		UUtils.registerOredirectionary(infectedDirt);
 		UUtils.registerOredirectionary(infectedLog);
+		UUtils.registerOredirectionary(infectedLeave);
+		UUtils.registerOredirectionary(infectedPlank);
+		UUtils.registerOredirectionary(infectedFruit);
 	}
 
 }

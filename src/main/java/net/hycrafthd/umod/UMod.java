@@ -18,6 +18,7 @@ public class UMod {
 
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
+		new USchematic();
 		new UItems();
 		new UBlocks();
 		new UArmor();

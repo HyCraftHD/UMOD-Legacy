@@ -1,11 +1,11 @@
 { 
     "parent": "block/cube", "textures": { 
-    "particle": "umod:blocks/infectedgrass/grass_side",
-    "down": "umod:blocks/infecteddirt",
-    "up": "umod:blocks/infectedgrass/grass_top", 
-    "north": "umod:blocks/infectedgrass/grass_side", 
-    "east": "umod:blocks/infectedgrass/grass_side", 
-    "south": "umod:blocks/infectedgrass/grass_side", 
-    "west": "umod:blocks/infectedgrass/grass_side" 
+    "particle": "umod:blocks/infected/grass_side",
+    "down": "umod:blocks/infected/dirt",
+    "up": "umod:blocks/infected/grass_top", 
+    "north": "umod:blocks/infected/grass_side", 
+    "east": "umod:blocks/infected/grass_side", 
+    "south": "umod:blocks/infected/grass_side", 
+    "west": "umod:blocks/infected/grass_side" 
    }
 }

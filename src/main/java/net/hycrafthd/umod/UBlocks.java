@@ -10,7 +10,9 @@ import net.hycrafthd.umod.block.BlockInfectedPlank;
 import net.hycrafthd.umod.block.BlockOres;
 import net.hycrafthd.umod.block.BlockPulverizer;
 import net.hycrafthd.umod.block.BlockSolarPanel;
+import net.hycrafthd.umod.item.ItemBlockBase;
 import net.hycrafthd.umod.item.ItemBlockBlocks;
+import net.hycrafthd.umod.item.ItemBlockInformation;
 import net.hycrafthd.umod.item.ItemBlockOres;
 import net.minecraft.block.Block;
 
@@ -62,9 +64,9 @@ public class UBlocks {
 		// Blocks
 		UUtils.registerBlock(blocks, ItemBlockBlocks.class);
 		// Pulverizer
-		UUtils.registerBlock(pulver);
+		UUtils.registerBlock(pulver,ItemBlockBase.class);
 		// SolarPanel
-		UUtils.registerBlock(solar);
+		UUtils.registerBlock(solar,ItemBlockBase.class);
 		// Infected
 		UUtils.registerBlock(infectedGrass);
 		UUtils.registerBlock(infectedDirt);

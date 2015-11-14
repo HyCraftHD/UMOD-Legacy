@@ -28,7 +28,7 @@ public class GuiPulverizer extends GuiBase{
 	@Override
 	public void initGui() {
 		super.initGui();
-		GuiButton btn = new GuiButton(0, 200, 20,85,20, "Sign with Player");
+		GuiButton btn = new GuiButton(0, this.width/2-42, 20,85,20, "Sign with Player");
 		buttonList.add(btn);
 	}
 

@@ -81,3 +81,6 @@ tile.infectedplank.name=Infected Plank
 tile.infectedfruit.name=Infected Fruit
 #Pulverizer
 tile.pulver.name=Pulverizer
+#Tooltip
+tooltip.tile.solar=Products 3UE/t
+tooltip.tile.pulver=Needs 10UE/t

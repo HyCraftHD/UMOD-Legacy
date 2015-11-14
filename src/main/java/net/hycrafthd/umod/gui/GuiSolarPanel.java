@@ -28,14 +28,14 @@ public class GuiSolarPanel extends GuiScreen{
        this.drawTexturedModalRect(k, l, 0, 0, this.xSize, this.ySize);
        double high = 0;
        if(pro.hasPower()){
-       double ps = pro.getMaximalPower() / pro.getStoredPower() ;
-       high = 83 * ps;
+       double ps = pro.getStoredPower() * 100 / pro.getMaximalPower();
+       high = ps * 83 / 100;
 	   }
-	   drawColour(283, 156, 19, high, 255,0,0);
-	   this.fontRendererObj.drawString("Stored Power:" + pro.getStoredPower() + "UE/t", 155, 80, 0xFF8000);
-	   this.fontRendererObj.drawString("Maximum Power:" + pro.getMaximalPower() + "UE/t", 155, 100, 0xFF8000);
+	   drawColour(305, 156, 19, high, 255,0,0);
+	   this.fontRendererObj.drawString("Stored Power: " + pro.getStoredPower() + "UE/t", 157, 80, 0xFF8000);
+	   this.fontRendererObj.drawString("Maximum Power: " + pro.getMaximalPower() + "UE/t", 157, 100, 0xFF8000);
 	   String of = pro.isWorking() ? "On":"Off";
-	   this.fontRendererObj.drawString("Status: " + of, 155, 140, pro.isWorking() ? 0x04BA01:0xF00404);
+	   this.fontRendererObj.drawString("Status: " + of, 157, 140, pro.isWorking() ? 0x04BA01:0xF00404);
 	   
 	   if(pro.getErrorMessage() != null){
 	   this.fontRendererObj.drawString(pro.getErrorMessage(), 157, 160, 0xF00404);

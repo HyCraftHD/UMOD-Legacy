@@ -163,6 +163,7 @@ public class TileEntityPulverizer extends TileEntityBase implements IPowerProvie
 	}
 	
 	private int time = 0;
+	public boolean work = false;
 	
 	@Override
 	public void update() {
@@ -185,6 +186,7 @@ public class TileEntityPulverizer extends TileEntityBase implements IPowerProvie
 			    	finishItem(2, args[2]);
 			    	time = 0;
 			    }
+			    work = true;
 			    return;
 			}
 			if(stack[0].stackSize <= 64 - args[0].stackSize && stack[1].stackSize <= 64 - args[1].stackSize){
@@ -199,9 +201,11 @@ public class TileEntityPulverizer extends TileEntityBase implements IPowerProvie
 		    	finishItem(1, args[1]);
 		    	finishItem(2, args[2]);
 		    	time = 0;
+			    work = true;
 		    }
 			}
 		}else{
+		    work = false;
 			time = 0;
 		}
 	}
@@ -301,6 +305,7 @@ public class TileEntityPulverizer extends TileEntityBase implements IPowerProvie
 	}
 
 	public int strpo;
+	public String error;
 	public static final int MAXIMUM_POWER = 5000;
 	
 	@Override
@@ -325,31 +330,27 @@ public class TileEntityPulverizer extends TileEntityBase implements IPowerProvie
 
 	@Override
 	public boolean canAddPower(int power) {
-		return false;
+		return strpo + power >= MAXIMUM_POWER;
 	}
 
 	@Override
 	public int getMaximalPower() {
-		// TODO Auto-generated method stub
-		return 0;
+		return MAXIMUM_POWER;
 	}
 
 	@Override
 	public boolean isWorking() {
-		// TODO Auto-generated method stub
-		return false;
+		return work;
 	}
 
 	@Override
 	public String getErrorMessage() {
-		// TODO Auto-generated method stub
-		return null;
+		return error;
 	}
 
 	@Override
 	public boolean hasPower() {
-		// TODO Auto-generated method stub
-		return false;
+		return strpo > 0;
 	}
 	
 }

@@ -1,7 +1,9 @@
 package net.hycrafthd.umod;
 
+import net.hycrafthd.umod.api.IPowerProvieder;
 import net.hycrafthd.umod.container.ContainerPulverizer;
 import net.hycrafthd.umod.gui.GuiPulverizer;
+import net.hycrafthd.umod.gui.GuiSolarPanel;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.tileentity.TileEntity;
@@ -29,6 +31,8 @@ public class UGuiHandler implements IGuiHandler{
 		switch (ID) {
 		case 0:
 			return new GuiPulverizer(player, (IInventory) ent, world);
+		case 1:
+			return new GuiSolarPanel((IPowerProvieder) ent);
 		}
 		return null;
 	}

@@ -1,5 +1,5 @@
 {
-    "parent": "umod:block/ironpipe",
+    "parent": "umod:block/ironpipe_0",
     "display": {
         "thirdperson": {
             "rotation": [ 10, -45, 170 ],

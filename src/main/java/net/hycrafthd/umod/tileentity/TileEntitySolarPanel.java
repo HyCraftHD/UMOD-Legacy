@@ -1,5 +1,6 @@
 package net.hycrafthd.umod.tileentity;
 
+import net.hycrafthd.umod.UUtils;
 import net.hycrafthd.umod.api.IPowerProvieder;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -16,7 +17,7 @@ import net.minecraft.world.IInteractionObject;
 public class TileEntitySolarPanel extends TileEntity implements IPowerProvieder{
 	
 	public int storedpower = 0;
-	public int MAXIMUM_POWER = 3000;
+	public int MAXIMUM_POWER = 300000;
 	public boolean work;
 	public String er = null;
 
@@ -74,8 +75,8 @@ public class TileEntitySolarPanel extends TileEntity implements IPowerProvieder{
 			work = false;
 			return;
 		}
-		if(canAddPower(3)){
-			addPower(3);
+		if(canAddPower(UUtils.inUE(3))){
+			addPower(UUtils.inUE(3));
 			er = null;
 			work = true;
 		}else{

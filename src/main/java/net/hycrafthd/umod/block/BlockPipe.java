@@ -5,6 +5,7 @@ import java.util.List;
 import net.hycrafthd.umod.UDamageSource;
 import net.hycrafthd.umod.UReference;
 import net.hycrafthd.umod.UUtils;
+import net.hycrafthd.umod.api.IEnergyMessage;
 import net.hycrafthd.umod.api.IPlugabel;
 import net.hycrafthd.umod.api.IPowerProvieder;
 import net.hycrafthd.umod.tileentity.TileEntityPipe;
@@ -38,7 +39,7 @@ import net.minecraftforge.common.property.Properties;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class BlockPipe extends BlockBase implements ITileEntityProvider{
+public class BlockPipe extends Block implements ITileEntityProvider,IEnergyMessage{
 
 	
 	public static final PropertyBool UP = PropertyBool.create("up");
@@ -177,5 +178,10 @@ public class BlockPipe extends BlockBase implements ITileEntityProvider{
 	
 	public boolean isIsolated(){
 		return iso;
+	}
+
+	@Override
+	public String getMessage() {
+		return "Transports " + UUtils.inUE(powertrans) + "UE/t";
 	}
 }

@@ -1,5 +1,5 @@
 {
-    "parent": "umod:block/leadpipe_0",
+    "parent": "umod:block/leadpipe/leadpipe_0",
     "display": {
         "thirdperson": {
             "rotation": [ 10, -45, 170 ],

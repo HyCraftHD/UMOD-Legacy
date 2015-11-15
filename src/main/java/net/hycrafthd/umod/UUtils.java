@@ -5,6 +5,7 @@ import net.hycrafthd.umod.item.ItemBlockBase;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.EnumFaceDirection;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
@@ -18,6 +19,10 @@ public class UUtils {
 	}
 
 	public static void registerBlock(Block block, Class<? extends ItemBlockBase> itemclass) {
+		GameRegistry.registerBlock(block, itemclass, block.getUnlocalizedName().substring(5));
+	}
+	
+	public static void registerBlocks(Block block, Class<? extends ItemBlock> itemclass) {
 		GameRegistry.registerBlock(block, itemclass, block.getUnlocalizedName().substring(5));
 	}
 

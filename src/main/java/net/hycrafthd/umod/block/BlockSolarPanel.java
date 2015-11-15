@@ -1,6 +1,8 @@
 package net.hycrafthd.umod.block;
 
 import net.hycrafthd.umod.UReference;
+import net.hycrafthd.umod.UUtils;
+import net.hycrafthd.umod.api.IEnergyMessage;
 import net.hycrafthd.umod.tileentity.TileEntitySolarPanel;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
@@ -12,7 +14,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public class BlockSolarPanel extends BlockBase implements ITileEntityProvider {
+public class BlockSolarPanel extends BlockBase implements ITileEntityProvider ,IEnergyMessage{
 
 	public BlockSolarPanel() {
 		super(Material.iron);
@@ -52,5 +54,10 @@ public class BlockSolarPanel extends BlockBase implements ITileEntityProvider {
 	@Override
 	public boolean isFullCube() {
 		return true;
+	}
+
+	@Override
+	public String getMessage() {
+		return "Products " + UUtils.inUE(3) + "UE/t";
 	}
 }

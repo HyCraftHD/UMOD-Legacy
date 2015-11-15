@@ -1,4 +1,4 @@
-package net.hycrafthd.umod.potion;
+package net.hycrafthd.umod.damagesource;
 
 import net.minecraft.util.DamageSource;
 

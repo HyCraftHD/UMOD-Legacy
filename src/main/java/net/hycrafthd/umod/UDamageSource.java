@@ -1,7 +1,7 @@
 package net.hycrafthd.umod;
 
-import net.hycrafthd.umod.api.DamageSourceElectroShock;
-import net.hycrafthd.umod.potion.DamageSourceRadiation;
+import net.hycrafthd.umod.damagesource.DamageSourceElectroShock;
+import net.hycrafthd.umod.damagesource.DamageSourceRadiation;
 import net.minecraft.util.DamageSource;
 
 public class UDamageSource {

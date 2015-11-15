@@ -27,8 +27,8 @@ public class GenInfectedTree extends WorldGenAbstractTree {
 	public GenInfectedTree(boolean blocknotify, int minY, int wood, int leaves, boolean vines) {
 		super(blocknotify);
 		this.minTreeHeight = minY;
-		this.metaWood = wood;
-		this.metaLeaves = leaves;
+		this.metaWood = 0;
+		this.metaLeaves = 0;
 		this.vinesGrow = vines;
 	}
 
@@ -99,7 +99,7 @@ public class GenInfectedTree extends WorldGenAbstractTree {
 									blockpos1 = new BlockPos(k1, l, i2);
 									Block block = world.getBlockState(blockpos1).getBlock();
 
-									if (block.isAir(world, blockpos1) || block.isLeaves(world, blockpos1) || block.getMaterial() == Material.vine) {
+									if (block.isAir(world, blockpos1) || block.isLeaves(world, blockpos1) || block.getMaterial() == Material.vine || block == UBlocks.infectedFruit) {
 										this.func_175905_a(world, blockpos1, UBlocks.infectedLeave, this.metaLeaves);
 									}
 								}
@@ -113,6 +113,20 @@ public class GenInfectedTree extends WorldGenAbstractTree {
 
 						if (block2.isAir(world, upN) || block2.isLeaves(world, upN) || block2.getMaterial() == Material.vine) {
 							this.func_175905_a(world, pos.up(l), UBlocks.infectedLog, this.metaWood);
+
+							for (int a = -2; a <= 2; a++) {
+								for (int b = -2; b <= 2; b++) {
+									if (block2.isAir(world, upN.add(a, 0, b)) && world.getBlockState(upN.add(a, 0, b).up()).getBlock().equals(UBlocks.infectedLeave)) {
+										if (a == 0 && b == 0) {
+											continue;
+										} else {
+											if (new Random().nextInt(9) == 0) {
+												this.func_175905_a(world, upN.add(a, 0, b), UBlocks.infectedFruit, 0);
+											}
+										}
+									}
+								}
+							}
 
 							if (this.vinesGrow && l > 0) {
 								if (rand.nextInt(3) > 0 && world.isAirBlock(pos.add(-1, l, 0))) {

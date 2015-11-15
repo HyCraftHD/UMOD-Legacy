@@ -7,7 +7,7 @@ import net.minecraft.util.StatCollector;
 public class PotionRadiation extends Potion {
 
 	public PotionRadiation() {
-		super(24, new ResourceLocation(""), true, 0x2ee14b);
+		super(24, new ResourceLocation("radiation"), true, 0x2ee14b);
 	}
 
 	@Override

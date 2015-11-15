@@ -2,7 +2,8 @@ package net.hycrafthd.umod;
 
 import org.apache.logging.log4j.Logger;
 
-import net.hycrafthd.umod.event.EventRay;
+import net.hycrafthd.umod.event.EventExecuteRadiation;
+import net.hycrafthd.umod.event.EventNearByInfectedBlock;
 import net.hycrafthd.umod.event.EventRender;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
@@ -47,7 +48,8 @@ public class UMod {
 	}
 
 	public void registerEvents() {
-		UReference.eventManager.addEvent(new EventRay());
+		UReference.eventManager.addEvent(new EventNearByInfectedBlock());
+		UReference.eventManager.addEvent(new EventExecuteRadiation());
 		UReference.eventManager.addEvent(new EventRender());
 	}
 

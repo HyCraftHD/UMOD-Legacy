@@ -12,45 +12,43 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public class BlockSolarPanel extends BlockBase implements ITileEntityProvider{
+public class BlockSolarPanel extends BlockBase implements ITileEntityProvider {
 
 	public BlockSolarPanel() {
 		super(Material.iron);
-		this.setUnlocalizedName("solar");
 	}
-	
+
 	@Override
 	public TileEntity createNewTileEntity(World worldIn, int meta) {
 		return new TileEntitySolarPanel();
 	}
-	
+
 	@Override
-	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,
-			EnumFacing side, float hitX, float hitY, float hitZ) {
-		playerIn.openGui(UReference.modid, 1, worldIn, pos.getX(), pos.getY(), pos.getZ());
-		return super.onBlockActivated(worldIn, pos, state, playerIn, side, hitX, hitY, hitZ);
+	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumFacing side, float hitX, float hitY, float hitZ) {
+		playerIn.openGui(UReference.modid, 1, world, pos.getX(), pos.getY(), pos.getZ());
+		return true;
 	}
 
 	@Override
 	public int isProvidingStrongPower(IBlockAccess w, BlockPos pos, IBlockState state, EnumFacing side) {
 		return 0;
 	}
-	
+
 	@Override
 	public boolean isOpaqueCube() {
 		return true;
 	}
-	
+
 	@Override
 	public boolean isFullBlock() {
 		return true;
 	}
-	
+
 	@Override
 	public boolean isSolidFullCube() {
 		return true;
 	}
-	
+
 	@Override
 	public boolean isFullCube() {
 		return true;

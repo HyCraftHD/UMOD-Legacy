@@ -35,7 +35,7 @@ public class UBlocks {
 	public static Block infectedSapling;
 	public static Block infectedPlank;
 	public static Block infectedFruit;
-	//Pipes
+	// Pipes
 	public static Block iron_pipe;
 
 	public UBlocks() {
@@ -61,8 +61,8 @@ public class UBlocks {
 		infectedSapling = new BlockInfectedSapling().setUnlocalizedName("infectedsapling");
 		infectedPlank = new BlockInfectedPlank().setUnlocalizedName("infectedplank");
 		infectedFruit = new BlockInfectedFruit().setUnlocalizedName("infectedfruit");
-		//Pipes
-		iron_pipe = new BlockPipe("ironpipe",3,10,false);
+		// Pipes
+		iron_pipe = new BlockPipe("ironpipe", 3, 10, false);
 	}
 
 	private void register() {
@@ -82,7 +82,7 @@ public class UBlocks {
 		UUtils.registerBlock(infectedSapling);
 		UUtils.registerBlock(infectedPlank);
 		UUtils.registerBlock(infectedFruit);
-		//Pipes
+		// Pipes
 		UUtils.registerBlock(iron_pipe);
 	}
 
@@ -103,8 +103,8 @@ public class UBlocks {
 		UUtils.registerOredirectionary(infectedSapling);
 		UUtils.registerOredirectionary(infectedPlank);
 		UUtils.registerOredirectionary(infectedFruit);
-		//Pipes
-	    UUtils.registerOredirectionary(iron_pipe);
+		// Pipes
+		UUtils.registerOredirectionary(iron_pipe);
 	}
 
 }

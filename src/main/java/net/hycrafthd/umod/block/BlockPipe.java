@@ -4,6 +4,7 @@ import java.util.List;
 
 import net.hycrafthd.umod.UDamageSource;
 import net.hycrafthd.umod.UReference;
+import net.hycrafthd.umod.UUtils;
 import net.hycrafthd.umod.api.IPlugabel;
 import net.hycrafthd.umod.api.IPowerProvieder;
 import net.hycrafthd.umod.tileentity.TileEntityPipe;
@@ -53,7 +54,7 @@ public class BlockPipe extends BlockBase implements ITileEntityProvider{
 	
 	public BlockPipe(String name,int transf,int loos,boolean iso) {
     super(Material.iron);
-    this.powertrans = transf;
+    this.powertrans = UUtils.inUE(transf);
     this.iso = iso;
     this.setHardness(6F);
     this.setResistance(5F);

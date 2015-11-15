@@ -67,6 +67,13 @@ public class ClientProxy extends CommonProxy {
 
 		// Pipes
 		this.registerModelRenderer(UBlocks.iron_pipe);
+		this.registerModelRenderer(UBlocks.alu_pipe);
+		this.registerModelRenderer(UBlocks.silver_pipe);
+		this.registerModelRenderer(UBlocks.lead_pipe);
+		this.registerModelRenderer(UBlocks.gold_pipe);
+		this.registerModelRenderer(UBlocks.copper_pipe);
+		this.registerModelRenderer(UBlocks.zin_pipe);
+
 	}
 
 	private void registerModelRenderer(Object obj) {

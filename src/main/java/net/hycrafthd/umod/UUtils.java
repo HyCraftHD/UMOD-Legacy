@@ -73,5 +73,9 @@ public class UUtils {
 		}
 		return EnumFacing.EAST;
 	}
+	
+	public static int inUE(int ip){
+		return ip/2*50; 
+	}
 
 }

@@ -37,7 +37,7 @@ public class EventExecuteRadiation {
 				if (full) {
 					if (!timer.containsKey(sp))
 						timer.put(sp, System.currentTimeMillis());
-					if (System.currentTimeMillis() - timer.get(sp) >= 1000 * 5) {
+					if (System.currentTimeMillis() - timer.get(sp) >= 1000 * 8) {
 						sp.inventory.damageArmor(1);
 						timer.remove(sp);
 					}

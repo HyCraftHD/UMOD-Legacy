@@ -7,12 +7,12 @@ import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.common.BiomeManager.BiomeEntry;
 import net.minecraftforge.common.BiomeManager.BiomeType;
 
-public class UBiom {
+public class UBiome {
 
 	public static BiomeGenBase infestedBiomBase;
 	public static int infestedBiomId;
 	
-	public UBiom() {
+	public UBiome() {
 		init();
 		register();
 	}

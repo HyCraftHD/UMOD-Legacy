@@ -30,7 +30,7 @@ public class UMod {
 		new UItems();
 		new UBlocks();
 		new UArmor();
-		new UBiom();
+		new UBiome();
 		new UPotion();
 		new UDamageSource();
 		registerEvents();

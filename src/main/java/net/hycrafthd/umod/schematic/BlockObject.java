@@ -20,7 +20,7 @@ public class BlockObject {
 	public IBlockState getState() {
 		return state;
 	}
-	       
+	
 	public BlockPos getPositionWithOffset(int x, int y, int z) {
 	    return new BlockPos(x + position.getX(), y + position.getY(), z + position.getZ());
 	 }

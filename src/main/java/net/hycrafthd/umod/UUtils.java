@@ -3,8 +3,10 @@ package net.hycrafthd.umod;
 import net.hycrafthd.umod.api.IPowerProvieder;
 import net.hycrafthd.umod.item.ItemBlockBase;
 import net.minecraft.block.Block;
+import net.minecraft.client.renderer.EnumFaceDirection;
 import net.minecraft.item.Item;
 import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
@@ -51,6 +53,25 @@ public class UUtils {
 			return (IPowerProvieder) w.getTileEntity(p.down()); 
 		}
 		return null;
+	}
+	
+	public static EnumFacing getDirectory(BlockPos pos1,BlockPos pos2){
+		if(pos1.getY() > pos2.getY()){
+			return EnumFacing.DOWN;
+		}else if(pos1.getY() < pos2.getY()){
+			return EnumFacing.UP;
+		}
+		if(pos1.getX() > pos2.getX()){
+			return EnumFacing.EAST;
+		}else if(pos1.getX() < pos2.getX()){
+			return EnumFacing.WEST;
+		}
+		if(pos1.getZ() > pos2.getZ()){
+			return EnumFacing.SOUTH;
+		}else if(pos1.getZ() < pos2.getZ()){
+			return EnumFacing.NORTH;
+		}
+		return EnumFacing.EAST;
 	}
 
 }

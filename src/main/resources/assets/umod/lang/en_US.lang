@@ -86,9 +86,14 @@ tile.solar.name=Solarpanel
 #Tooltip
 tooltip.tile.solar=Products 3UE/t
 tooltip.tile.pulver=Needs 10UE/t
+tooltip.tile.ironpipe=Transports 3UE/t
 
 #Potion
 potion.radiation.name=Radiation
 
 #DamageSource
 death.attack.radiation=%1$s died from Radiation
+death.attack.elec=%1$s died from a Electronic Shock
+
+#Pipes
+tile.ironpipe.name=Iron Energy Pipe

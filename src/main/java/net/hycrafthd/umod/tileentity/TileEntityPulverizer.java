@@ -3,8 +3,10 @@ package net.hycrafthd.umod.tileentity;
 import net.hycrafthd.umod.UMod;
 import net.hycrafthd.umod.UModRegistery;
 import net.hycrafthd.umod.UUtils;
+import net.hycrafthd.umod.api.IPipeRange;
 import net.hycrafthd.umod.api.IPowerProvieder;
 import net.hycrafthd.umod.api.PulverizerRecepie;
+import net.hycrafthd.umod.block.BlockBaseMachine;
 import net.hycrafthd.umod.block.BlockOres;
 import net.hycrafthd.umod.container.ContainerPulverizer;
 import net.minecraft.block.Block;
@@ -20,6 +22,7 @@ import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.server.gui.IUpdatePlayerListBox;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityLockable;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.ChatComponentText;
@@ -49,7 +52,6 @@ public class TileEntityPulverizer extends TileEntityLockable implements ISidedIn
 	    }else{
 	    	stack[index] = null;
 	    }
-	    UMod.log.info("Decraded");
 		return stack[index];
 	}
 
@@ -176,7 +178,7 @@ public class TileEntityPulverizer extends TileEntityLockable implements ISidedIn
 	
 	@Override
 	public void update() {
-		if(strpo == 2500){
+		if(strpo == 1000){
 			wasfull = true;
 		}else if(strpo <= 10){
 			wasfull = false;
@@ -224,9 +226,22 @@ public class TileEntityPulverizer extends TileEntityLockable implements ISidedIn
 		    work = false;
 			time = 0;
 		}
-		IPowerProvieder prow = UUtils.getNeighbourPowerProvider(pos, worldObj);
-		if(prow != null && this.canAddPower(2) && prow.canGetPower(2)){
-			this.addPower(prow.getPower(2));
+		BlockPos[] list = {pos.east(),pos.north(),pos.south(),pos.west(),pos.up(),pos.down()};
+		for(int i = 0;i < list.length;i++){
+		Block b = worldObj.getBlockState(list[i]).getBlock();
+        TileEntity e = worldObj.getTileEntity(list[i]);
+		if(e instanceof IPowerProvieder && !(b instanceof BlockBaseMachine)){
+			IPowerProvieder p = (IPowerProvieder) e;
+			if(!(p instanceof TileEntityPipe) && p.canGetPower(2) && this.canAddPower(2)){
+				strpo += p.getPower(2);
+			}else if(p instanceof TileEntityPipe){
+				if(p.canGetPower(p.getMaximalPower()) && this.canAddPower(p.getMaximalPower())){
+					strpo += p.getPower(p.getMaximalPower());
+				}else if(this.canAddPower(p.getStoredPower())){
+					strpo += p.getPower(p.getStoredPower());
+				}
+			}
+		}
 		}
 	}
 	

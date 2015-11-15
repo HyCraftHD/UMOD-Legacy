@@ -5,14 +5,21 @@ import java.lang.reflect.Field;
 import net.hycrafthd.umod.UPotion;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
+import net.minecraft.client.particle.EntityFX;
 import net.minecraft.client.renderer.EntityRenderer;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.WorldRenderer;
+import net.minecraft.client.renderer.culling.Frustum;
 import net.minecraft.util.MathHelper;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class EventRender {
+public class EventRender{
 
+	@SideOnly(Side.CLIENT)
 	@SubscribeEvent
 	public void onEntityUpdate(RenderGameOverlayEvent event) {
 		// Only for Client! (Not ready!)
@@ -31,12 +38,8 @@ public class EventRender {
 
 							float f3 = 5.0F / (f2 * f2 + 5.0F) - f2 * 0.04F;
 							f3 *= f3;
-							System.out.println("test");
-							GlStateManager.popMatrix();
-							GlStateManager.rotate(((float) event.partialTicks) * (float) b0, 0.0F, 1.0F, 1.0F);
-							GlStateManager.scale(1.0F / f3, 1.0F, 1.0F);
-							GlStateManager.rotate(-((float) event.partialTicks) * (float) b0, 0.0F, 1.0F, 1.0F);
-							GlStateManager.pushMatrix();
+							sp.cameraPitch = f3;
+							sp.cameraYaw = f2;
 							
 						}
 					} catch (Exception ex) {

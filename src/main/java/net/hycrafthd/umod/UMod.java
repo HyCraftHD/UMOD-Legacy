@@ -27,11 +27,11 @@ public class UMod {
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
 		new USchematic();
+		new UPotion();
 		new UItems();
 		new UBlocks();
 		new UArmor();
 		new UBiome();
-		new UPotion();
 		new UDamageSource();
 		registerEvents();
 	}

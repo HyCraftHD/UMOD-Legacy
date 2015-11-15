@@ -2,6 +2,7 @@ package net.hycrafthd.umod.item;
 
 import java.util.List;
 
+import net.hycrafthd.umod.UPotion;
 import net.hycrafthd.umod.UReference;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemFood;
@@ -13,7 +14,7 @@ public class ItemInfectedCrop extends ItemFood {
 	public ItemInfectedCrop() {
 		super(1, 0.2F, false);
 		this.setCreativeTab(UReference.tab);
-		this.setPotionEffect(Potion.poison.getId(), 5, 1, 1.0F);
+		this.setPotionEffect(UPotion.radiationPotion.getId(), 5, 1, 0.8F);
 	}
 
 	@Override

@@ -67,19 +67,14 @@ public class UBlocks {
 		infectedSapling = new BlockInfectedSapling().setUnlocalizedName("infectedsapling");
 		infectedPlank = new BlockInfectedPlank().setUnlocalizedName("infectedplank");
 		infectedFruit = new BlockInfectedFruit().setUnlocalizedName("infectedfruit");
-<<<<<<< HEAD
 		// Pipes
-		iron_pipe = new BlockPipe("ironpipe", 3, 10, false);
-=======
-		//Pipes
-		iron_pipe = new BlockPipe("ironpipe",10,10,false);
+		iron_pipe = new BlockPipe("ironpipe", 10, 10, false);
 		silver_pipe = new BlockPipe("silverpipe", 62, 62, false);
 		copper_pipe = new BlockPipe("copperpipe", 60, 60, false);
 		alu_pipe = new BlockPipe("alupipe", 38, 38, false);
 		gold_pipe = new BlockPipe("goldpipe", 43, 43, false);
-	    lead_pipe = new BlockPipe("leadpipe", 5, 5, false);	 
-	    zin_pipe = new BlockPipe("zinpipe", 9, 9, false);	   
->>>>>>> f4ddb7ea67024057cb70fdb702fe5faaef0fed3c
+		lead_pipe = new BlockPipe("leadpipe", 5, 5, false);
+		zin_pipe = new BlockPipe("zinpipe", 9, 9, false);
 	}
 
 	private void register() {
@@ -126,20 +121,15 @@ public class UBlocks {
 		UUtils.registerOredirectionary(infectedSapling);
 		UUtils.registerOredirectionary(infectedPlank);
 		UUtils.registerOredirectionary(infectedFruit);
-<<<<<<< HEAD
 		// Pipes
 		UUtils.registerOredirectionary(iron_pipe);
-=======
-		//Pipes
-	    UUtils.registerOredirectionary(iron_pipe);
-	    UUtils.registerOredirectionary(alu_pipe);
-	    UUtils.registerOredirectionary(gold_pipe);
-	    UUtils.registerOredirectionary(silver_pipe);
-	    UUtils.registerOredirectionary(copper_pipe);
-	    UUtils.registerOredirectionary(lead_pipe);
+		UUtils.registerOredirectionary(alu_pipe);
+		UUtils.registerOredirectionary(gold_pipe);
+		UUtils.registerOredirectionary(silver_pipe);
+		UUtils.registerOredirectionary(copper_pipe);
+		UUtils.registerOredirectionary(lead_pipe);
 		UUtils.registerOredirectionary(zin_pipe);
 
->>>>>>> f4ddb7ea67024057cb70fdb702fe5faaef0fed3c
 	}
 
 }

@@ -28,8 +28,7 @@ public class BiomeInfested extends BiomeGenBase {
 
 	@Override
 	public WorldGenAbstractTree genBigTreeChance(Random rand) {
-		System.out.println("Gen tree");
-		return (WorldGenAbstractTree) (rand.nextInt(3) > 0 ? this.tree : super.genBigTreeChance(rand));
+		return rand.nextInt(3) > 0 ? this.tree : super.genBigTreeChance(rand);
 	}
 
 	@Override

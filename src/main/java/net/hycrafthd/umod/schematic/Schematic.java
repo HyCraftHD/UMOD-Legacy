@@ -21,7 +21,7 @@ public class Schematic {
 	
 	public Schematic(String fileName) {
 		try {
-			InputStream is = Schematic.class.getResourceAsStream("/assets/umod/schematics/tree/" + fileName);
+			InputStream is = Schematic.class.getResourceAsStream("/assets/umod/schematics/" + fileName);
 			NBTTagCompound nbtdata = CompressedStreamTools.readCompressed(is);
 			
 			is.close();

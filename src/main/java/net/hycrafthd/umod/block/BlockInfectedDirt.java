@@ -16,22 +16,4 @@ public class BlockInfectedDirt extends BlockBase {
 		this.setHardness(0.6F);
 		this.setStepSound(soundTypeGrass);
 	}
-
-	@Override
-	public void onLanded(World world, Entity entity) {
-		if (entity instanceof EntityLivingBase && !world.isRemote) {
-			EntityLivingBase base = (EntityLivingBase) entity;
-
-			if (base instanceof EntityPlayer) {
-				EntityPlayer sp = (EntityPlayer) base;
-				if (sp.capabilities.isCreativeMode) return;
-			}
-
-//			base.addPotionEffect(new PotionEffect(Potion.poison.getId(), 120, 3, false, false));
-//			base.addPotionEffect(new PotionEffect(Potion.confusion.getId(), 120, 2, false, false));
-			base.addPotionEffect(new PotionEffect(UPotion.radiationPotion.getId(), 30, 1, true, true));
-		}
-		super.onLanded(world, entity);
-	}
-
 }

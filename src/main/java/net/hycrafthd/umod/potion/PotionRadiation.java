@@ -9,9 +9,10 @@ public class PotionRadiation extends Potion {
 	public PotionRadiation() {
 		super(24, new ResourceLocation(""), true, 0x2ee14b);
 	}
-	
+
 	@Override
 	public String getName() {
 		return StatCollector.translateToLocal("potion.radiation.name");
 	}
+
 }

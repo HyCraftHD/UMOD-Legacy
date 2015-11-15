@@ -27,34 +27,20 @@ public class BlockInfectedGrass extends BlockBase {
 	}
 
 	@Override
-	public void onLanded(World world, Entity entity) {
-		if (entity instanceof EntityLivingBase && !world.isRemote) {
-			EntityLivingBase base = (EntityLivingBase) entity;
-
-			if (base instanceof EntityPlayer) {
-				EntityPlayer sp = (EntityPlayer) base;
-				if (sp.capabilities.isCreativeMode) return;
-			}
-			base.addPotionEffect(new PotionEffect(UPotion.radiationPotion.getId(), 30, 1, true, true));
-		}
-		super.onLanded(world, entity);
-	}
-
-	@Override
-	public void updateTick(World worldIn, BlockPos pos, IBlockState state,Random rand) {
-		if(!worldIn.isRemote){
+	public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
+		if (!worldIn.isRemote) {
 			BlockPos BlockPos2 = pos.add(0, 1, 0);
-			if(worldIn.getBlockState(BlockPos2).getBlock() != Blocks.air){
+			if (worldIn.getBlockState(BlockPos2).getBlock() != Blocks.air) {
 				worldIn.setBlockState(pos, UBlocks.infectedDirt.getDefaultState());
-			}else{
-				if(worldIn.getLightFromNeighbors(pos.up()) >= 9){
-					for(int i = 0; i<4; i++){
+			} else {
+				if (worldIn.getLightFromNeighbors(pos.up()) >= 9) {
+					for (int i = 0; i < 4; i++) {
 						BlockPos blockPos1 = pos.add(rand.nextInt(3) - 1, rand.nextInt(5) - 3, rand.nextInt(3) - 1);
 						Block block = worldIn.getBlockState(blockPos1.up()).getBlock();
 						IBlockState iBlockState1 = worldIn.getBlockState(blockPos1);
-						if(iBlockState1.getBlock() == UBlocks.infectedDirt && worldIn.getLightFromNeighbors(blockPos1.up()) >= 4 && block.getLightOpacity(worldIn, blockPos1.up()) <= 2){
+						if (iBlockState1.getBlock() == UBlocks.infectedDirt && worldIn.getLightFromNeighbors(blockPos1.up()) >= 4 && block.getLightOpacity(worldIn, blockPos1.up()) <= 2) {
 							BlockPos pBlockPos2 = blockPos1.add(0, 1, 0);
-							if(worldIn.getBlockState(pBlockPos2).getBlock() == Blocks.air){
+							if (worldIn.getBlockState(pBlockPos2).getBlock() == Blocks.air) {
 								worldIn.setBlockState(blockPos1, UBlocks.infectedGrass.getDefaultState());
 							}
 						}
@@ -64,11 +50,10 @@ public class BlockInfectedGrass extends BlockBase {
 		}
 		super.updateTick(worldIn, pos, state, rand);
 	}
-	
-    @Override
-	public Item getItemDropped(IBlockState state, Random rand, int fortune)
-    {
-        return UBlocks.infectedDirt.getItemDropped(Blocks.dirt.getDefaultState(), rand, fortune);
-    }
-    
+
+	@Override
+	public Item getItemDropped(IBlockState state, Random rand, int fortune) {
+		return UBlocks.infectedDirt.getItemDropped(Blocks.dirt.getDefaultState(), rand, fortune);
+	}
+
 }

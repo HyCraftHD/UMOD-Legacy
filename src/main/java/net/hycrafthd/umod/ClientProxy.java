@@ -15,10 +15,6 @@ import net.minecraft.util.EnumChatFormatting;
 
 public class ClientProxy extends CommonProxy {
 
-<<<<<<< HEAD
-	
-=======
->>>>>>> e6bd21fa30055386356e1a04d8cf8b6697922182
 	@Override
 	public void registerModels() {
 		// Ore

@@ -2,6 +2,8 @@ package net.hycrafthd.umod.block;
 
 import net.hycrafthd.umod.UReference;
 import net.hycrafthd.umod.tileentity.TileEntitySolarPanel;
+import net.minecraft.block.ITileEntityProvider;
+import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
@@ -10,9 +12,10 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public class BlockSolarPanel extends BlockBaseMachine{
+public class BlockSolarPanel extends BlockBase implements ITileEntityProvider{
 
 	public BlockSolarPanel() {
+		super(Material.iron);
 		this.setUnlocalizedName("solar");
 	}
 	

@@ -35,9 +35,7 @@ public class ContainerPulverizer extends Container{
 		output[0] = super.addSlotToContainer(new SlotFurnaceOutput(pl,inv, 0, 116, 24));
 		output[1] = super.addSlotToContainer(new SlotFurnaceOutput(pl,inv, 1, 98, 54));
 		output[2] = super.addSlotToContainer(new SlotFurnaceOutput(pl,inv, 2, 126, 54));
-		input = super.addSlotToContainer(new Slot(inv, 3, 30, 23));
-		
-	
+		input = super.addSlotToContainer(new Slot(inv, 3, 30, 23));	
          
          int i = 0;
          int v = 9;

@@ -1,11 +1,17 @@
 package net.hycrafthd.umod.tileentity;
 
 import net.hycrafthd.umod.api.IPowerProvieder;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.inventory.Container;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.IChatComponent;
+import net.minecraft.world.IInteractionObject;
 
 public class TileEntitySolarPanel extends TileEntity implements IPowerProvieder{
 	
@@ -27,7 +33,7 @@ public class TileEntitySolarPanel extends TileEntity implements IPowerProvieder{
 	@Override
 	public int getPower(int powerneed) {
 		storedpower -= powerneed;
-		return storedpower;
+		return powerneed;
 	}
 
 	@Override

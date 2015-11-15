@@ -2,8 +2,10 @@ package net.hycrafthd.umod.block;
 
 import java.util.List;
 
+import net.hycrafthd.umod.UDamageSource;
 import net.hycrafthd.umod.UReference;
 import net.hycrafthd.umod.api.IPlugabel;
+import net.hycrafthd.umod.api.IPowerProvieder;
 import net.hycrafthd.umod.tileentity.TileEntityPipe;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
@@ -18,6 +20,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.BlockModelRenderer.EnumNeighborInfo;
 import net.minecraft.client.renderer.EnumFaceDirection;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.tileentity.TileEntity;
@@ -45,11 +48,13 @@ public class BlockPipe extends BlockBase implements ITileEntityProvider{
 	public static final PropertyBool NORTH = PropertyBool.create("north");
 	public int powertrans;
 	public int lo;
+	public boolean iso;
 
 	
-	public BlockPipe(String name,int transf,int loos) {
+	public BlockPipe(String name,int transf,int loos,boolean iso) {
     super(Material.iron);
     this.powertrans = transf;
+    this.iso = iso;
     this.setHardness(6F);
     this.setResistance(5F);
     this.setUnlocalizedName(name);
@@ -153,6 +158,18 @@ public class BlockPipe extends BlockBase implements ITileEntityProvider{
 		}
 	}
 	
+	@Override
+	public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn) {
+		super.onEntityCollidedWithBlock(worldIn, pos, state, entityIn);
+		if(entityIn instanceof EntityLiving){
+			EntityLiving lv = (EntityLiving) entityIn;
+			lv.attackEntityFrom(UDamageSource.electroshock, ((IPowerProvieder)worldIn.getTileEntity(pos)).getStoredPower()/2);
+		}
+	}
+	
 	private EnumFaceDirection[] dir = new EnumFaceDirection[6];
 
+	public boolean isIsolated(){
+		return iso;
+	}
 }

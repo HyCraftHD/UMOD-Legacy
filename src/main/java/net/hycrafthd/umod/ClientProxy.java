@@ -3,6 +3,7 @@ package net.hycrafthd.umod;
 import java.util.List;
 
 import net.hycrafthd.umod.enumtype.EnumTypeBaseStuff;
+import net.hycrafthd.umod.event.RadiotionEntityFx;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;
@@ -14,6 +15,8 @@ import net.minecraft.item.ItemStack;
 
 public class ClientProxy extends CommonProxy {
 
+	public static RadiotionEntityFx fx;
+	
 	@Override
 	public void registerModels() {
 		// Ore
@@ -66,7 +69,7 @@ public class ClientProxy extends CommonProxy {
 		
 		//Pipes
 		this.registerModelRenderer(UBlocks.iron_pipe);
-	}
+}
 
 	private void registerModelRenderer(Object obj) {
 		this.registerModelRenderer(obj, 0);

@@ -62,7 +62,7 @@ public class UBlocks {
 		infectedPlank = new BlockInfectedPlank().setUnlocalizedName("infectedplank");
 		infectedFruit = new BlockInfectedFruit().setUnlocalizedName("infectedfruit");
 		//Pipes
-		iron_pipe = new BlockPipe("ironpipe",3,10);
+		iron_pipe = new BlockPipe("ironpipe",3,10,false);
 	}
 
 	private void register() {

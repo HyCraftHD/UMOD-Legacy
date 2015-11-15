@@ -1,5 +1,9 @@
 package net.hycrafthd.umod.tileentity;
 
+import java.util.ArrayList;
+
+import net.hycrafthd.umod.UMod;
+import net.hycrafthd.umod.UUtils;
 import net.hycrafthd.umod.api.IPipeRange;
 import net.hycrafthd.umod.api.IPlugabel;
 import net.hycrafthd.umod.api.IPowerProvieder;
@@ -33,21 +37,22 @@ public class TileEntityPipe extends TileEntity implements IPlugabel,IPowerProvie
 		}
 		return false;
 	}
-	
 
 	@Override
 	public void update() {
+		ArrayList<BlockPos> poses = new ArrayList<BlockPos>();
 		BlockPos[] list = {pos.east(),pos.north(),pos.south(),pos.west(),pos.up(),pos.down()};
 		for(int i = 0;i < list.length;i++){
 		Block b = worldObj.getBlockState(list[i]).getBlock();
+		if(!(b instanceof BlockBaseMachine)){
         TileEntity e = worldObj.getTileEntity(list[i]);
-		if(e instanceof IPowerProvieder && !(b instanceof BlockBaseMachine)){
+		if(e instanceof IPowerProvieder && !poses.contains(list[i])){
 			IPowerProvieder p = (IPowerProvieder) e;
 			if(p.canGetPower(Maximum_Power) && this.canAddPower(Maximum_Power)){
 				stored += p.getPower(Maximum_Power);
 				if(p instanceof IPipeRange){
 					IPipeRange r = (IPipeRange) p;
-					if(r.getPastPipeCount() > loos){
+					if(r.getPastPipeCount() < loos){
 						passtpip++;
 					}else{
 						stored--;
@@ -57,6 +62,9 @@ public class TileEntityPipe extends TileEntity implements IPlugabel,IPowerProvie
 					passtpip = 0;
 				}
 			}
+		}
+		}else{
+			poses.add(list[i].offset(UUtils.getDirectory(list[i],pos)));
 		}
 		}
 	}
@@ -79,7 +87,7 @@ public class TileEntityPipe extends TileEntity implements IPlugabel,IPowerProvie
 
 	@Override
 	public boolean canGetPower(int power) {
-		if(power <= Maximum_Power && power - stored >= 0){
+		if(stored - power >= 0){
 			return true;
 		}
 		return false;

@@ -38,7 +38,7 @@ public class TileEntitySolarPanel extends TileEntity implements IPowerProvieder{
 
 	@Override
 	public boolean canGetPower(int power) {
-		if(storedpower  - power >= 0){
+		if(storedpower - power >= 0){
 			return true;
 		}
 		return false;

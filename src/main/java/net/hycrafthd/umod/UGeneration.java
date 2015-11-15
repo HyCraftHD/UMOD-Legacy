@@ -12,7 +12,6 @@ public class UGeneration {
 	
 	public UGeneration() {
 		init();
-		register();
 	}
 
 	private void init() {

@@ -2,6 +2,7 @@ package net.hycrafthd.umod.block;
 
 import java.util.List;
 
+import net.hycrafthd.umod.UReference;
 import net.hycrafthd.umod.api.IPlugabel;
 import net.hycrafthd.umod.tileentity.TileEntityPipe;
 import net.minecraft.block.Block;
@@ -50,6 +51,7 @@ public class BlockPipe extends Block implements ITileEntityProvider{
     this.setResistance(5F);
     this.setUnlocalizedName(name);
     this.setDefaultState(this.blockState.getBaseState().withProperty(UP, Boolean.valueOf(false)).withProperty(NORTH, Boolean.valueOf(false)).withProperty(EAST, Boolean.valueOf(false)).withProperty(SOUTH, Boolean.valueOf(false)).withProperty(WEST, Boolean.valueOf(false)).withProperty(DOWN, Boolean.valueOf(false)));
+	this.setCreativeTab(UReference.tab);
 	}
 	
 	@Override
@@ -84,6 +86,11 @@ public class BlockPipe extends Block implements ITileEntityProvider{
     public boolean isOpaqueCube()
     {
         return false;
+    }
+    
+    @Override
+    public IBlockState getStateForEntityRender(IBlockState state) {
+    	return this.blockState.getBaseState().withProperty(UP, Boolean.valueOf(false)).withProperty(NORTH, Boolean.valueOf(false)).withProperty(EAST, Boolean.valueOf(false)).withProperty(SOUTH, Boolean.valueOf(false)).withProperty(WEST, Boolean.valueOf(false)).withProperty(DOWN, Boolean.valueOf(false));
     }
 
 	@Override

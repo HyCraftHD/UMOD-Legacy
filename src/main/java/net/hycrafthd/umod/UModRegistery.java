@@ -47,7 +47,7 @@ public class UModRegistery {
 		    	}
 		  }
 		  file.mkdir();
-	    File theFile = new File(file.getPath() + "/"+pipe.getUnlocalizedName().replace("tile.", "")+pipe.getUnlocalizedName().replace("tile.", "") + ".json");
+	    File theFile = new File(file.getPath() + "/"+pipe.getUnlocalizedName().replace("tile.", "") + ".json");
 	    try {
 			theFile.createNewFile();
 		} catch (IOException e) {
@@ -76,7 +76,7 @@ public class UModRegistery {
 		     UMod.log.info("Generate BlockState:" + pipe.getUnlocalizedName().replace("tile.", "") + "-" + theString);
 		}
 		try {
-			wr.write(s+"normal:{"+s+"model"+s+":"+s+UReference.resource+pipe.getUnlocalizedName().replace("tile.", "") + "_0"+s+"}}}");
+			wr.write(s+"normal"+s+":{"+s+"model"+s+":"+s+UReference.resource+pipe.getUnlocalizedName().replace("tile.", "") + "_0"+s+"}}}");
 			wr.flush();
 			wr.close();
 		} catch (IOException e) {

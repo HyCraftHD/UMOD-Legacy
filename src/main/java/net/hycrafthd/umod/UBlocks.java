@@ -9,6 +9,7 @@ import net.hycrafthd.umod.block.BlockInfectedLog;
 import net.hycrafthd.umod.block.BlockInfectedPlank;
 import net.hycrafthd.umod.block.BlockInfectedSapling;
 import net.hycrafthd.umod.block.BlockOres;
+import net.hycrafthd.umod.block.BlockPipe;
 import net.hycrafthd.umod.block.BlockPulverizer;
 import net.hycrafthd.umod.block.BlockSolarPanel;
 import net.hycrafthd.umod.item.ItemBlockBase;
@@ -34,6 +35,8 @@ public class UBlocks {
 	public static Block infectedSapling;
 	public static Block infectedPlank;
 	public static Block infectedFruit;
+	//Pipes
+	public static Block iron_pipe;
 
 	public UBlocks() {
 		init();
@@ -58,6 +61,8 @@ public class UBlocks {
 		infectedSapling = new BlockInfectedSapling().setUnlocalizedName("infectedsapling");
 		infectedPlank = new BlockInfectedPlank().setUnlocalizedName("infectedplank");
 		infectedFruit = new BlockInfectedFruit().setUnlocalizedName("infectedfruit");
+		//Pipes
+		iron_pipe = new BlockPipe("ironpipe");
 	}
 
 	private void register() {
@@ -77,6 +82,8 @@ public class UBlocks {
 		UUtils.registerBlock(infectedSapling);
 		UUtils.registerBlock(infectedPlank);
 		UUtils.registerBlock(infectedFruit);
+		//Pipes
+		UUtils.registerBlock(iron_pipe);
 	}
 
 	private void oredirectionary() {
@@ -96,6 +103,8 @@ public class UBlocks {
 		UUtils.registerOredirectionary(infectedSapling);
 		UUtils.registerOredirectionary(infectedPlank);
 		UUtils.registerOredirectionary(infectedFruit);
+		//Pipes
+	    UUtils.registerOredirectionary(iron_pipe);
 	}
 
 }

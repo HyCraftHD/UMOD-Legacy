@@ -63,6 +63,9 @@ public class ClientProxy extends CommonProxy {
 		this.registerModelRenderer(UBlocks.infectedSapling);
 		this.registerModelRenderer(UBlocks.infectedFruit);
 		this.registerModelRenderer(UItems.infectedcrop);
+		
+		//Pipes
+		this.registerModelRenderer(UBlocks.iron_pipe);
 	}
 
 	private void registerModelRenderer(Object obj) {

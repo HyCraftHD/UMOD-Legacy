@@ -3,6 +3,8 @@ package net.hycrafthd.umod;
 import org.apache.logging.log4j.Logger;
 
 import net.hycrafthd.umod.event.EventRay;
+import net.hycrafthd.umod.event.EventRender;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -13,7 +15,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 
 @Mod(modid = UReference.modid, version = UReference.version, name = UReference.name)
 public class UMod {
-	
+
 	public static Logger log;
 
 	@EventHandler
@@ -39,12 +41,14 @@ public class UMod {
 		new URecipes();
 		GameRegistry.registerWorldGenerator(new UWorldGeneration(), 0);
 		UReference.eventManager.register();
+		FMLCommonHandler.instance().bus().register(new EventRender());
 		NetworkRegistry.INSTANCE.registerGuiHandler(UReference.modid, new UGuiHandler());
 		UReference.proxy.registerModels();
 	}
 
 	public void registerEvents() {
 		UReference.eventManager.addEvent(new EventRay());
+		UReference.eventManager.addEvent(new EventRender());
 	}
 
 }

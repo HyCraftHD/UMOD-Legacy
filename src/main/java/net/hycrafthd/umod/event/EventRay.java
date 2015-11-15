@@ -72,7 +72,7 @@ public class EventRay {
 	}
 
 	private void addPotion(EntityLivingBase base, int amplifier) {
-		base.addPotionEffect(new PotionEffect(UPotion.radiationPotion.getId(), 1, amplifier, false, true));
+		base.addPotionEffect(new PotionEffect(UPotion.radiationPotion.getId(), 10, amplifier, false, true));
 	}
 
 	@SubscribeEvent
@@ -106,6 +106,13 @@ public class EventRay {
 
 			PotionEffect effect = base.getActivePotionEffect(UPotion.radiationPotion);
 			base.attackEntityFrom(UDamageSource.radiationDamageSource, effect.getAmplifier() + 0.5F);
+			if (base instanceof EntityPlayer) {
+				EntityPlayer sp = (EntityPlayer) base;
+
+				if (sp.worldObj.rand.nextInt(30) == 0) {
+					sp.getFoodStats().setFoodLevel(sp.getFoodStats().getFoodLevel() - 1);
+				}
+			}
 		}
 	}
 

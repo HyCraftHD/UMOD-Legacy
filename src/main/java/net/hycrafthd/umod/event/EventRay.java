@@ -96,7 +96,7 @@ public class EventRay {
 				if (full) {
 					if (!timer.containsKey(sp))
 						timer.put(sp, System.currentTimeMillis());
-					if (System.currentTimeMillis() - timer.get(sp) >= 20 * 1) {
+					if (System.currentTimeMillis() - timer.get(sp) >= 200 * 1) {
 						sp.inventory.damageArmor(1);
 						timer.remove(sp);
 					}

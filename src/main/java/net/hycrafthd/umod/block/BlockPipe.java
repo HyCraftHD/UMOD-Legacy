@@ -161,9 +161,8 @@ public class BlockPipe extends BlockBase implements ITileEntityProvider{
 	@Override
 	public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn) {
 		super.onEntityCollidedWithBlock(worldIn, pos, state, entityIn);
-		if(entityIn instanceof EntityLiving){
-			EntityLiving lv = (EntityLiving) entityIn;
-			lv.attackEntityFrom(UDamageSource.electroshock, ((IPowerProvieder)worldIn.getTileEntity(pos)).getStoredPower()/2);
+		if(entityIn instanceof EntityLiving && !isIsolated()){
+			entityIn.attackEntityFrom(UDamageSource.electroshock, ((IPowerProvieder)worldIn.getTileEntity(pos)).getStoredPower()/2);
 		}
 	}
 	

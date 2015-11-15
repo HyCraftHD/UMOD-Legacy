@@ -1,7 +1,6 @@
 #Tab
 itemGroup.utab=UMod Tab
 
-#Items
 #Ingots
 item.ingotaluminium.name=Aluminium Ingot
 item.ingotcopper.name=Copper Ingot
@@ -42,7 +41,6 @@ item.radiationsuitboots.name=Radiation Suit Boots
 #Infested
 item.infestedcrop.name=Infested Crop
 
-#Blocks
 #Ores
 tile.orealuminium.name=Aluminium Ore
 tile.orecopper.name=Copper Ore
@@ -72,6 +70,7 @@ tile.blocksulphur.name=Sulphur Block
 tile.blocktin.name=Tin Block
 tile.blockuran.name=Uran Block
 tile.blockzinc.name=Zinc Block
+
 #Infected
 tile.infectedgrass.name=Infected Grass
 tile.infecteddirt.name=Infected Dirt
@@ -79,10 +78,13 @@ tile.infectedlog.name=Infected Log
 tile.infectedleave.name=Infected Leave
 tile.infectedplank.name=Infected Plank
 tile.infectedfruit.name=Infected Fruit
+
 #Pulverizer
 tile.pulver.name=Pulverizer
+
 #Solarpanel
 tile.solar.name=Solarpanel
+
 #Tooltip
 tooltip.tile.solar=Products 3UE/t
 tooltip.tile.pulver=Needs 10UE/t

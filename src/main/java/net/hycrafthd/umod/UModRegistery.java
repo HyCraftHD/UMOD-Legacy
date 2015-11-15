@@ -31,7 +31,7 @@ public class UModRegistery {
 		return null;
 	}
 	
-	private static void  registerBlockPipe(Block pipe,String text){		
+	public static void  registerBlockPipe(Block pipe,String text){		
 		ImmutableList hallo = ((BlockPipe)pipe).getState().getValidStates();
 		generateJsons(hallo, (BlockPipe) pipe,text);
 		generateBlockState(hallo, (BlockPipe) pipe);
@@ -47,7 +47,7 @@ public class UModRegistery {
 		    	}
 		  }
 		  file.mkdir();
-	    File theFile = new File(file.getPath() + "/blockpipereg.json");
+	    File theFile = new File(file.getPath() + "/"+pipe.getUnlocalizedName().replace("tile.", "")+pipe.getUnlocalizedName().replace("tile.", "") + ".json");
 	    try {
 			theFile.createNewFile();
 		} catch (IOException e) {
@@ -68,7 +68,7 @@ public class UModRegistery {
 			build.append(Block.blockRegistry.getNameForObject(pipe));
 			String theString = ((BlockState.StateImplementation)hallo.get(i)).toString().substring(build.length() + 1, ((BlockState.StateImplementation)hallo.get(i)).toString().length() - 1);
 			try {
-				wr.write(s+""+theString+""+s+": {"+s+ "model"+s+":"+s+ "factorymod:"+  pipe.getUnlocalizedName().replace("tile.", "") + "_" + i  +s+" },");
+				wr.write(s+""+theString+""+s+": {"+s+ "model"+s+":"+s+ UReference.resource+  pipe.getUnlocalizedName().replace("tile.", "") + "_" + i  +s+" },");
 				wr.flush();
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -76,7 +76,7 @@ public class UModRegistery {
 		     UMod.log.info("Generate BlockState:" + pipe.getUnlocalizedName().replace("tile.", "") + "-" + theString);
 		}
 		try {
-			wr.write(s+"normal:{"+s+"model"+s+":"+s+"factorymod:"+pipe.getUnlocalizedName().replace("tile.", "") + "_0"+s+"}}}");
+			wr.write(s+"normal:{"+s+"model"+s+":"+s+UReference.resource+pipe.getUnlocalizedName().replace("tile.", "") + "_0"+s+"}}}");
 			wr.flush();
 			wr.close();
 		} catch (IOException e) {

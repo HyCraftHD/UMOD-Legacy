@@ -43,10 +43,12 @@ public class BlockPipe extends Block implements ITileEntityProvider{
 	public static final PropertyBool WEST = PropertyBool.create("west");
 	public static final PropertyBool SOUTH = PropertyBool.create("south");
 	public static final PropertyBool NORTH = PropertyBool.create("north");
+	public int powertrans;
 
 	
-	public BlockPipe(String name) {
+	public BlockPipe(String name,int transf) {
     super(Material.iron);
+    powertrans = transf;
     this.setHardness(6F);
     this.setResistance(5F);
     this.setUnlocalizedName(name);
@@ -65,7 +67,7 @@ public class BlockPipe extends Block implements ITileEntityProvider{
 	
 	@Override
 	public TileEntity createNewTileEntity(World worldIn, int meta) {
-		return new TileEntityPipe();
+		return new TileEntityPipe(powertrans);
 	}
 	
 	@Override

@@ -68,7 +68,7 @@ public class UModRegistery {
 			build.append(Block.blockRegistry.getNameForObject(pipe));
 			String theString = ((BlockState.StateImplementation)hallo.get(i)).toString().substring(build.length() + 1, ((BlockState.StateImplementation)hallo.get(i)).toString().length() - 1);
 			try {
-				wr.write(s+""+theString+""+s+": {"+s+ "model"+s+":"+s+ UReference.resource+  pipe.getUnlocalizedName().replace("tile.", "") + "_" + i  +s+" },");
+				wr.write(s+""+theString+""+s+": {"+s+ "model"+s+":"+s+ UReference.resource+  pipe.getUnlocalizedName().replace("tile.", "") + "/" + pipe.getUnlocalizedName().replace("tile.", "") + "_" + i  +s+" },");
 				wr.flush();
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -91,12 +91,17 @@ public class UModRegistery {
 	    		UMod.log.error("Das Programm kann auf den Angegebenen Pfad Nicht zu greifen");
 	    	}
 	    }
+	    File opt = new File(output.getPath() + "/" + pipe.getUnlocalizedName().replace("tile.", ""));
+	    boolean b = opt.mkdirs();
+	    while(b){
+	    b = opt.mkdir();
+	    }
 		for(int i = 0;i < hallo.size();i++){
 			StringBuilder build = new StringBuilder();
 			build.append(Block.blockRegistry.getNameForObject(pipe));
 			String theString = ((BlockState.StateImplementation)hallo.get(i)).toString().substring(build.length() + 1, ((BlockState.StateImplementation)hallo.get(i)).toString().length() - 1);
 	    	output.mkdir();
-		    File theFile = new File(output.getPath() + "/" + pipe.getUnlocalizedName().replace("tile.", "") + "_" + i + ".json");
+		    File theFile = new File(opt.getPath() + "/" + pipe.getUnlocalizedName().replace("tile.", "") + "_" + i + ".json");
             try {
 				theFile.createNewFile();
 			} catch (IOException e) {

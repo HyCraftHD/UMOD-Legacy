@@ -24,6 +24,8 @@ public class TileEntityPipe extends TileEntity implements IPlugabel,IPowerProvie
 	public int stored;
 	public int loos;
 
+	public TileEntityPipe() {}
+	
 	public TileEntityPipe(int maxpower,int pipelooseone) {
 		Maximum_Power = maxpower;
 		loos = pipelooseone;

@@ -161,13 +161,19 @@ public class BlockPipe extends BlockBase implements ITileEntityProvider{
 	@Override
 	public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn) {
 		super.onEntityCollidedWithBlock(worldIn, pos, state, entityIn);
-		if(entityIn instanceof EntityLiving && !isIsolated()){
+		if(!isIsolated()){
 			entityIn.attackEntityFrom(UDamageSource.electroshock, ((IPowerProvieder)worldIn.getTileEntity(pos)).getStoredPower()/2);
 		}
 	}
 	
-	private EnumFaceDirection[] dir = new EnumFaceDirection[6];
-
+	@Override
+	public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, Entity entityIn) {
+		super.onEntityCollidedWithBlock(worldIn, pos, entityIn);
+		if(!isIsolated()){
+			entityIn.attackEntityFrom(UDamageSource.electroshock, ((IPowerProvieder)worldIn.getTileEntity(pos)).getStoredPower());
+		}
+	}
+	
 	public boolean isIsolated(){
 		return iso;
 	}

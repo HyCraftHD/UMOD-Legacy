@@ -4,7 +4,7 @@ import org.apache.logging.log4j.Logger;
 
 import net.hycrafthd.umod.event.EventExecuteRadiation;
 import net.hycrafthd.umod.event.EventNearByInfectedBlock;
-import net.hycrafthd.umod.event.EventRender;
+import net.hycrafthd.umod.event.EventRenderOverlaybyhavingRadiation;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -42,7 +42,7 @@ public class UMod {
 		new URecipes();
 		GameRegistry.registerWorldGenerator(new UWorldGeneration(), 0);
 		UReference.eventManager.register();
-		FMLCommonHandler.instance().bus().register(new EventRender());
+		FMLCommonHandler.instance().bus().register(new EventRenderOverlaybyhavingRadiation());
 		NetworkRegistry.INSTANCE.registerGuiHandler(UReference.modid, new UGuiHandler());
 		UReference.proxy.registerModels();
 	}
@@ -50,7 +50,7 @@ public class UMod {
 	public void registerEvents() {
 		UReference.eventManager.addEvent(new EventNearByInfectedBlock());
 		UReference.eventManager.addEvent(new EventExecuteRadiation());
-		UReference.eventManager.addEvent(new EventRender());
+		UReference.eventManager.addEvent(new EventRenderOverlaybyhavingRadiation());
 	}
 
 }

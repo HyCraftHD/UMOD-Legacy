@@ -1,8 +1,8 @@
 package net.hycrafthd.umod.schematic;
 
 import java.io.InputStream;
+import java.util.Random;
 
-import net.hycrafthd.umod.UBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -21,7 +21,7 @@ public class Schematic {
 	
 	public Schematic(String fileName) {
 		try {
-			InputStream is = Schematic.class.getResourceAsStream("/assets/umod/schematics/tree/" + fileName);
+			InputStream is = Schematic.class.getResourceAsStream("/assets/umod/schematics/" + fileName);
 			NBTTagCompound nbtdata = CompressedStreamTools.readCompressed(is);
 			
 			is.close();
@@ -52,12 +52,27 @@ public class Schematic {
 	}
 	
 	public void generate(World world, int x, int y, int z) {
+		int blocks = width*length;
 		for (BlockObject obj : blockObjects) {
-			BlockObject blockObject = obj;
-			if(obj.getState().getBlock() == Blocks.grass){
-				blockObject = new BlockObject(obj.getPosition(), UBlocks.infectedLog.getDefaultState());
+			BlockPos pos = obj.getPositionWithOffset(x, y, z);
+			world.setBlockState(pos, obj.getState());
+			if(blocks != 0){
+			pos = pos.add(0, -1, 0);
+				for(int posy = pos.getY(); posy>0; posy--){
+					IBlockState stats = world.getBlockState(pos);
+					Block block = stats.getBlock();
+					if(!block.isSolidFullCube()){
+						IBlockState state = Blocks.cobblestone.getDefaultState();
+						int ran = new Random().nextInt(7);
+						if(ran == 0 || ran == 5){
+							state = Blocks.mossy_cobblestone.getDefaultState();
+						}
+						world.setBlockState(pos, state);
+						pos = pos.add(0, -1, 0);
+					}
+				}
+				blocks--;
 			}
-			world.setBlockState(blockObject.getPositionWithOffset(x, y, z), blockObject.getState());
 		}
 	}
 	

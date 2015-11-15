@@ -4,14 +4,14 @@ import net.hycrafthd.umod.schematic.Schematic;
 
 public class USchematic {
 
-	public static Schematic testSchematic;
+	public static Schematic ruinSchematic;
 	
 	public USchematic() {
 		init();
 	}
 
 	private void init() {
-		testSchematic = new Schematic("Test2.schematic");
+		ruinSchematic = new Schematic("Ruin.schematic");
 	}
 	
 }

@@ -10,6 +10,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 
@@ -21,7 +22,7 @@ public class GenInfectedTree extends WorldGenAbstractTree {
 	private final int metaLeaves;
 
 	public GenInfectedTree(boolean blocknotify) {
-		this(blocknotify, 4, 0, 0, false);
+		this(blocknotify, MathHelper.getRandomIntegerInRange(new Random(), 4, 6), 0, 0, false);
 	}
 
 	public GenInfectedTree(boolean blocknotify, int minY, int wood, int leaves, boolean vines) {

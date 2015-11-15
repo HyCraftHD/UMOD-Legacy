@@ -11,20 +11,20 @@ public final class ChestLoot {
 
 	private int weight;
 
+	private int minCount;
+	private int maxCount;
+
 	public ChestLoot(ItemStack stack, int count, int weight) {
 		this(stack, count, count, weight);
 	}
 
 	public ChestLoot(ItemStack newstack, int newminCount, int newmaxCount, int newweight) {
 		this.weight = newweight;
-		
-		ItemStack temp = newstack.copy();
-		temp.stackSize = MathHelper.getRandomIntegerInRange(new Random(), newminCount, newmaxCount);
-		stack = temp.copy();
-		
-		System.out.println(stack);
+		this.minCount = newminCount;
+		this.maxCount = newmaxCount;
+		this.stack = newstack;
 	}
-	
+
 	@Override
 	public String toString() {
 		return this.stack.toString() + " : " + this.weight;
@@ -36,6 +36,10 @@ public final class ChestLoot {
 
 	public int getWeight() {
 		return weight;
+	}
+
+	public int getCount() {
+		return MathHelper.getRandomIntegerInRange(new Random(), minCount, maxCount);
 	}
 
 }

@@ -62,13 +62,15 @@ public class UChestLoot {
 		}
 
 		ChestLoot loot = list.get(MathHelper.getRandomIntegerInRange(new Random(), 0, list.size() - 1));
-		
+
 		while (true) {
 			int weight = MathHelper.getRandomIntegerInRange(new Random(), 0, 99);
 
 			if (weight <= loot.getWeight()) {
-				System.out.println(loot.getStack());
-				return loot.getStack();
+				ItemStack stack = loot.getStack();
+				loot.getStack().stackSize = loot.getCount();
+				System.out.println(stack);
+				return stack;
 			}
 		}
 	}

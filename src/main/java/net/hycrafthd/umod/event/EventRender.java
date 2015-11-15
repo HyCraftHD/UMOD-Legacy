@@ -22,7 +22,6 @@ public class EventRender{
 	@SideOnly(Side.CLIENT)
 	@SubscribeEvent
 	public void onEntityUpdate(RenderGameOverlayEvent event) {
-		// Only for Client! (Not ready!)
 		Minecraft mc = Minecraft.getMinecraft();
 		EntityPlayerSP sp = mc.thePlayer;
 		if (mc.inGameHasFocus) {

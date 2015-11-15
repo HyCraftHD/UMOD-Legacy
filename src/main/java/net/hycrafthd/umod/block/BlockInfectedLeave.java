@@ -116,12 +116,12 @@ public class BlockInfectedLeave extends BlockLeaves {
 	public BlockPlanks.EnumType getWoodType(int meta) {
 		return null;
 	}
-	
+
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune) {
 		return Item.getItemFromBlock(UBlocks.infectedSapling);
 	}
-	
+
 	@Override
 	protected void dropApple(World worldIn, BlockPos pos, IBlockState state, int chance) {
 	}

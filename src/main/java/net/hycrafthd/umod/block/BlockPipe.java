@@ -34,7 +34,7 @@ import net.minecraftforge.common.property.Properties;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class BlockPipe extends Block implements ITileEntityProvider{
+public class BlockPipe extends BlockBase implements ITileEntityProvider{
 
 	
 	public static final PropertyBool UP = PropertyBool.create("up");
@@ -44,16 +44,18 @@ public class BlockPipe extends Block implements ITileEntityProvider{
 	public static final PropertyBool SOUTH = PropertyBool.create("south");
 	public static final PropertyBool NORTH = PropertyBool.create("north");
 	public int powertrans;
+	public int lo;
 
 	
-	public BlockPipe(String name,int transf) {
+	public BlockPipe(String name,int transf,int loos) {
     super(Material.iron);
-    powertrans = transf;
+    this.powertrans = transf;
     this.setHardness(6F);
     this.setResistance(5F);
     this.setUnlocalizedName(name);
     this.setDefaultState(this.blockState.getBaseState().withProperty(UP, Boolean.valueOf(false)).withProperty(NORTH, Boolean.valueOf(false)).withProperty(EAST, Boolean.valueOf(false)).withProperty(SOUTH, Boolean.valueOf(false)).withProperty(WEST, Boolean.valueOf(false)).withProperty(DOWN, Boolean.valueOf(false)));
 	this.setCreativeTab(UReference.tab);
+	this.lo = loos;
 	}
 	
 	@Override
@@ -67,7 +69,7 @@ public class BlockPipe extends Block implements ITileEntityProvider{
 	
 	@Override
 	public TileEntity createNewTileEntity(World worldIn, int meta) {
-		return new TileEntityPipe(powertrans);
+		return new TileEntityPipe(powertrans,lo);
 	}
 	
 	@Override

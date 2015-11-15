@@ -3,7 +3,6 @@ package net.hycrafthd.umod;
 import java.util.List;
 
 import net.hycrafthd.umod.enumtype.EnumTypeBaseStuff;
-import net.hycrafthd.umod.event.RadiotionEntityFx;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;
@@ -12,11 +11,10 @@ import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumChatFormatting;
 
 public class ClientProxy extends CommonProxy {
 
-	public static RadiotionEntityFx fx;
-	
 	@Override
 	public void registerModels() {
 		// Ore
@@ -66,10 +64,10 @@ public class ClientProxy extends CommonProxy {
 		this.registerModelRenderer(UBlocks.infectedSapling);
 		this.registerModelRenderer(UBlocks.infectedFruit);
 		this.registerModelRenderer(UItems.infectedcrop);
-		
-		//Pipes
+
+		// Pipes
 		this.registerModelRenderer(UBlocks.iron_pipe);
-}
+	}
 
 	private void registerModelRenderer(Object obj) {
 		this.registerModelRenderer(obj, 0);
@@ -105,7 +103,7 @@ public class ClientProxy extends CommonProxy {
 
 	@Override
 	public void addTooltip(ItemStack stack, EntityPlayer player, List tooltip, boolean advanced) {
-		tooltip.add(I18n.format("tooltip." + stack.getUnlocalizedName()));
+		tooltip.add(EnumChatFormatting.BLUE + I18n.format("tooltip." + stack.getUnlocalizedName()) + EnumChatFormatting.RESET);
 	}
 
 }

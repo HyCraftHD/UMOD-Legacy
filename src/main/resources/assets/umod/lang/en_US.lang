@@ -86,9 +86,7 @@ tile.pulver.name=Pulverizer
 tile.solar.name=Solarpanel
 
 #Tooltip
-tooltip.tile.solar=Products 3UE/t
-tooltip.tile.pulver=Needs 10UE/t
-tooltip.tile.ironpipe=Transports 3UE/t
+
 
 #Potion
 potion.radiation.name=Radiation
@@ -98,4 +96,10 @@ death.attack.radiation=%1$s died from Radiation
 death.attack.elec=%1$s died from a Electronic Shock
 
 #Pipes
-tile.ironpipe.name=Iron Energy Pipe
+tile.ironpipe.name=Iron Energy Cable
+tile.alupipe.name=Aluminium Energy Cable
+tile.silverpipe.name=Silver Energy Cable
+tile.copperpipe.name=Copper Energy Cable
+tile.leadpipe.name=Lead Energy Cable
+tile.zinpipe.name=Tin Energy Cable
+tile.goldpipe.name=Gold Energy Cable

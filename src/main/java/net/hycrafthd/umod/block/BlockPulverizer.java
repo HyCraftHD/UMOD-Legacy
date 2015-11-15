@@ -1,6 +1,8 @@
 package net.hycrafthd.umod.block;
 
 import net.hycrafthd.umod.UReference;
+import net.hycrafthd.umod.UUtils;
+import net.hycrafthd.umod.api.IEnergyMessage;
 import net.hycrafthd.umod.tileentity.TileEntityPulverizer;
 import net.minecraft.block.BlockDispenser;
 import net.minecraft.block.BlockWoodSlab;
@@ -13,7 +15,7 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 
-public class BlockPulverizer extends BlockBaseMachine {
+public class BlockPulverizer extends BlockBaseMachine implements IEnergyMessage{
 
 	public BlockPulverizer() {
 		super();
@@ -48,6 +50,11 @@ public class BlockPulverizer extends BlockBaseMachine {
 	@Override
 	public IBlockState getStateForEntityRender(IBlockState state) {
 		return this.getDefaultState();
+	}
+
+	@Override
+	public String getMessage() {
+		return "Needs " + UUtils.inUE(10) +"UE/t";
 	}
 
 }

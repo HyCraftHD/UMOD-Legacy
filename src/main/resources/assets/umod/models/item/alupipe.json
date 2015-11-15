@@ -1,5 +1,5 @@
 {
-    "parent": "umod:block/alupipe_0",
+    "parent": "umod:block/alupipe/alupipe_0",
     "display": {
         "thirdperson": {
             "rotation": [ 10, -45, 170 ],

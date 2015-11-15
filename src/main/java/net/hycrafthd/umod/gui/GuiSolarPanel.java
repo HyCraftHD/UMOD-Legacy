@@ -1,9 +1,13 @@
 package net.hycrafthd.umod.gui;
 
+import org.lwjgl.opengl.GL11;
+
 import net.hycrafthd.umod.UReference;
 import net.hycrafthd.umod.api.IPowerProvieder;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.util.ResourceLocation;
 
@@ -57,13 +61,20 @@ public class GuiSolarPanel extends GuiScreen {
 		return fontRendererIn.drawString(text, (float) (x - fontRendererIn.getStringWidth(text) / 2), (float) y, color, shadow);
 	}
 
-	public void drawStorage(int k, int l, int height) {
-		// GL11.glTranslated(k + 139 + 15, l + 7 + height, 0);
-		// GL11.glRotatef(90, 0.0f, 0.0f, 1.0f);
-		this.drawTexturedModalRect(k + 139, l + 7, 176, 7, 30, height);
-		// GL11.glRotatef(90, 0.0f, 0.0f, -1.0f);
-		// GL11.glTranslated(-(k + 139 + 15), -(l + 7 + height), 0);
-
+	public void drawStorage(int l, int k, int height) {
+		    int x = l + 169,y = k + 159;
+	        Tessellator tessellator = Tessellator.getInstance();
+	        WorldRenderer worldrenderer = tessellator.getWorldRenderer();
+	        GL11.glDisable(GL11.GL_TEXTURE_2D);
+			GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+	        worldrenderer.startDrawingQuads();
+	        worldrenderer.setColorRGBA(255, 0, 0, 255);
+	        worldrenderer.addVertex(x, y, 0.0D);
+	        worldrenderer.addVertex(x, y - height, 0.0D);
+	        worldrenderer.addVertex(x - 30, y - height, 0.0D);
+	        worldrenderer.addVertex(x - 30, y, 0.0D);
+	        tessellator.draw();
+	        GL11.glEnable(GL11.GL_TEXTURE_2D);
 	}
 
 	@Override

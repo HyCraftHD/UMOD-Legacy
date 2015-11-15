@@ -1,5 +1,5 @@
 {
-    "parent": "umod:block/zinpipe_0",
+    "parent": "umod:block/zinpipe/zinpipe_0",
     "display": {
         "thirdperson": {
             "rotation": [ 10, -45, 170 ],

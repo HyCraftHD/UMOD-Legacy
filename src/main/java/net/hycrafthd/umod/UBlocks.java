@@ -14,6 +14,7 @@ import net.hycrafthd.umod.block.BlockPulverizer;
 import net.hycrafthd.umod.block.BlockSolarPanel;
 import net.hycrafthd.umod.item.ItemBlockBase;
 import net.hycrafthd.umod.item.ItemBlockBlocks;
+import net.hycrafthd.umod.item.ItemBlockEnergy;
 import net.hycrafthd.umod.item.ItemBlockOres;
 import net.minecraft.block.Block;
 
@@ -83,9 +84,9 @@ public class UBlocks {
 		// Blocks
 		UUtils.registerBlock(blocks, ItemBlockBlocks.class);
 		// Pulverizer
-		UUtils.registerBlock(pulver, ItemBlockBase.class);
+		UUtils.registerBlocks(pulver,ItemBlockEnergy.class);
 		// SolarPanel
-		UUtils.registerBlock(solar, ItemBlockBase.class);
+		UUtils.registerBlocks(solar,ItemBlockEnergy.class);
 		// Infected
 		UUtils.registerBlock(infectedGrass);
 		UUtils.registerBlock(infectedDirt);
@@ -95,13 +96,13 @@ public class UBlocks {
 		UUtils.registerBlock(infectedPlank);
 		UUtils.registerBlock(infectedFruit);
 		// Pipes
-		UUtils.registerBlock(iron_pipe);
-		UUtils.registerBlock(alu_pipe);
-		UUtils.registerBlock(gold_pipe);
-		UUtils.registerBlock(silver_pipe);
-		UUtils.registerBlock(copper_pipe);
-		UUtils.registerBlock(lead_pipe);
-		UUtils.registerBlock(zin_pipe);
+		UUtils.registerBlocks(iron_pipe,ItemBlockEnergy.class);
+		UUtils.registerBlocks(alu_pipe,ItemBlockEnergy.class);
+		UUtils.registerBlocks(gold_pipe,ItemBlockEnergy.class);
+		UUtils.registerBlocks(silver_pipe,ItemBlockEnergy.class);
+		UUtils.registerBlocks(copper_pipe,ItemBlockEnergy.class);
+		UUtils.registerBlocks(lead_pipe,ItemBlockEnergy.class);
+		UUtils.registerBlocks(zin_pipe,ItemBlockEnergy.class);
 	}
 
 	private void oredirectionary() {

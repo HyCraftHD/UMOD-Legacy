@@ -1,5 +1,5 @@
 {
-    "parent": "umod:block/copperpipe_0",
+    "parent": "umod:block/copperpipe/copperpipe_0",
     "display": {
         "thirdperson": {
             "rotation": [ 10, -45, 170 ],

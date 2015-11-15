@@ -13,7 +13,7 @@ import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraftforge.fml.common.IWorldGenerator;
 
-public class UWorldGeneration implements IWorldGenerator {
+public class UOreGeneration implements IWorldGenerator {
 
 	private void nether(Random random, int x, int y, World world) {
 		gen(UBlocks.ores.getStateFromMeta(EnumTypeBaseStuff.SULPHUR.getMetadata()), Blocks.netherrack, random, x, y, world, 10, 0, 128, 3, 14);

@@ -1,9 +1,10 @@
 package net.hycrafthd.umod;
 
+import org.apache.logging.log4j.Logger;
+
 import net.hycrafthd.umod.event.EventExecuteRadiation;
 import net.hycrafthd.umod.event.EventNearByInfectedBlock;
 import net.hycrafthd.umod.event.EventRenderOverlaybyhavingRadiation;
-import net.hycrafthd.umod.schematic.SchematicGenerator;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -11,8 +12,6 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
-
-import org.apache.logging.log4j.Logger;
 
 @Mod(modid = UReference.modid, version = UReference.version, name = UReference.name)
 public class UMod {
@@ -26,7 +25,6 @@ public class UMod {
 
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
-		new USchematic();
 		new UPotion();
 		new UItems();
 		new UBlocks();
@@ -41,6 +39,7 @@ public class UMod {
 	public void postinit(FMLPostInitializationEvent event) {
 		new UTiles();
 		new URecipes();
+		new UChestLoot();
 		UReference.eventManager.register();
 		FMLCommonHandler.instance().bus().register(new EventRenderOverlaybyhavingRadiation());
 		NetworkRegistry.INSTANCE.registerGuiHandler(UReference.modid, new UGuiHandler());
@@ -53,11 +52,11 @@ public class UMod {
 		UReference.eventManager.addEvent(new EventRenderOverlaybyhavingRadiation());
 	}
 
-	public void registerGenerators(){
+	public void registerGenerators() {
 		UGeneration generation = new UGeneration();
-		generation.addGenerator(new UWorldGeneration(), 0);
-		generation.addGenerator(new SchematicGenerator(USchematic.ruinSchematic), 0);
+		generation.addGenerator(new UOreGeneration(), 0);
+		generation.addGenerator(new USchematicGeneration(), 0);
 		generation.register();
 	}
-	
+
 }

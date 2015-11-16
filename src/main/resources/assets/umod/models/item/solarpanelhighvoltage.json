@@ -1,5 +1,5 @@
 {
-    "parent": "umod:block/solar",
+    "parent": "umod:block/solarpanel/solarpanelhighvoltage",
     "display": {
         "thirdperson": {
             "rotation": [ 10, -45, 170 ],

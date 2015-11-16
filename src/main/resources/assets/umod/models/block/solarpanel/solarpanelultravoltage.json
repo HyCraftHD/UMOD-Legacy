@@ -1,0 +1,14 @@
+{
+"parent": "block/cube",
+    "textures": {
+      "particle": "umod:blocks/solarpanel/topultravoltage",
+        "down": "umod:blocks/solarpanel/bottom",
+        "up": "umod:blocks/solarpanel/topultravoltage",
+        "north": "umod:blocks/solarpanel/side",
+        "east": "umod:blocks/solarpanel/side",
+        "south": "umod:blocks/solarpanel/side",
+        "west": "umod:blocks/solarpanel/side"
+    }
+
+
+}

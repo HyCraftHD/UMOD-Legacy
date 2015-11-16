@@ -3,15 +3,15 @@ package net.hycrafthd.umod.item;
 import java.util.List;
 
 import net.hycrafthd.umod.api.IEnergyMessage;
+import net.hycrafthd.umod.block.BlockSolarPanel.EnumTypeSolarPanel;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
 
-public class ItemBlockEnergy extends ItemBlock{
+public class ItemBlockSolarPanel extends ItemBlockSubBase {
 
-	public ItemBlockEnergy(Block block) {
+	public ItemBlockSolarPanel(Block block) {
 		super(block);
 	}
 
@@ -21,4 +21,11 @@ public class ItemBlockEnergy extends ItemBlock{
 			tip.add(EnumChatFormatting.BLUE + ((IEnergyMessage) this.block).getMessage());
 		}
 	}
+
+	@Override
+	public String getUnlocalizedName(ItemStack stack) {
+		EnumTypeSolarPanel type = EnumTypeSolarPanel.byMetadata(stack.getMetadata());
+		return "tile.solarpanel" + type.getName();
+	}
+
 }

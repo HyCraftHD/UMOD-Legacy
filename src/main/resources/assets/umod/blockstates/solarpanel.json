@@ -1,0 +1,9 @@
+{
+    "variants": {
+        "type=lowvoltage": { "model": "umod:solarpanel/solarpanellowvoltage" },
+        "type=mediumvoltage": { "model": "umod:solarpanel/solarpanelmediumvoltage" },
+        "type=highvoltage": { "model": "umod:solarpanel/solarpanelhighvoltage" },
+        "type=ultravoltage": { "model": "umod:solarpanel/solarpanelultravoltage" },
+        "type=extremevoltage": { "model": "umod:solarpanel/solarpanelextremevoltage" }
+    }
+}

@@ -12,9 +12,17 @@ import net.minecraft.tileentity.TileEntity;
 public class TileEntitySolarPanel extends TileEntity implements IPowerProvieder {
 
 	public int storedpower = 0;
-	public int MAXIMUM_POWER = 300000;
+	public int MAXIMUM_POWER = 0;
+	public int producing = 0;
 	public boolean work;
+	public String unlocalizedname;
 	public String er = null;
+
+	public TileEntitySolarPanel(int produce, int max, String str) {
+		this.producing = produce;
+		this.MAXIMUM_POWER = max;
+		this.unlocalizedname = str;
+	}
 
 	@Override
 	public int getStoredPower() {
@@ -50,7 +58,7 @@ public class TileEntitySolarPanel extends TileEntity implements IPowerProvieder 
 
 	private boolean isni;
 	private int time;
-	
+
 	@Override
 	public void update() {
 		if (!WorldUtils.isBlockover(worldObj, pos)) {
@@ -63,7 +71,7 @@ public class TileEntitySolarPanel extends TileEntity implements IPowerProvieder 
 			work = false;
 			return;
 		}
-		if(isni) {
+		if (isni) {
 			er = "It's Night";
 			work = false;
 			return;
@@ -73,8 +81,8 @@ public class TileEntitySolarPanel extends TileEntity implements IPowerProvieder 
 			work = false;
 			return;
 		}
-		if (canAddPower(EnergyUtils.inUE(3))) {
-			addPower(EnergyUtils.inUE(3));
+		if (canAddPower(EnergyUtils.inUE(producing))) {
+			addPower(EnergyUtils.inUE(producing));
 			er = null;
 			work = true;
 		} else {
@@ -82,7 +90,7 @@ public class TileEntitySolarPanel extends TileEntity implements IPowerProvieder 
 			work = false;
 		}
 		time++;
-		if(time == 40){
+		if (time == 40) {
 			time = 0;
 			isni = WorldUtils.isNight(worldObj);
 		}
@@ -135,6 +143,6 @@ public class TileEntitySolarPanel extends TileEntity implements IPowerProvieder 
 
 	@Override
 	public int getPowerProducNeeds() {
-		return EnergyUtils.inUE(3);
+		return EnergyUtils.inUE(producing);
 	}
 }

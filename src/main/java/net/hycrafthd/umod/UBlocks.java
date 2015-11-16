@@ -15,6 +15,7 @@ import net.hycrafthd.umod.block.BlockSolarPanel;
 import net.hycrafthd.umod.item.ItemBlockBlocks;
 import net.hycrafthd.umod.item.ItemBlockEnergy;
 import net.hycrafthd.umod.item.ItemBlockOres;
+import net.hycrafthd.umod.item.ItemBlockSolarPanel;
 import net.hycrafthd.umod.render.PipeTexturAtlas;
 import net.hycrafthd.umod.utils.CommonRegistryUtils;
 import net.minecraft.block.Block;
@@ -26,7 +27,7 @@ public class UBlocks {
 	// Blocks
 	public static Block blocks;
 	// SolarPanel
-	public static Block solar;
+	public static Block solarpanel;
 	// Pulverizer
 	public static Block pulver;
 	// Infected
@@ -60,7 +61,7 @@ public class UBlocks {
 		// Pulverizer
 		pulver = new BlockPulverizer().setUnlocalizedName("pulver");
 		// SolarPanel
-		solar = new BlockSolarPanel().setUnlocalizedName("solar");
+		solarpanel = new BlockSolarPanel().setUnlocalizedName("solarpanel");
 		// Infected
 		infectedGrass = new BlockInfectedGrass().setUnlocalizedName("infectedgrass");
 		infectedDirt = new BlockInfectedDirt().setUnlocalizedName("infecteddirt");
@@ -87,7 +88,7 @@ public class UBlocks {
 		// Pulverizer
 		CommonRegistryUtils.registerBlocks(pulver, ItemBlockEnergy.class);
 		// SolarPanel
-		CommonRegistryUtils.registerBlocks(solar, ItemBlockEnergy.class);
+		CommonRegistryUtils.registerBlocks(solarpanel, ItemBlockSolarPanel.class);
 		// Infected
 		CommonRegistryUtils.registerBlock(infectedGrass);
 		CommonRegistryUtils.registerBlock(infectedDirt);
@@ -114,7 +115,7 @@ public class UBlocks {
 		// Pulverizer
 		CommonRegistryUtils.registerOredirectionary(pulver);
 		// SolarPanel
-		CommonRegistryUtils.registerOredirectionary(solar);
+		CommonRegistryUtils.registerOredirectionary(solarpanel);
 		// Infected
 		CommonRegistryUtils.registerOredirectionary(infectedGrass);
 		CommonRegistryUtils.registerOredirectionary(infectedDirt);

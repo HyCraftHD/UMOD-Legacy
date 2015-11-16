@@ -2,6 +2,7 @@ package net.hycrafthd.umod;
 
 import java.util.List;
 
+import net.hycrafthd.umod.block.BlockSolarPanel.EnumTypeSolarPanel;
 import net.hycrafthd.umod.entity.EntityInfectedCow;
 import net.hycrafthd.umod.entity.render.RenderInfectedCow;
 import net.hycrafthd.umod.enumtype.EnumTypeBaseStuff;
@@ -48,7 +49,10 @@ public class ClientProxy extends CommonProxy {
 		ClientRegistryUtils.registerModelRenderer(UItems.cdust);
 
 		// SolarPanel
-		ClientRegistryUtils.registerModelRenderer(UBlocks.solar);
+		for (int i = 0; i < EnumTypeSolarPanel.values().length; i++) {
+			ModelBakery.addVariantName(Item.getItemFromBlock(UBlocks.solarpanel), UReference.resource + "solarpanel" + EnumTypeSolarPanel.byMetadata(i).getName());
+			ClientRegistryUtils.registerModelRenderer(UBlocks.solarpanel, i, new ModelResourceLocation(UReference.resource + "solarpanel" + EnumTypeSolarPanel.byMetadata(i).getName(), "inventory"));
+		}
 
 		ClientRegistryUtils.registerModelRenderer(UArmor.radiationSuitHelmet);
 		ClientRegistryUtils.registerModelRenderer(UArmor.radiationSuitChestplate);

@@ -35,7 +35,7 @@ public class UGuiHandler implements IGuiHandler{
 		case 1:
 			return new GuiSolarPanel((IPowerProvieder) ent);
 		case 2:
-			return new GuiBattery((IPowerProvieder) ent, player,p,0);
+			return new GuiBattery(world,(IPowerProvieder) ent, player,p,0);
 		}
 		return null;
 	}

@@ -14,10 +14,12 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.World;
 
 public class GuiBattery extends GuiScreen{
 
@@ -27,12 +29,14 @@ public class GuiBattery extends GuiScreen{
 	public EntityPlayer pl;
 	public BlockPos pos;
 	public int ag;
+	private World worldObj;
 	
-	public GuiBattery(IPowerProvieder po,EntityPlayer pl,BlockPos pos,int ag) {
+	public GuiBattery(World w,IPowerProvieder po,EntityPlayer pl,BlockPos pos,int ag) {
 	pro = po;
 	this.pl = pl;
 	this.pos = pos;
 	this.ag = ag;
+	worldObj = w;
 	}
 	
 	@Override
@@ -65,13 +69,13 @@ public class GuiBattery extends GuiScreen{
 
 		this.drawStorage(k, l, high);
 
-		this.drawCenteredString(this.fontRendererObj, I18n.format("tile.solar.name"), k + xSize / 2 - 37 / 2, l + 10, 4210752, false);
+		this.drawCenteredString(this.fontRendererObj, I18n.format(worldObj.getBlockState(pos).getBlock().getUnlocalizedName() + ".name"), k + xSize / 2 - 37 / 2, l + 10, 4210752, false);
 		int maxstringlength = 119;
-		String s1 = "Generate: ";
+		String s1 = "Needs: ";
 		String s2 = "Stored: ";
 		String s3 = "Status: ";
 		String s4 = "Error: ";
-		this.fontRendererObj.drawSplitString(s1 + (pro.isWorking() ? "3 UE/t" : "0 UE/t"), k + 10, l + 50, maxstringlength, 4210752);
+		this.fontRendererObj.drawSplitString(s1 + pro.getPowerProducNeeds() + " UE/t", k + 10, l + 50, maxstringlength, 4210752);
 		this.fontRendererObj.drawSplitString(s2 + pro.getStoredPower() + " / " + pro.getMaximalPower(), k + 10, l + 70, maxstringlength, 4210752);
 		this.fontRendererObj.drawSplitString(s3 + (pro.isWorking() ? "On" : "Off"), k + 10, l + 90, maxstringlength, 4210752);
 		if (!pro.isWorking() && pro.getErrorMessage() != null && pro.getErrorMessage() != "") {

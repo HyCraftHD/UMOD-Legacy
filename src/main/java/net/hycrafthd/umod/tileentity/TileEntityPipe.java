@@ -7,6 +7,7 @@ import net.hycrafthd.umod.api.IPlugabel;
 import net.hycrafthd.umod.api.IPowerProvieder;
 import net.hycrafthd.umod.block.BlockBaseMachine;
 import net.hycrafthd.umod.utils.DirectionUtils;
+import net.hycrafthd.umod.utils.EnergyUtils;
 import net.minecraft.block.Block;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
@@ -158,6 +159,11 @@ public class TileEntityPipe extends TileEntity implements IPlugabel, IPowerProvi
 		this.stored = compound.getInteger("Stored");
 		this.Maximum_Power = compound.getInteger("Max");
 		super.readFromNBT(compound);
+	}
+
+	@Override
+	public int getPowerProducNeeds() {
+		return EnergyUtils.inUE(Maximum_Power);
 	}
 
 }

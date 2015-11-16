@@ -5,6 +5,7 @@ import net.hycrafthd.umod.api.PulverizerRecepie;
 import net.hycrafthd.umod.block.BlockBaseMachine;
 import net.hycrafthd.umod.block.BlockOres;
 import net.hycrafthd.umod.container.ContainerPulverizer;
+import net.hycrafthd.umod.utils.EnergyUtils;
 import net.hycrafthd.umod.utils.ModRegistryUtils;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
@@ -407,5 +408,10 @@ public class TileEntityPulverizer extends TileEntityLockable implements ISidedIn
 	{
 		this.updateContainingBlockInfo();
 		super.invalidate();
+	}
+
+	@Override
+	public int getPowerProducNeeds() {
+		return EnergyUtils.inUE(10);
 	}
 }

@@ -2,6 +2,7 @@ package net.hycrafthd.umod.tileentity;
 
 import net.hycrafthd.umod.api.IPowerProvieder;
 import net.hycrafthd.umod.utils.EnergyUtils;
+import net.hycrafthd.umod.utils.WorldUtils;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
@@ -47,9 +48,12 @@ public class TileEntitySolarPanel extends TileEntity implements IPowerProvieder 
 		return false;
 	}
 
+	private boolean isni;
+	private int time;
+	
 	@Override
 	public void update() {
-		if (this.worldObj.canSeeSky(this.pos)) {
+		if (!WorldUtils.isBlockover(worldObj, pos)) {
 			er = "Can't see sky";
 			work = false;
 			return;
@@ -59,7 +63,7 @@ public class TileEntitySolarPanel extends TileEntity implements IPowerProvieder 
 			work = false;
 			return;
 		}
-		if (this.worldObj.getLight(this.pos) >= 4) {
+		if(isni) {
 			er = "It's Night";
 			work = false;
 			return;
@@ -77,11 +81,11 @@ public class TileEntitySolarPanel extends TileEntity implements IPowerProvieder 
 			er = "Maximum Storage reached";
 			work = false;
 		}
-	}
-
-	@Override
-	public NBTTagCompound getTileData() {
-		return ((S35PacketUpdateTileEntity) getDescriptionPacket()).getNbtCompound();
+		time++;
+		if(time == 40){
+			time = 0;
+			isni = WorldUtils.isNight(worldObj);
+		}
 	}
 
 	@Override
@@ -127,5 +131,10 @@ public class TileEntitySolarPanel extends TileEntity implements IPowerProvieder 
 	@Override
 	public boolean hasPower() {
 		return storedpower > 0;
+	}
+
+	@Override
+	public int getPowerProducNeeds() {
+		return EnergyUtils.inUE(3);
 	}
 }

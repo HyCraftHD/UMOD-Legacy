@@ -20,7 +20,7 @@ public class UEntity {
 	}
 
 	private void register() {
-		createEntity(EntityInfectedCow.class, new RenderInfectedCow(), "infectedcow", EnumCreatureType.MONSTER, 10, 0, 20, new BiomeGenBase[] {UBiome.infestedBiomBase}, 0x30311f, 0x648e42, true);
+		createEntity(EntityInfectedCow.class, new RenderInfectedCow(), "InfectedCow", EnumCreatureType.MONSTER, 10, 0, 20, new BiomeGenBase[] {UBiome.infestedBiomBase}, 0x30311f, 0x648e42, true);
 	}
 	
 	private void createEntity(Class entityClass, Render render, String entityName, EnumCreatureType type, int probability, int minSpawn, int maxSpawn, BiomeGenBase[] biomes, int solidColor, int spotColor, boolean hasSpawnEgg){

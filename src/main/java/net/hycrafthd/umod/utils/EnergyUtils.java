@@ -29,7 +29,7 @@ public class EnergyUtils {
 	}
 
 	public static int inUE(int ip) {
-		return ip / 2 * 50;
+		return ip*5;
 	}
 
 }

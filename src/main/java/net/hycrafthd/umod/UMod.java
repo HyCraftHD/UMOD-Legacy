@@ -1,7 +1,5 @@
 package net.hycrafthd.umod;
 
-import org.apache.logging.log4j.Logger;
-
 import net.hycrafthd.umod.event.EventExecuteRadiation;
 import net.hycrafthd.umod.event.EventNearByInfectedBlock;
 import net.hycrafthd.umod.event.EventRenderOverlaybyhavingRadiation;
@@ -11,7 +9,8 @@ import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.network.NetworkRegistry;
+
+import org.apache.logging.log4j.Logger;
 
 @Mod(modid = UReference.modid, version = UReference.version, name = UReference.name)
 public class UMod {
@@ -30,6 +29,9 @@ public class UMod {
 		new UBlocks();
 		new UArmor();
 		new UDamageSource();
+		new UEntity();
+		registerEvents();
+		registerGenerators();
 		new UBiome();
 		this.registerGenerators();
 		this.registerEvents();

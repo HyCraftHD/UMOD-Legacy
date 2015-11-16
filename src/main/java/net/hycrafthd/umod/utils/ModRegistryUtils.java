@@ -10,10 +10,12 @@ import com.google.common.collect.ImmutableList;
 import net.hycrafthd.umod.UMod;
 import net.hycrafthd.umod.UReference;
 import net.hycrafthd.umod.api.PulverizerRecepie;
+import net.hycrafthd.umod.api.SideBoolSet;
 import net.hycrafthd.umod.block.BlockPipe;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.BlockState;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumFacing;
 
 public class ModRegistryUtils {
 	
@@ -117,52 +119,69 @@ public class ModRegistryUtils {
 			boolean cup = Boolean.parseBoolean(splittet[4].split("=")[1]);
 			boolean ceast = Boolean.parseBoolean(splittet[1].split("=")[1]);
 			boolean cwest = Boolean.parseBoolean(splittet[5].split("=")[1]);
-	        float anfangunten = 4.8F;
-	        float anfnagoben = 11.2F;
-	        float anfangX = 4.8F;
-	        float endeX = 11.2F;
-	        float anfangZ = 4.8F;
-	        float endeZ = 11.2F;
+	        float anfangunten = 6.4F;
+	        float anfnagoben = 9.6F;
+	        float anfangX = 6.4F;
+	        float endeX = 9.6F;
+	        float anfangZ = 6.4F;
+	        float endeZ = 9.6F;
+	        
+	        ArrayList<SideBoolSet> bo = new ArrayList<SideBoolSet>();
 	        
 	        if(cup){
 	        	anfnagoben = 16F;
+	        	bo.add(new SideBoolSet(cup, EnumFacing.UP));
 	        }
 	        if(cdown){
 	        	anfangunten = 0F;
+	        	bo.add(new SideBoolSet(cdown, EnumFacing.DOWN));
 	        }
 	        if(cwest){
 	        	anfangX = 0F;
+	        	bo.add(new SideBoolSet(cwest, EnumFacing.WEST));
 	        }
 	        if(ceast){
 	        	endeX = 16F;
+	        	bo.add(new SideBoolSet(ceast, EnumFacing.EAST));
 	        }
 	        if(cnorth){
 	        	anfangZ = 0F;
+	        	bo.add(new SideBoolSet(cnorth, EnumFacing.NORTH));
 	        }
 	        if(csouth){
 	        	endeZ = 16F;
+	        	bo.add(new SideBoolSet(csouth, EnumFacing.SOUTH));
 	        }		
-	        String s = String.valueOf('"');
+	        if(bo.size() > 2){
+	        	
+	        }else{
+	        	writeJson(theFile, texture, anfangX, anfangunten, anfangZ, endeX, anfnagoben, endeZ);
+	        }
+		     UMod.log.info("Generate BlockJson:" + pipe.getUnlocalizedName().replace("tile.", "") + "-" + theString);
+			
+		}
+		
+	}
+	
+	private static void writeJson(File theFile,String texture,double x,double y,double z,double ex,double ey,double ez){
+		 String s = String.valueOf('"');
 	        try {
 				@SuppressWarnings("resource")
 				FileWriter wr = new FileWriter(theFile);
 				wr.write("{"+s+"textures" +s+ ": {"+s+"-1"+s+ ":" +s+texture+s+","+s+"particle"+s+":"+s+texture+s+"},");
-				wr.write(" " + s + "elements" + s + ": [{"+ s + "name" + s + ": "+s+"Cube"+s+","+s+"from"+s+": [ " + anfangX + ", "+anfangunten+", "+anfangZ+" ]," + s +"to"+s+": [ "+endeX+", "+anfnagoben+", "+endeZ+" ]," +s+
-            "faces" + s+  ": {"+s+ "north" +s+": {" +s+ "texture"+s+":"+s+ "#-1" +s+", "+s+"uv" +s+ ": [ 0.0, 0.0, 16.0, 16.0 ] },"
-            +s+ "east" +s+": {" +s+ "texture"+s+":"+s+ "#-1" +s+", "+s+"uv" +s+ ": [ 0.0, 0.0, 16.0, 16.0 ] },"
+				wr.write(" " + s + "elements" + s + ": [{"+ s + "name" + s + ": "+s+"Cube"+s+","+s+"from"+s+": [ " + x + ", "+y+", "+z+" ]," + s +"to"+s+": [ "+ex+", "+ey+", "+ez+" ]," +s+ 
+						  "faces" + s+  ": {"
+		   +s+ "north" +s+": {" +s+ "texture"+s+":"+s+ "#-1" +s+", "+s+"uv" +s+ ": [ 0.0, 0.0, 16.0, 16.0 ] },"
+        +s+ "east" +s+": {" +s+ "texture"+s+":"+s+ "#-1" +s+", "+s+"uv" +s+ ": [ 0.0, 0.0, 16.0, 16.0 ] },"
         +s+ "south" +s+": {" +s+ "texture"+s+":"+s+ "#-1" +s+", "+s+"uv" +s+ ": [ 0.0, 0.0, 16.0, 16.0 ] },"
-           +s+ "west" +s+": {" +s+ "texture"+s+":"+s+ "#-1" +s+", "+s+"uv" +s+ ": [ 0.0, 0.0, 16.0, 16.0 ] },"
-       +s+ "up" +s+": {" +s+ "texture"+s+":"+s+ "#-1" +s+", "+s+"uv" +s+ ": [ 0.0, 0.0, 16.0, 16.0 ] },"
-           +s+ "down" +s+": {" +s+ "texture"+s+":"+s+ "#-1" +s+", "+s+"uv" +s+ ": [ 0.0, 0.0, 16.0, 16.0 ] }"+
-           " }}]}");
+        +s+ "west" +s+": {" +s+ "texture"+s+":"+s+ "#-1" +s+", "+s+"uv" +s+ ": [ 0.0, 0.0, 16.0, 16.0 ] },"
+        +s+ "up" +s+": {" +s+ "texture"+s+":"+s+ "#-1" +s+", "+s+"uv" +s+ ": [ 0.0, 0.0, 16.0, 16.0 ] },"
+        +s+ "down" +s+": {" +s+ "texture"+s+":"+s+ "#-1" +s+", "+s+"uv" +s+ ": [ 0.0, 0.0, 16.0, 16.0 ] }"+
+        " }}]}");
 				wr.flush();
 			} catch (IOException e) {
 				e.printStackTrace();
 		
 			}
-		     UMod.log.info("Generate BlockJson:" + pipe.getUnlocalizedName().replace("tile.", "") + "-" + theString);
-			
-		}
-		
 	}
 }

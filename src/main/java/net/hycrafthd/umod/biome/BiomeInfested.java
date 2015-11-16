@@ -23,7 +23,7 @@ public class BiomeInfested extends BiomeGenBase {
 		this.spawnableMonsterList.clear();
 		this.spawnableWaterCreatureList.clear();
 		this.theBiomeDecorator.treesPerChunk = 4;
-		this.setHeight(new Height(0.3F, 0.3F));
+		this.setHeight(new Height(0.2F, 0.3F));
 	}
 
 	@Override

@@ -103,3 +103,6 @@ tile.copperpipe.name=Copper Energy Cable
 tile.leadpipe.name=Lead Energy Cable
 tile.zinpipe.name=Tin Energy Cable
 tile.goldpipe.name=Gold Energy Cable
+
+#Entity
+entity.infectedcow.name=Infected Cow

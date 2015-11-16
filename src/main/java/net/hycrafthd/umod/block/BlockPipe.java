@@ -14,6 +14,7 @@ import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.entity.Entity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
@@ -35,8 +36,9 @@ public class BlockPipe extends Block implements ITileEntityProvider, IEnergyMess
 	public int powertrans;
 	public int lo;
 	public boolean iso;
-
-	public BlockPipe(String name, int transf, int loos, boolean iso) {
+    public TextureAtlasSprite asp;
+	
+	public BlockPipe(String name, int transf, int loos, boolean iso,TextureAtlasSprite sp) {
 		super(Material.iron);
 		this.powertrans = EnergyUtils.inUE(transf);
 		this.iso = iso;
@@ -46,6 +48,7 @@ public class BlockPipe extends Block implements ITileEntityProvider, IEnergyMess
 		this.setDefaultState(this.blockState.getBaseState().withProperty(UP, Boolean.valueOf(false)).withProperty(NORTH, Boolean.valueOf(false)).withProperty(EAST, Boolean.valueOf(false)).withProperty(SOUTH, Boolean.valueOf(false)).withProperty(WEST, Boolean.valueOf(false)).withProperty(DOWN, Boolean.valueOf(false)));
 		this.setCreativeTab(UReference.tab);
 		this.lo = loos;
+		this.asp = sp;
 	}
 
 	@Override
@@ -57,6 +60,10 @@ public class BlockPipe extends Block implements ITileEntityProvider, IEnergyMess
 		return this.blockState;
 	}
 
+	public TextureAtlasSprite getSpirte(){
+		return asp;
+	}
+	
 	@Override
 	public TileEntity createNewTileEntity(World worldIn, int meta) {
 		return new TileEntityPipe(powertrans, lo);

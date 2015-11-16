@@ -2,6 +2,7 @@ package net.hycrafthd.umod.utils;
 
 import java.util.Random;
 
+import net.hycrafthd.umod.entity.EntityInfectedCow;
 import net.hycrafthd.umod.enumtype.EnumTypeChestLooting;
 import net.hycrafthd.umod.schematic.Schematic;
 import net.minecraft.block.Block;
@@ -15,6 +16,8 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.gen.feature.WorldGenMinable;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GenerationUtils {
 
@@ -75,7 +78,7 @@ public class GenerationUtils {
 
 	public static int getWorldHeightAt(World world, int x, int z) {
 		int height = 0;
-		for (int i = (int) (world.getHorizon() - 20); i < world.getActualHeight() - 1; i++) {
+		for (int i = (int) (63 - 20); i < world.getActualHeight() - 1; i++) {
 			BlockPos pos = new BlockPos(x, i, z);
 			if (world.getBlockState(pos).getBlock().isSolidFullCube()) {
 				height = pos.getY();

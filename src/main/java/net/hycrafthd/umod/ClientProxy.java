@@ -71,6 +71,8 @@ public class ClientProxy extends CommonProxy {
 		ClientRegistryUtils.registerModelRenderer(UBlocks.copper_pipe);
 		ClientRegistryUtils.registerModelRenderer(UBlocks.zin_pipe);
 		
+		UEntity.addtoRender();
+		
 	/*	UModRegistery.registerBlockPipe(UBlocks.iron_pipe,"blocks/iron_block");
 		UModRegistery.registerBlockPipe(UBlocks.alu_pipe,"umod:blocks/block/aluminium");
 		UModRegistery.registerBlockPipe(UBlocks.silver_pipe,"umod:blocks/block/silver");

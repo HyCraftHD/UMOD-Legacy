@@ -1,17 +1,17 @@
 {
     "variants": {
-        "type=aluminium": { "model": "umod:orealuminium" },
-        "type=copper": { "model": "umod:orecopper" },
-        "type=lead": { "model": "umod:orelead" },
-        "type=mangan": { "model": "umod:oremangan" },
-        "type=mercury": { "model": "umod:oremercury" },
-        "type=nickel": { "model": "umod:orenickel" },
-        "type=platinum": { "model": "umod:oreplatinum" },
-        "type=silicium": { "model": "umod:oresilicium" },
-        "type=silver": { "model": "umod:oresilver" },
-        "type=sulphur": { "model": "umod:oresulphur" },
-        "type=tin": { "model": "umod:oretin" },
-        "type=uran": { "model": "umod:oreuran" },
-        "type=zinc": { "model": "umod:orezinc" }
+        "type=aluminium": { "model": "umod:ore/orealuminium" },
+        "type=copper": { "model": "umod:ore/orecopper" },
+        "type=lead": { "model": "umod:ore/orelead" },
+        "type=mangan": { "model": "umod:ore/oremangan" },
+        "type=mercury": { "model": "umod:ore/oremercury" },
+        "type=nickel": { "model": "umod:ore/orenickel" },
+        "type=platinum": { "model": "umod:ore/oreplatinum" },
+        "type=silicium": { "model": "umod:ore/oresilicium" },
+        "type=silver": { "model": "umod:ore/oresilver" },
+        "type=sulphur": { "model": "umod:ore/oresulphur" },
+        "type=tin": { "model": "umod:ore/oretin" },
+        "type=uran": { "model": "umod:ore/oreuran" },
+        "type=zinc": { "model": "umod:ore/orezinc" }
     }
 }

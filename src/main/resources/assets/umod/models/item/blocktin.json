@@ -1,5 +1,5 @@
 {
-    "parent": "umod:block/blocktin",
+    "parent": "umod:block/block/blocktin",
     "display": {
         "thirdperson": {
             "rotation": [ 10, -45, 170 ],

@@ -21,14 +21,10 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class ClientRegistryUtils {
 
 	public static void registerModelRenderer(Object obj) {
-		ClientRegistryUtils.registerModelRenderer(obj, "");
+		ClientRegistryUtils.registerModelRenderer(obj, 0);
 	}
 
-	public static void registerModelRenderer(Object obj, String path) {
-		ClientRegistryUtils.registerModelRenderer(obj, 0, path);
-	}
-
-	public static void registerModelRenderer(Object obj, int meta, String path) {
+	public static void registerModelRenderer(Object obj, int meta) {
 		if (obj instanceof Block || obj instanceof Item) {
 			Item item;
 			if (obj instanceof Block) {
@@ -36,9 +32,7 @@ public class ClientRegistryUtils {
 			} else {
 				item = (Item) obj;
 			}
-			ClientRegistryUtils.registerModelRenderer(item, meta,
-					new ModelResourceLocation(UReference.resource + ((path == "") ? ("") : ("/" + path + "/"))
-							+ item.getUnlocalizedName().substring(5), "inventory"));
+			ClientRegistryUtils.registerModelRenderer(item, meta, new ModelResourceLocation(UReference.resource + item.getUnlocalizedName().substring(5), "inventory"));
 		} else {
 			throw new IllegalArgumentException("Only instances of block or items!");
 		}

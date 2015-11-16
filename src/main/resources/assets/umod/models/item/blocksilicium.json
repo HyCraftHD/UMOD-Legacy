@@ -1,5 +1,5 @@
 {
-    "parent": "umod:block/blocksilicium",
+    "parent": "umod:block/block/blocksilicium",
     "display": {
         "thirdperson": {
             "rotation": [ 10, -45, 170 ],

@@ -14,7 +14,6 @@ import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.entity.Entity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
@@ -36,9 +35,9 @@ public class BlockPipe extends Block implements ITileEntityProvider, IEnergyMess
 	public int powertrans;
 	public int lo;
 	public boolean iso;
-    public String asp;
-	
-	public BlockPipe(String name, int transf, int loos, boolean iso,String sp) {
+	public String asp;
+
+	public BlockPipe(String name, int transf, int loos, boolean iso, String sp) {
 		super(Material.iron);
 		this.powertrans = EnergyUtils.inUE(transf);
 		this.iso = iso;
@@ -60,7 +59,7 @@ public class BlockPipe extends Block implements ITileEntityProvider, IEnergyMess
 		return this.blockState;
 	}
 
-	public String getSpirte(){
+	public String getSpirte() {
 		return asp;
 	}
 

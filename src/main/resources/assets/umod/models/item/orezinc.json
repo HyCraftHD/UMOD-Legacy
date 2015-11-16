@@ -1,5 +1,5 @@
 {
-    "parent": "umod:block/orezinc",
+    "parent": "umod:block/ore/orezinc",
     "display": {
         "thirdperson": {
             "rotation": [ 10, -45, 170 ],

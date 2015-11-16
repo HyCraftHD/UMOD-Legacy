@@ -1,6 +1,6 @@
 {
     "variants": {
-        "stage=0": { "model": "umod:infectedsapling" },
-        "stage=1": { "model": "umod:infectedsapling" }
+        "stage=0": { "model": "umod:infected/infectedsapling" },
+        "stage=1": { "model": "umod:infected/infectedsapling" }
     }
 }

@@ -1,5 +1,5 @@
 {
-    "parent": "umod:block/blockcopper",
+    "parent": "umod:block/block/blockcopper",
     "display": {
         "thirdperson": {
             "rotation": [ 10, -45, 170 ],

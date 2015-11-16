@@ -1,5 +1,5 @@
 {
-    "parent": "umod:block/blocknickel",
+    "parent": "umod:block/block/blocknickel",
     "display": {
         "thirdperson": {
             "rotation": [ 10, -45, 170 ],

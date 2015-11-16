@@ -1,5 +1,5 @@
 {
-    "parent": "umod:block/blocksilver",
+    "parent": "umod:block/block/blocksilver",
     "display": {
         "thirdperson": {
             "rotation": [ 10, -45, 170 ],

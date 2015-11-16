@@ -1,5 +1,5 @@
 {
-    "parent": "umod:block/blockzinc",
+    "parent": "umod:block/block/blockzinc",
     "display": {
         "thirdperson": {
             "rotation": [ 10, -45, 170 ],

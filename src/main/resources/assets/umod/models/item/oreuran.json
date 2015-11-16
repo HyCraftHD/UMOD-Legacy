@@ -1,5 +1,5 @@
 {
-    "parent": "umod:block/oreuran",
+    "parent": "umod:block/ore/oreuran",
     "display": {
         "thirdperson": {
             "rotation": [ 10, -45, 170 ],

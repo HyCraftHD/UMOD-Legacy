@@ -1,8 +1,8 @@
 {
     "variants": {
-        "axis=y":    { "model": "umod:infectedlog" },
-        "axis=z":     { "model": "umod:infectedlog_side" },
-        "axis=x":     { "model": "umod:infectedlog_side", "y": 90 },
-        "axis=none":   { "model": "umod:infectedlog_bark" }
+        "axis=y":    { "model": "umod:infected/infectedlog" },
+        "axis=z":     { "model": "umod:infected/infectedlog_side" },
+        "axis=x":     { "model": "umod:infected/infectedlog_side", "y": 90 },
+        "axis=none":   { "model": "umod:infected/infectedlog_bark" }
     }
 }

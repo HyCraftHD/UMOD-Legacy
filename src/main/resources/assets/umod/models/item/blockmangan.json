@@ -1,5 +1,5 @@
 {
-    "parent": "umod:block/blockmangan",
+    "parent": "umod:block/block/blockmangan",
     "display": {
         "thirdperson": {
             "rotation": [ 10, -45, 170 ],

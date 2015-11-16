@@ -1,5 +1,5 @@
 {
-    "parent": "umod:block/infectedgrass",
+    "parent": "umod:block/infected/infectedgrass",
     "display": {
         "thirdperson": {
             "rotation": [ 10, -45, 170 ],

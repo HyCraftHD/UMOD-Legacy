@@ -1,5 +1,5 @@
 {
     "variants": {
-        "normal": { "model": "umod:infectedplank" }
+        "normal": { "model": "umod:infected/infectedplank" }
     }
 }

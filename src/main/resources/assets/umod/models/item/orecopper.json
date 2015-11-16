@@ -1,5 +1,5 @@
 {
-    "parent": "umod:block/orecopper",
+    "parent": "umod:block/ore/orecopper",
     "display": {
         "thirdperson": {
             "rotation": [ 10, -45, 170 ],

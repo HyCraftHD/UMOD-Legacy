@@ -1,5 +1,5 @@
 {
-    "parent": "umod:block/blocksulphur",
+    "parent": "umod:block/block/blocksulphur",
     "display": {
         "thirdperson": {
             "rotation": [ 10, -45, 170 ],

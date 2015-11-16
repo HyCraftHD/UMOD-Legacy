@@ -1,5 +1,5 @@
 {
-    "parent": "umod:block/infectedlog",
+    "parent": "umod:block/infected/infectedlog",
     "display": {
         "thirdperson": {
             "rotation": [ 10, -45, 170 ],

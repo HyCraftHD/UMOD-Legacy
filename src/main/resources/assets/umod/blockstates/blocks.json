@@ -1,17 +1,17 @@
 {
     "variants": {
-        "type=aluminium": { "model": "umod:blockaluminium" },
-        "type=copper": { "model": "umod:blockcopper" },
-        "type=lead": { "model": "umod:blocklead" },
-        "type=mangan": { "model": "umod:blockmangan" },
-        "type=mercury": { "model": "umod:blockmercury" },
-        "type=nickel": { "model": "umod:blocknickel" },
-        "type=platinum": { "model": "umod:blockplatinum" },
-        "type=silicium": { "model": "umod:blocksilicium" },
-        "type=silver": { "model": "umod:blocksilver" },
-        "type=sulphur": { "model": "umod:blocksulphur" },
-        "type=tin": { "model": "umod:blocktin" },
-        "type=uran": { "model": "umod:blockuran" },
-        "type=zinc": { "model": "umod:blockzinc" }
+        "type=aluminium": { "model": "umod:block/blockaluminium" },
+        "type=copper": { "model": "umod:block/blockcopper" },
+        "type=lead": { "model": "umod:block/blocklead" },
+        "type=mangan": { "model": "umod:block/blockmangan" },
+        "type=mercury": { "model": "umod:block/blockmercury" },
+        "type=nickel": { "model": "umod:block/blocknickel" },
+        "type=platinum": { "model": "umod:block/blockplatinum" },
+        "type=silicium": { "model": "umod:block/blocksilicium" },
+        "type=silver": { "model": "umod:block/blocksilver" },
+        "type=sulphur": { "model": "umod:block/blocksulphur" },
+        "type=tin": { "model": "umod:block/blocktin" },
+        "type=uran": { "model": "umod:block/blockuran" },
+        "type=zinc": { "model": "umod:block/blockzinc" }
     }
 }

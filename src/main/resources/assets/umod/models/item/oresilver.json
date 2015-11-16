@@ -1,5 +1,5 @@
 {
-    "parent": "umod:block/oresilver",
+    "parent": "umod:block/ore/oresilver",
     "display": {
         "thirdperson": {
             "rotation": [ 10, -45, 170 ],

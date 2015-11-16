@@ -1,5 +1,5 @@
 {
-    "parent": "umod:block/blockmercury",
+    "parent": "umod:block/block/blockmercury",
     "display": {
         "thirdperson": {
             "rotation": [ 10, -45, 170 ],

@@ -1,5 +1,5 @@
 {
-    "parent": "umod:block/orenickel",
+    "parent": "umod:block/ore/orenickel",
     "display": {
         "thirdperson": {
             "rotation": [ 10, -45, 170 ],

@@ -1,5 +1,5 @@
 {
-    "parent": "umod:block/oretin",
+    "parent": "umod:block/ore/oretin",
     "display": {
         "thirdperson": {
             "rotation": [ 10, -45, 170 ],

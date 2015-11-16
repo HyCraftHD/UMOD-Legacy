@@ -3,9 +3,8 @@ package net.hycrafthd.umod;
 import org.apache.logging.log4j.Logger;
 
 import net.hycrafthd.umod.event.EventExecuteRadiation;
-import net.hycrafthd.umod.event.EventModelBakeri;
-
 import net.hycrafthd.umod.event.EventGettingRadiationByInfectedBlock;
+import net.hycrafthd.umod.event.EventModelBakeri;
 import net.hycrafthd.umod.utils.CommonRegistryUtils;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;

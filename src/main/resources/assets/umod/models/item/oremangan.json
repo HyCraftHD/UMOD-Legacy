@@ -1,5 +1,5 @@
 {
-    "parent": "umod:block/oremangan",
+    "parent": "umod:block/ore/oremangan",
     "display": {
         "thirdperson": {
             "rotation": [ 10, -45, 170 ],

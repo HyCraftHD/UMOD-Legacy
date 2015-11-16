@@ -3,6 +3,7 @@ package net.hycrafthd.umod;
 import java.util.ArrayList;
 
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.eventhandler.EventBus;
 
 public class UEvent {
@@ -32,7 +33,10 @@ public class UEvent {
 	}
 	
 	public void register() {
-		for(Object event : events) bus.register(event);
+		for(Object event : events) {
+			bus.register(event);
+			FMLCommonHandler.instance().bus().register(event);
+		} 
 	}
 
 	public void setEvents(ArrayList<Object> events) {

@@ -3,12 +3,16 @@ package net.hycrafthd.umod.utils;
 import net.hycrafthd.umod.UReference;
 import net.hycrafthd.umod.item.ItemBlockBase;
 import net.minecraft.block.Block;
+import net.minecraft.client.renderer.entity.Render;
+import net.minecraft.entity.EntityList;
+import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.fml.common.network.IGuiHandler;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
+import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 
@@ -38,6 +42,18 @@ public class CommonRegistryUtils {
 
 	public static void registerShaplessCraftingRecipe(ItemStack output, Object... obj) {
 		GameRegistry.addShapelessRecipe(output, obj);
+	}
+
+	// Entity
+	public static void registerEntity(Class entityClass, String entityName, int trackingRange, int updateFrequency, boolean sendsVelocityUpdates, int solidColor, int spotColor, boolean hasSpawnEgg) {
+		int id = EntityRegistry.findGlobalUniqueEntityId();
+
+		EntityRegistry.registerGlobalEntityID(entityClass, entityName, id);
+		EntityRegistry.registerModEntity(entityClass, entityName, id, UReference.instance, trackingRange, updateFrequency, sendsVelocityUpdates);
+
+		if (hasSpawnEgg) {
+			EntityList.entityEggs.put(Integer.valueOf(id), new EntityList.EntityEggInfo(id, solidColor, spotColor));
+		}
 	}
 
 	// Gui Handler

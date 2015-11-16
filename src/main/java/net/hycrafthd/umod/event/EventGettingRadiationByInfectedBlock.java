@@ -14,7 +14,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-public class EventNearByInfectedBlock {
+public class EventGettingRadiationByInfectedBlock {
 
 	@SubscribeEvent
 	public void onUpdate(LivingUpdateEvent event) {

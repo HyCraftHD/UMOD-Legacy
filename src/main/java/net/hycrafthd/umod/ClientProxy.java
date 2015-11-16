@@ -2,6 +2,8 @@ package net.hycrafthd.umod;
 
 import java.util.List;
 
+import net.hycrafthd.umod.entity.EntityInfectedCow;
+import net.hycrafthd.umod.entity.render.RenderInfectedCow;
 import net.hycrafthd.umod.enumtype.EnumTypeBaseStuff;
 import net.hycrafthd.umod.utils.ClientRegistryUtils;
 import net.minecraft.client.resources.model.ModelBakery;
@@ -70,18 +72,27 @@ public class ClientProxy extends CommonProxy {
 		ClientRegistryUtils.registerModelRenderer(UBlocks.gold_pipe);
 		ClientRegistryUtils.registerModelRenderer(UBlocks.copper_pipe);
 		ClientRegistryUtils.registerModelRenderer(UBlocks.zin_pipe);
-		
-	/*	UModRegistery.registerBlockPipe(UBlocks.iron_pipe,"blocks/iron_block");
-		UModRegistery.registerBlockPipe(UBlocks.alu_pipe,"umod:blocks/block/aluminium");
-		UModRegistery.registerBlockPipe(UBlocks.silver_pipe,"umod:blocks/block/silver");
-		UModRegistery.registerBlockPipe(UBlocks.lead_pipe,"umod:blocks/block/lead");
-		UModRegistery.registerBlockPipe(UBlocks.gold_pipe,"blocks/gold_block");
-		UModRegistery.registerBlockPipe(UBlocks.copper_pipe,"umod:blocks/block/copper");
-		UModRegistery.registerBlockPipe(UBlocks.zin_pipe,"umod:blocks/block/tin");*/
+
+		/*
+		 * UModRegistery.registerBlockPipe(UBlocks.iron_pipe,"blocks/iron_block"
+		 * ); UModRegistery.registerBlockPipe(UBlocks.alu_pipe,
+		 * "umod:blocks/block/aluminium");
+		 * UModRegistery.registerBlockPipe(UBlocks.silver_pipe,
+		 * "umod:blocks/block/silver");
+		 * UModRegistery.registerBlockPipe(UBlocks.lead_pipe,
+		 * "umod:blocks/block/lead");
+		 * UModRegistery.registerBlockPipe(UBlocks.gold_pipe,"blocks/gold_block"
+		 * ); UModRegistery.registerBlockPipe(UBlocks.copper_pipe,
+		 * "umod:blocks/block/copper");
+		 * UModRegistery.registerBlockPipe(UBlocks.zin_pipe,
+		 * "umod:blocks/block/tin");
+		 */
 
 	}
 
-	
+	public void registerRenderer() {
+		ClientRegistryUtils.registerEntityRenderer(EntityInfectedCow.class, new RenderInfectedCow());
+	}
 
 	@Override
 	public void addTooltip(ItemStack stack, EntityPlayer player, List tooltip, boolean advanced) {

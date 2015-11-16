@@ -8,8 +8,15 @@ import net.minecraft.item.ItemStack;
 public class CommonProxy {
 
 	// Client Stuff
-	public void registerModels() {}
+	public void registerModels() {
+	}
+
 	// Client Stuff
-	public void addTooltip(ItemStack stack, EntityPlayer player, List tooltip, boolean advanced) {}
+	public void addTooltip(ItemStack stack, EntityPlayer player, List tooltip, boolean advanced) {
+	}
+
+	// Client Stuff
+	public void registerRenderer() {
+	}
 
 }

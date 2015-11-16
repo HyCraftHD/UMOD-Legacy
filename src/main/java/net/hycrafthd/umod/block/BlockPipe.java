@@ -36,9 +36,9 @@ public class BlockPipe extends Block implements ITileEntityProvider, IEnergyMess
 	public int powertrans;
 	public int lo;
 	public boolean iso;
-    public TextureAtlasSprite asp;
-	
-	public BlockPipe(String name, int transf, int loos, boolean iso,TextureAtlasSprite sp) {
+	public TextureAtlasSprite asp;
+
+	public BlockPipe(String name, int transf, int loos, boolean iso, TextureAtlasSprite sp) {
 		super(Material.iron);
 		this.powertrans = EnergyUtils.inUE(transf);
 		this.iso = iso;
@@ -60,10 +60,10 @@ public class BlockPipe extends Block implements ITileEntityProvider, IEnergyMess
 		return this.blockState;
 	}
 
-	public TextureAtlasSprite getSpirte(){
+	public TextureAtlasSprite getSpirte() {
 		return asp;
 	}
-	
+
 	@Override
 	public TileEntity createNewTileEntity(World worldIn, int meta) {
 		return new TileEntityPipe(powertrans, lo);

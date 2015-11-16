@@ -1,21 +1,17 @@
 package net.hycrafthd.umod.block;
 
 import net.hycrafthd.umod.UReference;
-import net.hycrafthd.umod.UUtils;
 import net.hycrafthd.umod.api.IEnergyMessage;
 import net.hycrafthd.umod.tileentity.TileEntityPulverizer;
-import net.minecraft.block.BlockDispenser;
-import net.minecraft.block.BlockWoodSlab;
-import net.minecraft.block.BlockWorkbench;
+import net.hycrafthd.umod.utils.EnergyUtils;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.gui.inventory.GuiCrafting;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 
-public class BlockPulverizer extends BlockBaseMachine implements IEnergyMessage{
+public class BlockPulverizer extends BlockBaseMachine implements IEnergyMessage {
 
 	public BlockPulverizer() {
 		super();
@@ -54,7 +50,7 @@ public class BlockPulverizer extends BlockBaseMachine implements IEnergyMessage{
 
 	@Override
 	public String getMessage() {
-		return "Needs " + UUtils.inUE(10) +"UE/t";
+		return "Needs " + EnergyUtils.inUE(10) + "UE/t";
 	}
 
 }

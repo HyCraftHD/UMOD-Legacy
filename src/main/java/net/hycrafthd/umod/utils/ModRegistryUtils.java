@@ -1,4 +1,4 @@
-package net.hycrafthd.umod;
+package net.hycrafthd.umod.utils;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -7,6 +7,8 @@ import java.util.ArrayList;
 
 import com.google.common.collect.ImmutableList;
 
+import net.hycrafthd.umod.UMod;
+import net.hycrafthd.umod.UReference;
 import net.hycrafthd.umod.api.PulverizerRecepie;
 import net.hycrafthd.umod.api.SideBoolSet;
 import net.hycrafthd.umod.block.BlockPipe;
@@ -15,7 +17,7 @@ import net.minecraft.block.state.BlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 
-public class UModRegistery {
+public class ModRegistryUtils {
 	
 	private static ArrayList<PulverizerRecepie> list = new ArrayList<PulverizerRecepie>();
 

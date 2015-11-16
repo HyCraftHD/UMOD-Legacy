@@ -3,14 +3,12 @@ package net.hycrafthd.umod;
 import net.hycrafthd.umod.event.EventExecuteRadiation;
 import net.hycrafthd.umod.event.EventNearByInfectedBlock;
 import net.hycrafthd.umod.event.EventRenderOverlaybyhavingRadiation;
-import net.hycrafthd.umod.schematic.SchematicGenerator;
-import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.hycrafthd.umod.utils.CommonRegistryUtils;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.network.NetworkRegistry;
 
 import org.apache.logging.log4j.Logger;
 
@@ -26,38 +24,43 @@ public class UMod {
 
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
-		new USchematic();
 		new UPotion();
 		new UItems();
 		new UBlocks();
 		new UArmor();
-		new UBiome();
 		new UDamageSource();
+		new UEntity();
 		registerEvents();
 		registerGenerators();
+		new UBiome();
+		this.registerGenerators();
+		this.registerEvents();
 	}
 
 	@EventHandler
 	public void postinit(FMLPostInitializationEvent event) {
 		new UTiles();
 		new URecipes();
-		UReference.eventManager.register();
-		FMLCommonHandler.instance().bus().register(new EventRenderOverlaybyhavingRadiation());
-		NetworkRegistry.INSTANCE.registerGuiHandler(UReference.modid, new UGuiHandler());
+		new UChestLoot();
+		CommonRegistryUtils.registerGuiHandler(new UGuiHandler());
 		UReference.proxy.registerModels();
+
 	}
 
 	public void registerEvents() {
-		UReference.eventManager.addEvent(new EventNearByInfectedBlock());
-		UReference.eventManager.addEvent(new EventExecuteRadiation());
-		UReference.eventManager.addEvent(new EventRenderOverlaybyhavingRadiation());
+		UEvent event = new UEvent();
+		event.addEvent(new EventNearByInfectedBlock());
+		event.addEvent(new EventExecuteRadiation());
+		event.addEvent(new EventRenderOverlaybyhavingRadiation());
+		event.register();
+
 	}
 
-	public void registerGenerators(){
+	public void registerGenerators() {
 		UGeneration generation = new UGeneration();
-		generation.addGenerator(new UWorldGeneration(), 0);
-		generation.addGenerator(new SchematicGenerator(USchematic.ruinSchematic), 0);
+		generation.addGenerator(new UOreGeneration(), 0);
+		generation.addGenerator(new USchematicGeneration(), 0);
 		generation.register();
 	}
-	
+
 }

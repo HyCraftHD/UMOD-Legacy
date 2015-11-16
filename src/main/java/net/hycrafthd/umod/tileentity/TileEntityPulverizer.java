@@ -1,14 +1,11 @@
 package net.hycrafthd.umod.tileentity;
 
-import net.hycrafthd.umod.UMod;
-import net.hycrafthd.umod.UModRegistery;
-import net.hycrafthd.umod.UUtils;
-import net.hycrafthd.umod.api.IPipeRange;
 import net.hycrafthd.umod.api.IPowerProvieder;
 import net.hycrafthd.umod.api.PulverizerRecepie;
 import net.hycrafthd.umod.block.BlockBaseMachine;
 import net.hycrafthd.umod.block.BlockOres;
 import net.hycrafthd.umod.container.ContainerPulverizer;
+import net.hycrafthd.umod.utils.ModRegistryUtils;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -21,14 +18,12 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
-import net.minecraft.server.gui.IUpdatePlayerListBox;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityLockable;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.world.World;
 
 public class TileEntityPulverizer extends TileEntityLockable implements ISidedInventory ,IPowerProvieder{
 
@@ -183,7 +178,7 @@ public class TileEntityPulverizer extends TileEntityLockable implements ISidedIn
 		}else if(strpo <= 10){
 			wasfull = false;
 		}
-		ItemStack[] args = UModRegistery.isRecepie(new PulverizerRecepie(stack[3], null, null));
+		ItemStack[] args = ModRegistryUtils.isRecepie(new PulverizerRecepie(stack[3], null, null));
 		if(args != null && wasfull){
 			if(stack[2] != null && stack[2].stackSize > 64){
 				time = 0;

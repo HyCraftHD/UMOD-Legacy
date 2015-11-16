@@ -3,23 +3,18 @@ package net.hycrafthd.umod;
 import net.hycrafthd.umod.tileentity.TileEntityPipe;
 import net.hycrafthd.umod.tileentity.TileEntityPulverizer;
 import net.hycrafthd.umod.tileentity.TileEntitySolarPanel;
-import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.hycrafthd.umod.utils.CommonRegistryUtils;
 
 public class UTiles {
 
-	public UTiles(){
-		init();
-		render();
+	public UTiles() {
+		register();
 	}
-	
-	public void init(){
-		GameRegistry.registerTileEntity(TileEntityPulverizer.class, "tile.pulver.entity");
-		GameRegistry.registerTileEntity(TileEntitySolarPanel.class, "tile.solar.entity");
-		GameRegistry.registerTileEntity(TileEntityPipe.class, "tile.pipe.entity");
+
+	public void register() {
+		CommonRegistryUtils.registerTileEntity(TileEntityPulverizer.class, "tile.pulver.entity");
+		CommonRegistryUtils.registerTileEntity(TileEntitySolarPanel.class, "tile.solar.entity");
+		CommonRegistryUtils.registerTileEntity(TileEntityPipe.class, "tile.pipe.entity");
 	}
-	
-	public void render(){
-		
-	}
-	
+
 }

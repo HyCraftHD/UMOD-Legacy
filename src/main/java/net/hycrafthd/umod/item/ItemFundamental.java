@@ -1,6 +1,6 @@
 package net.hycrafthd.umod.item;
 
-import net.hycrafthd.umod.USchematic;
+import net.hycrafthd.umod.schematic.SchematicInfestedRuin1;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockPos;
@@ -11,11 +11,11 @@ public class ItemFundamental extends ItemBase {
 	public ItemFundamental() {
 		super();
 	}
-	
+
 	@Override
 	public ItemStack onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn) {
 		BlockPos pos = new BlockPos(playerIn.posX, playerIn.posY, playerIn.posZ);
-		USchematic.ruinSchematic.generate(worldIn, pos.getX(), pos.getY(), pos.getZ());
+		new SchematicInfestedRuin1().generate(worldIn, pos.getX(), pos.getY(), pos.getZ());
 		return super.onItemRightClick(itemStackIn, worldIn, playerIn);
 	}
 }

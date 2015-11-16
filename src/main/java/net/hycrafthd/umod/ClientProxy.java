@@ -3,15 +3,12 @@ package net.hycrafthd.umod;
 import java.util.List;
 
 import net.hycrafthd.umod.enumtype.EnumTypeBaseStuff;
-import net.minecraft.block.Block;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.resources.I18n;
+import net.hycrafthd.umod.utils.ClientRegistryUtils;
 import net.minecraft.client.resources.model.ModelBakery;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumChatFormatting;
 
 public class ClientProxy extends CommonProxy {
 
@@ -20,59 +17,59 @@ public class ClientProxy extends CommonProxy {
 		// Ore
 		for (int i = 0; i < EnumTypeBaseStuff.values().length; i++) {
 			ModelBakery.addVariantName(Item.getItemFromBlock(UBlocks.ores), UReference.resource + "ore" + EnumTypeBaseStuff.byMetadata(i).getName());
-			this.registerModelRenderer(UBlocks.ores, i, new ModelResourceLocation(UReference.resource + "ore" + EnumTypeBaseStuff.byMetadata(i).getName(), "inventory"));
+			ClientRegistryUtils.registerModelRenderer(UBlocks.ores, i, new ModelResourceLocation(UReference.resource + "ore" + EnumTypeBaseStuff.byMetadata(i).getName(), "inventory"));
 		}
 
 		// Blocks
 		for (int i = 0; i < EnumTypeBaseStuff.values().length; i++) {
 			ModelBakery.addVariantName(Item.getItemFromBlock(UBlocks.blocks), UReference.resource + "block" + EnumTypeBaseStuff.byMetadata(i).getName());
-			this.registerModelRenderer(UBlocks.blocks, i, new ModelResourceLocation(UReference.resource + "block" + EnumTypeBaseStuff.byMetadata(i).getName(), "inventory"));
+			ClientRegistryUtils.registerModelRenderer(UBlocks.blocks, i, new ModelResourceLocation(UReference.resource + "block" + EnumTypeBaseStuff.byMetadata(i).getName(), "inventory"));
 		}
 
 		// Ingot (and Sulphur Chunk)
 		for (int i = 0; i < EnumTypeBaseStuff.values().length; i++) {
 			ModelBakery.addVariantName(UItems.ingots, UReference.resource + "ingot" + EnumTypeBaseStuff.byMetadata(i).getName());
-			this.registerModelRenderer(UItems.ingots, i, new ModelResourceLocation(UReference.resource + "ingot" + EnumTypeBaseStuff.byMetadata(i).getName(), "inventory"));
+			ClientRegistryUtils.registerModelRenderer(UItems.ingots, i, new ModelResourceLocation(UReference.resource + "ingot" + EnumTypeBaseStuff.byMetadata(i).getName(), "inventory"));
 		}
 
 		// Dust
 		for (int i = 0; i < EnumTypeBaseStuff.values().length; i++) {
 			ModelBakery.addVariantName(UItems.dusts, UReference.resource + "dust" + EnumTypeBaseStuff.byMetadata(i).getName());
-			this.registerModelRenderer(UItems.dusts, i, new ModelResourceLocation(UReference.resource + "dust" + EnumTypeBaseStuff.byMetadata(i).getName(), "inventory"));
+			ClientRegistryUtils.registerModelRenderer(UItems.dusts, i, new ModelResourceLocation(UReference.resource + "dust" + EnumTypeBaseStuff.byMetadata(i).getName(), "inventory"));
 		}
 
 		// Pulverizer
-		this.registerModelRenderer(UBlocks.pulver);
+		ClientRegistryUtils.registerModelRenderer(UBlocks.pulver);
 
 		// Cobble Dust
-		this.registerModelRenderer(UItems.cdust);
+		ClientRegistryUtils.registerModelRenderer(UItems.cdust);
 
 		// SolarPanel
-		this.registerModelRenderer(UBlocks.solar);
+		ClientRegistryUtils.registerModelRenderer(UBlocks.solar);
 
-		this.registerModelRenderer(UArmor.radiationSuitHelmet);
-		this.registerModelRenderer(UArmor.radiationSuitChestplate);
-		this.registerModelRenderer(UArmor.radiationSuitLeggings);
-		this.registerModelRenderer(UArmor.radiationSuitBoots);
+		ClientRegistryUtils.registerModelRenderer(UArmor.radiationSuitHelmet);
+		ClientRegistryUtils.registerModelRenderer(UArmor.radiationSuitChestplate);
+		ClientRegistryUtils.registerModelRenderer(UArmor.radiationSuitLeggings);
+		ClientRegistryUtils.registerModelRenderer(UArmor.radiationSuitBoots);
 
 		// Infected
-		this.registerModelRenderer(UBlocks.infectedGrass);
-		this.registerModelRenderer(UBlocks.infectedDirt);
-		this.registerModelRenderer(UBlocks.infectedLog);
-		this.registerModelRenderer(UBlocks.infectedLeave);
-		this.registerModelRenderer(UBlocks.infectedPlank);
-		this.registerModelRenderer(UBlocks.infectedSapling);
-		this.registerModelRenderer(UBlocks.infectedFruit);
-		this.registerModelRenderer(UItems.infectedcrop);
+		ClientRegistryUtils.registerModelRenderer(UBlocks.infectedGrass);
+		ClientRegistryUtils.registerModelRenderer(UBlocks.infectedDirt);
+		ClientRegistryUtils.registerModelRenderer(UBlocks.infectedLog);
+		ClientRegistryUtils.registerModelRenderer(UBlocks.infectedLeave);
+		ClientRegistryUtils.registerModelRenderer(UBlocks.infectedPlank);
+		ClientRegistryUtils.registerModelRenderer(UBlocks.infectedSapling);
+		ClientRegistryUtils.registerModelRenderer(UBlocks.infectedFruit);
+		ClientRegistryUtils.registerModelRenderer(UItems.infectedcrop);
 
 		// Pipes
-		this.registerModelRenderer(UBlocks.iron_pipe);
-		this.registerModelRenderer(UBlocks.alu_pipe);
-		this.registerModelRenderer(UBlocks.silver_pipe);
-		this.registerModelRenderer(UBlocks.lead_pipe);
-		this.registerModelRenderer(UBlocks.gold_pipe);
-		this.registerModelRenderer(UBlocks.copper_pipe);
-		this.registerModelRenderer(UBlocks.zin_pipe);
+		ClientRegistryUtils.registerModelRenderer(UBlocks.iron_pipe);
+		ClientRegistryUtils.registerModelRenderer(UBlocks.alu_pipe);
+		ClientRegistryUtils.registerModelRenderer(UBlocks.silver_pipe);
+		ClientRegistryUtils.registerModelRenderer(UBlocks.lead_pipe);
+		ClientRegistryUtils.registerModelRenderer(UBlocks.gold_pipe);
+		ClientRegistryUtils.registerModelRenderer(UBlocks.copper_pipe);
+		ClientRegistryUtils.registerModelRenderer(UBlocks.zin_pipe);
 		
 	/*	UModRegistery.registerBlockPipe(UBlocks.iron_pipe,"blocks/iron_block");
 		UModRegistery.registerBlockPipe(UBlocks.alu_pipe,"umod:blocks/block/aluminium");
@@ -84,41 +81,11 @@ public class ClientProxy extends CommonProxy {
 
 	}
 
-	private void registerModelRenderer(Object obj) {
-		this.registerModelRenderer(obj, 0);
-	}
-
-	private void registerModelRenderer(Object obj, int meta) {
-		if (obj instanceof Block || obj instanceof Item) {
-			Item item;
-			if (obj instanceof Block) {
-				item = Item.getItemFromBlock((Block) obj);
-			} else {
-				item = (Item) obj;
-			}
-			this.registerModelRenderer(item, meta, new ModelResourceLocation(UReference.resource + item.getUnlocalizedName().substring(5), "inventory"));
-		} else {
-			throw new IllegalArgumentException("Only instances of block or items!");
-		}
-	}
-
-	private void registerModelRenderer(Object obj, int meta, ModelResourceLocation loc) {
-		if (obj instanceof Block || obj instanceof Item) {
-			Item item;
-			if (obj instanceof Block) {
-				item = Item.getItemFromBlock((Block) obj);
-			} else {
-				item = (Item) obj;
-			}
-			Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, meta, loc);
-		} else {
-			throw new IllegalArgumentException("Only instances of block or items!");
-		}
-	}
+	
 
 	@Override
 	public void addTooltip(ItemStack stack, EntityPlayer player, List tooltip, boolean advanced) {
-		tooltip.add(EnumChatFormatting.BLUE + I18n.format("tooltip." + stack.getUnlocalizedName()) + EnumChatFormatting.RESET);
+		ClientRegistryUtils.addTooltip(stack, player, tooltip, advanced);
 	}
 
 }

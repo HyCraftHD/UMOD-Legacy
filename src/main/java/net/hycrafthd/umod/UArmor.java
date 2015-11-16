@@ -1,6 +1,7 @@
 package net.hycrafthd.umod;
 
 import net.hycrafthd.umod.armor.ArmorRadiation;
+import net.hycrafthd.umod.utils.CommonRegistryUtils;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraftforge.common.util.EnumHelper;
@@ -32,10 +33,10 @@ public class UArmor {
 
 	private void register() {
 		// Radiation Suit
-		UUtils.registerItem(radiationSuitHelmet);
-		UUtils.registerItem(radiationSuitChestplate);
-		UUtils.registerItem(radiationSuitLeggings);
-		UUtils.registerItem(radiationSuitBoots);
+		CommonRegistryUtils.registerItem(radiationSuitHelmet);
+		CommonRegistryUtils.registerItem(radiationSuitChestplate);
+		CommonRegistryUtils.registerItem(radiationSuitLeggings);
+		CommonRegistryUtils.registerItem(radiationSuitBoots);
 	}
 
 }

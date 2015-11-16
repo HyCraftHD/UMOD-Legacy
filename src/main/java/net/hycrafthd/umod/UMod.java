@@ -1,6 +1,7 @@
 package net.hycrafthd.umod;
 
 import net.hycrafthd.umod.event.EventExecuteRadiation;
+import net.hycrafthd.umod.event.EventModelBakeri;
 import net.hycrafthd.umod.event.EventNearByInfectedBlock;
 import net.hycrafthd.umod.event.EventRenderOverlaybyhavingRadiation;
 import net.hycrafthd.umod.utils.CommonRegistryUtils;
@@ -50,6 +51,7 @@ public class UMod {
 		event.addEvent(new EventNearByInfectedBlock());
 		event.addEvent(new EventExecuteRadiation());
 		event.addEvent(new EventRenderOverlaybyhavingRadiation());
+		event.addEvent(new EventModelBakeri());
 		event.register();
 
 	}

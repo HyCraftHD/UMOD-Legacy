@@ -32,7 +32,7 @@ public class TileEntityPulverizer extends TileEntityLockable implements ISidedIn
 	
 	@Override
 	public int getSizeInventory() {
-		return stack.length;
+		return 4;
 	}
 
 	@Override
@@ -178,7 +178,8 @@ public class TileEntityPulverizer extends TileEntityLockable implements ISidedIn
 		}else if(strpo <= 10){
 			wasfull = false;
 		}
-		ItemStack[] args = ModRegistryUtils.isRecepie(new PulverizerRecepie(stack[3], null, null));
+		if(stack[3] != null){
+		ItemStack[] args = ModRegistryUtils.isRecepie(stack[3].copy());
 		if(args != null && wasfull){
 			if(stack[2] != null && stack[2].stackSize > 64){
 				time = 0;
@@ -220,6 +221,7 @@ public class TileEntityPulverizer extends TileEntityLockable implements ISidedIn
 		}else{
 		    work = false;
 			time = 0;
+		}
 		}
 		BlockPos[] list = {pos.east(),pos.north(),pos.south(),pos.west(),pos.up(),pos.down()};
 		for(int i = 0;i < list.length;i++){

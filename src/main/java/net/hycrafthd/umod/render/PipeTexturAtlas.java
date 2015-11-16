@@ -4,6 +4,6 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 
 public class PipeTexturAtlas {
 	
-	public static final TextureAtlasSprite IRON_PIPE = new PipeBaseTextureSprite("iron_block"); 
+	public static final String IRON_PIPE = "iron_block"; 
 
 }

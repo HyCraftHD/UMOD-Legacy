@@ -14,6 +14,7 @@ import net.hycrafthd.umod.api.SideBoolSet;
 import net.hycrafthd.umod.block.BlockPipe;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.BlockState;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 
@@ -25,10 +26,13 @@ public class ModRegistryUtils {
 		list.add(re);
 	}
 	
-	public static ItemStack[] isRecepie(PulverizerRecepie rec){
+	public static ItemStack[] isRecepie(ItemStack rec){
+		if(rec == null){
+			return null;
+		}
 		for(int i = 0;i < list.size();i++){
 			PulverizerRecepie re = list.get(i);
-			if(re.equals(rec)){
+			if(re.getInput().isItemEqual(rec)){
 				return new ItemStack[]{re.getOutput(),re.getSecondOutput(),re.getRandomSecondoutput()};
 			}
 		}

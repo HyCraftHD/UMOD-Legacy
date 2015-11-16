@@ -19,7 +19,10 @@ import net.minecraft.util.Vec3;
 import net.minecraftforge.client.model.ISmartBlockModel;
 import net.minecraftforge.client.model.ISmartItemModel;
 import net.minecraftforge.common.property.IExtendedBlockState;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
+@SideOnly(Side.CLIENT)
 public class PipeRender implements IBakedModel, ISmartBlockModel, ISmartItemModel {
 	
 	private IBlockState state;
@@ -152,7 +155,7 @@ public class PipeRender implements IBakedModel, ISmartBlockModel, ISmartItemMode
 		         isConnected[4] = (Boolean) this.state.getValue(BlockPipe.NORTH);
 		         isConnected[5] = (Boolean) this.state.getValue(BlockPipe.SOUTH);
 		      for(int i = 0;i < textures.length;i++){
-		    	  textures[i] = ((BlockPipe)state.getBlock()).getSpirte();
+		    	  textures[i] = new PipeBaseTextureSprite(((BlockPipe)state.getBlock()).getSpirte());
 		      }
 		}
 
@@ -201,7 +204,7 @@ public class PipeRender implements IBakedModel, ISmartBlockModel, ISmartItemMode
 
 	@Override
 	public TextureAtlasSprite getTexture() {
-		return ((BlockPipe)state.getBlock()).getSpirte();
+		return textures[0];
 	}
 
 	@Override

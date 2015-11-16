@@ -75,9 +75,10 @@ public class GenerationUtils {
 
 	public static int getWorldHeightAt(World world, int x, int z) {
 		int height = 0;
-		for (int i = (int) (world.getHorizon() - 20); i < 255; i++) {
-			if (world.getBlockState(new BlockPos(x, i, z)).getBlock().isSolidFullCube()) {
-				height = i;
+		for (int i = (int) (world.getHorizon() - 20); i < world.getActualHeight() - 1; i++) {
+			BlockPos pos = new BlockPos(x, i, z);
+			if (world.getBlockState(pos).getBlock().isSolidFullCube()) {
+				height = pos.getY();
 			}
 		}
 		return height;

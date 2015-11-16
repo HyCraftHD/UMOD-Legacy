@@ -70,13 +70,13 @@ public class UBlocks {
 		infectedPlank = new BlockInfectedPlank().setUnlocalizedName("infectedplank");
 		infectedFruit = new BlockInfectedFruit().setUnlocalizedName("infectedfruit");
 		// Pipes
-		iron_pipe = new BlockPipe("ironpipe", 10, 10, false,PipeTexturAtlas.IRON_PIPE);
-		silver_pipe = new BlockPipe("silverpipe", 62, 62, false,PipeTexturAtlas.IRON_PIPE);
-		copper_pipe = new BlockPipe("copperpipe", 60, 60, false,PipeTexturAtlas.IRON_PIPE);
-		alu_pipe = new BlockPipe("alupipe", 38, 38, false,PipeTexturAtlas.IRON_PIPE);
-		gold_pipe = new BlockPipe("goldpipe", 43, 43, false,PipeTexturAtlas.IRON_PIPE);
-		lead_pipe = new BlockPipe("leadpipe", 5, 5, false,PipeTexturAtlas.IRON_PIPE);
-		zin_pipe = new BlockPipe("zinpipe", 9, 9, false,PipeTexturAtlas.IRON_PIPE);
+		iron_pipe = new BlockPipe("ironpipe", 10, 10, false, PipeTexturAtlas.IRON_PIPE);
+		silver_pipe = new BlockPipe("silverpipe", 62, 62, false, PipeTexturAtlas.IRON_PIPE);
+		copper_pipe = new BlockPipe("copperpipe", 60, 60, false, PipeTexturAtlas.IRON_PIPE);
+		alu_pipe = new BlockPipe("alupipe", 38, 38, false, PipeTexturAtlas.IRON_PIPE);
+		gold_pipe = new BlockPipe("goldpipe", 43, 43, false, PipeTexturAtlas.IRON_PIPE);
+		lead_pipe = new BlockPipe("leadpipe", 5, 5, false, PipeTexturAtlas.IRON_PIPE);
+		zin_pipe = new BlockPipe("zinpipe", 9, 9, false, PipeTexturAtlas.IRON_PIPE);
 	}
 
 	private void register() {

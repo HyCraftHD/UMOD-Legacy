@@ -63,7 +63,7 @@ public class BlockPipe extends Block implements ITileEntityProvider, IEnergyMess
 	public String getSpirte(){
 		return asp;
 	}
-	
+
 	@Override
 	public TileEntity createNewTileEntity(World worldIn, int meta) {
 		return new TileEntityPipe(powertrans, lo);

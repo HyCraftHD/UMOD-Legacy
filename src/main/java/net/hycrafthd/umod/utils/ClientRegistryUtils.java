@@ -5,13 +5,15 @@ import java.util.List;
 import net.hycrafthd.umod.UReference;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.resources.model.ModelResourceLocation;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -34,7 +36,9 @@ public class ClientRegistryUtils {
 			} else {
 				item = (Item) obj;
 			}
-			ClientRegistryUtils.registerModelRenderer(item, meta, new ModelResourceLocation(UReference.resource + ((path == "") ? ("") : ("/" + path + "/")) + item.getUnlocalizedName().substring(5), "inventory"));
+			ClientRegistryUtils.registerModelRenderer(item, meta,
+					new ModelResourceLocation(UReference.resource + ((path == "") ? ("") : ("/" + path + "/"))
+							+ item.getUnlocalizedName().substring(5), "inventory"));
 		} else {
 			throw new IllegalArgumentException("Only instances of block or items!");
 		}
@@ -52,6 +56,10 @@ public class ClientRegistryUtils {
 		} else {
 			throw new IllegalArgumentException("Only instances of block or items!");
 		}
+	}
+
+	public static void registerEntityRenderer(Class<? extends Entity> entityClass, Render renderer) {
+		RenderingRegistry.registerEntityRenderingHandler(entityClass, renderer);
 	}
 
 	public static void addTooltip(ItemStack stack, EntityPlayer player, List tooltip, boolean advanced) {

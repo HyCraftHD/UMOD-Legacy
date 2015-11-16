@@ -1,17 +1,17 @@
 package net.hycrafthd.umod;
 
+import org.apache.logging.log4j.Logger;
+
 import net.hycrafthd.umod.event.EventExecuteRadiation;
 import net.hycrafthd.umod.event.EventModelBakeri;
-import net.hycrafthd.umod.event.EventNearByInfectedBlock;
-import net.hycrafthd.umod.event.EventRenderOverlaybyhavingRadiation;
+
+import net.hycrafthd.umod.event.EventGettingRadiationByInfectedBlock;
 import net.hycrafthd.umod.utils.CommonRegistryUtils;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-
-import org.apache.logging.log4j.Logger;
 
 @Mod(modid = UReference.modid, version = UReference.version, name = UReference.name)
 public class UMod {
@@ -43,14 +43,14 @@ public class UMod {
 		new UChestLoot();
 		CommonRegistryUtils.registerGuiHandler(new UGuiHandler());
 		UReference.proxy.registerModels();
+		UReference.proxy.registerRenderer();
 
 	}
 
 	public void registerEvents() {
 		UEvent event = new UEvent();
-		event.addEvent(new EventNearByInfectedBlock());
+		event.addEvent(new EventGettingRadiationByInfectedBlock());
 		event.addEvent(new EventExecuteRadiation());
-		event.addEvent(new EventRenderOverlaybyhavingRadiation());
 		event.addEvent(new EventModelBakeri());
 		event.register();
 

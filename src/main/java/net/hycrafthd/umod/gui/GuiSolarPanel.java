@@ -49,10 +49,10 @@ public class GuiSolarPanel extends GuiScreen {
 		String s3 = "Status: ";
 		String s4 = "Error: ";
 		this.fontRendererObj.drawSplitString(s1 + (pro.isWorking() ? (pro.getPowerProducNeeds() + " UE/t") : "0 UE/t"), k + 10, l + 50, maxstringlength, 4210752);
-		this.fontRendererObj.drawSplitString(s2 + pro.getStoredPower() + " / " + pro.getMaximalPower(), k + 10, l + 70, maxstringlength, 4210752);
-		this.fontRendererObj.drawSplitString(s3 + (pro.isWorking() ? "On" : "Off"), k + 10, l + 90, maxstringlength, 4210752);
+		this.fontRendererObj.drawSplitString(s2 + pro.getStoredPower() + " / " + pro.getMaximalPower(), k + 10, l + 80, maxstringlength, 4210752);
+		this.fontRendererObj.drawSplitString(s3 + (pro.isWorking() ? "On" : "Off"), k + 10, l + 110, maxstringlength, 4210752);
 		if (!pro.isWorking() && pro.getErrorMessage() != null && pro.getErrorMessage() != "") {
-			this.fontRendererObj.drawSplitString(s4 + pro.getErrorMessage(), k + 10, l + 110, maxstringlength, 4210752);
+			this.fontRendererObj.drawSplitString(s4 + pro.getErrorMessage(), k + 10, l + 140, maxstringlength, 4210752);
 		}
 
 	}

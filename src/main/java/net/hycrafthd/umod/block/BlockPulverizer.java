@@ -2,6 +2,7 @@ package net.hycrafthd.umod.block;
 
 import net.hycrafthd.umod.UReference;
 import net.hycrafthd.umod.api.IEnergyMessage;
+import net.hycrafthd.umod.enumtype.EnumTypeGui;
 import net.hycrafthd.umod.tileentity.TileEntityPulverizer;
 import net.hycrafthd.umod.utils.EnergyUtils;
 import net.minecraft.block.state.IBlockState;
@@ -24,7 +25,7 @@ public class BlockPulverizer extends BlockBaseMachine implements IEnergyMessage 
 
 	@Override
 	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumFacing side, float hitX, float hitY, float hitZ) {
-		playerIn.openGui(UReference.modid, 0, world, pos.getX(), pos.getY(), pos.getZ());
+		playerIn.openGui(UReference.modid, EnumTypeGui.PULVERISER.getID(), world, pos.getX(), pos.getY(), pos.getZ());
 		return true;
 	}
 

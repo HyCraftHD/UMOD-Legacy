@@ -12,6 +12,8 @@ public class UReference {
 	public static final String version = "alpha0.1";
 
 	public static final String resource = UReference.modid + ":";
+	public static final float PIPE_MIN_POS = 0.4F;
+	public static final float PIPE_MAX_POS = 0.6F;
 
 	@Instance(UReference.modid)
 	public static UMod instance = new UMod();

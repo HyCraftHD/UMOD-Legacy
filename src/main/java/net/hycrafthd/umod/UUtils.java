@@ -8,6 +8,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
@@ -80,7 +81,11 @@ public class UUtils {
 	}
 	
 	public static int inUE(int ip){
-		return ip/2*50; 
+		return ip*5; 
+	}
+
+	public static String getBlockName(Block o) {
+		return o.getUnlocalizedName().replace("tile.", "");
 	}
 
 }

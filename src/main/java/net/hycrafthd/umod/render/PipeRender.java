@@ -7,7 +7,7 @@ import java.util.List;
 import com.google.common.primitives.Ints;
 
 import net.hycrafthd.umod.UReference;
-import net.hycrafthd.umod.UUtils;
+import net.hycrafthd.umod.block.BlockPipe;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
@@ -22,7 +22,7 @@ import net.minecraftforge.common.property.IExtendedBlockState;
 
 public class PipeRender implements IBakedModel, ISmartBlockModel, ISmartItemModel {
 	
-	private IExtendedBlockState state;
+	private IBlockState state;
 	private ItemStack stack;
 	private boolean isItem;
 
@@ -31,7 +31,10 @@ public class PipeRender implements IBakedModel, ISmartBlockModel, ISmartItemMode
 	}
 
 	private PipeRender(IBlockState state) {
-		this.state = (IExtendedBlockState) state;
+		this.state = state;
+		if(!(state.getBlock() instanceof BlockPipe)){
+		     throw new IllegalArgumentException("Only Pipes are alowed");
+		}
 		isItem = false;
 	}
 
@@ -141,7 +144,17 @@ public class PipeRender implements IBakedModel, ISmartBlockModel, ISmartItemMode
 		float min = UReference.PIPE_MIN_POS;
 		float max = UReference.PIPE_MAX_POS;
 		
-		this.state.getBlock();
+		if (this.state != null) {
+		         isConnected[0] = (Boolean) this.state.getValue(BlockPipe.DOWN);
+		         isConnected[1] = (Boolean) this.state.getValue(BlockPipe.UP);
+		         isConnected[2] = (Boolean) this.state.getValue(BlockPipe.EAST);
+		         isConnected[3] = (Boolean) this.state.getValue(BlockPipe.WEST);
+		         isConnected[4] = (Boolean) this.state.getValue(BlockPipe.NORTH);
+		         isConnected[5] = (Boolean) this.state.getValue(BlockPipe.SOUTH);
+		      for(int i = 0;i < textures.length;i++){
+		    	  textures[i] = ((BlockPipe)state.getBlock()).getSpirte();
+		      }
+		}
 
 		for (EnumFacing f : EnumFacing.values()) {
 			if (!isConnected[f.ordinal()]) {
@@ -188,7 +201,7 @@ public class PipeRender implements IBakedModel, ISmartBlockModel, ISmartItemMode
 
 	@Override
 	public TextureAtlasSprite getTexture() {
-		return PipeTexturAtlas.IRON_PIPE;
+		return ((BlockPipe)state.getBlock()).getSpirte();
 	}
 
 	@Override

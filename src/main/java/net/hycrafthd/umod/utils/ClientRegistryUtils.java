@@ -11,6 +11,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -58,6 +59,10 @@ public class ClientRegistryUtils {
 		if (!tip.startsWith("tooltip.")) {
 			tooltip.add(EnumChatFormatting.BLUE + tip + EnumChatFormatting.RESET);
 		}
+	}
+
+	public static String getBlockName(Block o) {
+		return o.getUnlocalizedName().replace("tile.", "");
 	}
 
 }

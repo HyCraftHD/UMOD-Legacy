@@ -29,10 +29,8 @@ public class UMod {
 		new UBlocks();
 		new UArmor();
 		new UDamageSource();
-		new UEntity();
-		registerEvents();
-		registerGenerators();
 		new UBiome();
+		new UEntity();
 		this.registerGenerators();
 		this.registerEvents();
 	}

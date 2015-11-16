@@ -2,6 +2,7 @@ package net.hycrafthd.umod.event;
 
 import net.hycrafthd.umod.UBlocks;
 import net.hycrafthd.umod.UPotion;
+import net.hycrafthd.umod.entity.EntityInfectedCow;
 import net.hycrafthd.umod.enumtype.EnumTypeBaseStuff;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -25,6 +26,8 @@ public class EventNearByInfectedBlock {
 				return;
 		}
 
+		if(base instanceof EntityInfectedCow) return;
+		
 		World world = base.worldObj;
 
 		double x = base.posX;

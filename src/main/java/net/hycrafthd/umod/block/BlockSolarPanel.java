@@ -1,9 +1,9 @@
 package net.hycrafthd.umod.block;
 
 import net.hycrafthd.umod.UReference;
-import net.hycrafthd.umod.UUtils;
 import net.hycrafthd.umod.api.IEnergyMessage;
 import net.hycrafthd.umod.tileentity.TileEntitySolarPanel;
+import net.hycrafthd.umod.utils.EnergyUtils;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -14,7 +14,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public class BlockSolarPanel extends BlockBase implements ITileEntityProvider ,IEnergyMessage{
+public class BlockSolarPanel extends BlockBase implements ITileEntityProvider, IEnergyMessage {
 
 	public BlockSolarPanel() {
 		super(Material.iron);
@@ -58,6 +58,6 @@ public class BlockSolarPanel extends BlockBase implements ITileEntityProvider ,I
 
 	@Override
 	public String getMessage() {
-		return "Products " + UUtils.inUE(3) + "UE/t";
+		return "Products " + EnergyUtils.inUE(3) + "UE/t";
 	}
 }

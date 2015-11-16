@@ -4,6 +4,7 @@ import net.hycrafthd.umod.item.ItemDusts;
 import net.hycrafthd.umod.item.ItemFundamental;
 import net.hycrafthd.umod.item.ItemInfectedCrop;
 import net.hycrafthd.umod.item.ItemIngots;
+import net.hycrafthd.umod.utils.CommonRegistryUtils;
 import net.minecraft.item.Item;
 
 public class UItems {
@@ -39,24 +40,24 @@ public class UItems {
 
 	private void register() {
 		// Ingot
-		UUtils.registerItem(ingots);
+		CommonRegistryUtils.registerItem(ingots);
 		// Dust
-		UUtils.registerItem(dusts);
+		CommonRegistryUtils.registerItem(dusts);
 		// Cobble Dust
-		UUtils.registerItem(cdust);
+		CommonRegistryUtils.registerItem(cdust);
 		// Infected
-		UUtils.registerItem(infectedcrop);
+		CommonRegistryUtils.registerItem(infectedcrop);
 	}
 
 	private void oredirectionary() {
 		// Ingot
-		UUtils.registerOredirectionary(ingots);
+		CommonRegistryUtils.registerOredirectionary(ingots);
 		// Dust
-		UUtils.registerOredirectionary(dusts);
+		CommonRegistryUtils.registerOredirectionary(dusts);
 		// Cobble Dust
-		UUtils.registerOredirectionary(cdust);
+		CommonRegistryUtils.registerOredirectionary(cdust);
 		// Infected
-		UUtils.registerOredirectionary(infectedcrop);
+		CommonRegistryUtils.registerOredirectionary(infectedcrop);
 	}
 
 }

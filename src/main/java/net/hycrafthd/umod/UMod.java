@@ -5,7 +5,7 @@ import org.apache.logging.log4j.Logger;
 import net.hycrafthd.umod.event.EventExecuteRadiation;
 import net.hycrafthd.umod.event.EventNearByInfectedBlock;
 import net.hycrafthd.umod.event.EventRenderOverlaybyhavingRadiation;
-import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.hycrafthd.umod.utils.CommonRegistryUtils;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -29,10 +29,10 @@ public class UMod {
 		new UItems();
 		new UBlocks();
 		new UArmor();
-		new UBiome();
 		new UDamageSource();
-		registerEvents();
-		registerGenerators();
+		new UBiome();
+		this.registerGenerators();
+		this.registerEvents();
 	}
 
 	@EventHandler
@@ -40,16 +40,18 @@ public class UMod {
 		new UTiles();
 		new URecipes();
 		new UChestLoot();
-		UReference.eventManager.register();
-		FMLCommonHandler.instance().bus().register(new EventRenderOverlaybyhavingRadiation());
-		NetworkRegistry.INSTANCE.registerGuiHandler(UReference.modid, new UGuiHandler());
+		CommonRegistryUtils.registerGuiHandler(new UGuiHandler());
 		UReference.proxy.registerModels();
+
 	}
 
 	public void registerEvents() {
-		UReference.eventManager.addEvent(new EventNearByInfectedBlock());
-		UReference.eventManager.addEvent(new EventExecuteRadiation());
-		UReference.eventManager.addEvent(new EventRenderOverlaybyhavingRadiation());
+		UEvent event = new UEvent();
+		event.addEvent(new EventNearByInfectedBlock());
+		event.addEvent(new EventExecuteRadiation());
+		event.addEvent(new EventRenderOverlaybyhavingRadiation());
+		event.register();
+
 	}
 
 	public void registerGenerators() {

@@ -21,6 +21,4 @@ public class UReference {
 
 	public static CreativeTabs tab = new UTab();
 
-	public static UEvent eventManager = new UEvent();
-
 }

@@ -3,6 +3,7 @@ package net.hycrafthd.umod.schematic;
 import java.util.Random;
 
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.MathHelper;
 
 public final class ChestLoot {
@@ -25,21 +26,27 @@ public final class ChestLoot {
 		this.stack = newstack;
 	}
 
-	@Override
-	public String toString() {
-		return this.stack.toString() + " : " + this.weight;
-	}
-
 	public ItemStack getStack() {
-		return stack;
+		ItemStack returnstack = new ItemStack(stack.getItem(), this.getCount(), stack.getMetadata());
+
+		if (stack.getTagCompound() != null) {
+			returnstack.setTagCompound((NBTTagCompound) stack.getTagCompound().copy());
+		}
+
+		return returnstack;
 	}
 
 	public int getWeight() {
 		return weight;
 	}
 
-	public int getCount() {
+	private int getCount() {
 		return MathHelper.getRandomIntegerInRange(new Random(), minCount, maxCount);
+	}
+	
+	@Override
+	public String toString() {
+		return this.stack.toString() + " : " + this.weight;
 	}
 
 }

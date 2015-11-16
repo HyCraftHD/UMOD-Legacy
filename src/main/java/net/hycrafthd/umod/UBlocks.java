@@ -12,10 +12,10 @@ import net.hycrafthd.umod.block.BlockOres;
 import net.hycrafthd.umod.block.BlockPipe;
 import net.hycrafthd.umod.block.BlockPulverizer;
 import net.hycrafthd.umod.block.BlockSolarPanel;
-import net.hycrafthd.umod.item.ItemBlockBase;
 import net.hycrafthd.umod.item.ItemBlockBlocks;
 import net.hycrafthd.umod.item.ItemBlockEnergy;
 import net.hycrafthd.umod.item.ItemBlockOres;
+import net.hycrafthd.umod.utils.CommonRegistryUtils;
 import net.minecraft.block.Block;
 
 public class UBlocks {
@@ -80,56 +80,56 @@ public class UBlocks {
 
 	private void register() {
 		// Ore
-		UUtils.registerBlock(ores, ItemBlockOres.class);
+		CommonRegistryUtils.registerBlock(ores, ItemBlockOres.class);
 		// Blocks
-		UUtils.registerBlock(blocks, ItemBlockBlocks.class);
+		CommonRegistryUtils.registerBlock(blocks, ItemBlockBlocks.class);
 		// Pulverizer
-		UUtils.registerBlocks(pulver,ItemBlockEnergy.class);
+		CommonRegistryUtils.registerBlocks(pulver, ItemBlockEnergy.class);
 		// SolarPanel
-		UUtils.registerBlocks(solar,ItemBlockEnergy.class);
+		CommonRegistryUtils.registerBlocks(solar, ItemBlockEnergy.class);
 		// Infected
-		UUtils.registerBlock(infectedGrass);
-		UUtils.registerBlock(infectedDirt);
-		UUtils.registerBlock(infectedLog);
-		UUtils.registerBlock(infectedLeave);
-		UUtils.registerBlock(infectedSapling);
-		UUtils.registerBlock(infectedPlank);
-		UUtils.registerBlock(infectedFruit);
+		CommonRegistryUtils.registerBlock(infectedGrass);
+		CommonRegistryUtils.registerBlock(infectedDirt);
+		CommonRegistryUtils.registerBlock(infectedLog);
+		CommonRegistryUtils.registerBlock(infectedLeave);
+		CommonRegistryUtils.registerBlock(infectedSapling);
+		CommonRegistryUtils.registerBlock(infectedPlank);
+		CommonRegistryUtils.registerBlock(infectedFruit);
 		// Pipes
-		UUtils.registerBlocks(iron_pipe,ItemBlockEnergy.class);
-		UUtils.registerBlocks(alu_pipe,ItemBlockEnergy.class);
-		UUtils.registerBlocks(gold_pipe,ItemBlockEnergy.class);
-		UUtils.registerBlocks(silver_pipe,ItemBlockEnergy.class);
-		UUtils.registerBlocks(copper_pipe,ItemBlockEnergy.class);
-		UUtils.registerBlocks(lead_pipe,ItemBlockEnergy.class);
-		UUtils.registerBlocks(zin_pipe,ItemBlockEnergy.class);
+		CommonRegistryUtils.registerBlocks(iron_pipe, ItemBlockEnergy.class);
+		CommonRegistryUtils.registerBlocks(alu_pipe, ItemBlockEnergy.class);
+		CommonRegistryUtils.registerBlocks(gold_pipe, ItemBlockEnergy.class);
+		CommonRegistryUtils.registerBlocks(silver_pipe, ItemBlockEnergy.class);
+		CommonRegistryUtils.registerBlocks(copper_pipe, ItemBlockEnergy.class);
+		CommonRegistryUtils.registerBlocks(lead_pipe, ItemBlockEnergy.class);
+		CommonRegistryUtils.registerBlocks(zin_pipe, ItemBlockEnergy.class);
 	}
 
 	private void oredirectionary() {
 		// Ore
-		UUtils.registerOredirectionary(ores);
+		CommonRegistryUtils.registerOredirectionary(ores);
 		// Blocks
-		UUtils.registerOredirectionary(blocks);
+		CommonRegistryUtils.registerOredirectionary(blocks);
 		// Pulverizer
-		UUtils.registerOredirectionary(pulver);
+		CommonRegistryUtils.registerOredirectionary(pulver);
 		// SolarPanel
-		UUtils.registerOredirectionary(solar);
+		CommonRegistryUtils.registerOredirectionary(solar);
 		// Infected
-		UUtils.registerOredirectionary(infectedGrass);
-		UUtils.registerOredirectionary(infectedDirt);
-		UUtils.registerOredirectionary(infectedLog);
-		UUtils.registerOredirectionary(infectedLeave);
-		UUtils.registerOredirectionary(infectedSapling);
-		UUtils.registerOredirectionary(infectedPlank);
-		UUtils.registerOredirectionary(infectedFruit);
+		CommonRegistryUtils.registerOredirectionary(infectedGrass);
+		CommonRegistryUtils.registerOredirectionary(infectedDirt);
+		CommonRegistryUtils.registerOredirectionary(infectedLog);
+		CommonRegistryUtils.registerOredirectionary(infectedLeave);
+		CommonRegistryUtils.registerOredirectionary(infectedSapling);
+		CommonRegistryUtils.registerOredirectionary(infectedPlank);
+		CommonRegistryUtils.registerOredirectionary(infectedFruit);
 		// Pipes
-		UUtils.registerOredirectionary(iron_pipe);
-		UUtils.registerOredirectionary(alu_pipe);
-		UUtils.registerOredirectionary(gold_pipe);
-		UUtils.registerOredirectionary(silver_pipe);
-		UUtils.registerOredirectionary(copper_pipe);
-		UUtils.registerOredirectionary(lead_pipe);
-		UUtils.registerOredirectionary(zin_pipe);
+		CommonRegistryUtils.registerOredirectionary(iron_pipe);
+		CommonRegistryUtils.registerOredirectionary(alu_pipe);
+		CommonRegistryUtils.registerOredirectionary(gold_pipe);
+		CommonRegistryUtils.registerOredirectionary(silver_pipe);
+		CommonRegistryUtils.registerOredirectionary(copper_pipe);
+		CommonRegistryUtils.registerOredirectionary(lead_pipe);
+		CommonRegistryUtils.registerOredirectionary(zin_pipe);
 
 	}
 

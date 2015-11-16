@@ -2,8 +2,8 @@ package net.hycrafthd.umod.schematic;
 
 import java.util.Random;
 
-import net.hycrafthd.umod.UChestLoot;
 import net.hycrafthd.umod.enumtype.EnumTypeChestLooting;
+import net.hycrafthd.umod.utils.GenerationUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -28,18 +28,7 @@ public class SchematicInfestedRuin1 extends Schematic {
 			world.setBlockState(pos, obj.getState());
 
 			if (world.getTileEntity(pos) instanceof TileEntityChest) {
-				TileEntityChest tile = (TileEntityChest) world.getTileEntity(pos);
-
-				int itemslots = MathHelper.getRandomIntegerInRange(new Random(), 5, 8);
-
-				while (itemslots > 0) {
-					itemslots--;
-					int slot = MathHelper.getRandomIntegerInRange(new Random(), 0, tile.getSizeInventory() - 1);
-					ItemStack stack = UChestLoot.getStack(EnumTypeChestLooting.INFESTEDRUIN1);
-					tile.setInventorySlotContents(slot, stack);
-				}
-
-				world.setTileEntity(pos, tile);
+				world.setTileEntity(pos, GenerationUtils.generateChestLoot((TileEntityChest) world.getTileEntity(pos), EnumTypeChestLooting.INFESTEDRUIN1, 4, 8));
 			}
 
 			if (world.getTileEntity(pos) instanceof TileEntityFurnace) {

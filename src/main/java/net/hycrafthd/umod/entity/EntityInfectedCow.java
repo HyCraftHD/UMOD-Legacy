@@ -14,7 +14,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 
-public class EntityInfectedCow extends EntityMob{
+public class EntityInfectedCow extends EntityMob implements InfectedEntityInterface{
 
 	public EntityInfectedCow(World worldIn) {
 		super(worldIn);

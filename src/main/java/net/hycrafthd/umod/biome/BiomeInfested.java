@@ -4,6 +4,7 @@ import java.util.Random;
 
 import net.hycrafthd.umod.UBlocks;
 import net.hycrafthd.umod.entity.EntityInfectedCow;
+import net.hycrafthd.umod.entity.EntityInfectedCreeper;
 import net.hycrafthd.umod.world.GenInfectedTree;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
@@ -25,6 +26,7 @@ public class BiomeInfested extends BiomeGenBase {
 		this.spawnableWaterCreatureList.clear();
 		this.theBiomeDecorator.treesPerChunk = 4;
 		this.spawnableMonsterList.add(new SpawnListEntry(EntityInfectedCow.class, 10, 5, 20));
+		this.spawnableMonsterList.add(new SpawnListEntry(EntityInfectedCreeper.class, 10, 5, 10));
 		this.setHeight(new Height(0.2F, 0.3F));
 	}
 

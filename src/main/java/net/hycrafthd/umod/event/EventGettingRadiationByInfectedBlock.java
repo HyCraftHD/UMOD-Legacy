@@ -2,7 +2,7 @@ package net.hycrafthd.umod.event;
 
 import net.hycrafthd.umod.UBlocks;
 import net.hycrafthd.umod.UPotion;
-import net.hycrafthd.umod.entity.EntityInfectedCow;
+import net.hycrafthd.umod.entity.InfectedEntityInterface;
 import net.hycrafthd.umod.enumtype.EnumTypeBaseStuff;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -26,7 +26,7 @@ public class EventGettingRadiationByInfectedBlock {
 				return;
 		}
 
-		if(base instanceof EntityInfectedCow) return;
+		if(isInfectedEntity(base)) return;
 		
 		World world = base.worldObj;
 
@@ -71,4 +71,8 @@ public class EventGettingRadiationByInfectedBlock {
 		base.addPotionEffect(new PotionEffect(UPotion.radiationPotion.getId(), 10, amplifier, false, true));
 	}
 
+	private boolean isInfectedEntity(EntityLivingBase base){
+		return (base instanceof InfectedEntityInterface);
+	}
+	
 }

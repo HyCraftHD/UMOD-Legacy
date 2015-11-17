@@ -55,7 +55,7 @@ public class BlockOres extends BlockBase {
 		// if (type.getName() == "uran") {
 		// if (entity instanceof EntityLivingBase && !world.isRemote) {
 		// EntityLivingBase base = (EntityLivingBase) entity;
-		// // TODO Strahlung
+		//
 		// base.addPotionEffect(new PotionEffect(Potion.poison.getId(), 120, 2,
 		// false, false));
 		// base.addPotionEffect(new PotionEffect(Potion.confusion.getId(), 120,

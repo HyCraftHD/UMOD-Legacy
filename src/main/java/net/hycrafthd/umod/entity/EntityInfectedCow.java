@@ -1,5 +1,6 @@
 package net.hycrafthd.umod.entity;
 
+import net.hycrafthd.umod.interfaces.InfectedEntityInterface;
 import net.minecraft.block.Block;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;

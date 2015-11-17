@@ -2,8 +2,8 @@ package net.hycrafthd.umod.event;
 
 import net.hycrafthd.umod.UBlocks;
 import net.hycrafthd.umod.UPotion;
-import net.hycrafthd.umod.entity.InfectedEntityInterface;
 import net.hycrafthd.umod.enumtype.EnumTypeBaseStuff;
+import net.hycrafthd.umod.interfaces.InfectedEntityInterface;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;

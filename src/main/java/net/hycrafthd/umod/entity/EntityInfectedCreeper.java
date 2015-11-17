@@ -1,5 +1,7 @@
 package net.hycrafthd.umod.entity;
 
+import net.hycrafthd.umod.UItems;
+import net.hycrafthd.umod.interfaces.InfectedEntityInterface;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
@@ -15,9 +17,12 @@ import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.entity.passive.EntityOcelot;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import com.google.common.base.Predicate;
 
@@ -61,6 +66,24 @@ public class EntityInfectedCreeper extends EntityCreeper implements InfectedEnti
         this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.3D);
     }
 	
+    @Override
+    protected Item getDropItem() {
+    	return Items.gunpowder;
+    }
+    
+    @Override
+    protected void dropFewItems(boolean p_70628_1_, int p_70628_2_) {
+    	System.out.println("Test");
+    	int gunSize = 1;
+    	if(this.rand.nextInt(2) == 0){
+    		int j = this.rand.nextInt(3) + 1 + this.rand.nextInt(1 + p_70628_2_);
+    		this.dropItem(UItems.dusts, j);
+    		System.out.println("Drop");
+    	}
+    	if(this.rand.nextInt(2) == 0) gunSize = 2;
+    	this.dropItem(Items.gunpowder, gunSize);
+    }
+    
     @Override
 	protected void entityInit()
     {
@@ -175,6 +198,13 @@ public class EntityInfectedCreeper extends EntityCreeper implements InfectedEnti
         return super.interact(player);
     }
 
+    @Override
+	@SideOnly(Side.CLIENT)
+    public float getCreeperFlashIntensity(float p_70831_1_)
+    {
+        return (this.lastActiveTime + (this.timeSinceIgnited - this.lastActiveTime) * p_70831_1_) / (this.fuseTime - 2);
+    }
+    
     @Override
 	protected String getHurtSound()
     {

@@ -4,23 +4,29 @@ import org.lwjgl.opengl.GL11;
 
 import net.hycrafthd.umod.UReference;
 import net.hycrafthd.umod.api.IPowerProvieder;
+import net.hycrafthd.umod.block.BlockSolarPanel.EnumTypeSolarPanel;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.client.resources.I18n;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.World;
 
 public class GuiSolarPanel extends GuiScreen {
 
 	int xSize;
 	int ySize;
 	IPowerProvieder pro;
+	private World w;
 
-	public GuiSolarPanel(IPowerProvieder po) {
+	public GuiSolarPanel(World w,IPowerProvieder po) {
 		xSize = 176;
 		ySize = 166;
 		pro = po;
+		this.w = w;
 	}
 
 	@Override
@@ -41,8 +47,12 @@ public class GuiSolarPanel extends GuiScreen {
 		}
 
 		this.drawStorage(k, l, high);
+		IBlockState ste = w.getBlockState(((TileEntity)pro).getPos());
+		EnumTypeSolarPanel type = EnumTypeSolarPanel.byMetadata(ste.getBlock().getMetaFromState(ste));
 
-		this.drawCenteredString(this.fontRendererObj, I18n.format("tile.solar.name"), k + xSize / 2 - 37 / 2, l + 10, 4210752, false);
+		this.drawCenteredString(this.fontRendererObj, 
+				I18n.format(ste.getBlock().getUnlocalizedName() + type.getName() + ".name"),
+				k + xSize / 2 - 37 / 2, l + 10, 4210752, false);
 		int maxstringlength = 119;
 		String s1 = "Generate: ";
 		String s2 = "Stored: ";

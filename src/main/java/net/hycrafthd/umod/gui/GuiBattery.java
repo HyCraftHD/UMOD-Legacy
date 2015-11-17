@@ -5,6 +5,7 @@ import java.io.IOException;
 import org.lwjgl.opengl.GL11;
 
 import net.hycrafthd.umod.UReference;
+import net.hycrafthd.umod.api.IGuiProvider;
 import net.hycrafthd.umod.api.IPowerProvieder;
 import net.hycrafthd.umod.tileentity.TileEntityPulverizer;
 import net.minecraft.client.gui.FontRenderer;
@@ -18,6 +19,7 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.IInteractionObject;
 import net.minecraft.world.World;
 
 public class GuiBattery extends GuiScreen{
@@ -34,7 +36,11 @@ public class GuiBattery extends GuiScreen{
 	pro = po;
 	this.pl = pl;
 	this.pos = pos;
-	this.ag = ag;
+	if(po instanceof IGuiProvider){
+	this.ag = ((IGuiProvider)po).getGui();
+	}else{
+	this.ag = Integer.MAX_VALUE;
+	}
 	worldObj = w;
 	}
 	

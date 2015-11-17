@@ -1,5 +1,6 @@
 package net.hycrafthd.umod.tileentity;
 
+import net.hycrafthd.umod.api.IGuiProvider;
 import net.hycrafthd.umod.api.IPowerProvieder;
 import net.hycrafthd.umod.api.PulverizerRecepie;
 import net.hycrafthd.umod.block.BlockBaseMachine;
@@ -26,7 +27,8 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.EnumFacing;
 
-public class TileEntityPulverizer extends TileEntityLockable implements ISidedInventory ,IPowerProvieder{
+public class TileEntityPulverizer extends TileEntityLockable implements 
+                              ISidedInventory ,IPowerProvieder,IGuiProvider{
 
 	private ItemStack[] stack = new ItemStack[4];
 	private String pl = null;
@@ -413,5 +415,10 @@ public class TileEntityPulverizer extends TileEntityLockable implements ISidedIn
 	@Override
 	public int getPowerProducNeeds() {
 		return EnergyUtils.inUE(10);
+	}
+
+	@Override
+	public int getGui() {
+		return 0;
 	}
 }

@@ -56,8 +56,6 @@ public class TileEntitySolarPanel extends TileEntity implements IPowerProvieder 
 		return false;
 	}
 
-	private boolean isni;
-	private int time;
 
 	@Override
 	public void update() {
@@ -71,7 +69,7 @@ public class TileEntitySolarPanel extends TileEntity implements IPowerProvieder 
 			work = false;
 			return;
 		}
-		if (isni) {
+		if (WorldUtils.isNight(worldObj)) {
 			er = "It's Night";
 			work = false;
 			return;
@@ -88,11 +86,6 @@ public class TileEntitySolarPanel extends TileEntity implements IPowerProvieder 
 		} else {
 			er = "Maximum Storage reached";
 			work = false;
-		}
-		time++;
-		if (time == 40) {
-			time = 0;
-			isni = WorldUtils.isNight(worldObj);
 		}
 	}
 

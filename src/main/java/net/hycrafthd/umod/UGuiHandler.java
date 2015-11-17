@@ -36,7 +36,7 @@ public class UGuiHandler implements IGuiHandler {
 		case PULVERISER:
 			return new GuiPulverizer(player, (IInventory) ent, world, p);
 		case SOLARPANEL:
-			return new GuiSolarPanel((IPowerProvieder) ent);
+			return new GuiSolarPanel(world,(IPowerProvieder) ent);
 		case BATTERIE:
 			return new GuiBattery(world, (IPowerProvieder) ent, player, p, 0);
 		default:

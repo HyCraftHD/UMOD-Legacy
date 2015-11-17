@@ -16,6 +16,6 @@ public class WorldUtils {
 	}
 
 	public static boolean isNight(World w){
-		return w.getTotalWorldTime() % 20L == 0L;
+		return w != null && w.getTotalWorldTime() % 20L == 0L;
 	}
 }

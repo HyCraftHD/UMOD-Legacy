@@ -83,7 +83,11 @@ tile.infectedfruit.name=Infected Fruit
 tile.pulver.name=Pulverizer
 
 #Solarpanel
-tile.solar.name=Solarpanel
+tile.solarpanellowvoltage.name=Lowvoltage Solarpanel
+tile.solarpanelmediumvoltage.name=Mediumvoltage Solarpanel
+tile.solarpanelhighvoltage.name=Highvoltage Solarpanel
+tile.solarpanelultravoltage.name=Ultravoltage Solarpanel
+tile.solarpanelextremevoltage.name=Extremevoltage Solarpanel
 
 #Tooltip
 

@@ -18,7 +18,7 @@ public class ItemBlockEnergy extends ItemBlock{
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer playerIn, List tip, boolean advanced) {
 		if (this.block instanceof IEnergyMessage) {
-			tip.add(EnumChatFormatting.BLUE + ((IEnergyMessage) this.block).getMessage());
+			tip.add(EnumChatFormatting.BLUE + ((IEnergyMessage) this.block).getMessage(0));
 		}
 	}
 }

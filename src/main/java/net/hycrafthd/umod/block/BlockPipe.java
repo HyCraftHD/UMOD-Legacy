@@ -167,7 +167,7 @@ public class BlockPipe extends Block implements ITileEntityProvider, IEnergyMess
 	}
 
 	@Override
-	public String getMessage() {
+	public String getMessage(int i) {
 		return "Transports " + EnergyUtils.inUE(powertrans) + "UE/t";
 	}
 }

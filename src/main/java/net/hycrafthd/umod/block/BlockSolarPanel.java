@@ -111,8 +111,20 @@ public class BlockSolarPanel extends BlockBase implements ITileEntityProvider, I
 	}
 
 	@Override
-	public String getMessage() {
-		return "Products " + EnergyUtils.inUE(3) + "UE/t";
+	public String getMessage(int meta) {
+		switch (EnumTypeSolarPanel.byMetadata(meta)) {
+		case LOWVOLTAGE:
+			return "Products " + EnergyUtils.inUE(2) + " UE/t";
+		case MEDIUMVOLTAGE:
+			return "Products "+ EnergyUtils.inUE(20) +"UE/t";
+		case HIGHVOLTAGE:
+			return "Products " + EnergyUtils.inUE(200) + "UE/t";
+		case ULTRAVOLTAGE:
+			return "Products "+ EnergyUtils.inUE(2000) +"UE/t";
+		case EXTREMEVOLTAGE:
+			return "Products "+ EnergyUtils.inUE(20000) +"UE/t";
+		}
+		return null;
 	}
 
 	public enum EnumTypeSolarPanel implements IStringSerializable {

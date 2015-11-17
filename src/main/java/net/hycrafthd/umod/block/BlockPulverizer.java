@@ -50,7 +50,7 @@ public class BlockPulverizer extends BlockBaseMachine implements IEnergyMessage 
 	}
 
 	@Override
-	public String getMessage() {
+	public String getMessage(int n) {
 		return "Needs " + EnergyUtils.inUE(10) + "UE/t";
 	}
 

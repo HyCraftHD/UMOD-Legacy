@@ -45,12 +45,13 @@ public class TileEntityPulverizer extends TileEntityLockable implements
 
 	@Override
 	public ItemStack decrStackSize(int index, int count) {
+		ItemStack tsta = stack[index].copy();
 	    if(stack[index].stackSize > count){
 	    	stack[index].stackSize -= count;
 	    }else{
 	    	stack[index] = null;
 	    }
-		return stack[index];
+		return tsta;
 	}
 
 	@Override

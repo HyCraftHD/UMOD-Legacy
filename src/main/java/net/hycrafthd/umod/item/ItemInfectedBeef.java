@@ -8,10 +8,10 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 
-public class ItemInfectedCrop extends ItemFood {
+public class ItemInfectedBeef extends ItemFood {
 
-	public ItemInfectedCrop() {
-		super(1, 0.2F, false);
+	public ItemInfectedBeef() {
+		super(3, 0.3F, true);
 		this.setCreativeTab(UReference.tab);
 		this.setPotionEffect(UPotion.radiationPotion.getId(), 5, 1, 0.8F);
 	}

@@ -4,6 +4,7 @@ import java.util.Random;
 
 import net.hycrafthd.umod.UBlocks;
 import net.hycrafthd.umod.UPotion;
+import net.hycrafthd.umod.interfaces.IInfectedBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -16,7 +17,7 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 
-public class BlockInfectedGrass extends BlockBase {
+public class BlockInfectedGrass extends BlockBase implements IInfectedBlock {
 
 	public BlockInfectedGrass() {
 		super(Material.grass);

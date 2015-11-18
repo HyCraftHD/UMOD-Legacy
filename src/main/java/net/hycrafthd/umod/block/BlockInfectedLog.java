@@ -1,18 +1,20 @@
 package net.hycrafthd.umod.block;
 
 import net.hycrafthd.umod.UReference;
+import net.hycrafthd.umod.interfaces.IInfectedBlock;
 import net.minecraft.block.BlockLog;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 
-public class BlockInfectedLog extends BlockLog {
+public class BlockInfectedLog extends BlockLog implements IInfectedBlock {
 
 	public BlockInfectedLog() {
 		this.setCreativeTab(UReference.tab);
-		this.setHarvestLevel("axe", 2);
+		this.setHarvestLevel("axe", 1);
 		this.setHardness(2.0F);
+		this.setResistance(5.0F);
 		this.setStepSound(soundTypeWood);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(LOG_AXIS, BlockLog.EnumAxis.Y));
 		Blocks.fire.setFireInfo(this, 5, 5);

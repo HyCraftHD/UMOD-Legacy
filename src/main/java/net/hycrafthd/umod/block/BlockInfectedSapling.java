@@ -4,6 +4,7 @@ import java.util.Random;
 
 import net.hycrafthd.umod.UBlocks;
 import net.hycrafthd.umod.UReference;
+import net.hycrafthd.umod.interfaces.IInfectedBlock;
 import net.hycrafthd.umod.world.GenInfectedTree;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
@@ -19,7 +20,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
-public class BlockInfectedSapling extends BlockBush implements IGrowable {
+public class BlockInfectedSapling extends BlockBush implements IGrowable, IInfectedBlock {
 	public static final PropertyInteger STAGE = PropertyInteger.create("stage", 0, 1);
 
 	public BlockInfectedSapling() {

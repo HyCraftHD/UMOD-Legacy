@@ -3,7 +3,7 @@ package net.hycrafthd.umod;
 import org.apache.logging.log4j.Logger;
 
 import net.hycrafthd.umod.event.EventExecuteRadiation;
-import net.hycrafthd.umod.event.EventGettingRadiationByInfectedBlock;
+import net.hycrafthd.umod.event.EventGettingRadiation;
 import net.hycrafthd.umod.event.EventModelBakeri;
 import net.hycrafthd.umod.utils.CommonRegistryUtils;
 import net.minecraftforge.fml.common.Mod;
@@ -48,7 +48,7 @@ public class UMod {
 
 	public void registerEvents() {
 		UEvent event = new UEvent();
-		event.addEvent(new EventGettingRadiationByInfectedBlock());
+		event.addEvent(new EventGettingRadiation());
 		event.addEvent(new EventExecuteRadiation());
 		event.addEvent(new EventModelBakeri());
 		event.register();

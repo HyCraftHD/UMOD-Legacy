@@ -2,7 +2,7 @@ package net.hycrafthd.umod.entity;
 
 import net.hycrafthd.umod.UItems;
 import net.hycrafthd.umod.enumtype.EnumTypeBaseStuff;
-import net.hycrafthd.umod.interfaces.InfectedEntityInterface;
+import net.hycrafthd.umod.interfaces.IInfectedEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
@@ -27,7 +27,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import com.google.common.base.Predicate;
 
-public class EntityInfectedCreeper extends EntityCreeper implements InfectedEntityInterface {
+public class EntityInfectedCreeper extends EntityCreeper implements IInfectedEntity {
 
 	private int lastActiveTime;
 	private int timeSinceIgnited;
@@ -58,19 +58,19 @@ public class EntityInfectedCreeper extends EntityCreeper implements InfectedEnti
 	}
 
 	@Override
-	protected void applyEntityAttributes() {
+	public void applyEntityAttributes() {
 		super.applyEntityAttributes();
 		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(30D);
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.3D);
 	}
 
 	@Override
-	protected Item getDropItem() {
+	public Item getDropItem() {
 		return Items.gunpowder;
 	}
 
 	@Override
-	protected void dropFewItems(boolean p_70628_1_, int p_70628_2_) {
+	public void dropFewItems(boolean p_70628_1_, int p_70628_2_) {
 		int gunSize = 1;
 		if (this.rand.nextInt(2) == 0) {
 			int j = this.rand.nextInt(3) + 1 + this.rand.nextInt(1 + p_70628_2_);
@@ -83,7 +83,7 @@ public class EntityInfectedCreeper extends EntityCreeper implements InfectedEnti
 	}
 
 	@Override
-	protected void entityInit() {
+	public void entityInit() {
 		super.entityInit();
 	}
 
@@ -101,7 +101,7 @@ public class EntityInfectedCreeper extends EntityCreeper implements InfectedEnti
 	}
 
 	/**
-	 * (abstract) Protected helper method to read subclass entity data from NBT.
+	 * (abstract) public helper method to read subclass entity data from NBT.
 	 */
 	@Override
 	public void readEntityFromNBT(NBTTagCompound tagCompund) {
@@ -161,7 +161,7 @@ public class EntityInfectedCreeper extends EntityCreeper implements InfectedEnti
 	}
 
 	@Override
-	protected boolean interact(EntityPlayer player) {
+	public boolean interact(EntityPlayer player) {
 		ItemStack itemstack = player.inventory.getCurrentItem();
 
 		if (itemstack != null && itemstack.getItem() == Items.flint_and_steel) {
@@ -185,12 +185,12 @@ public class EntityInfectedCreeper extends EntityCreeper implements InfectedEnti
 	}
 
 	@Override
-	protected String getHurtSound() {
+	public String getHurtSound() {
 		return "mob.creeper.say";
 	}
 
 	@Override
-	protected String getDeathSound() {
+	public String getDeathSound() {
 		return "mob.creeper.death";
 	}
 

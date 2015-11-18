@@ -6,6 +6,7 @@ import java.util.Random;
 
 import net.hycrafthd.umod.UBlocks;
 import net.hycrafthd.umod.UItems;
+import net.hycrafthd.umod.interfaces.IInfectedBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -17,7 +18,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import scala.actors.threadpool.Arrays;
 
-public class BlockInfectedFruit extends BlockBase {
+public class BlockInfectedFruit extends BlockBase implements IInfectedBlock {
 
 	public BlockInfectedFruit() {
 		super(Material.plants);

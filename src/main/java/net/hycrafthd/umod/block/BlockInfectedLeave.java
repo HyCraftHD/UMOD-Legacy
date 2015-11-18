@@ -6,6 +6,7 @@ import java.util.Random;
 
 import net.hycrafthd.umod.UBlocks;
 import net.hycrafthd.umod.UReference;
+import net.hycrafthd.umod.interfaces.IInfectedBlock;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.properties.IProperty;
@@ -27,7 +28,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import scala.actors.threadpool.Arrays;
 
-public class BlockInfectedLeave extends BlockLeaves {
+public class BlockInfectedLeave extends BlockLeaves implements IInfectedBlock {
 
 	public BlockInfectedLeave() {
 		super();

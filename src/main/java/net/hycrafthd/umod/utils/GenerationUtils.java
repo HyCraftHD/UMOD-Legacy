@@ -2,7 +2,6 @@ package net.hycrafthd.umod.utils;
 
 import java.util.Random;
 
-import net.hycrafthd.umod.entity.EntityInfectedCow;
 import net.hycrafthd.umod.enumtype.EnumTypeChestLooting;
 import net.hycrafthd.umod.schematic.Schematic;
 import net.minecraft.block.Block;
@@ -16,8 +15,6 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.gen.feature.WorldGenMinable;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GenerationUtils {
 
@@ -49,7 +46,7 @@ public class GenerationUtils {
 					System.out.println("Schematic generiert: " + posX + " " + posY + " " + posZ);
 
 				} else {
-					if (world.getBiomeGenForCoords(new BlockPos(posX, posY, posZ)) == biome) {
+					if (getBiomeGenForCoords(world, new BlockPos(posX, posY, posZ), biome)) {
 						clazz.newInstance().generate(world, posX, posY, posZ);
 						System.out.println("Schematic generiert: " + posX + " " + posY + " " + posZ);
 
@@ -85,6 +82,10 @@ public class GenerationUtils {
 			}
 		}
 		return height;
+	}
+
+	public static boolean getBiomeGenForCoords(World world, BlockPos pos, BiomeGenBase biome) {
+		return world.getBiomeGenForCoords(pos) == biome;
 	}
 
 }

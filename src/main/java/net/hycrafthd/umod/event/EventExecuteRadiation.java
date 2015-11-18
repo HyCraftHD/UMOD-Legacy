@@ -5,6 +5,7 @@ import java.util.HashMap;
 import net.hycrafthd.umod.UDamageSource;
 import net.hycrafthd.umod.UPotion;
 import net.hycrafthd.umod.armor.ArmorRadiation;
+import net.hycrafthd.umod.utils.EntityUtils;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -14,12 +15,15 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class EventExecuteRadiation {
 
-	private HashMap<EntityPlayer, Long> timer = new HashMap<EntityPlayer, Long>();
+	private HashMap<EntityPlayer, Integer> timer = new HashMap<EntityPlayer, Integer>();
 
 	@SubscribeEvent
 	public void onUpdateEntity(LivingUpdateEvent event) {
 		EntityLivingBase base = event.entityLiving;
 		if (base.isPotionActive(UPotion.radiationPotion)) {
+
+			if (EntityUtils.isInfectedEntity(base))
+				return;
 
 			if (base instanceof EntityPlayer) {
 				EntityPlayer sp = (EntityPlayer) base;
@@ -35,11 +39,14 @@ public class EventExecuteRadiation {
 					}
 				}
 				if (full) {
-					if (!timer.containsKey(sp))
-						timer.put(sp, System.currentTimeMillis());
-					if (System.currentTimeMillis() - timer.get(sp) >= 1000 * 8) {
-						sp.inventory.damageArmor(1);
-						timer.remove(sp);
+					if (!timer.containsKey(sp)) {
+						timer.put(sp, 0);
+					} else {
+						timer.put(sp, timer.get(sp) + 1);
+						if (timer.get(sp) >= 10 * 20) {
+							sp.inventory.damageArmor(1);
+							timer.remove(sp);
+						}
 					}
 					return;
 				}
@@ -47,13 +54,6 @@ public class EventExecuteRadiation {
 
 			PotionEffect effect = base.getActivePotionEffect(UPotion.radiationPotion);
 			base.attackEntityFrom(UDamageSource.radiationDamageSource, effect.getAmplifier() + 0.5F);
-			if (base instanceof EntityPlayer) {
-				EntityPlayer sp = (EntityPlayer) base;
-
-				if (sp.worldObj.rand.nextInt(200) == 0) {
-					sp.getFoodStats().setFoodLevel(sp.getFoodStats().getFoodLevel() - 1);
-				}
-			}
 		}
 	}
 

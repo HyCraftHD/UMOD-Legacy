@@ -27,8 +27,8 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.EnumFacing;
 
-public class TileEntityPulverizer extends TileEntityLockable implements 
-                              ISidedInventory ,IPowerProvieder,IGuiProvider{
+public class TileEntityPulverizer extends TileEntityBase implements 
+                               IPowerProvieder,IGuiProvider{
 
 	private ItemStack[] stack = new ItemStack[4];
 	private String pl = null;
@@ -45,7 +45,7 @@ public class TileEntityPulverizer extends TileEntityLockable implements
 
 	@Override
 	public ItemStack decrStackSize(int index, int count) {
-		ItemStack tsta = stack[index].copy();
+		ItemStack tsta = stack[index];
 	    if(stack[index].stackSize > count){
 	    	stack[index].stackSize -= count;
 	    }else{
@@ -56,7 +56,7 @@ public class TileEntityPulverizer extends TileEntityLockable implements
 
 	@Override
 	public ItemStack getStackInSlotOnClosing(int index) {
-		 if (this.stack[index] != null)
+		    if (this.stack[index] != null)
 	        {
 	            ItemStack itemstack = this.stack[index];
 	            this.stack[index] = null;
@@ -198,7 +198,7 @@ public class TileEntityPulverizer extends TileEntityLockable implements
 				    }			    	
 			    	time = 0;
 			    }
-			    strpo -= 10;
+			    strpo -= EnergyUtils.inUE(10);
 			    work = true;
 			    return;
 			}
@@ -217,7 +217,7 @@ public class TileEntityPulverizer extends TileEntityLockable implements
 		    	}
 		    	time = 0;
 			    work = true;
-			    strpo -= 10;
+			    strpo -= EnergyUtils.inUE(10);
 		    }
 			}
 		}else{
@@ -399,19 +399,6 @@ public class TileEntityPulverizer extends TileEntityLockable implements
 		return false;
 	}
 	
-	@Override
-	public void updateContainingBlockInfo()
-	{
-		super.updateContainingBlockInfo();
-	}
-	
-	@Override
-	public void invalidate()
-	{
-		this.updateContainingBlockInfo();
-		super.invalidate();
-	}
-
 	@Override
 	public int getPowerProducNeeds() {
 		return EnergyUtils.inUE(10);

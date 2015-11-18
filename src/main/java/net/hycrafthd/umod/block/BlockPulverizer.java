@@ -1,5 +1,7 @@
 package net.hycrafthd.umod.block;
 
+import java.util.Random;
+
 import net.hycrafthd.umod.UReference;
 import net.hycrafthd.umod.api.IEnergyMessage;
 import net.hycrafthd.umod.enumtype.EnumTypeGui;
@@ -10,6 +12,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.World;
 
 public class BlockPulverizer extends BlockBaseMachine implements IEnergyMessage {
@@ -52,6 +55,12 @@ public class BlockPulverizer extends BlockBaseMachine implements IEnergyMessage 
 	@Override
 	public String getMessage(int n) {
 		return "Needs " + EnergyUtils.inUE(10) + "UE/t";
+	}
+	
+	@Override
+	public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
+		super.updateTick(worldIn, pos, state, rand);
+		worldIn.spawnParticle(EnumParticleTypes.BLOCK_DUST, pos.getX(), pos.getX(), pos.getX(), 0, 0, 0, 120);
 	}
 
 }

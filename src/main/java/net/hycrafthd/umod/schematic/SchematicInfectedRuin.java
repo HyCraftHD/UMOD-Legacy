@@ -15,10 +15,10 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-public class SchematicInfestedRuin1 extends Schematic {
+public class SchematicInfectedRuin extends Schematic {
 
-	public SchematicInfestedRuin1() {
-		super("infestedruin1");
+	public SchematicInfectedRuin() {
+		super("infestedruin");
 	}
 
 	public void generate(World world, int x, int y, int z) {

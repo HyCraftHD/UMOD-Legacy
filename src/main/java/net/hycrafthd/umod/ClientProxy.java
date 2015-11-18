@@ -6,13 +6,18 @@ import net.hycrafthd.umod.block.BlockSolarPanel.EnumTypeSolarPanel;
 import net.hycrafthd.umod.entity.EntityInfectedCow;
 import net.hycrafthd.umod.entity.render.RenderInfectedCow;
 import net.hycrafthd.umod.enumtype.EnumTypeBaseStuff;
+import net.hycrafthd.umod.render.TileEntityPulverizerSpecialRender;
+import net.hycrafthd.umod.tileentity.TileEntityPulverizer;
 import net.hycrafthd.umod.utils.ClientRegistryUtils;
+import net.hycrafthd.umod.utils.ModRegistryUtils;
 import net.minecraft.client.resources.model.ModelBakery;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class ClientProxy extends CommonProxy {
 
@@ -83,40 +88,11 @@ public class ClientProxy extends CommonProxy {
 
 		UEntity.addtoRender();
 
-		/*
-		 * UModRegistery.registerBlockPipe(UBlocks.iron_pipe,"blocks/iron_block"
-		 * ); UModRegistery.registerBlockPipe(UBlocks.alu_pipe,
-		 * "umod:blocks/block/aluminium");
-		 * UModRegistery.registerBlockPipe(UBlocks.silver_pipe,
-		 * "umod:blocks/block/silver");
-		 * UModRegistery.registerBlockPipe(UBlocks.lead_pipe,
-		 * "umod:blocks/block/lead");
-		 * UModRegistery.registerBlockPipe(UBlocks.gold_pipe,"blocks/gold_block"
-		 * ); UModRegistery.registerBlockPipe(UBlocks.copper_pipe,
-		 * "umod:blocks/block/copper");
-		 * UModRegistery.registerBlockPipe(UBlocks.zin_pipe,
-		 * "umod:blocks/block/tin");
-		 */
-
-		/*
-		 * UModRegistery.registerBlockPipe(UBlocks.iron_pipe,"blocks/iron_block"
-		 * ); UModRegistery.registerBlockPipe(UBlocks.alu_pipe,
-		 * "umod:blocks/block/aluminium");
-		 * UModRegistery.registerBlockPipe(UBlocks.silver_pipe,
-		 * "umod:blocks/block/silver");
-		 * UModRegistery.registerBlockPipe(UBlocks.lead_pipe,
-		 * "umod:blocks/block/lead");
-		 * UModRegistery.registerBlockPipe(UBlocks.gold_pipe,"blocks/gold_block"
-		 * ); UModRegistery.registerBlockPipe(UBlocks.copper_pipe,
-		 * "umod:blocks/block/copper");
-		 * UModRegistery.registerBlockPipe(UBlocks.zin_pipe,
-		 * "umod:blocks/block/tin");
-		 */
-
 	}
 
 	public void registerRenderer() {
 		ClientRegistryUtils.registerEntityRenderer(EntityInfectedCow.class, new RenderInfectedCow());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPulverizer.class, new TileEntityPulverizerSpecialRender());
 	}
 
 	@Override

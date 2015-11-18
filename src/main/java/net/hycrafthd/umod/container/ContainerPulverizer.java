@@ -5,6 +5,7 @@ import java.util.Iterator;
 import net.hycrafthd.umod.UMod;
 import net.hycrafthd.umod.inventory.BaseOreInputSlot;
 import net.hycrafthd.umod.inventory.BaseSlotOutput;
+import net.hycrafthd.umod.utils.ModRegistryUtils;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -13,7 +14,9 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.inventory.SlotFurnaceOutput;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 
@@ -55,6 +58,75 @@ public class ContainerPulverizer extends Container{
          }
 				
 	}
+	
+	@Override
+	public ItemStack transferStackInSlot(EntityPlayer playerIn, int index) {
+		ItemStack itemstack = null;
+        Slot slot = (Slot)this.inventorySlots.get(index);
+
+        if (slot != null && slot.getHasStack())
+        {
+            ItemStack itemstack1 = slot.getStack();
+            itemstack = itemstack1.copy();
+
+            if (index == 3)
+            {
+                if (!this.mergeItemStack(itemstack1, 4, 39, true))
+                {
+                    return null;
+                }
+
+                slot.onSlotChange(itemstack1, itemstack);
+            }
+            else if (index != 1 && index != 0 && index != 2)
+            {
+                if (ModRegistryUtils.isRecepie(itemstack1) != null)
+                {
+                    if (!this.mergeItemStack(itemstack1, 3, 4, false))
+                    {
+                    	System.out.println("Not Mergable");
+                        return null;
+                    }
+                }
+                else if (index >= 4 && index < 30)
+                {
+                    if (!this.mergeItemStack(itemstack1, 30, 39, false))
+                    {
+                        return null;
+                    }
+                }
+                else if (index >= 30 && index < 39 && !this.mergeItemStack(itemstack1, 4, 30, false))
+                {
+                    return null;
+                }
+            }
+            else if (!this.mergeItemStack(itemstack1, 4, 39, false))
+            {
+                return null;
+            }
+
+            if (itemstack1.stackSize == 0)
+            {
+                slot.putStack((ItemStack)null);
+            }
+            else
+            {
+                slot.onSlotChanged();
+            }
+
+            if (itemstack1.stackSize == itemstack.stackSize)
+            {
+                return null;
+            }
+
+            slot.onPickupFromSlot(playerIn, itemstack1);
+        }
+
+        return itemstack;
+	}
+	
+	@Override
+	protected void retrySlotClick(int p_75133_1_, int p_75133_2_, boolean p_75133_3_, EntityPlayer p_75133_4_) {}
 	
 	@Override
 	public boolean canInteractWith(EntityPlayer playerIn) {

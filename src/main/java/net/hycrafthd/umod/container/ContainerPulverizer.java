@@ -32,10 +32,10 @@ public class ContainerPulverizer extends Container{
         this.pos = ent.getPos();
         this.worldObj = wo;
         
-		output[0] = super.addSlotToContainer(new SlotFurnaceOutput(pl,(IInventory) ent, 0, 116, 24));
-		output[1] = super.addSlotToContainer(new SlotFurnaceOutput(pl,(IInventory) ent, 1, 98, 54));
-		output[2] = super.addSlotToContainer(new SlotFurnaceOutput(pl,(IInventory) ent, 2, 126, 54));
-		input = super.addSlotToContainer(new Slot((IInventory) ent, 3, 30, 23));	
+		output[0] = super.addSlotToContainer(new BaseSlotOutput((IInventory) ent, 0, 116, 24));
+		output[1] = super.addSlotToContainer(new BaseSlotOutput((IInventory) ent, 1, 98, 54));
+		output[2] = super.addSlotToContainer(new BaseSlotOutput((IInventory) ent, 2, 126, 54));
+		input = super.addSlotToContainer(new BaseOreInputSlot((IInventory) ent, 3, 30, 23));	
          
          int i = 0;
          int v = 9;

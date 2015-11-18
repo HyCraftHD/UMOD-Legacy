@@ -1,7 +1,9 @@
 package net.hycrafthd.umod;
 
+import net.hycrafthd.umod.api.PulverizerRecepie;
 import net.hycrafthd.umod.enumtype.EnumTypeBaseStuff;
 import net.hycrafthd.umod.utils.CommonRegistryUtils;
+import net.hycrafthd.umod.utils.ModRegistryUtils;
 import net.minecraft.item.ItemStack;
 
 public class URecipes {
@@ -9,6 +11,7 @@ public class URecipes {
 	public URecipes() {
 		registerCraftingRecipes();
 		registerFurnaceRecipes();
+		registerPulverizerRecipes();
 	}
 
 	private void registerCraftingRecipes() {
@@ -30,6 +33,17 @@ public class URecipes {
 			if (EnumTypeBaseStuff.byMetadata(i).getName() != "sulphur") {
 				CommonRegistryUtils.registerSmelting(new ItemStack(UBlocks.ores, 1, i), new ItemStack(UItems.ingots, 1, i), 0.7F);
 			}
+		}
+	}
+	
+	private void registerPulverizerRecipes() {
+		// Ores -> Dust (without Sulphur Chunk)
+		for (int i = 0; i < EnumTypeBaseStuff.values().length; i++) {
+				int b = i + 1;
+				if(i + 1 >= EnumTypeBaseStuff.values().length){
+					b = 0;
+				}
+				ModRegistryUtils.addPulverRiecepie(new PulverizerRecepie(new ItemStack(UBlocks.ores, 1, i), new ItemStack(UItems.dusts, 1, i), new ItemStack(UItems.dusts, 1, b)));
 		}
 	}
 

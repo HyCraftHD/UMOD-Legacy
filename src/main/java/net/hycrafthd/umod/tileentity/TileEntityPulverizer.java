@@ -172,18 +172,12 @@ public class TileEntityPulverizer extends TileEntityLockable implements
 	
 	private int time = 0;
 	public boolean work = false;
-	public boolean wasfull = false;
 	
 	@Override
 	public void update() {
-		if(strpo == 1000){
-			wasfull = true;
-		}else if(strpo <= 10){
-			wasfull = false;
-		}
 		if(stack[3] != null){
 		ItemStack[] args = ModRegistryUtils.isRecepie(stack[3].copy());
-		if(args != null && wasfull){
+		if(args != null && strpo > 10){
 			if(stack[2] != null && stack[2].stackSize > 64){
 				time = 0;
 				return;
@@ -196,9 +190,11 @@ public class TileEntityPulverizer extends TileEntityLockable implements
 			    	}else{
 			    		stack[3].stackSize--;
 			    	}
-			    	finishItem(0, args[0]);
-			    	finishItem(1, args[1]);
-			    	finishItem(2, args[2]);
+			    	finishItem(0, args[0].copy());
+			    	finishItem(1, args[1].copy());
+			    	if(args[2] != null){
+				    	finishItem(2, args[2].copy());
+				    }			    	
 			    	time = 0;
 			    }
 			    strpo -= 10;
@@ -213,9 +209,11 @@ public class TileEntityPulverizer extends TileEntityLockable implements
 		    	}else{
 		    		stack[3].stackSize--;
 		    	}
-		    	finishItem(0, args[0]);
-		    	finishItem(1, args[1]);
-		    	finishItem(2, args[2]);
+		    	finishItem(0, args[0].copy());
+		    	finishItem(1, args[1].copy());
+		    	if(args[2] != null){
+		    	finishItem(2, args[2].copy());
+		    	}
 		    	time = 0;
 			    work = true;
 			    strpo -= 10;
@@ -223,7 +221,6 @@ public class TileEntityPulverizer extends TileEntityLockable implements
 			}
 		}else{
 		    work = false;
-			time = 0;
 		}
 		}
 		BlockPos[] list = {pos.east(),pos.north(),pos.south(),pos.west(),pos.up(),pos.down()};
@@ -239,6 +236,8 @@ public class TileEntityPulverizer extends TileEntityLockable implements
 					strpo += p.getPower(p.getMaximalPower());
 				}else if(this.canAddPower(p.getStoredPower())){
 					strpo += p.getPower(p.getStoredPower());
+				}else if(p.canGetPower(this.MAXIMUM_POWER - this.strpo)){
+					strpo += this.MAXIMUM_POWER - this.strpo;
 				}
 			}
 		}
@@ -251,9 +250,9 @@ public class TileEntityPulverizer extends TileEntityLockable implements
 	
 	private void finishItem(int in,ItemStack is){
 		ItemStack s = stack[in];
-		if(s == null){
+		if(is != null && is != null &&s == null){
 			stack[in] = is;
-		}else if(s.isItemEqual(is) && is != null){
+		}else if(is != null && s.isItemEqual(is)){
 			stack[in].stackSize += is.stackSize;
 		}
 	}

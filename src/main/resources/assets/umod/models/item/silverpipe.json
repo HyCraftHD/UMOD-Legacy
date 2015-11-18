@@ -1,5 +1,5 @@
 {
-    "parent": "umod:block/silverpipe/silverpipe_0",
+    "parent": "umod:block/silverpipe/silverpipe_63",
     "display": {
         "thirdperson": {
             "rotation": [ 10, -45, 170 ],

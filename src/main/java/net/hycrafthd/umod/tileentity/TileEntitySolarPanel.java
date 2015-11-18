@@ -18,6 +18,9 @@ public class TileEntitySolarPanel extends TileEntity implements IPowerProvieder 
 	public String unlocalizedname;
 	public String er = null;
 
+	public TileEntitySolarPanel() {
+	}
+	
 	public TileEntitySolarPanel(int produce, int max, String str) {
 		this.producing = produce;
 		this.MAXIMUM_POWER = max;

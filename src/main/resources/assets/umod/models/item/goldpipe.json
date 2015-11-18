@@ -1,5 +1,5 @@
 {
-    "parent": "umod:block/goldpipe/goldpipe_0",
+    "parent": "umod:block/goldpipe/goldpipe_63",
     "display": {
         "thirdperson": {
             "rotation": [ 10, -45, 170 ],

@@ -47,9 +47,8 @@ public class ClientProxy extends CommonProxy {
 			ClientRegistryUtils.registerModelRenderer(UItems.dusts, i, new ModelResourceLocation(UReference.resource + "dust" + EnumTypeBaseStuff.byMetadata(i).getName(), "inventory"));
 		}
 
-		// Machine
+		// Pulverizer
 		ClientRegistryUtils.registerModelRenderer(UBlocks.pulver);
-		ClientRegistryUtils.registerModelRenderer(UBlocks.blockatomfass);
 
 		// Cobble Dust
 		ClientRegistryUtils.registerModelRenderer(UItems.cdust);
@@ -86,7 +85,7 @@ public class ClientProxy extends CommonProxy {
 		ClientRegistryUtils.registerModelRenderer(UBlocks.gold_pipe);
 		ClientRegistryUtils.registerModelRenderer(UBlocks.copper_pipe);
 		ClientRegistryUtils.registerModelRenderer(UBlocks.zin_pipe);
-		
+
 		UEntity.addtoRender();
 
 	}

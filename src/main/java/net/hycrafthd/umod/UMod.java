@@ -11,6 +11,7 @@ import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 
 @Mod(modid = UReference.modid, version = UReference.version, name = UReference.name)
 public class UMod {
@@ -44,6 +45,11 @@ public class UMod {
 		UReference.proxy.registerModels();
 		UReference.proxy.registerRenderer();
 
+	}
+
+	@EventHandler
+	public void serverstarting(FMLServerStartingEvent event) {
+		new UCommands(event);
 	}
 
 	public void registerEvents() {

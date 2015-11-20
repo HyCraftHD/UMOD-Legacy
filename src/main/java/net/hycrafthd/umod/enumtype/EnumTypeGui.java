@@ -2,7 +2,7 @@ package net.hycrafthd.umod.enumtype;
 
 public enum EnumTypeGui {
 
-	PULVERISER(0), SOLARPANEL(1), BATTERIE(2);
+	PULVERISER(0), SOLARPANEL(1), BATTERIE(2), BARREL(3);
 
 	public int getID() {
 		return id;

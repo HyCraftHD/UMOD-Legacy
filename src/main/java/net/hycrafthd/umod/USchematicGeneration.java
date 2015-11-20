@@ -3,11 +3,9 @@ package net.hycrafthd.umod;
 import java.util.Random;
 
 import net.hycrafthd.umod.schematic.SchematicGenerationBase;
-import net.hycrafthd.umod.schematic.SchematicInfectedRuin;
+import net.hycrafthd.umod.schematic.SchematicInfestedRuin1;
 import net.hycrafthd.umod.utils.GenerationUtils;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldSavedData;
 import net.minecraft.world.chunk.IChunkProvider;
 
 public class USchematicGeneration extends SchematicGenerationBase {
@@ -17,10 +15,11 @@ public class USchematicGeneration extends SchematicGenerationBase {
 	}
 
 	private void overworld(Random random, int x, int z, World world) {
-		GenerationUtils.generateSchematic(SchematicInfectedRuin.class, random, x, z, world, 25, UBiome.infestedBiomBase);
+		GenerationUtils.generateSchematic(SchematicInfestedRuin1.class, random, x, z, world, 25, UBiome.infestedBiomBase);
 	}
 
 	private void end(Random random, int x, int z, World world) {
+
 	}
 
 	@Override
@@ -41,16 +40,17 @@ public class USchematicGeneration extends SchematicGenerationBase {
 		}
 	}
 
-	/*
-	 * private void generateInfestedRuin1(Random random, int x, int z, World
-	 * world) { if (random.nextInt(25) == 0) { int posX = x +
-	 * random.nextInt(16); int posZ = z + random.nextInt(16); int posY =
-	 * getWorldHeightAt(world, x, z);
-	 * 
-	 * if (world.getBiomeGenForCoords(new BlockPos(posX, posY, posZ)) ==
-	 * UBiome.infestedBiomBase) { new SchematicInfestedRuin1().generate(world,
-	 * posX, posY, posZ); System.out.println("Schematic generiert: " + posX +
-	 * " " + posY + " " + posZ); } } }
-	 */
+	/*private void generateInfestedRuin1(Random random, int x, int z, World world) {
+		if (random.nextInt(25) == 0) {
+			int posX = x + random.nextInt(16);
+			int posZ = z + random.nextInt(16);
+			int posY = getWorldHeightAt(world, x, z);
+
+			if (world.getBiomeGenForCoords(new BlockPos(posX, posY, posZ)) == UBiome.infestedBiomBase) {
+				new SchematicInfestedRuin1().generate(world, posX, posY, posZ);
+				System.out.println("Schematic generiert: " + posX + " " + posY + " " + posZ);
+			}
+		}
+	}*/
 
 }

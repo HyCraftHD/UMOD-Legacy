@@ -12,6 +12,7 @@ import net.hycrafthd.umod.block.BlockOres;
 import net.hycrafthd.umod.block.BlockPipe;
 import net.hycrafthd.umod.block.BlockPulverizer;
 import net.hycrafthd.umod.block.BlockSolarPanel;
+import net.hycrafthd.umod.block.Itemanitatomteil;
 import net.hycrafthd.umod.item.ItemBlockBlocks;
 import net.hycrafthd.umod.item.ItemBlockEnergy;
 import net.hycrafthd.umod.item.ItemBlockOres;
@@ -28,8 +29,9 @@ public class UBlocks {
 	public static Block blocks;
 	// SolarPanel
 	public static Block solarpanel;
-	// Pulverizer
+	// Machines
 	public static Block pulver;
+	public static Block blockatomfass;
 	// Infected
 	public static Block infectedGrass;
 	public static Block infectedDirt;
@@ -58,7 +60,8 @@ public class UBlocks {
 		ores = new BlockOres().setUnlocalizedName("ores");
 		// Blocks
 		blocks = new BlockBlocks().setUnlocalizedName("blocks");
-		// Pulverizer
+		// Machine
+		blockatomfass = new Itemanitatomteil().setUnlocalizedName("blockatom");
 		pulver = new BlockPulverizer().setUnlocalizedName("pulver");
 		// SolarPanel
 		solarpanel = new BlockSolarPanel().setUnlocalizedName("solarpanel");
@@ -85,8 +88,9 @@ public class UBlocks {
 		CommonRegistryUtils.registerBlock(ores, ItemBlockOres.class);
 		// Blocks
 		CommonRegistryUtils.registerBlock(blocks, ItemBlockBlocks.class);
-		// Pulverizer
+		// Machin
 		CommonRegistryUtils.registerBlocks(pulver, ItemBlockEnergy.class);
+		CommonRegistryUtils.registerBlock(blockatomfass);
 		// SolarPanel
 		CommonRegistryUtils.registerBlocks(solarpanel, ItemBlockSolarPanel.class);
 		// Infected
@@ -112,7 +116,8 @@ public class UBlocks {
 		CommonRegistryUtils.registerOredirectionary(ores);
 		// Blocks
 		CommonRegistryUtils.registerOredirectionary(blocks);
-		// Pulverizer
+		// Machinen
+		CommonRegistryUtils.registerOredirectionary(blockatomfass);
 		CommonRegistryUtils.registerOredirectionary(pulver);
 		// SolarPanel
 		CommonRegistryUtils.registerOredirectionary(solarpanel);

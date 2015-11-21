@@ -8,19 +8,19 @@ import net.minecraft.util.MathHelper;
 public class ModelInfectedCreeper extends ModelBase
 {
   //fields
-	 ModelRenderer headleft;
-	    ModelRenderer headright;
-	    ModelRenderer body;
-	    ModelRenderer throatright;
-	    ModelRenderer throatleft;
-	    ModelRenderer leg3;
-	    ModelRenderer leg4;
-	    ModelRenderer leg1;
-	    ModelRenderer leg2;
-	    ModelRenderer sideleft1;
-	    ModelRenderer sideleft2;
-	    ModelRenderer sideright1;
-	    ModelRenderer sideright2;
+    ModelRenderer headleft;
+    ModelRenderer headright;
+    ModelRenderer body;
+    ModelRenderer throatright;
+    ModelRenderer throatleft;
+    ModelRenderer leg3;
+    ModelRenderer leg4;
+    ModelRenderer leg1;
+    ModelRenderer leg2;
+    ModelRenderer sideleft1;
+    ModelRenderer sideleft2;
+    ModelRenderer sideright1;
+    ModelRenderer sideright2;
   
   public ModelInfectedCreeper()
   {

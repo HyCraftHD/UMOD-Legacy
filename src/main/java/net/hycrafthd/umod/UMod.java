@@ -1,7 +1,6 @@
 package net.hycrafthd.umod;
 
-import org.apache.logging.log4j.Logger;
-
+import net.hycrafthd.umod.api.ProcessHandler;
 import net.hycrafthd.umod.event.EventExecuteRadiation;
 import net.hycrafthd.umod.event.EventGettingRadiation;
 import net.hycrafthd.umod.event.EventModelBakeri;
@@ -12,6 +11,8 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
+
+import org.apache.logging.log4j.Logger;
 
 @Mod(modid = UReference.modid, version = UReference.version, name = UReference.name)
 public class UMod {
@@ -57,6 +58,7 @@ public class UMod {
 		event.addEvent(new EventGettingRadiation());
 		event.addEvent(new EventExecuteRadiation());
 		event.addEvent(new EventModelBakeri());
+		event.addEvent(new ProcessHandler());
 		event.register();
 
 	}

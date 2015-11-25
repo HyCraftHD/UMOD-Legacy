@@ -2,22 +2,22 @@ package net.hycrafthd.umod;
 
 import java.util.Random;
 
-import net.hycrafthd.umod.schematic.SchematicGenerationBase;
-import net.hycrafthd.umod.schematic.SchematicInfectedRuin;
+import net.hycrafthd.umod.uschematic.USchematicGenerationBase;
+import net.hycrafthd.umod.uschematic.USchematicInfectedRuin;
 import net.hycrafthd.umod.utils.GenerationUtils;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldSavedData;
 import net.minecraft.world.chunk.IChunkProvider;
 
-public class USchematicGeneration extends SchematicGenerationBase {
+public class USchematicGeneration extends USchematicGenerationBase {
 
 	private void nether(Random random, int x, int z, World world) {
 
 	}
 
 	private void overworld(Random random, int x, int z, World world) {
-		GenerationUtils.generateSchematic(SchematicInfectedRuin.class, random, x, z, world, 25, UBiome.infestedBiomBase);
+		GenerationUtils.generateSchematic(USchematicInfectedRuin.class, random, x, z, world, 25, UBiome.infestedBiomBase);
 	}
 
 	private void end(Random random, int x, int z, World world) {

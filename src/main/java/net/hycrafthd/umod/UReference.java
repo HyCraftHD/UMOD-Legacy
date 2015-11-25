@@ -1,8 +1,11 @@
 package net.hycrafthd.umod;
 
+import java.io.File;
+
 import net.hycrafthd.umod.world.GenInfectedTree;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.fml.common.Mod.Instance;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.SidedProxy;
 
 public class UReference {

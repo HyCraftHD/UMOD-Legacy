@@ -1,11 +1,14 @@
 package net.hycrafthd.umod.gui;
 
+import java.io.IOException;
+
 import org.lwjgl.opengl.GL11;
 
 import net.hycrafthd.umod.UReference;
 import net.hycrafthd.umod.api.IPowerProvieder;
 import net.hycrafthd.umod.block.BlockSolarPanel.EnumTypeSolarPanel;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.Tessellator;
@@ -28,6 +31,14 @@ public class GuiSolarPanel extends GuiScreen {
 		pro = po;
 		this.w = w;
 	}
+	
+	@Override
+	 protected void keyTyped(char p_73869_1_, int p_73869_2_) throws IOException {
+	 super.keyTyped(p_73869_1_, p_73869_2_);
+	    	if(p_73869_1_ == 'e'){
+	    		Minecraft.getMinecraft().thePlayer.closeScreen();
+	    	}
+	 }
 
 	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
@@ -72,19 +83,8 @@ public class GuiSolarPanel extends GuiScreen {
 	}
 
 	public void drawStorage(int l, int k, int height) {
-		    int x = l + 169,y = k + 159;
-	        Tessellator tessellator = Tessellator.getInstance();
-	        WorldRenderer worldrenderer = tessellator.getWorldRenderer();
-	        GL11.glDisable(GL11.GL_TEXTURE_2D);
-			GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-	        worldrenderer.startDrawingQuads();
-	        worldrenderer.setColorRGBA(255, 0, 0, 255);
-	        worldrenderer.addVertex(x, y, 0.0D);
-	        worldrenderer.addVertex(x, y - height, 0.0D);
-	        worldrenderer.addVertex(x - 30, y - height, 0.0D);
-	        worldrenderer.addVertex(x - 30, y, 0.0D);
-	        tessellator.draw();
-	        GL11.glEnable(GL11.GL_TEXTURE_2D);
+	    int x = l + 169,y = k + 159;
+	       drawTexturedModalRect(x, y, 206, height + 7, -30, -height);
 	}
 
 	@Override

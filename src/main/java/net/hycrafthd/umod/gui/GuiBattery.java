@@ -7,6 +7,7 @@ import org.lwjgl.opengl.GL11;
 import net.hycrafthd.umod.UReference;
 import net.hycrafthd.umod.api.IGuiProvider;
 import net.hycrafthd.umod.api.IPowerProvieder;
+import net.hycrafthd.umod.api.ISignable;
 import net.hycrafthd.umod.tileentity.TileEntityPulverizer;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
@@ -15,6 +16,7 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
@@ -45,14 +47,24 @@ public class GuiBattery extends GuiScreen{
 	}
 	
 	@Override
+	 protected void keyTyped(char p_73869_1_, int p_73869_2_) throws IOException {
+	 super.keyTyped(p_73869_1_, p_73869_2_);
+	    	if(p_73869_1_ == 'e'){
+	    		pl.closeScreen();
+	    	}
+	 }
+	
+	@Override
 	public void initGui() {
 		super.initGui();
+		if(ag != -1){
 		GuiButton btn = new GuiButton(0, this.width/2-42, 20,85,20, "Sign with Player");
 		buttonList.add(btn);
 		GuiButton ba = new GuiButton(1, this.width/2-(this.xSize/2), 20,20,20, "<");
 		GuiButton fo = new GuiButton(2, this.width/2+(this.xSize/2)-20, 20,20,20, ">");
 		buttonList.add(ba);
 		buttonList.add(fo);
+		}
 	}
 	
 	
@@ -74,17 +86,24 @@ public class GuiBattery extends GuiScreen{
 
 		this.drawStorage(k, l, high);
 
+		if(ag != -1){
 		this.drawCenteredString(this.fontRendererObj, I18n.format(worldObj.getBlockState(pos).getBlock().getUnlocalizedName() + ".name"), k + xSize / 2 - 37 / 2, l + 10, 4210752, false);
+		}
 		int maxstringlength = 119;
 		String s1 = "Needs: ";
 		String s2 = "Stored: ";
 		String s3 = "Status: ";
 		String s4 = "Error: ";
+		if(ag == -1){
+			s1 = "Output: ";
+		}
 		this.fontRendererObj.drawSplitString(s1 + pro.getPowerProducNeeds() + " UE/t", k + 10, l + 50, maxstringlength, 4210752);
 		this.fontRendererObj.drawSplitString(s2 + pro.getStoredPower() + " / " + pro.getMaximalPower(), k + 10, l + 70, maxstringlength, 4210752);
+		if(ag != -1){
 		this.fontRendererObj.drawSplitString(s3 + (pro.isWorking() ? "On" : "Off"), k + 10, l + 90, maxstringlength, 4210752);
 		if (!pro.isWorking() && pro.getErrorMessage() != null && pro.getErrorMessage() != "") {
 			this.fontRendererObj.drawSplitString(s4 + pro.getErrorMessage(), k + 10, l + 110, maxstringlength, 4210752);
+		}
 		}
 
 	}
@@ -95,20 +114,8 @@ public class GuiBattery extends GuiScreen{
 	
 	public void drawStorage(int l, int k, int height) {
 	    int x = l + 169,y = k + 159;
-        Tessellator tessellator = Tessellator.getInstance();
-        WorldRenderer worldrenderer = tessellator.getWorldRenderer();
-        GL11.glDisable(GL11.GL_TEXTURE_2D);
-		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-        worldrenderer.startDrawingQuads();
-        worldrenderer.setColorRGBA(255, 0, 0, 255);
-        worldrenderer.addVertex(x, y, 0.0D);
-        worldrenderer.addVertex(x, y - height, 0.0D);
-        worldrenderer.addVertex(x - 30, y - height, 0.0D);
-        worldrenderer.addVertex(x - 30, y, 0.0D);
-        tessellator.draw();
-        GL11.glEnable(GL11.GL_TEXTURE_2D);
-}
-
+	       drawTexturedModalRect(x, y, 206, height + 7, -30, -height);
+	}
 	
 	@Override
 	public boolean doesGuiPauseGame() {
@@ -119,7 +126,8 @@ public class GuiBattery extends GuiScreen{
 	protected void actionPerformed(GuiButton button) throws IOException {
        switch(button.id){
        case 0:
-    	   TileEntityPulverizer p = (TileEntityPulverizer) this.pro;
+    	   if(this.pro instanceof ISignable){
+    	   ISignable p = (ISignable) this.pro;
     	   if(button.displayString.equals("Sign with Player")){
     	   p.signPlayer(pl);
     	   button.displayString = "Unsign";
@@ -127,7 +135,8 @@ public class GuiBattery extends GuiScreen{
     	   pl.addChatMessage(new ChatComponentText(EnumChatFormatting.RED + "Unsigned Pulverizer"));
     	   p.signPlayer(null);
     	   }
-    	   p.markDirty();
+    	   ((TileEntity)this.pro).markDirty();
+    	   }
     	   break;
        case 1:
        case 2:

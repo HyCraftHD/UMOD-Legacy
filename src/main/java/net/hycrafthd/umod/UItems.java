@@ -1,5 +1,6 @@
 package net.hycrafthd.umod;
 
+import net.hycrafthd.umod.item.ItemBattery;
 import net.hycrafthd.umod.item.ItemDusts;
 import net.hycrafthd.umod.item.ItemFundamental;
 import net.hycrafthd.umod.item.ItemInfectedBeef;
@@ -26,6 +27,9 @@ public class UItems {
 	public static Item infectedleather;
 	public static Item infectedbeef;
 	public static Item infectedmilk;
+	
+	//Battery
+	public static Item battery;
 
 	public UItems() {
 		init();
@@ -45,6 +49,8 @@ public class UItems {
 		infectedleather = new ItemFundamental().setUnlocalizedName("infectedleather");
 		infectedbeef = new ItemInfectedBeef().setUnlocalizedName("infectedbeef");
 		infectedmilk = new ItemInfectedMilk().setUnlocalizedName("infectedmilk");
+		//Battery
+		battery = new ItemBattery().setUnlocalizedName("Battery");
 	}
 
 	private void register() {
@@ -59,6 +65,8 @@ public class UItems {
 		CommonRegistryUtils.registerItem(infectedleather);
 		CommonRegistryUtils.registerItem(infectedbeef);
 		CommonRegistryUtils.registerItem(infectedmilk);
+		//Battery
+		CommonRegistryUtils.registerItem(battery);
 	}
 
 	private void oredirectionary() {
@@ -73,6 +81,8 @@ public class UItems {
 		CommonRegistryUtils.registerOredirectionary(infectedleather);
 		CommonRegistryUtils.registerOredirectionary(infectedbeef);
 		CommonRegistryUtils.registerOredirectionary(infectedmilk);
+		//Battery
+		CommonRegistryUtils.registerOredirectionary(battery);
 	}
 
 }

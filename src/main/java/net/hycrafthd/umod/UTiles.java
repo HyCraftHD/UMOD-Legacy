@@ -1,5 +1,6 @@
 package net.hycrafthd.umod;
 
+import net.hycrafthd.umod.tileentity.TileEntityChargeStation;
 import net.hycrafthd.umod.tileentity.TileEntityPipe;
 import net.hycrafthd.umod.tileentity.TileEntityPulverizer;
 import net.hycrafthd.umod.tileentity.TileEntitySolarPanel;
@@ -15,6 +16,7 @@ public class UTiles {
 		CommonRegistryUtils.registerTileEntity(TileEntityPulverizer.class, "tile.pulver.entity");
 		CommonRegistryUtils.registerTileEntity(TileEntitySolarPanel.class, "tile.solar.entity");
 		CommonRegistryUtils.registerTileEntity(TileEntityPipe.class, "tile.pipe.entity");
+		CommonRegistryUtils.registerTileEntity(TileEntityChargeStation.class, "tile.charge.entity");
 	}
 
 }

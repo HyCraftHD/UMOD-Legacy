@@ -1,6 +1,7 @@
 package net.hycrafthd.umod;
 
 import net.hycrafthd.umod.block.BlockBlocks;
+import net.hycrafthd.umod.block.BlockChargeStation;
 import net.hycrafthd.umod.block.BlockInfectedDirt;
 import net.hycrafthd.umod.block.BlockInfectedFruit;
 import net.hycrafthd.umod.block.BlockInfectedGrass;
@@ -8,6 +9,7 @@ import net.hycrafthd.umod.block.BlockInfectedLeave;
 import net.hycrafthd.umod.block.BlockInfectedLog;
 import net.hycrafthd.umod.block.BlockInfectedPlank;
 import net.hycrafthd.umod.block.BlockInfectedSapling;
+import net.hycrafthd.umod.block.BlockNuke;
 import net.hycrafthd.umod.block.BlockOres;
 import net.hycrafthd.umod.block.BlockPipe;
 import net.hycrafthd.umod.block.BlockPulverizer;
@@ -26,10 +28,12 @@ public class UBlocks {
 	public static Block ores;
 	// Blocks
 	public static Block blocks;
+	public static Block blockNuke;
 	// SolarPanel
 	public static Block solarpanel;
 	// Pulverizer
 	public static Block pulver;
+	public static Block charge;
 	// Infected
 	public static Block infectedGrass;
 	public static Block infectedDirt;
@@ -58,10 +62,12 @@ public class UBlocks {
 		ores = new BlockOres().setUnlocalizedName("ores");
 		// Blocks
 		blocks = new BlockBlocks().setUnlocalizedName("blocks");
+		blockNuke = new BlockNuke().setUnlocalizedName("nuke");
 		// Pulverizer
 		pulver = new BlockPulverizer().setUnlocalizedName("pulver");
 		// SolarPanel
 		solarpanel = new BlockSolarPanel().setUnlocalizedName("solarpanel");
+		charge = new BlockChargeStation().setUnlocalizedName("charge");
 		// Infected
 		infectedGrass = new BlockInfectedGrass().setUnlocalizedName("infectedgrass");
 		infectedDirt = new BlockInfectedDirt().setUnlocalizedName("infecteddirt");
@@ -85,10 +91,12 @@ public class UBlocks {
 		CommonRegistryUtils.registerBlock(ores, ItemBlockOres.class);
 		// Blocks
 		CommonRegistryUtils.registerBlock(blocks, ItemBlockBlocks.class);
+		CommonRegistryUtils.registerBlock(blockNuke);
 		// Pulverizer
 		CommonRegistryUtils.registerBlocks(pulver, ItemBlockEnergy.class);
 		// SolarPanel
 		CommonRegistryUtils.registerBlocks(solarpanel, ItemBlockSolarPanel.class);
+		CommonRegistryUtils.registerBlock(charge);
 		// Infected
 		CommonRegistryUtils.registerBlock(infectedGrass);
 		CommonRegistryUtils.registerBlock(infectedDirt);
@@ -112,9 +120,11 @@ public class UBlocks {
 		CommonRegistryUtils.registerOredirectionary(ores);
 		// Blocks
 		CommonRegistryUtils.registerOredirectionary(blocks);
+		CommonRegistryUtils.registerOredirectionary(blockNuke);
 		// Pulverizer
 		CommonRegistryUtils.registerOredirectionary(pulver);
 		// SolarPanel
+		CommonRegistryUtils.registerOredirectionary(charge);
 		CommonRegistryUtils.registerOredirectionary(solarpanel);
 		// Infected
 		CommonRegistryUtils.registerOredirectionary(infectedGrass);

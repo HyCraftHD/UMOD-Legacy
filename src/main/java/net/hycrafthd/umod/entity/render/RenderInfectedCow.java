@@ -20,5 +20,4 @@ public class RenderInfectedCow extends RenderLiving{
 	protected ResourceLocation getEntityTexture(Entity entity) {
 		return new ResourceLocation(UReference.resource + "textures/entity/InfectedCow.png");
 	}
-
 }

@@ -70,6 +70,7 @@ tile.blocksulphur.name=Sulphur Block
 tile.blocktin.name=Tin Block
 tile.blockuran.name=Uran Block
 tile.blockzinc.name=Zinc Block
+tile.nuke.name=Nuke
 
 #Infected
 tile.infectedgrass.name=Infected Grass
@@ -98,6 +99,7 @@ potion.radiation.name=Radiation
 #DamageSource
 death.attack.radiation=%1$s died from Radiation
 death.attack.elec=%1$s died from a Electronic Shock
+death.attack.nuclearexplosion=%1$s was killed by Nuclear Explosion
 
 #Pipes
 tile.ironpipe.name=Iron Energy Cable

@@ -7,6 +7,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.ResourceLocation;
 
 public class GuiBase extends GuiContainer{
@@ -14,12 +15,14 @@ public class GuiBase extends GuiContainer{
 	public ResourceLocation loc;
 	public EntityPlayer play;
 	public TileEntity ent; 
+	public BlockPos pos;
 
 	public GuiBase(ResourceLocation loc,EntityPlayer pl,IInventory tile,Container con) {
 		super(con);
 		this.loc = loc;
 		this.play = pl;
 		this.ent = (TileEntity) tile;
+		this.pos = ent.getPos();
 	}
 	
 	@Override

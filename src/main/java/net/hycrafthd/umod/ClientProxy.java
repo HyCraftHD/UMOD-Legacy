@@ -19,7 +19,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
-import net.minecraftforge.fml.client.registry.RenderingRegistry;
 
 public class ClientProxy extends CommonProxy {
 
@@ -88,9 +87,9 @@ public class ClientProxy extends CommonProxy {
 		ClientRegistryUtils.registerModelRenderer(UBlocks.copper_pipe);
 		ClientRegistryUtils.registerModelRenderer(UBlocks.zin_pipe);
 
-		//Nuke
-		ClientRegistryUtils.registerModelRenderer(UBlocks.blockNuke);
-		
+		// Normal Blocks
+		ClientRegistryUtils.registerModelRenderer(UBlocks.nuke);
+
 	}
 
 	@Override

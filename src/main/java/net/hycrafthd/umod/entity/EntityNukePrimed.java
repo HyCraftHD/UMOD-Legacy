@@ -1,5 +1,7 @@
 package net.hycrafthd.umod.entity;
 
+import java.util.Random;
+
 import net.hycrafthd.umod.api.ProcessHandler;
 import net.hycrafthd.umod.world.explosion.NuclearExplosion;
 import net.minecraft.entity.Entity;
@@ -7,10 +9,11 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 public class EntityNukePrimed extends Entity {
-	
+
 	public int fuse;
 	private EntityLivingBase tntPlacedBy;
 
@@ -27,7 +30,7 @@ public class EntityNukePrimed extends Entity {
 		this.motionX = -((float) Math.sin(f)) * 0.02F;
 		this.motionY = 0.20000000298023224D;
 		this.motionZ = -((float) Math.cos(f)) * 0.02F;
-		this.fuse = 24*20;
+		this.fuse = 24 * 20;
 		this.prevPosX = p_i1730_2_;
 		this.prevPosY = p_i1730_4_;
 		this.prevPosZ = p_i1730_6_;
@@ -69,9 +72,14 @@ public class EntityNukePrimed extends Entity {
 			}
 		} else {
 			this.handleWaterMovement();
-			this.worldObj.spawnParticle(EnumParticleTypes.SMOKE_NORMAL,
-					this.posX, this.posY + 0.5D, this.posZ, 0.0D, 0.0D, 0.0D,
-					new int[0]);
+			for (int i = 0; i < 10; i++) {
+				for (int x = -1; x <= 1; x++) {
+					for (int z = -1; z <= 1; z++) {
+						double d = MathHelper.getRandomDoubleInRange(new Random(), 0, 0.2D);
+						this.worldObj.spawnParticle(EnumParticleTypes.SMOKE_LARGE, this.posX, this.posY - 0.5D, this.posZ, x * d, 0.5D, z * d, new int[0]);
+					}
+				}
+			}
 		}
 	}
 
@@ -105,6 +113,6 @@ public class EntityNukePrimed extends Entity {
 
 	@Override
 	protected void entityInit() {
-
+		this.fuse = 24 * 20;
 	}
 }

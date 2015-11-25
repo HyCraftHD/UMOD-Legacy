@@ -28,7 +28,6 @@ public class UBlocks {
 	public static Block ores;
 	// Blocks
 	public static Block blocks;
-	public static Block blockNuke;
 	// SolarPanel
 	public static Block solarpanel;
 	// Pulverizer
@@ -50,6 +49,8 @@ public class UBlocks {
 	public static Block gold_pipe;
 	public static Block lead_pipe;
 	public static Block zin_pipe;
+	// Normal Blocks
+	public static Block nuke;
 
 	public UBlocks() {
 		init();
@@ -62,7 +63,6 @@ public class UBlocks {
 		ores = new BlockOres().setUnlocalizedName("ores");
 		// Blocks
 		blocks = new BlockBlocks().setUnlocalizedName("blocks");
-		blockNuke = new BlockNuke().setUnlocalizedName("nuke");
 		// Pulverizer
 		pulver = new BlockPulverizer().setUnlocalizedName("pulver");
 		// SolarPanel
@@ -84,6 +84,8 @@ public class UBlocks {
 		gold_pipe = new BlockPipe("goldpipe", 43, 43, false, PipeTexturAtlas.IRON_PIPE);
 		lead_pipe = new BlockPipe("leadpipe", 5, 5, false, PipeTexturAtlas.IRON_PIPE);
 		zin_pipe = new BlockPipe("zinpipe", 9, 9, false, PipeTexturAtlas.IRON_PIPE);
+		// Normal Blocks
+		nuke = new BlockNuke().setUnlocalizedName("nuke");
 	}
 
 	private void register() {
@@ -91,7 +93,6 @@ public class UBlocks {
 		CommonRegistryUtils.registerBlock(ores, ItemBlockOres.class);
 		// Blocks
 		CommonRegistryUtils.registerBlock(blocks, ItemBlockBlocks.class);
-		CommonRegistryUtils.registerBlock(blockNuke);
 		// Pulverizer
 		CommonRegistryUtils.registerBlocks(pulver, ItemBlockEnergy.class);
 		// SolarPanel
@@ -113,6 +114,8 @@ public class UBlocks {
 		CommonRegistryUtils.registerBlocks(copper_pipe, ItemBlockEnergy.class);
 		CommonRegistryUtils.registerBlocks(lead_pipe, ItemBlockEnergy.class);
 		CommonRegistryUtils.registerBlocks(zin_pipe, ItemBlockEnergy.class);
+		// Normal Block
+		CommonRegistryUtils.registerBlock(nuke);
 	}
 
 	private void oredirectionary() {
@@ -120,7 +123,6 @@ public class UBlocks {
 		CommonRegistryUtils.registerOredirectionary(ores);
 		// Blocks
 		CommonRegistryUtils.registerOredirectionary(blocks);
-		CommonRegistryUtils.registerOredirectionary(blockNuke);
 		// Pulverizer
 		CommonRegistryUtils.registerOredirectionary(pulver);
 		// SolarPanel
@@ -142,6 +144,8 @@ public class UBlocks {
 		CommonRegistryUtils.registerOredirectionary(copper_pipe);
 		CommonRegistryUtils.registerOredirectionary(lead_pipe);
 		CommonRegistryUtils.registerOredirectionary(zin_pipe);
+		// Normal Block
+		CommonRegistryUtils.registerOredirectionary(nuke);
 
 	}
 

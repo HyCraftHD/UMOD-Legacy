@@ -17,16 +17,9 @@ public class UEntity {
 		register();
 	}
 	
-	@SideOnly(Side.CLIENT)
-	public static void addtoRender(){
-		RenderingRegistry.registerEntityRenderingHandler(EntityInfectedCow.class, new RenderInfectedCow());
-		RenderingRegistry.registerEntityRenderingHandler(EntityInfectedCreeper.class, new RenderInfectedCreeper());
-		RenderingRegistry.registerEntityRenderingHandler(EntityNukePrimed.class, new RenderNukePrimed());
-	}
-	
 	private void register() {
 		CommonRegistryUtils.registerEntity(EntityInfectedCow.class, "InfectedCow", 16, 1, true, 0x30311f, 0x648e42, true);
 		CommonRegistryUtils.registerEntity(EntityInfectedCreeper.class, "InfectedCreeper", 24, 1, true, 0x45b134, 0x164b0c, true);
-		CommonRegistryUtils.registerEntity(EntityNukePrimed.class, "NukePrimed", 16, 1, true, 0x000000, 0x000000, false);
+		CommonRegistryUtils.registerEntity(EntityNukePrimed.class, "NukePrimed", 16, 1, true, 0x000000, 0x000000, true);
 	}
 }

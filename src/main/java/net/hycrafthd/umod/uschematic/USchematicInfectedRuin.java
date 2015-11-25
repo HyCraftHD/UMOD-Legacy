@@ -21,6 +21,7 @@ public class USchematicInfectedRuin extends USchematic {
 		super("infestedruin");
 	}
 
+	@Override
 	public void generate(World world, int x, int y, int z) {
 		int blocks = width * length;
 		for (BlockObject obj : blockObjects) {

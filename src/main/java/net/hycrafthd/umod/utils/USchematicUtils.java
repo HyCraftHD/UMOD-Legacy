@@ -9,7 +9,6 @@ import java.io.OutputStream;
 import net.hycrafthd.umod.uschematic.BlockObject;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Blocks;
 import net.minecraft.nbt.CompressedStreamTools;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -69,9 +68,9 @@ public class USchematicUtils {
 		NBTTagList list = nbtdata.getTagList("blocks", 10);
 
 		int counter = 0;
-		for (int posx = 0; posx < width; posx++) {
-			for (int posy = 0; posy < height; posy++) {
-				for (int posz = 0; posz < length; posz++) {
+		for (int posy = 0; posy < height; posy++) {
+			for (int posz = 0; posz < length; posz++) {
+				for (int posx = 0; posx < width; posx++) {
 					BlockPos pos = new BlockPos(posx, posy, posz);
 					NBTTagCompound nbt = list.getCompoundTagAt(counter);
 					IBlockState state = ((Block) Block.blockRegistry.getObject(nbt.getString("block"))).getStateFromMeta(nbt.getInteger("meta"));
@@ -99,9 +98,9 @@ public class USchematicUtils {
 		NBTTagList list = new NBTTagList();
 
 		int counter = 0;
-		for (int posx = min.getX(); posx < max.getX(); posx++) {
-			for (int posy = min.getY(); posy < max.getY(); posy++) {
-				for (int posz = min.getZ(); posz < max.getZ(); posz++) {
+		for (int posy = min.getY(); posy < max.getY(); posy++) {
+			for (int posz = min.getZ(); posz < max.getZ(); posz++) {
+				for (int posx = min.getX(); posx < max.getX(); posx++) {
 					BlockPos pos = new BlockPos(posx, posy, posz);
 					IBlockState state = world.getBlockState(pos);
 					Block block = state.getBlock();

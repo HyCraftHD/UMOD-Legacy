@@ -87,7 +87,6 @@ public class ClientProxy extends CommonProxy {
 		ClientRegistryUtils.registerModelRenderer(UBlocks.zin_pipe);
 
 		UEntity.addtoRender();
-
 	}
 
 	public void registerRenderer() {

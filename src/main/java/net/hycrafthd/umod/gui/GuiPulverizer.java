@@ -30,7 +30,6 @@ public class GuiPulverizer extends GuiBase{
 		GuiButton fo = new GuiButton(2, this.width/2+(this.xSize/2)-20, 20,20,20, ">");
 		buttonList.add(ba);
 		buttonList.add(fo);
-
 	}
 
 	@Override

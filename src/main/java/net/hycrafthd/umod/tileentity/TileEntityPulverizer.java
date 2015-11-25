@@ -2,6 +2,7 @@ package net.hycrafthd.umod.tileentity;
 
 import net.hycrafthd.umod.api.IGuiProvider;
 import net.hycrafthd.umod.api.IPowerProvieder;
+import net.hycrafthd.umod.api.ISignable;
 import net.hycrafthd.umod.api.PulverizerRecepie;
 import net.hycrafthd.umod.block.BlockBaseMachine;
 import net.hycrafthd.umod.block.BlockOres;
@@ -28,7 +29,7 @@ import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.EnumFacing;
 
 public class TileEntityPulverizer extends TileEntityBase implements 
-                               IPowerProvieder,IGuiProvider{
+                               IPowerProvieder,IGuiProvider,ISignable{
 
 	private ItemStack[] stack = new ItemStack[4];
 	private String pl = null;
@@ -101,6 +102,7 @@ public class TileEntityPulverizer extends TileEntityBase implements
 		return false;
 	}
 
+	@Override
 	public void signPlayer(EntityPlayer pl){
 		if(pl != null){
 		pl.addChatMessage(new ChatComponentText(EnumChatFormatting.GREEN + "Pulveriser Locked for Player: " + pl.getName()));
@@ -165,10 +167,6 @@ public class TileEntityPulverizer extends TileEntityBase implements
 	@Override
 	public String getName() {
 		return "tile.entity.Pulveriser";
-	}
-
-	public String getSigndPlayerName(){
-		return pl;
 	}
 	
 	private int time = 0;
@@ -407,5 +405,10 @@ public class TileEntityPulverizer extends TileEntityBase implements
 	@Override
 	public int getGui() {
 		return 0;
+	}
+
+	@Override
+	public String getSignedPlayerName() {
+		return pl;
 	}
 }

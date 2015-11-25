@@ -17,7 +17,8 @@ public class NuclearExplosion implements IProcess {
 	private Random random = new Random();
 
 	private double expansion = 0;
-
+	private boolean isDead = false;
+	
 	public NuclearExplosion(World world, int x, int y, int z, float power){
 		this.worldObj = world;
 		this.xCoord = x;
@@ -48,9 +49,10 @@ public class NuclearExplosion implements IProcess {
 
 		isDead = expansion >= power * 10;
 		expansion += 1;
+		if(isDead()){
+			System.out.println("Fertig!");
+		}
 	}
-
-	private boolean isDead = false;
 
 	@Override
 	public boolean isDead() {

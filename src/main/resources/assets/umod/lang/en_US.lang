@@ -70,6 +70,7 @@ tile.blocksulphur.name=Sulphur Block
 tile.blocktin.name=Tin Block
 tile.blockuran.name=Uran Block
 tile.blockzinc.name=Zinc Block
+tile.nuke.name=Nuke
 
 #Infected
 tile.infectedgrass.name=Infected Grass

@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "normal": { "model": "umod:block/nuke" },
+        "explode=true": {"model": "umod:block/nuke" },
+        "explode=false": {"model": "umod:block/nuke" }
+    }
+}

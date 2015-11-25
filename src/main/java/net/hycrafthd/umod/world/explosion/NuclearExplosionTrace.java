@@ -21,7 +21,8 @@ public class NuclearExplosionTrace implements IProcess {
 	private int zCoord;
 	private float power;
 	private Random random;
-
+	private boolean isDead = false;
+	
 	public NuclearExplosionTrace(World world, int x, int y, int z, float power, Random random){
 		this.worldObj = world;
 		this.xCoord = x;
@@ -74,7 +75,6 @@ public class NuclearExplosionTrace implements IProcess {
 		isDead = true;
 	}
 
-	private boolean isDead = false;
 	@Override
 	public boolean isDead() {
 		return isDead;

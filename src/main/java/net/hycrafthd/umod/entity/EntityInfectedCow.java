@@ -59,10 +59,12 @@ public class EntityInfectedCow extends EntityMob implements IInfectedEntity {
 		}
 	}
 
+	@Override
 	public Item getDropItem() {
 		return UItems.infectedleather;
 	}
 
+	@Override
 	public void dropFewItems(boolean p_70628_1_, int p_70628_2_) {
 		int j = this.rand.nextInt(3) + this.rand.nextInt(1 + p_70628_2_);
 		int k;
@@ -102,5 +104,4 @@ public class EntityInfectedCow extends EntityMob implements IInfectedEntity {
 	public float getSoundVolume() {
 		return 0.4F;
 	}
-
 }

@@ -76,7 +76,7 @@ public class EntityNukePrimed extends Entity {
 				for (int x = -1; x <= 1; x++) {
 					for (int z = -1; z <= 1; z++) {
 						double d = MathHelper.getRandomDoubleInRange(new Random(), 0, 0.2D);
-						this.worldObj.spawnParticle(EnumParticleTypes.SMOKE_LARGE, this.posX, this.posY - 0.5D, this.posZ, x * d, 0.5D, z * d, new int[0]);
+						this.worldObj.spawnParticle(EnumParticleTypes.SMOKE_LARGE, true, this.posX, this.posY - 0.5D, this.posZ, x * d, 0.5D, z * d, new int[0]);
 					}
 				}
 			}
@@ -94,9 +94,6 @@ public class EntityNukePrimed extends Entity {
 		tagCompound.setByte("Fuse", (byte) this.fuse);
 	}
 
-	/**
-	 * (abstract) Protected helper method to read subclass entity data from NBT.
-	 */
 	@Override
 	protected void readEntityFromNBT(NBTTagCompound tagCompund) {
 		this.fuse = tagCompund.getByte("Fuse");

@@ -113,6 +113,7 @@ tile.goldpipe.name=Gold Energy Cable
 #Entity
 entity.InfectedCow.name=Infected Cow
 entity.InfectedCreeper.name=Infected Creeper
+entity.PrimedNuke.name=Nuke
 
 #Command
 commands.uschematic.usage=/uschematic <save> <name> <x1> <y1> <z1> <x2> <y2> <z2> OR /uschematic <load> <name>

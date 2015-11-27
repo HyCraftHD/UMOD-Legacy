@@ -31,12 +31,12 @@ import net.minecraft.util.EnumFacing;
 public class TileEntityPulverizer extends TileEntityBase implements 
                                IPowerProvieder,IGuiProvider,ISignable{
 
-	private ItemStack[] stack = new ItemStack[4];
+	private ItemStack[] stack = new ItemStack[5];
 	private String pl = null;
 	
 	@Override
 	public int getSizeInventory() {
-		return 4;
+		return 5;
 	}
 
 	@Override
@@ -46,13 +46,32 @@ public class TileEntityPulverizer extends TileEntityBase implements
 
 	@Override
 	public ItemStack decrStackSize(int index, int count) {
-		ItemStack tsta = stack[index];
-	    if(stack[index].stackSize > count){
-	    	stack[index].stackSize -= count;
-	    }else{
-	    	stack[index] = null;
-	    }
-		return tsta;
+		if (this.stack[index] != null)
+        {
+            ItemStack itemstack;
+
+            if (this.stack[index].stackSize <= count)
+            {
+                itemstack = this.stack[index];
+                this.stack[index] = null;
+                return itemstack;
+            }
+            else
+            {
+                itemstack = this.stack[index].splitStack(count);
+
+                if (this.stack[index].stackSize == 0)
+                {
+                    this.stack[index] = null;
+                }
+
+                return itemstack;
+            }
+        }
+        else
+        {
+            return null;
+        }
 	}
 
 	@Override

@@ -1,0 +1,8 @@
+{
+    "parent": "umod:block/Maschine",
+    "textures": {
+        "sides": "umod:blocks/block/battery_side",
+        "down": "umod:blocks/block/battery_bottom",
+        "up": "umod:blocks/block/battery_top"
+    }
+}

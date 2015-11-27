@@ -2,6 +2,9 @@ package net.hycrafthd.umod.gui;
 
 import java.io.IOException;
 
+import net.hycrafthd.umod.UReference;
+import net.hycrafthd.umod.enumtype.EnumTypeGui;
+import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
@@ -45,5 +48,27 @@ public class GuiBase extends GuiContainer{
         int l = (this.height - this.ySize) / 2;
         this.drawTexturedModalRect(k, l, 0, 0, this.xSize, this.ySize);
 	}
+
+	@Override
+	public void initGui() {
+		super.initGui();
+		GuiButton ba = new GuiButton(1, this.width/2-(this.xSize/2), 20,20,20, "<");
+		GuiButton fo = new GuiButton(2, this.width/2+(this.xSize/2)-20, 20,20,20, ">");
+		buttonList.add(ba);
+		buttonList.add(fo);
+	}
 	
+	@Override
+	protected void actionPerformed(GuiButton button) throws IOException {
+		switch (button.id) {
+		 case 1:
+			 this.play.closeScreen();
+	    	 this.play.openGui(UReference.modid, EnumTypeGui.BATTERIEINPUT.getID(), this.play.worldObj, this.pos.getX(), this.pos.getY(),this.pos.getZ());
+	     break;	   
+	     case 2:
+	    	   this.play.closeScreen();
+	    	   this.play.openGui(UReference.modid, EnumTypeGui.BATTERIE.getID(), this.play.worldObj, this.pos.getX(), this.pos.getY(),this.pos.getZ());
+	     break;	   
+		}
+	}
 }

@@ -23,5 +23,25 @@ public class DirectionUtils {
 		}
 		return EnumFacing.EAST;
 	}
+	
+	public static BlockPos getPosfromFacing(EnumFacing face,BlockPos p){
+		switch(face){
+		case DOWN:
+			return p.down(); 
+		case EAST:
+			return p.east();
+		case NORTH:
+			return p.north();
+		case SOUTH:
+			return p.south();
+		case UP:
+			return p.up();
+		case WEST:
+			return p.west();
+		default:
+			break;
+		}
+		return null;
+	}
 
 }

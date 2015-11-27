@@ -8,6 +8,7 @@ import net.hycrafthd.umod.UReference;
 import net.hycrafthd.umod.api.IGuiProvider;
 import net.hycrafthd.umod.api.IPowerProvieder;
 import net.hycrafthd.umod.api.ISignable;
+import net.hycrafthd.umod.enumtype.EnumTypeGui;
 import net.hycrafthd.umod.tileentity.TileEntityPulverizer;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
@@ -57,14 +58,12 @@ public class GuiBattery extends GuiScreen{
 	@Override
 	public void initGui() {
 		super.initGui();
-		if(ag != -1){
 		GuiButton btn = new GuiButton(0, this.width/2-42, 20,85,20, "Sign with Player");
 		buttonList.add(btn);
 		GuiButton ba = new GuiButton(1, this.width/2-(this.xSize/2), 20,20,20, "<");
 		GuiButton fo = new GuiButton(2, this.width/2+(this.xSize/2)-20, 20,20,20, ">");
 		buttonList.add(ba);
 		buttonList.add(fo);
-		}
 	}
 	
 	
@@ -86,17 +85,12 @@ public class GuiBattery extends GuiScreen{
 
 		this.drawStorage(k, l, high);
 
-		if(ag != -1){
 		this.drawCenteredString(this.fontRendererObj, I18n.format(worldObj.getBlockState(pos).getBlock().getUnlocalizedName() + ".name"), k + xSize / 2 - 37 / 2, l + 10, 4210752, false);
-		}
 		int maxstringlength = 119;
 		String s1 = "Needs: ";
 		String s2 = "Stored: ";
 		String s3 = "Status: ";
 		String s4 = "Error: ";
-		if(ag == -1){
-			s1 = "Output: ";
-		}
 		this.fontRendererObj.drawSplitString(s1 + pro.getPowerProducNeeds() + " UE/t", k + 10, l + 50, maxstringlength, 4210752);
 		this.fontRendererObj.drawSplitString(s2 + pro.getStoredPower() + " / " + pro.getMaximalPower(), k + 10, l + 70, maxstringlength, 4210752);
 		if(ag != -1){
@@ -139,9 +133,11 @@ public class GuiBattery extends GuiScreen{
     	   }
     	   break;
        case 1:
-       case 2:
     	   this.pl.closeScreen();
     	   this.pl.openGui(UReference.modid, ag, this.pl.worldObj, this.pos.getX(), this.pos.getY(), this.pos.getZ());
+       case 2:
+    	   this.pl.closeScreen();
+    	   this.pl.openGui(UReference.modid, EnumTypeGui.BATTERIEINPUT.getID(), this.pl.worldObj, this.pos.getX(), this.pos.getY(), this.pos.getZ());
        }
 	}
 }

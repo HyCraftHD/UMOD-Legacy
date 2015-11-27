@@ -22,15 +22,6 @@ public class GuiPulverizer extends GuiBase{
 		super(new ResourceLocation(UReference.modid, "textures/gui/pulver.png"), pl, tile, new ContainerPulverizer(tile, pl, w));
 		this.pos = pos;
 	}
-	
-	@Override
-	public void initGui() {
-		super.initGui();
-		GuiButton ba = new GuiButton(1, this.width/2-(this.xSize/2), 20,20,20, "<");
-		GuiButton fo = new GuiButton(2, this.width/2+(this.xSize/2)-20, 20,20,20, ">");
-		buttonList.add(ba);
-		buttonList.add(fo);
-	}
 
 	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
@@ -41,6 +32,7 @@ public class GuiPulverizer extends GuiBase{
 	
 	@Override
 	protected void actionPerformed(GuiButton button) throws IOException {
+		super.actionPerformed(button);
        switch(button.id){
        case 0:
     	   TileEntityPulverizer p = (TileEntityPulverizer) this.ent;
@@ -53,10 +45,6 @@ public class GuiPulverizer extends GuiBase{
     	   }
     	   p.markDirty();
     	   break;
-       case 1:
-       case 2:
-    	   this.play.closeScreen();
-    	   this.play.openGui(UReference.modid, 2, this.play.worldObj, this.pos.getX(), this.pos.getY(),this.pos.getZ());
        }
 	}
 }

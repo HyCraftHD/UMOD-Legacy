@@ -66,7 +66,7 @@ public class TileEntityPipe extends TileEntity implements IPlugabel, IPowerProvi
 					}
 				}
 			} else {
-				poses.add(list[i].offset(DirectionUtils.getDirectory(list[i], pos)));
+				poses.add(DirectionUtils.getPosfromFacing(DirectionUtils.getDirectory(list[i], pos), pos));
 			}
 		}
 	}

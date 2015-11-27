@@ -1,13 +1,9 @@
 {
-"parent": "block/cube",
+"parent": "umod:block/Maschine",
     "textures": {
-      "particle": "umod:blocks/solarpanel/topextremevoltage",
         "down": "umod:blocks/solarpanel/bottom",
         "up": "umod:blocks/solarpanel/topextremevoltage",
-        "north": "umod:blocks/solarpanel/side",
-        "east": "umod:blocks/solarpanel/side",
-        "south": "umod:blocks/solarpanel/side",
-        "west": "umod:blocks/solarpanel/side"
+        "sides": "umod:blocks/solarpanel/side"
     }
 
 

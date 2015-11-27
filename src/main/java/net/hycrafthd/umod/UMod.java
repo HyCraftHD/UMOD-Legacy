@@ -22,6 +22,7 @@ public class UMod {
 	@EventHandler
 	public void preinit(FMLPreInitializationEvent event) {
 		log = event.getModLog();
+		new UConfig(event.getSuggestedConfigurationFile());
 	}
 
 	@EventHandler

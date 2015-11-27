@@ -8,7 +8,6 @@ import net.hycrafthd.umod.item.ItemInfectedCrop;
 import net.hycrafthd.umod.item.ItemInfectedMilk;
 import net.hycrafthd.umod.item.ItemIngots;
 import net.hycrafthd.umod.utils.CommonRegistryUtils;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 
 public class UItems {
@@ -31,6 +30,7 @@ public class UItems {
 	//Battery
 	public static Item battery;
 
+	
 	public UItems() {
 		init();
 		register();
@@ -51,6 +51,7 @@ public class UItems {
 		infectedmilk = new ItemInfectedMilk().setUnlocalizedName("infectedmilk");
 		//Battery
 		battery = new ItemBattery().setUnlocalizedName("Battery");
+		
 	}
 
 	private void register() {
@@ -67,6 +68,7 @@ public class UItems {
 		CommonRegistryUtils.registerItem(infectedmilk);
 		//Battery
 		CommonRegistryUtils.registerItem(battery);
+		
 	}
 
 	private void oredirectionary() {
@@ -83,6 +85,7 @@ public class UItems {
 		CommonRegistryUtils.registerOredirectionary(infectedmilk);
 		//Battery
 		CommonRegistryUtils.registerOredirectionary(battery);
+		
 	}
 
 }

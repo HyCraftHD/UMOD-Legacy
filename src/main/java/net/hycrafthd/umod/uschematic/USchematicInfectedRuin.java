@@ -1,4 +1,4 @@
-package net.hycrafthd.umod.schematic;
+package net.hycrafthd.umod.uschematic;
 
 import java.util.Random;
 
@@ -15,12 +15,13 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-public class SchematicInfectedRuin extends Schematic {
+public class USchematicInfectedRuin extends USchematic {
 
-	public SchematicInfectedRuin() {
+	public USchematicInfectedRuin() {
 		super("infestedruin");
 	}
 
+	@Override
 	public void generate(World world, int x, int y, int z) {
 		int blocks = width * length;
 		for (BlockObject obj : blockObjects) {
@@ -38,7 +39,7 @@ public class SchematicInfectedRuin extends Schematic {
 			}
 
 			if (blocks != 0) {
-				pos = pos.add(0, -1, 0);
+				pos = pos.down();
 				for (int posy = pos.getY(); posy > 0; posy--) {
 					IBlockState stats = world.getBlockState(pos);
 					Block block = stats.getBlock();
@@ -49,7 +50,7 @@ public class SchematicInfectedRuin extends Schematic {
 							state = Blocks.mossy_cobblestone.getDefaultState();
 						}
 						world.setBlockState(pos, state);
-						pos = pos.add(0, -1, 0);
+						pos = pos.down();
 					}
 				}
 				blocks--;

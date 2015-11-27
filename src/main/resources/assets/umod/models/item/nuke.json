@@ -1,5 +1,5 @@
 {
-    "parent": "umod:block/block/nuke",
+    "parent": "umod:block/nuke",
     "display": {
         "thirdperson": {
             "rotation": [ 10, -45, 170 ],

@@ -1,6 +1,6 @@
 {
     "parent": "block/cube_all",
     "textures": {
-        "all": "umod:blocks/block/nuke"
+        "all": "umod:blocks/nuke"
     }
 }

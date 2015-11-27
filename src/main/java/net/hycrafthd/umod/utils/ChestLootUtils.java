@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.Random;
 
 import net.hycrafthd.umod.enumtype.EnumTypeChestLooting;
-import net.hycrafthd.umod.schematic.ChestLoot;
+import net.hycrafthd.umod.uschematic.ChestLoot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 

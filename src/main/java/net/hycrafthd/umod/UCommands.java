@@ -1,6 +1,6 @@
 package net.hycrafthd.umod;
 
-import net.hycrafthd.umod.command.CommandSchematic;
+import net.hycrafthd.umod.command.CommandUSchematic;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 
 public class UCommands {
@@ -10,7 +10,7 @@ public class UCommands {
 	}
 
 	private void register(FMLServerStartingEvent e) {
-		e.registerServerCommand(new CommandSchematic());
+		e.registerServerCommand(new CommandUSchematic());
 	}
 
 }

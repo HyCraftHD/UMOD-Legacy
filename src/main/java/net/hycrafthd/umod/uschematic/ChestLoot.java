@@ -1,4 +1,4 @@
-package net.hycrafthd.umod.schematic;
+package net.hycrafthd.umod.uschematic;
 
 import java.util.Random;
 

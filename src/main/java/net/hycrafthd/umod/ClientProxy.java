@@ -4,7 +4,11 @@ import java.util.List;
 
 import net.hycrafthd.umod.block.BlockSolarPanel.EnumTypeSolarPanel;
 import net.hycrafthd.umod.entity.EntityInfectedCow;
+import net.hycrafthd.umod.entity.EntityInfectedCreeper;
+import net.hycrafthd.umod.entity.EntityNukePrimed;
 import net.hycrafthd.umod.entity.render.RenderInfectedCow;
+import net.hycrafthd.umod.entity.render.RenderInfectedCreeper;
+import net.hycrafthd.umod.entity.render.RenderNukePrimed;
 import net.hycrafthd.umod.enumtype.EnumTypeBaseStuff;
 import net.hycrafthd.umod.render.TileEntityPulverizerSpecialRender;
 import net.hycrafthd.umod.tileentity.TileEntityPulverizer;
@@ -83,15 +87,16 @@ public class ClientProxy extends CommonProxy {
 		ClientRegistryUtils.registerModelRenderer(UBlocks.copper_pipe);
 		ClientRegistryUtils.registerModelRenderer(UBlocks.zin_pipe);
 
-		//Nuke
-		ClientRegistryUtils.registerModelRenderer(UBlocks.blockNuke);
-		
-		UEntity.addtoRender();
+		// Normal Blocks
+		ClientRegistryUtils.registerModelRenderer(UBlocks.nuke);
+
 	}
 
 	@Override
 	public void registerRenderer() {
 		ClientRegistryUtils.registerEntityRenderer(EntityInfectedCow.class, new RenderInfectedCow());
+		ClientRegistryUtils.registerEntityRenderer(EntityInfectedCreeper.class, new RenderInfectedCreeper());
+		ClientRegistryUtils.registerEntityRenderer(EntityNukePrimed.class, new RenderNukePrimed());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPulverizer.class, new TileEntityPulverizerSpecialRender());
 	}
 

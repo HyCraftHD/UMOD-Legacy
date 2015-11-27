@@ -3,7 +3,7 @@ package net.hycrafthd.umod.utils;
 import java.util.Random;
 
 import net.hycrafthd.umod.enumtype.EnumTypeChestLooting;
-import net.hycrafthd.umod.schematic.Schematic;
+import net.hycrafthd.umod.uschematic.USchematic;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.block.state.pattern.BlockHelper;
@@ -35,7 +35,7 @@ public class GenerationUtils {
 		}
 	}
 
-	public static void generateSchematic(Class<? extends Schematic> clazz, Random random, int x, int z, World world, int chance, BiomeGenBase biome) {
+	public static void generateSchematic(Class<? extends USchematic> clazz, Random random, int x, int z, World world, int chance, BiomeGenBase biome) {
 		if (random.nextInt(chance) == 0) {
 			int posX = x + random.nextInt(16);
 			int posZ = z + random.nextInt(16);

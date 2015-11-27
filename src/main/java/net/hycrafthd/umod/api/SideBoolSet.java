@@ -6,18 +6,18 @@ public class SideBoolSet {
 
 	private boolean bool;
 	private EnumFacing face;
-	
-	public SideBoolSet(boolean bool,EnumFacing face) {
+
+	public SideBoolSet(boolean bool, EnumFacing face) {
 		this.bool = bool;
 		this.face = face;
 	}
-	
-	public boolean getBoolean(){
+
+	public boolean getBoolean() {
 		return bool;
 	}
-	
-	public EnumFacing getFacing(){
+
+	public EnumFacing getFacing() {
 		return face;
 	}
-	
+
 }

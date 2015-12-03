@@ -12,6 +12,7 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.util.BlockPos;
@@ -130,6 +131,10 @@ public class TileEntityChargeStation extends TileEntityBase implements IGuiProvi
 		return "tile.entity.chargstation";
 	}
 
+	public boolean getMode(){
+		return mode;
+	}
+	
 	@Override
 	public Container createContainer(InventoryPlayer playerInventory, EntityPlayer pl) {
 		return new ContainerChargeStation((IInventory) worldObj.getTileEntity(pos), pl, pos, worldObj);
@@ -146,14 +151,19 @@ public class TileEntityChargeStation extends TileEntityBase implements IGuiProvi
 	}
 
 	int stored;
-	public static final int MAXIMAL_POWER = 5000;
+	public static final int MAXIMAL_POWER = 50000;
+	private boolean mode = false;
 	
 	@Override
 	public void update() {
-       if(stack != null && stack.getItemDamage() < stack.getMaxDamage()){
+       if(stack != null && stack.getItemDamage() > 0 && this.canAddPower(2) && mode){
     	   stack.setItemDamage(stack.getItemDamage() + 2);
+    	   stored += 2;
+       }else if(!mode && stack != null && stack.getItemDamage() < stack.getMaxDamage() && stored - 2 >= 0){
     	   stored -= 2;
+    	   stack.setItemDamage(stack.getItemDamage() - 2);
        }
+       
    	BlockPos[] list = {pos.east(),pos.north(),pos.south(),pos.west(),pos.up(),pos.down()};
 	for(int i = 0;i < list.length;i++){
 	Block b = worldObj.getBlockState(list[i]).getBlock();
@@ -173,6 +183,10 @@ public class TileEntityChargeStation extends TileEntityBase implements IGuiProvi
 		}
 	}
 	}
+	}
+	
+	public void setMode(boolean m){
+		mode = m;
 	}
 
 	@Override
@@ -226,4 +240,18 @@ public class TileEntityChargeStation extends TileEntityBase implements IGuiProvi
 		return 2;
 	}
 
+	@Override
+	public void writeToNBT(NBTTagCompound compound) {
+		super.writeToNBT(compound);
+		compound.setInteger("Stored", stored);
+		compound.setBoolean("Mode", mode);
+	}
+	
+	@Override
+	public void readFromNBT(NBTTagCompound compound) {
+		super.readFromNBT(compound);
+		this.stored = compound.getInteger("Stored");
+		this.mode = compound.getBoolean("Mode");
+	}
+	
 }

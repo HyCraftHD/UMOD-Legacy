@@ -1,6 +1,7 @@
 package net.hycrafthd.umod;
 
 import net.hycrafthd.umod.item.ItemBattery;
+import net.hycrafthd.umod.item.ItemCabletester;
 import net.hycrafthd.umod.item.ItemDusts;
 import net.hycrafthd.umod.item.ItemFundamental;
 import net.hycrafthd.umod.item.ItemInfectedBeef;
@@ -30,6 +31,7 @@ public class UItems {
 	
 	//Battery
 	public static Item battery;
+	public static Item tester;
 
 	public UItems() {
 		init();
@@ -50,6 +52,7 @@ public class UItems {
 		infectedbeef = new ItemInfectedBeef().setUnlocalizedName("infectedbeef");
 		infectedmilk = new ItemInfectedMilk().setUnlocalizedName("infectedmilk");
 		//Battery
+		tester = new ItemCabletester().setUnlocalizedName("tester");
 		battery = new ItemBattery().setUnlocalizedName("Battery");
 	}
 
@@ -67,6 +70,7 @@ public class UItems {
 		CommonRegistryUtils.registerItem(infectedmilk);
 		//Battery
 		CommonRegistryUtils.registerItem(battery);
+		CommonRegistryUtils.registerItem(tester);
 	}
 
 	private void oredirectionary() {
@@ -83,6 +87,7 @@ public class UItems {
 		CommonRegistryUtils.registerOredirectionary(infectedmilk);
 		//Battery
 		CommonRegistryUtils.registerOredirectionary(battery);
+		CommonRegistryUtils.registerOredirectionary(tester);
 	}
 
 }

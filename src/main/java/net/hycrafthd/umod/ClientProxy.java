@@ -49,6 +49,7 @@ public class ClientProxy extends CommonProxy {
 		}
 
 		// Pulverizer
+		ClientRegistryUtils.registerModelRenderer(UBlocks.charge);
 		ClientRegistryUtils.registerModelRenderer(UBlocks.pulver);
 
 		// Cobble Dust

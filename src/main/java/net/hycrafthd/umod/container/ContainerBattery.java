@@ -15,7 +15,7 @@ public class ContainerBattery extends ContainerBase{
 	
 	public ContainerBattery(IInventory inv, EntityPlayer pl, BlockPos pos, World wo) {
 		super(inv, pl, pos, wo);
-		sl = super.addSlotToContainer(new BaseBatteryInputSlot(inv, 0, 80, 30));
+		sl = super.addSlotToContainer(new BaseBatteryInputSlot(inv, inv.getSizeInventory() - 1, 80, 30));
 	}
 	
 	@Override

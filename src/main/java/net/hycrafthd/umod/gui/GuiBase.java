@@ -15,6 +15,7 @@ import net.hycrafthd.umod.container.ContainerBase.Mode;
 import net.hycrafthd.umod.enumtype.EnumTypeGui;
 import net.hycrafthd.umod.inventory.BaseBatteryInputSlot;
 import net.hycrafthd.umod.inventory.BaseSlot;
+import net.hycrafthd.umod.render.RGBA;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
@@ -24,6 +25,8 @@ import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.RenderHelper;
+import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -70,10 +73,10 @@ public class GuiBase extends GuiScreen{
         this.play.openContainer = this.basecon;
         this.guiLeft = (this.width - this.xSize) / 2;
         this.guiTop = (this.height - this.ySize) / 2;
-		GuiButton ba = new GuiButton(1, this.width/2-(this.xSize/2), 20,20,20, "<");
-		GuiButton fo = new GuiButton(2, this.width/2+(this.xSize/2)-20, 20,20,20, ">");
-		GuiButton btn = new GuiButton(3, this.width/2+(this.xSize/4)*3, this.height/2+(this.ySize/8), 20, 20, "B");
-		buttonList.add(btn);
+		GuiButton ba = new GuiButton(1, this.width/2-(this.xSize/2), this.height/2-(this.ySize/2) - 20,20,20, "<");
+		GuiButton fo = new GuiButton(2, this.width/2+(this.xSize/2)-20, this.height/2-(this.ySize/2) - 20,20,20, ">");
+		GuiButton btn = new GuiButton(3, this.width/2 + (this.xSize/3), this.height/2-(this.ySize/2) + 5, 20, 20, "B");
+		if(basecon.B){buttonList.add(btn);}
 		buttonList.add(ba);
 		buttonList.add(fo);
 	}
@@ -152,9 +155,6 @@ public class GuiBase extends GuiScreen{
     public ItemStack shiftClickedSlot;
     public static final String __OBFID = "CL_00000737";
 
-    /**
-     * Draws the screen and all the components in it. Args : mouseX, mouseY, renderPartialTicks
-     */
     public void drawScreen(int mouseX, int mouseY, float partialTicks)
     {
         this.drawDefaultBackground();
@@ -192,13 +192,33 @@ public class GuiBase extends GuiScreen{
                 int j1 = slot.xDisplayPosition;
                 k1 = slot.yDisplayPosition;
                 GlStateManager.colorMask(true, true, true, false);
-                this.drawGradientRect(j1, k1, j1 + 16, k1 + 16, -2130706433, -2130706433);
+                if(slot instanceof BaseSlot && ((BaseSlot)slot).hasColor()){
+            	RGBA st = ((BaseSlot)slot).getHoverColor(2);
+            	RGBA en = ((BaseSlot)slot).getHoverColor(3);
+                this.drawGradientRect(j1, k1, j1 + 16, k1 + 16,st,en);		
+                }else{
+                    this.drawGradientRect(j1, k1, j1 + 16, k1 + 16, -2130706433, -2130706433);
+                }
+                GlStateManager.colorMask(true, true, true, true);
+                GlStateManager.enableLighting();
+                GlStateManager.enableDepth();
+            }else if(slot instanceof BaseSlot && ((BaseSlot)slot).hasColor()){
+            	GlStateManager.disableLighting();
+                GlStateManager.disableDepth();
+                int j1 = slot.xDisplayPosition;
+                k1 = slot.yDisplayPosition;
+                GlStateManager.colorMask(true, true, true, false);
+                RGBA st = ((BaseSlot)slot).getHoverColor(0);
+                RGBA en = ((BaseSlot)slot).getHoverColor(1);
+                this.drawGradientRect(j1, k1, j1 + 16, k1 + 16,st,en);	
                 GlStateManager.colorMask(true, true, true, true);
                 GlStateManager.enableLighting();
                 GlStateManager.enableDepth();
             }
             }
         }
+        
+        
 
         RenderHelper.disableStandardItemLighting();
         this.drawGuiContainerForegroundLayer(mouseX, mouseY);
@@ -261,6 +281,28 @@ public class GuiBase extends GuiScreen{
         RenderHelper.enableStandardItemLighting();
     }
 
+    public void drawGradientRect(int left, int top, int right, int bottom,RGBA start, RGBA end) {
+    	GlStateManager.disableTexture2D();
+        GlStateManager.enableBlend();
+        GlStateManager.disableAlpha();
+        GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
+        GlStateManager.shadeModel(7425);
+        Tessellator tessellator = Tessellator.getInstance();
+        WorldRenderer worldrenderer = tessellator.getWorldRenderer();
+        worldrenderer.startDrawingQuads();
+        worldrenderer.setColorRGBA(start.getRed(), start.getGreen(), start.getBlue(), start.getAlpha());
+        worldrenderer.addVertex((double)right, (double)top, (double)this.zLevel);
+        worldrenderer.addVertex((double)left, (double)top, (double)this.zLevel);
+        worldrenderer.setColorRGBA(end.getRed(), end.getGreen(), end.getBlue(), end.getAlpha());
+        worldrenderer.addVertex((double)left, (double)bottom, (double)this.zLevel);
+        worldrenderer.addVertex((double)right, (double)bottom, (double)this.zLevel);
+        tessellator.draw();
+        GlStateManager.shadeModel(7424);
+        GlStateManager.disableBlend();
+        GlStateManager.enableAlpha();
+        GlStateManager.enableTexture2D();
+    }
+    
     public void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {}
 
 	/**

@@ -13,7 +13,7 @@ public class ContainerChargeStation extends ContainerBase{
 
 	
 	public ContainerChargeStation(IInventory inv, EntityPlayer pl, BlockPos pos, World wo) {
-		super(inv, pl, pos, wo);
+		super(inv, pl, pos, wo,false);
 		super.addSlotToContainer(new BaseBatteryInputSlot(inv, 0, 80, 30));
 		  
 		int i = 0;

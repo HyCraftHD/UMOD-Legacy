@@ -27,7 +27,7 @@ public class GuiPulverizer extends GuiBase{
 	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
 		super.drawScreen(mouseX, mouseY, partialTicks);
  	    TileEntityPulverizer p = (TileEntityPulverizer) this.ent;
-		fontRendererObj.drawString(((TileEntityPulverizer)this.ent).getTime() + "%", this.width/2-5, 64, 0x00000);
+		fontRendererObj.drawString(((TileEntityPulverizer)this.ent).getTime() + "%", this.width/2-5, this.height/2-(this.ySize/2) + 15, 0x00000);
 	}
 	
 	@Override

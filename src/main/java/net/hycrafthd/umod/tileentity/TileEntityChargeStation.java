@@ -2,7 +2,8 @@ package net.hycrafthd.umod.tileentity;
 
 import net.hycrafthd.umod.UItems;
 import net.hycrafthd.umod.api.IGuiProvider;
-import net.hycrafthd.umod.api.IPowerProvieder;
+import net.hycrafthd.umod.api.energy.EnergyAPI;
+import net.hycrafthd.umod.api.energy.IPowerProvieder;
 import net.hycrafthd.umod.block.BlockBaseMachine;
 import net.hycrafthd.umod.container.ContainerChargeStation;
 import net.hycrafthd.umod.enumtype.EnumTypeGui;
@@ -156,7 +157,7 @@ public class TileEntityChargeStation extends TileEntityBase implements IGuiProvi
 	
 	@Override
 	public void update() {
-       if(stack != null && stack.getItemDamage() > 0 && this.canAddPower(2) && mode){
+       if(stack != null && stack.getItemDamage() > 0 && this.canAddPower(pos,2) && mode){
     	   stack.setItemDamage(stack.getItemDamage() + 2);
     	   stored += 2;
        }else if(!mode && stack != null && stack.getItemDamage() < stack.getMaxDamage() && stored - 2 >= 0){
@@ -164,25 +165,7 @@ public class TileEntityChargeStation extends TileEntityBase implements IGuiProvi
     	   stack.setItemDamage(stack.getItemDamage() - 2);
        }
        
-   	BlockPos[] list = {pos.east(),pos.north(),pos.south(),pos.west(),pos.up(),pos.down()};
-	for(int i = 0;i < list.length;i++){
-	Block b = worldObj.getBlockState(list[i]).getBlock();
-    TileEntity e = worldObj.getTileEntity(list[i]);
-	if(e instanceof IPowerProvieder && !(b instanceof BlockBaseMachine)){
-		IPowerProvieder p = (IPowerProvieder) e;
-		if(!(p instanceof TileEntityPipe) && p.canGetPower(2) && this.canAddPower(2)){
-			stored += p.getPower(2);
-		}else if(p instanceof TileEntityPipe){
-			if(p.canGetPower(p.getMaximalPower()) && this.canAddPower(p.getMaximalPower())){
-				stored += p.getPower(p.getMaximalPower());
-			}else if(this.canAddPower(p.getStoredPower())){
-				stored += p.getPower(p.getStoredPower());
-			}else if(p.canGetPower(this.MAXIMAL_POWER - this.stored)){
-				stored += this.MAXIMAL_POWER - this.stored;
-			}
-		}
-	}
-	}
+   	EnergyAPI api = new EnergyAPI(this);
 	}
 	
 	public void setMode(boolean m){
@@ -206,12 +189,12 @@ public class TileEntityChargeStation extends TileEntityBase implements IGuiProvi
 	}
 
 	@Override
-	public boolean canGetPower(int power) {
+	public boolean canGetPower(BlockPos pos,int power) {
 		return false;
 	}
 
 	@Override
-	public boolean canAddPower(int power) {
+	public boolean canAddPower(BlockPos pos,int power) {
 		return power + stored <= MAXIMAL_POWER;
 	}
 

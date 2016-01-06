@@ -6,8 +6,8 @@ import org.lwjgl.opengl.GL11;
 
 import net.hycrafthd.umod.UReference;
 import net.hycrafthd.umod.api.IGuiProvider;
-import net.hycrafthd.umod.api.IPowerProvieder;
 import net.hycrafthd.umod.api.ISignable;
+import net.hycrafthd.umod.api.energy.IPowerProvieder;
 import net.hycrafthd.umod.enumtype.EnumTypeGui;
 import net.hycrafthd.umod.tileentity.TileEntityPulverizer;
 import net.minecraft.client.gui.FontRenderer;
@@ -137,7 +137,7 @@ public class GuiBattery extends GuiScreen{
     	   this.pl.openGui(UReference.modid, ag, this.pl.worldObj, this.pos.getX(), this.pos.getY(), this.pos.getZ());
        case 2:
     	   this.pl.closeScreen();
-    	   this.pl.openGui(UReference.modid, EnumTypeGui.BATTERIEINPUT.getID(), this.pl.worldObj, this.pos.getX(), this.pos.getY(), this.pos.getZ());
+    	   this.pl.openGui(UReference.modid, ag, this.pl.worldObj, this.pos.getX(), this.pos.getY(), this.pos.getZ());
        }
 	}
 }

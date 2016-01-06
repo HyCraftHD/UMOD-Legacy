@@ -1,6 +1,6 @@
 package net.hycrafthd.umod.tileentity;
 
-import net.hycrafthd.umod.api.IPowerProvieder;
+import net.hycrafthd.umod.api.energy.IPowerProvieder;
 import net.hycrafthd.umod.utils.EnergyUtils;
 import net.hycrafthd.umod.utils.WorldUtils;
 import net.minecraft.nbt.NBTTagCompound;
@@ -8,6 +8,7 @@ import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.BlockPos;
 
 public class TileEntitySolarPanel extends TileEntity implements IPowerProvieder {
 
@@ -44,7 +45,7 @@ public class TileEntitySolarPanel extends TileEntity implements IPowerProvieder 
 	}
 
 	@Override
-	public boolean canGetPower(int power) {
+	public boolean canGetPower(BlockPos p,int power) {
 		if (storedpower - power >= 0) {
 			return true;
 		}
@@ -52,7 +53,7 @@ public class TileEntitySolarPanel extends TileEntity implements IPowerProvieder 
 	}
 
 	@Override
-	public boolean canAddPower(int power) {
+	public boolean canAddPower(BlockPos p,int power) {
 		if (power + storedpower <= MAXIMUM_POWER) {
 			return true;
 		}
@@ -82,7 +83,7 @@ public class TileEntitySolarPanel extends TileEntity implements IPowerProvieder 
 			work = false;
 			return;
 		}
-		if (canAddPower(EnergyUtils.inUE(producing))) {
+		if (canAddPower(this.pos,EnergyUtils.inUE(producing))) {
 			addPower(EnergyUtils.inUE(producing));
 			er = null;
 			work = true;

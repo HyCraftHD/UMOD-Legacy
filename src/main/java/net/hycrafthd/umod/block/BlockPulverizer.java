@@ -3,7 +3,7 @@ package net.hycrafthd.umod.block;
 import java.util.Random;
 
 import net.hycrafthd.umod.UReference;
-import net.hycrafthd.umod.api.IEnergyMessage;
+import net.hycrafthd.umod.api.energy.IEnergyMessage;
 import net.hycrafthd.umod.enumtype.EnumTypeGui;
 import net.hycrafthd.umod.tileentity.TileEntityPulverizer;
 import net.hycrafthd.umod.utils.EnergyUtils;

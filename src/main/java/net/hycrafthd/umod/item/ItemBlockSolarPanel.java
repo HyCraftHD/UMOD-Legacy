@@ -2,7 +2,7 @@ package net.hycrafthd.umod.item;
 
 import java.util.List;
 
-import net.hycrafthd.umod.api.IEnergyMessage;
+import net.hycrafthd.umod.api.energy.IEnergyMessage;
 import net.hycrafthd.umod.block.BlockSolarPanel.EnumTypeSolarPanel;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;

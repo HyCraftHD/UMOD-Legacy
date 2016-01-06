@@ -1,6 +1,8 @@
-package net.hycrafthd.umod.api;
+package net.hycrafthd.umod.api.energy;
 
 import net.minecraft.server.gui.IUpdatePlayerListBox;
+import net.minecraft.util.BlockPos;
+import net.minecraft.world.World;
 
 public interface IPowerProvieder extends IUpdatePlayerListBox{
 
@@ -10,9 +12,9 @@ public interface IPowerProvieder extends IUpdatePlayerListBox{
 	
 	public int getPower(int powerneed);
 	
-	public boolean canGetPower(int power);
+	public boolean canGetPower(BlockPos pos,int power);
 	
-	public boolean canAddPower(int power);
+	public boolean canAddPower(BlockPos pos,int power);
 	
 	public int getMaximalPower();
 	
@@ -23,4 +25,8 @@ public interface IPowerProvieder extends IUpdatePlayerListBox{
 	public boolean hasPower();
 	
 	public int getPowerProducNeeds();
+	
+	public BlockPos getPos();
+	
+	public World getWorld();
 }

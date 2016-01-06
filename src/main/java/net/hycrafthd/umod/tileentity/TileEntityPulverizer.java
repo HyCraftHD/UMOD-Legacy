@@ -1,9 +1,10 @@
 package net.hycrafthd.umod.tileentity;
 
 import net.hycrafthd.umod.api.IGuiProvider;
-import net.hycrafthd.umod.api.IPowerProvieder;
 import net.hycrafthd.umod.api.ISignable;
 import net.hycrafthd.umod.api.PulverizerRecepie;
+import net.hycrafthd.umod.api.energy.EnergyAPI;
+import net.hycrafthd.umod.api.energy.IPowerProvieder;
 import net.hycrafthd.umod.block.BlockBaseMachine;
 import net.hycrafthd.umod.block.BlockOres;
 import net.hycrafthd.umod.container.ContainerPulverizer;
@@ -241,25 +242,9 @@ public class TileEntityPulverizer extends TileEntityBase implements
 		    work = false;
 		}
 		}
-		BlockPos[] list = {pos.east(),pos.north(),pos.south(),pos.west(),pos.up(),pos.down()};
-		for(int i = 0;i < list.length;i++){
-		Block b = worldObj.getBlockState(list[i]).getBlock();
-        TileEntity e = worldObj.getTileEntity(list[i]);
-		if(e instanceof IPowerProvieder && !(b instanceof BlockBaseMachine)){
-			IPowerProvieder p = (IPowerProvieder) e;
-			if(!(p instanceof TileEntityPipe) && p.canGetPower(2) && this.canAddPower(2)){
-				strpo += p.getPower(2);
-			}else if(p instanceof TileEntityPipe){
-				if(p.canGetPower(p.getMaximalPower()) && this.canAddPower(p.getMaximalPower())){
-					strpo += p.getPower(p.getMaximalPower());
-				}else if(this.canAddPower(p.getStoredPower())){
-					strpo += p.getPower(p.getStoredPower());
-				}else if(p.canGetPower(this.MAXIMUM_POWER - this.strpo)){
-					strpo += this.MAXIMUM_POWER - this.strpo;
-				}
-			}
-		}
-		}
+		EnergyAPI api = new EnergyAPI(this);
+		api.transferEnergy();
+		api.tranferFromBattery(this.stack[4]);
 	}
 	
 	public int getTime(){
@@ -379,12 +364,12 @@ public class TileEntityPulverizer extends TileEntityBase implements
 	}
 
 	@Override
-	public boolean canGetPower(int power) {
+	public boolean canGetPower(BlockPos p,int power) {
 		return false;
 	}
 
 	@Override
-	public boolean canAddPower(int power) {
+	public boolean canAddPower(BlockPos p,int power) {
 		return strpo + power <= MAXIMUM_POWER;
 	}
 

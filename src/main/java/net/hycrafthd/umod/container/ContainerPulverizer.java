@@ -20,25 +20,15 @@ import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 
-public class ContainerPulverizer extends Container{
+public class ContainerPulverizer extends ContainerBase{
 
-	private static Slot input;
-	private static Slot[] output = new Slot[3];
-	public TileEntity ent;
-	public EntityPlayer pls;
-	public BlockPos pos;
-	public World worldObj;
-	
 	public ContainerPulverizer(IInventory inv, EntityPlayer pl, World wo) {
-		 this.ent = (TileEntity) inv;
-		 this.pls = pl;
-        this.pos = ent.getPos();
-        this.worldObj = wo;
+		super(inv, pl, ((TileEntity) inv).getPos(), wo);
         
-		output[0] = super.addSlotToContainer(new BaseSlotOutput((IInventory) ent, 0, 116, 24));
-		output[1] = super.addSlotToContainer(new BaseSlotOutput((IInventory) ent, 1, 98, 54));
-		output[2] = super.addSlotToContainer(new BaseSlotOutput((IInventory) ent, 2, 126, 54));
-		input = super.addSlotToContainer(new BaseOreInputSlot((IInventory) ent, 3, 30, 23));	
+		super.addSlotToContainer(new BaseSlotOutput((IInventory) ent, 0, 116, 24));
+		super.addSlotToContainer(new BaseSlotOutput((IInventory) ent, 1, 98, 54));
+		super.addSlotToContainer(new BaseSlotOutput((IInventory) ent, 2, 126, 54));
+		super.addSlotToContainer(new BaseOreInputSlot((IInventory) ent, 3, 30, 23));	
          
          int i = 0;
          int v = 9;
@@ -84,7 +74,6 @@ public class ContainerPulverizer extends Container{
                 {
                     if (!this.mergeItemStack(itemstack1, 3, 4, false))
                     {
-                    	System.out.println("Not Mergable");
                         return null;
                     }
                 }
@@ -124,13 +113,4 @@ public class ContainerPulverizer extends Container{
 
         return itemstack;
 	}
-	
-	@Override
-	protected void retrySlotClick(int p_75133_1_, int p_75133_2_, boolean p_75133_3_, EntityPlayer p_75133_4_) {}
-	
-	@Override
-	public boolean canInteractWith(EntityPlayer playerIn) {
-		return true;
-	}
-	
 }

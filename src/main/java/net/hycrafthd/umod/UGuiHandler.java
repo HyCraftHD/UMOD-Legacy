@@ -1,11 +1,9 @@
 package net.hycrafthd.umod;
 
-import net.hycrafthd.umod.api.IPowerProvieder;
-import net.hycrafthd.umod.container.ContainerBattery;
+import net.hycrafthd.umod.api.energy.IPowerProvieder;
 import net.hycrafthd.umod.container.ContainerChargeStation;
 import net.hycrafthd.umod.container.ContainerPulverizer;
 import net.hycrafthd.umod.enumtype.EnumTypeGui;
-import net.hycrafthd.umod.gui.GuiBatterieInput;
 import net.hycrafthd.umod.gui.GuiBattery;
 import net.hycrafthd.umod.gui.GuiChargstation;
 import net.hycrafthd.umod.gui.GuiPulverizer;
@@ -29,8 +27,6 @@ public class UGuiHandler implements IGuiHandler {
 			return new ContainerPulverizer((IInventory) ent, player, world);
 		case CHARGESTATION:
 			return new ContainerChargeStation((IInventory) ent, player, p, world);
-		case BATTERIEINPUT:
-			return new ContainerBattery((IInventory) ent, player, p, world);
 		default:
 			return null;
 		}
@@ -49,8 +45,6 @@ public class UGuiHandler implements IGuiHandler {
 			return new GuiBattery(world, (IPowerProvieder) ent, player, p, 0);
 		case CHARGESTATION:
 			return new GuiChargstation(player, (IInventory) ent);
-		case BATTERIEINPUT:
-            return new GuiBatterieInput(player, (IInventory) ent);
 		default:
 			return null;
 		}

@@ -75,7 +75,7 @@ public class UItems {
 		
 		
 		
-		//CommonRegistryUtils.registerItem(tester);
+		CommonRegistryUtils.registerItem(tester);
 		
 	}
 
@@ -96,7 +96,7 @@ public class UItems {
 		
 		
 		
-		//CommonRegistryUtils.registerOredirectionary(tester);
+		CommonRegistryUtils.registerOredirectionary(tester);
 	}
 
 }

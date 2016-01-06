@@ -3,6 +3,7 @@ package net.hycrafthd.umod;
 import net.hycrafthd.umod.api.ProcessHandler;
 import net.hycrafthd.umod.event.EventExecuteRadiation;
 import net.hycrafthd.umod.event.EventGettingRadiation;
+import net.hycrafthd.umod.event.EventGettingRadiationInv;
 import net.hycrafthd.umod.event.EventModelBakeri;
 import net.hycrafthd.umod.utils.CommonRegistryUtils;
 import net.minecraftforge.fml.common.Mod;
@@ -22,6 +23,7 @@ public class UMod {
 	@EventHandler
 	public void preinit(FMLPreInitializationEvent event) {
 		log = event.getModLog();
+		new UConfig(event.getSuggestedConfigurationFile());
 	}
 
 	@EventHandler
@@ -59,6 +61,7 @@ public class UMod {
 		event.addEvent(new EventExecuteRadiation());
 		event.addEvent(new EventModelBakeri());
 		event.addEvent(new ProcessHandler());
+		event.addEvent(new EventGettingRadiationInv());
 		event.register();
 
 	}

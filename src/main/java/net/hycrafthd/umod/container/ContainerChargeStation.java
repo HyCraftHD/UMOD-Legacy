@@ -11,11 +11,27 @@ import net.minecraft.world.World;
 
 public class ContainerChargeStation extends ContainerBase{
 
-	Slot sl = null;
 	
 	public ContainerChargeStation(IInventory inv, EntityPlayer pl, BlockPos pos, World wo) {
 		super(inv, pl, pos, wo);
-		sl = super.addSlotToContainer(new BaseBatteryInputSlot(inv, 0, 80, 30));
+		super.addSlotToContainer(new BaseBatteryInputSlot(inv, 0, 80, 30));
+		  
+		int i = 0;
+        int v = 9;
+        int j = 0;
+	         
+	         for (i = 0; i < 3; ++i)
+	         {
+	             for (j = 0; j < 9; ++j)
+	             {
+	             	super.addSlotToContainer(new Slot(pl.inventory, (j + (i * 9)) + v, 8 + j * 18, 84 + i * 18));
+	             }
+	         }
+	  
+	         for (i = 0; i < 9; ++i)
+	         {
+	         	super.addSlotToContainer(new Slot(pl.inventory, i, 8 + i * 18, 142));
+	         }
 	}
 	
 	@Override
@@ -40,7 +56,7 @@ public class ContainerChargeStation extends ContainerBase{
             }
             else 
             {
-                if (sl.isItemValid(itemstack1))
+                if (((Slot)inventorySlots.get(0)).isItemValid(itemstack1))
                 {
                     if (!this.mergeItemStack(itemstack1, 36, 37, false))
                     {

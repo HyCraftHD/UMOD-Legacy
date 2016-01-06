@@ -1,5 +1,12 @@
 package net.hycrafthd.umod.container;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import net.hycrafthd.umod.UMod;
+import net.hycrafthd.umod.enumtype.EnumTypeGui;
+import net.hycrafthd.umod.inventory.BaseBatteryInputSlot;
+import net.hycrafthd.umod.inventory.BaseSlot;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
@@ -15,29 +22,17 @@ public class ContainerBase extends Container{
 	public EntityPlayer pls;
 	public BlockPos pos;
 	public World worldObj;
+	public Mode mode;
 	
 	public ContainerBase(IInventory inv,EntityPlayer pl,BlockPos pos,World wo) {
 		 this.ent = (TileEntity) inv;
 		  this.pls = pl;
          this.pos = pos;
          this.worldObj = wo;
-         
-         int i = 0;
-         int v = 9;
-         int j = 0;
-         
-         for (i = 0; i < 3; ++i)
-         {
-             for (j = 0; j < 9; ++j)
-             {
-             	super.addSlotToContainer(new Slot(pl.inventory, (j + (i * 9)) + v, 8 + j * 18, 84 + i * 18));
-             }
-         }
-  
-         for (i = 0; i < 9; ++i)
-         {
-         	super.addSlotToContainer(new Slot(pl.inventory, i, 8 + i * 18, 142));
-         }
+         mode = Mode.NORMAL;
+         BaseSlot sl = new BaseBatteryInputSlot(inv, inv.getSizeInventory() - 1, 80, 28);
+         sl.setVisible(false);
+         super.addSlotToContainer(sl);
 	}
 
 	
@@ -61,13 +56,61 @@ public class ContainerBase extends Container{
 		return true;
 	}
 	
-	public void onSlotChanged(){
-		ent.markDirty();
-	}
-	
 	@Override
 	public ItemStack slotClick(int slotId, int clickedButton, int mode, EntityPlayer playerIn) {
 		return super.slotClick(slotId, clickedButton, mode, playerIn);
 	}
+
+	public void setVisisble(int i,boolean b){
+		if(inventorySlots.get(i) instanceof BaseSlot){
+			((BaseSlot)inventorySlots.get(i)).setVisible(b);
+		}
+	}
+		
+	public static enum Mode{
+		
+		NORMAL(0),BATTERY(1);
+		
+		public int getID() {
+			return id;
+		}
+
+		public static Mode byID(int id) {
+			if (id < 0 || id >= all.length) {
+				id = 0;
+			}
+			return all[id];
+		}
+		
+		public static Mode getTurndMode(Mode m){
+			switch(m){
+			case BATTERY:
+				return NORMAL;
+			case NORMAL:
+				return BATTERY;
+			default:
+				return NORMAL;
+			}
+		}
+
+		private int id;
+
+		private static final Mode[] all = new Mode[values().length];
+
+		private Mode(int id) {
+			this.id = id;
+		}
+
+		static {
+			for (Mode type : values()) {
+				all[type.getID()] = type;
+			}
+		}
+		
+	}
 	
+	public void setMode(Mode m){
+		mode = m;
+	}
+
 }

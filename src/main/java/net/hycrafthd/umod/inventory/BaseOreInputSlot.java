@@ -7,7 +7,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
-public class BaseOreInputSlot extends Slot{
+public class BaseOreInputSlot extends BaseSlot{
 
 	public BaseOreInputSlot(IInventory to,int index, int xPosition, int yPosition) {
 		super(to, index, xPosition, yPosition);

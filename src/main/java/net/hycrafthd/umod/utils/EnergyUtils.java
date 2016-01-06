@@ -1,6 +1,6 @@
 package net.hycrafthd.umod.utils;
 
-import net.hycrafthd.umod.api.IPowerProvieder;
+import net.hycrafthd.umod.api.energy.IPowerProvieder;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 

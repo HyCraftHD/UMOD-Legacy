@@ -1,6 +1,6 @@
 package net.hycrafthd.umod.item;
 
-import net.hycrafthd.umod.api.IPowerProvieder;
+import net.hycrafthd.umod.api.energy.IPowerProvieder;
 import net.hycrafthd.umod.tileentity.TileEntityPipe;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;

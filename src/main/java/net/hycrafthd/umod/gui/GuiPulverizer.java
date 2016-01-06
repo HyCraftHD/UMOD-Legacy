@@ -19,7 +19,7 @@ public class GuiPulverizer extends GuiBase{
 	public BlockPos pos;
 
 	public GuiPulverizer(EntityPlayer pl, IInventory tile,World w,BlockPos pos) {
-		super(new ResourceLocation(UReference.modid, "textures/gui/pulver.png"), pl, tile, new ContainerPulverizer(tile, pl, w));
+		super(new ResourceLocation(UReference.modid, "textures/gui/pulver.png"),new ResourceLocation(UReference.modid, "textures/gui/battery.png"), pl, tile, new ContainerPulverizer(tile, pl, w));
 		this.pos = pos;
 	}
 

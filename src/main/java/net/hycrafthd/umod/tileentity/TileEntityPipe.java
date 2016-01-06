@@ -2,9 +2,10 @@ package net.hycrafthd.umod.tileentity;
 
 import java.util.ArrayList;
 
-import net.hycrafthd.umod.api.IPipeRange;
 import net.hycrafthd.umod.api.IPlugabel;
-import net.hycrafthd.umod.api.IPowerProvieder;
+import net.hycrafthd.umod.api.energy.EnergyAPI;
+import net.hycrafthd.umod.api.energy.IPipeRange;
+import net.hycrafthd.umod.api.energy.IPowerProvieder;
 import net.hycrafthd.umod.block.BlockBaseMachine;
 import net.hycrafthd.umod.utils.DirectionUtils;
 import net.hycrafthd.umod.utils.EnergyUtils;
@@ -22,6 +23,7 @@ public class TileEntityPipe extends TileEntity implements IPlugabel, IPowerProvi
 	public int Maximum_Power;
 	public int stored;
 	public int loos;
+	private ArrayList<BlockPos> getter = new ArrayList<BlockPos>();
 
 	public TileEntityPipe() {
 	}
@@ -42,33 +44,9 @@ public class TileEntityPipe extends TileEntity implements IPlugabel, IPowerProvi
 
 	@Override
 	public void update() {
-		ArrayList<BlockPos> poses = new ArrayList<BlockPos>();
-		BlockPos[] list = { pos.east(), pos.north(), pos.south(), pos.west(), pos.up(), pos.down() };
-		for (int i = 0; i < list.length; i++) {
-			Block b = worldObj.getBlockState(list[i]).getBlock();
-			if (!(b instanceof BlockBaseMachine)) {
-				TileEntity e = worldObj.getTileEntity(list[i]);
-				if (e instanceof IPowerProvieder && !poses.contains(list[i])) {
-					IPowerProvieder p = (IPowerProvieder) e;
-					if (p.canGetPower(Maximum_Power) && this.canAddPower(Maximum_Power)) {
-						stored += p.getPower(Maximum_Power);
-						if (p instanceof IPipeRange) {
-							IPipeRange r = (IPipeRange) p;
-							if (r.getPastPipeCount() < loos) {
-								passtpip++;
-							} else {
-								stored--;
-								passtpip = 0;
-							}
-						} else {
-							passtpip = 0;
-						}
-					}
-				}
-			} else {
-				poses.add(DirectionUtils.getPosfromFacing(DirectionUtils.getDirectory(list[i], pos), pos));
-			}
-		}
+	     EnergyAPI api = new EnergyAPI(this);
+	     api.transferEnergy();
+	
 	}
 
 	public int passtpip = 0;
@@ -80,6 +58,7 @@ public class TileEntityPipe extends TileEntity implements IPlugabel, IPowerProvi
 
 	@Override
 	public void addPower(int power) {
+		stored += power;
 	}
 
 	@Override
@@ -89,16 +68,17 @@ public class TileEntityPipe extends TileEntity implements IPlugabel, IPowerProvi
 	}
 
 	@Override
-	public boolean canGetPower(int power) {
-		if (stored - power >= 0) {
+	public boolean canGetPower(BlockPos pos,int power) {
+		if (stored - power >= 0 && !getter.contains(pos)) {
 			return true;
 		}
 		return false;
 	}
 
 	@Override
-	public boolean canAddPower(int power) {
+	public boolean canAddPower(BlockPos pos,int power) {
 		if (!hasPower() && power + stored <= Maximum_Power) {
+			getter.add(pos);
 			return true;
 		}
 		return false;
@@ -164,6 +144,28 @@ public class TileEntityPipe extends TileEntity implements IPlugabel, IPowerProvi
 	@Override
 	public int getPowerProducNeeds() {
 		return EnergyUtils.inUE(Maximum_Power);
+	}
+
+	@Override
+	public int addBlock(int count) {
+		int i = getPastPipeCount();
+		passtpip = count;
+		return i;
+	}
+
+	@Override
+	public int getMaximalRange() {
+		return loos;
+	}
+
+	@Override
+	public void remove(int count) {
+		getPower(count);
+	}
+
+	@Override
+	public void clearPast() {
+		passtpip = 0;
 	}
 
 }

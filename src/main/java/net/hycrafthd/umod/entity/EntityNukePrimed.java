@@ -14,6 +14,9 @@ import net.minecraft.world.World;
 
 public class EntityNukePrimed extends Entity {
 
+	public static int fuseSec;
+	public static int nukePower;
+
 	public int fuse;
 	private EntityLivingBase tntPlacedBy;
 
@@ -30,7 +33,7 @@ public class EntityNukePrimed extends Entity {
 		this.motionX = -((float) Math.sin(f)) * 0.02F;
 		this.motionY = 0.20000000298023224D;
 		this.motionZ = -((float) Math.cos(f)) * 0.02F;
-		this.fuse = 24 * 20;
+		this.fuse = fuseSec * 20;
 		this.prevPosX = p_i1730_2_;
 		this.prevPosY = p_i1730_4_;
 		this.prevPosZ = p_i1730_6_;
@@ -85,7 +88,7 @@ public class EntityNukePrimed extends Entity {
 
 	private void explode() {
 		BlockPos pos = new BlockPos(this.posX, this.posY, this.posZ);
-		float power = 2F + (((5000) / 10369F) * 18F);
+		float power = 2F + (((this.nukePower) / 10369F) * 18F);
 		ProcessHandler.addProcess(new NuclearExplosion(this.worldObj, pos.getX(), pos.getY(), pos.getZ(), power));
 	}
 
@@ -110,6 +113,6 @@ public class EntityNukePrimed extends Entity {
 
 	@Override
 	protected void entityInit() {
-		this.fuse = 24 * 20;
+		this.fuse = this.fuseSec * 20;
 	}
 }

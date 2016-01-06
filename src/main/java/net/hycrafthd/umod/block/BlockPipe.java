@@ -2,9 +2,9 @@ package net.hycrafthd.umod.block;
 
 import net.hycrafthd.umod.UDamageSource;
 import net.hycrafthd.umod.UReference;
-import net.hycrafthd.umod.api.IEnergyMessage;
 import net.hycrafthd.umod.api.IPlugabel;
-import net.hycrafthd.umod.api.IPowerProvieder;
+import net.hycrafthd.umod.api.energy.IEnergyMessage;
+import net.hycrafthd.umod.api.energy.IPowerProvieder;
 import net.hycrafthd.umod.tileentity.TileEntityPipe;
 import net.hycrafthd.umod.utils.EnergyUtils;
 import net.minecraft.block.Block;

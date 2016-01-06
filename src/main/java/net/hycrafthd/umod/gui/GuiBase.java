@@ -3,6 +3,7 @@ package net.hycrafthd.umod.gui;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
 import org.lwjgl.input.Keyboard;
@@ -22,12 +23,20 @@ import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiLockIconButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.renderer.EntityRenderer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.WorldRenderer;
+import net.minecraft.client.renderer.block.model.BakedQuad;
+import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.renderer.texture.TextureMap;
+import net.minecraft.client.renderer.texture.TextureUtil;
+import net.minecraft.client.renderer.tileentity.TileEntityItemStackRenderer;
+import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.client.resources.model.IBakedModel;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -37,23 +46,29 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.Vec3i;
 
 public class GuiBase extends GuiScreen{
 	
 	public ResourceLocation loc;
+	public ResourceLocation loc1;
 	public ResourceLocation loc2;
+	public ResourceLocation loc3;
 	public EntityPlayer play;
 	public TileEntity ent; 
 	public BlockPos pos;
 	public Slot hoveredSlot;
 	public ContainerBase basecon;
 
-	public GuiBase(ResourceLocation loc,ResourceLocation loc2,EntityPlayer pl,IInventory tile,Container con) {
+	public GuiBase(ResourceLocation loc,ResourceLocation loc2,ResourceLocation loc3,EntityPlayer pl,IInventory tile,Container con) {
 		super();
 		this.loc = loc;
+		this.loc1 = loc;
 		this.loc2 = loc2;
+		this.loc3 = loc3;
 		this.play = pl;
 		this.ent = (TileEntity) tile;
 		this.pos = ent.getPos();
@@ -93,11 +108,9 @@ public class GuiBase extends GuiScreen{
 	    	   this.play.openGui(UReference.modid, EnumTypeGui.BATTERIE.getID(), this.play.worldObj, this.pos.getX(), this.pos.getY(),this.pos.getZ());
 	     break;	
 	     case 3:
-	    	 ResourceLocation resc1 = loc;
-	    	 loc = loc2;
-	    	 loc2 = resc1;
 	    	 basecon.setMode(Mode.getTurndMode(basecon.mode));
 	    	 if(basecon.mode.equals(Mode.BATTERY)){
+	    		 loc = loc2;
 	    		 for(int i = 0;i < basecon.inventorySlots.size();i++){
 	    			 if(basecon.inventorySlots.get(i) instanceof BaseBatteryInputSlot){
 	    				 basecon.setVisisble(i, true);
@@ -105,7 +118,9 @@ public class GuiBase extends GuiScreen{
 	    				 basecon.setVisisble(i, false);
 	    			 }
 	    		 }
+	    		 button.displayString = "O";
 	    	 }else if(basecon.mode.equals(Mode.NORMAL)){
+	    		 loc = loc1;
 	    		 for(int i = 0;i < basecon.inventorySlots.size();i++){
 	    			 if(basecon.inventorySlots.get(i) instanceof BaseBatteryInputSlot){
 	    				 basecon.setVisisble(i, false);
@@ -113,6 +128,17 @@ public class GuiBase extends GuiScreen{
 	    				 basecon.setVisisble(i, true);
 	    			 }
 	    		 }
+	    		 button.displayString = "B";
+	    	 }else if(basecon.mode.equals(Mode.OUTPUT)){
+	    		 loc = loc3;
+	    		 for(int i = 0;i < basecon.inventorySlots.size();i++){
+	    			 if(basecon.inventorySlots.get(i) instanceof BaseBatteryInputSlot){
+	    				 basecon.setVisisble(i, false);
+	    			 }else if(basecon.inventorySlots.get(i) instanceof BaseSlot ){
+	    				 basecon.setVisisble(i, false);
+	    			 }
+	    		 }
+	    		 button.displayString = "x"; 
 	    	 }
 	    	 break;
 		}
@@ -218,7 +244,9 @@ public class GuiBase extends GuiScreen{
             }
         }
         
-        
+        if(basecon.mode.equals(Mode.OUTPUT)){
+        	this.drawIOMode();
+        }
 
         RenderHelper.disableStandardItemLighting();
         this.drawGuiContainerForegroundLayer(mouseX, mouseY);
@@ -301,6 +329,182 @@ public class GuiBase extends GuiScreen{
         GlStateManager.disableBlend();
         GlStateManager.enableAlpha();
         GlStateManager.enableTexture2D();
+    }
+    
+    public void drawIOMode(){
+    	  GlStateManager.enableDepth();
+          this.renderItemIntoGUI(new ItemStack(ent.getWorld().getBlockState(pos).getBlock()), width/6, height/6);
+          GlStateManager.disableDepth();
+    }
+    
+    private void setupGuiTransform(int xPosition, int yPosition, boolean isGui3d)
+    {
+        GlStateManager.translate((float)xPosition, (float)yPosition, 100.0F + this.zLevel);
+        GlStateManager.translate(8.0F, 8.0F, 0.0F);
+        GlStateManager.scale(1.0F, 1.0F, -1.0F);
+        GlStateManager.scale(0.5F, 0.5F, 0.5F);
+
+        if (isGui3d)
+        {
+            GlStateManager.scale(40.0F, 40.0F, 40.0F);
+            GlStateManager.rotate(210.0F, 1.0F, 0.0F, 0.0F);
+            GlStateManager.rotate(-135.0F, 0.0F, 1.0F, 0.0F);
+            GlStateManager.enableLighting();
+        }
+        else
+        {
+            GlStateManager.scale(64.0F, 64.0F, 64.0F);
+            GlStateManager.rotate(180.0F, 1.0F, 0.0F, 0.0F);
+            GlStateManager.disableLighting();
+        }
+    }
+    
+    public void renderItemIntoGUI(ItemStack stack, int x, int y)
+    {
+        IBakedModel ibakedmodel = this.itemRender.getItemModelMesher().getItemModel(stack);
+        GlStateManager.pushMatrix();
+        Minecraft.getMinecraft().getTextureManager().bindTexture(TextureMap.locationBlocksTexture);
+        Minecraft.getMinecraft().getTextureManager().getTexture(TextureMap.locationBlocksTexture).setBlurMipmap(false, false);
+        GlStateManager.enableRescaleNormal();
+        GlStateManager.enableAlpha();
+        GlStateManager.alphaFunc(516, 0.1F);
+        GlStateManager.enableBlend();
+        GlStateManager.blendFunc(770, 771);
+        GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+        this.setupGuiTransform(x, y, ibakedmodel.isGui3d());
+        ibakedmodel = net.minecraftforge.client.ForgeHooksClient.handleCameraTransforms(ibakedmodel, ItemCameraTransforms.TransformType.GUI);
+        this.renderItem(stack, ibakedmodel);
+        GlStateManager.disableAlpha();
+        GlStateManager.disableRescaleNormal();
+        GlStateManager.disableLighting();
+        GlStateManager.popMatrix();
+        Minecraft.getMinecraft().getTextureManager().bindTexture(TextureMap.locationBlocksTexture);
+        Minecraft.getMinecraft().getTextureManager().getTexture(TextureMap.locationBlocksTexture).restoreLastBlurMipmap();
+    }
+
+    
+    private void renderModel(IBakedModel model, int color)
+    {
+        this.renderModel(model, color, (ItemStack)null);
+    }
+    
+    public void renderItem(ItemStack stack, IBakedModel model)
+    {
+        GlStateManager.pushMatrix();
+        GlStateManager.scale(0.5F, 0.5F, 0.5F);
+
+        if (model.isBuiltInRenderer())
+        {
+            GlStateManager.rotate(180.0F, 0.0F, 1.0F, 0.0F);
+            GlStateManager.translate(-0.5F, -0.5F, -0.5F);
+            GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+            GlStateManager.enableRescaleNormal();
+            TileEntityItemStackRenderer.instance.renderByItem(stack);
+        }
+        else
+        {
+            GlStateManager.translate(-0.5F, -0.5F, -0.5F);
+            this.renderModel(model, -1,stack);
+
+            if (stack.hasEffect())
+            {
+                this.renderEffect(model);
+            }
+        }
+
+        GlStateManager.popMatrix();
+    }
+    
+    private static final ResourceLocation RES_ITEM_GLINT = new ResourceLocation("textures/misc/enchanted_item_glint.png");
+    
+    private void renderEffect(IBakedModel model)
+    {
+        GlStateManager.depthMask(false);
+        GlStateManager.depthFunc(514);
+        GlStateManager.disableLighting();
+        GlStateManager.blendFunc(768, 1);
+        Minecraft.getMinecraft().getTextureManager().bindTexture(RES_ITEM_GLINT);
+        GlStateManager.matrixMode(5890);
+        GlStateManager.pushMatrix();
+        GlStateManager.scale(8.0F, 8.0F, 8.0F);
+        float f = (float)(Minecraft.getSystemTime() % 3000L) / 3000.0F / 8.0F;
+        GlStateManager.translate(f, 0.0F, 0.0F);
+        GlStateManager.rotate(-50.0F, 0.0F, 0.0F, 1.0F);
+        this.renderModel(model, -8372020);
+        GlStateManager.popMatrix();
+        GlStateManager.pushMatrix();
+        GlStateManager.scale(8.0F, 8.0F, 8.0F);
+        float f1 = (float)(Minecraft.getSystemTime() % 4873L) / 4873.0F / 8.0F;
+        GlStateManager.translate(-f1, 0.0F, 0.0F);
+        GlStateManager.rotate(10.0F, 0.0F, 0.0F, 1.0F);
+        this.renderModel(model, -8372020);
+        GlStateManager.popMatrix();
+        GlStateManager.matrixMode(5888);
+        GlStateManager.blendFunc(770, 771);
+        GlStateManager.enableLighting();
+        GlStateManager.depthFunc(515);
+        GlStateManager.depthMask(true);
+        Minecraft.getMinecraft().getTextureManager().bindTexture(TextureMap.locationBlocksTexture);
+    }
+    
+    private void renderModel(IBakedModel model, int color, ItemStack stack)
+    {
+        Tessellator tessellator = Tessellator.getInstance();
+        WorldRenderer worldrenderer = tessellator.getWorldRenderer();
+        worldrenderer.startDrawingQuads();
+        worldrenderer.setVertexFormat(DefaultVertexFormats.ITEM);
+        EnumFacing[] aenumfacing = EnumFacing.values();
+        int j = aenumfacing.length;
+
+        for (int k = 0; k < j; ++k)
+        {
+            EnumFacing enumfacing = aenumfacing[k];
+            this.renderQuads(worldrenderer, model.getFaceQuads(enumfacing), color, stack);
+        }
+
+        this.renderQuads(worldrenderer, model.getGeneralQuads(), color, stack);
+        tessellator.draw();
+    }
+    
+    private void renderQuads(WorldRenderer renderer, List quads, int color, ItemStack stack)
+    {
+        boolean flag = color == -1 && stack != null;
+        BakedQuad bakedquad;
+        int j;
+
+        for (Iterator iterator = quads.iterator(); iterator.hasNext(); this.renderQuad(renderer, bakedquad, j))
+        {
+            bakedquad = (BakedQuad)iterator.next();
+            j = color;
+
+            if (flag && bakedquad.hasTintIndex())
+            {
+                j = stack.getItem().getColorFromItemStack(stack, bakedquad.getTintIndex());
+
+                if (EntityRenderer.anaglyphEnable)
+                {
+                    j = TextureUtil.anaglyphColor(j);
+                }
+
+                j |= -16777216;
+            }
+        }
+    }
+    
+    private void renderQuad(WorldRenderer renderer, BakedQuad quad, int color)
+    {
+        renderer.addVertexData(quad.getVertexData());
+        if(quad instanceof net.minecraftforge.client.model.IColoredBakedQuad)
+            net.minecraftforge.client.ForgeHooksClient.putQuadColor(renderer, quad, color);
+        else
+        renderer.putColor4(color);
+        this.putQuadNormal(renderer, quad);
+    }
+
+    private void putQuadNormal(WorldRenderer renderer, BakedQuad quad)
+    {
+        Vec3i vec3i = quad.getFace().getDirectionVec();
+        renderer.putNormal((float)vec3i.getX(), (float)vec3i.getY(), (float)vec3i.getZ());
     }
     
     public void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {}

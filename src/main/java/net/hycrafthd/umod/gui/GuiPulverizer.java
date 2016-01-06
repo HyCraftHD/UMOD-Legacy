@@ -3,6 +3,7 @@ package net.hycrafthd.umod.gui;
 import java.io.IOException;
 
 import net.hycrafthd.umod.UReference;
+import net.hycrafthd.umod.container.ContainerBase.Mode;
 import net.hycrafthd.umod.container.ContainerPulverizer;
 import net.hycrafthd.umod.tileentity.TileEntityPulverizer;
 import net.minecraft.client.gui.GuiButton;
@@ -19,15 +20,17 @@ public class GuiPulverizer extends GuiBase{
 	public BlockPos pos;
 
 	public GuiPulverizer(EntityPlayer pl, IInventory tile,World w,BlockPos pos) {
-		super(new ResourceLocation(UReference.modid, "textures/gui/pulver.png"),new ResourceLocation(UReference.modid, "textures/gui/battery.png"), pl, tile, new ContainerPulverizer(tile, pl, w));
+		super(new GuiRescources("pulver.png"),new GuiRescources("battery.png"), new GuiRescources("IOMode.png"),pl, tile, new ContainerPulverizer(tile, pl, w));
 		this.pos = pos;
 	}
 
 	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
 		super.drawScreen(mouseX, mouseY, partialTicks);
+		if(!basecon.mode.equals(Mode.OUTPUT)){
  	    TileEntityPulverizer p = (TileEntityPulverizer) this.ent;
 		fontRendererObj.drawString(((TileEntityPulverizer)this.ent).getTime() + "%", this.width/2-5, this.height/2-(this.ySize/2) + 15, 0x00000);
+		}
 	}
 	
 	@Override

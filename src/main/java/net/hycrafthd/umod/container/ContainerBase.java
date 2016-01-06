@@ -80,7 +80,7 @@ public class ContainerBase extends Container{
 		
 	public static enum Mode{
 		
-		NORMAL(0),BATTERY(1);
+		NORMAL(0),BATTERY(1),OUTPUT(2);
 		
 		public int getID() {
 			return id;
@@ -96,9 +96,11 @@ public class ContainerBase extends Container{
 		public static Mode getTurndMode(Mode m){
 			switch(m){
 			case BATTERY:
-				return NORMAL;
+				return OUTPUT;
 			case NORMAL:
 				return BATTERY;
+			case OUTPUT:
+				return NORMAL;
 			default:
 				return NORMAL;
 			}

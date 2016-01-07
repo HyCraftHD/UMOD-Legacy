@@ -8,6 +8,7 @@ import net.hycrafthd.umod.enumtype.EnumTypeGui;
 import net.hycrafthd.umod.inventory.BaseBatteryInputSlot;
 import net.hycrafthd.umod.inventory.BaseSlot;
 import net.hycrafthd.umod.render.RGBA;
+import net.hycrafthd.umod.utils.StringReturnment;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
@@ -33,11 +34,8 @@ public class ContainerBase extends Container{
          this.worldObj = wo;
          mode = Mode.NORMAL;
          if(b){
-         BaseSlot sl = new BaseBatteryInputSlot(inv, inv.getSizeInventory() - 1, 80, 28);
+         BaseBatteryInputSlot sl = new BaseBatteryInputSlot(inv, inv.getSizeInventory() - 1, 80, 28);
          sl.setVisible(false);
-         RGBA back = new RGBA(255, 0, 0, 125);
-         RGBA nback = new RGBA(255, 0, 0, 50);
-         sl.setHoverColor(nback,nback,back, back);
          super.addSlotToContainer(sl);
 	     }
          B = b;
@@ -126,4 +124,7 @@ public class ContainerBase extends Container{
 		mode = m;
 	}
 
+	public Mode getMode(){
+		return mode;
+	}
 }

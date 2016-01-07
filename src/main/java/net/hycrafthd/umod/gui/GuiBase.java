@@ -17,9 +17,11 @@ import net.hycrafthd.umod.enumtype.EnumTypeGui;
 import net.hycrafthd.umod.inventory.BaseBatteryInputSlot;
 import net.hycrafthd.umod.inventory.BaseSlot;
 import net.hycrafthd.umod.render.RGBA;
+import net.hycrafthd.umod.utils.StringReturnment;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
+import net.minecraft.client.gui.GuiLabel;
 import net.minecraft.client.gui.GuiLockIconButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -90,7 +92,24 @@ public class GuiBase extends GuiScreen{
         this.guiTop = (this.height - this.ySize) / 2;
 		GuiButton ba = new GuiButton(1, this.width/2-(this.xSize/2), this.height/2-(this.ySize/2) - 20,20,20, "<");
 		GuiButton fo = new GuiButton(2, this.width/2+(this.xSize/2)-20, this.height/2-(this.ySize/2) - 20,20,20, ">");
-		GuiButton btn = new GuiButton(3, this.width/2 + (this.xSize/3), this.height/2-(this.ySize/2) + 5, 20, 20, "B");
+		ExtendedGuiButton btn = new ExtendedGuiButton(3, this.width/2 + (this.xSize/3), this.height/2-(this.ySize/2) + 5, 20, 20, "B");
+		btn.setStringRet(new StringReturnment() {
+			
+			@Override
+			public String getString() {
+				switch(basecon.getMode()){
+				case NORMAL:
+					return "Switch to Battery Mode";
+				case BATTERY:
+					return "Switch to Output Selecting Mode";
+				case OUTPUT:
+					return "Switch to Normale Mode";
+				default:
+					break;
+				}
+				return null;
+			}
+		});
 		if(basecon.B){buttonList.add(btn);}
 		buttonList.add(ba);
 		buttonList.add(fo);
@@ -183,6 +202,8 @@ public class GuiBase extends GuiScreen{
 
     public void drawScreen(int mouseX, int mouseY, float partialTicks)
     {
+    	int mousePX = mouseX;
+    	int mousePY = mouseY;
         this.drawDefaultBackground();
         int k = this.guiLeft;
         int l = this.guiTop;
@@ -191,7 +212,29 @@ public class GuiBase extends GuiScreen{
         RenderHelper.disableStandardItemLighting();
         GlStateManager.disableLighting();
         GlStateManager.disableDepth();
-        super.drawScreen(mouseX, mouseY, partialTicks);
+        int ks;
+
+        for (ks = 0; ks < this.buttonList.size(); ++ks)
+        {
+            ((GuiButton)this.buttonList.get(ks)).drawButton(this.mc, mouseX, mouseY);
+        	if(this.buttonList.get(ks) instanceof ExtendedGuiButton && ((ExtendedGuiButton)this.buttonList.get(ks)).isMouseOver() && ((ExtendedGuiButton)this.buttonList.get(ks)).hasString()){
+        		ExtendedGuiButton gui = ((ExtendedGuiButton)this.buttonList.get(ks));
+        		 RGBA rgb = new RGBA(0, 0, 255, 150);
+        		   this.drawGradientRect(mousePX, mousePY, mousePX + gui.getWidth(), mousePY + gui.getHeight(), rgb, rgb);
+                   if(gui.hasMoreLines()){
+                       String[] str = gui.getString().split("\n");
+                       for(int i = 0;i < str.length;i++)
+                       this.fontRendererObj.drawString(str[i], mousePX + 4, mousePY + 4 + (i*16), gui.getFontColor());
+                   }else{
+                       this.fontRendererObj.drawString(gui.getString(), mousePX + 4, mousePY + 4, gui.getFontColor());
+                   }
+        	}
+        }
+
+        for (ks = 0; ks < this.labelList.size(); ++ks)
+        {
+            ((GuiLabel)this.labelList.get(ks)).drawLabel(this.mc, mouseX, mouseY);
+        }
         RenderHelper.enableGUIStandardItemLighting();
         GlStateManager.pushMatrix();
         GlStateManager.translate((float)k, (float)l, 0.0F);
@@ -228,6 +271,16 @@ public class GuiBase extends GuiScreen{
                 GlStateManager.colorMask(true, true, true, true);
                 GlStateManager.enableLighting();
                 GlStateManager.enableDepth();
+                if(slot instanceof BaseSlot && ((BaseSlot)slot).hasString()){
+                    this.drawGradientRect(j1+18, k1, j1 + ((BaseSlot)slot).getWidth() +18, k1 + ((BaseSlot)slot).getHeight(), ((BaseSlot)slot).getHoverColor(0), ((BaseSlot)slot).getHoverColor(0));
+                if(((BaseSlot)slot).hasMoreLines()){
+                    String[] str = ((BaseSlot)slot).getString().split("\n");
+                    for(int i = 0;i < str.length;i++)
+                    this.fontRendererObj.drawString(str[i], j1 + 4+18, k1 + 4 + (i*16), ((BaseSlot)slot).getFontColor());
+                }else{
+                    this.fontRendererObj.drawString(((BaseSlot)slot).getString(), j1 + 4 +18, k1 + 4, ((BaseSlot)slot).getFontColor());
+                }
+                }
             }else if(slot instanceof BaseSlot && ((BaseSlot)slot).hasColor()){
             	GlStateManager.disableLighting();
                 GlStateManager.disableDepth();

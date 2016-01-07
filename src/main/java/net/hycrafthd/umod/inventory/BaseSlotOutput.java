@@ -1,5 +1,7 @@
 package net.hycrafthd.umod.inventory;
 
+import net.hycrafthd.umod.render.RGBA;
+import net.hycrafthd.umod.utils.StringReturnment;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
@@ -9,6 +11,16 @@ public class BaseSlotOutput extends BaseSlot{
 
 	public BaseSlotOutput(IInventory inventoryIn, int index, int xPosition, int yPosition) {
 		super(inventoryIn, index, xPosition, yPosition);
+		RGBA n = new RGBA(255, 255, 70, 50);
+		RGBA e = new RGBA(255, 255, 70, 125);
+		this.setHoverColor(n, n, e, e);
+		this.setStringRet(new StringReturnment() {
+			
+			@Override
+			public String getString() {
+				return "Outputslot\nGives crafted stuff out";
+			}
+		});
 	}
 
 	@Override
@@ -25,5 +37,10 @@ public class BaseSlotOutput extends BaseSlot{
 	public void onSlotChanged() {
 		super.onSlotChanged();
 		this.inventory.markDirty();
+	}
+	
+	@Override
+	public int getFontColor() {
+		return 0x000000;
 	}
 }

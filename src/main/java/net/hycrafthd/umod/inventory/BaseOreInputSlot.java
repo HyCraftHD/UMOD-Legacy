@@ -1,6 +1,8 @@
 package net.hycrafthd.umod.inventory;
 
 import net.hycrafthd.umod.block.BlockOres;
+import net.hycrafthd.umod.render.RGBA;
+import net.hycrafthd.umod.utils.StringReturnment;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -11,6 +13,16 @@ public class BaseOreInputSlot extends BaseSlot{
 
 	public BaseOreInputSlot(IInventory to,int index, int xPosition, int yPosition) {
 		super(to, index, xPosition, yPosition);
+		RGBA n = new RGBA(0, 255, 0, 50);
+		RGBA e = new RGBA(0, 255, 0, 125);
+		this.setHoverColor(n, n, e, e);
+		this.setStringRet(new StringReturnment() {
+			
+			@Override
+			public String getString() {
+				return "Ore Inputslot\nPut a Modore in";
+			}
+		});
 	}
 
 	@Override
@@ -35,5 +47,9 @@ public class BaseOreInputSlot extends BaseSlot{
 		this.inventory.markDirty();
 	}
 
+	@Override
+	public int getFontColor() {
+		return 0x000000;
+	}
 	
 }

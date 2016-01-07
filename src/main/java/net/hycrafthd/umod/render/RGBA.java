@@ -1,5 +1,7 @@
 package net.hycrafthd.umod.render;
 
+import org.lwjgl.util.Color;
+
 public class RGBA {
 
 	private int Red;
@@ -12,6 +14,14 @@ public class RGBA {
 		Green = g;
 		Blue = b;
 		Alpha = a;
+	}
+	
+	public RGBA(Color cl){
+		this(cl.getRed(),cl.getGreen(),cl.getBlue(),cl.getAlpha());
+	}
+	
+	public RGBA(java.awt.Color cl) {
+		this(cl.getRed(),cl.getGreen(),cl.getBlue(),cl.getAlpha());
 	}
 	
 	public int getRed(){

@@ -199,6 +199,7 @@ public class GuiBase extends GuiScreen{
     public boolean doubleClick;
     public ItemStack shiftClickedSlot;
     public static final String __OBFID = "CL_00000737";
+    public String hal = "Nourth";
 
     public void drawScreen(int mouseX, int mouseY, float partialTicks)
     {
@@ -387,21 +388,27 @@ public class GuiBase extends GuiScreen{
     public void drawIOMode(){
     	  GlStateManager.enableDepth();
           this.renderItemIntoGUI(new ItemStack(ent.getWorld().getBlockState(pos).getBlock()), width/6, height/6);
+          GlStateManager.popMatrix();
+          int kl = (this.width - this.xSize) / 2;
+          int ls = (this.height - this.ySize) / 2;
+          this.fontRendererObj.drawString(hal, kl + 10, this.height/2 - 10, 0xFFFFFF);
+          GuiCombobox box = new GuiCombobox(kl + 8, ls + 7, 80, 12);
           GlStateManager.disableDepth();
+          GlStateManager.pushMatrix();
     }
     
     private void setupGuiTransform(int xPosition, int yPosition, boolean isGui3d)
     {
         GlStateManager.translate((float)xPosition, (float)yPosition, 100.0F + this.zLevel);
         GlStateManager.translate(8.0F, 8.0F, 0.0F);
-        GlStateManager.scale(1.0F, 1.0F, -1.0F);
+        GlStateManager.scale(2.0F, 2.0F, -2.0F);
         GlStateManager.scale(0.5F, 0.5F, 0.5F);
 
         if (isGui3d)
         {
             GlStateManager.scale(40.0F, 40.0F, 40.0F);
-            GlStateManager.rotate(210.0F, 1.0F, 0.0F, 0.0F);
-            GlStateManager.rotate(-135.0F, 0.0F, 1.0F, 0.0F);
+            GlStateManager.rotate(sclay, 1.0F, 0.0F, 0.0F);
+            GlStateManager.rotate(sclax, 0.0F, 1.0F, 0.0F);
             GlStateManager.enableLighting();
         }
         else
@@ -710,8 +717,13 @@ public class GuiBase extends GuiScreen{
     /**
      * Called when the mouse is clicked. Args : mouseX, mouseY, clickedButton
      */
+    private int posX;
+    private int posY;
+    
     protected void mouseClicked(int mouseX, int mouseY, int mouseButton) throws IOException
     {
+    	posX = mouseX;
+    	posY = mouseY;
         super.mouseClicked(mouseX, mouseY, mouseButton);
         boolean flag = mouseButton == this.mc.gameSettings.keyBindPickBlock.getKeyCode() + 100;
         Slot slot = this.getSlotAtPosition(mouseX, mouseY);
@@ -813,12 +825,41 @@ public class GuiBase extends GuiScreen{
         this.lastClickButton = mouseButton;
     }
 
-    /**
-     * Called when a mouse button is pressed and the mouse is moved around. Parameters are : mouseX, mouseY,
-     * lastButtonClicked & timeSinceMouseClick.
-     */
+    private int sclax = 0;
+    private int sclay = 0;
+ 
     protected void mouseClickMove(int mouseX, int mouseY, int clickedMouseButton, long timeSinceLastClick)
     {
+    	if(basecon.mode.equals(Mode.OUTPUT) && clickedMouseButton == 0){
+    		if(sclax - (mouseX - posX) <= 90 && sclax - (mouseX - posX) >= -180){
+    		sclax -= mouseX - posX;
+    		}
+		    if(sclay + (mouseY - posY) <= 90 && sclay + (mouseY - posY) >= -90){
+    		sclay += mouseY - posY;
+    		}
+    		posX = mouseX;
+        	posY = mouseY;
+        	if(sclay >= 45 && sclay <= 135){
+        		hal = "Up";
+        	}
+        	if(sclay <= -45 && sclay >= -215){
+        		hal = "Down";
+        	}
+        	if(sclay >= -45 && sclay <= 45){
+        		if(sclax >= -45 && sclax <= 45){
+        		hal = "Nourth";
+        		}
+        		if(sclax <= 135 && sclax >= 45){
+            		hal = "East";
+            	}
+        		if(sclax <= -45 && sclax >= -135){
+            		hal = "West";
+            	}
+        		if(sclax <= -135 && sclax >= -210){
+        			hal = "South";
+        		}
+        	}
+    	}
         Slot slot = this.getSlotAtPosition(mouseX, mouseY);
         ItemStack itemstack = this.mc.thePlayer.inventory.getItemStack();
 

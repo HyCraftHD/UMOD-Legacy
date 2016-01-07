@@ -42,7 +42,6 @@ public class GuiSolarPanel extends GuiScreen {
 
 	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
-		super.drawScreen(mouseX, mouseY, partialTicks);
 
 		this.mc.getTextureManager().bindTexture(new ResourceLocation(UReference.modid, "textures/gui/solar.png"));
 
@@ -75,6 +74,7 @@ public class GuiSolarPanel extends GuiScreen {
 		if (!pro.isWorking() && pro.getErrorMessage() != null && pro.getErrorMessage() != "") {
 			this.fontRendererObj.drawSplitString(s4 + pro.getErrorMessage(), k + 10, l + 140, maxstringlength, 4210752);
 		}
+		super.drawScreen(mouseX, mouseY, partialTicks);
 
 	}
 

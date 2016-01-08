@@ -64,11 +64,6 @@ public class ContainerBase extends Container{
 	public boolean canDragIntoSlot(Slot p_94531_1_) {
 		return true;
 	}
-	
-	@Override
-	public ItemStack slotClick(int slotId, int clickedButton, int mode, EntityPlayer playerIn) {
-		return super.slotClick(slotId, clickedButton, mode, playerIn);
-	}
 
 	public void setVisisble(int i,boolean b){
 		if(inventorySlots.get(i) instanceof BaseSlot){
@@ -127,4 +122,5 @@ public class ContainerBase extends Container{
 	public Mode getMode(){
 		return mode;
 	}
+
 }

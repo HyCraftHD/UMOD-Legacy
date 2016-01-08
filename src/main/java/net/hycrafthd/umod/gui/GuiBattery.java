@@ -123,10 +123,10 @@ public class GuiBattery extends GuiScreen{
     	   if(this.pro instanceof ISignable){
     	   ISignable p = (ISignable) this.pro;
     	   if(button.displayString.equals("Sign with Player")){
-    	   p.signPlayer(pl);
+    	   p.signPlayer(this.mc.thePlayer);
     	   button.displayString = "Unsign";
     	   }else{
-    	   pl.addChatMessage(new ChatComponentText(EnumChatFormatting.RED + "Unsigned Pulverizer"));
+    	   this.mc.thePlayer.addChatMessage(new ChatComponentText(EnumChatFormatting.RED + "Unsigned Pulverizer"));
     	   p.signPlayer(null);
     	   }
     	   ((TileEntity)this.pro).markDirty();

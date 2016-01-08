@@ -25,6 +25,26 @@ public class GuiPulverizer extends GuiBase{
 	}
 
 	@Override
+	public void initGui() {
+		super.initGui();
+		box.setOnListClicked(new Runnable() {
+			
+			@Override
+			public void run() {
+				if(box.getSelceted() != 2){
+					if(box.getSelceted() == 0){
+						((TileEntityPulverizer)ent).setEnumInput(hal);
+					}else if(box.getSelceted() == 1){
+						((TileEntityPulverizer)ent).setEnumOutput(hal);
+					}
+					ent.getDescriptionPacket();
+					System.out.println(" " + box.getSelceted() + " " + hal.toString() + " "  + ((TileEntityPulverizer)ent).getEnumInput());
+				}
+			}
+		});
+	}
+	
+	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
 		super.drawScreen(mouseX, mouseY, partialTicks);
 		if(!basecon.mode.equals(Mode.OUTPUT)){
@@ -32,22 +52,25 @@ public class GuiPulverizer extends GuiBase{
 		fontRendererObj.drawString(((TileEntityPulverizer)this.ent).getTime() + "%", this.width/2-5, this.height/2-(this.ySize/2) + 15, 0x00000);
 		}
 	}
-	
+
 	@Override
-	protected void actionPerformed(GuiButton button) throws IOException {
-		super.actionPerformed(button);
-       switch(button.id){
-       case 0:
-    	   TileEntityPulverizer p = (TileEntityPulverizer) this.ent;
-    	   if(button.displayString.equals("Sign with Player")){
-    	   p.signPlayer(play);
-    	   button.displayString = "Unsign";
-    	   }else{
-    	   play.addChatMessage(new ChatComponentText(EnumChatFormatting.RED + "Unsigned Pulverizer"));
-    	   p.signPlayer(null);
-    	   }
-    	   p.markDirty();
-    	   break;
-       }
+	public void addToBox(GuiCombobox box2) {
+		box2.getItems().add("Input");
+		box2.getItems().add("Outputs");
+		box2.getItems().add("Choose");
+		box2.setSelected(0);
 	}
+
+	@Override
+	public void onIOModeSwitched() {
+		if(this.getIOFaceing().equals(((TileEntityPulverizer)ent).getEnumInput())){
+			box.setSelected(0);
+		}else if(this.getIOFaceing().equals(((TileEntityPulverizer)ent).getEnumOutput())){
+			box.setSelected(1);
+		}else{
+			box.setSelected(2);
+		}
+		
+	}
+	
 }

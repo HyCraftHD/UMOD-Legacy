@@ -35,18 +35,18 @@ public class TileEntitySolarPanel extends TileEntity implements IPowerProvieder 
 
 	@Override
 	public void addPower(int power) {
-		storedpower += power;
+		storedpower += EnergyUtils.inUE(power);
 	}
 
 	@Override
 	public int getPower(int powerneed) {
-		storedpower -= powerneed;
-		return powerneed;
+		storedpower -= EnergyUtils.inUE(powerneed);
+		return EnergyUtils.inUE(powerneed);
 	}
 
 	@Override
 	public boolean canGetPower(BlockPos p,int power) {
-		if (storedpower - power >= 0) {
+		if (storedpower - EnergyUtils.inUE(power) >= 0) {
 			return true;
 		}
 		return false;
@@ -54,7 +54,7 @@ public class TileEntitySolarPanel extends TileEntity implements IPowerProvieder 
 
 	@Override
 	public boolean canAddPower(BlockPos p,int power) {
-		if (power + storedpower <= MAXIMUM_POWER) {
+		if (EnergyUtils.inUE(power) + storedpower <= MAXIMUM_POWER) {
 			return true;
 		}
 		return false;

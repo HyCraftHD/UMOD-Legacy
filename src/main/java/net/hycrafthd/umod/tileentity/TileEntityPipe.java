@@ -29,7 +29,7 @@ public class TileEntityPipe extends TileEntity implements IPlugabel, IPowerProvi
 	}
 
 	public TileEntityPipe(int maxpower, int pipelooseone) {
-		Maximum_Power = maxpower;
+		Maximum_Power = EnergyUtils.inUE(maxpower);
 		loos = pipelooseone;
 	}
 
@@ -46,7 +46,7 @@ public class TileEntityPipe extends TileEntity implements IPlugabel, IPowerProvi
 	public void update() {
 	     EnergyAPI api = new EnergyAPI(this);
 	     api.transferEnergy();
-	
+	     
 	}
 
 	public int passtpip = 0;
@@ -58,18 +58,18 @@ public class TileEntityPipe extends TileEntity implements IPlugabel, IPowerProvi
 
 	@Override
 	public void addPower(int power) {
-		stored += power;
+		stored += EnergyUtils.inUE(power);
 	}
 
 	@Override
 	public int getPower(int powerneed) {
-		stored -= powerneed;
+		stored -= EnergyUtils.inUE(powerneed);
 		return powerneed;
 	}
 
 	@Override
 	public boolean canGetPower(BlockPos pos,int power) {
-		if (stored - power >= 0 && !getter.contains(pos)) {
+		if (stored - EnergyUtils.inUE(power) >= 0 && !getter.contains(pos)) {
 			return true;
 		}
 		return false;
@@ -77,7 +77,7 @@ public class TileEntityPipe extends TileEntity implements IPlugabel, IPowerProvi
 
 	@Override
 	public boolean canAddPower(BlockPos pos,int power) {
-		if (!hasPower() && power + stored <= Maximum_Power) {
+		if (EnergyUtils.inUE(power) + stored <= Maximum_Power) {
 			getter.add(pos);
 			return true;
 		}

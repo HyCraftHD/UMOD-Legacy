@@ -41,14 +41,10 @@ public class EnergyAPI {
 				TileEntity e = worldObj.getTileEntity(list[i]);
 				if (e instanceof IPowerProvieder) {
 					IPowerProvieder p = (IPowerProvieder) e;
-					if(!(p instanceof TileEntityPipe)){
-						pro.addPower(p.getPower(2));
-					}else if (p.canGetPower(pos,count) && pro.canAddPower(list[i],count)) {
+					if(p instanceof TileEntityPipe && p.canGetPower(pos,count) && pro.canAddPower(list[i],count)){
 						pro.addPower(p.getPower(count));
-					}else if(p.canGetPower(pos,p.getMaximalPower()) && pro.canAddPower(p.getPos(),p.getMaximalPower())){
-						pro.addPower(p.getPower(p.getMaximalPower()));
-					}else if(pro.canAddPower(p.getPos(),p.getStoredPower())){
-						pro.addPower(p.getPower(p.getStoredPower()));
+					}else if(p.canGetPower(pos, 2) && pro.canAddPower(list[i], 2)){
+						pro.addPower(p.getPower(2));
 					}
 					if (p instanceof IPipeRange && pro instanceof IPipeRange) {
 						IPipeRange r = (IPipeRange) p;
@@ -56,7 +52,7 @@ public class EnergyAPI {
 						if (r.getPastPipeCount() < r.getMaximalRange()) {
 							r2.addBlock(r.getPastPipeCount() + 1);
 						} else {
-							r2.remove(1);
+							p.canGetPower(pos, i);
 							r2.clearPast();
 						}
 					}

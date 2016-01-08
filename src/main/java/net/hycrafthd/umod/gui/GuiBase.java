@@ -53,7 +53,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Vec3i;
 
-public class GuiBase extends GuiScreen{
+public abstract class GuiBase extends GuiScreen{
 	
 	public ResourceLocation loc;
 	public ResourceLocation loc1;
@@ -87,6 +87,10 @@ public class GuiBase extends GuiScreen{
 	@Override
 	public void initGui() {
 	    super.initGui();
+	    int k = (this.width - this.xSize) / 2;
+        int l = (this.height - this.ySize) / 2;
+	    box = new GuiCombobox(k + 8, l + 7, 80, 12);
+	    this.addToBox(box);
         this.play.openContainer = this.basecon;
         this.guiLeft = (this.width - this.xSize) / 2;
         this.guiTop = (this.height - this.ySize) / 2;
@@ -113,8 +117,11 @@ public class GuiBase extends GuiScreen{
 		if(basecon.B){buttonList.add(btn);}
 		buttonList.add(ba);
 		buttonList.add(fo);
+		box.setSelected(2);
 	}
 	
+	public abstract void addToBox(GuiCombobox box2);
+
 	@Override
 	protected void actionPerformed(GuiButton button) throws IOException {
 		switch (button.id) {
@@ -199,7 +206,7 @@ public class GuiBase extends GuiScreen{
     public boolean doubleClick;
     public ItemStack shiftClickedSlot;
     public static final String __OBFID = "CL_00000737";
-    public String hal = "Nourth";
+    public EnumFacing hal = EnumFacing.NORTH;
 
     public void drawScreen(int mouseX, int mouseY, float partialTicks)
     {
@@ -236,6 +243,7 @@ public class GuiBase extends GuiScreen{
         {
             ((GuiLabel)this.labelList.get(ks)).drawLabel(this.mc, mouseX, mouseY);
         }
+        
         RenderHelper.enableGUIStandardItemLighting();
         GlStateManager.pushMatrix();
         GlStateManager.translate((float)k, (float)l, 0.0F);
@@ -247,7 +255,7 @@ public class GuiBase extends GuiScreen{
         OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, (float)short1 / 1.0F, (float)short2 / 1.0F);
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
         int k1;
-
+        
         for (int i1 = 0; i1 < this.basecon.inventorySlots.size(); ++i1)
         {
             Slot slot = (Slot)this.basecon.inventorySlots.get(i1);
@@ -257,11 +265,8 @@ public class GuiBase extends GuiScreen{
             if (this.isMouseOverSlot(slot, mouseX, mouseY) && slot.canBeHovered())
             {
                 this.theSlot = slot;
-                GlStateManager.disableLighting();
-                GlStateManager.disableDepth();
                 int j1 = slot.xDisplayPosition;
                 k1 = slot.yDisplayPosition;
-                GlStateManager.colorMask(true, true, true, false);
                 if(slot instanceof BaseSlot && ((BaseSlot)slot).hasColor()){
             	RGBA st = ((BaseSlot)slot).getHoverColor(2);
             	RGBA en = ((BaseSlot)slot).getHoverColor(3);
@@ -269,19 +274,22 @@ public class GuiBase extends GuiScreen{
                 }else{
                     this.drawGradientRect(j1, k1, j1 + 16, k1 + 16, -2130706433, -2130706433);
                 }
-                GlStateManager.colorMask(true, true, true, true);
-                GlStateManager.enableLighting();
-                GlStateManager.enableDepth();
+                GlStateManager.popMatrix();
                 if(slot instanceof BaseSlot && ((BaseSlot)slot).hasString()){
-                    this.drawGradientRect(j1+18, k1, j1 + ((BaseSlot)slot).getWidth() +18, k1 + ((BaseSlot)slot).getHeight(), ((BaseSlot)slot).getHoverColor(0), ((BaseSlot)slot).getHoverColor(0));
+                	BaseSlot sl = (BaseSlot) slot;
+                    this.drawGradientRect(mouseX, mouseY, mouseX + ((BaseSlot)slot).getWidth(), mouseY + ((BaseSlot)slot).getHeight(), ((BaseSlot)slot).getHoverColor(0), ((BaseSlot)slot).getHoverColor(0));
                 if(((BaseSlot)slot).hasMoreLines()){
                     String[] str = ((BaseSlot)slot).getString().split("\n");
                     for(int i = 0;i < str.length;i++)
-                    this.fontRendererObj.drawString(str[i], j1 + 4+18, k1 + 4 + (i*16), ((BaseSlot)slot).getFontColor());
+                    this.fontRendererObj.drawString(str[i], mouseX + 4, mouseY + 4 + (i*16), ((BaseSlot)slot).getFontColor());
                 }else{
-                    this.fontRendererObj.drawString(((BaseSlot)slot).getString(), j1 + 4 +18, k1 + 4, ((BaseSlot)slot).getFontColor());
+                    this.fontRendererObj.drawString(((BaseSlot)slot).getString(), mouseX + 4, mouseY + 4, ((BaseSlot)slot).getFontColor());
                 }
                 }
+                GlStateManager.pushMatrix();
+                GlStateManager.translate((float)k, (float)l, 0.0F);
+                GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+                GlStateManager.enableRescaleNormal();
             }else if(slot instanceof BaseSlot && ((BaseSlot)slot).hasColor()){
             	GlStateManager.disableLighting();
                 GlStateManager.disableDepth();
@@ -297,11 +305,12 @@ public class GuiBase extends GuiScreen{
             }
             }
         }
-        
+
+
         if(basecon.mode.equals(Mode.OUTPUT)){
         	this.drawIOMode();
         }
-
+        
         RenderHelper.disableStandardItemLighting();
         this.drawGuiContainerForegroundLayer(mouseX, mouseY);
         RenderHelper.enableGUIStandardItemLighting();
@@ -384,17 +393,27 @@ public class GuiBase extends GuiScreen{
         GlStateManager.enableAlpha();
         GlStateManager.enableTexture2D();
     }
+    public GuiCombobox box;
     
     public void drawIOMode(){
-    	  GlStateManager.enableDepth();
+    	  int k = this.guiLeft;
+          int l = this.guiTop;
           this.renderItemIntoGUI(new ItemStack(ent.getWorld().getBlockState(pos).getBlock()), width/6, height/6);
           GlStateManager.popMatrix();
+          box.draw(this.mc);
+          GlStateManager.disableDepth();
           int kl = (this.width - this.xSize) / 2;
           int ls = (this.height - this.ySize) / 2;
-          this.fontRendererObj.drawString(hal, kl + 10, this.height/2 - 10, 0xFFFFFF);
-          GuiCombobox box = new GuiCombobox(kl + 8, ls + 7, 80, 12);
-          GlStateManager.disableDepth();
+          this.fontRendererObj.drawString(hal.toString(), kl + 10, this.height/2 - 10, 0xFFFFFF);
+          RenderHelper.enableGUIStandardItemLighting();
           GlStateManager.pushMatrix();
+          GlStateManager.translate((float)k, (float)l, 0.0F);
+          GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+          GlStateManager.enableRescaleNormal();
+    }
+    
+    public EnumFacing getIOFaceing(){
+		return hal;
     }
     
     private void setupGuiTransform(int xPosition, int yPosition, boolean isGui3d)
@@ -725,6 +744,9 @@ public class GuiBase extends GuiScreen{
     	posX = mouseX;
     	posY = mouseY;
         super.mouseClicked(mouseX, mouseY, mouseButton);
+        if(mouseButton == 0){
+        	box.handelClick(mouseX, mouseY);
+        }
         boolean flag = mouseButton == this.mc.gameSettings.keyBindPickBlock.getKeyCode() + 100;
         Slot slot = this.getSlotAtPosition(mouseX, mouseY);
         long l = Minecraft.getSystemTime();
@@ -840,25 +862,26 @@ public class GuiBase extends GuiScreen{
     		posX = mouseX;
         	posY = mouseY;
         	if(sclay >= 45 && sclay <= 135){
-        		hal = "Up";
+        		hal = EnumFacing.UP;
         	}
         	if(sclay <= -45 && sclay >= -215){
-        		hal = "Down";
+        		hal = EnumFacing.DOWN;
         	}
         	if(sclay >= -45 && sclay <= 45){
         		if(sclax >= -45 && sclax <= 45){
-        		hal = "Nourth";
+        		hal = EnumFacing.NORTH;
         		}
         		if(sclax <= 135 && sclax >= 45){
-            		hal = "East";
+            		hal = EnumFacing.EAST;
             	}
         		if(sclax <= -45 && sclax >= -135){
-            		hal = "West";
+            		hal = EnumFacing.WEST;
             	}
         		if(sclax <= -135 && sclax >= -210){
-        			hal = "South";
+        			hal = EnumFacing.SOUTH;
         		}
         	}
+        	onIOModeSwitched();
     	}
         Slot slot = this.getSlotAtPosition(mouseX, mouseY);
         ItemStack itemstack = this.mc.thePlayer.inventory.getItemStack();
@@ -904,7 +927,9 @@ public class GuiBase extends GuiScreen{
         }
     }
 
-    /**
+    public abstract void onIOModeSwitched();
+    
+	/**
      * Called when a mouse button is released.  Args : mouseX, mouseY, releaseButton
      */
     protected void mouseReleased(int mouseX, int mouseY, int state)

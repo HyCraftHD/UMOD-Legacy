@@ -1,6 +1,6 @@
 # UMOD
 ####You are welcome to help in the development! Just install git and request for pulls.
-Now we are working at the alpha 0.1 build (mc: 1.8.0)!
+Now we are working at the alpha 0.2 build (mc: 1.8.0)!
 
 ##People who already helped in the development
 

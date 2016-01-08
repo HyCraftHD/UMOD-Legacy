@@ -2,10 +2,12 @@ package net.hycrafthd.umod;
 
 import net.hycrafthd.umod.api.energy.IPowerProvieder;
 import net.hycrafthd.umod.container.ContainerChargeStation;
+import net.hycrafthd.umod.container.ContainerCraftFurnace;
 import net.hycrafthd.umod.container.ContainerPulverizer;
 import net.hycrafthd.umod.enumtype.EnumTypeGui;
 import net.hycrafthd.umod.gui.GuiBattery;
 import net.hycrafthd.umod.gui.GuiChargstation;
+import net.hycrafthd.umod.gui.GuiCraftFurnance;
 import net.hycrafthd.umod.gui.GuiPulverizer;
 import net.hycrafthd.umod.gui.GuiSolarPanel;
 import net.minecraft.entity.player.EntityPlayer;
@@ -27,6 +29,8 @@ public class UGuiHandler implements IGuiHandler {
 			return new ContainerPulverizer((IInventory) ent, player, world);
 		case CHARGESTATION:
 			return new ContainerChargeStation((IInventory) ent, player, p, world);
+		case CRAFTFURNANCE:
+			return new ContainerCraftFurnace((IInventory) ent, player, p, world);
 		default:
 			return null;
 		}
@@ -45,6 +49,8 @@ public class UGuiHandler implements IGuiHandler {
 			return new GuiBattery(world, (IPowerProvieder) ent, player, p, 0);
 		case CHARGESTATION:
 			return new GuiChargstation(player, (IInventory) ent);
+		case CRAFTFURNANCE:
+			return new GuiCraftFurnance(player, (IInventory) ent, p, world);
 		default:
 			return null;
 		}

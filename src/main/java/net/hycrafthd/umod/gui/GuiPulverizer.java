@@ -57,7 +57,6 @@ public class GuiPulverizer extends GuiBase{
 	public void addToBox(GuiCombobox box2) {
 		box2.getItems().add("Input");
 		box2.getItems().add("Outputs");
-		box2.getItems().add("Choose");
 		box2.setSelected(0);
 	}
 

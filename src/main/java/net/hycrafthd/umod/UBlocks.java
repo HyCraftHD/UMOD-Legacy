@@ -2,6 +2,7 @@ package net.hycrafthd.umod;
 
 import net.hycrafthd.umod.block.BlockBlocks;
 import net.hycrafthd.umod.block.BlockChargeStation;
+import net.hycrafthd.umod.block.BlockCraftFurnance;
 import net.hycrafthd.umod.block.BlockInfectedDirt;
 import net.hycrafthd.umod.block.BlockInfectedFruit;
 import net.hycrafthd.umod.block.BlockInfectedGrass;
@@ -30,9 +31,10 @@ public class UBlocks {
 	public static Block blocks;
 	// SolarPanel
 	public static Block solarpanel;
-	// Pulverizer
+	// Maschinen
 	public static Block pulver;
 	public static Block charge;
+	public static Block craftfurnance;
 	// Infected
 	public static Block infectedGrass;
 	public static Block infectedDirt;
@@ -65,6 +67,7 @@ public class UBlocks {
 		blocks = new BlockBlocks().setUnlocalizedName("blocks");
 		// Pulverizer
 		pulver = new BlockPulverizer().setUnlocalizedName("pulver");
+		craftfurnance = new BlockCraftFurnance().setUnlocalizedName("craftfurn");
 		// SolarPanel
 		solarpanel = new BlockSolarPanel().setUnlocalizedName("solarpanel");
 		charge = new BlockChargeStation().setUnlocalizedName("charge");
@@ -94,6 +97,7 @@ public class UBlocks {
 		// Blocks
 		CommonRegistryUtils.registerBlock(blocks, ItemBlockBlocks.class);
 		// Pulverizer
+		CommonRegistryUtils.registerBlocks(craftfurnance, ItemBlockEnergy.class);
 		CommonRegistryUtils.registerBlocks(pulver, ItemBlockEnergy.class);
 		// SolarPanel
 		CommonRegistryUtils.registerBlocks(solarpanel, ItemBlockSolarPanel.class);
@@ -124,6 +128,7 @@ public class UBlocks {
 		// Blocks
 		CommonRegistryUtils.registerOredirectionary(blocks);
 		// Pulverizer
+		CommonRegistryUtils.registerOredirectionary(craftfurnance);
 		CommonRegistryUtils.registerOredirectionary(pulver);
 		// SolarPanel
 		CommonRegistryUtils.registerOredirectionary(charge);

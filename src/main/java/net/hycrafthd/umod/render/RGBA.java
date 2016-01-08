@@ -39,4 +39,8 @@ public class RGBA {
 	public int getAlpha(){
 		return Alpha;
 	}
+
+	public void setAlpha(int i){
+		Alpha = i;
+	}
 }

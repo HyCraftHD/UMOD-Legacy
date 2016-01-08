@@ -117,7 +117,8 @@ public abstract class GuiBase extends GuiScreen{
 		if(basecon.B){buttonList.add(btn);}
 		buttonList.add(ba);
 		buttonList.add(fo);
-		box.setSelected(2);
+		box.getItems().add("Choose");
+		box.setSelected(0);
 	}
 	
 	public abstract void addToBox(GuiCombobox box2);

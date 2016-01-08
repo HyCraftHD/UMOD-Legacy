@@ -9,6 +9,13 @@ Now we are working at the alpha 0.2 build (mc: 1.8.0)!
 - http://github.com/MrTroble (code)
 - http://youtube.com/TutAdventures (textures)
 
+##Releases
+
+Note: All available releases are only alpha releases! That means that there could me some bugs and also that not all new features work correctly. Please report bug to https://github.com/HyCraftHD/UMOD/issues!
+
+- Latest build: https://github.com/HyCraftHD/UMOD/releases/latest
+- Here's a list of all available releases: https://github.com/HyCraftHD/UMOD/releases
+
 ##Compile from Source
 
 Note: Git MUST be installed and in the system path to use our scripts.

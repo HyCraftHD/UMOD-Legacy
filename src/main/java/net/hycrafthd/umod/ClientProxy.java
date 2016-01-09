@@ -81,6 +81,8 @@ public class ClientProxy extends CommonProxy {
 		ClientRegistryUtils.registerModelRenderer(UItems.infectedbeef);
 		ClientRegistryUtils.registerModelRenderer(UItems.infectedmilk);
 
+		ClientRegistryUtils.registerModelRenderer(UBlocks.infestedCleaner);
+		
 		// Pipes
 		ClientRegistryUtils.registerModelRenderer(UBlocks.iron_pipe);
 		ClientRegistryUtils.registerModelRenderer(UBlocks.alu_pipe);

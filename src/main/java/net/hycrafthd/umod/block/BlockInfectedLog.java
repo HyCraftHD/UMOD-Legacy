@@ -2,6 +2,7 @@ package net.hycrafthd.umod.block;
 
 import net.hycrafthd.umod.UReference;
 import net.hycrafthd.umod.interfaces.IInfectedBlock;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockLog;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.BlockState;
@@ -20,6 +21,7 @@ public class BlockInfectedLog extends BlockLog implements IInfectedBlock {
 		Blocks.fire.setFireInfo(this, 5, 5);
 	}
 
+	@Override
 	public IBlockState getStateFromMeta(int meta) {
 		IBlockState iblockstate = this.getDefaultState();
 
@@ -40,11 +42,13 @@ public class BlockInfectedLog extends BlockLog implements IInfectedBlock {
 		return iblockstate;
 	}
 
+	@Override
 	public int getMetaFromState(IBlockState state) {
 		return BlockInfectedLog.SwitchEnumAxis.AXIS_LOOKUP[((BlockInfectedLog.EnumAxis) state.getValue(LOG_AXIS)).ordinal()];
 
 	}
 
+	@Override
 	public BlockState createBlockState() {
 		return new BlockState(this, new IProperty[] { LOG_AXIS });
 	}
@@ -71,5 +75,10 @@ public class BlockInfectedLog extends BlockLog implements IInfectedBlock {
 				;
 			}
 		}
+	}
+
+	@Override
+	public Block getNormalBlock() {
+		return Blocks.log;
 	}
 }

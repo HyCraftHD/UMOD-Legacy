@@ -9,6 +9,7 @@ public class UReference {
 	public static final String modid = "umod";
 	public static final String name = "UMOD";
 	public static final String version = "alpha0.2";
+	public static final String mcversion = "1.8.0";
 
 	public static final String resource = UReference.modid + ":";
 	public static final float PIPE_MIN_POS = 0.4F;

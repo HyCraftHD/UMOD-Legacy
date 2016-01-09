@@ -40,6 +40,7 @@ public class EventGettingRadiation {
 
 		if (GenerationUtils.getBiomeGenForCoords(world, base.getPosition(), UBiome.infestedBiomBase)) {
 			addPotion(base, 0);
+			return;
 		}
 
 		double range = 3;

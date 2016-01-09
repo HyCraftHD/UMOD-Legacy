@@ -17,7 +17,10 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
+@SideOnly(Side.CLIENT)
 public class GuiSolarPanel extends GuiScreen {
 
 	int xSize;
@@ -25,20 +28,20 @@ public class GuiSolarPanel extends GuiScreen {
 	IPowerProvieder pro;
 	private World w;
 
-	public GuiSolarPanel(World w,IPowerProvieder po) {
+	public GuiSolarPanel(World w, IPowerProvieder po) {
 		xSize = 176;
 		ySize = 166;
 		pro = po;
 		this.w = w;
 	}
-	
+
 	@Override
-	 protected void keyTyped(char p_73869_1_, int p_73869_2_) throws IOException {
-	 super.keyTyped(p_73869_1_, p_73869_2_);
-	    	if(p_73869_1_ == 'e'){
-	    		Minecraft.getMinecraft().thePlayer.closeScreen();
-	    	}
-	 }
+	protected void keyTyped(char p_73869_1_, int p_73869_2_) throws IOException {
+		super.keyTyped(p_73869_1_, p_73869_2_);
+		if (p_73869_1_ == 'e') {
+			Minecraft.getMinecraft().thePlayer.closeScreen();
+		}
+	}
 
 	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
@@ -57,12 +60,10 @@ public class GuiSolarPanel extends GuiScreen {
 		}
 
 		this.drawStorage(k, l, high);
-		IBlockState ste = w.getBlockState(((TileEntity)pro).getPos());
+		IBlockState ste = w.getBlockState(((TileEntity) pro).getPos());
 		EnumTypeSolarPanel type = EnumTypeSolarPanel.byMetadata(ste.getBlock().getMetaFromState(ste));
 
-		this.drawCenteredString(this.fontRendererObj, 
-				I18n.format(ste.getBlock().getUnlocalizedName() + type.getName() + ".name"),
-				k + xSize / 2 - 37 / 2, l + 10, 4210752, false);
+		this.drawCenteredString(this.fontRendererObj, I18n.format(ste.getBlock().getUnlocalizedName() + type.getName() + ".name"), k + xSize / 2 - 37 / 2, l + 10, 4210752, false);
 		int maxstringlength = 119;
 		String s1 = "Generate: ";
 		String s2 = "Stored: ";
@@ -83,8 +84,8 @@ public class GuiSolarPanel extends GuiScreen {
 	}
 
 	public void drawStorage(int l, int k, int height) {
-	    int x = l + 169,y = k + 159;
-	       drawTexturedModalRect(x, y, 206, height + 7, -30, -height);
+		int x = l + 169, y = k + 159;
+		drawTexturedModalRect(x, y, 206, height + 7, -30, -height);
 	}
 
 	@Override

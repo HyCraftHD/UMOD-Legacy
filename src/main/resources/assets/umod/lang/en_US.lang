@@ -122,6 +122,11 @@ entity.InfectedCow.name=Infected Cow
 entity.InfectedCreeper.name=Infected Creeper
 entity.PrimedNuke.name=Nuke
 
+#Backpack
+item.backpacksmall.name=Small Backpack
+item.backpackmedium.name=Medium Backpack
+item.backpackbig.name=Big Backpack
+
 #Command
 commands.uschematic.usage=/uschematic <save> <name> <x1> <y1> <z1> <x2> <y2> <z2> OR /uschematic <load> <name>
 commands.uschematic.success.save=USchematic successfully saved under %d.uschematic from %d to %d

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import net.hycrafthd.umod.UBlocks;
 import net.hycrafthd.umod.UItems;
 import net.hycrafthd.umod.interfaces.IInfectedBlock;
 import net.minecraft.block.Block;
@@ -57,6 +56,11 @@ public class BlockInfectedFruit extends BlockBase implements IInfectedBlock {
 	@Override
 	public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
 		return new ArrayList<ItemStack>(Arrays.asList(new ItemStack[] { new ItemStack(UItems.infectedcrop, MathHelper.getRandomIntegerInRange(new Random(), 1, 4)) }));
+	}
+
+	@Override
+	public Block getNormalBlock() {
+		return null;
 	}
 
 }

@@ -3,17 +3,12 @@ package net.hycrafthd.umod.block;
 import java.util.Random;
 
 import net.hycrafthd.umod.UBlocks;
-import net.hycrafthd.umod.UPotion;
 import net.hycrafthd.umod.interfaces.IInfectedBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
-import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 
@@ -55,6 +50,11 @@ public class BlockInfectedGrass extends BlockBase implements IInfectedBlock {
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune) {
 		return UBlocks.infectedDirt.getItemDropped(Blocks.dirt.getDefaultState(), rand, fortune);
+	}
+
+	@Override
+	public Block getNormalBlock() {
+		return Blocks.grass;
 	}
 
 }

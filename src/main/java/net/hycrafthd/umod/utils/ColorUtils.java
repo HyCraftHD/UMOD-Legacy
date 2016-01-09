@@ -1,6 +1,5 @@
 package net.hycrafthd.umod.utils;
 
-import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 

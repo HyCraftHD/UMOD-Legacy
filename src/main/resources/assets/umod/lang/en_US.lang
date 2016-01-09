@@ -38,8 +38,11 @@ item.radiationsuitchestplate.name=Radiation Suit Chestplate
 item.radiationsuitleggings.name=Radiation Suit Leggings
 item.radiationsuitboots.name=Radiation Suit Boots
 
-#Infested
-item.infestedcrop.name=Infested Crop
+#Infeced
+item.infectedcrop.name=Infected Crop
+item.infectedleather.name=Infected Leather
+item.infectedbeef.name=Infected Beef
+item.infectedmilk.name=Infected Milk
 
 #Battery
 item.Battery.name=Battery

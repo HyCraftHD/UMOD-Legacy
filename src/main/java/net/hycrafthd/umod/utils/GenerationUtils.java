@@ -43,13 +43,12 @@ public class GenerationUtils {
 			try {
 				if (biome == null) {
 					clazz.newInstance().generate(world, posX, posY, posZ);
-					System.out.println("Schematic generiert: " + posX + " " + posY + " " + posZ);
+					System.out.println("(Ohne biome)Schematic generiert: " + posX + " " + posY + " " + posZ);
 
 				} else {
-					if (getBiomeGenForCoords(world, new BlockPos(posX, posY, posZ), biome)) {
+					if (GenerationUtils.getBiomeGenForCoords(world, new BlockPos(posX, posY, posZ), biome)) {
 						clazz.newInstance().generate(world, posX, posY, posZ);
 						System.out.println("Schematic generiert: " + posX + " " + posY + " " + posZ);
-
 					}
 				}
 

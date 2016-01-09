@@ -5,8 +5,9 @@ import java.util.List;
 import net.hycrafthd.umod.UReference;
 import net.hycrafthd.umod.container.ContainerBackPack;
 import net.hycrafthd.umod.enumtype.EnumTypeBackPack;
-import net.hycrafthd.umod.enumtype.EnumTypeBaseStuff;
 import net.hycrafthd.umod.enumtype.EnumTypeGui;
+import net.hycrafthd.umod.utils.ColorUtils;
+import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -15,6 +16,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ItemBackPack extends ItemBase {
 
@@ -73,11 +76,7 @@ public class ItemBackPack extends ItemBase {
 
 	@Override
 	public int getColorFromItemStack(ItemStack stack, int renderPass) {
-		if (stack.hasTagCompound() && stack.getTagCompound().hasKey("color")) {
-			return stack.getTagCompound().getInteger("color");
-		} else {
-			return 4860944;
-		}
+		return ColorUtils.getColor(stack);
 	}
 
 }

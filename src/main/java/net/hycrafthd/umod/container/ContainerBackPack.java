@@ -21,14 +21,6 @@ public class ContainerBackPack extends Container {
 		this.inv = inventorybackpack;
 		this.type = type;
 
-		/*
-		 * for (int i = 0; i < 8; i++) { for (int j = 0; j < 13; j++) {
-		 * this.addSlotToContainer(new Slot(inventory, j + i * 13, j * 18 + 8, i
-		 * * 18 + 22)); } }
-		 */
-
-		
-
 		int x_backpackinv = 0;
 		int y_backpackinv = 20;
 		

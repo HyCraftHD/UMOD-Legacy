@@ -84,7 +84,7 @@ public class GenerationUtils {
 	}
 
 	public static boolean getBiomeGenForCoords(World world, BlockPos pos, BiomeGenBase biome) {
-		return world.getBiomeGenForCoords(pos) == biome;
+		return world.getBiomeGenForCoords(pos).equals(biome);
 	}
 
 }

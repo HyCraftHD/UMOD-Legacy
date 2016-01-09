@@ -7,6 +7,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.chunk.Chunk;
 
 public class BlockInfestedCleaner extends BlockBase {
@@ -26,7 +27,7 @@ public class BlockInfestedCleaner extends BlockBase {
 	
 	private void clean(final World world, BlockPos blockPos){
 		if(!world.isRemote){
-			Chunk chunk = world.getChunkFromBlockCoords(blockPos);
+			final Chunk chunk = world.getChunkFromBlockCoords(blockPos);
 			final int x1 = chunk.xPosition * 16;
 			final int y1 = 1;
 			final int z1 = chunk.zPosition * 16;
@@ -34,6 +35,12 @@ public class BlockInfestedCleaner extends BlockBase {
 			final int x2 = chunk.xPosition * 16 + 15;
 			final int y2 = 255;
 			final int z2 = chunk.zPosition * 16 + 15;
+			
+			final byte[] biome = new byte[256];
+			
+			for(int i = 0; i < 256; i++) {
+				biome[i] = (byte) BiomeGenBase.plains.biomeID;
+			}
 			
 //			System.out.println(x1 + " " + z1);
 //			System.out.println(x2 + " " + z2);
@@ -44,6 +51,7 @@ public class BlockInfestedCleaner extends BlockBase {
 			new Thread(){
 				@Override
 				public void run() {
+					chunk.setBiomeArray(biome);
 					for(int i = x1; i<=x2; i++)
 						for(int k = z1; k<=z2; k++)
 							for(int j = y1; j<=y2; j++){

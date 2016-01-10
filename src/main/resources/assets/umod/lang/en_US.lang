@@ -42,7 +42,7 @@ item.radiationsuitboots.name=Radiation Suit Boots
 item.infestedcrop.name=Infested Crop
 
 #Battery
-item.Battery.name=Battery
+item.battery.name=Battery
 
 #Ores
 tile.orealuminium.name=Aluminium Ore

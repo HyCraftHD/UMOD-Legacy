@@ -427,14 +427,13 @@ public abstract class GuiBase extends GuiScreen{
         if (isGui3d)
         {
             GlStateManager.scale(40.0F, 40.0F, 40.0F);
-            GlStateManager.rotate(sclay, 1.0F, 0.0F, 0.0F);
+            GlStateManager.rotate(sclay + 180, 1.0F, 0.0F, 0.0F);
             GlStateManager.rotate(sclax, 0.0F, 1.0F, 0.0F);
             GlStateManager.enableLighting();
         }
         else
         {
             GlStateManager.scale(64.0F, 64.0F, 64.0F);
-            GlStateManager.rotate(180.0F, 1.0F, 0.0F, 0.0F);
             GlStateManager.disableLighting();
         }
     }

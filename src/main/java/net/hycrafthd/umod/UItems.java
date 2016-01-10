@@ -53,7 +53,7 @@ public class UItems {
 		infectedmilk = new ItemInfectedMilk().setUnlocalizedName("infectedmilk");
 		//Battery
 		tester = new ItemCabletester().setUnlocalizedName("tester");
-		battery = new ItemBattery().setUnlocalizedName("Battery");
+		battery = new ItemBattery().setUnlocalizedName("battery");
 		
 	}
 

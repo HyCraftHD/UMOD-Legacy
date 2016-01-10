@@ -1,9 +1,11 @@
 package net.hycrafthd.umod;
 
+import net.hycrafthd.umod.api.CraftSmeltRecepieShapless;
 import net.hycrafthd.umod.api.PulverizerRecepie;
 import net.hycrafthd.umod.enumtype.EnumTypeBaseStuff;
 import net.hycrafthd.umod.utils.CommonRegistryUtils;
 import net.hycrafthd.umod.utils.ModRegistryUtils;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
 public class URecipes {
@@ -45,6 +47,8 @@ public class URecipes {
 				}
 				ModRegistryUtils.addPulverRiecepie(new PulverizerRecepie(new ItemStack(UBlocks.ores, 1, i), new ItemStack(UItems.dusts, 1, i), new ItemStack(UItems.dusts, 1, b)));
 		}
+		
+		ModRegistryUtils.addCraftSmeltRecepieShapless(new CraftSmeltRecepieShapless(new ItemStack[] {new ItemStack(Items.iron_pickaxe)}, new ItemStack(Items.iron_ingot, 3)));
 	}
 
 }

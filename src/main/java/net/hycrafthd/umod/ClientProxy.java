@@ -91,7 +91,7 @@ public class ClientProxy extends CommonProxy {
 
 		// Normal Blocks
 		ClientRegistryUtils.registerModelRenderer(UBlocks.nuke);
-
+        ClientRegistryUtils.registerModelRenderer(UBlocks.craftfurnance);
 	}
 
 	@Override

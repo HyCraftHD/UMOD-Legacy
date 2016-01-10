@@ -59,11 +59,13 @@ public class TileEntityPipe extends TileEntity implements IPlugabel, IPowerProvi
 	@Override
 	public void addPower(int power) {
 		stored += EnergyUtils.inUE(power);
+		this.markDirty();
 	}
 
 	@Override
 	public int getPower(int powerneed) {
 		stored -= EnergyUtils.inUE(powerneed);
+		this.markDirty();
 		return powerneed;
 	}
 
@@ -129,15 +131,15 @@ public class TileEntityPipe extends TileEntity implements IPlugabel, IPowerProvi
 
 	@Override
 	public void writeToNBT(NBTTagCompound compound) {
-		compound.setInteger("Stored", stored);
+		compound.setShort("Stored", (short) stored);
 		compound.setInteger("Max", Maximum_Power);
 		super.writeToNBT(compound);
 	}
 
 	@Override
 	public void readFromNBT(NBTTagCompound compound) {
-		this.stored = compound.getInteger("Stored");
-		this.Maximum_Power = compound.getInteger("Max");
+		this.stored = compound.getShort("Stored");
+		this.Maximum_Power = compound.getShort("Max");
 		super.readFromNBT(compound);
 	}
 

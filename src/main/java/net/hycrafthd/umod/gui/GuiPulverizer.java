@@ -37,8 +37,7 @@ public class GuiPulverizer extends GuiBase{
 					}else if(box.getSelceted() == 1){
 						((TileEntityPulverizer)ent).setEnumOutput(hal);
 					}
-					ent.getDescriptionPacket();
-					System.out.println(" " + box.getSelceted() + " " + hal.toString() + " "  + ((TileEntityPulverizer)ent).getEnumInput());
+					ent.markDirty();
 				}
 			}
 		});

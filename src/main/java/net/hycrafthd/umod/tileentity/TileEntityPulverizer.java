@@ -1,5 +1,8 @@
 package net.hycrafthd.umod.tileentity;
 
+import com.sun.javafx.scene.traversal.Direction;
+
+import net.hycrafthd.umod.UMod;
 import net.hycrafthd.umod.api.IGuiProvider;
 import net.hycrafthd.umod.api.ISignable;
 import net.hycrafthd.umod.api.PulverizerRecepie;
@@ -8,6 +11,7 @@ import net.hycrafthd.umod.api.energy.IPowerProvieder;
 import net.hycrafthd.umod.block.BlockBaseMachine;
 import net.hycrafthd.umod.block.BlockOres;
 import net.hycrafthd.umod.container.ContainerPulverizer;
+import net.hycrafthd.umod.utils.DirectionUtils;
 import net.hycrafthd.umod.utils.EnergyUtils;
 import net.hycrafthd.umod.utils.ModRegistryUtils;
 import net.minecraft.block.Block;
@@ -206,6 +210,7 @@ public class TileEntityPulverizer extends TileEntityBase implements
 		if(args != null && strpo > 10){
 			if(stack[2] != null && stack[2].stackSize > 64){
 				time = 0;
+				this.markDirty();
 				return;
 			}
 			if(stack[0] == null || stack[1] == null){
@@ -245,6 +250,7 @@ public class TileEntityPulverizer extends TileEntityBase implements
 			    strpo -= EnergyUtils.inUE(10);
 		    }
 			}
+			this.markDirty();
 		}else{
 		    work = false;
 		}
@@ -261,23 +267,26 @@ public class TileEntityPulverizer extends TileEntityBase implements
 	private void finishItem(int in,ItemStack is){
 		ItemStack s = stack[in];
 		if(is != null && is != null &&s == null){
-			stack[in] = is;
+			this.stack[in] = is;
 		}else if(is != null && s.isItemEqual(is)){
-			stack[in].stackSize += is.stackSize;
+			this.stack[in].stackSize += is.stackSize;
 		}
 	}
 	
 	@Override
-	public void writeToNBT(NBTTagCompound compound) {
+	public void writeToNBT(NBTTagCompound compound) {		
 		super.writeToNBT(compound);
+
 		
-		 compound.setInteger("Time", time);
+		 compound.setShort("Time", (short) this.time);
+		 compound.setShort("Energy", (short) this.strpo);
+		 compound.setShort("IP", DirectionUtils.getShortFromFacing(this.enumfI));
+		 compound.setShort("OP",  DirectionUtils.getShortFromFacing(this.enumfO));
+		
 		 if(pl != null){
-	     compound.setString("Pl", pl);
-		 }
-		 compound.setString("IP", enumfI.getName());
-		 compound.setString("OP", enumfO.getName());
-		
+		     compound.setString("Pl", pl);
+	     }
+		 
 		NBTTagList nbttaglist = new NBTTagList();
 
 	     for (int i = 0; i < this.stack.length; ++i)
@@ -285,7 +294,7 @@ public class TileEntityPulverizer extends TileEntityBase implements
 	         if (this.stack[i] != null)
 	         {
 	             NBTTagCompound nbttagcompound1 = new NBTTagCompound();
-	             nbttagcompound1.setInteger("Slot", i);
+	             nbttagcompound1.setByte("Slot", (byte) i);
 	             this.stack[i].writeToNBT(nbttagcompound1);
 	             nbttaglist.appendTag(nbttagcompound1);
 	         }
@@ -297,26 +306,26 @@ public class TileEntityPulverizer extends TileEntityBase implements
 	@Override
 	public void readFromNBT(NBTTagCompound compound) {
 		super.readFromNBT(compound);
-		
-		this.time = compound.getInteger("Time");
+
+		this.strpo = compound.getShort("Energy");
+		this.time = compound.getShort("Time");
+		this.enumfI = DirectionUtils.getFacingFromShort(compound.getShort("IP"));
+		this.enumfO = DirectionUtils.getFacingFromShort(compound.getShort("OP"));
 		this.pl = compound.getString("Pl");
-		this.enumfI = EnumFacing.byName(compound.getString("IP"));
-		this.enumfO = EnumFacing.byName(compound.getString("OP"));
-			
+	
 		NBTTagList nbttaglist = compound.getTagList("Items", 10);
         this.stack = new ItemStack[this.getSizeInventory()];
 
         for (int i = 0; i < nbttaglist.tagCount(); ++i)
         {
             NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
-            int b0 = nbttagcompound1.getInteger("Slot");
+            int b0 = nbttagcompound1.getByte("Slot");
 
             if (b0 >= 0 && b0 < this.stack.length)
             {
                 this.stack[b0] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
            }
         }
-           
 	}
 
 	public EnumFacing getEnumInput(){
@@ -342,7 +351,6 @@ public class TileEntityPulverizer extends TileEntityBase implements
 		}else if(side.equals( enumfO )){
 			return new int[]{0,1,2};
 		}
-		System.out.println("Get Slots for " + side);
 		return new int[]{};
 	}
 
@@ -351,7 +359,6 @@ public class TileEntityPulverizer extends TileEntityBase implements
 		if(direction.equals( enumfI )){
 			return true;
 		}
-		System.out.println("Get can InsertItem for " + direction);
 		return false;
 	}
 
@@ -384,6 +391,7 @@ public class TileEntityPulverizer extends TileEntityBase implements
 
 	@Override
 	public void addPower(int power) {
+		this.markDirty();
 		if(strpo >= MAXIMUM_POWER){
 			return;
 		}

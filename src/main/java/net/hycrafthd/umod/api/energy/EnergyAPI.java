@@ -43,6 +43,8 @@ public class EnergyAPI {
 					IPowerProvieder p = (IPowerProvieder) e;
 					if(p instanceof TileEntityPipe && p.canGetPower(pos,count) && pro.canAddPower(list[i],count)){
 						pro.addPower(p.getPower(count));
+					}else if(p instanceof TileEntityPipe && p.canGetPower(pos, p.getStoredPower()) && pro.canAddPower(list[i], p.getStoredPower())){
+						pro.addPower(p.getPower(p.getStoredPower()));
 					}else if(p.canGetPower(pos, 2) && pro.canAddPower(list[i], 2)){
 						pro.addPower(p.getPower(2));
 					}

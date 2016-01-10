@@ -7,6 +7,7 @@ import java.util.Random;
 import net.hycrafthd.umod.UBlocks;
 import net.hycrafthd.umod.UReference;
 import net.hycrafthd.umod.interfaces.IInfectedBlock;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.properties.IProperty;
@@ -42,6 +43,7 @@ public class BlockInfectedLeave extends BlockLeaves implements IInfectedBlock {
 		return new BlockState(this, new IProperty[] { CHECK_DECAY, DECAYABLE, });
 	}
 
+	@Override
 	public IBlockState getStateFromMeta(int meta) {
 		return this.getDefaultState().withProperty(DECAYABLE, Boolean.valueOf((meta & 4) == 0)).withProperty(CHECK_DECAY, Boolean.valueOf((meta & 8) > 0));
 	}
@@ -125,6 +127,11 @@ public class BlockInfectedLeave extends BlockLeaves implements IInfectedBlock {
 
 	@Override
 	protected void dropApple(World worldIn, BlockPos pos, IBlockState state, int chance) {
+	}
+
+	@Override
+	public Block getNormalBlock() {
+		return Blocks.leaves;
 	}
 
 }

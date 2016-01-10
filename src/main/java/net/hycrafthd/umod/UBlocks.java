@@ -10,6 +10,7 @@ import net.hycrafthd.umod.block.BlockInfectedLeave;
 import net.hycrafthd.umod.block.BlockInfectedLog;
 import net.hycrafthd.umod.block.BlockInfectedPlank;
 import net.hycrafthd.umod.block.BlockInfectedSapling;
+import net.hycrafthd.umod.block.BlockInfestedCleaner;
 import net.hycrafthd.umod.block.BlockNuke;
 import net.hycrafthd.umod.block.BlockOres;
 import net.hycrafthd.umod.block.BlockPipe;
@@ -43,6 +44,8 @@ public class UBlocks {
 	public static Block infectedSapling;
 	public static Block infectedPlank;
 	public static Block infectedFruit;
+	
+	public static Block infestedCleaner;
 	// Pipes
 	public static Block iron_pipe;
 	public static Block silver_pipe;
@@ -79,6 +82,8 @@ public class UBlocks {
 		infectedSapling = new BlockInfectedSapling().setUnlocalizedName("infectedsapling");
 		infectedPlank = new BlockInfectedPlank().setUnlocalizedName("infectedplank");
 		infectedFruit = new BlockInfectedFruit().setUnlocalizedName("infectedfruit");
+		
+		infestedCleaner = new BlockInfestedCleaner().setUnlocalizedName("infestedcleaner");
 		// Pipes
 		iron_pipe = new BlockPipe("ironpipe", 10, 10, false, PipeTexturAtlas.IRON_PIPE);
 		silver_pipe = new BlockPipe("silverpipe", 62, 62, false, PipeTexturAtlas.IRON_PIPE);
@@ -110,6 +115,9 @@ public class UBlocks {
 		CommonRegistryUtils.registerBlock(infectedSapling);
 		CommonRegistryUtils.registerBlock(infectedPlank);
 		CommonRegistryUtils.registerBlock(infectedFruit);
+		
+		CommonRegistryUtils.registerBlock(infestedCleaner);
+		
 		// Pipes
 		CommonRegistryUtils.registerBlocks(iron_pipe, ItemBlockEnergy.class);
 		CommonRegistryUtils.registerBlocks(alu_pipe, ItemBlockEnergy.class);
@@ -141,6 +149,9 @@ public class UBlocks {
 		CommonRegistryUtils.registerOredirectionary(infectedSapling);
 		CommonRegistryUtils.registerOredirectionary(infectedPlank);
 		CommonRegistryUtils.registerOredirectionary(infectedFruit);
+		
+		CommonRegistryUtils.registerOredirectionary(infestedCleaner);
+		
 		// Pipes
 		CommonRegistryUtils.registerOredirectionary(iron_pipe);
 		CommonRegistryUtils.registerOredirectionary(alu_pipe);

@@ -14,7 +14,7 @@ import net.minecraft.world.World;
 public class BlockChargeStation extends BlockBaseMachine {
 
 	public BlockChargeStation() {
-		
+
 	}
 
 	@Override
@@ -23,10 +23,9 @@ public class BlockChargeStation extends BlockBaseMachine {
 	}
 
 	@Override
-	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer playerIn,
-			EnumFacing side, float hitX, float hitY, float hitZ) {
+	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumFacing side, float hitX, float hitY, float hitZ) {
 		playerIn.openGui(UReference.modid, EnumTypeGui.CHARGESTATION.getID(), world, pos.getX(), pos.getY(), pos.getZ());
 		return true;
 	}
-	
+
 }

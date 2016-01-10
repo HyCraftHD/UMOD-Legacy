@@ -38,8 +38,11 @@ item.radiationsuitchestplate.name=Radiation Suit Chestplate
 item.radiationsuitleggings.name=Radiation Suit Leggings
 item.radiationsuitboots.name=Radiation Suit Boots
 
-#Infested
-item.infestedcrop.name=Infested Crop
+#Infeced
+item.infectedcrop.name=Infected Crop
+item.infectedleather.name=Infected Leather
+item.infectedbeef.name=Infected Beef
+item.infectedmilk.name=Infected Milk
 
 #Battery
 item.battery.name=Battery
@@ -118,6 +121,11 @@ tile.goldpipe.name=Gold Energy Cable
 entity.InfectedCow.name=Infected Cow
 entity.InfectedCreeper.name=Infected Creeper
 entity.PrimedNuke.name=Nuke
+
+#Backpack
+item.backpacksmall.name=Small Backpack
+item.backpackmedium.name=Medium Backpack
+item.backpackbig.name=Big Backpack
 
 #Command
 commands.uschematic.usage=/uschematic <save> <name> <x1> <y1> <z1> <x2> <y2> <z2> OR /uschematic <load> <name>

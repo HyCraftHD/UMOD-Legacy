@@ -1,5 +1,8 @@
 package net.hycrafthd.umod;
 
+import com.sun.xml.internal.bind.v2.runtime.reflect.Lister.Pack;
+
+import net.hycrafthd.umod.item.ItemBackPack;
 import net.hycrafthd.umod.item.ItemBattery;
 import net.hycrafthd.umod.item.ItemCabletester;
 import net.hycrafthd.umod.item.ItemDusts;
@@ -27,12 +30,14 @@ public class UItems {
 	public static Item infectedleather;
 	public static Item infectedbeef;
 	public static Item infectedmilk;
-	
-	//Battery
+
+	// Battery
 	public static Item battery;
 	public static Item tester;
 
-	
+	// Backpack
+	public static Item backpack;
+
 	public UItems() {
 		init();
 		register();
@@ -51,10 +56,14 @@ public class UItems {
 		infectedleather = new ItemFundamental().setUnlocalizedName("infectedleather");
 		infectedbeef = new ItemInfectedBeef().setUnlocalizedName("infectedbeef");
 		infectedmilk = new ItemInfectedMilk().setUnlocalizedName("infectedmilk");
-		//Battery
+		// Battery
 		tester = new ItemCabletester().setUnlocalizedName("tester");
 		battery = new ItemBattery().setUnlocalizedName("battery");
 		
+		battery = new ItemBattery().setUnlocalizedName("Battery");
+		// Backpack
+		backpack = new ItemBackPack().setUnlocalizedName("backpack");
+
 	}
 
 	private void register() {
@@ -69,14 +78,11 @@ public class UItems {
 		CommonRegistryUtils.registerItem(infectedleather);
 		CommonRegistryUtils.registerItem(infectedbeef);
 		CommonRegistryUtils.registerItem(infectedmilk);
-		//Battery
-		CommonRegistryUtils.registerItem(battery);
-		
-		
-		
-		
+		// Battery
 		CommonRegistryUtils.registerItem(tester);
-		
+		CommonRegistryUtils.registerItem(battery);
+		// Backpack
+		CommonRegistryUtils.registerItem(backpack);
 	}
 
 	private void oredirectionary() {
@@ -91,12 +97,11 @@ public class UItems {
 		CommonRegistryUtils.registerOredirectionary(infectedleather);
 		CommonRegistryUtils.registerOredirectionary(infectedbeef);
 		CommonRegistryUtils.registerOredirectionary(infectedmilk);
-		//Battery
-		CommonRegistryUtils.registerOredirectionary(battery);
-		
-		
-		
+		// Battery
 		CommonRegistryUtils.registerOredirectionary(tester);
+		CommonRegistryUtils.registerOredirectionary(battery);
+		// Backpack
+		CommonRegistryUtils.registerOredirectionary(backpack);
 	}
 
 }

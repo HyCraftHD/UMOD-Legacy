@@ -9,6 +9,7 @@ import net.hycrafthd.umod.entity.EntityNukePrimed;
 import net.hycrafthd.umod.entity.render.RenderInfectedCow;
 import net.hycrafthd.umod.entity.render.RenderInfectedCreeper;
 import net.hycrafthd.umod.entity.render.RenderNukePrimed;
+import net.hycrafthd.umod.enumtype.EnumTypeBackPack;
 import net.hycrafthd.umod.enumtype.EnumTypeBaseStuff;
 import net.hycrafthd.umod.render.TileEntityPulverizerSpecialRender;
 import net.hycrafthd.umod.tileentity.TileEntityPulverizer;
@@ -80,6 +81,8 @@ public class ClientProxy extends CommonProxy {
 		ClientRegistryUtils.registerModelRenderer(UItems.infectedbeef);
 		ClientRegistryUtils.registerModelRenderer(UItems.infectedmilk);
 
+		ClientRegistryUtils.registerModelRenderer(UBlocks.infestedCleaner);
+		
 		// Pipes
 		ClientRegistryUtils.registerModelRenderer(UBlocks.iron_pipe);
 		ClientRegistryUtils.registerModelRenderer(UBlocks.alu_pipe);
@@ -92,6 +95,13 @@ public class ClientProxy extends CommonProxy {
 		// Normal Blocks
 		ClientRegistryUtils.registerModelRenderer(UBlocks.nuke);
         ClientRegistryUtils.registerModelRenderer(UBlocks.craftfurnance);
+
+		// Backpack
+		for (int i = 0; i < EnumTypeBackPack.values().length; i++) {
+			ModelBakery.addVariantName(UItems.backpack, UReference.resource + "backpack" + EnumTypeBackPack.byMetadata(i).getName());
+			ClientRegistryUtils.registerModelRenderer(UItems.backpack, i, new ModelResourceLocation(UReference.resource + "backpack" + EnumTypeBackPack.byMetadata(i).getName(), "inventory"));
+		}
+
 	}
 
 	@Override

@@ -14,13 +14,16 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GuiPulverizer extends GuiBase{
-	
+@SideOnly(Side.CLIENT)
+public class GuiPulverizer extends GuiBase {
+
 	public BlockPos pos;
 
-	public GuiPulverizer(EntityPlayer pl, IInventory tile,World w,BlockPos pos) {
-		super(new GuiRescources("pulver.png"),new GuiRescources("battery.png"), new GuiRescources("IOMode.png"),pl, tile, new ContainerPulverizer(tile, pl, w));
+	public GuiPulverizer(EntityPlayer pl, IInventory tile, World w, BlockPos pos) {
+		super(new GuiRescources("pulver.png"), new GuiRescources("battery.png"), new GuiRescources("IOMode.png"), pl, tile, new ContainerPulverizer(tile, pl, w));
 		this.pos = pos;
 	}
 
@@ -28,27 +31,27 @@ public class GuiPulverizer extends GuiBase{
 	public void initGui() {
 		super.initGui();
 		box.setOnListClicked(new Runnable() {
-			
+
 			@Override
 			public void run() {
-				if(box.getSelceted() != 2){
-					if(box.getSelceted() == 0){
-						((TileEntityPulverizer)ent).setEnumInput(hal);
-					}else if(box.getSelceted() == 1){
-						((TileEntityPulverizer)ent).setEnumOutput(hal);
+				if (box.getSelceted() != 2) {
+					if (box.getSelceted() == 0) {
+						((TileEntityPulverizer) ent).setEnumInput(hal);
+					} else if (box.getSelceted() == 1) {
+						((TileEntityPulverizer) ent).setEnumOutput(hal);
 					}
 					ent.markDirty();
 				}
 			}
 		});
 	}
-	
+
 	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
 		super.drawScreen(mouseX, mouseY, partialTicks);
-		if(!basecon.mode.equals(Mode.OUTPUT)){
- 	    TileEntityPulverizer p = (TileEntityPulverizer) this.ent;
-		fontRendererObj.drawString(((TileEntityPulverizer)this.ent).getTime() + "%", this.width/2-5, this.height/2-(this.ySize/2) + 15, 0x00000);
+		if (!basecon.mode.equals(Mode.OUTPUT)) {
+			TileEntityPulverizer p = (TileEntityPulverizer) this.ent;
+			fontRendererObj.drawString(((TileEntityPulverizer) this.ent).getTime() + "%", this.width / 2 - 5, this.height / 2 - (this.ySize / 2) + 15, 0x00000);
 		}
 	}
 
@@ -61,14 +64,14 @@ public class GuiPulverizer extends GuiBase{
 
 	@Override
 	public void onIOModeSwitched() {
-		if(this.getIOFaceing().equals(((TileEntityPulverizer)ent).getEnumInput())){
+		if (this.getIOFaceing().equals(((TileEntityPulverizer) ent).getEnumInput())) {
 			box.setSelected(0);
-		}else if(this.getIOFaceing().equals(((TileEntityPulverizer)ent).getEnumOutput())){
+		} else if (this.getIOFaceing().equals(((TileEntityPulverizer) ent).getEnumOutput())) {
 			box.setSelected(1);
-		}else{
+		} else {
 			box.setSelected(2);
 		}
-		
+
 	}
-	
+
 }

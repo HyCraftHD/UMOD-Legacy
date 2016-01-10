@@ -104,4 +104,5 @@ public class EntityInfectedCow extends EntityMob implements IInfectedEntity {
 	public float getSoundVolume() {
 		return 0.4F;
 	}
+
 }

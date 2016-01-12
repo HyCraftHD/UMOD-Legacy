@@ -12,7 +12,7 @@ import net.minecraftforge.fml.common.IWorldGenerator;
 public class UOreGeneration implements IWorldGenerator {
 
 	private void nether(Random random, int x, int y, World world) {
-		GenerationUtils.generateOre(UBlocks.ores.getStateFromMeta(EnumTypeBaseStuff.SULPHUR.getMetadata()), Blocks.netherrack, random, x, y, world, 15, 0, 128, 3, 14);
+		GenerationUtils.generateOre(UBlocks.ores.getStateFromMeta(EnumTypeBaseStuff.SULPHUR.getMetadata()), Blocks.netherrack, random, x, y, world, 30, 0, 128, 3, 14);
 	}
 
 	private void overworld(Random random, int x, int y, World world) {

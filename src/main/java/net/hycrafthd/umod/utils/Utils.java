@@ -1,6 +1,6 @@
 package net.hycrafthd.umod.utils;
 
-public class Utills {
+public class Utils {
 
 	public static double getDistanceAtoB(double x1, double z1, double x2, double z2){
 		double dx = x1-x2;

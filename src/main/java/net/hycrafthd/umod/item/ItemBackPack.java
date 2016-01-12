@@ -7,6 +7,7 @@ import net.hycrafthd.umod.container.ContainerBackPack;
 import net.hycrafthd.umod.enumtype.EnumTypeBackPack;
 import net.hycrafthd.umod.enumtype.EnumTypeGui;
 import net.hycrafthd.umod.utils.ColorUtils;
+import net.hycrafthd.umod.utils.NBTUtils;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -53,6 +54,8 @@ public class ItemBackPack extends ItemBase {
 		if (itemstack.getTagCompound() == null) {
 			itemstack.setTagCompound(new NBTTagCompound());
 		}
+
+		NBTUtils.removeCustomName(itemstack);
 
 		if (world.isRemote || !isSelected) {
 			return;

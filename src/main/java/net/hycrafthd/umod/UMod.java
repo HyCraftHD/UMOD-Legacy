@@ -35,6 +35,7 @@ public class UMod {
 		new UDamageSource();
 		new UBiome();
 		new UEntity();
+		new UTools();
 		this.registerGenerators();
 		this.registerEvents();
 	}

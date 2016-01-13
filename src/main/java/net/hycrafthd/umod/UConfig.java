@@ -17,9 +17,11 @@ public class UConfig {
 	}
 	
 	private void init(){
+		Logger.info(UConfig.class, "init()", "Loading Config now.");
 		this.config.load();
 		load();
 		this.config.save();
+		Logger.info(UConfig.class, "init()", "Finished loading Config.");
 	}
 	
 	private void load() {

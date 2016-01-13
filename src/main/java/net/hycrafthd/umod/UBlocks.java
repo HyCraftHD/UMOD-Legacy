@@ -94,6 +94,7 @@ public class UBlocks {
 		zin_pipe = new BlockPipe("zinpipe", 9, 9, false, PipeTexturAtlas.IRON_PIPE);
 		// Normal Blocks
 		nuke = new BlockNuke().setUnlocalizedName("nuke");
+		Logger.debug(UBlocks.class, "init()", "Init Blocks");
 	}
 
 	private void register() {
@@ -128,6 +129,7 @@ public class UBlocks {
 		CommonRegistryUtils.registerBlocks(zin_pipe, ItemBlockEnergy.class);
 		// Normal Block
 		CommonRegistryUtils.registerBlock(nuke);
+		Logger.debug(UBlocks.class, "register()", "Register Blocks");
 	}
 
 	private void oredirectionary() {
@@ -162,7 +164,7 @@ public class UBlocks {
 		CommonRegistryUtils.registerOredirectionary(zin_pipe);
 		// Normal Block
 		CommonRegistryUtils.registerOredirectionary(nuke);
-
+		Logger.debug(UBlocks.class, "oredirectionary()", "Oredirectionary");
 	}
 
 }

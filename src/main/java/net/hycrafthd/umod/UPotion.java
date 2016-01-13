@@ -18,6 +18,7 @@ public class UPotion {
 	
 	private void init() {
 		radiationPotion = new PotionRadiation();
+		Logger.debug(UPotion.class, "init()", "Init Potions");
 	}
 	
 	public static int getHighestID(){
@@ -39,8 +40,8 @@ public class UPotion {
                     return ints.size();
 				}
 			} catch (Exception e) {
-				System.err.println("Severe error, please report this to the mod author:");
-				System.err.println(e);
+				Logger.error(UPotion.class, "getHighestID", "Severe error, please report this to the mod author:");
+				UMod.log.trace("getHighestID", e);
 			}
 		}
 		return 0;

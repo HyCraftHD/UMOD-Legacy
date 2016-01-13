@@ -29,6 +29,7 @@ public class UArmor {
 		radiationSuitChestplate = new ArmorRadiation(radiationSuitMaterial, 1).setUnlocalizedName("radiationsuitchestplate");
 		radiationSuitLeggings = new ArmorRadiation(radiationSuitMaterial, 2).setUnlocalizedName("radiationsuitleggings");
 		radiationSuitBoots = new ArmorRadiation(radiationSuitMaterial, 3).setUnlocalizedName("radiationsuitboots");
+		Logger.debug(UArmor.class, "init()", "Init Armor");
 	}
 
 	private void register() {
@@ -37,6 +38,7 @@ public class UArmor {
 		CommonRegistryUtils.registerItem(radiationSuitChestplate);
 		CommonRegistryUtils.registerItem(radiationSuitLeggings);
 		CommonRegistryUtils.registerItem(radiationSuitBoots);
+		Logger.debug(UArmor.class, "register()", "Register Armor");
 	}
 
 }

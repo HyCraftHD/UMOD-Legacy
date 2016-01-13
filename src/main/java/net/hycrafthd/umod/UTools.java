@@ -33,6 +33,7 @@ public class UTools {
 		emeraldSword = new ItemEmeraldSword(emeraldToolMaterial).setUnlocalizedName("emeraldsword");
 		emeraldSpade = new ItemEmeraldSpade(emeraldToolMaterial).setUnlocalizedName("emeraldspade");
 		emeraldHoe = new ItemEmeraldHoe(emeraldToolMaterial).setUnlocalizedName("emeraldhoe");
+		Logger.debug(UTools.class, "init()", "Init Tools");
 	}
 
 	private void register() {
@@ -41,6 +42,7 @@ public class UTools {
 		CommonRegistryUtils.registerItem(emeraldSword);
 		CommonRegistryUtils.registerItem(emeraldSpade);
 		CommonRegistryUtils.registerItem(emeraldHoe);
+		Logger.debug(UTools.class, "register()", "Register Tools");
 	}
 	
 }

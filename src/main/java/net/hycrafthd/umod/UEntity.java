@@ -15,5 +15,6 @@ public class UEntity {
 		CommonRegistryUtils.registerEntity(EntityInfectedCow.class, "InfectedCow", 16, 1, true, 0x30311f, 0x648e42, true);
 		CommonRegistryUtils.registerEntity(EntityInfectedCreeper.class, "InfectedCreeper", 24, 1, true, 0x45b134, 0x164b0c, true);
 		CommonRegistryUtils.registerEntity(EntityNukePrimed.class, "PrimedNuke", 16, 1, true, 0x000000, 0x000000, false);
+		Logger.debug(UEntity.class, "register()", "Register Entitys");
 	}
 }

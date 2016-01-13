@@ -26,7 +26,7 @@ public class URecipes {
 		for (int i = 0; i < EnumTypeBaseStuff.values().length; i++) {
 			CommonRegistryUtils.registerShaplessCraftingRecipe(new ItemStack(UItems.ingots, 9, i), new ItemStack(UBlocks.blocks, 1, i));
 		}
-
+		Logger.debug(URecipes.class, "registerCraftingRecipes()", "registerCraftingRecipes");
 	}
 
 	private void registerFurnaceRecipes() {
@@ -36,6 +36,7 @@ public class URecipes {
 				CommonRegistryUtils.registerSmelting(new ItemStack(UBlocks.ores, 1, i), new ItemStack(UItems.ingots, 1, i), 0.7F);
 			}
 		}
+		Logger.debug(URecipes.class, "registerFurnaceRecipes()", "registerFurnaceRecipes");
 	}
 	
 	private void registerPulverizerRecipes() {
@@ -49,6 +50,7 @@ public class URecipes {
 		}
 		
 		ModRegistryUtils.addCraftSmeltRecepieShapless(new CraftSmeltRecepieShapless(new ItemStack[] {new ItemStack(Items.iron_pickaxe)}, new ItemStack(Items.iron_ingot, 3)));
+		Logger.debug(URecipes.class, "registerPulverizerRecipes()", "registerPulverizerRecipes");
 	}
 
 }

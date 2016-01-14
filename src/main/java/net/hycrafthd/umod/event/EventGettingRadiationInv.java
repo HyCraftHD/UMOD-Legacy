@@ -7,7 +7,7 @@ import net.hycrafthd.umod.UPotion;
 import net.hycrafthd.umod.UReference;
 import net.hycrafthd.umod.armor.ArmorRadiation;
 import net.hycrafthd.umod.interfaces.IInfectedBlock;
-import net.hycrafthd.umod.utils.NBTManager;
+import net.hycrafthd.umod.utils.NBTUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -34,7 +34,7 @@ public class EventGettingRadiationInv {
 			if (sp.capabilities.isCreativeMode)return;
 			for (ItemStack is : sp.inventory.mainInventory) {
 				if (is == null)continue;
-				if (NBTManager.isInfected(is, TAG_MAIN, TAG_INFECTED)) {
+				if (NBTUtils.isInfected(is, TAG_MAIN, TAG_INFECTED)) {
 					if(new Random().nextInt(50) != 0) continue;
 					addPotion(sp, 0);
 					break;
@@ -59,8 +59,8 @@ public class EventGettingRadiationInv {
 					Block block = blockcks.getBlock();
 					if(block instanceof IInfectedBlock){
 						EntityItem entityItem = (EntityItem) entity;
-						if(NBTManager.isInfected(entityItem.getEntityItem(), TAG_MAIN, TAG_INFECTED)) continue;
-						ItemStack updatedItem = NBTManager.setInfected(entityItem.getEntityItem(), TAG_MAIN, TAG_INFECTED, true);
+						if(NBTUtils.isInfected(entityItem.getEntityItem(), TAG_MAIN, TAG_INFECTED)) continue;
+						ItemStack updatedItem = NBTUtils.setInfected(entityItem.getEntityItem(), TAG_MAIN, TAG_INFECTED, true);
 						entityItem.setEntityItemStack(updatedItem);
 						System.out.println("Set");
 					}

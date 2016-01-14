@@ -1,7 +1,5 @@
 package net.hycrafthd.umod;
 
-import com.sun.xml.internal.bind.v2.runtime.reflect.Lister.Pack;
-
 import net.hycrafthd.umod.item.ItemBackPack;
 import net.hycrafthd.umod.item.ItemBattery;
 import net.hycrafthd.umod.item.ItemCabletester;
@@ -63,7 +61,7 @@ public class UItems {
 		battery = new ItemBattery().setUnlocalizedName("Battery");
 		// Backpack
 		backpack = new ItemBackPack().setUnlocalizedName("backpack");
-
+		Logger.debug(UItems.class, "init()", "Init Items");
 	}
 
 	private void register() {
@@ -83,6 +81,7 @@ public class UItems {
 		CommonRegistryUtils.registerItem(battery);
 		// Backpack
 		CommonRegistryUtils.registerItem(backpack);
+		Logger.debug(UItems.class, "register()", "Register Items");
 	}
 
 	private void oredirectionary() {
@@ -102,6 +101,7 @@ public class UItems {
 		CommonRegistryUtils.registerOredirectionary(battery);
 		// Backpack
 		CommonRegistryUtils.registerOredirectionary(backpack);
+		Logger.debug(UItems.class, "oredirectionary()", "Oredirectionary");
 	}
 
 }

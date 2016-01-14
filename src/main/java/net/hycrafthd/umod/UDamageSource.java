@@ -19,6 +19,7 @@ public class UDamageSource {
 		radiationDamageSource = new DamageSourceRadiation();
 		electroshock = new DamageSourceElectroShock();
 		nuclearExplosion = new DamageSourceNuclearExplosion();
+		Logger.debug(UDamageSource.class, "init()", "Init DamageSources");
 	}
 	
 }

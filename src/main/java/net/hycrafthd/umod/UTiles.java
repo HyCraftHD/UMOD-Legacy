@@ -19,6 +19,7 @@ public class UTiles {
 		CommonRegistryUtils.registerTileEntity(TileEntityPipe.class, "tile.pipe.entity");
 		CommonRegistryUtils.registerTileEntity(TileEntityChargeStation.class, "tile.charge.entity");
 		CommonRegistryUtils.registerTileEntity(TileEntityCraftFurnance.class, "tile.craftfurn.entity");
+		Logger.debug(UTiles.class, "register()", "Register Tiles");
 	}
 
 }

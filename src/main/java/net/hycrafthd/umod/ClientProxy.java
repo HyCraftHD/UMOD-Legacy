@@ -103,6 +103,13 @@ public class ClientProxy extends CommonProxy {
 			ClientRegistryUtils.registerModelRenderer(UItems.backpack, i, new ModelResourceLocation(UReference.resource + "backpack" + EnumTypeBackPack.byMetadata(i).getName(), "inventory"));
 		}
 
+		//Tools
+		ClientRegistryUtils.registerModelRenderer(UTools.emeraldAxe);
+		ClientRegistryUtils.registerModelRenderer(UTools.emeraldPickaxe);
+		ClientRegistryUtils.registerModelRenderer(UTools.emeraldSword);
+		ClientRegistryUtils.registerModelRenderer(UTools.emeraldSpade);
+		ClientRegistryUtils.registerModelRenderer(UTools.emeraldHoe);
+		
 	}
 
 	@Override

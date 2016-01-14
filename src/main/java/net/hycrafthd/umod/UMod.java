@@ -13,12 +13,10 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 
-import org.apache.logging.log4j.Logger;
-
 @Mod(modid = UReference.modid, version = UReference.version, name = UReference.name)
 public class UMod {
 
-	public static Logger log;
+	public static org.apache.logging.log4j.Logger log;
 
 	@EventHandler
 	public void preinit(FMLPreInitializationEvent event) {
@@ -35,8 +33,10 @@ public class UMod {
 		new UDamageSource();
 		new UBiome();
 		new UEntity();
+		new UTools();
 		this.registerGenerators();
 		this.registerEvents();
+		Logger.info("init(e)", "Init Mod.");
 	}
 
 	@EventHandler
@@ -47,12 +47,13 @@ public class UMod {
 		CommonRegistryUtils.registerGuiHandler(new UGuiHandler());
 		UReference.proxy.registerModels();
 		UReference.proxy.registerRenderer();
-
+		Logger.info("postinit(e)", "Registered Mod.");
 	}
 
 	@EventHandler
 	public void serverstarting(FMLServerStartingEvent event) {
 		new UCommands(event);
+		Logger.info("serverstarting(e)", "Registered Mod Commands.");
 	}
 
 	public void registerEvents() {
@@ -63,7 +64,7 @@ public class UMod {
 		event.addEvent(new ProcessHandler());
 		event.addEvent(new EventGettingRadiationInv());
 		event.register();
-
+		Logger.info("registerEvents()", "Registered Mod Events.");
 	}
 
 	public void registerGenerators() {
@@ -71,6 +72,7 @@ public class UMod {
 		generation.addGenerator(new UOreGeneration(), 0);
 		generation.addGenerator(new USchematicGeneration(), 0);
 		generation.register();
+		Logger.info("registerGenerators()", "Registered Mod Generators.");
 	}
 
 }

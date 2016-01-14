@@ -212,18 +212,52 @@ public class TileEntityChargeStation extends TileEntityBase implements IGuiProvi
 		return 2;
 	}
 
+
 	@Override
-	public void writeToNBT(NBTTagCompound compound) {
-		super.writeToNBT(compound);
-		compound.setInteger("Stored", stored);
-		compound.setBoolean("Mode", mode);
+	public void writeOtherToNBT(NBTTagCompound tagSonstiges) {
+		tagSonstiges.setBoolean("Mode", mode);
+		
 	}
 
 	@Override
-	public void readFromNBT(NBTTagCompound compound) {
-		super.readFromNBT(compound);
-		this.stored = compound.getInteger("Stored");
-		this.mode = compound.getBoolean("Mode");
+	public void writeIOModeToNBT(NBTTagCompound tagIO) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void writeEnergyToNBT(NBTTagCompound tagEnergy) {
+		tagEnergy.setInteger("Stored", stored);
+	}
+
+	@Override
+	public void writeItemsToNBT(NBTTagCompound tagItems) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void readOtherFromNBT(NBTTagCompound tagSonstiges) {
+		this.mode = tagSonstiges.getBoolean("Mode");
+		
+	}
+
+	@Override
+	public void readIOModeFromNBT(NBTTagCompound tagIO) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void readEnergyFromNBT(NBTTagCompound tagEnergy) {
+		this.stored = tagEnergy.getInteger("Stored");
+		
+	}
+
+	@Override
+	public void readItemsFromNBT(NBTTagCompound tagItems) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

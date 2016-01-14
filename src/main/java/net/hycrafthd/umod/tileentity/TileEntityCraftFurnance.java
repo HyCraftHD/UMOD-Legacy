@@ -237,16 +237,53 @@ public class TileEntityCraftFurnance extends TileEntityBase implements IGuiProvi
 		return EnumTypeGui.CRAFTFURNANCE.getID();
 	}
 	
+
 	@Override
-	public void writeToNBT(NBTTagCompound compound) {
-		super.writeToNBT(compound);
-		compound.setInteger("Energy", stored);
+	public void writeOtherToNBT(NBTTagCompound tagSonstiges) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
-	public void readFromNBT(NBTTagCompound compound) {
-		this.stored = compound.getInteger("Energy");
+	public void writeIOModeToNBT(NBTTagCompound tagIO) {
+		// TODO Auto-generated method stub
+		
+	}
 
+	@Override
+	public void writeEnergyToNBT(NBTTagCompound tagEnergy) {
+		tagEnergy.setInteger("Energy", stored);
+		
+	}
+
+	@Override
+	public void writeItemsToNBT(NBTTagCompound tagItems) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void readOtherFromNBT(NBTTagCompound tagSonstiges) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void readIOModeFromNBT(NBTTagCompound tagIO) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void readEnergyFromNBT(NBTTagCompound tagEnergy) {
+		this.stored = tagEnergy.getInteger("Energy");
+		
+	}
+
+	@Override
+	public void readItemsFromNBT(NBTTagCompound tagItems) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

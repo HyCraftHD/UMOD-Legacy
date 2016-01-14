@@ -2,6 +2,7 @@ package net.hycrafthd.umod.tileentity;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.server.gui.IUpdatePlayerListBox;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityLockable;
@@ -33,4 +34,52 @@ public abstract class TileEntityBase extends TileEntity implements ISidedInvento
 	public IChatComponent getDisplayName() {
 		return new ChatComponentText(this.getName());
 	}
+	
+	public final String 
+	ITEM_NBT = "items_nbt",
+	ENERGY_NBT = "energy_nbt",
+	IO_NBT = "io_nbt",
+	OTHER_NBT = "other_nbt";
+	
+	@Override
+	public final void writeToNBT(NBTTagCompound compound) {
+		super.writeToNBT(compound);
+		NBTTagCompound tagItems = new NBTTagCompound();
+		this.writeItemsToNBT(tagItems);
+		compound.setTag(ITEM_NBT, tagItems);
+		NBTTagCompound tagEnergy = new NBTTagCompound();
+		this.writeEnergyToNBT(tagEnergy);
+		compound.setTag(ENERGY_NBT, tagEnergy);
+		NBTTagCompound tagIO = new NBTTagCompound();
+		this.writeIOModeToNBT(tagIO);
+		compound.setTag(IO_NBT, tagIO);
+		NBTTagCompound tagSonstiges = new NBTTagCompound();
+		this.writeOtherToNBT(tagSonstiges);
+		compound.setTag(OTHER_NBT, tagSonstiges);
+	}
+	
+	@Override
+	public final void readFromNBT(NBTTagCompound compound) {
+		super.readFromNBT(compound);
+		this.readEnergyFromNBT(compound.getCompoundTag(ENERGY_NBT));
+		this.readIOModeFromNBT(compound.getCompoundTag(IO_NBT));
+		this.readItemsFromNBT(compound.getCompoundTag(ITEM_NBT));
+        this.readOtherFromNBT(compound.getCompoundTag(OTHER_NBT));
+	}
+
+	public abstract void writeOtherToNBT(NBTTagCompound tagSonstiges);
+
+	public abstract void writeIOModeToNBT(NBTTagCompound tagIO);
+
+	public abstract void writeEnergyToNBT(NBTTagCompound tagEnergy);
+
+	public abstract void writeItemsToNBT(NBTTagCompound tagItems);
+	
+	public abstract void readOtherFromNBT(NBTTagCompound tagSonstiges);
+
+	public abstract void readIOModeFromNBT(NBTTagCompound tagIO);
+
+	public abstract void readEnergyFromNBT(NBTTagCompound tagEnergy);
+
+	public abstract void readItemsFromNBT(NBTTagCompound tagItems);
 }

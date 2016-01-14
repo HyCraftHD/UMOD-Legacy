@@ -40,8 +40,8 @@ public class GuiPulverizer extends GuiBase {
 					} else if (box.getSelceted() == 1) {
 						((TileEntityPulverizer) ent).setEnumOutput(hal);
 					}
-					ent.markDirty();
 				}
+				ent.markDirty();
 			}
 		});
 	}

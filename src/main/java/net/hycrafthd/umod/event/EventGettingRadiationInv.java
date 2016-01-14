@@ -15,11 +15,14 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
+import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class EventGettingRadiationInv {
@@ -67,6 +70,17 @@ public class EventGettingRadiationInv {
 				}
 			}
 		}
+	}
+	
+	@SubscribeEvent 
+	public void tooltipEvent(ItemTooltipEvent event) {
+			if (event.itemStack != null && !event.showAdvancedItemTooltips) {
+				ItemStack itemStack = event.itemStack;
+				if(itemStack.hasTagCompound() && itemStack.getTagCompound().hasKey(TAG_MAIN) && ((NBTTagCompound) itemStack.getTagCompound().getTag(TAG_MAIN)).hasKey(TAG_INFECTED)){
+				boolean flag = ((NBTTagCompound) itemStack.getTagCompound().getTag(TAG_MAIN)).getBoolean(TAG_INFECTED);
+				event.toolTip.add((flag ? EnumChatFormatting.RED:EnumChatFormatting.GREEN)  + "Is Infected " + flag);
+				}
+			}
 	}
 	
 	private void addPotion(EntityLivingBase base, int amplifier) {

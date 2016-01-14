@@ -57,8 +57,7 @@ public class UItems {
 		// Battery
 		tester = new ItemCabletester().setUnlocalizedName("tester");
 		battery = new ItemBattery().setUnlocalizedName("battery");
-		
-		battery = new ItemBattery().setUnlocalizedName("Battery");
+
 		// Backpack
 		backpack = new ItemBackPack().setUnlocalizedName("backpack");
 		Logger.debug(UItems.class, "init()", "Init Items");

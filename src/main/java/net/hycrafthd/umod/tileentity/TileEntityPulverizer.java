@@ -2,6 +2,7 @@ package net.hycrafthd.umod.tileentity;
 
 import com.sun.javafx.scene.traversal.Direction;
 
+import net.hycrafthd.umod.Logger;
 import net.hycrafthd.umod.UMod;
 import net.hycrafthd.umod.api.IGuiProvider;
 import net.hycrafthd.umod.api.ISignable;
@@ -267,61 +268,6 @@ public class TileEntityPulverizer extends TileEntityBase implements
 	BYTE_SLOTS = "slot",
 	LIST_ITEMS = "items",
 	STRING_PLAYER = "play";
-	
-	@Override
-	public void writeToNBT(NBTTagCompound compound) {		
-		super.writeToNBT(compound);
-         UMod.log.info("writetoNBT");		
-		 compound.setShort(SHORT_TIME, (short) this.time);
-		 compound.setShort(SHORT_ENERGY, (short) this.strpo);
-		 compound.setTag(ENUMFACING_OUTPUT, new NBTTagByte((byte) DirectionUtils.getShortFromFacing(this.enumfO)));
-		 compound.setTag(ENUMFACING_INPUT, new NBTTagByte((byte) DirectionUtils.getShortFromFacing(this.enumfI)));
-		 System.out.println(DirectionUtils.getFacingFromShort(((NBTTagByte)compound.getTag(ENUMFACING_INPUT)).getByte()));
-		 if(pl != null){
-		     compound.setString(STRING_PLAYER, pl);
-	     }
-		 
-		NBTTagList nbttaglist = new NBTTagList();
-
-	     for (int i = 0; i < this.stack.length; ++i)
-	     {
-	         if (this.stack[i] != null)
-	         {
-	             NBTTagCompound nbttagcompound1 = new NBTTagCompound();
-	             nbttagcompound1.setByte(BYTE_SLOTS, (byte) i);
-	             this.stack[i].writeToNBT(nbttagcompound1);
-	             nbttaglist.appendTag(nbttagcompound1);
-	         }
-	     }
-
-	     compound.setTag(LIST_ITEMS, nbttaglist);
-	}
-
-	@Override
-	public void readFromNBT(NBTTagCompound compound) {
-		super.readFromNBT(compound);
-        UMod.log.info("readFromNBT");		
-		this.strpo = compound.getShort(SHORT_ENERGY);
-		this.time = compound.getShort(SHORT_TIME);
-		this.enumfI = DirectionUtils.getFacingFromShort(((NBTTagByte)compound.getTag(ENUMFACING_INPUT)).getByte());
-		this.enumfO = DirectionUtils.getFacingFromShort(((NBTTagByte)compound.getTag(ENUMFACING_OUTPUT)).getByte());
-		System.out.println(DirectionUtils.getFacingFromShort(((NBTTagByte)compound.getTag(ENUMFACING_INPUT)).getByte()));
-		this.pl = compound.getString(STRING_PLAYER);
-	
-		NBTTagList nbttaglist = compound.getTagList(LIST_ITEMS, 10);
-        this.stack = new ItemStack[this.getSizeInventory()];
-
-        for (int i = 0; i < nbttaglist.tagCount(); ++i)
-        {
-            NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
-            int b0 = nbttagcompound1.getByte(BYTE_SLOTS);
-
-            if (b0 >= 0 && b0 < this.stack.length)
-            {
-                this.stack[b0] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
-           }
-        }
-	}
 
 	public EnumFacing getEnumInput(){
 		return enumfI;
@@ -332,7 +278,9 @@ public class TileEntityPulverizer extends TileEntityBase implements
 	}
 	
 	public void setEnumInput(EnumFacing fac){
+		Logger.info(fac.toString());
 		enumfI = fac;
+		Logger.info(enumfI.toString());
 	}
 	
 	public void setEnumOutput(EnumFacing fac){
@@ -449,5 +397,80 @@ public class TileEntityPulverizer extends TileEntityBase implements
 	@Override
 	public String getSignedPlayerName() {
 		return pl;
+	}
+
+	@Override
+	public void writeOtherToNBT(NBTTagCompound tagSonstiges) {
+		 tagSonstiges.setShort(SHORT_TIME, (short) this.time);
+		 if(pl != null){
+		     tagSonstiges.setString(STRING_PLAYER, pl);
+	     }
+	}
+
+	@Override
+	public void writeIOModeToNBT(NBTTagCompound tagIO) {
+		UMod.log.info("Write IO");
+		tagIO.setByte(ENUMFACING_OUTPUT, (byte) DirectionUtils.getShortFromFacing(enumfO));
+		tagIO.setByte(ENUMFACING_INPUT, (byte) DirectionUtils.getShortFromFacing(enumfI));
+	}
+
+	@Override
+	public void writeEnergyToNBT(NBTTagCompound tagEnergy) {
+		 tagEnergy.setShort(SHORT_ENERGY, (short) this.strpo);
+		
+	}
+
+	@Override
+	public void writeItemsToNBT(NBTTagCompound tagItems) {
+		NBTTagList nbttaglist = new NBTTagList();
+
+	     for (int i = 0; i < this.stack.length; ++i)
+	     {
+	         if (this.stack[i] != null)
+	         {
+	             NBTTagCompound nbttagcompound1 = new NBTTagCompound();
+	             nbttagcompound1.setByte(BYTE_SLOTS, (byte) i);
+	             this.stack[i].writeToNBT(nbttagcompound1);
+	             nbttaglist.appendTag(nbttagcompound1);
+	         }
+	     }
+
+	    tagItems.setTag(LIST_ITEMS, nbttaglist);
+	}
+
+	@Override
+	public void readOtherFromNBT(NBTTagCompound tagSonstiges) {
+		this.time = tagSonstiges.getShort(SHORT_TIME);
+		this.pl = tagSonstiges.getString(STRING_PLAYER);
+	}
+
+	@Override
+	public void readIOModeFromNBT(NBTTagCompound tagIO) {
+		this.enumfI = DirectionUtils.getFacingFromShort(tagIO.getShort(ENUMFACING_INPUT));
+		this.enumfO = DirectionUtils.getFacingFromShort(tagIO.getShort(ENUMFACING_OUTPUT));
+		
+	}
+
+	@Override
+	public void readEnergyFromNBT(NBTTagCompound tagEnergy) {
+		this.strpo = tagEnergy.getShort(SHORT_ENERGY);
+		
+	}
+
+	@Override
+	public void readItemsFromNBT(NBTTagCompound tagItems) {
+		NBTTagList nbttaglist = tagItems.getTagList(LIST_ITEMS, 10);
+        this.stack = new ItemStack[this.getSizeInventory()];
+
+        for (int i = 0; i < nbttaglist.tagCount(); ++i)
+        {
+            NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
+            int b0 = nbttagcompound1.getByte(BYTE_SLOTS);
+
+            if (b0 >= 0 && b0 < this.stack.length)
+            {
+                this.stack[b0] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
+           }
+        }
 	}
 }

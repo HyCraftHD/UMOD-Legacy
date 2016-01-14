@@ -94,28 +94,15 @@ public class TileEntitySolarPanel extends TileEntity implements IPowerProvieder 
 	}
 
 	@Override
-	public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
-		NBTTagCompound tag = pkt.getNbtCompound();
-		this.readFromNBT(tag);
-	}
-
-	@Override
-	public Packet getDescriptionPacket() {
-		NBTTagCompound tag = new NBTTagCompound();
-		this.writeToNBT(tag);
-		return new S35PacketUpdateTileEntity(getPos(), getBlockMetadata(), tag);
-	}
-
-	@Override
 	public void writeToNBT(NBTTagCompound compound) {
-		compound.setInteger("Stored", storedpower);
 		super.writeToNBT(compound);
+		compound.setInteger("Stored", storedpower);
 	}
 
 	@Override
 	public void readFromNBT(NBTTagCompound compound) {
-		this.storedpower = compound.getInteger("Stored");
 		super.readFromNBT(compound);
+		this.storedpower = compound.getInteger("Stored");
 	}
 
 	@Override

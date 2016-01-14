@@ -21,6 +21,7 @@ import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagByte;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.NetworkManager;
@@ -37,14 +38,9 @@ public class TileEntityPulverizer extends TileEntityBase implements
                                IPowerProvieder,IGuiProvider,ISignable{
 
 	private ItemStack[] stack = new ItemStack[5];
-	private String pl = null;
+	private String pl;
 	private EnumFacing enumfI;
 	private EnumFacing enumfO;
-	
-	public TileEntityPulverizer() {
-		enumfI = EnumFacing.UP;
-		enumfO = EnumFacing.DOWN;		
-	}
 	
 	@Override
 	public int getSizeInventory() {
@@ -103,21 +99,8 @@ public class TileEntityPulverizer extends TileEntityBase implements
 	@Override
 	public void setInventorySlotContents(int index, ItemStack stack) {
 		this.stack[index] = stack;
+		this.markDirty();
 	}
-	
-	@Override
-	public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
-		NBTTagCompound tag = pkt.getNbtCompound();
-    	this.readFromNBT(tag);
-	}
-
-	
-	@Override
-    public Packet getDescriptionPacket() {
-	    	NBTTagCompound tag = new NBTTagCompound();
-	    	this.writeToNBT(tag);
-	    	return new S35PacketUpdateTileEntity(getPos(), getBlockMetadata(), tag);
-    }
 
 	@Override
 	public int getInventoryStackLimit() {
@@ -141,6 +124,7 @@ public class TileEntityPulverizer extends TileEntityBase implements
 		}else{
 		this.pl = null;
 		}
+		this.markDirty();
 	}
 	
 	@Override
@@ -193,6 +177,7 @@ public class TileEntityPulverizer extends TileEntityBase implements
         {
             this.stack[i] = null;
         }
+		this.markDirty();
 	}
 	
 	@Override
@@ -273,18 +258,27 @@ public class TileEntityPulverizer extends TileEntityBase implements
 		}
 	}
 	
+	public static final String
+	
+	ENUMFACING_OUTPUT = "OP",
+	ENUMFACING_INPUT = "IP",
+	SHORT_ENERGY = "Energy",
+	SHORT_TIME = "Time",
+	BYTE_SLOTS = "slot",
+	LIST_ITEMS = "items",
+	STRING_PLAYER = "play";
+	
 	@Override
 	public void writeToNBT(NBTTagCompound compound) {		
 		super.writeToNBT(compound);
-
-		
-		 compound.setShort("Time", (short) this.time);
-		 compound.setShort("Energy", (short) this.strpo);
-		 compound.setShort("IP", DirectionUtils.getShortFromFacing(this.enumfI));
-		 compound.setShort("OP",  DirectionUtils.getShortFromFacing(this.enumfO));
-		
+         UMod.log.info("writetoNBT");		
+		 compound.setShort(SHORT_TIME, (short) this.time);
+		 compound.setShort(SHORT_ENERGY, (short) this.strpo);
+		 compound.setTag(ENUMFACING_OUTPUT, new NBTTagByte((byte) DirectionUtils.getShortFromFacing(this.enumfO)));
+		 compound.setTag(ENUMFACING_INPUT, new NBTTagByte((byte) DirectionUtils.getShortFromFacing(this.enumfI)));
+		 System.out.println(DirectionUtils.getFacingFromShort(((NBTTagByte)compound.getTag(ENUMFACING_INPUT)).getByte()));
 		 if(pl != null){
-		     compound.setString("Pl", pl);
+		     compound.setString(STRING_PLAYER, pl);
 	     }
 		 
 		NBTTagList nbttaglist = new NBTTagList();
@@ -294,32 +288,33 @@ public class TileEntityPulverizer extends TileEntityBase implements
 	         if (this.stack[i] != null)
 	         {
 	             NBTTagCompound nbttagcompound1 = new NBTTagCompound();
-	             nbttagcompound1.setByte("Slot", (byte) i);
+	             nbttagcompound1.setByte(BYTE_SLOTS, (byte) i);
 	             this.stack[i].writeToNBT(nbttagcompound1);
 	             nbttaglist.appendTag(nbttagcompound1);
 	         }
 	     }
 
-	     compound.setTag("Items", nbttaglist);
+	     compound.setTag(LIST_ITEMS, nbttaglist);
 	}
 
 	@Override
 	public void readFromNBT(NBTTagCompound compound) {
 		super.readFromNBT(compound);
-
-		this.strpo = compound.getShort("Energy");
-		this.time = compound.getShort("Time");
-		this.enumfI = DirectionUtils.getFacingFromShort(compound.getShort("IP"));
-		this.enumfO = DirectionUtils.getFacingFromShort(compound.getShort("OP"));
-		this.pl = compound.getString("Pl");
+        UMod.log.info("readFromNBT");		
+		this.strpo = compound.getShort(SHORT_ENERGY);
+		this.time = compound.getShort(SHORT_TIME);
+		this.enumfI = DirectionUtils.getFacingFromShort(((NBTTagByte)compound.getTag(ENUMFACING_INPUT)).getByte());
+		this.enumfO = DirectionUtils.getFacingFromShort(((NBTTagByte)compound.getTag(ENUMFACING_OUTPUT)).getByte());
+		System.out.println(DirectionUtils.getFacingFromShort(((NBTTagByte)compound.getTag(ENUMFACING_INPUT)).getByte()));
+		this.pl = compound.getString(STRING_PLAYER);
 	
-		NBTTagList nbttaglist = compound.getTagList("Items", 10);
+		NBTTagList nbttaglist = compound.getTagList(LIST_ITEMS, 10);
         this.stack = new ItemStack[this.getSizeInventory()];
 
         for (int i = 0; i < nbttaglist.tagCount(); ++i)
         {
             NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
-            int b0 = nbttagcompound1.getByte("Slot");
+            int b0 = nbttagcompound1.getByte(BYTE_SLOTS);
 
             if (b0 >= 0 && b0 < this.stack.length)
             {
@@ -346,9 +341,9 @@ public class TileEntityPulverizer extends TileEntityBase implements
 	
 	@Override
 	public int[] getSlotsForFace(EnumFacing side) {
-		if(side.equals(enumfI)){
+		if((enumfI == null && side.equals(EnumFacing.UP)) || side.equals(enumfI)){
 			return new int[]{3};
-		}else if(side.equals( enumfO )){
+		}else if((enumfO == null && side.equals(EnumFacing.DOWN)) || side.equals( enumfO )){
 			return new int[]{0,1,2};
 		}
 		return new int[]{};

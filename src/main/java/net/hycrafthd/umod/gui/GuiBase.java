@@ -800,8 +800,8 @@ public abstract class GuiBase extends GuiScreen {
 
 	protected void mouseClickMove(int mouseX, int mouseY, int clickedMouseButton, long timeSinceLastClick) {
 		if (basecon.mode.equals(Mode.OUTPUT) && clickedMouseButton == 0) {
-			if (sclax - (mouseX - posX) <= 90 && sclax - (mouseX - posX) >= -180) {
-				sclax -= mouseX - posX;
+			if (sclax + (mouseX - posX) <= 90 && sclax + (mouseX - posX) >= -180) {
+				sclax += mouseX - posX;
 			}
 			if (sclay + (mouseY - posY) <= 90 && sclay + (mouseY - posY) >= -90) {
 				sclay += mouseY - posY;

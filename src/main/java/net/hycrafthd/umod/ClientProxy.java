@@ -56,6 +56,7 @@ public class ClientProxy extends CommonProxy {
 
 		// Cobble Dust
 		ClientRegistryUtils.registerModelRenderer(UItems.cdust);
+		ClientRegistryUtils.registerModelRenderer(UItems.battery);
 
 		// SolarPanel
 		for (int i = 0; i < EnumTypeSolarPanel.values().length; i++) {

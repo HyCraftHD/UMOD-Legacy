@@ -1,8 +1,11 @@
 package net.hycrafthd.umod.utils;
 
 import net.minecraft.block.BlockAir;
+import net.minecraft.client.Minecraft;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
 
 public class WorldUtils {
 	
@@ -16,6 +19,7 @@ public class WorldUtils {
 	}
 
 	public static boolean isNight(World w){
-		return w.getTotalWorldTime() % 20L == 0L;
+		WorldServer server = MinecraftServer.getServer().worldServers[0];
+		return !server.isDaytime();
 	}
 }

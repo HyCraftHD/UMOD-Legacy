@@ -9,6 +9,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumWorldBlockLayer;
 import net.minecraft.world.World;
 
 public class BlockChargeStation extends BlockBaseMachine {
@@ -27,5 +28,4 @@ public class BlockChargeStation extends BlockBaseMachine {
 		playerIn.openGui(UReference.modid, EnumTypeGui.CHARGESTATION.getID(), world, pos.getX(), pos.getY(), pos.getZ());
 		return true;
 	}
-
 }

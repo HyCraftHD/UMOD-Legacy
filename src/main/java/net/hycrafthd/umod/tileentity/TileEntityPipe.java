@@ -115,20 +115,7 @@ public class TileEntityPipe extends TileEntity implements IPlugabel, IPowerProvi
 	public NBTTagCompound getTileData() {
 		return ((S35PacketUpdateTileEntity) getDescriptionPacket()).getNbtCompound();
 	}
-
-	@Override
-	public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
-		NBTTagCompound tag = pkt.getNbtCompound();
-		this.readFromNBT(tag);
-	}
-
-	@Override
-	public Packet getDescriptionPacket() {
-		NBTTagCompound tag = new NBTTagCompound();
-		this.writeToNBT(tag);
-		return new S35PacketUpdateTileEntity(getPos(), getBlockMetadata(), tag);
-	}
-
+	
 	@Override
 	public void writeToNBT(NBTTagCompound compound) {
 		compound.setShort("Stored", (short) stored);

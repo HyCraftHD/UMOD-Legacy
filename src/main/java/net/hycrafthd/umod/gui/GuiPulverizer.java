@@ -1,13 +1,16 @@
 package net.hycrafthd.umod.gui;
 
 import java.io.IOException;
+import java.util.Calendar;
 
 import net.hycrafthd.umod.UReference;
 import net.hycrafthd.umod.container.ContainerBase.Mode;
 import net.hycrafthd.umod.container.ContainerPulverizer;
 import net.hycrafthd.umod.tileentity.TileEntityPulverizer;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.ChatComponentText;
@@ -41,7 +44,8 @@ public class GuiPulverizer extends GuiBase {
 						((TileEntityPulverizer) ent).setEnumOutput(hal);
 					}
 				}
-				ent.markDirty();
+				worldObj.markChunkDirty(ent.getPos(), ent);
+				worldObj.updateComparatorOutputLevel(ent.getPos(), ent.getBlockType());
 			}
 		});
 	}

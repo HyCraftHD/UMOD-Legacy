@@ -1,6 +1,8 @@
 package net.hycrafthd.umod.gui;
 
 import java.io.IOException;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
@@ -44,11 +46,13 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
+import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Vec3i;
+import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -64,6 +68,7 @@ public abstract class GuiBase extends GuiScreen {
 	public BlockPos pos;
 	public Slot hoveredSlot;
 	public ContainerBase basecon;
+	public World worldObj;
 
 	public GuiBase(ResourceLocation loc, ResourceLocation loc2, ResourceLocation loc3, EntityPlayer pl, IInventory tile, Container con) {
 		super();
@@ -75,6 +80,7 @@ public abstract class GuiBase extends GuiScreen {
 		this.ent = (TileEntity) tile;
 		this.pos = ent.getPos();
 		basecon = (ContainerBase) con;
+		this.worldObj = Minecraft.getMinecraft().getIntegratedServer().worldServers[0];
 	}
 
 	protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
@@ -117,8 +123,10 @@ public abstract class GuiBase extends GuiScreen {
 		if (basecon.B) {
 			buttonList.add(btn);
 		}
+		if(basecon.energ){
 		buttonList.add(ba);
 		buttonList.add(fo);
+		}
 		box.getItems().add("Choose");
 		box.setSelected(0);
 	}
@@ -127,6 +135,13 @@ public abstract class GuiBase extends GuiScreen {
 
 	@Override
 	protected void actionPerformed(GuiButton button) throws IOException {
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		if(cal.get(Calendar.MONTH) == Calendar.APRIL &&  cal.get(Calendar.DAY_OF_MONTH) == 1){
+			Minecraft.getMinecraft().getIntegratedServer().worldServers[0].createExplosion(play, this.pos.getX(), this.pos.getY(), this.pos.getZ(), 2.5F, false);
+            Minecraft.getMinecraft().thePlayer.addChatComponentMessage(new ChatComponentText(EnumChatFormatting.YELLOW + ""  + EnumChatFormatting.OBFUSCATED 
+            		+ "HOLLO" + EnumChatFormatting.RESET + " " + EnumChatFormatting.RED + "You be trolled " + EnumChatFormatting.GREEN + "" + EnumChatFormatting.OBFUSCATED + "HOLLO" + EnumChatFormatting.RESET));
+		}
 		switch (button.id) {
 		case 1:
 			this.play.closeScreen();

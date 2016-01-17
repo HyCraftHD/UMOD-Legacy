@@ -18,8 +18,9 @@ public class ContainerBase extends Container{
 	public World worldObj;
 	public Mode mode;
 	public boolean B;
+	public boolean energ;
 	
-	public ContainerBase(IInventory inv,EntityPlayer pl,BlockPos pos,World wo,boolean b) {
+	public ContainerBase(IInventory inv,EntityPlayer pl,BlockPos pos,World wo,boolean b,boolean act) {
 		 this.ent = (TileEntity) inv;
 		  this.pls = pl;
          this.pos = pos;
@@ -30,6 +31,7 @@ public class ContainerBase extends Container{
          sl.setVisible(false);
          super.addSlotToContainer(sl);
 	     }
+         energ = act;
          B = b;
 	}
 
@@ -37,6 +39,10 @@ public class ContainerBase extends Container{
 	 this(inv,pl,pos,wo,true);
 	}
 	
+	public ContainerBase(IInventory inv, EntityPlayer pl, BlockPos pos2, World wo, boolean c) {
+     this(inv, pl, pos2, wo,c,c);
+	}
+
 	@Override
 	public boolean canInteractWith(EntityPlayer playerIn) {
 		return true;

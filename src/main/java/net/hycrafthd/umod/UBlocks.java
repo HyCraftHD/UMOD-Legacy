@@ -13,14 +13,13 @@ import net.hycrafthd.umod.block.BlockInfectedSapling;
 import net.hycrafthd.umod.block.BlockInfestedCleaner;
 import net.hycrafthd.umod.block.BlockNuke;
 import net.hycrafthd.umod.block.BlockOres;
-import net.hycrafthd.umod.block.BlockPipe;
+import net.hycrafthd.umod.block.BlockCable;
 import net.hycrafthd.umod.block.BlockPulverizer;
 import net.hycrafthd.umod.block.BlockSolarPanel;
 import net.hycrafthd.umod.item.ItemBlockBlocks;
 import net.hycrafthd.umod.item.ItemBlockEnergy;
 import net.hycrafthd.umod.item.ItemBlockOres;
 import net.hycrafthd.umod.item.ItemBlockSolarPanel;
-import net.hycrafthd.umod.render.PipeTexturAtlas;
 import net.hycrafthd.umod.utils.CommonRegistryUtils;
 import net.minecraft.block.Block;
 
@@ -47,13 +46,9 @@ public class UBlocks {
 	
 	public static Block infestedCleaner;
 	// Pipes
-	public static Block iron_pipe;
-	public static Block silver_pipe;
-	public static Block copper_pipe;
-	public static Block alu_pipe;
-	public static Block gold_pipe;
-	public static Block lead_pipe;
-	public static Block zin_pipe;
+	public static Block silver_cable;
+	public static Block alu_cable;
+	public static Block zin_cable;
 	// Normal Blocks
 	public static Block nuke;
 
@@ -84,14 +79,10 @@ public class UBlocks {
 		infectedFruit = new BlockInfectedFruit().setUnlocalizedName("infectedfruit");
 		
 		infestedCleaner = new BlockInfestedCleaner().setUnlocalizedName("infestedcleaner");
-		// Pipes
-		iron_pipe = new BlockPipe("ironpipe", 10, 10, false, PipeTexturAtlas.IRON_PIPE);
-		silver_pipe = new BlockPipe("silverpipe", 62, 62, false, PipeTexturAtlas.IRON_PIPE);
-		copper_pipe = new BlockPipe("copperpipe", 60, 60, false, PipeTexturAtlas.IRON_PIPE);
-		alu_pipe = new BlockPipe("alupipe", 38, 38, false, PipeTexturAtlas.IRON_PIPE);
-		gold_pipe = new BlockPipe("goldpipe", 43, 43, false, PipeTexturAtlas.IRON_PIPE);
-		lead_pipe = new BlockPipe("leadpipe", 5, 5, false, PipeTexturAtlas.IRON_PIPE);
-		zin_pipe = new BlockPipe("zinpipe", 9, 9, false, PipeTexturAtlas.IRON_PIPE);
+		// Cable
+		silver_cable = new BlockCable("silvercable", 62, 62, false,"silver");
+		alu_cable = new BlockCable("aluminiumcable", 38, 38, false,"aluminium");
+		zin_cable = new BlockCable("zincable", 9, 9, false,"zin");
 		// Normal Blocks
 		nuke = new BlockNuke().setUnlocalizedName("nuke");
 		Logger.debug(UBlocks.class, "init()", "Init Blocks");
@@ -120,13 +111,9 @@ public class UBlocks {
 		CommonRegistryUtils.registerBlock(infestedCleaner);
 		
 		// Pipes
-		CommonRegistryUtils.registerBlocks(iron_pipe, ItemBlockEnergy.class);
-		CommonRegistryUtils.registerBlocks(alu_pipe, ItemBlockEnergy.class);
-		CommonRegistryUtils.registerBlocks(gold_pipe, ItemBlockEnergy.class);
-		CommonRegistryUtils.registerBlocks(silver_pipe, ItemBlockEnergy.class);
-		CommonRegistryUtils.registerBlocks(copper_pipe, ItemBlockEnergy.class);
-		CommonRegistryUtils.registerBlocks(lead_pipe, ItemBlockEnergy.class);
-		CommonRegistryUtils.registerBlocks(zin_pipe, ItemBlockEnergy.class);
+		CommonRegistryUtils.registerBlocks(alu_cable, ItemBlockEnergy.class);
+		CommonRegistryUtils.registerBlocks(silver_cable, ItemBlockEnergy.class);
+		CommonRegistryUtils.registerBlocks(zin_cable, ItemBlockEnergy.class);
 		// Normal Block
 		CommonRegistryUtils.registerBlock(nuke);
 		Logger.debug(UBlocks.class, "register()", "Register Blocks");
@@ -155,13 +142,9 @@ public class UBlocks {
 		CommonRegistryUtils.registerOredirectionary(infestedCleaner);
 		
 		// Pipes
-		CommonRegistryUtils.registerOredirectionary(iron_pipe);
-		CommonRegistryUtils.registerOredirectionary(alu_pipe);
-		CommonRegistryUtils.registerOredirectionary(gold_pipe);
-		CommonRegistryUtils.registerOredirectionary(silver_pipe);
-		CommonRegistryUtils.registerOredirectionary(copper_pipe);
-		CommonRegistryUtils.registerOredirectionary(lead_pipe);
-		CommonRegistryUtils.registerOredirectionary(zin_pipe);
+		CommonRegistryUtils.registerOredirectionary(alu_cable);
+		CommonRegistryUtils.registerOredirectionary(silver_cable);
+		CommonRegistryUtils.registerOredirectionary(zin_cable);
 		// Normal Block
 		CommonRegistryUtils.registerOredirectionary(nuke);
 		Logger.debug(UBlocks.class, "oredirectionary()", "Oredirectionary");

@@ -1,5 +1,6 @@
 package net.hycrafthd.umod.gui;
 
+import java.awt.Color;
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.Date;
@@ -18,6 +19,7 @@ import net.hycrafthd.umod.enumtype.EnumTypeGui;
 import net.hycrafthd.umod.inventory.BaseBatteryInputSlot;
 import net.hycrafthd.umod.inventory.BaseSlot;
 import net.hycrafthd.umod.render.RGBA;
+import net.hycrafthd.umod.utils.LWJGLUtils;
 import net.hycrafthd.umod.utils.StringReturnment;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
@@ -63,12 +65,14 @@ public abstract class GuiBase extends GuiScreen {
 	public ResourceLocation loc1;
 	public ResourceLocation loc2;
 	public ResourceLocation loc3;
+	public static final ResourceLocation CLEAR_GUI = new GuiRescources("clear.png");
 	public EntityPlayer play;
 	public TileEntity ent;
 	public BlockPos pos;
 	public Slot hoveredSlot;
 	public ContainerBase basecon;
 	public World worldObj;
+	public GuiCheckbox check;
 
 	public GuiBase(ResourceLocation loc, ResourceLocation loc2, ResourceLocation loc3, EntityPlayer pl, IInventory tile, Container con) {
 		super();
@@ -79,7 +83,7 @@ public abstract class GuiBase extends GuiScreen {
 		this.play = pl;
 		this.ent = (TileEntity) tile;
 		this.pos = ent.getPos();
-		basecon = (ContainerBase) con;
+		this.basecon = (ContainerBase) con;
 		this.worldObj = Minecraft.getMinecraft().getIntegratedServer().worldServers[0];
 	}
 
@@ -96,6 +100,17 @@ public abstract class GuiBase extends GuiScreen {
 		int k = (this.width - this.xSize) / 2;
 		int l = (this.height - this.ySize) / 2;
 		box = new GuiCombobox(k + 8, l + 7, 80, 12);
+		check = new GuiCheckbox(k + 5, l + 5, 20, 20, new RGBA(Color.white), new RGBA(Color.DARK_GRAY));
+		check.setTooltip(new StringReturnment() {
+			@Override
+			public String getString() {
+				if(check.isSelceted()){
+					return "Item Input List is visible";
+				}else{
+					return "Item Input List is hidden";
+				}
+			}
+		});
 		this.addToBox(box);
 		this.play.openContainer = this.basecon;
 		this.guiLeft = (this.width - this.xSize) / 2;
@@ -114,6 +129,8 @@ public abstract class GuiBase extends GuiScreen {
 					return "Switch to Output Selecting Mode";
 				case OUTPUT:
 					return "Switch to Normale Mode";
+				case COLOR:
+					return "Switch to Color change Mode";
 				default:
 					break;
 				}
@@ -131,6 +148,10 @@ public abstract class GuiBase extends GuiScreen {
 		box.setSelected(0);
 	}
 
+	public boolean canColorChange(){
+		return true;
+	}
+	
 	public abstract void addToBox(GuiCombobox box2);
 
 	@Override
@@ -182,6 +203,13 @@ public abstract class GuiBase extends GuiScreen {
 						basecon.setVisisble(i, false);
 					}
 				}
+				button.displayString = "c";
+			} else if(!this.canColorChange()){
+				this.actionPerformed(button);
+				return;
+			} else if(basecon.mode.equals(Mode.COLOR)){
+				loc = CLEAR_GUI;
+                
 				button.displayString = "x";
 			}
 			break;
@@ -248,7 +276,7 @@ public abstract class GuiBase extends GuiScreen {
 			if (this.buttonList.get(ks) instanceof ExtendedGuiButton && ((ExtendedGuiButton) this.buttonList.get(ks)).isMouseOver() && ((ExtendedGuiButton) this.buttonList.get(ks)).hasString()) {
 				ExtendedGuiButton gui = ((ExtendedGuiButton) this.buttonList.get(ks));
 				RGBA rgb = new RGBA(0, 0, 255, 150);
-				this.drawGradientRect(mousePX, mousePY, mousePX + gui.getWidth(), mousePY + gui.getHeight(), rgb, rgb);
+				LWJGLUtils.drawGradientRect(mousePX, mousePY, mousePX + gui.getWidth(), mousePY + gui.getHeight(), rgb, rgb,this.zLevel);
 				if (gui.hasMoreLines()) {
 					String[] str = gui.getString().split("\n");
 					for (int i = 0; i < str.length; i++)
@@ -287,14 +315,14 @@ public abstract class GuiBase extends GuiScreen {
 					if (slot instanceof BaseSlot && ((BaseSlot) slot).hasColor()) {
 						RGBA st = ((BaseSlot) slot).getHoverColor(2);
 						RGBA en = ((BaseSlot) slot).getHoverColor(3);
-						this.drawGradientRect(j1, k1, j1 + 16, k1 + 16, st, en);
+						LWJGLUtils.drawGradientRect(j1, k1, j1 + 16, k1 + 16, st, en,this.zLevel);
 					} else {
 						this.drawGradientRect(j1, k1, j1 + 16, k1 + 16, -2130706433, -2130706433);
 					}
 					GlStateManager.popMatrix();
 					if (slot instanceof BaseSlot && ((BaseSlot) slot).hasString()) {
 						BaseSlot sl = (BaseSlot) slot;
-						this.drawGradientRect(mouseX, mouseY, mouseX + ((BaseSlot) slot).getWidth(), mouseY + ((BaseSlot) slot).getHeight(), ((BaseSlot) slot).getHoverColor(0), ((BaseSlot) slot).getHoverColor(0));
+						LWJGLUtils.drawGradientRect(mouseX, mouseY, mouseX + ((BaseSlot) slot).getWidth(), mouseY + ((BaseSlot) slot).getHeight(), ((BaseSlot) slot).getHoverColor(0), ((BaseSlot) slot).getHoverColor(0),this.zLevel);
 						if (((BaseSlot) slot).hasMoreLines()) {
 							String[] str = ((BaseSlot) slot).getString().split("\n");
 							for (int i = 0; i < str.length; i++)
@@ -315,7 +343,7 @@ public abstract class GuiBase extends GuiScreen {
 					GlStateManager.colorMask(true, true, true, false);
 					RGBA st = ((BaseSlot) slot).getHoverColor(0);
 					RGBA en = ((BaseSlot) slot).getHoverColor(1);
-					this.drawGradientRect(j1, k1, j1 + 16, k1 + 16, st, en);
+					LWJGLUtils.drawGradientRect(j1, k1, j1 + 16, k1 + 16, st, en,this.zLevel);
 					GlStateManager.colorMask(true, true, true, true);
 					GlStateManager.enableLighting();
 					GlStateManager.enableDepth();
@@ -374,32 +402,18 @@ public abstract class GuiBase extends GuiScreen {
 			ItemStack itemstack1 = this.theSlot.getStack();
 			this.renderToolTip(itemstack1, mouseX, mouseY);
 		}
-
+	    if(basecon.mode.equals(Mode.COLOR)){
+				this.drawColorMode(mouseX,mouseY);
+		}
 		GlStateManager.enableLighting();
 		GlStateManager.enableDepth();
 		RenderHelper.enableStandardItemLighting();
 	}
 
-	public void drawGradientRect(int left, int top, int right, int bottom, RGBA start, RGBA end) {
-		GlStateManager.disableTexture2D();
-		GlStateManager.enableBlend();
-		GlStateManager.disableAlpha();
-		GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
-		GlStateManager.shadeModel(7425);
-		Tessellator tessellator = Tessellator.getInstance();
-		WorldRenderer worldrenderer = tessellator.getWorldRenderer();
-		worldrenderer.startDrawingQuads();
-		worldrenderer.setColorRGBA(start.getRed(), start.getGreen(), start.getBlue(), start.getAlpha());
-		worldrenderer.addVertex((double) right, (double) top, (double) this.zLevel);
-		worldrenderer.addVertex((double) left, (double) top, (double) this.zLevel);
-		worldrenderer.setColorRGBA(end.getRed(), end.getGreen(), end.getBlue(), end.getAlpha());
-		worldrenderer.addVertex((double) left, (double) bottom, (double) this.zLevel);
-		worldrenderer.addVertex((double) right, (double) bottom, (double) this.zLevel);
-		tessellator.draw();
-		GlStateManager.shadeModel(7424);
-		GlStateManager.disableBlend();
-		GlStateManager.enableAlpha();
-		GlStateManager.enableTexture2D();
+	public void drawColorMode(int x,int y) {
+		int k = this.guiLeft;
+		int l = this.guiTop;
+		check.draw(x, y, mc);
 	}
 
 	public GuiCombobox box;
@@ -734,6 +748,7 @@ public abstract class GuiBase extends GuiScreen {
 		super.mouseClicked(mouseX, mouseY, mouseButton);
 		if (mouseButton == 0) {
 			box.handelClick(mouseX, mouseY);
+			check.handelMouseClick(mouseX, mouseY);
 		}
 		boolean flag = mouseButton == this.mc.gameSettings.keyBindPickBlock.getKeyCode() + 100;
 		Slot slot = this.getSlotAtPosition(mouseX, mouseY);

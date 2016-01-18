@@ -18,17 +18,17 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.IBlockAccess;
 
-public class TileEntityPipe extends TileEntity implements IPlugabel, IPowerProvieder, IPipeRange {
+public class TileEntityCable extends TileEntity implements IPlugabel, IPowerProvieder, IPipeRange {
 
 	public int Maximum_Power;
 	public int stored;
 	public int loos;
 	private ArrayList<BlockPos> getter = new ArrayList<BlockPos>();
 
-	public TileEntityPipe() {
+	public TileEntityCable() {
 	}
 
-	public TileEntityPipe(int maxpower, int pipelooseone) {
+	public TileEntityCable(int maxpower, int pipelooseone) {
 		Maximum_Power = EnergyUtils.inUE(maxpower);
 		loos = pipelooseone;
 	}

@@ -71,7 +71,7 @@ public class ContainerBase extends Container{
 		
 	public static enum Mode{
 		
-		NORMAL(0),BATTERY(1),OUTPUT(2);
+		NORMAL(0),BATTERY(1),OUTPUT(2),COLOR(3);
 		
 		public int getID() {
 			return id;
@@ -91,7 +91,9 @@ public class ContainerBase extends Container{
 			case NORMAL:
 				return BATTERY;
 			case OUTPUT:
-				return NORMAL;
+				return COLOR;
+			case COLOR:
+			    return BATTERY; 
 			default:
 				return NORMAL;
 			}

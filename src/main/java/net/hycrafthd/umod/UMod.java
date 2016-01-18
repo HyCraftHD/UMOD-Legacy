@@ -4,7 +4,6 @@ import net.hycrafthd.umod.api.ProcessHandler;
 import net.hycrafthd.umod.event.EventExecuteRadiation;
 import net.hycrafthd.umod.event.EventGettingRadiation;
 import net.hycrafthd.umod.event.EventGettingRadiationInv;
-import net.hycrafthd.umod.event.EventModelBakeri;
 import net.hycrafthd.umod.utils.CommonRegistryUtils;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -60,7 +59,6 @@ public class UMod {
 		UEvent event = new UEvent();
 		event.addEvent(new EventGettingRadiation());
 		event.addEvent(new EventExecuteRadiation());
-		event.addEvent(new EventModelBakeri());
 		event.addEvent(new ProcessHandler());
 		event.addEvent(new EventGettingRadiationInv());
 		event.register();

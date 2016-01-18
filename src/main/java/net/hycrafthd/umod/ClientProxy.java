@@ -11,7 +11,9 @@ import net.hycrafthd.umod.entity.render.RenderInfectedCreeper;
 import net.hycrafthd.umod.entity.render.RenderNukePrimed;
 import net.hycrafthd.umod.enumtype.EnumTypeBackPack;
 import net.hycrafthd.umod.enumtype.EnumTypeBaseStuff;
+import net.hycrafthd.umod.render.TileEntityCabelSpecialRender;
 import net.hycrafthd.umod.render.TileEntityPulverizerSpecialRender;
+import net.hycrafthd.umod.tileentity.TileEntityCable;
 import net.hycrafthd.umod.tileentity.TileEntityPulverizer;
 import net.hycrafthd.umod.utils.ClientRegistryUtils;
 import net.minecraft.client.resources.model.ModelBakery;
@@ -85,13 +87,9 @@ public class ClientProxy extends CommonProxy {
 		ClientRegistryUtils.registerModelRenderer(UBlocks.infestedCleaner);
 		
 		// Pipes
-		ClientRegistryUtils.registerModelRenderer(UBlocks.iron_pipe);
-		ClientRegistryUtils.registerModelRenderer(UBlocks.alu_pipe);
-		ClientRegistryUtils.registerModelRenderer(UBlocks.silver_pipe);
-		ClientRegistryUtils.registerModelRenderer(UBlocks.lead_pipe);
-		ClientRegistryUtils.registerModelRenderer(UBlocks.gold_pipe);
-		ClientRegistryUtils.registerModelRenderer(UBlocks.copper_pipe);
-		ClientRegistryUtils.registerModelRenderer(UBlocks.zin_pipe);
+		ClientRegistryUtils.registerModelRenderer(UBlocks.alu_cable);
+		ClientRegistryUtils.registerModelRenderer(UBlocks.silver_cable);
+		ClientRegistryUtils.registerModelRenderer(UBlocks.zin_cable);
 
 		// Normal Blocks
 		ClientRegistryUtils.registerModelRenderer(UBlocks.nuke);
@@ -118,6 +116,7 @@ public class ClientProxy extends CommonProxy {
 		ClientRegistryUtils.registerEntityRenderer(EntityInfectedCreeper.class, new RenderInfectedCreeper());
 		ClientRegistryUtils.registerEntityRenderer(EntityNukePrimed.class, new RenderNukePrimed());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPulverizer.class, new TileEntityPulverizerSpecialRender());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCable.class, new TileEntityCabelSpecialRender());
 	}
 
 	@Override

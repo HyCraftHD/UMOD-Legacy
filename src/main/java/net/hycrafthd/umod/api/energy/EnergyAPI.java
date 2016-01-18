@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import net.hycrafthd.umod.block.BlockBaseMachine;
-import net.hycrafthd.umod.tileentity.TileEntityPipe;
+import net.hycrafthd.umod.tileentity.TileEntityCable;
 import net.hycrafthd.umod.utils.DirectionUtils;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
@@ -41,9 +41,9 @@ public class EnergyAPI {
 				TileEntity e = worldObj.getTileEntity(list[i]);
 				if (e instanceof IPowerProvieder) {
 					IPowerProvieder p = (IPowerProvieder) e;
-					if(p instanceof TileEntityPipe && p.canGetPower(pos,count) && pro.canAddPower(list[i],count)){
+					if(p instanceof TileEntityCable && p.canGetPower(pos,count) && pro.canAddPower(list[i],count)){
 						pro.addPower(p.getPower(count));
-					}else if(p instanceof TileEntityPipe && p.canGetPower(pos, p.getStoredPower()) && pro.canAddPower(list[i], p.getStoredPower())){
+					}else if(p instanceof TileEntityCable && p.canGetPower(pos, p.getStoredPower()) && pro.canAddPower(list[i], p.getStoredPower())){
 						pro.addPower(p.getPower(p.getStoredPower()));
 					}else if(p.canGetPower(pos, 2) && pro.canAddPower(list[i], 2)){
 						pro.addPower(p.getPower(2));

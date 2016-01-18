@@ -13,7 +13,7 @@ import net.hycrafthd.umod.api.CraftSmeltRecepie;
 import net.hycrafthd.umod.api.CraftSmeltRecepieShapless;
 import net.hycrafthd.umod.api.PulverizerRecepie;
 import net.hycrafthd.umod.api.SideBoolSet;
-import net.hycrafthd.umod.block.BlockPipe;
+import net.hycrafthd.umod.block.BlockCable;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.BlockState;
 import net.minecraft.item.Item;

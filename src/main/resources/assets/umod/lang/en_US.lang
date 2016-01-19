@@ -109,13 +109,10 @@ death.attack.elec=%1$s died from a Electronic Shock
 death.attack.nuclearexplosion=%1$s was killed by Nuclear Explosion
 
 #Cables
-tile.ironpipe.name=Iron Energy Cable
-tile.alupipe.name=Aluminium Energy Cable
-tile.silverpipe.name=Silver Energy Cable
-tile.copperpipe.name=Copper Energy Cable
-tile.leadpipe.name=Lead Energy Cable
-tile.zinpipe.name=Tin Energy Cable
-tile.goldpipe.name=Gold Energy Cable
+tile.aluminiumcable.name=Aluminium Energy Cable
+tile.silvercable.name=Silver Energy Cable
+tile.zincable.name=Tin Energy Cable
+
 
 #Entity
 entity.InfectedCow.name=Infected Cow

@@ -41,7 +41,7 @@ public class UArmor {
 		radiationSuitBoots = new ArmorRadiation(radiationSuitMaterial, 3).setUnlocalizedName("radiationsuitboots");
 		
 		//Energy
-        energyglasses = new ItemEnergyGlasses(enrgy);
+        energyglasses = new ItemEnergyGlasses(enrgy).setUnlocalizedName("energyglasses");
         
 		Logger.debug(UArmor.class, "init()", "Init Armor");
 	}

@@ -24,7 +24,8 @@ public class TileEntityCable extends TileEntity implements IPlugabel, IPowerProv
 	public int stored;
 	public int loos;
 	private ArrayList<BlockPos> getter = new ArrayList<BlockPos>();
-
+	public Block conduit = null;
+	
 	public TileEntityCable() {
 	}
 
@@ -33,6 +34,18 @@ public class TileEntityCable extends TileEntity implements IPlugabel, IPowerProv
 		loos = pipelooseone;
 	}
 
+	public void setConduit(Block b){
+		conduit = b;
+	}
+	
+	public boolean hasConduit(){
+		return conduit != null;
+	}
+	
+	public Block getConduit(){
+		return conduit;
+	}
+	
 	@Override
 	public boolean canConnect(IBlockAccess w, BlockPos p) {
 		TileEntity et = w.getTileEntity(p);
@@ -155,6 +168,11 @@ public class TileEntityCable extends TileEntity implements IPlugabel, IPowerProv
 	@Override
 	public void clearPast() {
 		passtpip = 0;
+	}
+
+	@Override
+	public void setEnergy(int coun) {
+		stored = coun;
 	}
 
 }

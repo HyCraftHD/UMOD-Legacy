@@ -34,6 +34,11 @@ public class TileEntityCraftFurnance extends TileEntityBase implements IGuiProvi
 	public boolean canExtractItem(int index, ItemStack stack, EnumFacing direction) {
 		return index == 9;
 	}
+	
+	@Override
+	public void setEnergy(int coun) {
+		stored = coun;
+	}
 
 	@Override
 	public int getSizeInventory() {

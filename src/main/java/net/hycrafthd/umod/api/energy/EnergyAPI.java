@@ -34,6 +34,7 @@ public class EnergyAPI {
 	}
 	
 	public void transferEnergy(int count){
+		if(!secureEnergy())return;
 		BlockPos[] list = { pos.east(), pos.north(), pos.south(), pos.west(), pos.up(), pos.down() };
 		for (int i = 0; i < list.length; i++) {
 			Block b = worldObj.getBlockState(list[i]).getBlock();
@@ -75,6 +76,17 @@ public class EnergyAPI {
 		}
 	}
 
+	public boolean secureEnergy(){
+		if(pro.getStoredPower() < 0){
+			pro.setEnergy(0);
+			return false;
+		}else if(pro.getStoredPower() > pro.getMaximalPower()){
+			pro.setEnergy(pro.getMaximalPower());
+			return false;
+		}
+		return true;
+	}
+	
 	public void transferEnergy(){
 		transferEnergy((pro.getMaximalPower() - pro.getStoredPower()));
 	}

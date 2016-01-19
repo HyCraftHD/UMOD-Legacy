@@ -52,6 +52,11 @@ public class TileEntityPulverizer extends TileEntityBase implements
 	public ItemStack getStackInSlot(int index) {
 		return stack[index];
 	}
+	
+	@Override
+	public void setEnergy(int coun) {
+		strpo = coun;
+	}
 
 	@Override
 	public ItemStack decrStackSize(int index, int count) {

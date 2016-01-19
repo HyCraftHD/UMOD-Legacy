@@ -34,6 +34,11 @@ public class TileEntitySolarPanel extends TileEntity implements IPowerProvieder 
 	}
 
 	@Override
+	public void setEnergy(int coun) {
+		storedpower = coun;
+	}
+	
+	@Override
 	public void addPower(int power) {
 		storedpower += EnergyUtils.inUE(power);
 	}

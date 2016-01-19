@@ -1,10 +1,5 @@
 package net.hycrafthd.umod.utils;
 
-import java.awt.Color;
-
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-
 import org.lwjgl.opengl.GL11;
 
 import net.hycrafthd.umod.render.RGBA;
@@ -14,7 +9,6 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.ResourceLocation;
 
@@ -139,23 +133,25 @@ public class LWJGLUtils {
         GL11.glNormal3f(0.0F, 1.0F, 0.0F);
         GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
         GlStateManager.disableLighting();
-		GlStateManager.rotate(360, 1.0F, 0, 0F);
 		drawTexture(location, width, height, -width/2, -height/2, -depth/2, width, height, 0, 0);
 		GlStateManager.rotate(90, 1.0F, 0, 0F);
-		drawTexture(location, width, height, -width/2, -height/2, -depth/2, width, height, 0, 0);
+		drawTexture(location, width, depth, -width/2,-depth/2,-height/2,  width, depth, 0, 0);
 		GlStateManager.rotate(180, 1.0F, 0, 0F);
-		drawTexture(location, width, height, -width/2, -height/2, -depth/2, width, height, 0, 0);
-		GlStateManager.rotate(270, 1.0F, 0F, 0F);
-		drawTexture(location, width, height, -width/2, -height/2, -depth/2, width, height, 0, 0);
+		drawTexture(location, width, depth, -width/2,-depth/2,-height/2,  width, depth, 0, 0);
+		GlStateManager.rotate(270, 1.0F, 0, 0F);
+	    drawTexture(location, width, height, -width/2, -height/2, -depth/2, width, height, 0, 0);
 		GlStateManager.rotate(90, 0F, 1.0F, 0F);
-		drawTexture(location, width, height, -width/2, -height/2, -depth/2, width, height, 0, 0);
+		drawTexture(location, depth, height, -depth/2,-height/2,-width/2, depth, height, 0, 0);
 		GlStateManager.rotate(-90, 0F, 1.0F, 0F);
-		drawTexture(location, width, height, -width/2, -height/2, -depth/2, width, height, 0, 0);
 		GlStateManager.rotate(90, 0F, 1.0F, 0F);
 		GlStateManager.rotate(-180, 1.0F, 0F, 0F);
-		drawTexture(location, width, height, -width/2, -height/2, -depth/2, width, height, 0, 0);
+		drawTexture(location, depth, height, -depth/2,-height/2,-width/2, depth, height, 0, 0);
 		GlStateManager.enableLighting();
 		GlStateManager.shadeModel(7424);
 		GlStateManager.popMatrix();
+	}
+	
+	public static void drawBlock(ResourceLocation loc,double posX ,double posY, double posZ,double d,double e,double f){
+		drawTexturedCube(loc, posX + (0.5 - d/2), posY + (0.5 - e/2), posZ + (0.5 - f/2), d, e, f);
 	}
 }

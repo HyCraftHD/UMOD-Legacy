@@ -2,7 +2,6 @@ package net.hycrafthd.umod.block;
 
 import net.hycrafthd.umod.UDamageSource;
 import net.hycrafthd.umod.UReference;
-import net.hycrafthd.umod.api.IPlugabel;
 import net.hycrafthd.umod.api.energy.IEnergyMessage;
 import net.hycrafthd.umod.api.energy.IPowerProvieder;
 import net.hycrafthd.umod.tileentity.TileEntityCable;
@@ -10,11 +9,15 @@ import net.hycrafthd.umod.utils.EnergyUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.IProperty;
-import net.minecraft.block.properties.PropertyBool;
-import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.Container;
+import net.minecraft.inventory.InventoryBasic;
+import net.minecraft.inventory.InventoryHelper;
+import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
@@ -48,10 +51,6 @@ public class BlockCable extends Block implements ITileEntityProvider, IEnergyMes
 		return false;
 	}
 
-	public BlockState getState() {
-		return this.blockState;
-	}
-
 	public String getSpirte() {
 		return asp;
 	}
@@ -80,7 +79,33 @@ public class BlockCable extends Block implements ITileEntityProvider, IEnergyMes
 	public boolean shouldSideBeRendered(IBlockAccess w, BlockPos pos, EnumFacing side) {
 		return side == EnumFacing.DOWN ? super.shouldSideBeRendered(w, pos, side) : true;
 	}
-
+		
+	@Override
+	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,
+			EnumFacing side, float hitX, float hitY, float hitZ) {
+		TileEntityCable cab = (TileEntityCable) worldIn.getTileEntity(pos);
+		if(playerIn.getCurrentEquippedItem().getItem() != null){
+		Block rand = Block.getBlockFromItem(playerIn.getCurrentEquippedItem().getItem());
+		if(!cab.hasConduit() && rand != null && !(rand instanceof BlockCable) && rand.isFullBlock() && rand.isSolidFullCube() && rand.isNormalCube()){
+			if(playerIn.getCurrentEquippedItem().stackSize > 1){
+				playerIn.getCurrentEquippedItem().stackSize--;
+			}else{
+				playerIn.inventory.setCurrentItem(null, 0, false, false);
+			}
+			cab.setConduit(rand);
+		}else if(cab.hasConduit()){
+			EntityItem item = new EntityItem(worldIn, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(cab.getConduit()));
+			worldIn.spawnEntityInWorld(item);
+			cab.setConduit(null);
+		}
+		}if(cab.hasConduit()){
+			EntityItem item = new EntityItem(worldIn, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(cab.getConduit()));
+			worldIn.spawnEntityInWorld(item);
+			cab.setConduit(null);
+		}
+		return false;
+	}
+	
 	@Override
 	public void setBlockBoundsBasedOnState(IBlockAccess worldIn, BlockPos pos) {
 		IBlockAccess w = worldIn;
@@ -92,12 +117,12 @@ public class BlockCable extends Block implements ITileEntityProvider, IEnergyMes
 			boolean cup = pip.canConnect(w, pos.up());
 			boolean ceast = pip.canConnect(w, pos.east());
 			boolean cwest = pip.canConnect(w, pos.west());
-			float anfangunten = 0.3F;
-			float anfnagoben = 0.7F;
-			float anfangX = 0.3F;
-			float endeX = 0.7F;
-			float anfangZ = 0.3F;
-			float endeZ = 0.7F;
+			float anfangunten = 0.4F;
+			float anfnagoben = 0.6F;
+			float anfangX = 0.4F;
+			float endeX = 0.6F;
+			float anfangZ = 0.4F;
+			float endeZ = 0.6F;
 
 			if (cup) {
 				anfnagoben = 1;
@@ -117,7 +142,12 @@ public class BlockCable extends Block implements ITileEntityProvider, IEnergyMes
 			if (csouth) {
 				endeZ = 1;
 			}
+			TileEntityCable cab = (TileEntityCable) worldIn.getTileEntity(pos);
+			if(!cab.hasConduit()){
 			this.setBlockBounds(anfangX, anfangunten, anfangZ, endeX, anfnagoben, endeZ);
+			}else{
+			this.setBlockBounds(1, 1, 1, 1, 1, 1);
+			}
 		}
 	}
 

@@ -44,6 +44,11 @@ public class TileEntityChargeStation extends TileEntityBase implements IGuiProvi
 	public int getSizeInventory() {
 		return 1;
 	}
+	
+	@Override
+	public void setEnergy(int coun) {
+		stored = coun;
+	}
 
 	@Override
 	public ItemStack getStackInSlot(int index) {

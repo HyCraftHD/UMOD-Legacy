@@ -82,7 +82,7 @@ public class UBlocks {
 		// Cable
 		silver_cable = new BlockCable("silvercable", 62, 62, false,"silver");
 		alu_cable = new BlockCable("aluminiumcable", 38, 38, false,"aluminium");
-		zin_cable = new BlockCable("zincable", 9, 9, false,"zin");
+		zin_cable = new BlockCable("zincable", 9, 9, false,"tin");
 		// Normal Blocks
 		nuke = new BlockNuke().setUnlocalizedName("nuke");
 		Logger.debug(UBlocks.class, "init()", "Init Blocks");

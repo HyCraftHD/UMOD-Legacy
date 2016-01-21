@@ -2,12 +2,14 @@ package net.hycrafthd.umod.block;
 
 import java.util.List;
 
+import net.hycrafthd.umod.Logger;
 import net.hycrafthd.umod.UDamageSource;
 import net.hycrafthd.umod.UReference;
 import net.hycrafthd.umod.api.energy.IEnergyMessage;
 import net.hycrafthd.umod.api.energy.IPowerProvieder;
 import net.hycrafthd.umod.tileentity.TileEntityCable;
 import net.hycrafthd.umod.utils.EnergyUtils;
+import net.hycrafthd.umod.utils.NBTUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
@@ -138,18 +140,28 @@ public class BlockCable extends Block implements ITileEntityProvider, IEnergyMes
 		TileEntityCable cab = (TileEntityCable) worldIn.getTileEntity(pos);
 		if(playerIn.getCurrentEquippedItem() != null){
 		Block rand = Block.getBlockFromItem(playerIn.getCurrentEquippedItem().getItem());
-		if(!cab.hasConduit() && rand != null && !(rand instanceof BlockCable) && rand.isFullBlock() && rand.isSolidFullCube() && rand.isNormalCube() && (playerIn.inventory.consumeInventoryItem(new ItemStack(rand).getItem()) || playerIn.capabilities.isCreativeMode)){
-			cab.setConduit(rand);
+		if(!cab.hasConduit() && rand != null && rand instanceof BlockConduit){
+			Logger.info("Has Condouit");
+			cab.setConduit(NBTUtils.getStackFromConduit(playerIn.getCurrentEquippedItem()));
 		}else if(cab.hasConduit()){
-			EntityItem item = new EntityItem(worldIn, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(cab.getConduit()));
-			worldIn.spawnEntityInWorld(item);
-			cab.setConduit(null);
+			Logger.info("Has Condouit -- ");
+			dropForPlayer(playerIn, cab);
 		}}else if(cab.hasConduit()){
-			EntityItem item = new EntityItem(worldIn, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(cab.getConduit()));
-			worldIn.spawnEntityInWorld(item);
-			cab.setConduit(null);
+			Logger.info("Has Condouit -- ");
+			dropForPlayer(playerIn, cab);
 		}
 		return false;
+	}
+	
+	private void dropForPlayer(EntityPlayer playerIn,TileEntityCable cab){
+		 boolean flag = playerIn.inventory.addItemStackToInventory(cab.getConduit());
+
+         if (flag)
+         {
+           	playerIn.worldObj.playSoundAtEntity(playerIn, "random.pop", 0.2F, ((playerIn.getRNG().nextFloat() - playerIn.getRNG().nextFloat()) * 0.7F + 1.0F) * 2.0F);
+           	playerIn.inventoryContainer.detectAndSendChanges();
+         }
+
 	}
 	
 	@Override

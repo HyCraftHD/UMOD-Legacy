@@ -1,17 +1,31 @@
 package net.hycrafthd.umod.utils;
 
+import java.util.Iterator;
+import java.util.List;
+
 import org.lwjgl.opengl.GL11;
 
 import net.hycrafthd.umod.render.RGBA;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.renderer.EntityRenderer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.WorldRenderer;
+import net.minecraft.client.renderer.block.model.BakedQuad;
+import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
+import net.minecraft.client.renderer.texture.TextureMap;
+import net.minecraft.client.renderer.texture.TextureUtil;
+import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.client.resources.model.IBakedModel;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.Vec3i;
 
+@SuppressWarnings("deprecation")
 public class LWJGLUtils {
 
 	public static void drawHLine(double x, double x2, double y, RGBA r) {
@@ -154,4 +168,98 @@ public class LWJGLUtils {
 	public static void drawBlock(ResourceLocation loc,double posX ,double posY, double posZ,double d,double e,double f){
 		drawTexturedCube(loc, posX + (0.5 - d/2), posY + (0.5 - e/2), posZ + (0.5 - f/2), d, e, f);
 	}
+	
+    
+	public static void renderBlockConduit(ItemStack stack, double x, double y,double z)
+    {
+        IBakedModel ibakedmodel = Minecraft.getMinecraft().getRenderItem().getItemModelMesher().getItemModel(stack);
+        GlStateManager.pushMatrix();
+        Minecraft.getMinecraft().getTextureManager().bindTexture(TextureMap.locationBlocksTexture);
+        Minecraft.getMinecraft().getTextureManager().getTexture(TextureMap.locationBlocksTexture).setBlurMipmap(false, false);
+        GlStateManager.enableRescaleNormal();
+        GlStateManager.enableAlpha();
+        GlStateManager.alphaFunc(516, 0.1F);
+        GlStateManager.enableBlend();
+        GlStateManager.blendFunc(770, 771);
+        GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+        ibakedmodel = net.minecraftforge.client.ForgeHooksClient.handleCameraTransforms(ibakedmodel, ItemCameraTransforms.TransformType.HEAD);
+        renderItem(stack, ibakedmodel,x,y,z);
+        GlStateManager.disableAlpha();
+        GlStateManager.disableRescaleNormal();
+        GlStateManager.disableLighting();
+        GlStateManager.popMatrix();
+        Minecraft.getMinecraft().getTextureManager().bindTexture(TextureMap.locationBlocksTexture);
+        Minecraft.getMinecraft().getTextureManager().getTexture(TextureMap.locationBlocksTexture).restoreLastBlurMipmap();
+    }
+    
+	public static void renderItem(ItemStack stack, IBakedModel model,double x,double y,double z)
+    {
+        GlStateManager.pushMatrix();
+        GlStateManager.translate(x , y, z);
+       
+            renderModel(model, -1,stack);
+
+        GlStateManager.popMatrix();
+    }
+    
+	private static void renderModel(IBakedModel model, int color, ItemStack stack)
+    {
+        Tessellator tessellator = Tessellator.getInstance();
+        WorldRenderer worldrenderer = tessellator.getWorldRenderer();
+        worldrenderer.startDrawingQuads();
+        worldrenderer.setVertexFormat(DefaultVertexFormats.ITEM);
+        EnumFacing[] aenumfacing = EnumFacing.values();
+        int j = aenumfacing.length;
+
+        for (int k = 0; k < j; ++k)
+        {
+            EnumFacing enumfacing = aenumfacing[k];
+            renderQuads(worldrenderer, model.getFaceQuads(enumfacing), color, stack);
+        }
+
+        renderQuads(worldrenderer, model.getGeneralQuads(), color, stack);
+        tessellator.draw();
+    }
+    
+    @SuppressWarnings("rawtypes")
+	private static void renderQuads(WorldRenderer renderer, List quads, int color, ItemStack stack)
+    {
+        boolean flag = color == -1 && stack != null;
+        BakedQuad bakedquad;
+        int j;
+
+        for (Iterator iterator = quads.iterator(); iterator.hasNext(); renderQuad(renderer, bakedquad, j))
+        {
+            bakedquad = (BakedQuad)iterator.next();
+            j = color;
+
+            if (flag && bakedquad.hasTintIndex())
+            {
+                j = stack.getItem().getColorFromItemStack(stack, bakedquad.getTintIndex());
+
+                if (EntityRenderer.anaglyphEnable)
+                {
+                    j = TextureUtil.anaglyphColor(j);
+                }
+
+                j |= -16777216;
+            }
+        }
+    }
+    
+    private static void renderQuad(WorldRenderer renderer, BakedQuad quad, int color)
+    {
+        renderer.addVertexData(quad.getVertexData());
+        if(quad instanceof net.minecraftforge.client.model.IColoredBakedQuad)
+            net.minecraftforge.client.ForgeHooksClient.putQuadColor(renderer, quad, color);
+        else
+        renderer.putColor4(color);
+        putQuadNormal(renderer, quad);
+    }
+
+    private static void putQuadNormal(WorldRenderer renderer, BakedQuad quad)
+    {
+        Vec3i vec3i = quad.getFace().getDirectionVec();
+        renderer.putNormal((float)vec3i.getX(), (float)vec3i.getY(), (float)vec3i.getZ());
+    }
 }

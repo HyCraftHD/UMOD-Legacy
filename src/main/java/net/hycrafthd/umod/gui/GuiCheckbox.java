@@ -8,6 +8,7 @@ import net.hycrafthd.umod.utils.StringReturnment;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
+import net.minecraft.client.renderer.GlStateManager;
 
 public class GuiCheckbox extends Gui{
 	
@@ -20,7 +21,6 @@ public class GuiCheckbox extends Gui{
 	private boolean isSelected;
 	private StringReturnment ret;
     private Runnable run;
-    private boolean visible;
 	
 	public GuiCheckbox(double x,double y,double width, double height,RGBA rgb,RGBA hover) {
 		this.x = x;

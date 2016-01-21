@@ -2,7 +2,6 @@ package net.hycrafthd.umod.render;
 
 import java.awt.Color;
 
-import net.hycrafthd.umod.Logger;
 import net.hycrafthd.umod.UReference;
 import net.hycrafthd.umod.api.energy.IPowerProvieder;
 import net.hycrafthd.umod.block.BlockCable;
@@ -11,7 +10,6 @@ import net.hycrafthd.umod.tileentity.TileEntityCable;
 import net.hycrafthd.umod.utils.LWJGLUtils;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.BlockModelRenderer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.player.EntityPlayer;
@@ -84,12 +82,12 @@ public class TileEntityCabelSpecialRender extends TileEntitySpecialRenderer {
 				lr = true;
 			}
 			
-			if((!cdown && !ceast && !cnorth && !csouth && !cup && !cwest) || (lr && fb) || (lr && ud) || (ud && fb)){
+			if((!cdown && !ceast && !cnorth && !csouth && !cup && !cwest) || (lr && fb) || (lr && ud) || (ud && fb) || (ud && fb && lr)){
 				LWJGLUtils.drawBlock(new ResourceLocation(UReference.modid,"textures/blocks/block/" +  name + ".png"), posX, posY, posZ, 0.205, 0.205, 0.205);
 			}
 		}else if(pip != null){
-			String str = Minecraft.getMinecraft().getRenderItem().getItemModelMesher().getItemModel(new ItemStack(((TileEntityCable) p_180535_1_).getConduit())).getTexture().getIconName();
-			LWJGLUtils.drawBlock(new ResourceLocation(str.split(":")[0],"textures/" + str.split(":")[1] + ".png"), posX, posY, posZ, 1, 1, 1);
+			if(pl.getCurrentEquippedItem() == null || !(Block.getBlockFromItem(pl.getCurrentEquippedItem().getItem()) instanceof BlockCable))
+			LWJGLUtils.renderBlockConduit(pip.getConduit(), posX, posY, posZ);
 		}
 		GlStateManager.enableCull();
 		

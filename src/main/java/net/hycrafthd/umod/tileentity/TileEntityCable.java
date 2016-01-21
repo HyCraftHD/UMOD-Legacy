@@ -10,6 +10,7 @@ import net.hycrafthd.umod.block.BlockBaseMachine;
 import net.hycrafthd.umod.utils.DirectionUtils;
 import net.hycrafthd.umod.utils.EnergyUtils;
 import net.minecraft.block.Block;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
@@ -24,7 +25,7 @@ public class TileEntityCable extends TileEntity implements IPlugabel, IPowerProv
 	public int stored;
 	public int loos;
 	private ArrayList<BlockPos> getter = new ArrayList<BlockPos>();
-	public Block conduit = null;
+	public ItemStack conduit = null;
 	
 	public TileEntityCable() {
 	}
@@ -34,7 +35,7 @@ public class TileEntityCable extends TileEntity implements IPlugabel, IPowerProv
 		loos = pipelooseone;
 	}
 
-	public void setConduit(Block b){
+	public void setConduit(ItemStack b){
 		conduit = b;
 	}
 	
@@ -42,7 +43,7 @@ public class TileEntityCable extends TileEntity implements IPlugabel, IPowerProv
 		return conduit != null;
 	}
 	
-	public Block getConduit(){
+	public ItemStack getConduit(){
 		return conduit;
 	}
 	

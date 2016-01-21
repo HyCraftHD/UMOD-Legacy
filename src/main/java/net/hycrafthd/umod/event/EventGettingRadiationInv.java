@@ -80,6 +80,10 @@ public class EventGettingRadiationInv {
 				boolean flag = ((NBTTagCompound) itemStack.getTagCompound().getTag(TAG_MAIN)).getBoolean(TAG_INFECTED);
 				event.toolTip.add((flag ? EnumChatFormatting.RED:EnumChatFormatting.GREEN)  + "Is Infected " + flag);
 				}
+				if(itemStack.hasTagCompound() && itemStack.getTagCompound().hasKey(NBTUtils.NBTKEY)){
+					ItemStack flag = ItemStack.loadItemStackFromNBT(((NBTTagCompound) itemStack.getTagCompound().getTag(TAG_MAIN)));
+					event.toolTip.add(flag.getDisplayName());
+				}
 			}
 	}
 	

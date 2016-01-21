@@ -94,13 +94,14 @@ public abstract class GuiBase extends GuiScreen {
 		this.drawTexturedModalRect(k, l, 0, 0, this.xSize, this.ySize);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void initGui() {
 		super.initGui();
 		int k = (this.width - this.xSize) / 2;
 		int l = (this.height - this.ySize) / 2;
 		box = new GuiCombobox(k + 8, l + 7, 80, 12);
-		check = new GuiCheckbox(k + 5, l + 5, 20, 20, new RGBA(Color.white), new RGBA(Color.DARK_GRAY));
+		check = new GuiCheckbox(k + 5, l + 5, 10, 10, new RGBA(Color.white), new RGBA(Color.DARK_GRAY));
 		check.setTooltip(new StringReturnment() {
 			@Override
 			public String getString() {
@@ -258,7 +259,7 @@ public abstract class GuiBase extends GuiScreen {
 	public static final String __OBFID = "CL_00000737";
 	public EnumFacing hal = EnumFacing.NORTH;
 
-	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
+	public final void drawScreen(int mouseX, int mouseY, float partialTicks) {
 		int mousePX = mouseX;
 		int mousePY = mouseY;
 		this.drawDefaultBackground();
@@ -411,8 +412,6 @@ public abstract class GuiBase extends GuiScreen {
 	}
 
 	public void drawColorMode(int x,int y) {
-		int k = this.guiLeft;
-		int l = this.guiTop;
 		check.draw(x, y, mc);
 	}
 

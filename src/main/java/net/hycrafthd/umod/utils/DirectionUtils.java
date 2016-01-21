@@ -25,6 +25,7 @@ public class DirectionUtils {
 	}
 	
 	public static short getShortFromFacing(EnumFacing face){
+		if(face == null){TLog.warn("Facinge is Null may it is a bug!");;return 0;}
 		switch (face) {
 		case DOWN:
 			return 0;

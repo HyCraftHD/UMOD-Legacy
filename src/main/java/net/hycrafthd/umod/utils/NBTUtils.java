@@ -30,5 +30,21 @@ public class NBTUtils {
 			}
 		}
 	}
+	
+	public static final String NBTKEY = "conduitstack";
+	
+	public static void addStackToConduit(ItemStack stack,ItemStack stack2){
+		NBTTagCompound comp = new NBTTagCompound();
+		stack2.writeToNBT(comp);
+		stack.setTagInfo(NBTKEY,comp);
+	}
+	
+	public static ItemStack getStackFromConduit(ItemStack stack){
+		if(stack.getTagCompound() != null && stack.getTagCompound().hasKey(NBTKEY)){
+			return ItemStack.loadItemStackFromNBT(stack.getTagCompound().getCompoundTag(NBTKEY));
+		}
+		TLog.warn("Return Null as Stack(key "+ NBTKEY +") From Conduit this isn't a good thing!");
+		return null;
+	}
 
 }

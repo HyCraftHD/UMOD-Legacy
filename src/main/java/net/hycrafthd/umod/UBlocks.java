@@ -2,6 +2,7 @@ package net.hycrafthd.umod;
 
 import net.hycrafthd.umod.block.BlockBlocks;
 import net.hycrafthd.umod.block.BlockChargeStation;
+import net.hycrafthd.umod.block.BlockConduit;
 import net.hycrafthd.umod.block.BlockCraftFurnance;
 import net.hycrafthd.umod.block.BlockInfectedDirt;
 import net.hycrafthd.umod.block.BlockInfectedFruit;
@@ -17,6 +18,7 @@ import net.hycrafthd.umod.block.BlockCable;
 import net.hycrafthd.umod.block.BlockPulverizer;
 import net.hycrafthd.umod.block.BlockSolarPanel;
 import net.hycrafthd.umod.item.ItemBlockBlocks;
+import net.hycrafthd.umod.item.ItemBlockConduit;
 import net.hycrafthd.umod.item.ItemBlockEnergy;
 import net.hycrafthd.umod.item.ItemBlockOres;
 import net.hycrafthd.umod.item.ItemBlockSolarPanel;
@@ -51,6 +53,7 @@ public class UBlocks {
 	public static Block zin_cable;
 	// Normal Blocks
 	public static Block nuke;
+	public static Block conduit;
 
 	public UBlocks() {
 		init();
@@ -85,6 +88,7 @@ public class UBlocks {
 		zin_cable = new BlockCable("zincable", 9, 9, false,"tin");
 		// Normal Blocks
 		nuke = new BlockNuke().setUnlocalizedName("nuke");
+		conduit = new BlockConduit().setUnlocalizedName("conduit");
 		Logger.debug(UBlocks.class, "init()", "Init Blocks");
 	}
 
@@ -116,6 +120,7 @@ public class UBlocks {
 		CommonRegistryUtils.registerBlocks(zin_cable, ItemBlockEnergy.class);
 		// Normal Block
 		CommonRegistryUtils.registerBlock(nuke);
+		CommonRegistryUtils.registerBlocks(conduit,ItemBlockConduit.class);
 		Logger.debug(UBlocks.class, "register()", "Register Blocks");
 	}
 
@@ -147,6 +152,7 @@ public class UBlocks {
 		CommonRegistryUtils.registerOredirectionary(zin_cable);
 		// Normal Block
 		CommonRegistryUtils.registerOredirectionary(nuke);
+		CommonRegistryUtils.registerOredirectionary(conduit);
 		Logger.debug(UBlocks.class, "oredirectionary()", "Oredirectionary");
 	}
 

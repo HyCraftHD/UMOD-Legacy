@@ -28,11 +28,11 @@ public class UTools {
 	private void init() {
 		emeraldToolMaterial = EnumHelper.addToolMaterial("EMERALDTOOLS", 3, 1000, 8.0F, 2.5F, 11);
 		
-		emeraldAxe = new ItemEmeraldAxe(emeraldToolMaterial).setUnlocalizedName("emeraldaxe");
-		emeraldPickaxe = new ItemEmeraldPickaxe(emeraldToolMaterial).setUnlocalizedName("emeraldpickaxe");
-		emeraldSword = new ItemEmeraldSword(emeraldToolMaterial).setUnlocalizedName("emeraldsword");
-		emeraldSpade = new ItemEmeraldSpade(emeraldToolMaterial).setUnlocalizedName("emeraldspade");
-		emeraldHoe = new ItemEmeraldHoe(emeraldToolMaterial).setUnlocalizedName("emeraldhoe");
+		emeraldAxe = new ItemEmeraldAxe(emeraldToolMaterial).setUnlocalizedName("emerald_axe");
+		emeraldPickaxe = new ItemEmeraldPickaxe(emeraldToolMaterial).setUnlocalizedName("emerald_pickaxe");
+		emeraldSword = new ItemEmeraldSword(emeraldToolMaterial).setUnlocalizedName("emerald_sword");
+		emeraldSpade = new ItemEmeraldSpade(emeraldToolMaterial).setUnlocalizedName("emerald_shovel");
+		emeraldHoe = new ItemEmeraldHoe(emeraldToolMaterial).setUnlocalizedName("emerald_hoe");
 		Logger.debug(UTools.class, "init()", "Init Tools");
 	}
 

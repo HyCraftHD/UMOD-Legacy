@@ -1,6 +1,7 @@
 package net.hycrafthd.umod;
 
 import net.hycrafthd.umod.block.BlockBlocks;
+import net.hycrafthd.umod.block.BlockCable;
 import net.hycrafthd.umod.block.BlockChargeStation;
 import net.hycrafthd.umod.block.BlockConduit;
 import net.hycrafthd.umod.block.BlockCraftFurnance;
@@ -14,7 +15,6 @@ import net.hycrafthd.umod.block.BlockInfectedSapling;
 import net.hycrafthd.umod.block.BlockInfestedCleaner;
 import net.hycrafthd.umod.block.BlockNuke;
 import net.hycrafthd.umod.block.BlockOres;
-import net.hycrafthd.umod.block.BlockCable;
 import net.hycrafthd.umod.block.BlockPulverizer;
 import net.hycrafthd.umod.block.BlockSolarPanel;
 import net.hycrafthd.umod.item.ItemBlockBlocks;
@@ -81,7 +81,7 @@ public class UBlocks {
 		infectedPlank = new BlockInfectedPlank().setUnlocalizedName("infectedplank");
 		infectedFruit = new BlockInfectedFruit().setUnlocalizedName("infectedfruit");
 		
-		infestedCleaner = new BlockInfestedCleaner().setUnlocalizedName("infestedcleaner");
+		infestedCleaner = new BlockInfestedCleaner().setUnlocalizedName("cleaner");
 		// Cable
 		silver_cable = new BlockCable("silvercable", 62, 62, false,"silver");
 		alu_cable = new BlockCable("aluminiumcable", 38, 38, false,"aluminium");

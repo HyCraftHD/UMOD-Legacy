@@ -11,6 +11,8 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class EntityNukePrimed extends Entity {
 
@@ -79,7 +81,9 @@ public class EntityNukePrimed extends Entity {
 				for (int x = -1; x <= 1; x++) {
 					for (int z = -1; z <= 1; z++) {
 						double d = MathHelper.getRandomDoubleInRange(new Random(), 0, 0.2D);
-						this.worldObj.spawnParticle(EnumParticleTypes.SMOKE_LARGE, true, this.posX, this.posY - 0.5D, this.posZ, x * d, 0.5D, z * d, new int[0]);
+						try{
+							spawnParticle(this.worldObj, EnumParticleTypes.SMOKE_LARGE, true, this.posX, this.posY - 0.5D, this.posZ, x * d, 0.5D, z * d, new int[0]);
+						}catch(NoSuchMethodError e){}
 					}
 				}
 			}
@@ -87,6 +91,9 @@ public class EntityNukePrimed extends Entity {
 	}
 
 	private void explode() {
+		
+		if(!worldObj.getGameRules().getGameRuleBooleanValue("allowExplosion")) return;
+		
 		BlockPos pos = new BlockPos(this.posX, this.posY, this.posZ);
 		float power = 2F + (((this.nukePower) / 10369F) * 18F);
 		ProcessHandler.addProcess(new NuclearExplosion(this.worldObj, pos.getX(), pos.getY(), pos.getZ(), power));
@@ -115,4 +122,10 @@ public class EntityNukePrimed extends Entity {
 	protected void entityInit() {
 		this.fuse = this.fuseSec * 20;
 	}
+	
+	@SideOnly(Side.CLIENT)
+	public void spawnParticle(World worldIn, EnumParticleTypes particleType, boolean b, double xCoord, double yCoord, double zCoord, double xOffset, double yOffset, double zOffset, int[] p_175688_14_){
+		worldIn.spawnParticle(particleType, b, xCoord, yCoord, zCoord, xOffset, yOffset, zOffset, p_175688_14_);
+	}
+	
 }

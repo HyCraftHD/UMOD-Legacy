@@ -6,6 +6,7 @@ import java.util.Random;
 import net.hycrafthd.umod.UPotion;
 import net.hycrafthd.umod.UReference;
 import net.hycrafthd.umod.armor.ArmorRadiation;
+import net.hycrafthd.umod.block.BlockConduit;
 import net.hycrafthd.umod.interfaces.IInfectedBlock;
 import net.hycrafthd.umod.utils.NBTUtils;
 import net.minecraft.block.Block;
@@ -80,8 +81,8 @@ public class EventGettingRadiationInv {
 				boolean flag = ((NBTTagCompound) itemStack.getTagCompound().getTag(TAG_MAIN)).getBoolean(TAG_INFECTED);
 				event.toolTip.add((flag ? EnumChatFormatting.RED:EnumChatFormatting.GREEN)  + "Is Infected " + flag);
 				}
-				if(itemStack.hasTagCompound() && itemStack.getTagCompound().hasKey(NBTUtils.NBTKEY)){
-					ItemStack flag = ItemStack.loadItemStackFromNBT(((NBTTagCompound) itemStack.getTagCompound().getTag(TAG_MAIN)));
+				if(Block.getBlockFromItem(itemStack.getItem()) instanceof BlockConduit && itemStack.hasTagCompound() && itemStack.getTagCompound().hasKey(NBTUtils.NBTKEY)){
+					ItemStack flag = NBTUtils.getStackFromConduit(itemStack);
 					event.toolTip.add(flag.getDisplayName());
 				}
 			}

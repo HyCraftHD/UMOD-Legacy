@@ -18,6 +18,10 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+import net.minecraftforge.client.event.GuiScreenEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent.RenderTickEvent;
+import sun.management.HotspotClassLoadingMBean;
 
 public class TileEntityCabelSpecialRender extends TileEntitySpecialRenderer {
 
@@ -38,7 +42,7 @@ public class TileEntityCabelSpecialRender extends TileEntitySpecialRenderer {
 		TileEntityCable pip = (TileEntityCable) p_180535_1_;
 		World w = Minecraft.getMinecraft().getIntegratedServer().worldServers[0];
 		BlockPos pos = pip.getPos(); 
-		if (pip != null && !((TileEntityCable) p_180535_1_).hasConduit()) {
+		if (pip != null && (!((TileEntityCable) p_180535_1_).hasConduit() || (pl.getCurrentEquippedItem() != null && Block.getBlockFromItem(pl.getCurrentEquippedItem().getItem()) != null && Block.getBlockFromItem(pl.getCurrentEquippedItem().getItem()) instanceof BlockCable))) {
 			 if (Minecraft.isAmbientOcclusionEnabled())
 	            {
 	                GlStateManager.shadeModel(7425);
@@ -86,8 +90,11 @@ public class TileEntityCabelSpecialRender extends TileEntitySpecialRenderer {
 				LWJGLUtils.drawBlock(new ResourceLocation(UReference.modid,"textures/blocks/block/" +  name + ".png"), posX, posY, posZ, 0.205, 0.205, 0.205);
 			}
 		}else if(pip != null){
-			if(pl.getCurrentEquippedItem() == null || !(Block.getBlockFromItem(pl.getCurrentEquippedItem().getItem()) instanceof BlockCable))
+			if(pl.getCurrentEquippedItem() == null || !(Block.getBlockFromItem(pl.getCurrentEquippedItem().getItem()) instanceof BlockCable)){
+		    GlStateManager.enableLighting();
 			LWJGLUtils.renderBlockConduit(pip.getConduit(), posX, posY, posZ);
+			GlStateManager.disableLighting();
+			}
 		}
 		GlStateManager.enableCull();
 		
@@ -97,6 +104,5 @@ public class TileEntityCabelSpecialRender extends TileEntitySpecialRenderer {
 	}
 	
 	
-
     
 }

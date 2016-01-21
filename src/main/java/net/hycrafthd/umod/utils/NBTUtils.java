@@ -34,9 +34,17 @@ public class NBTUtils {
 	public static final String NBTKEY = "conduitstack";
 	
 	public static void addStackToConduit(ItemStack stack,ItemStack stack2){
+		if(!hasStackOnCoinduit(stack)){
 		NBTTagCompound comp = new NBTTagCompound();
 		stack2.writeToNBT(comp);
 		stack.setTagInfo(NBTKEY,comp);
+		}else{
+			TLog.warn("The Stack(key "+ NBTKEY +") has a Conduit");
+		}
+	}
+	
+	public static boolean hasStackOnCoinduit(ItemStack stack){
+		return stack.getTagCompound() != null && stack.getTagCompound().hasKey(NBTKEY);
 	}
 	
 	public static ItemStack getStackFromConduit(ItemStack stack){

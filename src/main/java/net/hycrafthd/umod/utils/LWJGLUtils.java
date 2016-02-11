@@ -78,6 +78,57 @@ public class LWJGLUtils {
 		GlStateManager.enableTexture2D();
 	}
 	
+	public static void drawGradientRectWithMultiplier(int left, int top, int right, int bottom, RGBA start, RGBA end,double z,double multiplier,boolean flag) {
+		double oldZ = z;
+		for(int i = 0;i < right;i++){
+		z = z + (multiplier + (i * 0.005));
+		GlStateManager.pushMatrix();
+        GL11.glNormal3f(0.0F, 1.0F, 0.0F);
+     	GlStateManager.disableTexture2D();
+		GlStateManager.enableBlend();
+        GlStateManager.disableLighting();
+        GlStateManager.depthMask(false);
+        GlStateManager.enableBlend();
+        GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
+		Tessellator tessellator = Tessellator.getInstance();
+		WorldRenderer worldrenderer = tessellator.getWorldRenderer();
+		worldrenderer.startDrawingQuads();
+		worldrenderer.setColorRGBA(start.getRed(), start.getGreen(), start.getBlue(), start.getAlpha());
+		worldrenderer.addVertex((double) left + i, (double) top, (double) z);
+		worldrenderer.addVertex((double) left + 1 + i, (double) top, (double) z);
+		worldrenderer.setColorRGBA(end.getRed(), end.getGreen(), end.getBlue(), end.getAlpha());
+		worldrenderer.addVertex((double) left + 1 + i, (double) bottom, (double) z);
+		worldrenderer.addVertex((double) left + i, (double) bottom, (double) z);
+		tessellator.draw();
+		GlStateManager.shadeModel(7424);
+		GlStateManager.disableBlend();
+		GlStateManager.enableAlpha();
+		GlStateManager.enableTexture2D();
+		GlStateManager.popMatrix();
+		/*GlStateManager.rotate(180, 0F, 1.0F, 0F);
+     	GlStateManager.disableTexture2D();
+		GlStateManager.enableBlend();
+		worldrenderer.startDrawing(7);
+		worldrenderer.setColorRGBA(start.getRed(), start.getGreen(), start.getBlue(), start.getAlpha());
+		worldrenderer.addVertex((double) right + i, (double) top, (double) z);
+		worldrenderer.addVertex((double) right + 1 + i, (double) top, (double) z);
+		worldrenderer.setColorRGBA(end.getRed(), end.getGreen(), end.getBlue(), end.getAlpha());
+		worldrenderer.addVertex((double) right + 1 + i, (double) bottom, (double) z);
+		worldrenderer.addVertex((double) right + i, (double) bottom, (double) z);
+		tessellator.draw();
+		GlStateManager.shadeModel(7424);
+		GlStateManager.disableBlend();
+		GlStateManager.enableAlpha();
+		GlStateManager.enableTexture2D();
+
+		GlStateManager.popMatrix();
+		*/
+		}
+		if(flag){
+		//drawGradientRectWithMultiplier(-left, -top, -right, -bottom, start, end, oldZ, multiplier,false);
+		}
+	}
+	
 	public static void drawFrame(double x ,double y,double width,double height,RGBA rgb){
 	      drawFrame(x, y, width, height, rgb, 0);
 	}
@@ -124,6 +175,84 @@ public class LWJGLUtils {
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
         GlStateManager.popMatrix();
 		}
+	}
+	
+	public static void drawOnlyStringInWorld(BlockPos pos,double posX,double posY,double posZ,int p_180535_9_,String text,int color){
+		EntityPlayer pl  = Minecraft.getMinecraft().thePlayer;
+        BlockPos po = pl.getPosition();
+		if (pos.getX() + 10 > po.getX() && pos.getX() - 10 < po.getX() && pos.getY() + 10 > po.getY() && pos.getY() - 10 < po.getY() && pos.getZ() + 10 > po.getZ() && pos.getZ() - 10 < po.getZ())
+		{
+		FontRenderer fontrenderer = Minecraft.getMinecraft().getRenderManager().getFontRenderer();
+        float f = 1.6F;
+        float f1 = 0.016666668F * f;
+        GlStateManager.pushMatrix();
+        GlStateManager.translate((float)posX + 0.5F, (float)posY + 1.5F, (float)posZ + 0.5F);
+        GL11.glNormal3f(0.0F, 1.0F, 0.0F);
+        GlStateManager.rotate(-Minecraft.getMinecraft().getRenderManager().playerViewY, 0.0F, 1.0F, 0.0F);
+        GlStateManager.rotate(Minecraft.getMinecraft().getRenderManager().playerViewX, 1.0F, 0.0F, 0.0F);
+        GlStateManager.scale(-f1, -f1, f1);
+        GlStateManager.disableLighting();
+        GlStateManager.depthMask(false);
+        GlStateManager.disableDepth();
+        GlStateManager.enableBlend();
+        GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
+        byte b0 = 0;
+        GlStateManager.disableTexture2D();
+        int j = fontrenderer.getStringWidth(text) / 2;
+        int j2 = fontrenderer.getStringWidth(text);
+        GlStateManager.enableTexture2D();
+        fontrenderer.drawString(text, -fontrenderer.getStringWidth(text) / 2, b0, color);
+        GlStateManager.enableDepth();
+        GlStateManager.depthMask(true);
+        fontrenderer.drawString(text, -fontrenderer.getStringWidth(text) / 2, b0, color);
+        GlStateManager.enableLighting();
+        GlStateManager.disableBlend();
+        GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+        GlStateManager.popMatrix();
+		}
+	}
+	public static void drawSmThInWorld(BlockPos pos,double posX,double posY,double posZ,Runnable run){
+		EntityPlayer pl  = Minecraft.getMinecraft().thePlayer;
+        BlockPos po = pl.getPosition();
+		if (pos.getX() + 10 > po.getX() && pos.getX() - 10 < po.getX() && pos.getY() + 10 > po.getY() && pos.getY() - 10 < po.getY() && pos.getZ() + 10 > po.getZ() && pos.getZ() - 10 < po.getZ())
+		{
+        float f = 1.6F;
+        float f1 = 0.016666668F * f;
+        GlStateManager.pushMatrix();
+        GlStateManager.translate((float)posX + 0.5F, (float)posY + 1.5F, (float)posZ + 0.5F);
+        GL11.glNormal3f(0.0F, 1.0F, 0.0F);
+        GlStateManager.rotate(-Minecraft.getMinecraft().getRenderManager().playerViewY, 0.0F, 1.0F, 0.0F);
+        GlStateManager.rotate(Minecraft.getMinecraft().getRenderManager().playerViewX, 1.0F, 0.0F, 0.0F);
+        GlStateManager.scale(-f1, -f1, f1);
+        GlStateManager.disableLighting();
+        GlStateManager.depthMask(false);
+        GlStateManager.disableDepth();
+        GlStateManager.enableBlend();
+        GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
+        GlStateManager.disableTexture2D();
+        run.run();
+        GlStateManager.enableLighting();
+        GlStateManager.disableBlend();
+        GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+        GlStateManager.popMatrix();
+		}
+	}
+	
+	public static void drawFrameInWorld(BlockPos pos,double posX,double posY,double posZ,final double width,final double height,final RGBA frame){
+	   drawSmThInWorld(pos, posX, posY, posZ, new Runnable() {
+		@Override
+		public void run() {
+			GlStateManager.shadeModel(7425);
+	        GL11.glNormal3f(0.0F, 1.0F, 0.0F);
+	        GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
+	        GlStateManager.enableDepth();
+	        GlStateManager.color(1, 1, 1);
+	        drawFrame((double)(-width/2 - 1), (double)(-1 + 0), (double)(width + 1), (double)(height + 0), frame);
+	        GlStateManager.enableDepth();
+	        GlStateManager.enableLighting();
+			GlStateManager.shadeModel(7424);
+		}
+	   });
 	}
 	
 	public static void drawTexture(ResourceLocation location, double textureWidth, double textureHeight, double x, double y,double z, double width, double height, double u, double v){

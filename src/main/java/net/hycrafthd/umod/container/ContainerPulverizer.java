@@ -1,23 +1,13 @@
 package net.hycrafthd.umod.container;
 
-import java.util.Iterator;
-
-import net.hycrafthd.umod.UMod;
 import net.hycrafthd.umod.inventory.BaseOreInputSlot;
 import net.hycrafthd.umod.inventory.BaseSlotOutput;
 import net.hycrafthd.umod.utils.ModRegistryUtils;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
-import net.minecraft.inventory.SlotFurnaceOutput;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityFurnace;
-import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 
 public class ContainerPulverizer extends ContainerBase{

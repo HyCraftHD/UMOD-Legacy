@@ -93,7 +93,7 @@ public class ContainerBase extends Container{
 			case OUTPUT:
 				return COLOR;
 			case COLOR:
-			    return BATTERY; 
+			    return NORMAL; 
 			default:
 				return NORMAL;
 			}

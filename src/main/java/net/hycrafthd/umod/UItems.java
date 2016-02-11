@@ -4,6 +4,7 @@ import net.hycrafthd.umod.item.ItemBackPack;
 import net.hycrafthd.umod.item.ItemBattery;
 import net.hycrafthd.umod.item.ItemCabletester;
 import net.hycrafthd.umod.item.ItemDusts;
+import net.hycrafthd.umod.item.ItemEnergyDisplay;
 import net.hycrafthd.umod.item.ItemFundamental;
 import net.hycrafthd.umod.item.ItemInfectedBeef;
 import net.hycrafthd.umod.item.ItemInfectedCrop;
@@ -32,7 +33,7 @@ public class UItems {
 	// Battery
 	public static Item battery;
 	public static Item tester;
-
+    public static Item energydisplay;
 	// Backpack
 	public static Item backpack;
 
@@ -57,7 +58,8 @@ public class UItems {
 		// Battery
 		tester = new ItemCabletester().setUnlocalizedName("tester");
 		battery = new ItemBattery().setUnlocalizedName("battery");
-
+        energydisplay = new ItemEnergyDisplay().setUnlocalizedName("energy");
+		
 		// Backpack
 		backpack = new ItemBackPack().setUnlocalizedName("backpack");
 		Logger.debug(UItems.class, "init()", "Init Items");
@@ -78,6 +80,7 @@ public class UItems {
 		// Battery
 		CommonRegistryUtils.registerItem(tester);
 		CommonRegistryUtils.registerItem(battery);
+		CommonRegistryUtils.registerItem(energydisplay);
 		// Backpack
 		CommonRegistryUtils.registerItem(backpack);
 		Logger.debug(UItems.class, "register()", "Register Items");
@@ -98,6 +101,7 @@ public class UItems {
 		// Battery
 		CommonRegistryUtils.registerOredirectionary(tester);
 		CommonRegistryUtils.registerOredirectionary(battery);
+		CommonRegistryUtils.registerOredirectionary(energydisplay);
 		// Backpack
 		CommonRegistryUtils.registerOredirectionary(backpack);
 		Logger.debug(UItems.class, "oredirectionary()", "Oredirectionary");

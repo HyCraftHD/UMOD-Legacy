@@ -12,8 +12,10 @@ import net.hycrafthd.umod.entity.render.RenderNukePrimed;
 import net.hycrafthd.umod.enumtype.EnumTypeBackPack;
 import net.hycrafthd.umod.enumtype.EnumTypeBaseStuff;
 import net.hycrafthd.umod.render.TileEntityCabelSpecialRender;
+import net.hycrafthd.umod.render.TileEntityEnergyPannelSpecialRender;
 import net.hycrafthd.umod.render.TileEntityPulverizerSpecialRender;
 import net.hycrafthd.umod.tileentity.TileEntityCable;
+import net.hycrafthd.umod.tileentity.TileEntityEnergyPannel;
 import net.hycrafthd.umod.tileentity.TileEntityPulverizer;
 import net.hycrafthd.umod.utils.ClientRegistryUtils;
 import net.minecraft.client.resources.model.ModelBakery;
@@ -115,8 +117,10 @@ public class ClientProxy extends CommonProxy {
 		ClientRegistryUtils.registerEntityRenderer(EntityInfectedCow.class, new RenderInfectedCow());
 		ClientRegistryUtils.registerEntityRenderer(EntityInfectedCreeper.class, new RenderInfectedCreeper());
 		ClientRegistryUtils.registerEntityRenderer(EntityNukePrimed.class, new RenderNukePrimed());
+		
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPulverizer.class, new TileEntityPulverizerSpecialRender());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCable.class, new TileEntityCabelSpecialRender());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityEnergyPannel.class, new TileEntityEnergyPannelSpecialRender());
 	}
 
 	@Override

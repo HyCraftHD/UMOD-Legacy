@@ -8,6 +8,7 @@ import net.hycrafthd.umod.UReference;
 import net.hycrafthd.umod.armor.ArmorRadiation;
 import net.hycrafthd.umod.block.BlockConduit;
 import net.hycrafthd.umod.interfaces.IInfectedBlock;
+import net.hycrafthd.umod.item.ItemEnergyDisplay;
 import net.hycrafthd.umod.utils.NBTUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -77,6 +78,9 @@ public class EventGettingRadiationInv {
 	public void tooltipEvent(ItemTooltipEvent event) {
 			if (event.itemStack != null && !event.showAdvancedItemTooltips) {
 				ItemStack itemStack = event.itemStack;
+				if(itemStack.hasTagCompound() && itemStack.getTagCompound().hasKey(ItemEnergyDisplay.NBT_TAG)){
+					event.toolTip.add("Bounded");
+				}
 				if(itemStack.hasTagCompound() && itemStack.getTagCompound().hasKey(TAG_MAIN) && ((NBTTagCompound) itemStack.getTagCompound().getTag(TAG_MAIN)).hasKey(TAG_INFECTED)){
 				boolean flag = ((NBTTagCompound) itemStack.getTagCompound().getTag(TAG_MAIN)).getBoolean(TAG_INFECTED);
 				event.toolTip.add((flag ? EnumChatFormatting.RED:EnumChatFormatting.GREEN)  + "Is Infected " + flag);

@@ -5,6 +5,7 @@ import net.hycrafthd.umod.block.BlockCable;
 import net.hycrafthd.umod.block.BlockChargeStation;
 import net.hycrafthd.umod.block.BlockConduit;
 import net.hycrafthd.umod.block.BlockCraftFurnance;
+import net.hycrafthd.umod.block.BlockEnergyPanel;
 import net.hycrafthd.umod.block.BlockInfectedDirt;
 import net.hycrafthd.umod.block.BlockInfectedFruit;
 import net.hycrafthd.umod.block.BlockInfectedGrass;
@@ -33,10 +34,11 @@ public class UBlocks {
 	public static Block blocks;
 	// SolarPanel
 	public static Block solarpanel;
-	// Maschinen
+	// Mashiens
 	public static Block pulver;
 	public static Block charge;
 	public static Block craftfurnance;
+	public static Block energyMonitor;
 	// Infected
 	public static Block infectedGrass;
 	public static Block infectedDirt;
@@ -69,6 +71,7 @@ public class UBlocks {
 		// Pulverizer
 		pulver = new BlockPulverizer().setUnlocalizedName("pulver");
 		craftfurnance = new BlockCraftFurnance().setUnlocalizedName("craftfurn");
+		energyMonitor = new BlockEnergyPanel().setUnlocalizedName("energymonitor");
 		// SolarPanel
 		solarpanel = new BlockSolarPanel().setUnlocalizedName("solarpanel");
 		charge = new BlockChargeStation().setUnlocalizedName("charge");
@@ -100,6 +103,7 @@ public class UBlocks {
 		// Pulverizer
 		CommonRegistryUtils.registerBlocks(craftfurnance, ItemBlockEnergy.class);
 		CommonRegistryUtils.registerBlocks(pulver, ItemBlockEnergy.class);
+		CommonRegistryUtils.registerBlock(energyMonitor);
 		// SolarPanel
 		CommonRegistryUtils.registerBlocks(solarpanel, ItemBlockSolarPanel.class);
 		CommonRegistryUtils.registerBlock(charge);
@@ -132,6 +136,7 @@ public class UBlocks {
 		// Pulverizer
 		CommonRegistryUtils.registerOredirectionary(craftfurnance);
 		CommonRegistryUtils.registerOredirectionary(pulver);
+		CommonRegistryUtils.registerOredirectionary(energyMonitor);
 		// SolarPanel
 		CommonRegistryUtils.registerOredirectionary(charge);
 		CommonRegistryUtils.registerOredirectionary(solarpanel);

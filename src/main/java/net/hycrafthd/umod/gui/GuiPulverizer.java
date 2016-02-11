@@ -52,9 +52,9 @@ public class GuiPulverizer extends GuiBase {
 
 	@Override
 	public void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
-		if (!basecon.mode.equals(Mode.OUTPUT)) {
+		if (basecon.mode.equals(Mode.NORMAL)) {
 			TileEntityPulverizer p = (TileEntityPulverizer) this.ent;
-			fontRendererObj.drawString(((TileEntityPulverizer) this.ent).getTime() + "%", this.width / 2 - 5, this.height / 2 - (this.ySize / 2) + 15, 0x00000);
+			fontRendererObj.drawString(((TileEntityPulverizer) this.ent).getTime() + "%", this.xSize / 2 - 5, this.ySize / 2 - 62, 0x00000);
 		}
 	}
 

@@ -40,7 +40,8 @@ public class RGBA {
 		return Alpha;
 	}
 
-	public void setAlpha(int i){
+	public RGBA setAlpha(int i){
 		Alpha = i;
+		return this;
 	}
 }

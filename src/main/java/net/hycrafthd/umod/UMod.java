@@ -1,6 +1,7 @@
 package net.hycrafthd.umod;
 
 import net.hycrafthd.umod.api.ProcessHandler;
+import net.hycrafthd.umod.event.EventDrawHUD;
 import net.hycrafthd.umod.event.EventExecuteRadiation;
 import net.hycrafthd.umod.event.EventGettingRadiation;
 import net.hycrafthd.umod.event.EventGettingRadiationInv;
@@ -63,6 +64,7 @@ public class UMod {
 		event.addEvent(new ProcessHandler());
 		event.addEvent(new EventGettingRadiationInv());
 		event.addEvent(new EventLoadWorld());
+		event.addEvent(new EventDrawHUD());
 		event.register();
 		Logger.info("registerEvents()", "Registered Mod Events.");
 	}

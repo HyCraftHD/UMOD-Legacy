@@ -1,24 +1,23 @@
 package net.hycrafthd.umod.utils;
 
-import java.io.DataOutput;
+import java.io.DataOutputStream;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.nbt.CompressedStreamTools;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
-import net.minecraft.world.storage.WorldInfo;
 
 public class TileNBTUtils {
 
-	public static void saveNBT(NBTTagCompound c){
+	public static void saveNBT(NBTTagCompound c,String name){
 		WorldServer worldserver = MinecraftServer.getServer().worldServers[0];
 		try {
-			CompressedStreamTools.write(c, (DataOutput) new FileOutputStream(worldserver.getSaveHandler().getWorldDirectory()));
+			TLog.warn(worldserver.getSaveHandler().getWorldDirectory().getPath() + File.separatorChar + name + ".nbt");
+			CompressedStreamTools.write(c, new DataOutputStream(new FileOutputStream(new File(worldserver.getSaveHandler().getWorldDirectory().getPath() + "/" + name + ".nbt"))));
 			worldserver.flush();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();

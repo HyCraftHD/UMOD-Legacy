@@ -81,7 +81,9 @@ public class BlockSolarPanel extends BlockBase implements ITileEntityProvider, I
 
 	@Override
 	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumFacing side, float hitX, float hitY, float hitZ) {
+        if(world.isRemote){
 		playerIn.openGui(UReference.modid, EnumTypeGui.SOLARPANEL.getID(), world, pos.getX(), pos.getY(), pos.getZ());
+        }
 		return true;
 	}
 

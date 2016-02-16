@@ -30,6 +30,22 @@ public class TileEntityCable extends TileEntity implements IPlugabel, IPowerProv
 	public TileEntityCable() {
 	}
 
+	@Override
+	public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt)
+	{
+		NBTTagCompound tagCom = pkt.getNbtCompound();
+		this.readFromNBT(tagCom);
+	}
+
+	@Override
+	public Packet getDescriptionPacket()
+	{
+		NBTTagCompound tagCom = new NBTTagCompound();
+		this.writeToNBT(tagCom);
+		return new S35PacketUpdateTileEntity(pos, getBlockMetadata(), tagCom);
+	}
+
+	
 	public TileEntityCable(int maxpower, int pipelooseone) {
 		Maximum_Power = EnergyUtils.inUE(maxpower);
 		loos = pipelooseone;

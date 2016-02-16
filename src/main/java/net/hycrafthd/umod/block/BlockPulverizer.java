@@ -28,7 +28,9 @@ public class BlockPulverizer extends BlockBaseMachine implements IEnergyMessage 
 
 	@Override
 	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumFacing side, float hitX, float hitY, float hitZ) {
+        if(!world.isRemote){
 		playerIn.openGui(UReference.modid, EnumTypeGui.PULVERISER.getID(), world, pos.getX(), pos.getY(), pos.getZ());
+        }
 		return true;
 	}
 

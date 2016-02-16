@@ -3,9 +3,10 @@ package net.hycrafthd.umod.tileentity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.server.gui.IUpdatePlayerListBox;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.Packet;
+import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityLockable;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.IChatComponent;
 import net.minecraft.world.IInteractionObject;
@@ -41,12 +42,25 @@ public abstract class TileEntityBase extends TileEntity implements ISidedInvento
 	IO_NBT = "io_nbt",
 	OTHER_NBT = "other_nbt";
 	
+	
+	@Override
+	public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt)
+	{
+		NBTTagCompound tagCom = pkt.getNbtCompound();
+		this.readFromNBT(tagCom);
+	}
+
+	@Override
+	public Packet getDescriptionPacket()
+	{
+		NBTTagCompound tagCom = new NBTTagCompound();
+		this.writeToNBT(tagCom);
+		return new S35PacketUpdateTileEntity(pos, getBlockMetadata(), tagCom);
+	}
+	
 	@Override
 	public final void writeToNBT(NBTTagCompound compound) {
 		super.writeToNBT(compound);
-		NBTTagCompound tagItems = new NBTTagCompound();
-		this.writeItemsToNBT(tagItems);
-		compound.setTag(ITEM_NBT, tagItems);
 		NBTTagCompound tagEnergy = new NBTTagCompound();
 		this.writeEnergyToNBT(tagEnergy);
 		compound.setTag(ENERGY_NBT, tagEnergy);
@@ -56,6 +70,13 @@ public abstract class TileEntityBase extends TileEntity implements ISidedInvento
 		NBTTagCompound tagSonstiges = new NBTTagCompound();
 		this.writeOtherToNBT(tagSonstiges);
 		compound.setTag(OTHER_NBT, tagSonstiges);
+/**
+ * @author MrTroble
+ *  <strong>IMPORTANT</strong>: hav to be last 
+ */
+		NBTTagCompound tagItems = new NBTTagCompound();
+		this.writeItemsToNBT(tagItems);
+		compound.setTag(ITEM_NBT, tagItems);
 	}
 	
 	@Override

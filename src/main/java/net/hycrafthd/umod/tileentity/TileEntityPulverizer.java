@@ -1,15 +1,11 @@
 package net.hycrafthd.umod.tileentity;
 
-import com.sun.javafx.scene.traversal.Direction;
-
 import net.hycrafthd.umod.Logger;
 import net.hycrafthd.umod.UMod;
 import net.hycrafthd.umod.api.IGuiProvider;
 import net.hycrafthd.umod.api.ISignable;
-import net.hycrafthd.umod.api.PulverizerRecepie;
 import net.hycrafthd.umod.api.energy.EnergyAPI;
 import net.hycrafthd.umod.api.energy.IPowerProvieder;
-import net.hycrafthd.umod.block.BlockBaseMachine;
 import net.hycrafthd.umod.block.BlockOres;
 import net.hycrafthd.umod.container.ContainerPulverizer;
 import net.hycrafthd.umod.utils.DirectionUtils;
@@ -20,16 +16,9 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagByte;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.network.NetworkManager;
-import net.minecraft.network.Packet;
-import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityLockable;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
@@ -268,7 +257,7 @@ public class TileEntityPulverizer extends TileEntityBase implements
 	
 	ENUMFACING_OUTPUT = "OP",
 	ENUMFACING_INPUT = "IP",
-	SHORT_ENERGY = "Energy",
+	INT_ENERGY = "Energy",
 	SHORT_TIME = "Time",
 	BYTE_SLOTS = "slot",
 	LIST_ITEMS = "items",
@@ -380,7 +369,7 @@ public class TileEntityPulverizer extends TileEntityBase implements
 	public boolean hasPower() {
 		return strpo > 0;
 	}
-
+	
 	@Override
 	public void closeInventory(EntityPlayer player) {}
 
@@ -406,7 +395,7 @@ public class TileEntityPulverizer extends TileEntityBase implements
 
 	@Override
 	public void writeOtherToNBT(NBTTagCompound tagSonstiges) {
-		 tagSonstiges.setShort(SHORT_TIME, (short) this.time);
+		 tagSonstiges.setShort(SHORT_TIME, (short) time);
 		 if(pl != null){
 		     tagSonstiges.setString(STRING_PLAYER, pl);
 	     }
@@ -421,7 +410,7 @@ public class TileEntityPulverizer extends TileEntityBase implements
 
 	@Override
 	public void writeEnergyToNBT(NBTTagCompound tagEnergy) {
-		 tagEnergy.setShort(SHORT_ENERGY, (short) this.strpo);
+		 tagEnergy.setInteger(INT_ENERGY, strpo);
 		
 	}
 
@@ -429,13 +418,13 @@ public class TileEntityPulverizer extends TileEntityBase implements
 	public void writeItemsToNBT(NBTTagCompound tagItems) {
 		NBTTagList nbttaglist = new NBTTagList();
 
-	     for (int i = 0; i < this.stack.length; ++i)
+	     for (int i = 0; i < stack.length; ++i)
 	     {
-	         if (this.stack[i] != null)
+	         if (stack[i] != null)
 	         {
 	             NBTTagCompound nbttagcompound1 = new NBTTagCompound();
 	             nbttagcompound1.setByte(BYTE_SLOTS, (byte) i);
-	             this.stack[i].writeToNBT(nbttagcompound1);
+	             stack[i].writeToNBT(nbttagcompound1);
 	             nbttaglist.appendTag(nbttagcompound1);
 	         }
 	     }
@@ -445,36 +434,36 @@ public class TileEntityPulverizer extends TileEntityBase implements
 
 	@Override
 	public void readOtherFromNBT(NBTTagCompound tagSonstiges) {
-		this.time = tagSonstiges.getShort(SHORT_TIME);
-		this.pl = tagSonstiges.getString(STRING_PLAYER);
+		time = tagSonstiges.getShort(SHORT_TIME);
+		pl = tagSonstiges.getString(STRING_PLAYER);
 	}
 
 	@Override
 	public void readIOModeFromNBT(NBTTagCompound tagIO) {
-		this.enumfI = DirectionUtils.getFacingFromShort(tagIO.getShort(ENUMFACING_INPUT));
-		this.enumfO = DirectionUtils.getFacingFromShort(tagIO.getShort(ENUMFACING_OUTPUT));
+		enumfI = DirectionUtils.getFacingFromShort(tagIO.getShort(ENUMFACING_INPUT));
+		enumfO = DirectionUtils.getFacingFromShort(tagIO.getShort(ENUMFACING_OUTPUT));
 		
 	}
 
 	@Override
 	public void readEnergyFromNBT(NBTTagCompound tagEnergy) {
-		this.strpo = tagEnergy.getShort(SHORT_ENERGY);
+		strpo = tagEnergy.getInteger(INT_ENERGY);
 		
 	}
 
 	@Override
 	public void readItemsFromNBT(NBTTagCompound tagItems) {
 		NBTTagList nbttaglist = tagItems.getTagList(LIST_ITEMS, 10);
-        this.stack = new ItemStack[this.getSizeInventory()];
+        stack = new ItemStack[this.getSizeInventory()];
 
         for (int i = 0; i < nbttaglist.tagCount(); ++i)
         {
             NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
             int b0 = nbttagcompound1.getByte(BYTE_SLOTS);
 
-            if (b0 >= 0 && b0 < this.stack.length)
+            if (b0 >= 0 && b0 < stack.length)
             {
-                this.stack[b0] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
+                stack[b0] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
            }
         }
 	}

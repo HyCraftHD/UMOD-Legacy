@@ -14,6 +14,7 @@ import net.hycrafthd.umod.block.BlockInfectedLog;
 import net.hycrafthd.umod.block.BlockInfectedPlank;
 import net.hycrafthd.umod.block.BlockInfectedSapling;
 import net.hycrafthd.umod.block.BlockInfestedCleaner;
+import net.hycrafthd.umod.block.BlockNetherOres;
 import net.hycrafthd.umod.block.BlockNuke;
 import net.hycrafthd.umod.block.BlockOres;
 import net.hycrafthd.umod.block.BlockPulverizer;
@@ -29,7 +30,7 @@ import net.minecraft.block.Block;
 public class UBlocks {
 
 	// Ores
-	public static Block ores;
+	public static Block ores, netherores;
 	// Blocks
 	public static Block blocks;
 	// SolarPanel
@@ -66,6 +67,7 @@ public class UBlocks {
 	private void init() {
 		// Ore
 		ores = new BlockOres().setUnlocalizedName("ores");
+		netherores = new BlockNetherOres().setUnlocalizedName("netherores");
 		// Blocks
 		blocks = new BlockBlocks().setUnlocalizedName("blocks");
 		// Pulverizer
@@ -98,6 +100,7 @@ public class UBlocks {
 	private void register() {
 		// Ore
 		CommonRegistryUtils.registerBlock(ores, ItemBlockOres.class);
+		CommonRegistryUtils.registerBlock(netherores, ItemBlockOres.class);
 		// Blocks
 		CommonRegistryUtils.registerBlock(blocks, ItemBlockBlocks.class);
 		// Pulverizer
@@ -131,6 +134,7 @@ public class UBlocks {
 	private void oredirectionary() {
 		// Ore
 		CommonRegistryUtils.registerOredirectionary(ores);
+		CommonRegistryUtils.registerOredirectionary(netherores);
 		// Blocks
 		CommonRegistryUtils.registerOredirectionary(blocks);
 		// Pulverizer

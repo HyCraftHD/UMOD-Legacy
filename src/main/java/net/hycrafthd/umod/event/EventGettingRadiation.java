@@ -58,7 +58,7 @@ public class EventGettingRadiation {
 					IBlockState blockcks = world.getBlockState(pos);
 					Block block = blockcks.getBlock();
 					if (!GenerationUtils.getBiomeGenForCoords(world, pos, UBiome.infestedBiomBase)) {
-						if (block == UBlocks.ores) {
+						if (block == UBlocks.ores || block == UBlocks.netherores || block == UBlocks.blocks) {
 							EnumTypeBaseStuff type = EnumTypeBaseStuff.byMetadata(block.getMetaFromState(blockcks));
 							if (type.getName() == "uran") {
 								if (new Random().nextInt(50) == 0) {

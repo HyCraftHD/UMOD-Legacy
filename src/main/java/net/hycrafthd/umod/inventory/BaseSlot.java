@@ -4,6 +4,7 @@ import net.hycrafthd.umod.render.RGBA;
 import net.hycrafthd.umod.utils.StringReturnment;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
+import net.minecraft.item.ItemStack;
 
 public class BaseSlot extends Slot {
 	
@@ -25,6 +26,16 @@ public class BaseSlot extends Slot {
 	public void setVisible(boolean vis){
 		this.visible = vis;
 	}
+	
+	@Override
+	public boolean getHasStack() {
+		return super.getHasStack() && isVisible();
+	}
+	
+	@Override
+	public ItemStack getStack() {
+		return isVisible() ? super.getStack():null;
+	}	
 	
 	public void setHoverColor(RGBA nstart,RGBA nend,RGBA start,RGBA end){
 		this.start = start;

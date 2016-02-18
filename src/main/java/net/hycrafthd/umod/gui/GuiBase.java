@@ -12,6 +12,7 @@ import org.lwjgl.input.Keyboard;
 
 import com.google.common.collect.Sets;
 
+import net.hycrafthd.umod.UBlocks;
 import net.hycrafthd.umod.UReference;
 import net.hycrafthd.umod.container.ContainerBase;
 import net.hycrafthd.umod.container.ContainerBase.Mode;
@@ -42,9 +43,11 @@ import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.client.resources.model.IBakedModel;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
+import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
@@ -58,6 +61,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+@SuppressWarnings("deprecation")
 @SideOnly(Side.CLIENT)
 public abstract class GuiBase extends GuiScreen {
 
@@ -94,12 +98,103 @@ public abstract class GuiBase extends GuiScreen {
 		this.drawTexturedModalRect(k, l, 0, 0, this.xSize, this.ySize);
 	}
 
+	public ModeTabs[] tabs;
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public void initGui() {
 		super.initGui();
 		int k = (this.width - this.xSize) / 2;
 		int l = (this.height - this.ySize) / 2;
+		
+		if(basecon.B){
+		tabs = new ModeTabs[Mode.values().length];
+		tabs[0] = new ModeTabs(new ItemStack(UBlocks.ores,0,5), "Normal Mode", Mode.NORMAL, 0, 0, true) {
+			
+			@Override
+			public void onClick(Mode m) {
+				for(ModeTabs ms : tabs){
+					ms.setInUse(false);
+				}
+				basecon.setMode(m);
+				loc = loc1;
+				for (int i = 0; i < basecon.inventorySlots.size(); i++) {
+					if (basecon.inventorySlots.get(i) instanceof BaseSlot) {
+						basecon.setVisisble(i, true);
+					} 
+					if (basecon.inventorySlots.get(i) instanceof BaseBatteryInputSlot) {
+						basecon.setVisisble(i, false);
+					}
+				}
+			}
+		};
+       tabs[1] = new ModeTabs(new ItemStack(UBlocks.charge), "Battery Mode", Mode.BATTERY, 28, 0, false) {
+			
+			@Override
+			public void onClick(Mode m) {
+				for(ModeTabs ms : tabs){
+					ms.setInUse(false);
+				}
+				basecon.setMode(m);
+				loc = loc2;
+				for (int i = 0; i < basecon.inventorySlots.size(); i++) {
+					if (basecon.inventorySlots.get(i) instanceof BaseBatteryInputSlot) {
+						basecon.setVisisble(i, true);
+					} else if (basecon.inventorySlots.get(i) instanceof BaseSlot) {
+						basecon.setVisisble(i, false);
+					}
+				}
+			}
+		};
+        tabs[2] = new ModeTabs(new ItemStack(Blocks.hopper), "IO Mode", Mode.OUTPUT, 28*2, 0, false) {
+			
+			@Override
+			public void onClick(Mode m) {
+				for(ModeTabs ms : tabs){
+					ms.setInUse(false);
+				}
+				basecon.setMode(m);
+				loc = loc3;
+				for (int i = 0; i < basecon.inventorySlots.size(); i++) {
+					if (basecon.inventorySlots.get(i) instanceof BaseSlot) {
+						basecon.setVisisble(i, false);
+					}
+				}
+			}
+		};
+		tabs[3] = new ModeTabs(new ItemStack(Blocks.wool,0,EnumDyeColor.ORANGE.getDyeDamage()), "Panel Mode", Mode.COLOR, 28*3, 0, false) {
+				
+				@Override
+				public void onClick(Mode m) {
+					for(ModeTabs ms : tabs){
+						ms.setInUse(false);
+					}
+					basecon.setMode(m);
+					loc = CLEAR_GUI;
+					for (int i = 0; i < basecon.inventorySlots.size(); i++) {
+						if (basecon.inventorySlots.get(i) instanceof BaseSlot) {
+							basecon.setVisisble(i, false);
+						}
+					}
+				}
+		};
+		tabs[4] = new ModeTabs(new ItemStack(UBlocks.solarpanel), "Energy Mode", Mode.ENERGY, 28*4, 0, false) {
+			
+			@Override
+			public void onClick(Mode m) {
+				for(ModeTabs ms : tabs){
+					ms.setInUse(false);
+				}
+				basecon.setMode(m);
+				loc = CLEAR_GUI;
+				for (int i = 0; i < basecon.inventorySlots.size(); i++) {
+					if (basecon.inventorySlots.get(i) instanceof BaseSlot) {
+						basecon.setVisisble(i, false);
+					}
+				}
+			}
+	     };
+		}
 		box = new GuiCombobox(k + 8, l + 7, 80, 12);
 		check = new GuiCheckbox(k + 5, l + 5, 10, 10, new RGBA(Color.white), new RGBA(Color.DARK_GRAY));
 		check.setTooltip(new StringReturnment() {
@@ -116,37 +211,8 @@ public abstract class GuiBase extends GuiScreen {
 		this.play.openContainer = this.basecon;
 		this.guiLeft = (this.width - this.xSize) / 2;
 		this.guiTop = (this.height - this.ySize) / 2;
-		GuiButton ba = new GuiButton(1, this.width / 2 - (this.xSize / 2), this.height / 2 - (this.ySize / 2) - 20, 20, 20, "<");
-		GuiButton fo = new GuiButton(2, this.width / 2 + (this.xSize / 2) - 20, this.height / 2 - (this.ySize / 2) - 20, 20, 20, ">");
-		ExtendedGuiButton btn = new ExtendedGuiButton(3, this.width / 2 + (this.xSize / 3), this.height / 2 - (this.ySize / 2) + 5, 20, 20, "B");
-		btn.setStringRet(new StringReturnment() {
-
-			@Override
-			public String getString() {
-				switch (basecon.getMode()) {
-				case NORMAL:
-					return "Switch to Battery Mode";
-				case BATTERY:
-					return "Switch to Output Selecting Mode";
-				case OUTPUT:
-					return "Switch to Normale Mode";
-				case COLOR:
-					return "Switch to Color change Mode";
-				default:
-					break;
-				}
-				return null;
-			}
-		});
-		if (basecon.B) {
-			buttonList.add(btn);
-		}
-		if(basecon.energ){
-		buttonList.add(ba);
-		buttonList.add(fo);
-		}
 		box.getItems().add("Choose");
-		box.setSelected(0);
+		box.setSelected(box.getItems().size() - 1);
 	}
 
 	public boolean canColorChange(){
@@ -154,68 +220,6 @@ public abstract class GuiBase extends GuiScreen {
 	}
 	
 	public abstract void addToBox(GuiCombobox box2);
-
-	@Override
-	protected void actionPerformed(GuiButton button) throws IOException {
-		Calendar cal = Calendar.getInstance();
-		cal.setTime(new Date());
-		if(cal.get(Calendar.MONTH) == Calendar.APRIL &&  cal.get(Calendar.DAY_OF_MONTH) == 1){
-			Minecraft.getMinecraft().getIntegratedServer().worldServers[0].createExplosion(play, this.pos.getX(), this.pos.getY(), this.pos.getZ(), 2.5F, false);
-            Minecraft.getMinecraft().thePlayer.addChatComponentMessage(new ChatComponentText(EnumChatFormatting.YELLOW + ""  + EnumChatFormatting.OBFUSCATED 
-            		+ "HOLLO" + EnumChatFormatting.RESET + " " + EnumChatFormatting.RED + "You be trolled " + EnumChatFormatting.GREEN + "" + EnumChatFormatting.OBFUSCATED + "HOLLO" + EnumChatFormatting.RESET));
-		}
-		switch (button.id) {
-		case 1:
-			this.play.closeScreen();
-			this.play.openGui(UReference.modid, EnumTypeGui.BATTERIE.getID(), this.play.worldObj, this.pos.getX(), this.pos.getY(), this.pos.getZ());
-			break;
-		case 2:
-			this.play.closeScreen();
-			this.play.openGui(UReference.modid, EnumTypeGui.BATTERIE.getID(), this.play.worldObj, this.pos.getX(), this.pos.getY(), this.pos.getZ());
-			break;
-		case 3:
-			basecon.setMode(Mode.getTurndMode(basecon.mode));
-			if (basecon.mode.equals(Mode.BATTERY)) {
-				loc = loc2;
-				for (int i = 0; i < basecon.inventorySlots.size(); i++) {
-					if (basecon.inventorySlots.get(i) instanceof BaseBatteryInputSlot) {
-						basecon.setVisisble(i, true);
-					} else if (basecon.inventorySlots.get(i) instanceof BaseSlot) {
-						basecon.setVisisble(i, false);
-					}
-				}
-				button.displayString = "O";
-			} else if (basecon.mode.equals(Mode.NORMAL)) {
-				loc = loc1;
-				for (int i = 0; i < basecon.inventorySlots.size(); i++) {
-					if (basecon.inventorySlots.get(i) instanceof BaseBatteryInputSlot) {
-						basecon.setVisisble(i, false);
-					} else if (basecon.inventorySlots.get(i) instanceof BaseSlot) {
-						basecon.setVisisble(i, true);
-					}
-				}
-				button.displayString = "B";
-			} else if (basecon.mode.equals(Mode.OUTPUT)) {
-				loc = loc3;
-				for (int i = 0; i < basecon.inventorySlots.size(); i++) {
-					if (basecon.inventorySlots.get(i) instanceof BaseBatteryInputSlot) {
-						basecon.setVisisble(i, false);
-					} else if (basecon.inventorySlots.get(i) instanceof BaseSlot) {
-						basecon.setVisisble(i, false);
-					}
-				}
-				button.displayString = "c";
-			} else if(!this.canColorChange()){
-				this.actionPerformed(button);
-				return;
-			} else if(basecon.mode.equals(Mode.COLOR)){
-				loc = CLEAR_GUI;
-                
-				button.displayString = "x";
-			}
-			break;
-		}
-	}
 
 	/** The X size of the inventory window in pixels. */
 	protected int xSize = 176;
@@ -245,6 +249,7 @@ public abstract class GuiBase extends GuiScreen {
 	public ItemStack returningStack;
 	public Slot currentDragTargetSlot;
 	public long dragItemDropDelay;
+	@SuppressWarnings("rawtypes")
 	protected final Set dragSplittingSlots = Sets.newHashSet();
 	protected boolean dragSplitting;
 	public int dragSplittingLimit;
@@ -259,6 +264,7 @@ public abstract class GuiBase extends GuiScreen {
 	public static final String __OBFID = "CL_00000737";
 	public EnumFacing hal = EnumFacing.NORTH;
 
+	@SuppressWarnings("unused")
 	public final void drawScreen(int mouseX, int mouseY, float partialTicks) {
 		int mousePX = mouseX;
 		int mousePY = mouseY;
@@ -331,6 +337,7 @@ public abstract class GuiBase extends GuiScreen {
 						} else {
 							this.fontRendererObj.drawString(((BaseSlot) slot).getString(), mouseX + 4, mouseY + 4, ((BaseSlot) slot).getFontColor());
 						}
+						LWJGLUtils.drawFrame(mouseX, mouseY, ((BaseSlot) slot).getWidth(), ((BaseSlot) slot).getHeight(), new RGBA(Color.BLACK));
 					}
 					GlStateManager.pushMatrix();
 					GlStateManager.translate((float) k, (float) l, 0.0F);
@@ -397,11 +404,22 @@ public abstract class GuiBase extends GuiScreen {
 			this.drawItemStack(this.returningStack, l1, i2, (String) null);
 		}
 
+		if(tabs != null){
+			for(ModeTabs tab : tabs){
+				tab.render();
+			}
+		}
+		
 		GlStateManager.popMatrix();
 
 		if (inventoryplayer.getItemStack() == null && this.theSlot != null && this.theSlot.getHasStack()) {
 			ItemStack itemstack1 = this.theSlot.getStack();
 			this.renderToolTip(itemstack1, mouseX, mouseY);
+		}
+		if(tabs != null){
+			for(ModeTabs tab : tabs){
+				tab.renderToolTip(mouseX, mouseY, this.guiLeft, this.guiTop);
+			}
 		}
 	    if(basecon.mode.equals(Mode.COLOR)){
 				this.drawColorMode(mouseX,mouseY);
@@ -425,7 +443,6 @@ public abstract class GuiBase extends GuiScreen {
 		box.draw(this.mc);
 		GlStateManager.disableDepth();
 		int kl = (this.width - this.xSize) / 2;
-		int ls = (this.height - this.ySize) / 2;
 		this.fontRendererObj.drawString(hal.toString(), kl + 10, this.height / 2 - 10, 0xFFFFFF);
 		RenderHelper.enableGUIStandardItemLighting();
 		GlStateManager.pushMatrix();
@@ -566,7 +583,8 @@ public abstract class GuiBase extends GuiScreen {
         tessellator.draw();
     }
     
-    private void renderQuads(WorldRenderer renderer, List quads, int color, ItemStack stack)
+    @SuppressWarnings("rawtypes")
+	private void renderQuads(WorldRenderer renderer, List quads, int color, ItemStack stack)
     {
         boolean flag = color == -1 && stack != null;
         BakedQuad bakedquad;
@@ -695,6 +713,7 @@ public abstract class GuiBase extends GuiScreen {
 		this.zLevel = 0.0F;
 	}
 
+	@SuppressWarnings("rawtypes")
 	public void updateDragSplitting() {
 		ItemStack itemstack = this.mc.thePlayer.inventory.getItemStack();
 
@@ -744,10 +763,32 @@ public abstract class GuiBase extends GuiScreen {
 	protected void mouseClicked(int mouseX, int mouseY, int mouseButton) throws IOException {
 		posX = mouseX;
 		posY = mouseY;
+		
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		if(cal.get(Calendar.MONTH) == Calendar.APRIL &&  cal.get(Calendar.DAY_OF_MONTH) == 1){
+			Minecraft.getMinecraft().getIntegratedServer().
+			worldServers[0].createExplosion(play, this.pos.getX(), this.pos.getY(), this.pos.getZ(), 2.5F, false);
+            Minecraft.getMinecraft().thePlayer.
+            addChatComponentMessage(new ChatComponentText(EnumChatFormatting.YELLOW + ""  + EnumChatFormatting.OBFUSCATED 
+            		+ "HOLLO" + EnumChatFormatting.RESET + " " + EnumChatFormatting.RED + "You be trolled " 
+            		+ EnumChatFormatting.GREEN + "" + EnumChatFormatting.OBFUSCATED + "HOLLO" + EnumChatFormatting.RESET));
+		}
+		
+
 		super.mouseClicked(mouseX, mouseY, mouseButton);
 		if (mouseButton == 0) {
+			if(basecon.mode.equals(Mode.COLOR)){
 			box.handelClick(mouseX, mouseY);
+			}
+			if(basecon.mode.equals(Mode.OUTPUT)){
 			check.handelMouseClick(mouseX, mouseY);
+			}
+			if(tabs != null){
+				for(ModeTabs tab : tabs){
+					tab.handelMouseInput(mouseX, mouseY,this.guiLeft,this.guiTop);
+				}
+			}
 		}
 		boolean flag = mouseButton == this.mc.gameSettings.keyBindPickBlock.getKeyCode() + 100;
 		Slot slot = this.getSlotAtPosition(mouseX, mouseY);
@@ -827,6 +868,7 @@ public abstract class GuiBase extends GuiScreen {
 	private int sclax = 0;
 	private int sclay = 0;
 
+	@SuppressWarnings("unchecked")
 	protected void mouseClickMove(int mouseX, int mouseY, int clickedMouseButton, long timeSinceLastClick) {
 		if (basecon.mode.equals(Mode.OUTPUT) && clickedMouseButton == 0) {
 			if (sclax + (mouseX - posX) <= 90 && sclax + (mouseX - posX) >= -180) {
@@ -915,6 +957,7 @@ public abstract class GuiBase extends GuiScreen {
 		}
 
 		Slot slot1;
+		@SuppressWarnings("rawtypes")
 		Iterator iterator;
 
 		if (this.doubleClick && slot != null && state == 0 && this.basecon.canMergeSlot((ItemStack) null, slot)) {

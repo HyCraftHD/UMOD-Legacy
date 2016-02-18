@@ -71,7 +71,7 @@ public class ContainerBase extends Container{
 		
 	public static enum Mode{
 		
-		NORMAL(0),BATTERY(1),OUTPUT(2),COLOR(3);
+		NORMAL(0),BATTERY(1),OUTPUT(2),COLOR(3),ENERGY(4);
 		
 		public int getID() {
 			return id;

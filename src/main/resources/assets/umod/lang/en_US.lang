@@ -70,6 +70,21 @@ tile.oretin.name=Tin Ore
 tile.oreuran.name=Uran Ore
 tile.orezinc.name=Zinc Ore
 
+#Nether Ores
+tile.netherorealuminium.name=Nether Aluminium Ore
+tile.netherorecopper.name=Nether Copper Ore
+tile.netherorelead.name=Nether Lead Ore
+tile.netheroremangan.name=Nether Mangan Ore
+tile.netheroremercury.name=Nether Mercury Ore
+tile.netherorenickel.name=Nether Nickel Ore
+tile.netheroreplatinum.name=Nether Platinum Ore
+tile.netheroresilicium.name=Nether Silicium Ore
+tile.netheroresilver.name=Nether Silver Ore
+tile.netheroresulphur.name=Nether Sulphur Ore
+tile.netheroretin.name=Nether Tin Ore
+tile.netheroreuran.name=Nether Uran Ore
+tile.netherorezinc.name=Nether Zinc Ore
+
 #Blocks
 tile.blockaluminium.name=Aluminium Block
 tile.blockcopper.name=Copper Block

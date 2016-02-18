@@ -9,12 +9,12 @@ import net.hycrafthd.umod.world.GenInfectedTree;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 
-public class BiomeInfested extends BiomeGenBase {
+public class BiomeInfected extends BiomeGenBase {
 
-	private final String name = "Infested Biome";
+	private final String name = "Infected Biome";
 	private GenInfectedTree tree;
 
-	public BiomeInfested(int id) {
+	public BiomeInfected(int id) {
 		super(id);
 		this.setBiomeName(name);
 		this.tree = new GenInfectedTree(false);

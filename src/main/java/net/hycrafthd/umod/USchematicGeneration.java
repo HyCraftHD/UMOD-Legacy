@@ -17,7 +17,7 @@ public class USchematicGeneration extends USchematicGenerationBase {
 	}
 
 	private void overworld(Random random, int x, int z, World world) {
-		GenerationUtils.generateSchematic(USchematicInfectedRuin.class, random, x, z, world, 25, UBiome.infestedBiomBase);
+		GenerationUtils.generateSchematic(USchematicInfectedRuin.class, random, x, z, world, 25, UBiome.infectedBiomBase);
 	}
 
 	private void end(Random random, int x, int z, World world) {

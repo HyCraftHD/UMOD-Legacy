@@ -38,26 +38,25 @@ public class EventGettingRadiation {
 		double y = base.posY;
 		double z = base.posZ;
 
-		if (GenerationUtils.getBiomeGenForCoords(world, base.getPosition(), UBiome.infestedBiomBase)) {
+		if (GenerationUtils.getBiomeGenForCoords(world, base.getPosition(), UBiome.infectedBiomBase)) {
 			addPotion(base, 0);
 			return;
-		}
+		} else {
 
-		double range = 3;
+			double range = 3;
 
-		double xRange = range;
-		double yRange = range;
-		double zRange = range;
+			double xRange = range;
+			double yRange = range;
+			double zRange = range;
 
-		for (double xPos = x - xRange; xPos <= x + xRange; xPos++) {
-			for (double yPos = y - yRange; yPos <= y + yRange; yPos++) {
-				for (double zPos = z - zRange; zPos <= z + zRange; zPos++) {
-					if (world.isRemote)
-						continue;
-					BlockPos pos = new BlockPos(xPos, yPos, zPos);
-					IBlockState blockcks = world.getBlockState(pos);
-					Block block = blockcks.getBlock();
-					if (!GenerationUtils.getBiomeGenForCoords(world, pos, UBiome.infestedBiomBase)) {
+			for (double xPos = x - xRange; xPos <= x + xRange; xPos++) {
+				for (double yPos = y - yRange; yPos <= y + yRange; yPos++) {
+					for (double zPos = z - zRange; zPos <= z + zRange; zPos++) {
+						if (world.isRemote)
+							continue;
+						BlockPos pos = new BlockPos(xPos, yPos, zPos);
+						IBlockState blockcks = world.getBlockState(pos);
+						Block block = blockcks.getBlock();
 						if (block == UBlocks.ores || block == UBlocks.netherores || block == UBlocks.blocks) {
 							EnumTypeBaseStuff type = EnumTypeBaseStuff.byMetadata(block.getMetaFromState(blockcks));
 							if (type.getName() == "uran") {
@@ -71,7 +70,6 @@ public class EventGettingRadiation {
 							}
 						}
 					}
-					continue;
 				}
 			}
 		}

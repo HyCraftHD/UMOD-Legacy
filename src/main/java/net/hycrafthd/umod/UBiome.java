@@ -1,6 +1,6 @@
 package net.hycrafthd.umod;
 
-import net.hycrafthd.umod.biome.BiomeInfested;
+import net.hycrafthd.umod.biome.BiomeInfected;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.common.BiomeManager.BiomeEntry;
@@ -8,8 +8,8 @@ import net.minecraftforge.common.BiomeManager.BiomeType;
 
 public class UBiome {
 
-	public static BiomeGenBase infestedBiomBase;
-	public static int infestedBiomId;
+	public static BiomeGenBase infectedBiomBase;
+	public static int infectedBiomId;
 	
 	public UBiome() {
 		init();
@@ -17,13 +17,13 @@ public class UBiome {
 	}
 
 	private void init() {
-		infestedBiomId = 80;
-		infestedBiomBase = new BiomeInfested(infestedBiomId);
+		infectedBiomId = 80;
+		infectedBiomBase = new BiomeInfected(infectedBiomId);
 		Logger.debug(UBiome.class, "init()", "Init Bioms");
 	}
 	
 	private void register() {
-		BiomeManager.addBiome(BiomeType.WARM, new BiomeEntry(infestedBiomBase, 8));
+		BiomeManager.addBiome(BiomeType.WARM, new BiomeEntry(infectedBiomBase, 8));
 		Logger.debug(UBiome.class, "register()", "Register Bioms");
 	}
 }

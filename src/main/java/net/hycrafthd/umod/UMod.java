@@ -6,6 +6,7 @@ import net.hycrafthd.umod.event.EventExecuteRadiation;
 import net.hycrafthd.umod.event.EventGettingRadiation;
 import net.hycrafthd.umod.event.EventGettingRadiationInv;
 import net.hycrafthd.umod.event.EventLoadWorld;
+import net.hycrafthd.umod.event.EventPlayerJoin;
 import net.hycrafthd.umod.utils.CommonRegistryUtils;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -45,6 +46,7 @@ public class UMod {
 		new UTiles();
 		new URecipes();
 		new UChestLoot();
+		new UAchievement();
 		CommonRegistryUtils.registerGuiHandler(new UGuiHandler());
 		UReference.proxy.registerModels();
 		UReference.proxy.registerRenderer();
@@ -65,6 +67,7 @@ public class UMod {
 		event.addEvent(new EventGettingRadiationInv());
 		event.addEvent(new EventLoadWorld());
 		event.addEvent(new EventDrawHUD());
+		event.addEvent(new EventPlayerJoin());
 		event.register();
 		Logger.info("registerEvents()", "Registered Mod Events.");
 	}

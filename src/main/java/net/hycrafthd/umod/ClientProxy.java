@@ -29,10 +29,12 @@ public class ClientProxy extends CommonProxy {
 
 	@Override
 	public void registerModels() {
-		// Ore
+		// Ore and NetherOre
 		for (int i = 0; i < EnumTypeBaseStuff.values().length; i++) {
 			ModelBakery.addVariantName(Item.getItemFromBlock(UBlocks.ores), UReference.resource + "ore" + EnumTypeBaseStuff.byMetadata(i).getName());
 			ClientRegistryUtils.registerModelRenderer(UBlocks.ores, i, new ModelResourceLocation(UReference.resource + "ore" + EnumTypeBaseStuff.byMetadata(i).getName(), "inventory"));
+			ModelBakery.addVariantName(Item.getItemFromBlock(UBlocks.netherores), UReference.resource + "netherore" + EnumTypeBaseStuff.byMetadata(i).getName());
+			ClientRegistryUtils.registerModelRenderer(UBlocks.netherores, i, new ModelResourceLocation(UReference.resource + "netherore" + EnumTypeBaseStuff.byMetadata(i).getName(), "inventory"));
 		}
 
 		// Blocks

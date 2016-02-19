@@ -165,7 +165,9 @@ public class TileEntityPainter extends TileEntityBase{
 	}
 
 	@Override
-	public void writeIOModeToNBT(NBTTagCompound tagIO) {}
+	public void writeIOModeToNBT(NBTTagCompound tagIO) {
+		// TODO Auto-generated method stub
+	}
 
 	@Override
 	public void writeEnergyToNBT(NBTTagCompound tagEnergy) {
@@ -186,7 +188,10 @@ public class TileEntityPainter extends TileEntityBase{
 	}
 
 	@Override
-	public void readIOModeFromNBT(NBTTagCompound tagIO) {}
+	public void readIOModeFromNBT(NBTTagCompound tagIO) {
+		// TODO Auto-generated method stub
+
+	}
 
 	@Override
 	public void readEnergyFromNBT(NBTTagCompound tagEnergy) {

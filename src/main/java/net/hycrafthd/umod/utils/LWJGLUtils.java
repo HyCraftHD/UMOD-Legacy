@@ -105,24 +105,29 @@ public class LWJGLUtils {
 		GlStateManager.enableAlpha();
 		GlStateManager.enableTexture2D();
 		GlStateManager.popMatrix();
-		/*GlStateManager.rotate(180, 0F, 1.0F, 0F);
-     	GlStateManager.disableTexture2D();
+		GlStateManager.pushMatrix();
+		GlStateManager.rotate(180F, 0F, 1.0F, 0F);
+		if(left > 0){
+		GlStateManager.translate(-left, 0, 0);
+		}else{
+	    GlStateManager.translate(37, 0, 0);
+		}
+		GlStateManager.disableTexture2D();
 		GlStateManager.enableBlend();
 		worldrenderer.startDrawing(7);
 		worldrenderer.setColorRGBA(start.getRed(), start.getGreen(), start.getBlue(), start.getAlpha());
-		worldrenderer.addVertex((double) right + i, (double) top, (double) z);
-		worldrenderer.addVertex((double) right + 1 + i, (double) top, (double) z);
+		worldrenderer.addVertex((double) left + i, (double) top, (double) -z);
+		worldrenderer.addVertex((double) left + 1 + i, (double) top, (double) -z);
 		worldrenderer.setColorRGBA(end.getRed(), end.getGreen(), end.getBlue(), end.getAlpha());
-		worldrenderer.addVertex((double) right + 1 + i, (double) bottom, (double) z);
-		worldrenderer.addVertex((double) right + i, (double) bottom, (double) z);
+		worldrenderer.addVertex((double) left + 1 + i, (double) bottom, (double) -z);
+		worldrenderer.addVertex((double) left + i, (double) bottom, (double) -z);
 		tessellator.draw();
 		GlStateManager.shadeModel(7424);
 		GlStateManager.disableBlend();
 		GlStateManager.enableAlpha();
 		GlStateManager.enableTexture2D();
-
 		GlStateManager.popMatrix();
-		*/
+		
 		}
 		if(flag){
 		//drawGradientRectWithMultiplier(-left, -top, -right, -bottom, start, end, oldZ, multiplier,false);

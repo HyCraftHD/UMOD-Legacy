@@ -5,6 +5,7 @@ import java.awt.Color;
 import org.lwjgl.opengl.GL11;
 
 import net.hycrafthd.umod.api.energy.IPowerProvieder;
+import net.hycrafthd.umod.gui.GuiRescources;
 import net.hycrafthd.umod.tileentity.TileEntityPulverizer;
 import net.hycrafthd.umod.utils.LWJGLUtils;
 import net.minecraft.client.Minecraft;
@@ -20,7 +21,7 @@ import net.minecraft.tileentity.TileEntity;
 
 public class TileEntityPulverizerSpecialRender extends TileEntitySpecialRenderer{
 	
-	private int time = 0; 
+	public int time = 0;
 	private EntityItem ent = new EntityItem(Minecraft.getMinecraft().theWorld, 0D, 0D, 0D);
 
 	@Override
@@ -35,11 +36,21 @@ public class TileEntityPulverizerSpecialRender extends TileEntitySpecialRenderer
 		if (ore != null)
 		{
 		b0 = 8;
-	    
+		GlStateManager.pushMatrix();
+		if(oven.isBurning){
+			if(time >= 360){
+				time = 0;
+			}
+		GlStateManager.translate(posX + 0.5, posY + 0.1, posZ + 0.5);
+		GlStateManager.rotate(time*2, 0F, 1.0F, 0F);
+        LWJGLUtils.drawTexturedCube(new GuiRescources("laser.png"), -0.025,0, -0.025, 0.05, 0.8, 0.05);
+        time++;
+		}
+		GlStateManager.popMatrix();
 		GlStateManager.pushMatrix();
 		{
 			st = ore.getDisplayName();
-			GlStateManager.translate(posX + 0.3, posY + 0.52, posZ + 0.5);
+			GlStateManager.translate(posX + 0.5, posY, posZ + 0.5);
 			GlStateManager.scale(1.5, 1.5, 1.5);
 
 					ent.setEntityItemStack(new ItemStack(ore.getItem(),1,ore.getMetadata()));
@@ -48,8 +59,8 @@ public class TileEntityPulverizerSpecialRender extends TileEntitySpecialRenderer
 					{
 						WorldRenderer renderer = Tessellator.getInstance().getWorldRenderer();
 						renderer.setBrightness(15728880);
-
-						Minecraft.getMinecraft().getRenderManager().renderEntityWithPosYaw(ent, 0.15D, -0.3D, 0.0D, 0, 0);
+						GlStateManager.rotate(-(time), 0F, 1F, 0F);
+ 						Minecraft.getMinecraft().getRenderManager().renderEntityWithPosYaw(ent, 0.0D, 0.0D, 0.0D, 0, 0);
 						
 					}
 					GL11.glPopMatrix();
@@ -99,7 +110,6 @@ public class TileEntityPulverizerSpecialRender extends TileEntitySpecialRenderer
 			}
 		});
 		GlStateManager.enableLighting();
-	time++;
   }
 	
   private int checkBiggestString(FontRenderer re,String... args){

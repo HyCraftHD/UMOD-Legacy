@@ -23,6 +23,7 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumParticleTypes;
 
 public class TileEntityPulverizer extends TileEntityBase implements 
                                IPowerProvieder,IGuiProvider,ISignable{
@@ -31,6 +32,9 @@ public class TileEntityPulverizer extends TileEntityBase implements
 	private String pl;
 	private EnumFacing enumfI;
 	private EnumFacing enumfO;
+	private ItemStack[] mcraft = null;
+	
+	public boolean isBurning = false;
 	
 	@Override
 	public int getSizeInventory() {
@@ -57,6 +61,8 @@ public class TileEntityPulverizer extends TileEntityBase implements
             {
                 itemstack = this.stack[index];
                 this.stack[index] = null;
+        		this.updateCrafting();
+        		this.markDirty();
                 return itemstack;
             }
             else
@@ -67,14 +73,19 @@ public class TileEntityPulverizer extends TileEntityBase implements
                 {
                     this.stack[index] = null;
                 }
-
+       
+        		this.updateCrafting();
+        		this.markDirty();
                 return itemstack;
             }
         }
         else
         {
+    		this.updateCrafting();
+    		this.markDirty();
             return null;
         }
+		
 	}
 
 	@Override
@@ -94,6 +105,7 @@ public class TileEntityPulverizer extends TileEntityBase implements
 	@Override
 	public void setInventorySlotContents(int index, ItemStack stack) {
 		this.stack[index] = stack;
+		this.updateCrafting();
 		this.markDirty();
 	}
 
@@ -172,6 +184,7 @@ public class TileEntityPulverizer extends TileEntityBase implements
         {
             this.stack[i] = null;
         }
+		this.updateCrafting();
 		this.markDirty();
 	}
 	
@@ -183,11 +196,38 @@ public class TileEntityPulverizer extends TileEntityBase implements
 	private int time = 0;
 	public boolean work = false;
 	
+	public void updateCrafting(){
+		if(stack[3] != null){
+			mcraft = ModRegistryUtils.isRecepie(stack[3].copy());
+            if(mcraft != null){
+            	isBurning = true;
+            	time = 0;
+            }else{
+            	isBurning = false;
+            	time = 0;
+            }
+		}
+	}
+	
 	@Override
 	public void update() {
-		if(stack[3] != null){
-		ItemStack[] args = ModRegistryUtils.isRecepie(stack[3].copy());
-		if(args != null && strpo > 10){
+		onCraft();
+		EnergyAPI api = new EnergyAPI(this);
+		api.transferEnergy();
+		api.tranferFromBattery(this.stack[4]);
+	}
+	
+	public int getTime(){
+		return time;
+	}
+	
+	private void onCraft(){
+
+		if(isBurning){
+		worldObj.spawnParticle(EnumParticleTypes.BLOCK_CRACK, this.pos.getX()+ 0.5, this.pos.getY() + 0.75, this.pos.getZ() + 0.5, 0, 0, 0, 1);
+		worldObj.spawnParticle(EnumParticleTypes.BLOCK_CRACK, this.pos.getX()+ 0.5, this.pos.getY() + 0.25, this.pos.getZ() + 0.5, 0, 0, 0, 1);
+		ItemStack[] args = mcraft;
+		if(strpo > 10){
 			if(stack[2] != null && stack[2].stackSize > 64){
 				time = 0;
 				this.markDirty();
@@ -235,13 +275,6 @@ public class TileEntityPulverizer extends TileEntityBase implements
 		    work = false;
 		}
 		}
-		EnergyAPI api = new EnergyAPI(this);
-		api.transferEnergy();
-		api.tranferFromBattery(this.stack[4]);
-	}
-	
-	public int getTime(){
-		return time;
 	}
 	
 	private void finishItem(int in,ItemStack is){

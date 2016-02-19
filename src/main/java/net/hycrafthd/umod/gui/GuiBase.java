@@ -389,6 +389,7 @@ public abstract class GuiBase extends GuiScreen {
 			this.drawItemStack(itemstack, mouseX - k - b0, mouseY - l - k1, s);
 		}
 
+		
 		if (this.returningStack != null) {
 			float f1 = (float) (Minecraft.getSystemTime() - this.returningStackTime) / 100.0F;
 

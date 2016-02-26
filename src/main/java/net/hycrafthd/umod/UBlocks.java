@@ -1,6 +1,5 @@
 package net.hycrafthd.umod;
 
-import net.hycrafthd.umod.block.BlockBarrels;
 import net.hycrafthd.umod.block.BlockBlocks;
 import net.hycrafthd.umod.block.BlockCable;
 import net.hycrafthd.umod.block.BlockChargeStation;
@@ -21,7 +20,6 @@ import net.hycrafthd.umod.block.BlockOres;
 import net.hycrafthd.umod.block.BlockPainter;
 import net.hycrafthd.umod.block.BlockPulverizer;
 import net.hycrafthd.umod.block.BlockSolarPanel;
-import net.hycrafthd.umod.item.ItemBlockBarrels;
 import net.hycrafthd.umod.item.ItemBlockBlocks;
 import net.hycrafthd.umod.item.ItemBlockConduit;
 import net.hycrafthd.umod.item.ItemBlockEnergy;

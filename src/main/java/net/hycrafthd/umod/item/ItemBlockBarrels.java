@@ -1,9 +1,6 @@
 package net.hycrafthd.umod.item;
 
-import net.hycrafthd.umod.block.BlockNetherOres;
-import net.hycrafthd.umod.block.BlockOres;
 import net.hycrafthd.umod.enumtype.EnumTypeBarrels;
-import net.hycrafthd.umod.enumtype.EnumTypeBaseStuff;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 

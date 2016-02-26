@@ -15,6 +15,7 @@ import net.hycrafthd.umod.gui.GuiPulverizer;
 import net.hycrafthd.umod.gui.GuiSolarPanel;
 import net.hycrafthd.umod.inventory.InventoryBackPack;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.ContainerChest;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -43,6 +44,8 @@ public class UGuiHandler implements IGuiHandler {
 				InventoryBackPack inventory = new InventoryBackPack(itemstack, player, type.getCount());
 				return new ContainerBackPack(inventory, player.inventory, type);
 			}
+		case BARRELS:
+			//return new ContainerBarrels(player.get);
 		default:
 			return null;
 		}

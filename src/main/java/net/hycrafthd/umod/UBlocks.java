@@ -1,5 +1,6 @@
 package net.hycrafthd.umod;
 
+import net.hycrafthd.umod.block.BlockBarrels;
 import net.hycrafthd.umod.block.BlockBlocks;
 import net.hycrafthd.umod.block.BlockCable;
 import net.hycrafthd.umod.block.BlockChargeStation;
@@ -20,6 +21,7 @@ import net.hycrafthd.umod.block.BlockOres;
 import net.hycrafthd.umod.block.BlockPainter;
 import net.hycrafthd.umod.block.BlockPulverizer;
 import net.hycrafthd.umod.block.BlockSolarPanel;
+import net.hycrafthd.umod.item.ItemBlockBarrels;
 import net.hycrafthd.umod.item.ItemBlockBlocks;
 import net.hycrafthd.umod.item.ItemBlockConduit;
 import net.hycrafthd.umod.item.ItemBlockEnergy;
@@ -50,7 +52,7 @@ public class UBlocks {
 	public static Block infectedSapling;
 	public static Block infectedPlank;
 	public static Block infectedFruit;
-	
+
 	public static Block infestedCleaner;
 	// Pipes
 	public static Block silver_cable;
@@ -59,6 +61,8 @@ public class UBlocks {
 	// Normal Blocks
 	public static Block nuke;
 	public static Block conduit;
+
+	public static Block barrels;
 
 	public UBlocks() {
 		init();
@@ -88,15 +92,17 @@ public class UBlocks {
 		infectedSapling = new BlockInfectedSapling().setUnlocalizedName("infectedsapling");
 		infectedPlank = new BlockInfectedPlank().setUnlocalizedName("infectedplank");
 		infectedFruit = new BlockInfectedFruit().setUnlocalizedName("infectedfruit");
-		
+
 		infestedCleaner = new BlockInfestedCleaner().setUnlocalizedName("cleaner");
 		// Cable
-		silver_cable = new BlockCable("silvercable", 62, 62, false,"silver");
-		alu_cable = new BlockCable("aluminiumcable", 38, 38, false,"aluminium");
-		zin_cable = new BlockCable("zincable", 9, 9, false,"tin");
+		silver_cable = new BlockCable("silvercable", 62, 62, false, "silver");
+		alu_cable = new BlockCable("aluminiumcable", 38, 38, false, "aluminium");
+		zin_cable = new BlockCable("zincable", 9, 9, false, "tin");
 		// Normal Blocks
 		nuke = new BlockNuke().setUnlocalizedName("nuke");
 		conduit = new BlockConduit().setUnlocalizedName("conduit");
+
+		barrels = new BlockBarrels().setUnlocalizedName("barrels");
 		Logger.debug(UBlocks.class, "init()", "Init Blocks");
 	}
 
@@ -122,16 +128,18 @@ public class UBlocks {
 		CommonRegistryUtils.registerBlock(infectedSapling);
 		CommonRegistryUtils.registerBlock(infectedPlank);
 		CommonRegistryUtils.registerBlock(infectedFruit);
-		
+
 		CommonRegistryUtils.registerBlock(infestedCleaner);
-		
+
 		// Pipes
 		CommonRegistryUtils.registerBlocks(alu_cable, ItemBlockEnergy.class);
 		CommonRegistryUtils.registerBlocks(silver_cable, ItemBlockEnergy.class);
 		CommonRegistryUtils.registerBlocks(zin_cable, ItemBlockEnergy.class);
 		// Normal Block
 		CommonRegistryUtils.registerBlock(nuke);
-		CommonRegistryUtils.registerBlocks(conduit,ItemBlockConduit.class);
+		CommonRegistryUtils.registerBlocks(conduit, ItemBlockConduit.class);
+
+		CommonRegistryUtils.registerBlock(barrels, ItemBlockBarrels.class);
 		Logger.debug(UBlocks.class, "register()", "Register Blocks");
 	}
 
@@ -157,9 +165,9 @@ public class UBlocks {
 		CommonRegistryUtils.registerOredirectionary(infectedSapling);
 		CommonRegistryUtils.registerOredirectionary(infectedPlank);
 		CommonRegistryUtils.registerOredirectionary(infectedFruit);
-		
+
 		CommonRegistryUtils.registerOredirectionary(infestedCleaner);
-		
+
 		// Pipes
 		CommonRegistryUtils.registerOredirectionary(alu_cable);
 		CommonRegistryUtils.registerOredirectionary(silver_cable);

@@ -264,7 +264,6 @@ public abstract class GuiBase extends GuiScreen {
 	public static final String __OBFID = "CL_00000737";
 	public EnumFacing hal = EnumFacing.NORTH;
 
-	@SuppressWarnings("unused")
 	public final void drawScreen(int mouseX, int mouseY, float partialTicks) {
 		int mousePX = mouseX;
 		int mousePY = mouseY;

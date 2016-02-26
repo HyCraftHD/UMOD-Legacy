@@ -24,6 +24,7 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 
 public class TileEntityPulverizer extends TileEntityBase implements 
                                IPowerProvieder,IGuiProvider,ISignable{
@@ -245,7 +246,8 @@ public class TileEntityPulverizer extends TileEntityBase implements
 			    	finishItem(1, args[1].copy());
 			    	if(args[2] != null){
 				    	finishItem(2, args[2].copy());
-				    }			    	
+				    }
+			    	
 			    	time = 0;
 			    }
 			    strpo -= EnergyUtils.inUE(10);
@@ -268,11 +270,11 @@ public class TileEntityPulverizer extends TileEntityBase implements
 		    	time = 0;
 			    work = true;
 			    strpo -= EnergyUtils.inUE(10);
-		    }
 			}
 			this.markDirty();
 		}else{
 		    work = false;
+		}
 		}
 		}
 	}

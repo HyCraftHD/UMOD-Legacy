@@ -17,6 +17,7 @@ import net.hycrafthd.umod.block.BlockInfestedCleaner;
 import net.hycrafthd.umod.block.BlockNetherOres;
 import net.hycrafthd.umod.block.BlockNuke;
 import net.hycrafthd.umod.block.BlockOres;
+import net.hycrafthd.umod.block.BlockPainter;
 import net.hycrafthd.umod.block.BlockPulverizer;
 import net.hycrafthd.umod.block.BlockSolarPanel;
 import net.hycrafthd.umod.item.ItemBlockBlocks;
@@ -38,6 +39,7 @@ public class UBlocks {
 	// Mashiens
 	public static Block pulver;
 	public static Block charge;
+	public static Block painter;
 	public static Block craftfurnance;
 	public static Block energyMonitor;
 	// Infected
@@ -74,6 +76,7 @@ public class UBlocks {
 		pulver = new BlockPulverizer().setUnlocalizedName("pulver");
 		craftfurnance = new BlockCraftFurnance().setUnlocalizedName("craftfurn");
 		energyMonitor = new BlockEnergyPanel().setUnlocalizedName("energymonitor");
+		painter = new BlockPainter().setUnlocalizedName("painter");
 		// SolarPanel
 		solarpanel = new BlockSolarPanel().setUnlocalizedName("solarpanel");
 		charge = new BlockChargeStation().setUnlocalizedName("charge");
@@ -103,10 +106,11 @@ public class UBlocks {
 		CommonRegistryUtils.registerBlock(netherores, ItemBlockOres.class);
 		// Blocks
 		CommonRegistryUtils.registerBlock(blocks, ItemBlockBlocks.class);
-		// Pulverizer
+		// Maschinen
 		CommonRegistryUtils.registerBlocks(craftfurnance, ItemBlockEnergy.class);
 		CommonRegistryUtils.registerBlocks(pulver, ItemBlockEnergy.class);
 		CommonRegistryUtils.registerBlock(energyMonitor);
+		CommonRegistryUtils.registerBlock(painter);
 		// SolarPanel
 		CommonRegistryUtils.registerBlocks(solarpanel, ItemBlockSolarPanel.class);
 		CommonRegistryUtils.registerBlock(charge);
@@ -141,6 +145,7 @@ public class UBlocks {
 		CommonRegistryUtils.registerOredirectionary(craftfurnance);
 		CommonRegistryUtils.registerOredirectionary(pulver);
 		CommonRegistryUtils.registerOredirectionary(energyMonitor);
+		CommonRegistryUtils.registerOredirectionary(painter);
 		// SolarPanel
 		CommonRegistryUtils.registerOredirectionary(charge);
 		CommonRegistryUtils.registerOredirectionary(solarpanel);

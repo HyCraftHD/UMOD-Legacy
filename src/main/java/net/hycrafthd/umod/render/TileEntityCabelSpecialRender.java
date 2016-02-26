@@ -11,6 +11,7 @@ import net.hycrafthd.umod.utils.LWJGLUtils;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -24,7 +25,7 @@ import net.minecraftforge.fml.common.gameevent.TickEvent.RenderTickEvent;
 import sun.management.HotspotClassLoadingMBean;
 
 public class TileEntityCabelSpecialRender extends TileEntitySpecialRenderer {
-
+	
 	@Override
 	public void renderTileEntityAt(TileEntity p_180535_1_, double posX, double posY, double posZ,
 			float p_180535_8_, int p_180535_9_) {
@@ -102,7 +103,5 @@ public class TileEntityCabelSpecialRender extends TileEntitySpecialRenderer {
 
 
 	}
-	
-	
     
 }

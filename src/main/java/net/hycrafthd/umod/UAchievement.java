@@ -1,16 +1,9 @@
 package net.hycrafthd.umod;
 
-import net.hycrafthd.umod.biome.BiomeInfected;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.Achievement;
-import net.minecraft.stats.AchievementList;
-import net.minecraft.stats.StatList;
-import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.AchievementPage;
-import net.minecraftforge.common.BiomeManager;
-import net.minecraftforge.common.BiomeManager.BiomeEntry;
-import net.minecraftforge.common.BiomeManager.BiomeType;
 
 public class UAchievement {
 

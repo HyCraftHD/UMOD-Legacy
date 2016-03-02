@@ -1,6 +1,8 @@
 package net.hycrafthd.umod.enumtype;
 
-public enum EnumTypeBarrels {
+import net.minecraft.util.IStringSerializable;
+
+public enum EnumTypeBarrels implements IStringSerializable{
 
 	BARRELSSMALL(0, "small", 5, 9), BARRELSMEDIUM(1, "medium", 7, 9), BARRELSBIG(2, "big", 9, 9);
 

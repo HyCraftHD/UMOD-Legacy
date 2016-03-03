@@ -3,6 +3,7 @@ package net.hycrafthd.umod;
 import net.hycrafthd.umod.tileentity.TileEntityChargeStation;
 import net.hycrafthd.umod.tileentity.TileEntityCraftFurnance;
 import net.hycrafthd.umod.tileentity.TileEntityEnergyPannel;
+import net.hycrafthd.umod.tileentity.TileEntityPainter;
 import net.hycrafthd.umod.tileentity.TileEntityCable;
 import net.hycrafthd.umod.tileentity.TileEntityPulverizer;
 import net.hycrafthd.umod.tileentity.TileEntitySolarPanel;
@@ -21,6 +22,7 @@ public class UTiles {
 		CommonRegistryUtils.registerTileEntity(TileEntityChargeStation.class, "tilecharge");
 		CommonRegistryUtils.registerTileEntity(TileEntityCraftFurnance.class, "tilecraftfurn");
 		CommonRegistryUtils.registerTileEntity(TileEntityEnergyPannel.class, "tileenergymonitor");
+		CommonRegistryUtils.registerTileEntity(TileEntityPainter.class, "tilepainter");
 		Logger.debug(UTiles.class, "register()", "Register TileEntitys");
 	}
 

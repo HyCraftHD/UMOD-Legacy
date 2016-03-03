@@ -2,13 +2,9 @@ package net.hycrafthd.umod.item;
 
 import java.util.List;
 
-import net.hycrafthd.umod.utils.TileNBTUtils;
+import net.hycrafthd.umod.entity.EntityTommahak;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 
 public class ItemBattery extends ItemBase {
@@ -19,16 +15,9 @@ public class ItemBattery extends ItemBase {
 	}
 
 	@Override
-	public boolean onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumFacing side,
-			float hitX, float hitY, float hitZ) {
-		TileEntity ent = worldIn.getTileEntity(pos);
-		if(ent != null){
-			NBTTagCompound tag = new NBTTagCompound();
-			ent.writeToNBT(tag);
-			TileNBTUtils.saveNBT(tag, worldIn.getBlockState(pos).getBlock().getLocalizedName());
-			return true;
-		}
-		return false;
+	public ItemStack onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn) {
+		worldIn.spawnEntityInWorld(new EntityTommahak(worldIn, playerIn.getPosition().getX(), playerIn.getPosition().getY(), playerIn.getPosition().getZ(), playerIn));
+		return super.onItemRightClick(itemStackIn, worldIn, playerIn);
 	}
 	
 	@Override

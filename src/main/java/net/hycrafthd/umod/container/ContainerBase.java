@@ -6,6 +6,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
@@ -68,7 +69,15 @@ public class ContainerBase extends Container{
 			((BaseSlot)inventorySlots.get(i)).setVisible(b);
 		}
 	}
-		
+	
+	@Override
+	public ItemStack slotClick(int slotId, int clickedButton, int mode, EntityPlayer playerIn) {
+		if(!this.mode.equals(Mode.ENERGY)){
+		return super.slotClick(slotId, clickedButton, mode, playerIn);
+		}
+		return null;
+	}
+	
 	public static enum Mode{
 		
 		NORMAL(0),BATTERY(1),OUTPUT(2),COLOR(3),ENERGY(4);

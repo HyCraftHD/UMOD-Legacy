@@ -94,11 +94,11 @@ public class LWJGLUtils {
 		WorldRenderer worldrenderer = tessellator.getWorldRenderer();
 		worldrenderer.startDrawingQuads();
 		worldrenderer.setColorRGBA(start.getRed(), start.getGreen(), start.getBlue(), start.getAlpha());
-		worldrenderer.addVertex((double) left + i, (double) top, (double) z);
+		worldrenderer.addVertex((double) left + i, (double) top, (double) oldZ);
 		worldrenderer.addVertex((double) left + 1 + i, (double) top, (double) z);
 		worldrenderer.setColorRGBA(end.getRed(), end.getGreen(), end.getBlue(), end.getAlpha());
 		worldrenderer.addVertex((double) left + 1 + i, (double) bottom, (double) z);
-		worldrenderer.addVertex((double) left + i, (double) bottom, (double) z);
+		worldrenderer.addVertex((double) left + i, (double) bottom, (double) oldZ);
 		tessellator.draw();
 		GlStateManager.shadeModel(7424);
 		GlStateManager.disableBlend();
@@ -114,20 +114,20 @@ public class LWJGLUtils {
 		}
 		GlStateManager.disableTexture2D();
 		GlStateManager.enableBlend();
-		worldrenderer.startDrawing(7);
+		worldrenderer.startDrawingQuads();
 		worldrenderer.setColorRGBA(start.getRed(), start.getGreen(), start.getBlue(), start.getAlpha());
-		worldrenderer.addVertex((double) left + i, (double) top, (double) -z);
+		worldrenderer.addVertex((double) left + i, (double) top, (double) -oldZ);
 		worldrenderer.addVertex((double) left + 1 + i, (double) top, (double) -z);
 		worldrenderer.setColorRGBA(end.getRed(), end.getGreen(), end.getBlue(), end.getAlpha());
 		worldrenderer.addVertex((double) left + 1 + i, (double) bottom, (double) -z);
-		worldrenderer.addVertex((double) left + i, (double) bottom, (double) -z);
+		worldrenderer.addVertex((double) left + i, (double) bottom, (double) -oldZ);
 		tessellator.draw();
 		GlStateManager.shadeModel(7424);
 		GlStateManager.disableBlend();
 		GlStateManager.enableAlpha();
 		GlStateManager.enableTexture2D();
 		GlStateManager.popMatrix();
-		
+		oldZ = z;
 		}
 		if(flag){
 		//drawGradientRectWithMultiplier(-left, -top, -right, -bottom, start, end, oldZ, multiplier,false);
@@ -239,6 +239,8 @@ public class LWJGLUtils {
         GlStateManager.enableLighting();
         GlStateManager.disableBlend();
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+        GL11.glNormal3f(1.0F, 1.0F, 1.0F);
+        GlStateManager.enableDepth();
         GlStateManager.popMatrix();
 		}
 	}

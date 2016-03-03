@@ -49,7 +49,7 @@ public class BaseOreInputSlot extends BaseSlot{
 
 	@Override
 	public int getFontColor() {
-		return 0x000000;
+		return 0xFFFFFF;
 	}
 	
 }

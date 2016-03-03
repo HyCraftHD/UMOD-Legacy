@@ -27,6 +27,8 @@ public class TileEntityPulverizerSpecialRender extends TileEntitySpecialRenderer
 	@Override
 	public void renderTileEntityAt(TileEntity tileEntity, final double posX, final double posY, final double posZ,
 			float p_180535_8_, final int p_180535_9_) {
+		
+		GlStateManager.pushMatrix();
 		final TileEntityPulverizer oven = (TileEntityPulverizer) tileEntity;	
 		ItemStack ore = oven.getStackInSlot(3);
 		
@@ -69,6 +71,7 @@ public class TileEntityPulverizerSpecialRender extends TileEntitySpecialRenderer
 		
 	   }
           
+		GL11.glPushMatrix();
 		final String str = st;
 		GlStateManager.disableLighting();
 		LWJGLUtils.drawSmThInWorld(oven.getPos(), posX, posY + 0.4, posZ, new Runnable() {
@@ -106,10 +109,16 @@ public class TileEntityPulverizerSpecialRender extends TileEntitySpecialRenderer
 			    
 			    GlStateManager.enableDepth();
 		        GlStateManager.enableLighting();
-				GlStateManager.shadeModel(7424);
+			    GlStateManager.shadeModel(7424);
 			}
 		});
+	    GL11.glPopMatrix();
+	    GL11.glNormal3f(0, 0, 0);
+	    GlStateManager.enableDepth();
+        GlStateManager.enableLighting();
+	    GlStateManager.shadeModel(7424);
 		GlStateManager.enableLighting();
+		GlStateManager.popMatrix();
   }
 	
   private int checkBiggestString(FontRenderer re,String... args){

@@ -2,6 +2,7 @@ package net.hycrafthd.umod;
 
 import net.hycrafthd.umod.api.energy.IPowerProvieder;
 import net.hycrafthd.umod.container.ContainerBackPack;
+import net.hycrafthd.umod.container.ContainerBase;
 import net.hycrafthd.umod.container.ContainerChargeStation;
 import net.hycrafthd.umod.container.ContainerCraftFurnace;
 import net.hycrafthd.umod.container.ContainerPulverizer;
@@ -11,6 +12,7 @@ import net.hycrafthd.umod.gui.GuiBackPack;
 import net.hycrafthd.umod.gui.GuiBattery;
 import net.hycrafthd.umod.gui.GuiChargstation;
 import net.hycrafthd.umod.gui.GuiCraftFurnance;
+import net.hycrafthd.umod.gui.GuiPainter;
 import net.hycrafthd.umod.gui.GuiPulverizer;
 import net.hycrafthd.umod.gui.GuiSolarPanel;
 import net.hycrafthd.umod.inventory.InventoryBackPack;
@@ -44,11 +46,14 @@ public class UGuiHandler implements IGuiHandler {
 				InventoryBackPack inventory = new InventoryBackPack(itemstack, player, type.getCount());
 				return new ContainerBackPack(inventory, player.inventory, type);
 			}
+			break;
 		case BARRELS:
 			//return new ContainerBarrels(player.get);
-		default:
-			return null;
+			break;
+		case PAINTER:
+			return new ContainerBase((IInventory) ent, player, p, world);
 		}
+		return null;
 	}
 
 	@Override
@@ -74,9 +79,11 @@ public class UGuiHandler implements IGuiHandler {
 				InventoryBackPack inventory = new InventoryBackPack(itemstack, player, type.getCount());
 				return new GuiBackPack(inventory, player.inventory, type);
 			}
-		default:
-			return null;
+			break;
+		case PAINTER:
+			return new GuiPainter(player, (IInventory) ent, new ContainerBase((IInventory) ent, player, p, world));
 		}
+		return null;
 
 	}
 

@@ -14,6 +14,9 @@ import com.google.common.collect.Sets;
 
 import net.hycrafthd.umod.UBlocks;
 import net.hycrafthd.umod.UReference;
+import net.hycrafthd.umod.api.IGuiProvider;
+import net.hycrafthd.umod.api.ISignable;
+import net.hycrafthd.umod.api.energy.IPowerProvieder;
 import net.hycrafthd.umod.container.ContainerBase;
 import net.hycrafthd.umod.container.ContainerBase.Mode;
 import net.hycrafthd.umod.enumtype.EnumTypeGui;
@@ -40,6 +43,7 @@ import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.texture.TextureUtil;
 import net.minecraft.client.renderer.tileentity.TileEntityItemStackRenderer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.client.resources.model.IBakedModel;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -70,6 +74,7 @@ public abstract class GuiBase extends GuiScreen {
 	public ResourceLocation loc2;
 	public ResourceLocation loc3;
 	public static final ResourceLocation CLEAR_GUI = new GuiRescources("clear.png");
+	public static final ResourceLocation SOLAR_GUI = new GuiRescources("clear.png");
 	public EntityPlayer play;
 	public TileEntity ent;
 	public BlockPos pos;
@@ -77,6 +82,7 @@ public abstract class GuiBase extends GuiScreen {
 	public ContainerBase basecon;
 	public World worldObj;
 	public GuiCheckbox check;
+	public boolean is = true;
 
 	public GuiBase(ResourceLocation loc, ResourceLocation loc2, ResourceLocation loc3, EntityPlayer pl, IInventory tile, Container con) {
 		super();
@@ -86,11 +92,78 @@ public abstract class GuiBase extends GuiScreen {
 		this.loc3 = loc3;
 		this.play = pl;
 		this.ent = (TileEntity) tile;
+		if(tile instanceof IPowerProvieder)this.pro = (IPowerProvieder) tile;
 		this.pos = ent.getPos();
 		this.basecon = (ContainerBase) con;
 		this.worldObj = Minecraft.getMinecraft().getIntegratedServer().worldServers[0];
 	}
 
+	public IPowerProvieder pro;
+	public EntityPlayer pl;
+	public int ag;
+
+
+	public void drawToSMScreen(int mouseX, int mouseY, float partialTicks) {	
+		
+	    int k = (this.width - this.xSize) / 2;
+	    int l = (this.height - this.ySize) / 2;
+
+        if(pro != null){
+		int high = 0;
+		if (pro.hasPower()) {
+			double ps = pro.getStoredPower() * 100 / pro.getMaximalPower();
+			high = (int) (ps * 0.01 * 152);
+		}
+
+		this.drawStorage(k, l, high);
+
+		this.drawCenteredString(this.fontRendererObj, I18n.format(worldObj.getBlockState(pos).getBlock().getUnlocalizedName() + ".name"), k + xSize / 2 - 37 / 2, l + 10, 4210752, false);
+		int maxstringlength = 119;
+		String s1 = "Needs: ";
+		String s2 = "Stored: ";
+		String s3 = "Status: ";
+		String s4 = "Error: ";
+		this.fontRendererObj.drawSplitString(s1 + pro.getPowerProducNeeds() + " UE/t", k + 10, l + 50, maxstringlength, 4210752);
+		this.fontRendererObj.drawSplitString(s2 + pro.getStoredPower() + " / " + pro.getMaximalPower(), k + 10, l + 70, maxstringlength, 4210752);
+		if (ag != -1) {
+			this.fontRendererObj.drawSplitString(s3 + (pro.isWorking() ? "On" : "Off"), k + 10, l + 90, maxstringlength, 4210752);
+			if (!pro.isWorking() && pro.getErrorMessage() != null && pro.getErrorMessage() != "") {
+				this.fontRendererObj.drawSplitString(s4 + pro.getErrorMessage(), k + 10, l + 110, maxstringlength, 4210752);
+			}
+		}
+        }else{
+		this.drawCenteredString(this.fontRendererObj,"NO POWER PROVIDER", k + xSize / 2 - 37 / 2, l + 10, 4210752, false);
+        }
+	}
+
+	public int drawCenteredString(FontRenderer fontRendererIn, String text, int x, int y, int color, boolean shadow) {
+		return fontRendererIn.drawString(text, (float) (x - fontRendererIn.getStringWidth(text) / 2), (float) y, color, shadow);
+	}
+
+	public void drawStorage(int l, int k, int height) {
+		int x = l + 169, y = k + 159;
+		drawTexturedModalRect(x, y, 206, height + 7, -30, -height);
+	}
+
+	@Override
+	protected void actionPerformed(GuiButton button) throws IOException {
+		switch (button.id) {
+		case 0:
+			if (this.pro instanceof ISignable) {
+				ISignable p = (ISignable) this.pro;
+				if (button.displayString.equals("Sign with Player")) {
+					p.signPlayer(this.mc.thePlayer);
+					button.displayString = "Unsign";
+				} else {
+					this.mc.thePlayer.addChatMessage(new ChatComponentText(EnumChatFormatting.RED + "Unsigned Pulverizer"));
+					p.signPlayer(null);
+				}
+				((TileEntity) this.pro).markDirty();
+			}
+			break;
+		}
+	}
+	
 	protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
 		this.mc.getTextureManager().bindTexture(loc);
 		int k = (this.width - this.xSize) / 2;
@@ -117,6 +190,7 @@ public abstract class GuiBase extends GuiScreen {
 					ms.setInUse(false);
 				}
 				basecon.setMode(m);
+				is = true;
 				loc = loc1;
 				for (int i = 0; i < basecon.inventorySlots.size(); i++) {
 					if (basecon.inventorySlots.get(i) instanceof BaseSlot) {
@@ -137,6 +211,7 @@ public abstract class GuiBase extends GuiScreen {
 				}
 				basecon.setMode(m);
 				loc = loc2;
+				is = true;
 				for (int i = 0; i < basecon.inventorySlots.size(); i++) {
 					if (basecon.inventorySlots.get(i) instanceof BaseBatteryInputSlot) {
 						basecon.setVisisble(i, true);
@@ -154,6 +229,7 @@ public abstract class GuiBase extends GuiScreen {
 					ms.setInUse(false);
 				}
 				basecon.setMode(m);
+				is = true;
 				loc = loc3;
 				for (int i = 0; i < basecon.inventorySlots.size(); i++) {
 					if (basecon.inventorySlots.get(i) instanceof BaseSlot) {
@@ -170,6 +246,7 @@ public abstract class GuiBase extends GuiScreen {
 						ms.setInUse(false);
 					}
 					basecon.setMode(m);
+					is = true;
 					loc = CLEAR_GUI;
 					for (int i = 0; i < basecon.inventorySlots.size(); i++) {
 						if (basecon.inventorySlots.get(i) instanceof BaseSlot) {
@@ -185,8 +262,9 @@ public abstract class GuiBase extends GuiScreen {
 				for(ModeTabs ms : tabs){
 					ms.setInUse(false);
 				}
+				is = false;
 				basecon.setMode(m);
-				loc = CLEAR_GUI;
+				loc = SOLAR_GUI;
 				for (int i = 0; i < basecon.inventorySlots.size(); i++) {
 					if (basecon.inventorySlots.get(i) instanceof BaseSlot) {
 						basecon.setVisisble(i, false);
@@ -213,6 +291,8 @@ public abstract class GuiBase extends GuiScreen {
 		this.guiTop = (this.height - this.ySize) / 2;
 		box.getItems().add("Choose");
 		box.setSelected(box.getItems().size() - 1);
+		GuiButton btn = new GuiButton(0, this.width / 2 - 42, 20, 85, 20, "Sign with Player");
+		buttonList.add(btn);
 	}
 
 	public boolean canColorChange(){
@@ -264,7 +344,7 @@ public abstract class GuiBase extends GuiScreen {
 	public static final String __OBFID = "CL_00000737";
 	public EnumFacing hal = EnumFacing.NORTH;
 
-	public final void drawScreen(int mouseX, int mouseY, float partialTicks) {
+	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
 		int mousePX = mouseX;
 		int mousePY = mouseY;
 		this.drawDefaultBackground();
@@ -309,6 +389,7 @@ public abstract class GuiBase extends GuiScreen {
 		GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 		int k1;
 
+		if(is){
 		for (int i1 = 0; i1 < this.basecon.inventorySlots.size(); ++i1) {
 			Slot slot = (Slot) this.basecon.inventorySlots.get(i1);
 			if (!(slot instanceof BaseSlot) || ((BaseSlot) slot).isVisible()) {
@@ -356,6 +437,7 @@ public abstract class GuiBase extends GuiScreen {
 					GlStateManager.enableDepth();
 				}
 			}
+		}
 		}
 
 		if (basecon.mode.equals(Mode.OUTPUT)) {
@@ -412,6 +494,10 @@ public abstract class GuiBase extends GuiScreen {
 		
 		GlStateManager.popMatrix();
 
+		if(basecon.mode.equals(Mode.ENERGY)){
+			this.drawToSMScreen(mouseX, mouseY, partialTicks);
+		}
+		
 		if (inventoryplayer.getItemStack() == null && this.theSlot != null && this.theSlot.getHasStack()) {
 			ItemStack itemstack1 = this.theSlot.getStack();
 			this.renderToolTip(itemstack1, mouseX, mouseY);
@@ -774,15 +860,14 @@ public abstract class GuiBase extends GuiScreen {
             		+ "HOLLO" + EnumChatFormatting.RESET + " " + EnumChatFormatting.RED + "You be trolled " 
             		+ EnumChatFormatting.GREEN + "" + EnumChatFormatting.OBFUSCATED + "HOLLO" + EnumChatFormatting.RESET));
 		}
-		
-
+		if(mouseButton == 0)this.handelMouseInput(mouseX,mouseY);
 		super.mouseClicked(mouseX, mouseY, mouseButton);
 		if (mouseButton == 0) {
 			if(basecon.mode.equals(Mode.COLOR)){
-			box.handelClick(mouseX, mouseY);
+			check.handelMouseClick(mouseX, mouseY);
 			}
 			if(basecon.mode.equals(Mode.OUTPUT)){
-			check.handelMouseClick(mouseX, mouseY);
+			box.handelClick(mouseX, mouseY);
 			}
 			if(tabs != null){
 				for(ModeTabs tab : tabs){
@@ -865,6 +950,8 @@ public abstract class GuiBase extends GuiScreen {
 		this.lastClickButton = mouseButton;
 	}
 
+	public void handelMouseInput(int mouseX, int mouseY) {}
+
 	private int sclax = 0;
 	private int sclay = 0;
 
@@ -901,6 +988,7 @@ public abstract class GuiBase extends GuiScreen {
 			}
 			onIOModeSwitched();
 		}
+		this.onMouseClickMoved(mouseX,mouseY);
 		Slot slot = this.getSlotAtPosition(mouseX, mouseY);
 		ItemStack itemstack = this.mc.thePlayer.inventory.getItemStack();
 
@@ -932,6 +1020,8 @@ public abstract class GuiBase extends GuiScreen {
 			this.updateDragSplitting();
 		}
 	}
+
+	public void onMouseClickMoved(int mouseX, int mouseY) {}
 
 	public abstract void onIOModeSwitched();
 

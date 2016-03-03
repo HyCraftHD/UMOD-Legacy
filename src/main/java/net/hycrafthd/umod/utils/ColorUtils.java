@@ -1,5 +1,6 @@
 package net.hycrafthd.umod.utils;
 
+import net.hycrafthd.umod.render.RGBA;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
@@ -41,5 +42,13 @@ public class ColorUtils {
 		}
 		nbttagcompound1.setInteger("color", color);
 	}
+
+    public static RGBA hexToRGBA(int color){
+    	 int f3 = Math.round((float)(color >> 24 & 255) / 255.0F);
+    	 int f = Math.round((float)(color >> 16 & 255) / 255.0F);
+         int f1 = Math.round((float)(color >> 8 & 255) / 255.0F);
+         int f2 = Math.round((float)(color & 255) / 255.0F);
+         return new RGBA(f,f1,f2,f3);
+    }
 
 }

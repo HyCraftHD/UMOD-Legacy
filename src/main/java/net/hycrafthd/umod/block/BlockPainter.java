@@ -18,7 +18,7 @@ public class BlockPainter extends BlockBaseMachine{
         if(!worldIn.isRemote){
         	playerIn.openGui(UReference.modid, EnumTypeGui.PAINTER.getID(), worldIn, pos.getX(), pos.getY(), pos.getZ());
         }
-		return super.onBlockActivated(worldIn, pos, state, playerIn, side, hitX, hitY, hitZ);
+		return true;
 	}
 	
 	@Override

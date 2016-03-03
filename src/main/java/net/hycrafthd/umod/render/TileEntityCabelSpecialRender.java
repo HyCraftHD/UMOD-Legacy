@@ -41,7 +41,8 @@ public class TileEntityCabelSpecialRender extends TileEntitySpecialRenderer {
         BlockCable cab = (BlockCable) blo;
 		String name = cab.getSpirte();
 		TileEntityCable pip = (TileEntityCable) p_180535_1_;
-		World w = Minecraft.getMinecraft().getIntegratedServer().worldServers[0];
+		World w = p_180535_1_.getWorld();
+		if(!w.isRemote)return;
 		BlockPos pos = pip.getPos(); 
 		if (pip != null && (!((TileEntityCable) p_180535_1_).hasConduit() || (pl.getCurrentEquippedItem() != null && Block.getBlockFromItem(pl.getCurrentEquippedItem().getItem()) != null && Block.getBlockFromItem(pl.getCurrentEquippedItem().getItem()) instanceof BlockCable))) {
 			 if (Minecraft.isAmbientOcclusionEnabled())

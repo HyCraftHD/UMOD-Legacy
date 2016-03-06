@@ -40,7 +40,7 @@ public class NuclearExplosion implements IProcess {
 				double dist = Utils.getDistanceAtoB(x, z, xCoord, zCoord);
 				if (dist < OD && dist >= ID) {
 					float tracePower = power - (float) (expansion / 10D);
-					tracePower *= 1F + ((random.nextFloat() - 0.5F) * 0.2);
+					tracePower *= 1.5F + ((random.nextFloat() - 0.5F) * 0.1);
 					ProcessHandler.addProcess(new NuclearExplosionTrace(worldObj, x, yCoord, z, tracePower, random));
 				}
 			}

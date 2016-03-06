@@ -70,11 +70,17 @@ public class ClientProxy extends CommonProxy {
 			ClientRegistryUtils.registerModelRenderer(UBlocks.solarpanel, i, new ModelResourceLocation(UReference.resource + "solarpanel" + EnumTypeSolarPanel.byMetadata(i).getName(), "inventory"));
 		}
 
+		//Armor
 		ClientRegistryUtils.registerModelRenderer(UArmor.radiationSuitHelmet);
 		ClientRegistryUtils.registerModelRenderer(UArmor.radiationSuitChestplate);
 		ClientRegistryUtils.registerModelRenderer(UArmor.radiationSuitLeggings);
 		ClientRegistryUtils.registerModelRenderer(UArmor.radiationSuitBoots);
-
+		
+		ClientRegistryUtils.registerModelRenderer(UArmor.emeraldHelmet);
+		ClientRegistryUtils.registerModelRenderer(UArmor.emeraldChestplate);
+		ClientRegistryUtils.registerModelRenderer(UArmor.emeraldLeggings);
+		ClientRegistryUtils.registerModelRenderer(UArmor.emeraldBoots);
+		
 		// Infected
 		ClientRegistryUtils.registerModelRenderer(UBlocks.infectedGrass);
 		ClientRegistryUtils.registerModelRenderer(UBlocks.infectedDirt);

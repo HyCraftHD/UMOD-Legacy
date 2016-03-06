@@ -141,6 +141,7 @@ tile.zincable.name=Tin Energy Cable
 entity.InfectedCow.name=Infected Cow
 entity.InfectedCreeper.name=Infected Creeper
 entity.PrimedNuke.name=Nuke
+entity.InfectedZombie.name=Infected Zombie
 
 #Backpack
 item.backpacksmall.name=Small Backpack

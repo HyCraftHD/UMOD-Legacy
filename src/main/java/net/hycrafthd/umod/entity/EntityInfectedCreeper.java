@@ -60,7 +60,7 @@ public class EntityInfectedCreeper extends EntityCreeper implements IInfectedEnt
 	@Override
 	public void applyEntityAttributes() {
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(30D);
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(20D);
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.3D);
 	}
 
@@ -154,7 +154,7 @@ public class EntityInfectedCreeper extends EntityCreeper implements IInfectedEnt
 	private void explode() {
 		if (!this.worldObj.isRemote) {
 			boolean flag = this.worldObj.getGameRules().getGameRuleBooleanValue("mobGriefing");
-			float f = this.getPowered() ? 2.0F : 1.0F;
+			float f = this.getPowered() ? 1.5F : 0.5F;
 			this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, this.explosionRadius * f, flag);
 			this.setDead();
 		}

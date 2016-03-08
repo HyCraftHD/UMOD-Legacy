@@ -37,7 +37,7 @@ public class EntityInfectedCow extends EntityMob implements IInfectedEntity {
 	@Override
 	public void applyEntityAttributes() {
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(30D);
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(15D);
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.3D);
 		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(2.0D);
 	}

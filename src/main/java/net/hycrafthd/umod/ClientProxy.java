@@ -5,9 +5,11 @@ import java.util.List;
 import net.hycrafthd.umod.block.BlockSolarPanel.EnumTypeSolarPanel;
 import net.hycrafthd.umod.entity.EntityInfectedCow;
 import net.hycrafthd.umod.entity.EntityInfectedCreeper;
+import net.hycrafthd.umod.entity.EntityInfectedZombie;
 import net.hycrafthd.umod.entity.EntityNukePrimed;
 import net.hycrafthd.umod.entity.render.RenderInfectedCow;
 import net.hycrafthd.umod.entity.render.RenderInfectedCreeper;
+import net.hycrafthd.umod.entity.render.RenderInfectedZombie;
 import net.hycrafthd.umod.entity.render.RenderNukePrimed;
 import net.hycrafthd.umod.enumtype.EnumTypeBackPack;
 import net.hycrafthd.umod.enumtype.EnumTypeBaseStuff;
@@ -70,11 +72,17 @@ public class ClientProxy extends CommonProxy {
 			ClientRegistryUtils.registerModelRenderer(UBlocks.solarpanel, i, new ModelResourceLocation(UReference.resource + "solarpanel" + EnumTypeSolarPanel.byMetadata(i).getName(), "inventory"));
 		}
 
+		//Armor
 		ClientRegistryUtils.registerModelRenderer(UArmor.radiationSuitHelmet);
 		ClientRegistryUtils.registerModelRenderer(UArmor.radiationSuitChestplate);
 		ClientRegistryUtils.registerModelRenderer(UArmor.radiationSuitLeggings);
 		ClientRegistryUtils.registerModelRenderer(UArmor.radiationSuitBoots);
-
+		
+		ClientRegistryUtils.registerModelRenderer(UArmor.emeraldHelmet);
+		ClientRegistryUtils.registerModelRenderer(UArmor.emeraldChestplate);
+		ClientRegistryUtils.registerModelRenderer(UArmor.emeraldLeggings);
+		ClientRegistryUtils.registerModelRenderer(UArmor.emeraldBoots);
+		
 		// Infected
 		ClientRegistryUtils.registerModelRenderer(UBlocks.infectedGrass);
 		ClientRegistryUtils.registerModelRenderer(UBlocks.infectedDirt);
@@ -119,6 +127,7 @@ public class ClientProxy extends CommonProxy {
 		ClientRegistryUtils.registerEntityRenderer(EntityInfectedCow.class, new RenderInfectedCow());
 		ClientRegistryUtils.registerEntityRenderer(EntityInfectedCreeper.class, new RenderInfectedCreeper());
 		ClientRegistryUtils.registerEntityRenderer(EntityNukePrimed.class, new RenderNukePrimed());
+		ClientRegistryUtils.registerEntityRenderer(EntityInfectedZombie.class, new RenderInfectedZombie());
 		
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPulverizer.class, new TileEntityPulverizerSpecialRender());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCable.class, new TileEntityCabelSpecialRender());

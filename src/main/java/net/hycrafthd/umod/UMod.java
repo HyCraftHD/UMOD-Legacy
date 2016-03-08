@@ -1,5 +1,7 @@
 package net.hycrafthd.umod;
 
+import org.lwjgl.input.Keyboard;
+
 import net.hycrafthd.umod.api.ProcessHandler;
 import net.hycrafthd.umod.event.EventDrawHUD;
 import net.hycrafthd.umod.event.EventExecuteRadiation;
@@ -8,6 +10,8 @@ import net.hycrafthd.umod.event.EventGettingRadiationInv;
 import net.hycrafthd.umod.event.EventLoadWorld;
 import net.hycrafthd.umod.event.EventPlayerJoin;
 import net.hycrafthd.umod.utils.CommonRegistryUtils;
+import net.minecraft.client.settings.KeyBinding;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -19,7 +23,8 @@ import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 public class UMod {
 
 	public static org.apache.logging.log4j.Logger log;
-
+	public static KeyBinding info = new KeyBinding("Infromation", Keyboard.KEY_I, "UMod");
+	
 	@EventHandler
 	public void preinit(FMLPreInitializationEvent event) {
 		log = event.getModLog();
@@ -48,6 +53,7 @@ public class UMod {
 		new UChestLoot();
 		new UAchievement();
 		CommonRegistryUtils.registerGuiHandler(new UGuiHandler());
+	    ClientRegistry.registerKeyBinding(info);
 		UReference.proxy.registerModels();
 		UReference.proxy.registerRenderer();
 		Logger.info("postinit(e)", "Registered Mod.");

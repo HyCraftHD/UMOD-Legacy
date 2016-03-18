@@ -24,10 +24,11 @@ import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.RenderTickEvent;
 import sun.management.HotspotClassLoadingMBean;
 
-public class TileEntityCabelSpecialRender extends TileEntitySpecialRenderer {
+public class TileEntityCabelSpecialRender //extends TileEntitySpecialRenderer 
+{
 	
-	@Override
-	public void renderTileEntityAt(TileEntity p_180535_1_, double posX, double posY, double posZ,
+	//@Override
+	public static void renderTileEntityAt(TileEntity p_180535_1_, double posX, double posY, double posZ,
 			float p_180535_8_, int p_180535_9_) {
         EntityPlayer pl = Minecraft.getMinecraft().thePlayer;
 		if(pl.inventory.armorInventory[0] != null && pl.inventory.armorInventory[0].getItem() instanceof ItemEnergyGlasses && p_180535_1_ instanceof IPowerProvieder){

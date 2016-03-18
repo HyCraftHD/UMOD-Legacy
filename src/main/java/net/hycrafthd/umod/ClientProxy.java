@@ -130,7 +130,7 @@ public class ClientProxy extends CommonProxy {
 		ClientRegistryUtils.registerEntityRenderer(EntityInfectedZombie.class, new RenderInfectedZombie());
 		
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPulverizer.class, new TileEntityPulverizerSpecialRender());
-		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCable.class, new TileEntityCabelSpecialRender());
+		//ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCable.class, new TileEntityCabelSpecialRender());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityEnergyPannel.class, new TileEntityEnergyPannelSpecialRender());
 	}
 

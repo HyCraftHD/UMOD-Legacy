@@ -1,12 +1,14 @@
 package net.hycrafthd.umod.tileentity;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import net.hycrafthd.umod.api.IPlugabel;
 import net.hycrafthd.umod.api.energy.EnergyAPI;
 import net.hycrafthd.umod.api.energy.IPipeRange;
 import net.hycrafthd.umod.api.energy.IPowerProvieder;
 import net.hycrafthd.umod.block.BlockBaseMachine;
+import net.hycrafthd.umod.entity.EntityPipeFX;
 import net.hycrafthd.umod.utils.DirectionUtils;
 import net.hycrafthd.umod.utils.EnergyUtils;
 import net.minecraft.block.Block;
@@ -16,7 +18,9 @@ import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.BlockPos;
+import net.minecraft.util.Vec3i;
 import net.minecraft.world.IBlockAccess;
 
 public class TileEntityCable extends TileEntity implements IPlugabel, IPowerProvieder, IPipeRange {
@@ -24,6 +28,7 @@ public class TileEntityCable extends TileEntity implements IPlugabel, IPowerProv
 	public int Maximum_Power;
 	public int stored;
 	public int loos;
+	public boolean firstrun = false;
 	private ArrayList<BlockPos> getter = new ArrayList<BlockPos>();
 	public ItemStack conduit = null;
 	
@@ -76,7 +81,10 @@ public class TileEntityCable extends TileEntity implements IPlugabel, IPowerProv
 	public void update() {
 	     EnergyAPI api = new EnergyAPI(this);
 	     api.transferEnergy();
-	     
+	    if(!firstrun){
+			this.worldObj.spawnEntityInWorld(new EntityPipeFX(this.worldObj,this.pos));
+            firstrun = true;
+	    }
 	}
 
 	public int passtpip = 0;

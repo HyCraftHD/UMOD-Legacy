@@ -41,18 +41,6 @@ public class EventDrawHUD {
     	}*/
     }
     
-    @SubscribeEvent
-    public void onRenderTick( evt){
-    	World w = Minecraft.getMinecraft().theWorld;
-    	if(w == null || w.tickableTileEntities == null){TLog.warn("NULL");return;}
-    	for(int i = 0;i < w.tickableTileEntities.size();i++){
-    		TileEntity ent = (TileEntity) w.tickableTileEntities.get(i);
-    		EntityPlayer pl = Minecraft.getMinecraft().thePlayer;
-    		if(pl == null ||ent == null)return;
-    		if(ent instanceof TileEntityCable){
-    	    TileEntityCabelSpecialRender.renderTileEntityAt(ent,ent.getPos().getX() + pl.getPosition().getX(), ent.getPos().getY() + pl.getPosition().getY(), ent.getPos().getZ() + pl.getPosition().getZ(), evt.renderTickTime, 0);
-    		}
-    	}
-    }
+
     
 }

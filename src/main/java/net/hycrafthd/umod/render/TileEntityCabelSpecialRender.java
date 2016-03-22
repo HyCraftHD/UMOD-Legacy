@@ -24,21 +24,21 @@ import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.RenderTickEvent;
 import sun.management.HotspotClassLoadingMBean;
 
-public class TileEntityCabelSpecialRender //extends TileEntitySpecialRenderer 
+public class TileEntityCabelSpecialRender 
 {
 	
-	//@Override
 	public static void renderTileEntityAt(TileEntity p_180535_1_, double posX, double posY, double posZ,
 			float p_180535_8_, int p_180535_9_) {
         EntityPlayer pl = Minecraft.getMinecraft().thePlayer;
-		if(pl.inventory.armorInventory[0] != null && pl.inventory.armorInventory[0].getItem() instanceof ItemEnergyGlasses && p_180535_1_ instanceof IPowerProvieder){
+		if(pl.inventory.armorInventory[3] != null && pl.inventory.armorInventory[3].getItem() instanceof ItemEnergyGlasses && p_180535_1_ instanceof IPowerProvieder){
 			IPowerProvieder pro = (IPowerProvieder) p_180535_1_;
-			LWJGLUtils.drawStringInWorld(p_180535_1_.getPos(),posX,posY,posZ, p_180535_9_, pro.getStoredPower() + "/" + pro.getMaximalPower(), new RGBA(Color.red), new RGBA(Color.red), new RGBA(Color.gray), Color.BLACK.getRGB());
+			GlStateManager.enableAlpha();
+			LWJGLUtils.drawStringInWorld(p_180535_1_.getPos(),posX,posY,posZ, p_180535_9_, pro.getStoredPower() + "/" + pro.getMaximalPower(), new RGBA(Color.red).setAlpha(100), new RGBA(Color.black).setAlpha(100), new RGBA(Color.gray).setAlpha(0), Color.WHITE.getRGB());
 		}
 		
 
 		Block blo = p_180535_1_.getWorld().getBlockState(p_180535_1_.getPos()).getBlock();
-		if(blo instanceof BlockCable){
+		if(blo != null && blo instanceof BlockCable){
         BlockCable cab = (BlockCable) blo;
 		String name = cab.getSpirte();
 		TileEntityCable pip = (TileEntityCable) p_180535_1_;

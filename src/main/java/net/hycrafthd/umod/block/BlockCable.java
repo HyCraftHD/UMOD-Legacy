@@ -1,13 +1,13 @@
 package net.hycrafthd.umod.block;
 
 import java.util.List;
-
 import net.hycrafthd.umod.Logger;
 import net.hycrafthd.umod.UBlocks;
 import net.hycrafthd.umod.UDamageSource;
 import net.hycrafthd.umod.UReference;
 import net.hycrafthd.umod.api.energy.IEnergyMessage;
 import net.hycrafthd.umod.api.energy.IPowerProvieder;
+import net.hycrafthd.umod.entity.EntityPipeFX;
 import net.hycrafthd.umod.tileentity.TileEntityCable;
 import net.hycrafthd.umod.utils.EnergyUtils;
 import net.hycrafthd.umod.utils.NBTUtils;
@@ -17,19 +17,14 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.Container;
-import net.minecraft.inventory.InventoryBasic;
-import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -220,5 +215,18 @@ public class BlockCable extends Block implements ITileEntityProvider, IEnergyMes
 		return "Transports " + EnergyUtils.inUE(powertrans) + "UE/t";
 	}
 	
+	@Override
+	public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ,
+			int meta, EntityLivingBase placer) {
+		return super.onBlockPlaced(worldIn, pos, facing, hitX, hitY, hitZ, meta, placer);
+	}
 	
+	@Override
+	public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
+		List<EntityPipeFX> p = worldIn.getEntitiesWithinAABB(EntityPipeFX.class, new AxisAlignedBB(pos, pos.add(1, 1, 1)));
+		for(EntityPipeFX fx : p){
+		fx.setDead();
+		}
+		super.breakBlock(worldIn, pos, state);
+	}
 }

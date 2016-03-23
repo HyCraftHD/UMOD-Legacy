@@ -95,7 +95,7 @@ public class EntityNukePrimed extends Entity {
 		if(!worldObj.getGameRules().getGameRuleBooleanValue("allowExplosion")) return;
 		
 		BlockPos pos = new BlockPos(this.posX, this.posY, this.posZ);
-		float power = 2F + (((this.nukePower) / 10369F) * 18F);
+		float power = 2F + (((7000) / 10369F) * 18F);
 		ProcessHandler.addProcess(new NuclearExplosion(this.worldObj, pos.getX(), pos.getY(), pos.getZ(), power));
 	}
 

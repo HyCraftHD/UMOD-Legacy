@@ -1,7 +1,6 @@
 package net.hycrafthd.umod.tileentity;
 
 import net.hycrafthd.umod.UItems;
-import net.hycrafthd.umod.api.IGuiProvider;
 import net.hycrafthd.umod.api.energy.EnergyAPI;
 import net.hycrafthd.umod.api.energy.IPowerProvieder;
 import net.hycrafthd.umod.container.ContainerChargeStation;
@@ -15,7 +14,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 
-public class TileEntityChargeStation extends TileEntityBase implements IGuiProvider, IPowerProvieder {
+public class TileEntityChargeStation extends TileEntityBase implements IPowerProvieder {
 
 	ItemStack stack = null;
 
@@ -140,11 +139,6 @@ public class TileEntityChargeStation extends TileEntityBase implements IGuiProvi
 		return null;
 	}
 
-	@Override
-	public int getGui() {
-		return EnumTypeGui.CHARGESTATION.getID();
-	}
-
 	int stored;
 	public static final int MAXIMAL_POWER = 50000;
 	private boolean mode = false;
@@ -263,6 +257,11 @@ public class TileEntityChargeStation extends TileEntityBase implements IGuiProvi
 	public void readItemsFromNBT(NBTTagCompound tagItems) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public String getEnergyClass() {
+		return null;
 	}
 
 }

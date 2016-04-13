@@ -5,6 +5,7 @@ import net.hycrafthd.umod.Logger;
 import net.hycrafthd.umod.UBlocks;
 import net.hycrafthd.umod.UDamageSource;
 import net.hycrafthd.umod.UReference;
+import net.hycrafthd.umod.api.energy.ICabel;
 import net.hycrafthd.umod.api.energy.IEnergyMessage;
 import net.hycrafthd.umod.api.energy.IPowerProvieder;
 import net.hycrafthd.umod.entity.EntityPipeFX;
@@ -78,7 +79,7 @@ public class BlockCable extends Block implements ITileEntityProvider, IEnergyMes
 	}
 
 	@Override
-	public void addCollisionBoxesToList(World world, BlockPos pos, IBlockState state, AxisAlignedBB mask, List list, Entity collidingEntity)
+	public void addCollisionBoxesToList(World world, BlockPos pos, IBlockState state, AxisAlignedBB mask, @SuppressWarnings("rawtypes") List list, Entity collidingEntity)
 	{
           this.setBlockBoundsBasedOnState(world, pos);
           super.addCollisionBoxesToList(world, pos, state, mask, list, collidingEntity);
@@ -109,18 +110,15 @@ public class BlockCable extends Block implements ITileEntityProvider, IEnergyMes
 		if(playerIn.getCurrentEquippedItem() != null){
 		Block rand = Block.getBlockFromItem(playerIn.getCurrentEquippedItem().getItem());
 		if(!cab.hasConduit() && rand != null && rand instanceof BlockConduit){
-			Logger.info("Has Condouit");
 			cab.setConduit(NBTUtils.getStackFromConduit(playerIn.getCurrentEquippedItem()));
 			playerIn.inventory.setInventorySlotContents(playerIn.inventory.currentItem, null);
            	playerIn.worldObj.playSoundAtEntity(playerIn, "step.stone", 0.2F, ((playerIn.getRNG().nextFloat() - playerIn.getRNG().nextFloat()) * 0.7F + 1.0F) * 2.0F);
 			return true;
 		}else if(cab.hasConduit() && Block.getBlockFromItem(playerIn.getCurrentEquippedItem().getItem()) != null && !(Block.getBlockFromItem(playerIn.getCurrentEquippedItem().getItem()) instanceof BlockCable)){
-			Logger.info("Has Condouit -- ");
 			dropForPlayer(playerIn, cab);
 			cab.setConduit(null);
 			return true;
 		}}else if(cab.hasConduit()){
-			Logger.info("Has Condouit -- ");
 			dropForPlayer(playerIn, cab);
 			cab.setConduit(null);
 			return true;
@@ -218,11 +216,22 @@ public class BlockCable extends Block implements ITileEntityProvider, IEnergyMes
 	@Override
 	public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ,
 			int meta, EntityLivingBase placer) {
+		TileEntityCable cab = (TileEntityCable) worldIn.getTileEntity(pos);
+		cab.onBlockSetInWorld();
 		return super.onBlockPlaced(worldIn, pos, facing, hitX, hitY, hitZ, meta, placer);
 	}
 	
 	@Override
+	public void onNeighborChange(IBlockAccess world, BlockPos pos, BlockPos neighbor) {
+		TileEntity ent = world.getTileEntity(neighbor);
+		if(ent instanceof IPowerProvieder || ent instanceof ICabel){
+			((TileEntityCable)world.getTileEntity(pos)).notifyOfPipeState(ent);
+		}
+	}
+	
+	@Override
 	public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
+		@SuppressWarnings("unchecked")
 		List<EntityPipeFX> p = worldIn.getEntitiesWithinAABB(EntityPipeFX.class, new AxisAlignedBB(pos, pos.add(1, 1, 1)));
 		for(EntityPipeFX fx : p){
 		fx.setDead();

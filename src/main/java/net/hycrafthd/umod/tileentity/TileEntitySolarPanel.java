@@ -149,4 +149,9 @@ public class TileEntitySolarPanel extends TileEntity implements IPowerProvieder 
 		this.writeToNBT(tagCom);
 		return new S35PacketUpdateTileEntity(pos, getBlockMetadata(), tagCom);
 	}
+
+	@Override
+	public String getEnergyClass() {
+		return null;
+	}
 }

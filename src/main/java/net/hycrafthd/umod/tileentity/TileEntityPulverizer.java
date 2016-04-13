@@ -2,7 +2,7 @@ package net.hycrafthd.umod.tileentity;
 
 import net.hycrafthd.umod.Logger;
 import net.hycrafthd.umod.UMod;
-import net.hycrafthd.umod.api.IGuiProvider;
+import net.hycrafthd.umod.api.IIOMode;
 import net.hycrafthd.umod.api.ISignable;
 import net.hycrafthd.umod.api.energy.EnergyAPI;
 import net.hycrafthd.umod.api.energy.IPowerProvieder;
@@ -19,15 +19,13 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.util.BlockPos;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
-import net.minecraftforge.fml.common.FMLCommonHandler;
 
 public class TileEntityPulverizer extends TileEntityBase implements 
-                               IPowerProvieder,IGuiProvider,ISignable{
+                               IPowerProvieder,ISignable,IIOMode{
 
 	private ItemStack[] stack = new ItemStack[5];
 	private String pl;
@@ -352,59 +350,6 @@ public class TileEntityPulverizer extends TileEntityBase implements
 		return "0";
 	}
 
-	public int strpo = 0;
-	public String error;
-	public static final int MAXIMUM_POWER = 4000;
-	
-	@Override
-	public int getStoredPower() {
-		return strpo;
-	}
-
-	@Override
-	public void addPower(int power) {
-		this.markDirty();
-		if(strpo >= MAXIMUM_POWER){
-			return;
-		}
-		strpo += EnergyUtils.inUE(power);
-	}
-
-	@Override
-	public int getPower(int powerneed) {
-		return 0;
-	}
-
-	@Override
-	public boolean canGetPower(BlockPos p,int power) {
-		return false;
-	}
-
-	@Override
-	public boolean canAddPower(BlockPos p,int power) {
-		return strpo + EnergyUtils.inUE(power) <= MAXIMUM_POWER;
-	}
-
-	@Override
-	public int getMaximalPower() {
-		return MAXIMUM_POWER;
-	}
-
-	@Override
-	public boolean isWorking() {
-		return work;
-	}
-
-	@Override
-	public String getErrorMessage() {
-		return error;
-	}
-
-	@Override
-	public boolean hasPower() {
-		return strpo > 0;
-	}
-	
 	@Override
 	public void closeInventory(EntityPlayer player) {}
 
@@ -416,11 +361,6 @@ public class TileEntityPulverizer extends TileEntityBase implements
 	@Override
 	public int getPowerProducNeeds() {
 		return EnergyUtils.inUE(10);
-	}
-
-	@Override
-	public int getGui() {
-		return 0;
 	}
 
 	@Override
@@ -441,12 +381,6 @@ public class TileEntityPulverizer extends TileEntityBase implements
 		UMod.log.info("Write IO");
 		tagIO.setByte(ENUMFACING_OUTPUT, (byte) DirectionUtils.getShortFromFacing(enumfO));
 		tagIO.setByte(ENUMFACING_INPUT, (byte) DirectionUtils.getShortFromFacing(enumfI));
-	}
-
-	@Override
-	public void writeEnergyToNBT(NBTTagCompound tagEnergy) {
-		 tagEnergy.setInteger(INT_ENERGY, strpo);
-		
 	}
 
 	@Override
@@ -474,19 +408,6 @@ public class TileEntityPulverizer extends TileEntityBase implements
 	}
 
 	@Override
-	public void readIOModeFromNBT(NBTTagCompound tagIO) {
-		enumfI = DirectionUtils.getFacingFromShort(tagIO.getShort(ENUMFACING_INPUT));
-		enumfO = DirectionUtils.getFacingFromShort(tagIO.getShort(ENUMFACING_OUTPUT));
-		
-	}
-
-	@Override
-	public void readEnergyFromNBT(NBTTagCompound tagEnergy) {
-		strpo = tagEnergy.getInteger(INT_ENERGY);
-		
-	}
-
-	@Override
 	public void readItemsFromNBT(NBTTagCompound tagItems) {
 		NBTTagList nbttaglist = tagItems.getTagList(LIST_ITEMS, 10);
         stack = new ItemStack[this.getSizeInventory()];
@@ -501,5 +422,51 @@ public class TileEntityPulverizer extends TileEntityBase implements
                 stack[b0] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
            }
         }
+	}
+
+	@Override
+	public EnumFacing getFacing(int i) {
+		switch(i){
+		case 0:
+			return enumfI;
+		case  1:
+			return enumfO;
+		}
+		return null;
+	}
+
+	@Override
+	public void setFacing(int i, EnumFacing face) {
+		switch(i){
+		case 0:
+			enumfI = face;
+			break;
+		case  1:
+			enumfO = face;
+			break;
+		}
+	}
+
+	@Override
+	public int hasSomefacing(EnumFacing i) {
+		if(i.equals(enumfI)){
+			return 0;
+		}
+		if(i.equals(enumfO)){
+			return 1;
+		}
+		
+		return -1;
+	}
+
+	@Override
+	public int getModeCount() {
+		return 2;
+	}
+
+	@Override
+	public String getEnergyClass() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

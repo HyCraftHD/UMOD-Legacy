@@ -31,4 +31,6 @@ public interface IPowerProvieder extends IUpdatePlayerListBox{
 	public World getWorld();
 	
 	public void setEnergy(int coun);
+	
+	public String getEnergyClass();
 }

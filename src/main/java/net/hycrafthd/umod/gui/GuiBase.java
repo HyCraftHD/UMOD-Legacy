@@ -14,7 +14,6 @@ import com.google.common.collect.Sets;
 
 import net.hycrafthd.umod.UBlocks;
 import net.hycrafthd.umod.UReference;
-import net.hycrafthd.umod.api.IGuiProvider;
 import net.hycrafthd.umod.api.ISignable;
 import net.hycrafthd.umod.api.energy.IPowerProvieder;
 import net.hycrafthd.umod.container.ContainerBase;

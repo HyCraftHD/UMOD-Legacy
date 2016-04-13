@@ -3,7 +3,6 @@ package net.hycrafthd.umod.gui;
 import java.io.IOException;
 
 import net.hycrafthd.umod.UReference;
-import net.hycrafthd.umod.api.IGuiProvider;
 import net.hycrafthd.umod.api.ISignable;
 import net.hycrafthd.umod.api.energy.IPowerProvieder;
 import net.minecraft.client.gui.FontRenderer;
@@ -35,11 +34,6 @@ public class GuiBattery extends GuiScreen {
 		pro = po;
 		this.pl = pl;
 		this.pos = pos;
-		if (po instanceof IGuiProvider) {
-			this.ag = ((IGuiProvider) po).getGui();
-		} else {
-			this.ag = Integer.MAX_VALUE;
-		}
 		worldObj = w;
 	}
 
@@ -54,12 +48,6 @@ public class GuiBattery extends GuiScreen {
 	@Override
 	public void initGui() {
 		super.initGui();
-		GuiButton btn = new GuiButton(0, this.width / 2 - 42, 20, 85, 20, "Sign with Player");
-		buttonList.add(btn);
-		GuiButton ba = new GuiButton(1, this.width / 2 - (this.xSize / 2), 20, 20, 20, "<");
-		GuiButton fo = new GuiButton(2, this.width / 2 + (this.xSize / 2) - 20, 20, 20, 20, ">");
-		buttonList.add(ba);
-		buttonList.add(fo);
 	}
 
 	@Override

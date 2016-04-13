@@ -11,6 +11,7 @@ import net.hycrafthd.umod.tileentity.TileEntityPulverizer;
 import net.hycrafthd.umod.utils.LWJGLUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.EntityRenderer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderHelper;
@@ -36,40 +37,21 @@ import net.minecraft.world.World;
 import net.minecraftforge.client.GuiIngameForge;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 
-@SuppressWarnings("deprecation")
-public class GuiModIngame extends GuiIngameForge{
+public class GuiModIngame{
 
-    private int ticks = 0;
-    private float animationticks;
-	private boolean showcroshair;
+    private static int ticks = 0;
+    private static int zLevel = 0;
+    public static ScaledResolution res;
 	
-	public GuiModIngame(Minecraft mc) {
-		super(mc);
-	}
-	
-	@Override
-	public void renderGameOverlay(float partialTicks) {
+	public static void renderGameOverlay(float partialTicks,ScaledResolution reso) {
+		res = reso;
 		onDraw();
 	}
 	
-	public void onDraw(){
-		if(Minecraft.getMinecraft().getIntegratedServer().worldServers.length > 0){
-		//World w = Minecraft.getMinecraft().getIntegratedServer().worldServers[0];
-		//EntityPlayer pl = Minecraft.getMinecraft().thePlayer;
-		/*for(int i = 0;i < w.tickableTileEntities.size();i++){
-			TileEntity ent = (TileEntity) w.tickableTileEntities.get(i);
-			if(ent != null && pl != null){
-			if(TileEntityRendererDispatcher.instance.hasSpecialRenderer(ent) && ent instanceof TileEntityBase){
-			//TileEntityRendererDispatcher.instance.renderTileEntityAt(ent, pl.getPosition().getX(), pl.getPosition().getY(), pl.getPosition().getZ(), 0F);
-			}
-			}
-		}*/
-	
-		}
+	private static void onDraw(){
 		try {
 			EntityPlayer pl = Minecraft.getMinecraft().thePlayer;
 			if(pl != null && pl.getCurrentEquippedItem() != null && (pl.getCurrentEquippedItem().getItem() instanceof ItemEnergyDisplay) && pl.getCurrentEquippedItem().hasTagCompound() && pl.getCurrentEquippedItem().getTagCompound().hasKey(ItemEnergyDisplay.NBT_TAG)&& (pl.openContainer == null || pl.openContainer instanceof ContainerPlayer)){
-			this.setShowcroshair(false);
 			drawScreen(pl);
 			}
 		} catch (Exception e) {
@@ -99,11 +81,11 @@ public class GuiModIngame extends GuiIngameForge{
         WorldRenderer worldrenderer = tessellator.getWorldRenderer();
         worldrenderer.startDrawingQuads();
         worldrenderer.setColorRGBA_F(f1, f2, f3, f);
-        worldrenderer.addVertex((double)right, (double)top, (double)this.zLevel );
-        worldrenderer.addVertex((double)left, (double)top, (double)this.zLevel);
+        worldrenderer.addVertex((double)right, (double)top, (double)zLevel );
+        worldrenderer.addVertex((double)left, (double)top, (double)zLevel);
         worldrenderer.setColorRGBA_F(f5, f6, f7, f4);
-        worldrenderer.addVertex((double)left, (double)bottom, (double)this.zLevel);
-        worldrenderer.addVertex((double)right, (double)bottom, (double)this.zLevel);
+        worldrenderer.addVertex((double)left, (double)bottom, (double)zLevel);
+        worldrenderer.addVertex((double)right, (double)bottom, (double)zLevel);
         tessellator.draw();
         GlStateManager.shadeModel(7424);
         GlStateManager.disableBlend();
@@ -112,10 +94,13 @@ public class GuiModIngame extends GuiIngameForge{
     }
 
 	
-	private void drawScreen(EntityPlayer pl){
+	private static void drawScreen(EntityPlayer pl){
 		ticks++;
-		int width = Minecraft.getMinecraft().displayWidth/8;
-		int height = Minecraft.getMinecraft().displayHeight/8;
+		int width = 200;
+		int height = 80;
+		double screenwidth = res.getScaledWidth_double();
+		double screenheight = res.getScaledHeight_double();
+
 		String str = "No Ore Detected";
 		World w = Minecraft.getMinecraft().theWorld;
 		NBTTagCompound comp = (NBTTagCompound) pl.getCurrentEquippedItem().getTagCompound().getTag(ItemEnergyDisplay.NBT_TAG);
@@ -132,33 +117,35 @@ public class GuiModIngame extends GuiIngameForge{
 		GlStateManager.pushMatrix();
         GlStateManager.enableDepth();
         GlStateManager.translate(width, height - 40, 0);
-        int j = checkBiggestString(rend, energy,str,stat,pos) / 2;
+        int wit = checkBiggestString(rend, energy,str,stat,pos);
+        width = ((wit / 2)- width) > 0 ? wit:width;
         int stringmu = 4;
         RGBA rgb4 = new RGBA(Color.CYAN);
-	    rgb4.setAlpha(155);
+	    rgb4.setAlpha(15);
         GlStateManager.popMatrix();
 	    GlStateManager.pushMatrix();
         GlStateManager.enableDepth();
         GlStateManager.translate(0, height, 0);
-	    LWJGLUtils.drawGradientRect(0, (double)(-1 - 20), (double)(j + 3 +width*4), (double)(8 + 1)*(stringmu + 1), rgb4);
+        GlStateManager.enableAlpha();
+	    LWJGLUtils.drawGradientRect((double)((screenwidth - width)/2), (double)(-1 - 20),(double)((screenwidth - width)/2 + width), (double)(8 + 1)*(stringmu + 1), rgb4,0);
 	  
 		RGBA rgb2 = new RGBA(Color.GREEN);
-		rgb2.setAlpha(50);
-		LWJGLUtils.drawFrame((double)(0), (double)(-1 - 18), (double)(j +width*4), (double)(8 + 1)*(stringmu + 3), rgb2);
+		rgb2.setAlpha(40);
+		LWJGLUtils.drawFrame((double)((screenwidth - width)/2), (double)(-1 - 18), (double)(width), (double)(8 + 1)*(stringmu + 3), rgb2,1);
 		
 		RGBA rgb = new RGBA(Color.RED);
-		rgb.setAlpha(75);
-	    LWJGLUtils.drawFrame((double)(0), (double)(-1 - 19), (double)(j +width*4), (double)(8 + 1)*(stringmu + 3), rgb);
+		rgb.setAlpha(40);
+	    LWJGLUtils.drawFrame((double)((screenwidth - width)/2) - 1, (double)(-1 - 19), (double)(+width), (double)(8 + 1)*(stringmu + 3), rgb,2);
 	   
 	    RGBA rgb3 = new RGBA(Color.WHITE);
 	    rgb3.setAlpha(255);
-	    LWJGLUtils.drawFrame((double)(0), (double)(-1 - 20), (double)(j -14 +width*4), (double)(8 + 1)*(stringmu + 3), rgb3);
+	    LWJGLUtils.drawFrame((double)((screenwidth - width)/2) - 2, (double)(-1 - 20), (double)(width), (double)(8 + 1)*(stringmu + 3), rgb3,3);
 	    	  
         String name = I18n.format(oven.getWorld().getBlockState(oven.getPos()).getBlock().getUnlocalizedName()+ ".name");
         GlStateManager.popMatrix();
 	    GlStateManager.pushMatrix();
         GlStateManager.enableDepth();
-        GlStateManager.translate(width, height, 0);
+        GlStateManager.translate(screenwidth/2, height, 0);
 	    rend.drawStringWithShadow(name, -rend.getStringWidth(name) / 2, -14, 0xFFFFFF);
 	    rend.drawStringWithShadow(pos, -rend.getStringWidth(pos) / 2, -1, 0xFFFFFF);
 	    rend.drawStringWithShadow(str, -rend.getStringWidth(str) / 2, 9, 0xFFFFFF);
@@ -169,9 +156,9 @@ public class GuiModIngame extends GuiIngameForge{
 		RenderHelper.enableGUIStandardItemLighting();
 	    GlStateManager.pushMatrix();
 	    GlStateManager.color(1, 1, 1);
-	    GlStateManager.translate(width, height, 0);
-	    renderItemIntoGUI(new ItemStack(w.getBlockState(p).getBlock()), checkBiggestString(rend, energy,str,stat,pos) / 2  + 15, 0);
-	    renderItemIntoGUI(new ItemStack(w.getBlockState(p).getBlock()), -checkBiggestString(rend, energy,str,stat,pos) / 2  - 30, 0);
+	    GlStateManager.translate((screenwidth - width)/2, height, 0);
+	    renderItemIntoGUI(new ItemStack(w.getBlockState(p).getBlock()),15, 0);
+	    renderItemIntoGUI(new ItemStack(w.getBlockState(p).getBlock()), wit + 65, 0);
 
 		GlStateManager.popMatrix();
 		}else{
@@ -183,23 +170,26 @@ public class GuiModIngame extends GuiIngameForge{
 	        RGBA rgb4 = new RGBA(Color.CYAN);
 		    rgb4.setAlpha(155);
 	        GlStateManager.popMatrix();
-		    GlStateManager.pushMatrix();
+	        GlStateManager.pushMatrix();
 	        GlStateManager.enableDepth();
 	        GlStateManager.translate(0, height, 0);
-		    LWJGLUtils.drawGradientRect(0, (double)(-1 - 20), (double)(j + 3 +width*4), (double)(8 + 1)*(stringmu + 1), rgb4);
+	        GlStateManager.enableAlpha();
+		    LWJGLUtils.drawGradientRect((double)((screenwidth - width)/2), (double)(-1 - 20),(double)((screenwidth - width)/2 + width), (double)(8 + 1)*(stringmu + 1), rgb4,0);
 		  
 			RGBA rgb2 = new RGBA(Color.GREEN);
-			rgb2.setAlpha(50);
-			LWJGLUtils.drawFrame((double)(0), (double)(-1 - 18), (double)(j +width*4), (double)(8 + 1)*(stringmu + 3), rgb2);
+			rgb2.setAlpha(40);
+			LWJGLUtils.drawFrame((double)((screenwidth - width)/2), (double)(-1 - 18), (double)(width), (double)(8 + 1)*(stringmu + 3), rgb2,1);
 			
 			RGBA rgb = new RGBA(Color.RED);
-			rgb.setAlpha(75);
-		    LWJGLUtils.drawFrame((double)(0), (double)(-1 - 19), (double)(j +width*4), (double)(8 + 1)*(stringmu + 3), rgb);
+			rgb.setAlpha(40);
+		    LWJGLUtils.drawFrame((double)((screenwidth - width)/2) - 1, (double)(-1 - 19), (double)(+width), (double)(8 + 1)*(stringmu + 3), rgb,2);
 		   
 		    RGBA rgb3 = new RGBA(Color.WHITE);
 		    rgb3.setAlpha(255);
-		    LWJGLUtils.drawFrame((double)(0), (double)(-1 - 20), (double)(j -14 +width*4), (double)(8 + 1)*(stringmu + 3), rgb3);
-		    GlStateManager.popMatrix();
+		    LWJGLUtils.drawFrame((double)((screenwidth - width)/2) - 2, (double)(-1 - 20), (double)(width), (double)(8 + 1)*(stringmu + 3), rgb3,3);
+		    	  
+	        String name = I18n.format(oven.getWorld().getBlockState(oven.getPos()).getBlock().getUnlocalizedName()+ ".name");
+	        GlStateManager.popMatrix();
 		    GlStateManager.pushMatrix();
 	        GlStateManager.enableDepth();
 	        GlStateManager.translate(width, height, 0);
@@ -207,7 +197,7 @@ public class GuiModIngame extends GuiIngameForge{
 	        GlStateManager.popMatrix();
 		}
 	}
-	private int checkBiggestString(FontRenderer re,String... args){
+	private static int checkBiggestString(FontRenderer re,String... args){
 		  int i = 0;
 		  for(String str  : args){
 			  if(re.getStringWidth(str) > i){
@@ -219,16 +209,16 @@ public class GuiModIngame extends GuiIngameForge{
 	
 	private static int trans = 45;
 	
-	 private void setupGuiTransform(int xPosition, int yPosition, boolean isGui3d)
+	 private static void setupGuiTransform(int xPosition, int yPosition, boolean isGui3d)
 	    {
-	        GlStateManager.translate((float)xPosition, (float)yPosition, 100.0F + this.zLevel);
+	        GlStateManager.translate((float)xPosition, (float)yPosition, 100.0F + zLevel);
 	        GlStateManager.translate(8.0F, 8.0F, 0.0F);
 	        GlStateManager.scale(2.0F, 2.0F, -2.0F);
 	        GlStateManager.scale(0.5F, 0.5F, 0.5F);
 
 	        if (isGui3d)
 	        {
-	        	if(ticks >= 5){
+	        	if(ticks >= 10){
 	        		trans++;
 	        		ticks = 0;
 	        	}
@@ -247,7 +237,7 @@ public class GuiModIngame extends GuiIngameForge{
 	        }
 	    }
 	    
-	    public void renderItemIntoGUI(ItemStack stack, int x, int y)
+	    public static void renderItemIntoGUI(ItemStack stack, int x, int y)
 	    {
 	        GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
 	        GlStateManager.shadeModel(7425);
@@ -261,9 +251,9 @@ public class GuiModIngame extends GuiIngameForge{
 	        GlStateManager.enableBlend();
 	        GlStateManager.blendFunc(770, 771);
 	        GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-	        this.setupGuiTransform(x, y, ibakedmodel.isGui3d());
+	        setupGuiTransform(x, y, ibakedmodel.isGui3d());
 	        ibakedmodel = net.minecraftforge.client.ForgeHooksClient.handleCameraTransforms(ibakedmodel, ItemCameraTransforms.TransformType.GUI);
-	        this.renderItem(stack, ibakedmodel);
+	        renderItem(stack, ibakedmodel);
 	        GlStateManager.disableAlpha();
 	        GlStateManager.disableRescaleNormal();
 	        GlStateManager.disableLighting();
@@ -273,12 +263,12 @@ public class GuiModIngame extends GuiIngameForge{
 	    }
 
 	    
-	    private void renderModel(IBakedModel model, int color)
+	    private static void renderModel(IBakedModel model, int color)
 	    {
-	        this.renderModel(model, color, (ItemStack)null);
+	        renderModel(model, color, (ItemStack)null);
 	    }
 	    
-	    public void renderItem(ItemStack stack, IBakedModel model)
+	    public static void renderItem(ItemStack stack, IBakedModel model)
 	    {
 	        GlStateManager.pushMatrix();
 	        GlStateManager.scale(0.5F, 0.5F, 0.5F);
@@ -294,11 +284,11 @@ public class GuiModIngame extends GuiIngameForge{
 	        else
 	        {
 	            GlStateManager.translate(-0.5F, -0.5F, -0.5F);
-	            this.renderModel(model, -1,stack);
+	            renderModel(model, -1,stack);
 
 	            if (stack.hasEffect())
 	            {
-	                this.renderEffect(model);
+	                renderEffect(model);
 	            }
 	        }
 
@@ -307,7 +297,7 @@ public class GuiModIngame extends GuiIngameForge{
 	    
 	    private static final ResourceLocation RES_ITEM_GLINT = new ResourceLocation("textures/misc/enchanted_item_glint.png");
 	    
-	    private void renderEffect(IBakedModel model)
+	    private static void renderEffect(IBakedModel model)
 	    {
 	        GlStateManager.depthMask(false);
 	        GlStateManager.depthFunc(514);
@@ -320,14 +310,14 @@ public class GuiModIngame extends GuiIngameForge{
 	        float f = (float)(Minecraft.getSystemTime() % 3000L) / 3000.0F / 8.0F;
 	        GlStateManager.translate(f, 0.0F, 0.0F);
 	        GlStateManager.rotate(-50.0F, 0.0F, 0.0F, 1.0F);
-	        this.renderModel(model, -8372020);
+	        renderModel(model, -8372020);
 	        GlStateManager.popMatrix();
 	        GlStateManager.pushMatrix();
 	        GlStateManager.scale(8.0F, 8.0F, 8.0F);
 	        float f1 = (float)(Minecraft.getSystemTime() % 4873L) / 4873.0F / 8.0F;
 	        GlStateManager.translate(-f1, 0.0F, 0.0F);
 	        GlStateManager.rotate(10.0F, 0.0F, 0.0F, 1.0F);
-	        this.renderModel(model, -8372020);
+	        renderModel(model, -8372020);
 	        GlStateManager.popMatrix();
 	        GlStateManager.matrixMode(5888);
 	        GlStateManager.blendFunc(770, 771);
@@ -337,7 +327,7 @@ public class GuiModIngame extends GuiIngameForge{
 	        Minecraft.getMinecraft().getTextureManager().bindTexture(TextureMap.locationBlocksTexture);
 	    }
 	    
-	    private void renderModel(IBakedModel model, int color, ItemStack stack)
+	    private static void renderModel(IBakedModel model, int color, ItemStack stack)
 	    {
 	        Tessellator tessellator = Tessellator.getInstance();
 	        WorldRenderer worldrenderer = tessellator.getWorldRenderer();
@@ -349,21 +339,20 @@ public class GuiModIngame extends GuiIngameForge{
 	        for (int k = 0; k < j; ++k)
 	        {
 	            EnumFacing enumfacing = aenumfacing[k];
-	            this.renderQuads(worldrenderer, model.getFaceQuads(enumfacing), color, stack);
+	            renderQuads(worldrenderer, model.getFaceQuads(enumfacing), color, stack);
 	        }
 
-	        this.renderQuads(worldrenderer, model.getGeneralQuads(), color, stack);
+	        renderQuads(worldrenderer, model.getGeneralQuads(), color, stack);
 	        tessellator.draw();
 	    }
 	    
-	    @SuppressWarnings("rawtypes")
-		private void renderQuads(WorldRenderer renderer, List quads, int color, ItemStack stack)
+		private static void renderQuads(WorldRenderer renderer, List quads, int color, ItemStack stack)
 	    {
 	        boolean flag = color == -1 && stack != null;
 	        BakedQuad bakedquad;
 	        int j;
 
-	        for (Iterator iterator = quads.iterator(); iterator.hasNext(); this.renderQuad(renderer, bakedquad, j))
+	        for (Iterator iterator = quads.iterator(); iterator.hasNext(); renderQuad(renderer, bakedquad, j))
 	        {
 	            bakedquad = (BakedQuad)iterator.next();
 	            j = color;
@@ -382,35 +371,21 @@ public class GuiModIngame extends GuiIngameForge{
 	        }
 	    }
 	    
-	    private void renderQuad(WorldRenderer renderer, BakedQuad quad, int color)
+	    private static void renderQuad(WorldRenderer renderer, BakedQuad quad, int color)
 	    {
 	        renderer.addVertexData(quad.getVertexData());
 	        if(quad instanceof net.minecraftforge.client.model.IColoredBakedQuad)
 	            net.minecraftforge.client.ForgeHooksClient.putQuadColor(renderer, quad, color);
 	        else
 	        renderer.putColor4(color);
-	        this.putQuadNormal(renderer, quad);
+	        putQuadNormal(renderer, quad);
 	    }
 
-	    private void putQuadNormal(WorldRenderer renderer, BakedQuad quad)
+	    private static void putQuadNormal(WorldRenderer renderer, BakedQuad quad)
 	    {
 	        Vec3i vec3i = quad.getFace().getDirectionVec();
 	        renderer.putNormal((float)vec3i.getX(), (float)vec3i.getY(), (float)vec3i.getZ());
 	    }
-
-	
-	@Override
-	protected boolean showCrosshair() {
-		return super.showCrosshair() || showcroshair;
-	}
-
-	public boolean isShowcroshair() {
-		return showcroshair;
-	}
-
-	public void setShowcroshair(boolean showcroshair) {
-		this.showcroshair = showcroshair;
-	}
 
 	
 }

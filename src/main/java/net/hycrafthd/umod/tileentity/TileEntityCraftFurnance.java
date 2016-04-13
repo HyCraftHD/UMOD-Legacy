@@ -1,6 +1,5 @@
 package net.hycrafthd.umod.tileentity;
 
-import net.hycrafthd.umod.api.IGuiProvider;
 import net.hycrafthd.umod.api.ISignable;
 import net.hycrafthd.umod.api.energy.EnergyAPI;
 import net.hycrafthd.umod.api.energy.IPowerProvieder;
@@ -16,7 +15,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 
-public class TileEntityCraftFurnance extends TileEntityBase implements IGuiProvider,IPowerProvieder,ISignable{
+public class TileEntityCraftFurnance extends TileEntityBase implements IPowerProvieder,ISignable{
 
 	public ItemStack[] stack = new ItemStack[11];
 	
@@ -33,11 +32,6 @@ public class TileEntityCraftFurnance extends TileEntityBase implements IGuiProvi
 	@Override
 	public boolean canExtractItem(int index, ItemStack stack, EnumFacing direction) {
 		return index == 9;
-	}
-	
-	@Override
-	public void setEnergy(int coun) {
-		stored = coun;
 	}
 
 	@Override
@@ -152,9 +146,9 @@ public class TileEntityCraftFurnance extends TileEntityBase implements IGuiProvi
 		api.tranferFromBattery(stack[10]);
 		
 		ItemStack stac = ModRegistryUtils.isCraftSmelt(new ItemStack[] {stack[0],stack[1],stack[2]}, new ItemStack[] {stack[3],stack[4],stack[5]}, new ItemStack[] {stack[6],stack[7],stack[8]});
-		if(stac != null && this.stored > 150){
+		if(stac != null && this.strpo > 150){
 			time++;
-			this.stored -= 150;
+			this.strpo -= 150;
 			if(time == 80){
 				time = 0;
 		if(stack[9] == null){
@@ -183,66 +177,6 @@ public class TileEntityCraftFurnance extends TileEntityBase implements IGuiProvi
 		return null;
 	}
 
-	public int stored;
-	public int MAX_POWER = 4000;
-	
-	@Override
-	public int getStoredPower() {
-		return stored;
-	}
-
-	@Override
-	public void addPower(int power) {
-		stored += power;
-	}
-
-	@Override
-	public int getPower(int powerneed) {
-		stored -= powerneed;
-		return powerneed;
-	}
-
-	@Override
-	public boolean canGetPower(BlockPos pos, int power) {
-		return false;
-	}
-
-	@Override
-	public boolean canAddPower(BlockPos pos, int power) {
-		return EnergyUtils.inUE(power) + stored <= MAX_POWER;
-	}
-
-	@Override
-	public int getMaximalPower() {
-		return MAX_POWER;
-	}
-
-	@Override
-	public boolean isWorking() {
-		return false;
-	}
-
-	@Override
-	public String getErrorMessage() {
-		return null;
-	}
-
-	@Override
-	public boolean hasPower() {
-		return stored > 0;
-	}
-
-	@Override
-	public int getPowerProducNeeds() {
-		return EnergyUtils.inUE(30);
-	}
-
-	@Override
-	public int getGui() {
-		return EnumTypeGui.CRAFTFURNANCE.getID();
-	}
-	
-
 	@Override
 	public void writeOtherToNBT(NBTTagCompound tagSonstiges) {
 		// TODO Auto-generated method stub
@@ -252,12 +186,6 @@ public class TileEntityCraftFurnance extends TileEntityBase implements IGuiProvi
 	@Override
 	public void writeIOModeToNBT(NBTTagCompound tagIO) {
 		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void writeEnergyToNBT(NBTTagCompound tagEnergy) {
-		tagEnergy.setInteger("Energy", stored);
 		
 	}
 
@@ -279,16 +207,24 @@ public class TileEntityCraftFurnance extends TileEntityBase implements IGuiProvi
 		
 	}
 
-	@Override
-	public void readEnergyFromNBT(NBTTagCompound tagEnergy) {
-		this.stored = tagEnergy.getInteger("Energy");
-		
-	}
 
 	@Override
 	public void readItemsFromNBT(NBTTagCompound tagItems) {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public int getPowerProducNeeds() {
+		return 10;
+	}
+
+	@Override
+	public String getEnergyClass() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
 	
 }

@@ -1,36 +1,29 @@
 package net.hycrafthd.umod.tileentity;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import net.hycrafthd.umod.api.IPlugabel;
-import net.hycrafthd.umod.api.energy.EnergyAPI;
-import net.hycrafthd.umod.api.energy.IPipeRange;
+import net.hycrafthd.umod.api.energy.ICabel;
 import net.hycrafthd.umod.api.energy.IPowerProvieder;
-import net.hycrafthd.umod.block.BlockBaseMachine;
-import net.hycrafthd.umod.entity.EntityPipeFX;
-import net.hycrafthd.umod.utils.DirectionUtils;
+import net.hycrafthd.umod.api.energy.TunnelHolder;
+import net.hycrafthd.umod.api.energy.UETunnel;
 import net.hycrafthd.umod.utils.EnergyUtils;
-import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.BlockPos;
-import net.minecraft.util.Vec3i;
 import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
 
-public class TileEntityCable extends TileEntity implements IPlugabel, IPowerProvieder, IPipeRange {
+public class TileEntityCable extends TileEntity implements IPlugabel, ICabel {
 
 	public int Maximum_Power;
 	public int stored;
 	public int loos;
 	public boolean firstrun = false;
-	private ArrayList<BlockPos> getter = new ArrayList<BlockPos>();
 	public ItemStack conduit = null;
+	public int tun = -1;
 	
 	public TileEntityCable() {
 	}
@@ -71,82 +64,10 @@ public class TileEntityCable extends TileEntity implements IPlugabel, IPowerProv
 	@Override
 	public boolean canConnect(IBlockAccess w, BlockPos p) {
 		TileEntity et = w.getTileEntity(p);
-		if (et instanceof IPowerProvieder) {
+		if (et instanceof IPowerProvieder || et instanceof ICabel) {
 			return true;
 		}
 		return false;
-	}
-
-	@Override
-	public void update() {
-	     EnergyAPI api = new EnergyAPI(this);
-	     api.transferEnergy();
-	    if(!firstrun){
-			this.worldObj.spawnEntityInWorld(new EntityPipeFX(this.worldObj,this.pos));
-            firstrun = true;
-	    }
-	}
-
-	public int passtpip = 0;
-
-	@Override
-	public int getStoredPower() {
-		return stored;
-	}
-
-	@Override
-	public void addPower(int power) {
-		stored += EnergyUtils.inUE(power);
-		this.markDirty();
-	}
-
-	@Override
-	public int getPower(int powerneed) {
-		stored -= EnergyUtils.inUE(powerneed);
-		this.markDirty();
-		return powerneed;
-	}
-
-	@Override
-	public boolean canGetPower(BlockPos pos,int power) {
-		if (stored - EnergyUtils.inUE(power) >= 0 && !getter.contains(pos)) {
-			return true;
-		}
-		return false;
-	}
-
-	@Override
-	public boolean canAddPower(BlockPos pos,int power) {
-		if (EnergyUtils.inUE(power) + stored <= Maximum_Power) {
-			getter.add(pos);
-			return true;
-		}
-		return false;
-	}
-
-	@Override
-	public int getMaximalPower() {
-		return Maximum_Power;
-	}
-
-	@Override
-	public boolean isWorking() {
-		return true;
-	}
-
-	@Override
-	public String getErrorMessage() {
-		return null;
-	}
-
-	@Override
-	public boolean hasPower() {
-		return stored > 0;
-	}
-
-	@Override
-	public int getPastPipeCount() {
-		return passtpip;
 	}
 
 	@Override
@@ -167,37 +88,157 @@ public class TileEntityCable extends TileEntity implements IPlugabel, IPowerProv
 		this.Maximum_Power = compound.getShort("Max");
 		super.readFromNBT(compound);
 	}
-
-	@Override
-	public int getPowerProducNeeds() {
-		return EnergyUtils.inUE(Maximum_Power);
+	
+	@Deprecated
+	public void notifyOfPipeState(TileEntity ent){
+		//TODO Be not so behindert and futherly delete this method
 	}
+	
+	public void onBlockSetInWorld(){
+		if(this.tun == -1){
+		    World w = this.getWorld();
+			boolean csouth = this.canConnect(w, pos.south());
+			boolean cnorth = this.canConnect(w, pos.north());
+			boolean cdown = this.canConnect(w, pos.down());
+			boolean cup = this.canConnect(w, pos.up());
+			boolean ceast = this.canConnect(w, pos.east());
+			boolean cwest = this.canConnect(w, pos.west());
 
-	@Override
-	public int addBlock(int count) {
-		int i = getPastPipeCount();
-		passtpip = count;
-		return i;
-	}
-
-	@Override
-	public int getMaximalRange() {
-		return loos;
-	}
-
-	@Override
-	public void remove(int count) {
-		getPower(count);
-	}
-
-	@Override
-	public void clearPast() {
-		passtpip = 0;
+			TileEntity ent = null;
+			if (cup) {
+				ent = w.getTileEntity(pos.up());
+				if(ent instanceof ICabel){
+					ICabel cab = (ICabel) ent;
+						this.tun = cab.getTunnel().getID();
+				}
+			}
+			if (cdown) {
+				if(ent != null){
+				ent = w.getTileEntity(pos.down());
+				if(ent instanceof ICabel){
+					ICabel cab = (ICabel) ent;
+						this.tun = cab.getTunnel().getID();
+				}
+				}
+			}
+			if (cwest) {
+				if(ent != null){
+					ent = w.getTileEntity(pos.west());
+					if(ent instanceof ICabel){
+						ICabel cab = (ICabel) ent;
+							this.tun = cab.getTunnel().getID();
+					}
+					}
+			}
+			if (ceast) {
+				if(ent != null){
+					ent = w.getTileEntity(pos.east());
+					if(ent instanceof ICabel){
+						ICabel cab = (ICabel) ent;
+							this.tun = cab.getTunnel().getID();
+					}
+					}
+			}
+			if (cnorth) {
+					ent = w.getTileEntity(pos.north());
+					if(ent instanceof ICabel){
+						ICabel cab = (ICabel) ent;
+						if(ent != null){
+							if(this.tun == -1){
+							this.tun = cab.getTunnel().getID();
+							}else{
+								TunnelHolder.merge(this.tun, cab.getTunnel().getID());
+							}
+						}
+					}
+			}
+			if (csouth) {
+				if(ent != null){
+					ent = w.getTileEntity(pos.south());
+					if(ent instanceof ICabel){
+						ICabel cab = (ICabel) ent;
+							this.tun = cab.getTunnel().getID();
+					}
+					}
+			}
+		}		
 	}
 
 	@Override
 	public void setEnergy(int coun) {
 		stored = coun;
+	}
+
+	@Override
+	public String getEnergyClass() {
+		return "UE/T";
+	}
+
+	@Override
+	public int getEnergy() {
+		return stored;
+	}
+
+	@Deprecated
+	@Override
+	public void searchForInput(ICabel cab) {
+		//TODO Be not so behindert and futherly delete this method
+	}
+
+	@Deprecated
+	@Override
+	public void tranferTo(ICabel cab) {
+		//TODO Be not so behindert and futherly delete this method
+	}
+
+	@Override
+	public boolean isInput() {
+		return false;
+	}
+
+	@Override
+	public boolean isOutput() {
+		return false;
+	}
+
+	@Override
+	public int getMaxEnergy() {
+		return Maximum_Power;
+	}
+
+	@Override
+	public boolean hasConnectedOutput() {
+		return false;
+	}
+
+	@Override
+	public void addToTunnel(ICabel cab) {
+      	  	TunnelHolder.getUETunnel(tun).add(cab);
+	}
+
+	@Override
+	public ICabel[] getOutputsFromTunnel() {
+		return TunnelHolder.getUETunnel(tun).getOutput();
+	}
+
+	@Override
+	public ICabel[] getInputsFromTunnel() {
+		return TunnelHolder.getUETunnel(tun).getInput();
+	}
+
+	@Override
+	public int getTunnelIDofCabel() {
+		return tun;
+	}
+
+	@Override
+	public UETunnel getTunnel() {
+		return TunnelHolder.getUETunnel(tun);
+	}
+
+	@Override
+	public void setTunnelID(int i) {
+		this.tun = i;
 	}
 
 }

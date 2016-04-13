@@ -1,17 +1,22 @@
 package net.hycrafthd.umod.tileentity;
 
-import net.hycrafthd.umod.utils.NBTUtils;
-import net.hycrafthd.umod.utils.TileNBTUtils;
+import net.hycrafthd.umod.UMod;
+import net.hycrafthd.umod.api.energy.IPowerProvieder;
+import net.hycrafthd.umod.utils.DirectionUtils;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
+import net.minecraft.server.gui.IUpdatePlayerListBox;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 
-public class TileEntityPainter extends TileEntityBase{
+public class TileEntityPainter extends TileEntityBase implements IUpdatePlayerListBox{
 
 	private ItemStack[] stack = new ItemStack[5];
+	private int energy;
 	
 	@Override
 	public int[] getSlotsForFace(EnumFacing side) {
@@ -158,51 +163,92 @@ public class TileEntityPainter extends TileEntityBase{
 		return "6";
 	}
 
+	public static final String
+	
+	ENUMFACING_OUTPUT = "OP",
+	ENUMFACING_INPUT = "IP",
+	INT_ENERGY = "Energy",
+	SHORT_TIME = "Time",
+	BYTE_SLOTS = "slot",
+	LIST_ITEMS = "items",
+	STRING_PLAYER = "play";
+	
+	private EnumFacing enumfI;
+	private EnumFacing enumfO;
+	
 	@Override
 	public void writeOtherToNBT(NBTTagCompound tagSonstiges) {
-		// TODO Auto-generated method stub
-		
+		// tagSonstiges.setShort(SHORT_TIME, (short) time);
 	}
 
 	@Override
 	public void writeIOModeToNBT(NBTTagCompound tagIO) {
-		// TODO Auto-generated method stub
-	}
-
-	@Override
-	public void writeEnergyToNBT(NBTTagCompound tagEnergy) {
-		// TODO Auto-generated method stub
-		
+		UMod.log.info("Write IO");
+		tagIO.setByte(ENUMFACING_OUTPUT, (byte) DirectionUtils.getShortFromFacing(enumfO));
+		tagIO.setByte(ENUMFACING_INPUT, (byte) DirectionUtils.getShortFromFacing(enumfI));
 	}
 
 	@Override
 	public void writeItemsToNBT(NBTTagCompound tagItems) {
-		// TODO Auto-generated method stub
-		
+		NBTTagList nbttaglist = new NBTTagList();
+
+	     for (int i = 0; i < stack.length; ++i)
+	     {
+	         if (stack[i] != null)
+	         {
+	             NBTTagCompound nbttagcompound1 = new NBTTagCompound();
+	             nbttagcompound1.setByte(BYTE_SLOTS, (byte) i);
+	             stack[i].writeToNBT(nbttagcompound1);
+	             nbttaglist.appendTag(nbttagcompound1);
+	         }
+	     }
+
+	    tagItems.setTag(LIST_ITEMS, nbttaglist);
 	}
 
 	@Override
 	public void readOtherFromNBT(NBTTagCompound tagSonstiges) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void readIOModeFromNBT(NBTTagCompound tagIO) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void readEnergyFromNBT(NBTTagCompound tagEnergy) {
-		// TODO Auto-generated method stub
+		enumfI = DirectionUtils.getFacingFromShort(tagIO.getShort(ENUMFACING_INPUT));
+		enumfO = DirectionUtils.getFacingFromShort(tagIO.getShort(ENUMFACING_OUTPUT));
 		
 	}
 
 	@Override
 	public void readItemsFromNBT(NBTTagCompound tagItems) {
+		NBTTagList nbttaglist = tagItems.getTagList(LIST_ITEMS, 10);
+        stack = new ItemStack[this.getSizeInventory()];
+
+        for (int i = 0; i < nbttaglist.tagCount(); ++i)
+        {
+            NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
+            int b0 = nbttagcompound1.getByte(BYTE_SLOTS);
+
+            if (b0 >= 0 && b0 < stack.length)
+            {
+                stack[b0] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
+           }
+        }
+	}
+
+	@Override
+	public void update() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public int getPowerProducNeeds() {
+		return 0;
+	}
+
+	@Override
+	public String getEnergyClass() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

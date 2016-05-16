@@ -8,6 +8,7 @@ import net.hycrafthd.umod.UReference;
 import net.hycrafthd.umod.api.energy.ICabel;
 import net.hycrafthd.umod.api.energy.IEnergyMessage;
 import net.hycrafthd.umod.api.energy.IPowerProvieder;
+import net.hycrafthd.umod.api.energy.TunnelHolder;
 import net.hycrafthd.umod.entity.EntityPipeFX;
 import net.hycrafthd.umod.tileentity.TileEntityCable;
 import net.hycrafthd.umod.utils.EnergyUtils;
@@ -192,7 +193,7 @@ public class BlockCable extends Block implements ITileEntityProvider, IEnergyMes
 	public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn) {
 		super.onEntityCollidedWithBlock(worldIn, pos, state, entityIn);
 		if (!isIsolated()) {
-			entityIn.attackEntityFrom(UDamageSource.electroshock, ((IPowerProvieder) worldIn.getTileEntity(pos)).getStoredPower() / 2);
+			entityIn.attackEntityFrom(UDamageSource.electroshock, 5);
 		}
 	}
 
@@ -200,7 +201,7 @@ public class BlockCable extends Block implements ITileEntityProvider, IEnergyMes
 	public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, Entity entityIn) {
 		super.onEntityCollidedWithBlock(worldIn, pos, entityIn);
 		if (!isIsolated()) {
-			entityIn.attackEntityFrom(UDamageSource.electroshock, ((IPowerProvieder) worldIn.getTileEntity(pos)).getStoredPower());
+			entityIn.attackEntityFrom(UDamageSource.electroshock, 10);
 		}
 	}
 
@@ -216,26 +217,38 @@ public class BlockCable extends Block implements ITileEntityProvider, IEnergyMes
 	@Override
 	public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ,
 			int meta, EntityLivingBase placer) {
-		TileEntityCable cab = (TileEntityCable) worldIn.getTileEntity(pos);
-		cab.onBlockSetInWorld();
 		return super.onBlockPlaced(worldIn, pos, facing, hitX, hitY, hitZ, meta, placer);
 	}
 	
 	@Override
-	public void onNeighborChange(IBlockAccess world, BlockPos pos, BlockPos neighbor) {
-		TileEntity ent = world.getTileEntity(neighbor);
-		if(ent instanceof IPowerProvieder || ent instanceof ICabel){
-			((TileEntityCable)world.getTileEntity(pos)).notifyOfPipeState(ent);
-		}
+	public void onNeighborBlockChange(World world, BlockPos pos, IBlockState state, Block neighborBlock) {
+		((TileEntityCable)world.getTileEntity(pos)).onBlockSetInWorld();
+	}
+	
+	@Override
+	public void onBlockDestroyedByExplosion(World worldIn, BlockPos pos, Explosion explosionIn) {
+        entityClear(worldIn, pos);
+		super.onBlockDestroyedByExplosion(worldIn, pos, explosionIn);
+	}
+	
+	@Override
+	public void onBlockDestroyedByPlayer(World worldIn, BlockPos pos, IBlockState state) {
+		entityClear(worldIn, pos);
+		super.onBlockDestroyedByPlayer(worldIn, pos, state);
 	}
 	
 	@Override
 	public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
-		@SuppressWarnings("unchecked")
-		List<EntityPipeFX> p = worldIn.getEntitiesWithinAABB(EntityPipeFX.class, new AxisAlignedBB(pos, pos.add(1, 1, 1)));
-		for(EntityPipeFX fx : p){
-		fx.setDead();
-		}
+		entityClear(worldIn, pos);
+		((TileEntityCable)worldIn.getTileEntity(pos)).onBlockBreak();
 		super.breakBlock(worldIn, pos, state);
+	}
+	
+	private void entityClear(World worldIn,BlockPos pos){
+	@SuppressWarnings("unchecked")
+	  List<EntityPipeFX> p = worldIn.getEntitiesWithinAABB(EntityPipeFX.class, new AxisAlignedBB(pos, pos.add(1, 1, 1)));
+	   for(EntityPipeFX fx : p){
+	     fx.setDead();
+	   }
 	}
 }

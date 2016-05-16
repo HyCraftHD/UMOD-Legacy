@@ -469,4 +469,14 @@ public class TileEntityPulverizer extends TileEntityBase implements
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public boolean needsPower() {
+		return true;
+	}
+
+	@Override
+	public boolean productsPower() {
+		return false;
+	}
 }

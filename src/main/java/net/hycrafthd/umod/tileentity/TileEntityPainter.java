@@ -251,4 +251,14 @@ public class TileEntityPainter extends TileEntityBase implements IUpdatePlayerLi
 		return null;
 	}
 
+	@Override
+	public boolean needsPower() {
+		return true;
+	}
+
+	@Override
+	public boolean productsPower() {
+		return false;
+	}
+
 }

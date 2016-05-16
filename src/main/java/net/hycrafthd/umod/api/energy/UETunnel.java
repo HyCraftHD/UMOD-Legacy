@@ -2,24 +2,34 @@ package net.hycrafthd.umod.api.energy;
 
 import java.util.ArrayList;
 
-public class UETunnel extends ArrayList<ICabel> {
+import net.hycrafthd.umod.UMod;
+import net.minecraft.util.BlockPos;
+import net.minecraft.world.World;
+
+public class UETunnel extends ArrayList<BlockPos> {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 6142151165474828749L;
 	private int id = -1;
+	private World w;
 	
-	@Override
+	public UETunnel(World w) {
+		this.w = w;
+		UMod.log.debug("New UETunnel");
+	}
+	
 	public boolean add(ICabel e) {
 		if(this.id == -1){throw new IllegalArgumentException("Not Init error");}
 		e.setTunnelID(this.id);
-		return super.add(e);
+		return super.add(e.getPos());
 	}
 	
 	public ICabel[] getOutput() {
 		ArrayList<ICabel> cabs = new ArrayList<ICabel>();
-		for(ICabel cab : this){
+		for(BlockPos pos : this){
+			ICabel cab = (ICabel) w.getTileEntity(pos);
 			if(cab.isOutput())
 			cabs.add(cab);
 		}
@@ -34,7 +44,8 @@ public class UETunnel extends ArrayList<ICabel> {
 
 	public ICabel[] getInput() {
 		ArrayList<ICabel> cabs = new ArrayList<ICabel>();
-		for(ICabel cab : this){
+		for(BlockPos pos : this){
+			ICabel cab = (ICabel) w.getTileEntity(pos);
 			if(cab.isOutput())
 			cabs.add(cab);
 		}
@@ -48,10 +59,21 @@ public class UETunnel extends ArrayList<ICabel> {
 	}
 	
 	public void setID(int id){
+		UMod.log.info("Set Tunnel Id to " + id);
 		this.id = id;
+		for(BlockPos pos : this){
+			ICabel cab = (ICabel) w.getTileEntity(pos);
+			if(cab != null){
+			cab.setTunnelID(id);
+			}
+		}
 	}
 	
 	public int getID(){
 		return id;
+	}
+	
+	public World getWorld(){
+		return w;
 	}
 }

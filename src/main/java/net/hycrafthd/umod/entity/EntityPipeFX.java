@@ -18,7 +18,6 @@ public class EntityPipeFX extends EntityHanging{
          this.field_174860_b = EnumFacing.NORTH;
 
 	}
-	
 	public EntityPipeFX(World worldIn,BlockPos p) {
 		super(worldIn,p);
 		this.setSize(1F, 1F);

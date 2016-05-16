@@ -290,8 +290,6 @@ public abstract class GuiBase extends GuiScreen {
 		this.guiTop = (this.height - this.ySize) / 2;
 		box.getItems().add("Choose");
 		box.setSelected(box.getItems().size() - 1);
-		GuiButton btn = new GuiButton(0, this.width / 2 - 42, 20, 85, 20, "Sign with Player");
-		buttonList.add(btn);
 	}
 
 	public boolean canColorChange(){

@@ -1,22 +1,27 @@
 package net.hycrafthd.umod.tileentity;
 
+import java.util.ArrayList;
+
+import net.hycrafthd.umod.UMod;
 import net.hycrafthd.umod.api.IPlugabel;
 import net.hycrafthd.umod.api.energy.ICabel;
 import net.hycrafthd.umod.api.energy.IPowerProvieder;
 import net.hycrafthd.umod.api.energy.TunnelHolder;
 import net.hycrafthd.umod.api.energy.UETunnel;
+import net.hycrafthd.umod.entity.EntityPipeFX;
 import net.hycrafthd.umod.utils.EnergyUtils;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
+import net.minecraft.server.gui.IUpdatePlayerListBox;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public class TileEntityCable extends TileEntity implements IPlugabel, ICabel {
+public class TileEntityCable extends TileEntity implements IPlugabel, ICabel, IUpdatePlayerListBox{
 
 	public int Maximum_Power;
 	public int stored;
@@ -24,6 +29,8 @@ public class TileEntityCable extends TileEntity implements IPlugabel, ICabel {
 	public boolean firstrun = false;
 	public ItemStack conduit = null;
 	public int tun = -1;
+	public int idInT = -1;
+	public boolean isInit = false;
 	
 	public TileEntityCable() {
 	}
@@ -87,6 +94,7 @@ public class TileEntityCable extends TileEntity implements IPlugabel, ICabel {
 		this.stored = compound.getShort("Stored");
 		this.Maximum_Power = compound.getShort("Max");
 		super.readFromNBT(compound);
+		this.onBlockSetInWorld();
 	}
 	
 	@Deprecated
@@ -95,75 +103,68 @@ public class TileEntityCable extends TileEntity implements IPlugabel, ICabel {
 	}
 	
 	public void onBlockSetInWorld(){
-		if(this.tun == -1){
+		   if(worldObj == null)return;
 		    World w = this.getWorld();
 			boolean csouth = this.canConnect(w, pos.south());
-			boolean cnorth = this.canConnect(w, pos.north());
-			boolean cdown = this.canConnect(w, pos.down());
 			boolean cup = this.canConnect(w, pos.up());
-			boolean ceast = this.canConnect(w, pos.east());
 			boolean cwest = this.canConnect(w, pos.west());
-
-			TileEntity ent = null;
+			
+			ArrayList<TileEntity> ent = new ArrayList<TileEntity>();
 			if (cup) {
-				ent = w.getTileEntity(pos.up());
-				if(ent instanceof ICabel){
-					ICabel cab = (ICabel) ent;
-						this.tun = cab.getTunnel().getID();
-				}
-			}
-			if (cdown) {
 				if(ent != null){
-				ent = w.getTileEntity(pos.down());
-				if(ent instanceof ICabel){
-					ICabel cab = (ICabel) ent;
-						this.tun = cab.getTunnel().getID();
-				}
+				ent.add(w.getTileEntity(pos.up()));
 				}
 			}
 			if (cwest) {
 				if(ent != null){
-					ent = w.getTileEntity(pos.west());
-					if(ent instanceof ICabel){
-						ICabel cab = (ICabel) ent;
-							this.tun = cab.getTunnel().getID();
-					}
-					}
-			}
-			if (ceast) {
-				if(ent != null){
-					ent = w.getTileEntity(pos.east());
-					if(ent instanceof ICabel){
-						ICabel cab = (ICabel) ent;
-							this.tun = cab.getTunnel().getID();
-					}
-					}
-			}
-			if (cnorth) {
-					ent = w.getTileEntity(pos.north());
-					if(ent instanceof ICabel){
-						ICabel cab = (ICabel) ent;
-						if(ent != null){
-							if(this.tun == -1){
-							this.tun = cab.getTunnel().getID();
-							}else{
-								TunnelHolder.merge(this.tun, cab.getTunnel().getID());
-							}
-						}
-					}
+					ent.add(w.getTileEntity(pos.west()));
+				}
 			}
 			if (csouth) {
 				if(ent != null){
-					ent = w.getTileEntity(pos.south());
-					if(ent instanceof ICabel){
-						ICabel cab = (ICabel) ent;
-							this.tun = cab.getTunnel().getID();
+					ent.add(w.getTileEntity(pos.south()));
+				}
+			}
+			
+			
+			for(TileEntity et : ent){
+			if(et instanceof IPowerProvieder){
+					if(((IPowerProvieder) et).needsPower()){
+						this.isout = true;
+						UMod.log.debug("Output found");
+					}else if(((IPowerProvieder) et).productsPower()){
+						this.isin = true;
+						UMod.log.debug("Input found");
 					}
+			}else
+			if(et instanceof ICabel){
+					ICabel cab = (ICabel) et;
+					if(cab != null){
+						if(this.tun < 0){
+						if(cab.getTunnelIDofCabel() >= 0){
+						this.tun = cab.getTunnel().getID();
+						}else{
+						this.tun = TunnelHolder.addUETunnel(new UETunnel(this.worldObj));
+						cab.setTunnelID(this.tun);
+						TunnelHolder.getUETunnel(this.tun).add(this);
+						TunnelHolder.getUETunnel(this.tun).add(cab);
+						}
+						}else if(cab.getTunnelIDofCabel() != this.tun && cab.getTunnelIDofCabel() > 0){
+						this.tun = TunnelHolder.merge(this.tun, cab.getTunnelIDofCabel());
+						}else{
+						cab.setTunnelID(this.tun);
+						}
 					}
 			}
-		}		
+			}
+			isInit = true;
 	}
 
+	public void onBlockBreak(){
+		if(!isInit)return;
+		TunnelHolder.regenUETunnel(tun,this.worldObj);
+	}
+	
 	@Override
 	public void setEnergy(int coun) {
 		stored = coun;
@@ -191,14 +192,16 @@ public class TileEntityCable extends TileEntity implements IPlugabel, ICabel {
 		//TODO Be not so behindert and futherly delete this method
 	}
 
+	protected boolean isout = false,isin = false;
+	
 	@Override
 	public boolean isInput() {
-		return false;
+		return isin;
 	}
 
 	@Override
 	public boolean isOutput() {
-		return false;
+		return isout;
 	}
 
 	@Override
@@ -239,6 +242,13 @@ public class TileEntityCable extends TileEntity implements IPlugabel, ICabel {
 	@Override
 	public void setTunnelID(int i) {
 		this.tun = i;
+	}
+
+	@Override
+	public void update() {
+		    if(!isInit)return;
+			onBlockSetInWorld();
+		    this.worldObj.spawnEntityInWorld(new EntityPipeFX(this.worldObj,this.pos));				 	    
 	}
 
 }

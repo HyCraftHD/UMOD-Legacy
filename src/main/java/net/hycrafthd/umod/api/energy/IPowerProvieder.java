@@ -33,4 +33,8 @@ public interface IPowerProvieder extends IUpdatePlayerListBox{
 	public void setEnergy(int coun);
 	
 	public String getEnergyClass();
+	
+	public boolean needsPower();
+	
+	public boolean productsPower();
 }

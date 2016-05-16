@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.util.Iterator;
 import java.util.List;
 
+import org.lwjgl.opengl.GL11;
+
 import net.hycrafthd.umod.api.energy.IPowerProvieder;
 import net.hycrafthd.umod.item.ItemEnergyDisplay;
 import net.hycrafthd.umod.render.RGBA;
@@ -52,7 +54,7 @@ public class GuiModIngame{
 		try {
 			EntityPlayer pl = Minecraft.getMinecraft().thePlayer;
 			if(pl != null && pl.getCurrentEquippedItem() != null && (pl.getCurrentEquippedItem().getItem() instanceof ItemEnergyDisplay) && pl.getCurrentEquippedItem().hasTagCompound() && pl.getCurrentEquippedItem().getTagCompound().hasKey(ItemEnergyDisplay.NBT_TAG)&& (pl.openContainer == null || pl.openContainer instanceof ContainerPlayer)){
-			drawScreen(pl);
+				drawScreen(pl);
 			}
 		} catch (Exception e) {
 			System.err.println(e.getMessage());
@@ -115,8 +117,12 @@ public class GuiModIngame{
 		String stat = "Progress " + oven.getField(0) + "/100";
 		String pos = "X=" + p.getX() + " Y=" + p.getY() + " Z=" + p.getZ();
 		GlStateManager.pushMatrix();
-        GlStateManager.enableDepth();
+        GL11.glNormal3f(0.0F, 1.0F, 0.0F);
         GlStateManager.translate(width, height - 40, 0);
+	    GlStateManager.rotate(80F, 1.0F, 0F, 0F);
+        GlStateManager.disableLighting();
+        GlStateManager.depthMask(false);
+        GlStateManager.disableDepth();
         int wit = checkBiggestString(rend, energy,str,stat,pos);
         width = ((wit / 2)- width) > 0 ? wit:width;
         int stringmu = 4;

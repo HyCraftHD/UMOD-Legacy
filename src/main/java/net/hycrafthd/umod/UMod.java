@@ -1,5 +1,7 @@
 package net.hycrafthd.umod;
 
+import org.apache.logging.log4j.message.Message;
+import org.apache.logging.log4j.message.MessageFactory;
 import org.lwjgl.input.Keyboard;
 
 import net.hycrafthd.umod.api.ProcessHandler;

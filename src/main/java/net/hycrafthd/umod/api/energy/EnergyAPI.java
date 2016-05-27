@@ -12,6 +12,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 
+@Deprecated
 public class EnergyAPI {
 	
 	private IPowerProvieder pro;

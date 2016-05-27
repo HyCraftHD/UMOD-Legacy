@@ -3,6 +3,8 @@ package net.hycrafthd.umod.event;
 import java.util.List;
 import java.util.Random;
 
+import org.lwjgl.input.Keyboard;
+
 import net.hycrafthd.umod.UItems;
 import net.hycrafthd.umod.UPotion;
 import net.hycrafthd.umod.UReference;
@@ -13,6 +15,7 @@ import net.hycrafthd.umod.item.ItemEnergyDisplay;
 import net.hycrafthd.umod.utils.NBTUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
@@ -85,26 +88,6 @@ public class EventGettingRadiationInv {
 						System.out.println("Set");
 					}
 				}
-			}
-		}
-	}
-
-	@SubscribeEvent
-	public void tooltipEvent(ItemTooltipEvent event) {
-		if (event.itemStack != null && !event.showAdvancedItemTooltips) {
-			ItemStack itemStack = event.itemStack;
-			if (itemStack.hasTagCompound() && itemStack.getTagCompound().hasKey(ItemEnergyDisplay.NBT_TAG)) {
-				event.toolTip.add("Bounded");
-			}
-			if (itemStack.hasTagCompound() && itemStack.getTagCompound().hasKey(TAG_MAIN)
-					&& ((NBTTagCompound) itemStack.getTagCompound().getTag(TAG_MAIN)).hasKey(TAG_INFECTED)) {
-				boolean flag = ((NBTTagCompound) itemStack.getTagCompound().getTag(TAG_MAIN)).getBoolean(TAG_INFECTED);
-				event.toolTip.add((flag ? EnumChatFormatting.RED : EnumChatFormatting.GREEN) + "Is Infected " + flag);
-			}
-			if (Block.getBlockFromItem(itemStack.getItem()) instanceof BlockConduit && itemStack.hasTagCompound()
-					&& itemStack.getTagCompound().hasKey(NBTUtils.NBTKEY)) {
-				ItemStack flag = NBTUtils.getStackFromConduit(itemStack);
-				event.toolTip.add(flag.getDisplayName());
 			}
 		}
 	}

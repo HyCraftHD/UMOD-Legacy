@@ -11,6 +11,7 @@ import net.hycrafthd.umod.event.EventGettingRadiation;
 import net.hycrafthd.umod.event.EventGettingRadiationInv;
 import net.hycrafthd.umod.event.EventLoadWorld;
 import net.hycrafthd.umod.event.EventPlayerJoin;
+import net.hycrafthd.umod.network.PacketHandler;
 import net.hycrafthd.umod.utils.CommonRegistryUtils;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
@@ -31,6 +32,7 @@ public class UMod {
 	public void preinit(FMLPreInitializationEvent event) {
 		log = event.getModLog();
 		new UConfig(event.getSuggestedConfigurationFile());
+		new PacketHandler();
 	}
 
 	@EventHandler

@@ -1,5 +1,7 @@
 package net.hycrafthd.umod.tileentity;
 
+import com.sun.xml.internal.messaging.saaj.soap.ver1_1.Message1_1Impl;
+
 import net.hycrafthd.umod.Logger;
 import net.hycrafthd.umod.UMod;
 import net.hycrafthd.umod.api.IIOMode;
@@ -8,6 +10,8 @@ import net.hycrafthd.umod.api.energy.EnergyAPI;
 import net.hycrafthd.umod.api.energy.IPowerProvieder;
 import net.hycrafthd.umod.block.BlockOres;
 import net.hycrafthd.umod.container.ContainerPulverizer;
+import net.hycrafthd.umod.network.PacketHandler;
+import net.hycrafthd.umod.network.message.MessageCallback;
 import net.hycrafthd.umod.utils.DirectionUtils;
 import net.hycrafthd.umod.utils.EnergyUtils;
 import net.hycrafthd.umod.utils.ModRegistryUtils;
@@ -304,12 +308,12 @@ public class TileEntityPulverizer extends TileEntityBase implements
 		return enumfO;
 	}
 	
+	@Override
 	public void setEnumInput(EnumFacing fac){
-		Logger.info(fac.toString());
 		enumfI = fac;
-		Logger.info(enumfI.toString());
 	}
 	
+	@Override
 	public void setEnumOutput(EnumFacing fac){
 		enumfO = fac;
 	}
@@ -478,5 +482,14 @@ public class TileEntityPulverizer extends TileEntityBase implements
 	@Override
 	public boolean productsPower() {
 		return false;
+	}
+
+	@Override
+	public void request(int mode) {
+         if(mode == 0){
+        	 PacketHandler.INSTANCE.sendToAll(new MessageCallback(enumfI, mode));
+         }else if(mode == 1){
+        	 PacketHandler.INSTANCE.sendToAll(new MessageCallback(enumfO, mode));
+         }
 	}
 }

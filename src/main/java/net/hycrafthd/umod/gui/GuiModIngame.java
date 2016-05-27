@@ -13,20 +13,24 @@ import net.hycrafthd.umod.tileentity.TileEntityPulverizer;
 import net.hycrafthd.umod.utils.LWJGLUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.gui.GuiIngame;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.EntityRenderer;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.texture.TextureUtil;
 import net.minecraft.client.renderer.tileentity.TileEntityItemStackRenderer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.resources.model.IBakedModel;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ContainerPlayer;
 import net.minecraft.item.ItemStack;
@@ -57,6 +61,7 @@ public class GuiModIngame{
 				drawScreen(pl);
 			}
 		} catch (Exception e) {
+			System.err.println(e.toString());
 			System.err.println(e.getMessage());
 			System.err.println("Excepted by " + e.getStackTrace()[0].getMethodName() + " in Class");
 			System.err.println("" + e.getStackTrace()[0].getClassName() + "[" + e.getStackTrace()[0].getFileName() + "] Line " + e.getStackTrace()[0].getLineNumber());
@@ -98,10 +103,11 @@ public class GuiModIngame{
 	
 	private static void drawScreen(EntityPlayer pl){
 		ticks++;
-		int width = 200;
-		int height = 80;
+
 		double screenwidth = res.getScaledWidth_double();
 		double screenheight = res.getScaledHeight_double();
+		int width = (int) Math.round(screenwidth/2);
+		int height = (int) Math.round(screenheight/4);
 
 		String str = "No Ore Detected";
 		World w = Minecraft.getMinecraft().theWorld;
@@ -113,128 +119,64 @@ public class GuiModIngame{
 		if(oven.getStackInSlot(3) != null){
 			str = oven.getStackInSlot(3).getDisplayName();
 		}
+		
 		String energy = "Energy " + ((IPowerProvieder)oven).getStoredPower() + "/" + ((IPowerProvieder)oven).getMaximalPower();
 		String stat = "Progress " + oven.getField(0) + "/100";
 		String pos = "X=" + p.getX() + " Y=" + p.getY() + " Z=" + p.getZ();
-		GlStateManager.pushMatrix();
-        GL11.glNormal3f(0.0F, 1.0F, 0.0F);
-        GlStateManager.translate(width, height - 40, 0);
-	    GlStateManager.rotate(80F, 1.0F, 0F, 0F);
-        GlStateManager.disableLighting();
-        GlStateManager.depthMask(false);
-        GlStateManager.disableDepth();
-        int wit = checkBiggestString(rend, energy,str,stat,pos);
-        width = ((wit / 2)- width) > 0 ? wit:width;
-        int stringmu = 4;
-        RGBA rgb4 = new RGBA(Color.CYAN);
-	    rgb4.setAlpha(15);
-        GlStateManager.popMatrix();
-	    GlStateManager.pushMatrix();
-        GlStateManager.enableDepth();
-        GlStateManager.translate(0, height, 0);
-        GlStateManager.enableAlpha();
-	    LWJGLUtils.drawGradientRect((double)((screenwidth - width)/2), (double)(-1 - 20),(double)((screenwidth - width)/2 + width), (double)(8 + 1)*(stringmu + 1), rgb4,0);
-	  
-		RGBA rgb2 = new RGBA(Color.GREEN);
-		rgb2.setAlpha(40);
-		LWJGLUtils.drawFrame((double)((screenwidth - width)/2), (double)(-1 - 18), (double)(width), (double)(8 + 1)*(stringmu + 3), rgb2,1);
-		
-		RGBA rgb = new RGBA(Color.RED);
-		rgb.setAlpha(40);
-	    LWJGLUtils.drawFrame((double)((screenwidth - width)/2) - 1, (double)(-1 - 19), (double)(+width), (double)(8 + 1)*(stringmu + 3), rgb,2);
-	   
-	    RGBA rgb3 = new RGBA(Color.WHITE);
-	    rgb3.setAlpha(255);
-	    LWJGLUtils.drawFrame((double)((screenwidth - width)/2) - 2, (double)(-1 - 20), (double)(width), (double)(8 + 1)*(stringmu + 3), rgb3,3);
-	    	  
         String name = I18n.format(oven.getWorld().getBlockState(oven.getPos()).getBlock().getUnlocalizedName()+ ".name");
-        GlStateManager.popMatrix();
+        
 	    GlStateManager.pushMatrix();
-        GlStateManager.enableDepth();
+	    {
         GlStateManager.translate(screenwidth/2, height, 0);
 	    rend.drawStringWithShadow(name, -rend.getStringWidth(name) / 2, -14, 0xFFFFFF);
 	    rend.drawStringWithShadow(pos, -rend.getStringWidth(pos) / 2, -1, 0xFFFFFF);
 	    rend.drawStringWithShadow(str, -rend.getStringWidth(str) / 2, 9, 0xFFFFFF);
 	    rend.drawStringWithShadow(energy, -rend.getStringWidth(energy) / 2, 19, 0xFFFFFF);
 	    rend.drawStringWithShadow(stat, -rend.getStringWidth(stat) / 2, 29, 0xFFFFFF);
-	    
+	    }
 	    GlStateManager.popMatrix();
-		RenderHelper.enableGUIStandardItemLighting();
-	    GlStateManager.pushMatrix();
-	    GlStateManager.color(1, 1, 1);
-	    GlStateManager.translate((screenwidth - width)/2, height, 0);
-	    renderItemIntoGUI(new ItemStack(w.getBlockState(p).getBlock()),15, 0);
-	    renderItemIntoGUI(new ItemStack(w.getBlockState(p).getBlock()), wit + 65, 0);
 
+	    GlStateManager.pushMatrix();
+	    {
+	    RenderHelper.enableGUIStandardItemLighting();
+		GlStateManager.color(1, 1, 1);
+	    GlStateManager.translate(width,height, 0);
+	    renderItemIntoGUI(new ItemStack(w.getBlockState(p).getBlock()), -10, -40);
+	    }
 		GlStateManager.popMatrix();
+		
+		
 		}else{
 			GlStateManager.pushMatrix();
-	        GlStateManager.enableDepth();
-	        GlStateManager.translate(width, height - 40, 0);
-	        int j = 800 / 2;
-	        int stringmu = 4;
-	        RGBA rgb4 = new RGBA(Color.CYAN);
-		    rgb4.setAlpha(155);
-	        GlStateManager.popMatrix();
-	        GlStateManager.pushMatrix();
-	        GlStateManager.enableDepth();
-	        GlStateManager.translate(0, height, 0);
-	        GlStateManager.enableAlpha();
-		    LWJGLUtils.drawGradientRect((double)((screenwidth - width)/2), (double)(-1 - 20),(double)((screenwidth - width)/2 + width), (double)(8 + 1)*(stringmu + 1), rgb4,0);
-		  
-			RGBA rgb2 = new RGBA(Color.GREEN);
-			rgb2.setAlpha(40);
-			LWJGLUtils.drawFrame((double)((screenwidth - width)/2), (double)(-1 - 18), (double)(width), (double)(8 + 1)*(stringmu + 3), rgb2,1);
-			
-			RGBA rgb = new RGBA(Color.RED);
-			rgb.setAlpha(40);
-		    LWJGLUtils.drawFrame((double)((screenwidth - width)/2) - 1, (double)(-1 - 19), (double)(+width), (double)(8 + 1)*(stringmu + 3), rgb,2);
-		   
-		    RGBA rgb3 = new RGBA(Color.WHITE);
-		    rgb3.setAlpha(255);
-		    LWJGLUtils.drawFrame((double)((screenwidth - width)/2) - 2, (double)(-1 - 20), (double)(width), (double)(8 + 1)*(stringmu + 3), rgb3,3);
-		    	  
-	        String name = I18n.format(oven.getWorld().getBlockState(oven.getPos()).getBlock().getUnlocalizedName()+ ".name");
-	        GlStateManager.popMatrix();
-		    GlStateManager.pushMatrix();
 	        GlStateManager.enableDepth();
 	        GlStateManager.translate(width, height, 0);
 		    rend.drawStringWithShadow("Out of range", -rend.getStringWidth("Out of range") / 2, -14, 0xFFFFFF);
 	        GlStateManager.popMatrix();
 		}
 	}
-	private static int checkBiggestString(FontRenderer re,String... args){
-		  int i = 0;
-		  for(String str  : args){
-			  if(re.getStringWidth(str) > i){
-				  i = re.getStringWidth(str);
-			  }
-		  }
-		return i;
-	  }
 	
 	private static int trans = 45;
 	
 	 private static void setupGuiTransform(int xPosition, int yPosition, boolean isGui3d)
-	    {
-	        GlStateManager.translate((float)xPosition, (float)yPosition, 100.0F + zLevel);
+	 {
+		    GlStateManager.translate((float)xPosition, (float)yPosition, 100.0F);
 	        GlStateManager.translate(8.0F, 8.0F, 0.0F);
 	        GlStateManager.scale(2.0F, 2.0F, -2.0F);
 	        GlStateManager.scale(0.5F, 0.5F, 0.5F);
 
 	        if (isGui3d)
 	        {
-	        	if(ticks >= 10){
+	          	if(ticks >= 10){
 	        		trans++;
 	        		ticks = 0;
 	        	}
+	            if(trans >= 360){
+		            	trans = 0;
+		        }
 	            GlStateManager.scale(40.0F, 40.0F, 40.0F);
 	            GlStateManager.rotate(10F, 1.0F, 0.0F, 0.0F);
 	            GlStateManager.rotate(trans, 0.0F, 1.0F, 0.0F);
 	            GlStateManager.enableLighting();
-	            if(trans >= 360){
-	            	trans = 0;
-	            }
 	        }
 	        else
 	        {
@@ -245,27 +187,25 @@ public class GuiModIngame{
 	    
 	    public static void renderItemIntoGUI(ItemStack stack, int x, int y)
 	    {
-	        GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
-	        GlStateManager.shadeModel(7425);
-	        IBakedModel ibakedmodel =  Minecraft.getMinecraft().getRenderItem().getItemModelMesher().getItemModel(stack);
-	        GlStateManager.pushMatrix();
-	        Minecraft.getMinecraft().getTextureManager().bindTexture(TextureMap.locationBlocksTexture);
-	        Minecraft.getMinecraft().getTextureManager().getTexture(TextureMap.locationBlocksTexture).setBlurMipmap(false, false);
-	        GlStateManager.enableRescaleNormal();
-	        GlStateManager.enableAlpha();
-	        GlStateManager.alphaFunc(516, 0.1F);
-	        GlStateManager.enableBlend();
-	        GlStateManager.blendFunc(770, 771);
-	        GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-	        setupGuiTransform(x, y, ibakedmodel.isGui3d());
-	        ibakedmodel = net.minecraftforge.client.ForgeHooksClient.handleCameraTransforms(ibakedmodel, ItemCameraTransforms.TransformType.GUI);
-	        renderItem(stack, ibakedmodel);
-	        GlStateManager.disableAlpha();
-	        GlStateManager.disableRescaleNormal();
-	        GlStateManager.disableLighting();
-	        GlStateManager.popMatrix();
-	        Minecraft.getMinecraft().getTextureManager().bindTexture(TextureMap.locationBlocksTexture);
-	        Minecraft.getMinecraft().getTextureManager().getTexture(TextureMap.locationBlocksTexture).restoreLastBlurMipmap();
+	    	 IBakedModel ibakedmodel = Minecraft.getMinecraft().getRenderItem().getItemModelMesher().getItemModel(stack);
+	         GlStateManager.pushMatrix();
+	         Minecraft.getMinecraft().getTextureManager().bindTexture(TextureMap.locationBlocksTexture);
+	         Minecraft.getMinecraft().getTextureManager().getTexture(TextureMap.locationBlocksTexture).setBlurMipmap(false, false);
+	         GlStateManager.enableRescaleNormal();
+	         GlStateManager.enableAlpha();
+	         GlStateManager.alphaFunc(516, 0.1F);
+	         GlStateManager.enableBlend();
+	         GlStateManager.blendFunc(770, 771);
+	         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+	         setupGuiTransform(x, y, ibakedmodel.isGui3d());
+	         ibakedmodel = net.minecraftforge.client.ForgeHooksClient.handleCameraTransforms(ibakedmodel, ItemCameraTransforms.TransformType.GUI);
+	         renderItem(stack, ibakedmodel);
+	         GlStateManager.disableAlpha();
+	         GlStateManager.disableRescaleNormal();
+	         GlStateManager.disableLighting();
+	         GlStateManager.popMatrix();
+	         Minecraft.getMinecraft().getTextureManager().bindTexture(TextureMap.locationBlocksTexture);
+	         Minecraft.getMinecraft().getTextureManager().getTexture(TextureMap.locationBlocksTexture).restoreLastBlurMipmap();
 	    }
 
 	    
@@ -352,6 +292,7 @@ public class GuiModIngame{
 	        tessellator.draw();
 	    }
 	    
+	    @SuppressWarnings("rawtypes")
 		private static void renderQuads(WorldRenderer renderer, List quads, int color, ItemStack stack)
 	    {
 	        boolean flag = color == -1 && stack != null;
@@ -392,6 +333,5 @@ public class GuiModIngame{
 	        Vec3i vec3i = quad.getFace().getDirectionVec();
 	        renderer.putNormal((float)vec3i.getX(), (float)vec3i.getY(), (float)vec3i.getZ());
 	    }
-
-	
+	   
 }

@@ -11,4 +11,10 @@ public interface IIOMode {
 	public int hasSomefacing(EnumFacing i);
 	
 	public int getModeCount();
+	
+	public void setEnumInput(EnumFacing fac);
+	
+	public void setEnumOutput(EnumFacing fac);
+	
+	public void request(int mode);
 }

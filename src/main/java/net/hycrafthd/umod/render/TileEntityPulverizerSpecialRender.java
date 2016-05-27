@@ -18,6 +18,7 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.BlockPos;
 
 public class TileEntityPulverizerSpecialRender extends TileEntitySpecialRenderer{
 	
@@ -70,7 +71,7 @@ public class TileEntityPulverizerSpecialRender extends TileEntitySpecialRenderer
 		GlStateManager.popMatrix();
 		
 	   }
-          
+		BlockPos pos = tileEntity.getPos();
 		GL11.glPushMatrix();
 		final String str = st;
 		GlStateManager.disableLighting();

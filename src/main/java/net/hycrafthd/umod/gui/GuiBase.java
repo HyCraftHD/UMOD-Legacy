@@ -172,7 +172,6 @@ public abstract class GuiBase extends GuiScreen {
 
 	public ModeTabs[] tabs;
 	
-	@SuppressWarnings("unchecked")
 	@Override
 	public void initGui() {
 		super.initGui();
@@ -403,9 +402,10 @@ public abstract class GuiBase extends GuiScreen {
 					} else {
 						this.drawGradientRect(j1, k1, j1 + 16, k1 + 16, -2130706433, -2130706433);
 					}
+					if(slot instanceof BaseSlot){
+					LWJGLUtils.drawFrame(j1, k1, 16 , 16, new RGBA(Color.BLACK));
 					GlStateManager.popMatrix();
-					if (slot instanceof BaseSlot && ((BaseSlot) slot).hasString()) {
-						BaseSlot sl = (BaseSlot) slot;
+					if (((BaseSlot) slot).hasString()) {
 						LWJGLUtils.drawGradientRect(mouseX, mouseY, mouseX + ((BaseSlot) slot).getWidth(), mouseY + ((BaseSlot) slot).getHeight(), ((BaseSlot) slot).getHoverColor(0), ((BaseSlot) slot).getHoverColor(0),this.zLevel);
 						if (((BaseSlot) slot).hasMoreLines()) {
 							String[] str = ((BaseSlot) slot).getString().split("\n");
@@ -414,12 +414,13 @@ public abstract class GuiBase extends GuiScreen {
 						} else {
 							this.fontRendererObj.drawString(((BaseSlot) slot).getString(), mouseX + 4, mouseY + 4, ((BaseSlot) slot).getFontColor());
 						}
-						LWJGLUtils.drawFrame(mouseX, mouseY, ((BaseSlot) slot).getWidth(), ((BaseSlot) slot).getHeight(), new RGBA(Color.BLACK));
+						//LWJGLUtils.drawFrame(mouseX, mouseY, ((BaseSlot) slot).getWidth(), ((BaseSlot) slot).getHeight(), new RGBA(Color.BLACK));
 					}
 					GlStateManager.pushMatrix();
 					GlStateManager.translate((float) k, (float) l, 0.0F);
 					GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 					GlStateManager.enableRescaleNormal();
+				    }
 				} else if (slot instanceof BaseSlot && ((BaseSlot) slot).hasColor()) {
 					GlStateManager.disableLighting();
 					GlStateManager.disableDepth();
@@ -521,8 +522,8 @@ public abstract class GuiBase extends GuiScreen {
 	public void drawIOMode() {
 		int k = this.guiLeft;
 		int l = this.guiTop;
-		this.renderItemIntoGUI(new ItemStack(ent.getWorld().getBlockState(pos).getBlock()), width / 6, height / 6);
 		GlStateManager.popMatrix();
+		this.renderItemIntoGUI(new ItemStack(ent.getWorld().getBlockState(pos).getBlock()), (width / 2), (height / 2) - (ySize/4));
 		box.draw(this.mc);
 		GlStateManager.disableDepth();
 		int kl = (this.width - this.xSize) / 2;
@@ -954,7 +955,7 @@ public abstract class GuiBase extends GuiScreen {
 
 	@SuppressWarnings("unchecked")
 	protected void mouseClickMove(int mouseX, int mouseY, int clickedMouseButton, long timeSinceLastClick) {
-		if (basecon.mode.equals(Mode.OUTPUT) && clickedMouseButton == 0) {
+		if (basecon.mode.equals(Mode.OUTPUT) && clickedMouseButton == 0 && mouseX > 7 + guiLeft && mouseX < 169 + guiLeft && mouseY > guiTop + 6 && mouseY < guiTop + 82) {
 			if (sclax + (mouseX - posX) <= 90 && sclax + (mouseX - posX) >= -180) {
 				sclax += mouseX - posX;
 			}
@@ -1020,7 +1021,30 @@ public abstract class GuiBase extends GuiScreen {
 
 	public void onMouseClickMoved(int mouseX, int mouseY) {}
 
-	public abstract void onIOModeSwitched();
+	public EnumFacing face,face2;
+	
+	public void onCallBack(EnumFacing fc,int mode){
+		switch (mode) {
+		case 0:
+		this.face = fc;
+		    break;
+		case 1:
+		this.face2 = fc; 
+		default:
+			break;
+		}
+	}
+	
+	public void onIOModeSwitched() {
+		if (face != null && this.getIOFaceing().equals(face)) {
+			box.setSelected(0);
+		} else if (face2 != null && this.getIOFaceing().equals(face2)) {
+			box.setSelected(1);
+		} else {
+			box.setSelected(2);
+		}
+
+	}
 
 	/**
 	 * Called when a mouse button is released. Args : mouseX, mouseY,

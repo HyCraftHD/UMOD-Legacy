@@ -246,7 +246,7 @@ public class TileEntityCable extends TileEntity implements IPlugabel, ICabel, IU
 
 	@Override
 	public void update() {
-		    if(!isInit)return;
+		    if(isInit)return;
 			onBlockSetInWorld();
 		    this.worldObj.spawnEntityInWorld(new EntityPipeFX(this.worldObj,this.pos));				 	    
 	}

@@ -200,7 +200,7 @@ public abstract class GuiBase extends GuiScreen {
 				}
 			}
 		};
-       tabs[1] = new ModeTabs(new ItemStack(UBlocks.charge), "Battery Mode", Mode.BATTERY, 28, 0, false) {
+        tabs[1] = new ModeTabs(new ItemStack(UBlocks.charge), "Battery Mode", Mode.BATTERY, 28, 0, false) {
 			
 			@Override
 			public void onClick(Mode m) {
@@ -244,7 +244,7 @@ public abstract class GuiBase extends GuiScreen {
 						ms.setInUse(false);
 					}
 					basecon.setMode(m);
-					is = true;
+					is = false;
 					loc = CLEAR_GUI;
 					for (int i = 0; i < basecon.inventorySlots.size(); i++) {
 						if (basecon.inventorySlots.get(i) instanceof BaseSlot) {

@@ -1,7 +1,5 @@
 package net.hycrafthd.umod;
 
-import org.apache.logging.log4j.message.Message;
-import org.apache.logging.log4j.message.MessageFactory;
 import org.lwjgl.input.Keyboard;
 
 import net.hycrafthd.umod.api.ProcessHandler;
@@ -11,6 +9,7 @@ import net.hycrafthd.umod.event.EventGettingRadiation;
 import net.hycrafthd.umod.event.EventGettingRadiationInv;
 import net.hycrafthd.umod.event.EventLoadWorld;
 import net.hycrafthd.umod.event.EventPlayerJoin;
+import net.hycrafthd.umod.event.EventToolTip;
 import net.hycrafthd.umod.network.PacketHandler;
 import net.hycrafthd.umod.utils.CommonRegistryUtils;
 import net.minecraft.client.settings.KeyBinding;
@@ -78,6 +77,7 @@ public class UMod {
 		event.addEvent(new EventLoadWorld());
 		event.addEvent(new EventDrawHUD());
 		event.addEvent(new EventPlayerJoin());
+		event.addEvent(new EventToolTip());
 		event.register();
 		Logger.info("registerEvents()", "Registered Mod Events.");
 	}

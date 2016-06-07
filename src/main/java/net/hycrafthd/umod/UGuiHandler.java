@@ -5,6 +5,7 @@ import net.hycrafthd.umod.container.ContainerBackPack;
 import net.hycrafthd.umod.container.ContainerBase;
 import net.hycrafthd.umod.container.ContainerChargeStation;
 import net.hycrafthd.umod.container.ContainerCraftFurnace;
+import net.hycrafthd.umod.container.ContainerPainter;
 import net.hycrafthd.umod.container.ContainerPulverizer;
 import net.hycrafthd.umod.enumtype.EnumTypeBackPack;
 import net.hycrafthd.umod.enumtype.EnumTypeGui;
@@ -51,7 +52,7 @@ public class UGuiHandler implements IGuiHandler {
 			//return new ContainerBarrels(player.get);
 			break;
 		case PAINTER:
-			return new ContainerBase((IInventory) ent, player, p, world);
+			return new ContainerPainter((IInventory) ent, player, p, world);
 		}
 		return null;
 	}

@@ -13,6 +13,7 @@ import org.lwjgl.input.Keyboard;
 import com.google.common.collect.Sets;
 
 import net.hycrafthd.umod.UBlocks;
+import net.hycrafthd.umod.UMod;
 import net.hycrafthd.umod.UReference;
 import net.hycrafthd.umod.api.ISignable;
 import net.hycrafthd.umod.api.energy.IPowerProvieder;
@@ -384,13 +385,13 @@ public abstract class GuiBase extends GuiScreen {
 		OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, (float) short1 / 1.0F, (float) short2 / 1.0F);
 		GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 		int k1;
-
+		
 		if(is){
-		for (int i1 = 0; i1 < this.basecon.inventorySlots.size(); ++i1) {
-			Slot slot = (Slot) this.basecon.inventorySlots.get(i1);
+		for (int ig1 = 0; ig1 < this.basecon.inventorySlots.size(); ig1++) {
+			Slot slot = (Slot) this.basecon.inventorySlots.get(ig1);
+			UMod.log.info("Got Slot");
 			if (!(slot instanceof BaseSlot) || ((BaseSlot) slot).isVisible()) {
 				this.drawSlot(slot);
-
 				if (this.isMouseOverSlot(slot, mouseX, mouseY) && slot.canBeHovered()) {
 					this.theSlot = slot;
 					int j1 = slot.xDisplayPosition;
@@ -414,7 +415,6 @@ public abstract class GuiBase extends GuiScreen {
 						} else {
 							this.fontRendererObj.drawString(((BaseSlot) slot).getString(), mouseX + 4, mouseY + 4, ((BaseSlot) slot).getFontColor());
 						}
-						//LWJGLUtils.drawFrame(mouseX, mouseY, ((BaseSlot) slot).getWidth(), ((BaseSlot) slot).getHeight(), new RGBA(Color.BLACK));
 					}
 					GlStateManager.pushMatrix();
 					GlStateManager.translate((float) k, (float) l, 0.0F);

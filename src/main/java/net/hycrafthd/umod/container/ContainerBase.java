@@ -28,7 +28,7 @@ public class ContainerBase extends Container{
          this.worldObj = wo;
          mode = Mode.NORMAL;
          if(b){
-         BaseBatteryInputSlot sl = new BaseBatteryInputSlot(inv, inv.getSizeInventory() - 1, 80, 28);
+         BaseBatteryInputSlot sl = new BaseBatteryInputSlot(inv, inv.getSizeInventory()-1, 80, 28);
          sl.setVisible(false);
          super.addSlotToContainer(sl);
 	     }

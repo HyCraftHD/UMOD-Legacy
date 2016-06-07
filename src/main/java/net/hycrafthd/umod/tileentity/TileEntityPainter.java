@@ -15,7 +15,7 @@ import net.minecraft.util.EnumFacing;
 
 public class TileEntityPainter extends TileEntityBase implements IUpdatePlayerListBox{
 
-	private ItemStack[] stack = new ItemStack[5];
+	private ItemStack[] stack = new ItemStack[6];
 	private int energy;
 	
 	@Override

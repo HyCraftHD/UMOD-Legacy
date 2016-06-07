@@ -3,6 +3,7 @@ package net.hycrafthd.umod.api.energy;
 import java.util.ArrayList;
 import java.util.Random;
 
+import net.hycrafthd.umod.api.DONTUSE;
 import net.hycrafthd.umod.block.BlockBaseMachine;
 import net.hycrafthd.umod.tileentity.TileEntityCable;
 import net.hycrafthd.umod.utils.DirectionUtils;
@@ -13,6 +14,7 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 
 @Deprecated
+@DONTUSE
 public class EnergyAPI {
 	
 	private IPowerProvieder pro;

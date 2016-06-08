@@ -1,14 +1,12 @@
 package net.hycrafthd.umod.block;
 
 import java.util.List;
-import net.hycrafthd.umod.Logger;
+
+import net.hycrafthd.umod.ClientProxy;
 import net.hycrafthd.umod.UBlocks;
 import net.hycrafthd.umod.UDamageSource;
 import net.hycrafthd.umod.UReference;
-import net.hycrafthd.umod.api.energy.ICabel;
 import net.hycrafthd.umod.api.energy.IEnergyMessage;
-import net.hycrafthd.umod.api.energy.IPowerProvieder;
-import net.hycrafthd.umod.api.energy.TunnelHolder;
 import net.hycrafthd.umod.entity.EntityPipeFX;
 import net.hycrafthd.umod.tileentity.TileEntityCable;
 import net.hycrafthd.umod.utils.EnergyUtils;
@@ -17,7 +15,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -30,6 +27,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -61,7 +59,7 @@ public class BlockCable extends Block implements ITileEntityProvider, IEnergyMes
 	@Override
 	public Item getItem(World worldIn, BlockPos pos) {
 		if(worldIn.isRemote){
-			EntityPlayer pl = Minecraft.getMinecraft().thePlayer;
+			EntityPlayer pl = ClientProxy.player;
 			TileEntity en = worldIn.getTileEntity(pos);
 			if(en != null && en instanceof TileEntityCable && (((TileEntityCable)en).hasConduit() && (pl.getCurrentEquippedItem() == null || BlockCable.getBlockFromItem(pl.getCurrentEquippedItem().getItem()) != null && BlockCable.getBlockFromItem(pl.getCurrentEquippedItem().getItem()) instanceof BlockCable))){
 				return ((TileEntityCable)en).getConduit().getItem();
@@ -145,10 +143,16 @@ public class BlockCable extends Block implements ITileEntityProvider, IEnergyMes
 		TileEntityCable cab = (TileEntityCable) worldIn.getTileEntity(pos);
 		if(cab == null)return;
 		IBlockAccess w = worldIn;
-		EntityPlayer pl = Minecraft.getMinecraft().thePlayer;
+		if(w instanceof WorldServer && ((WorldServer)w).isRemote){
+		EntityPlayer pl = ClientProxy.player;
 		if(cab.hasConduit() && (pl.getCurrentEquippedItem() == null || Block.getBlockFromItem(pl.getCurrentEquippedItem().getItem()) == null || !(Block.getBlockFromItem(pl.getCurrentEquippedItem().getItem()) instanceof BlockCable))){
 		   this.setBlockBounds(0, 0, 0, 1, 1, 1);
 		   return;
+		}
+		}else
+			if(cab.hasConduit()){
+			this.setBlockBounds(0, 0, 0, 1, 1, 1);
+		    return;	
 		}
 		TileEntityCable pip = (TileEntityCable) w.getTileEntity(pos);
 		if (pip != null) {

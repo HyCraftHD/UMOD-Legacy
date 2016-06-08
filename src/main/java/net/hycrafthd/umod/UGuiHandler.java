@@ -52,7 +52,7 @@ public class UGuiHandler implements IGuiHandler {
 			//return new ContainerBarrels(player.get);
 			break;
 		case PAINTER:
-			return new ContainerPainter((IInventory) ent, player, p, world);
+			return new ContainerPainter((IInventory) ent, player, world);
 		}
 		return null;
 	}
@@ -82,7 +82,7 @@ public class UGuiHandler implements IGuiHandler {
 			}
 			break;
 		case PAINTER:
-			return new GuiPainter(player, (IInventory) ent, new ContainerBase((IInventory) ent, player, p, world));
+			return new GuiPainter(player, (IInventory) ent, new ContainerPainter((IInventory) ent, player, world));
 		}
 		return null;
 

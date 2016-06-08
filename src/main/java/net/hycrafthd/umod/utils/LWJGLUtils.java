@@ -398,4 +398,11 @@ public class LWJGLUtils {
         Vec3i vec3i = quad.getFace().getDirectionVec();
         renderer.putNormal((float)vec3i.getX(), (float)vec3i.getY(), (float)vec3i.getZ());
     }
+    
+    public static void drawSwell(String text,double x,double y,double z){
+    	GlStateManager.pushMatrix();
+    	GlStateManager.translate(x, y, z);
+    	
+    	GlStateManager.popMatrix();
+    }
 }

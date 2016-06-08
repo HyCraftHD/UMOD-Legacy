@@ -20,12 +20,13 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 @Mod(modid = UReference.modid, version = UReference.version, name = UReference.name)
 public class UMod {
 
 	public static org.apache.logging.log4j.Logger log;
-	public static KeyBinding info = new KeyBinding("Infromation", Keyboard.KEY_I, "UMod");
 	
 	@EventHandler
 	public void preinit(FMLPreInitializationEvent event) {
@@ -56,7 +57,6 @@ public class UMod {
 		new UChestLoot();
 		new UAchievement();
 		CommonRegistryUtils.registerGuiHandler(new UGuiHandler());
-	    ClientRegistry.registerKeyBinding(info);
 		UReference.proxy.registerModels();
 		UReference.proxy.registerRenderer();
 		Logger.info("postinit(e)", "Registered Mod.");

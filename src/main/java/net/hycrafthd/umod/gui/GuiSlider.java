@@ -1,8 +1,5 @@
 package net.hycrafthd.umod.gui;
 
-import java.awt.Color;
-
-import net.hycrafthd.umod.UMod;
 import net.hycrafthd.umod.render.RGBA;
 import net.hycrafthd.umod.utils.LWJGLUtils;
 import net.hycrafthd.umod.utils.StringReturnment;
@@ -49,7 +46,6 @@ public class GuiSlider extends Gui {
 		} else {
 			Minecraft.getMinecraft().getRenderManager().getFontRenderer().drawString(this.getString(), mousex + 4, mousey + 4, 0x000000);
 		}
-		LWJGLUtils.drawFrame(mousex, mousey, this.getWidth(), this.getHeight(), new RGBA(Color.BLACK));
 	    }
 	}
 	

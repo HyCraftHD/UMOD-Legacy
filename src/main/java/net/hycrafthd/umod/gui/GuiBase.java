@@ -389,39 +389,7 @@ public abstract class GuiBase extends GuiScreen {
 		if(is){
 		for (int ig1 = 0; ig1 < this.basecon.inventorySlots.size(); ig1++) {
 			Slot slot = (Slot) this.basecon.inventorySlots.get(ig1);
-			UMod.log.info("Got Slot");
-			if (!(slot instanceof BaseSlot) || ((BaseSlot) slot).isVisible()) {
-				this.drawSlot(slot);
-				if (this.isMouseOverSlot(slot, mouseX, mouseY) && slot.canBeHovered()) {
-					this.theSlot = slot;
-					int j1 = slot.xDisplayPosition;
-					k1 = slot.yDisplayPosition;
-					if (slot instanceof BaseSlot && ((BaseSlot) slot).hasColor()) {
-						RGBA st = ((BaseSlot) slot).getHoverColor(2);
-						RGBA en = ((BaseSlot) slot).getHoverColor(3);
-						LWJGLUtils.drawGradientRect(j1, k1, j1 + 16, k1 + 16, st, en,this.zLevel);
-					} else {
-						this.drawGradientRect(j1, k1, j1 + 16, k1 + 16, -2130706433, -2130706433);
-					}
-					if(slot instanceof BaseSlot){
-					LWJGLUtils.drawFrame(j1, k1, 16 , 16, new RGBA(Color.BLACK));
-					GlStateManager.popMatrix();
-					if (((BaseSlot) slot).hasString()) {
-						LWJGLUtils.drawGradientRect(mouseX, mouseY, mouseX + ((BaseSlot) slot).getWidth(), mouseY + ((BaseSlot) slot).getHeight(), ((BaseSlot) slot).getHoverColor(0), ((BaseSlot) slot).getHoverColor(0),this.zLevel);
-						if (((BaseSlot) slot).hasMoreLines()) {
-							String[] str = ((BaseSlot) slot).getString().split("\n");
-							for (int i = 0; i < str.length; i++)
-								this.fontRendererObj.drawString(str[i], mouseX + 4, mouseY + 4 + (i * 16), ((BaseSlot) slot).getFontColor());
-						} else {
-							this.fontRendererObj.drawString(((BaseSlot) slot).getString(), mouseX + 4, mouseY + 4, ((BaseSlot) slot).getFontColor());
-						}
-					}
-					GlStateManager.pushMatrix();
-					GlStateManager.translate((float) k, (float) l, 0.0F);
-					GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-					GlStateManager.enableRescaleNormal();
-				    }
-				} else if (slot instanceof BaseSlot && ((BaseSlot) slot).hasColor()) {
+		if (slot instanceof BaseSlot && ((BaseSlot) slot).hasColor() && ((BaseSlot) slot).isVisible() && (!this.isMouseOverSlot(slot, mouseX, mouseY) || !slot.canBeHovered())) {
 					GlStateManager.disableLighting();
 					GlStateManager.disableDepth();
 					int j1 = slot.xDisplayPosition;
@@ -435,7 +403,6 @@ public abstract class GuiBase extends GuiScreen {
 					GlStateManager.enableDepth();
 				}
 			}
-		}
 		}
 
 		if (basecon.mode.equals(Mode.OUTPUT)) {
@@ -508,9 +475,55 @@ public abstract class GuiBase extends GuiScreen {
 	    if(basecon.mode.equals(Mode.COLOR)){
 				this.drawColorMode(mouseX,mouseY);
 		}
+	    RenderHelper.enableGUIStandardItemLighting();
+		GlStateManager.pushMatrix();
+		GlStateManager.translate((float) k, (float) l, 0.0F);
+		GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+		GlStateManager.enableRescaleNormal();
+		OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, (float) short1 / 1.0F, (float) short2 / 1.0F);
+		GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+		for(Object sl : this.basecon.inventorySlots){
+			Slot slot = (Slot) sl;
+			if (!(slot instanceof BaseSlot) || ((BaseSlot) slot).isVisible()) {
+				this.drawSlot(slot);
+				if (this.isMouseOverSlot(slot, mouseX, mouseY) && slot.canBeHovered()) {
+					this.theSlot = slot;
+					int j1 = slot.xDisplayPosition;
+					k1 = slot.yDisplayPosition;
+					if (slot instanceof BaseSlot && ((BaseSlot) slot).hasColor()) {
+						RGBA st = ((BaseSlot) slot).getHoverColor(2);
+						RGBA en = ((BaseSlot) slot).getHoverColor(3);
+						LWJGLUtils.drawGradientRect(j1, k1, j1 + 16, k1 + 16, st, en,this.zLevel);
+					} else {
+						this.drawGradientRect(j1, k1, j1 + 16, k1 + 16, -2130706433, -2130706433);
+					}
+					if(slot instanceof BaseSlot){
+					LWJGLUtils.drawFrame(j1, k1, 16 , 16, new RGBA(Color.BLACK));
+					GlStateManager.popMatrix();
+					if (((BaseSlot) slot).hasString()) {
+						LWJGLUtils.drawGradientRect(mouseX, mouseY, mouseX + ((BaseSlot) slot).getWidth(), mouseY + ((BaseSlot) slot).getHeight(), ((BaseSlot) slot).getHoverColor(0), ((BaseSlot) slot).getHoverColor(0),this.zLevel);
+						if (((BaseSlot) slot).hasMoreLines()) {
+							String[] str = ((BaseSlot) slot).getString().split("\n");
+							for (int i = 0; i < str.length; i++)
+								this.fontRendererObj.drawString(str[i], mouseX + 4, mouseY + 4 + (i * 16), ((BaseSlot) slot).getFontColor());
+						} else {
+							this.fontRendererObj.drawString(((BaseSlot) slot).getString(), mouseX + 4, mouseY + 4, ((BaseSlot) slot).getFontColor());
+						}
+					}
+					GlStateManager.pushMatrix();
+					GlStateManager.translate((float) k, (float) l, 0.0F);
+					GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+					GlStateManager.enableRescaleNormal();
+				    }
+				} 
+		    
+		}
+		}
+		GlStateManager.popMatrix();
 		GlStateManager.enableLighting();
 		GlStateManager.enableDepth();
 		RenderHelper.enableStandardItemLighting();
+
 	}
 
 	public void drawColorMode(int x,int y) {

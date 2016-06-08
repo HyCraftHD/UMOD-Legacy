@@ -8,6 +8,8 @@ public class RGBA {
 	private int Green;
 	private int Blue;
 	private int Alpha;
+	
+	public static final RGBA NULL = new RGBA(0, 0, 0, 0);
 
 	public RGBA(int r,int g,int b,int a) {
 		Red = r;
@@ -44,4 +46,5 @@ public class RGBA {
 		Alpha = i;
 		return this;
 	}
+	
 }

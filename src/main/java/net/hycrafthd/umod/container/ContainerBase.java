@@ -72,7 +72,7 @@ public class ContainerBase extends Container{
 	
 	@Override
 	public ItemStack slotClick(int slotId, int clickedButton, int mode, EntityPlayer playerIn) {
-		if(!this.mode.equals(Mode.ENERGY)){
+		if(!this.mode.equals(Mode.ENERGY) || !this.mode.equals(Mode.OUTPUT) || !this.mode.equals(Mode.COLOR)){
 		return super.slotClick(slotId, clickedButton, mode, playerIn);
 		}
 		return null;

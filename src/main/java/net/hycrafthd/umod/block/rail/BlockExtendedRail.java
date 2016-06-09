@@ -1,4 +1,4 @@
-package net.hycrafthd.umod.block;
+package net.hycrafthd.umod.block.rail;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;

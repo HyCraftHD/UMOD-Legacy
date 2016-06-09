@@ -6,6 +6,7 @@ import net.hycrafthd.umod.entity.EntityInfectedZombie;
 import net.hycrafthd.umod.entity.EntityNukePrimed;
 import net.hycrafthd.umod.entity.EntityPipeFX;
 import net.hycrafthd.umod.entity.EntityTommahak;
+import net.hycrafthd.umod.entity.rail.EntityRailFX;
 import net.hycrafthd.umod.utils.CommonRegistryUtils;
 
 public class UEntity {
@@ -21,6 +22,7 @@ public class UEntity {
 		CommonRegistryUtils.registerEntity(EntityTommahak.class, "Thommahak", 16, 1, true, 0x000000, 0x000000, false);
 		CommonRegistryUtils.registerEntity(EntityInfectedZombie.class, "InfectedZombie", 24, 1, true, 0x44b517, 0x22c970, true);
 		CommonRegistryUtils.registerEntity(EntityPipeFX.class, "PIPES", 16, 1, true, 0x000000, 0x000000, false);
+		CommonRegistryUtils.registerEntity(EntityRailFX.class, "SWELL", 16, 1, true, 0x000000, 0x000000, false);
 		Logger.debug(UEntity.class, "register()", "Register Entitys");
 	}
 }

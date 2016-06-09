@@ -485,6 +485,7 @@ public abstract class GuiBase extends GuiScreen {
 		for(Object sl : this.basecon.inventorySlots){
 			Slot slot = (Slot) sl;
 			if (!(slot instanceof BaseSlot) || ((BaseSlot) slot).isVisible()) {
+				if(is){
 				this.drawSlot(slot);
 				if (this.isMouseOverSlot(slot, mouseX, mouseY) && slot.canBeHovered()) {
 					this.theSlot = slot;
@@ -516,7 +517,7 @@ public abstract class GuiBase extends GuiScreen {
 					GlStateManager.enableRescaleNormal();
 				    }
 				} 
-		    
+		   }
 		}
 		}
 		GlStateManager.popMatrix();
@@ -1064,8 +1065,7 @@ public abstract class GuiBase extends GuiScreen {
 	 * releaseButton
 	 */
 	protected void mouseReleased(int mouseX, int mouseY, int state) {
-		super.mouseReleased(mouseX, mouseY, state); // Forge, Call parent to
-													// release buttons
+		super.mouseReleased(mouseX, mouseY, state); 
 		Slot slot = this.getSlotAtPosition(mouseX, mouseY);
 		int l = this.guiLeft;
 		int i1 = this.guiTop;

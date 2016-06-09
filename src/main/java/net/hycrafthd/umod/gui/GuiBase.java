@@ -405,7 +405,8 @@ public abstract class GuiBase extends GuiScreen {
 			}
 		}
 
-		if (basecon.mode.equals(Mode.OUTPUT)) {
+		if (basecon.mode.equals(Mode.OUTPUT)) {					
+			GlStateManager.enableDepth();
 			this.drawIOMode();
 		}
 
@@ -502,7 +503,28 @@ public abstract class GuiBase extends GuiScreen {
 					LWJGLUtils.drawFrame(j1, k1, 16 , 16, new RGBA(Color.BLACK));
 					GlStateManager.popMatrix();
 					if (((BaseSlot) slot).hasString()) {
-						LWJGLUtils.drawGradientRect(mouseX, mouseY, mouseX + ((BaseSlot) slot).getWidth(), mouseY + ((BaseSlot) slot).getHeight(), ((BaseSlot) slot).getHoverColor(0), ((BaseSlot) slot).getHoverColor(0),this.zLevel);
+						Tessellator ts = Tessellator.getInstance();
+						BaseSlot slt = (BaseSlot) slot;
+						RGBA sl1 = slt.getHoverColor(0);
+						RGBA sli = new RGBA(sl1.toAWTColor().darker().darker().darker()).setAlpha(180);
+						GlStateManager.disableTexture2D();
+						GlStateManager.enableBlend();
+						GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
+						GlStateManager.shadeModel(7425);
+					    WorldRenderer rend = ts.getWorldRenderer();
+						rend.startDrawingQuads();
+						rend.setColorRGBA(sl1.getRed(), sl1.getGreen(), sl1.getBlue(),sl1.getAlpha());
+						rend.addVertex(mouseX + slt.getWidth(), mouseY, 0);
+						rend.setColorRGBA(sli.getRed(), sli.getGreen(), sli.getBlue(),sli.getAlpha());
+						rend.addVertex(mouseX, mouseY, 0);
+						rend.addVertex(mouseX, mouseY + slt.getHeight(), 0);
+						rend.setColorRGBA(sl1.getRed(), sl1.getGreen(), sl1.getBlue(),sl1.getAlpha());
+						rend.addVertex(mouseX + slt.getWidth(), mouseY + slt.getHeight(), 0);
+						ts.draw();
+						GlStateManager.shadeModel(7424);
+						GlStateManager.disableBlend();
+						GlStateManager.enableAlpha();
+						GlStateManager.enableTexture2D();
 						if (((BaseSlot) slot).hasMoreLines()) {
 							String[] str = ((BaseSlot) slot).getString().split("\n");
 							for (int i = 0; i < str.length; i++)

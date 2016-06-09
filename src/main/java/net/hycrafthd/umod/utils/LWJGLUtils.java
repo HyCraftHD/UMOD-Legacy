@@ -24,6 +24,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.Vec3;
 import net.minecraft.util.Vec3i;
 
 @SuppressWarnings("deprecation")
@@ -401,22 +402,37 @@ public class LWJGLUtils {
         renderer.putNormal((float)vec3i.getX(), (float)vec3i.getY(), (float)vec3i.getZ());
     }
     
+    public static void drawTexturePoints(String text,Vec3 vec,Vec3 vec1,Vec3 vec2,Vec3 vec3){
+    	Minecraft.getMinecraft().getTextureManager().bindTexture(new ResourceLocation(text));
+        Tessellator tessellator = Tessellator.getInstance();
+        WorldRenderer worldrenderer = tessellator.getWorldRenderer();
+        worldrenderer.startDrawingQuads();
+        worldrenderer.addVertexWithUV( vec.xCoord, vec.yCoord, vec.zCoord, 0,0);
+        worldrenderer.addVertexWithUV( vec1.xCoord, vec1.yCoord, vec1.zCoord, 0,0);
+        worldrenderer.addVertexWithUV( vec2.xCoord, vec2.yCoord, vec2.zCoord, 0,0);
+        worldrenderer.addVertexWithUV( vec3.xCoord, vec3.yCoord, vec3.zCoord, 0,0);
+        tessellator.draw();
+    }
 
 	public static void drawSwell(String text,double x,double y,double z){
     	GlStateManager.pushMatrix();
     	GlStateManager.translate(x, y, z);
+    	    	
+    	Vec3 corn1 = new Vec3(0.4, 0.4, 0.4);
+    	Vec3 corn2 = new Vec3(-0.4, 0.4, 0.4);
+    	Vec3 corn3 = new Vec3(0.5, 0, 0.5);
+    	Vec3 corn4 = new Vec3(-0.5, 0, 0.5);
+    	drawTexturePoints(text,corn1, corn2, corn3, corn4);
     	
-    	Minecraft.getMinecraft().getTextureManager().bindTexture(new ResourceLocation(text));
+    	GlStateManager.rotate(180F, 0F, 1.0F, 0F);
     	
-    	Tessellator ts = Tessellator.getInstance();
-    	WorldRenderer ren = ts.getWorldRenderer();
-    	ren.startDrawingQuads();
-    	ren.addVertexWithUV(-0.7, 0.5, 0.4, 0, 0);
-    	ren.addVertexWithUV(+0.7, 0.5, 0.5, 0, 0);
-    	ren.addVertexWithUV(-1, 0.5, 0.4, 0, 0);
-    	ren.addVertexWithUV(1, 0.5, 0.5, 0, 0);
-
-    	ts.draw();
+    	Vec3 corn12 = new Vec3(0.4, 0.4, 0.4);
+    	Vec3 corn22 = new Vec3(-0.4, 0.4,0.4);
+    	Vec3 corn32 = new Vec3(0.5, 0, 0.5);
+    	Vec3 corn42 = new Vec3(-0.5, 0, 0.5);
+    	drawTexturePoints(text,corn12, corn22, corn32, corn42);
+    	
+    	drawTexture(new ResourceLocation(text), 100, 100, 0, 0, 0, 100, 100, 0, 0);
     	
     	GlStateManager.popMatrix();
     }

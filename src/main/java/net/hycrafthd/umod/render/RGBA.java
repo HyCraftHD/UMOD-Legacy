@@ -47,4 +47,11 @@ public class RGBA {
 		return this;
 	}
 	
+	public java.awt.Color toAWTColor(){
+		return new java.awt.Color(Red, Green, Blue,Alpha);
+	}
+	
+	public Color toColor(){
+		return new Color(Red, Green, Blue,Alpha);
+	}
 }

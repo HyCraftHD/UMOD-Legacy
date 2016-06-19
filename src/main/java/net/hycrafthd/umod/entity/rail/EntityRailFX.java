@@ -22,7 +22,7 @@ public class EntityRailFX extends EntityHanging{
         this.field_174860_b = EnumFacing.NORTH;
         this.setPosition((double)p.getX() + 0.5D, (double)p.getY() + 0.5D, (double)p.getZ() + 0.5D);
 	    this.setSize(1F, 1F);
-        this.setEntityBoundingBox(new AxisAlignedBB(p, p.add(1, 1, 1)));
+        this.setEntityBoundingBox(new AxisAlignedBB(p, p.add(2, 1, 1)));
         this.setRotation(0, 180);
 	}
    

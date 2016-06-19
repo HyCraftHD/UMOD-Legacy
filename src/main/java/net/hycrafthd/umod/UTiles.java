@@ -7,6 +7,7 @@ import net.hycrafthd.umod.tileentity.TileEntityPainter;
 import net.hycrafthd.umod.tileentity.TileEntityCable;
 import net.hycrafthd.umod.tileentity.TileEntityPulverizer;
 import net.hycrafthd.umod.tileentity.TileEntitySolarPanel;
+import net.hycrafthd.umod.tileentity.rail.TileEntityRail;
 import net.hycrafthd.umod.utils.CommonRegistryUtils;
 
 public class UTiles {
@@ -23,6 +24,7 @@ public class UTiles {
 		CommonRegistryUtils.registerTileEntity(TileEntityCraftFurnance.class, "tilecraftfurn");
 		CommonRegistryUtils.registerTileEntity(TileEntityEnergyPannel.class, "tileenergymonitor");
 		CommonRegistryUtils.registerTileEntity(TileEntityPainter.class, "tilepainter");
+		CommonRegistryUtils.registerTileEntity(TileEntityRail.class, "tilereail");
 		Logger.debug(UTiles.class, "register()", "Register TileEntitys");
 	}
 

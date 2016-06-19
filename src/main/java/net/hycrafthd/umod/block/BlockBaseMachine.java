@@ -1,5 +1,9 @@
 package net.hycrafthd.umod.block;
 
+import java.util.List;
+
+import net.hycrafthd.umod.entity.EntityPipeFX;
+import net.hycrafthd.umod.entity.rail.EntityRailFX;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -11,9 +15,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumWorldBlockLayer;
+import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -40,14 +46,13 @@ public abstract class BlockBaseMachine extends BlockBase implements ITileEntityP
 		TileEntity tileEntity = world.getTileEntity(pos);
 		return Container.calcRedstone(tileEntity);
 	}
-
+	
 	@Override
 	public void breakBlock(World world, BlockPos pos, IBlockState state) {
 		TileEntity ent = world.getTileEntity(pos);
 		compound = new NBTTagCompound();
 		if(ent == null)return;
 		ent.writeToNBT(compound);
-
 		if (hasTileEntity(state)) {
 			world.removeTileEntity(pos);
 		}
@@ -76,7 +81,7 @@ public abstract class BlockBaseMachine extends BlockBase implements ITileEntityP
 
 	@Override
 	public boolean isOpaqueCube() {
-		return false;
+		return true;
 	}
 
 	@Override
@@ -119,4 +124,5 @@ public abstract class BlockBaseMachine extends BlockBase implements ITileEntityP
 		ent.setWorldObj(worldIn);
 		super.onBlockPlacedBy(worldIn, pos, state, placer, stack);
 	}
+	
 }

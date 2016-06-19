@@ -21,6 +21,8 @@ import net.hycrafthd.umod.block.BlockOres;
 import net.hycrafthd.umod.block.BlockPainter;
 import net.hycrafthd.umod.block.BlockPulverizer;
 import net.hycrafthd.umod.block.BlockSolarPanel;
+import net.hycrafthd.umod.block.rail.Block2rail;
+import net.hycrafthd.umod.block.rail.BlockExtendedRail;
 import net.hycrafthd.umod.item.ItemBlockBarrels;
 import net.hycrafthd.umod.item.ItemBlockBlocks;
 import net.hycrafthd.umod.item.ItemBlockConduit;
@@ -63,7 +65,10 @@ public class UBlocks {
 	public static Block conduit;
 
 	public static Block barrels;
-
+	
+	public static Block rail;
+    public static Block rail2;
+	
 	public UBlocks() {
 		init();
 		register();
@@ -103,6 +108,9 @@ public class UBlocks {
 		conduit = new BlockConduit().setUnlocalizedName("conduit");
 
 		barrels = new BlockBarrels().setUnlocalizedName("barrels");
+		
+		rail = new BlockExtendedRail().setUnlocalizedName("ExRail");
+		rail2 = new Block2rail().setUnlocalizedName("railhelp");
 		Logger.debug(UBlocks.class, "init()", "Init Blocks");
 	}
 
@@ -140,6 +148,9 @@ public class UBlocks {
 		CommonRegistryUtils.registerBlocks(conduit, ItemBlockConduit.class);
 
 		CommonRegistryUtils.registerBlock(barrels, ItemBlockBarrels.class);
+		
+		CommonRegistryUtils.registerBlock(rail);
+		CommonRegistryUtils.registerBlock(rail2);
 		Logger.debug(UBlocks.class, "register()", "Register Blocks");
 	}
 
@@ -175,6 +186,9 @@ public class UBlocks {
 		// Normal Block
 		CommonRegistryUtils.registerOredirectionary(nuke);
 		CommonRegistryUtils.registerOredirectionary(conduit);
+		
+		CommonRegistryUtils.registerOredirectionary(rail);
+		CommonRegistryUtils.registerOredirectionary(rail2);
 		Logger.debug(UBlocks.class, "oredirectionary()", "Oredirectionary");
 	}
 

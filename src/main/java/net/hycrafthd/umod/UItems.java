@@ -10,6 +10,7 @@ import net.hycrafthd.umod.item.ItemInfectedBeef;
 import net.hycrafthd.umod.item.ItemInfectedCrop;
 import net.hycrafthd.umod.item.ItemInfectedMilk;
 import net.hycrafthd.umod.item.ItemIngots;
+import net.hycrafthd.umod.item.ItemSwellPlacer;
 import net.hycrafthd.umod.utils.CommonRegistryUtils;
 import net.minecraft.item.Item;
 
@@ -37,6 +38,8 @@ public class UItems {
 	// Backpack
 	public static Item backpack;
 
+	public static Item railplacer;
+	
 	public UItems() {
 		init();
 		register();
@@ -62,6 +65,8 @@ public class UItems {
 		
 		// Backpack
 		backpack = new ItemBackPack().setUnlocalizedName("backpack");
+		
+		railplacer = new ItemSwellPlacer().setUnlocalizedName("railpl");
 		Logger.debug(UItems.class, "init()", "Init Items");
 	}
 
@@ -83,6 +88,8 @@ public class UItems {
 		CommonRegistryUtils.registerItem(energydisplay);
 		// Backpack
 		CommonRegistryUtils.registerItem(backpack);
+		
+		CommonRegistryUtils.registerItem(railplacer);
 		Logger.debug(UItems.class, "register()", "Register Items");
 	}
 
@@ -104,6 +111,8 @@ public class UItems {
 		CommonRegistryUtils.registerOredirectionary(energydisplay);
 		// Backpack
 		CommonRegistryUtils.registerOredirectionary(backpack);
+		
+		CommonRegistryUtils.registerOredirectionary(railplacer);
 		Logger.debug(UItems.class, "oredirectionary()", "Oredirectionary");
 	}
 

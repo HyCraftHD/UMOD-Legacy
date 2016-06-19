@@ -78,6 +78,7 @@ public class ClientProxy extends CommonProxy {
         ClientRegistryUtils.registerModelRenderer(UBlocks.painter);
 		// Cobble Dust
 		ClientRegistryUtils.registerModelRenderer(UItems.cdust);
+		
 		ClientRegistryUtils.registerModelRenderer(UItems.battery);
 
 		// SolarPanel
@@ -120,7 +121,7 @@ public class ClientProxy extends CommonProxy {
 		// Normal Blocks
 		ClientRegistryUtils.registerModelRenderer(UBlocks.nuke);
         ClientRegistryUtils.registerModelRenderer(UBlocks.craftfurnance);
-
+        ClientRegistryUtils.registerModelRenderer(UBlocks.rail);
 		// Backpack
 		for (int i = 0; i < EnumTypeBackPack.values().length; i++) {
 			ModelBakery.addVariantName(UItems.backpack, UReference.resource + "backpack" + EnumTypeBackPack.byMetadata(i).getName());

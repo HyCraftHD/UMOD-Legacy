@@ -13,7 +13,7 @@ public class RenderRailFX extends RenderEntity{
 
 	@Override
 	public void doRender(Entity entity, double x, double y, double z, float p_76986_8_, float partialTicks) {
-		LWJGLUtils.drawSwell("textures/blocks/stone.png", x - 0.5, y - 0.5, z - 0.5);
+		LWJGLUtils.drawSwell("textures/blocks/stone.png", x, y - 0.5, z);
 	}
 
 }

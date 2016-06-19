@@ -4,13 +4,17 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.GLContext;
 
+import javafx.scene.shape.CullFace;
 import net.hycrafthd.umod.gui.GuiRescources;
 import net.hycrafthd.umod.render.RGBA;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.EntityRenderer;
+import net.minecraft.client.renderer.EnumFaceDirection;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.client.renderer.block.model.BakedQuad;
@@ -402,37 +406,59 @@ public class LWJGLUtils {
         renderer.putNormal((float)vec3i.getX(), (float)vec3i.getY(), (float)vec3i.getZ());
     }
     
-    public static void drawTexturePoints(String text,Vec3 vec,Vec3 vec1,Vec3 vec2,Vec3 vec3){
+    public static void drawTexturePoints(String text,Vec3 vec,Vec3 vec1,Vec3 vec2,Vec3 vec3,double u,double v){
     	Minecraft.getMinecraft().getTextureManager().bindTexture(new ResourceLocation(text));
         Tessellator tessellator = Tessellator.getInstance();
         WorldRenderer worldrenderer = tessellator.getWorldRenderer();
         worldrenderer.startDrawingQuads();
-        worldrenderer.addVertexWithUV( vec.xCoord, vec.yCoord, vec.zCoord, 0,0);
+        worldrenderer.addVertexWithUV( vec.xCoord, vec.yCoord, vec.zCoord, 0,v);
         worldrenderer.addVertexWithUV( vec1.xCoord, vec1.yCoord, vec1.zCoord, 0,0);
-        worldrenderer.addVertexWithUV( vec2.xCoord, vec2.yCoord, vec2.zCoord, 0,0);
-        worldrenderer.addVertexWithUV( vec3.xCoord, vec3.yCoord, vec3.zCoord, 0,0);
+        worldrenderer.addVertexWithUV( vec2.xCoord, vec2.yCoord, vec2.zCoord, u,0);
+        worldrenderer.addVertexWithUV( vec3.xCoord, vec3.yCoord, vec3.zCoord, u,v);
         tessellator.draw();
     }
 
 	public static void drawSwell(String text,double x,double y,double z){
     	GlStateManager.pushMatrix();
-    	GlStateManager.translate(x, y, z);
+    	GlStateManager.translate(x + 0.5, y, z);
+    	GlStateManager.enableNormalize();
+    	RenderHelper.disableStandardItemLighting();
+    	
+    	double u = 2,v = 2;
+    	
+    	GlStateManager.rotate(90, 1.0F, 0, 0);
+    	
+    	drawTexture(new ResourceLocation(text), u, v, -0.8, -0.1, -0.2, 1.6, 0.2, 0, 0);
+    	
+    	GlStateManager.rotate(-90, 1.0F, 0, 0);
     	    	
-    	Vec3 corn1 = new Vec3(0.4, 0.4, 0.4);
-    	Vec3 corn2 = new Vec3(-0.4, 0.4, 0.4);
-    	Vec3 corn3 = new Vec3(0.5, 0, 0.5);
-    	Vec3 corn4 = new Vec3(-0.5, 0, 0.5);
-    	drawTexturePoints(text,corn1, corn2, corn3, corn4);
+    	Vec3 corn13 = new Vec3(0.8, 0.2, 0.1);
+    	Vec3 corn23 = new Vec3(0.8, 0.2, -0.1);
+    	Vec3 corn33 = new Vec3(1, 0, 0.2);
+    	Vec3 corn43 = new Vec3(1, 0, -0.2);
+		drawTexturePoints(text, corn23,corn13, corn33, corn43,u,v);
+    	
+    	Vec3 corn1 = new Vec3(-0.8, 0.2, 0.1);
+    	Vec3 corn2 = new Vec3(0.8, 0.2, 0.1);
+    	Vec3 corn3 = new Vec3(-1, 0, 0.2);
+    	Vec3 corn4 = new Vec3(1, 0, 0.2);
+    	drawTexturePoints(text,corn2,corn1, corn3, corn4,u,v);
     	
     	GlStateManager.rotate(180F, 0F, 1.0F, 0F);
     	
-    	Vec3 corn12 = new Vec3(0.4, 0.4, 0.4);
-    	Vec3 corn22 = new Vec3(-0.4, 0.4,0.4);
-    	Vec3 corn32 = new Vec3(0.5, 0, 0.5);
-    	Vec3 corn42 = new Vec3(-0.5, 0, 0.5);
-    	drawTexturePoints(text,corn12, corn22, corn32, corn42);
+    	Vec3 corn15 = new Vec3(0.8, 0.2, 0.1);
+    	Vec3 corn25 = new Vec3(0.8, 0.2, -0.1);
+    	Vec3 corn35 = new Vec3(1, 0, 0.2);
+    	Vec3 corn45 = new Vec3(1, 0, -0.2);
+		drawTexturePoints(text, corn25,corn15, corn35, corn45,u,v);
     	
-    	drawTexture(new ResourceLocation(text), 100, 100, 0, 0, 0, 100, 100, 0, 0);
+    	Vec3 corn12 = new Vec3(-0.8, 0.2, 0.1);
+    	Vec3 corn22 = new Vec3(0.8, 0.2,0.1);
+    	Vec3 corn32 = new Vec3(-1, 0, 0.2);
+    	Vec3 corn42 = new Vec3(1, 0, 0.2);
+    	drawTexturePoints(text, corn22,corn12, corn32, corn42,u,v);
+    	
+    	
     	
     	GlStateManager.popMatrix();
     }

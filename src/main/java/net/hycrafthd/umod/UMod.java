@@ -1,7 +1,5 @@
 package net.hycrafthd.umod;
 
-import org.lwjgl.input.Keyboard;
-
 import net.hycrafthd.umod.api.ProcessHandler;
 import net.hycrafthd.umod.event.EventDrawHUD;
 import net.hycrafthd.umod.event.EventExecuteRadiation;
@@ -12,14 +10,19 @@ import net.hycrafthd.umod.event.EventPlayerJoin;
 import net.hycrafthd.umod.event.EventToolTip;
 import net.hycrafthd.umod.network.PacketHandler;
 import net.hycrafthd.umod.utils.CommonRegistryUtils;
-import net.minecraft.client.settings.KeyBinding;
+import net.minecraft.client.Minecraft;
+import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
+import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.common.FMLContainer;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -59,6 +62,7 @@ public class UMod {
 		CommonRegistryUtils.registerGuiHandler(new UGuiHandler());
 		UReference.proxy.registerModels();
 		UReference.proxy.registerRenderer();
+		ClientProxy.registerVIA();
 		Logger.info("postinit(e)", "Registered Mod.");
 	}
 

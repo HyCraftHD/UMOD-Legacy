@@ -4,15 +4,14 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GLContext;
 
-import javafx.scene.shape.CullFace;
-import net.hycrafthd.umod.gui.GuiRescources;
+import net.hycrafthd.umod.ClientProxy;
+import net.hycrafthd.umod.UReference;
+import net.hycrafthd.umod.VIA.Vertex;
 import net.hycrafthd.umod.render.RGBA;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.EntityRenderer;
-import net.minecraft.client.renderer.EnumFaceDirection;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.Tessellator;
@@ -210,8 +209,6 @@ public class LWJGLUtils {
         GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
         byte b0 = 0;
         GlStateManager.disableTexture2D();
-        int j = fontrenderer.getStringWidth(text) / 2;
-        int j2 = fontrenderer.getStringWidth(text);
         GlStateManager.enableTexture2D();
         fontrenderer.drawString(text, -fontrenderer.getStringWidth(text) / 2, b0, color);
         GlStateManager.enableDepth();
@@ -426,7 +423,11 @@ public class LWJGLUtils {
     	
     	double u = 2,v = 2;
     	
-    	GlStateManager.rotate(90, 1.0F, 0, 0);
+    	GlStateManager.rotate(-90, 1.0F, 0, 0);
+    	
+    	drawTexture(new ResourceLocation(text), 2, 0.4, -1, -0.2, 0, 2, 0.4, 0, 0);
+    	
+    	GlStateManager.rotate(180, 1.0F, 0, 0);
     	
     	drawTexture(new ResourceLocation(text), u, v, -0.8, -0.1, -0.2, 1.6, 0.2, 0, 0);
     	
@@ -458,8 +459,19 @@ public class LWJGLUtils {
     	Vec3 corn42 = new Vec3(1, 0, 0.2);
     	drawTexturePoints(text, corn22,corn12, corn32, corn42,u,v);
     	
-    	
+    	drawVertex(text, ClientProxy.viaTest.interpretVertex(0),0, 0, 0);
     	
     	GlStateManager.popMatrix();
     }
+	
+	public static void drawRailPart(String text,double x,double y,double z){
+    	GlStateManager.pushMatrix();
+    	GlStateManager.translate(x + 0.5, y, z);
+    	GlStateManager.enableNormalize();
+    	RenderHelper.disableStandardItemLighting();
+	}
+	
+	public static void drawVertex(String str,Vertex ve,double x,double y,double z){
+		drawTexturePoints(str, ve.getVec1(), ve.getVec2(), ve.getVec3(), ve.getVec4(), 0, 0);
+	}
 }

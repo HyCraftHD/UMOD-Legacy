@@ -18,5 +18,6 @@ public class CommonProxy {
 	// Client Stuff
 	public void registerRenderer() {
 	}
+	
 
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.lwjgl.input.Keyboard;
 
+import net.hycrafthd.umod.VIA.VIAFile;
 import net.hycrafthd.umod.block.BlockSolarPanel.EnumTypeSolarPanel;
 import net.hycrafthd.umod.entity.EntityInfectedCow;
 import net.hycrafthd.umod.entity.EntityInfectedCreeper;
@@ -157,4 +158,9 @@ public class ClientProxy extends CommonProxy {
 		ClientRegistryUtils.addTooltip(stack, player, tooltip, advanced);
 	}
 
+	public static VIAFile viaTest; 
+	
+	public static void registerVIA() {
+		viaTest = new VIAFile("D:\\Desktop\\viatest.via");
+	}
 }

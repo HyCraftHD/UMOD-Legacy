@@ -102,10 +102,10 @@ public class VIAFile extends File{
 	}
 	
 	public int getMaxGroups(){
-		return splitGroups().length;
+		return splitGroups().length - 1;
 	}
 	
 	public int getMaxPointsOfGroup(int gr){
-		return splitPoints(gr).length;
+		return splitPoints(gr).length - 1;
 	}
 }

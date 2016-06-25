@@ -7,6 +7,8 @@ import org.lwjgl.opengl.GL11;
 
 import net.hycrafthd.umod.ClientProxy;
 import net.hycrafthd.umod.UReference;
+import net.hycrafthd.umod.VIA.VIADrawer;
+import net.hycrafthd.umod.VIA.VIARegister;
 import net.hycrafthd.umod.VIA.Vertex;
 import net.hycrafthd.umod.render.RGBA;
 import net.minecraft.client.Minecraft;
@@ -459,7 +461,7 @@ public class LWJGLUtils {
     	Vec3 corn42 = new Vec3(1, 0, 0.2);
     	drawTexturePoints(text, corn22,corn12, corn32, corn42,u,v);
     	
-    	drawVertex(text, ClientProxy.viaTest.interpretVertex(0),0, 0, 0);
+    	drawVertex(text, VIARegister.viaTest.interpretVertex(0),0, 0, 0);
     	
     	GlStateManager.popMatrix();
     }
@@ -469,6 +471,10 @@ public class LWJGLUtils {
     	GlStateManager.translate(x + 0.5, y, z);
     	GlStateManager.enableNormalize();
     	RenderHelper.disableStandardItemLighting();
+    	
+        new VIADrawer(VIARegister.viaRailPart).drawNormal("iron", 0, 0, 0);
+
+        GlStateManager.popMatrix();
 	}
 	
 	public static void drawVertex(String str,Vertex ve,double x,double y,double z){

@@ -2,6 +2,8 @@ package net.hycrafthd.umod.render;
 
 import java.awt.Color;
 
+import net.hycrafthd.umod.ClientProxy;
+import net.hycrafthd.umod.VIA.VIADrawer;
 import net.hycrafthd.umod.tileentity.TileEntityEnergyPannel;
 import net.hycrafthd.umod.tileentity.TileEntityPulverizer;
 import net.hycrafthd.umod.utils.LWJGLUtils;
@@ -19,7 +21,6 @@ public class TileEntityEnergyPannelSpecialRender extends TileEntitySpecialRender
 		TileEntityEnergyPannel tile = (TileEntityEnergyPannel) ent;
 		if(tile.hasBlockPos()){
 		TileEntityPulverizer pulv = (TileEntityPulverizer) ent.getWorld().getTileEntity(tile.getPosOf());
-
 		EntityPlayer pl  = Minecraft.getMinecraft().thePlayer;
         float f = 1.6F;
         float f1 = 0.016666668F * f;

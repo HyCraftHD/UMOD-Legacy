@@ -17,7 +17,5 @@ public class TileEntityRail extends TileEntity implements IUpdatePlayerListBox{
 		this.worldObj.spawnEntityInWorld(new EntityRailFX(worldObj, pos));
 		isn = true;
 	}
-    
-	
-	
+    	
 }

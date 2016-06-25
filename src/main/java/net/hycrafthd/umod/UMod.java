@@ -1,5 +1,6 @@
 package net.hycrafthd.umod;
 
+import net.hycrafthd.umod.VIA.VIARegister;
 import net.hycrafthd.umod.api.ProcessHandler;
 import net.hycrafthd.umod.event.EventDrawHUD;
 import net.hycrafthd.umod.event.EventExecuteRadiation;
@@ -62,7 +63,6 @@ public class UMod {
 		CommonRegistryUtils.registerGuiHandler(new UGuiHandler());
 		UReference.proxy.registerModels();
 		UReference.proxy.registerRenderer();
-		ClientProxy.registerVIA();
 		Logger.info("postinit(e)", "Registered Mod.");
 	}
 

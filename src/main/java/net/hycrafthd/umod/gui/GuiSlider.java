@@ -2,7 +2,7 @@ package net.hycrafthd.umod.gui;
 
 import net.hycrafthd.umod.render.RGBA;
 import net.hycrafthd.umod.utils.LWJGLUtils;
-import net.hycrafthd.umod.utils.StringReturnment;
+import net.hycrafthd.umod.utils.StringMethod;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.renderer.GlStateManager;
@@ -12,7 +12,7 @@ public class GuiSlider extends Gui {
 	private int x,y;
 	private RGBA back,slid,slid2;
 	private int val = 0;
-	private StringReturnment ret = null;
+	private StringMethod ret = null;
 	
 	public GuiSlider(int x,int y,RGBA color1,RGBA color2,RGBA color3,int val) {
 		this.x = x;
@@ -53,7 +53,7 @@ public class GuiSlider extends Gui {
 		return ret.getString();
 	}
 	
-	public void setStringRet(StringReturnment returnm){
+	public void setStringRet(StringMethod returnm){
 		ret = returnm;
 	}
 	

@@ -2,7 +2,7 @@ package net.hycrafthd.umod.inventory;
 
 import net.hycrafthd.umod.UItems;
 import net.hycrafthd.umod.render.RGBA;
-import net.hycrafthd.umod.utils.StringReturnment;
+import net.hycrafthd.umod.utils.StringMethod;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 
@@ -12,7 +12,7 @@ public class BaseBatteryInputSlot extends BaseSlot{
 		super(inventoryIn, index, xPosition, yPosition);
 		 RGBA back = new RGBA(255, 0, 0, 125);
          RGBA nback = new RGBA(255, 0, 0, 50);
-         this.setStringRet(new StringReturnment() {
+         this.setStringRet(new StringMethod() {
 			
 			@Override
 			public String getString() {

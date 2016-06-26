@@ -1,7 +1,7 @@
 package net.hycrafthd.umod.inventory;
 
 import net.hycrafthd.umod.render.RGBA;
-import net.hycrafthd.umod.utils.StringReturnment;
+import net.hycrafthd.umod.utils.StringMethod;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
@@ -13,7 +13,7 @@ public class BaseSlotOutput extends BaseSlot{
 		RGBA n = new RGBA(255, 255, 70, 50);
 		RGBA e = new RGBA(255, 255, 70, 125);
 		this.setHoverColor(n, n, e, e);
-		this.setStringRet(new StringReturnment() {
+		this.setStringRet(new StringMethod() {
 			
 			@Override
 			public String getString() {

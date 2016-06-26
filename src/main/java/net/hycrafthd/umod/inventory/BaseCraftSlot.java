@@ -3,7 +3,7 @@ package net.hycrafthd.umod.inventory;
 import java.awt.Color;
 
 import net.hycrafthd.umod.render.RGBA;
-import net.hycrafthd.umod.utils.StringReturnment;
+import net.hycrafthd.umod.utils.StringMethod;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 
@@ -11,7 +11,7 @@ public class BaseCraftSlot extends BaseSlot{
 
 	public BaseCraftSlot(IInventory inventoryIn, int index, int xPosition, int yPosition) {
 		super(inventoryIn, index, xPosition, yPosition);
-		this.setStringRet(new StringReturnment() {
+		this.setStringRet(new StringMethod() {
 			
 			@Override
 			public String getString() {

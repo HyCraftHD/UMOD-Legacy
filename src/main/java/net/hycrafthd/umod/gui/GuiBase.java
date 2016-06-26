@@ -21,7 +21,7 @@ import net.hycrafthd.umod.inventory.BaseBatteryInputSlot;
 import net.hycrafthd.umod.inventory.BaseSlot;
 import net.hycrafthd.umod.render.RGBA;
 import net.hycrafthd.umod.utils.LWJGLUtils;
-import net.hycrafthd.umod.utils.StringReturnment;
+import net.hycrafthd.umod.utils.StringMethod;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
@@ -271,7 +271,7 @@ public abstract class GuiBase extends GuiScreen {
 		}
 		box = new GuiCombobox(k + 8, l + 7, 80, 12);
 		check = new GuiCheckbox(k + 5, l + 5, 10, 10, new RGBA(Color.white), new RGBA(Color.DARK_GRAY));
-		check.setTooltip(new StringReturnment() {
+		check.setTooltip(new StringMethod() {
 			@Override
 			public String getString() {
 				if(check.isSelceted()){

@@ -1,7 +1,7 @@
 package net.hycrafthd.umod.inventory;
 
 import net.hycrafthd.umod.render.RGBA;
-import net.hycrafthd.umod.utils.StringReturnment;
+import net.hycrafthd.umod.utils.StringMethod;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
@@ -13,7 +13,7 @@ public class BaseSlot extends Slot {
 	private RGBA nend = null;
 	private RGBA start = null;
 	private RGBA end = null;
-	private StringReturnment ret = null;
+	private StringMethod ret = null;
 
 	public BaseSlot(IInventory inventoryIn, int index, int xPosition, int yPosition) {
 		super(inventoryIn, index, xPosition, yPosition);
@@ -70,7 +70,7 @@ public class BaseSlot extends Slot {
 		return ret.getString();
 	}
 	
-	public void setStringRet(StringReturnment returnm){
+	public void setStringRet(StringMethod returnm){
 		ret = returnm;
 	}
 	

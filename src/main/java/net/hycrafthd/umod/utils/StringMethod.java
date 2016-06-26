@@ -1,9 +1,7 @@
 package net.hycrafthd.umod.utils;
 
-public abstract class StringReturnment {
+public abstract class StringMethod {
 
-	public StringReturnment() {}
-	
 	public abstract String getString();
 	
 }

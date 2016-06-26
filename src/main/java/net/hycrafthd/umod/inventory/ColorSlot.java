@@ -3,7 +3,7 @@ package net.hycrafthd.umod.inventory;
 import java.awt.Color;
 
 import net.hycrafthd.umod.render.RGBA;
-import net.hycrafthd.umod.utils.StringReturnment;
+import net.hycrafthd.umod.utils.StringMethod;
 import net.minecraft.inventory.IInventory;
 
 public class ColorSlot extends BaseSlot {
@@ -14,7 +14,7 @@ public class ColorSlot extends BaseSlot {
 		super(inventoryIn, index, xPosition, yPosition);
 		color = c;
 		this.setHoverColor(new RGBA(color).setAlpha(75), new RGBA(color).setAlpha(75), new RGBA(color).setAlpha(125), new RGBA(color).setAlpha(125));
-		this.setStringRet(new StringReturnment() {
+		this.setStringRet(new StringMethod() {
 			
 			@Override
 			public String getString() {

@@ -9,7 +9,7 @@ import net.hycrafthd.umod.ClientProxy;
 import net.hycrafthd.umod.container.ContainerBase.Mode;
 import net.hycrafthd.umod.render.RGBA;
 import net.hycrafthd.umod.utils.LWJGLUtils;
-import net.hycrafthd.umod.utils.StringReturnment;
+import net.hycrafthd.umod.utils.StringMethod;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.GlStateManager;
@@ -31,7 +31,7 @@ public class GuiPainter extends GuiBase {
 		int x = this.guiLeft + 36;
 		int y = this.guiTop;
 		red = new GuiSlider(x, y + 11, new RGBA(Color.red).setAlpha(155), new RGBA(Color.black),new RGBA(Color.WHITE),0);
-		red.setStringRet(new StringReturnment() {
+		red.setStringRet(new StringMethod() {
 			
 			@Override
 			public String getString() {
@@ -39,7 +39,7 @@ public class GuiPainter extends GuiBase {
 			}
 		});
 		green = new GuiSlider(x, y + 32, new RGBA(Color.green).setAlpha(155), new RGBA(Color.black),new RGBA(Color.WHITE),0);
-        green.setStringRet(new StringReturnment() {
+        green.setStringRet(new StringMethod() {
 			
 			@Override
 			public String getString() {
@@ -47,7 +47,7 @@ public class GuiPainter extends GuiBase {
 			}
 		});
 		blue = new GuiSlider(x, y + 53, new RGBA(Color.blue).setAlpha(155), new RGBA(Color.black),new RGBA(Color.WHITE),0);
-		blue.setStringRet(new StringReturnment() {
+		blue.setStringRet(new StringMethod() {
 				
 				@Override
 				public String getString() {
@@ -55,7 +55,7 @@ public class GuiPainter extends GuiBase {
 				}
 		});
 		sat = new GuiSlider(x, y + 67, new RGBA(Color.WHITE).setAlpha(155), new RGBA(Color.black).setAlpha(155), new RGBA(Color.WHITE).setAlpha(155), 0);
-		sat.setStringRet(new StringReturnment() {
+		sat.setStringRet(new StringMethod() {
 			
 			@Override
 			public String getString() {

@@ -1,6 +1,6 @@
 package net.hycrafthd.umod.gui;
 
-import net.hycrafthd.umod.utils.StringReturnment;
+import net.hycrafthd.umod.utils.StringMethod;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -8,7 +8,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class ExtendedGuiButton extends GuiButton{
 	
-	private StringReturnment ret = null;
+	private StringMethod ret = null;
 	private int color = 0xFFFFFF;
 
 	public ExtendedGuiButton(int buttonId, int x, int y, int widthIn, int heightIn, String buttonText) {
@@ -23,7 +23,7 @@ public class ExtendedGuiButton extends GuiButton{
 		return ret.getString();
 	}
 	
-	public void setStringRet(StringReturnment returnm){
+	public void setStringRet(StringMethod returnm){
 		ret = returnm;
 	}
 	

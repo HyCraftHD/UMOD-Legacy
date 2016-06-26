@@ -4,7 +4,7 @@ import java.awt.Color;
 
 import net.hycrafthd.umod.render.RGBA;
 import net.hycrafthd.umod.utils.LWJGLUtils;
-import net.hycrafthd.umod.utils.StringReturnment;
+import net.hycrafthd.umod.utils.StringMethod;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
@@ -18,7 +18,7 @@ public class GuiCheckbox extends Gui{
 	private RGBA rgb;
 	private RGBA hover;
 	private boolean isSelected;
-	private StringReturnment ret;
+	private StringMethod ret;
     private Runnable run;
 	
 	public GuiCheckbox(double x,double y,double width, double height,RGBA rgb,RGBA hover) {
@@ -108,7 +108,7 @@ public class GuiCheckbox extends Gui{
 		}
 	}
 	
-	public void setTooltip(StringReturnment ret){
+	public void setTooltip(StringMethod ret){
 		this.ret = ret;
 	}
 	

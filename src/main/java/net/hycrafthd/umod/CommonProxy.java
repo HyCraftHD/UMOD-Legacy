@@ -12,6 +12,7 @@ public class CommonProxy {
 	}
 
 	// Client Stuff
+	@SuppressWarnings("rawtypes")
 	public void addTooltip(ItemStack stack, EntityPlayer player, List tooltip, boolean advanced) {
 	}
 

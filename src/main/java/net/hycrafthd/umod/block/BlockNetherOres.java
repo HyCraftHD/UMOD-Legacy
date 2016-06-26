@@ -5,15 +5,12 @@ import java.util.Random;
 
 import net.hycrafthd.umod.UItems;
 import net.hycrafthd.umod.enumtype.EnumTypeBaseStuff;
-import net.minecraft.block.BlockOre;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.Entity;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockPos;
@@ -86,6 +83,7 @@ public class BlockNetherOres extends BlockBase {
 		return 0;
 	}
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
 	public void getSubBlocks(Item item, CreativeTabs creativetab, List list) {
 		for (int i = 0; i < EnumTypeBaseStuff.values().length; i++) {

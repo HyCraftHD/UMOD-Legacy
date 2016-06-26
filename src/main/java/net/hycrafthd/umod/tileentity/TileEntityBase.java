@@ -1,9 +1,6 @@
 package net.hycrafthd.umod.tileentity;
 
-import net.hycrafthd.umod.api.IIOMode;
 import net.hycrafthd.umod.api.energy.IPowerProvieder;
-import net.hycrafthd.umod.utils.DirectionUtils;
-import net.hycrafthd.umod.utils.EnergyUtils;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.nbt.NBTTagCompound;
@@ -99,7 +96,7 @@ public abstract class TileEntityBase extends TileEntity implements ISidedInvento
 	public abstract void writeIOModeToNBT(NBTTagCompound tagIO);
 
 	public void writeEnergyToNBT(NBTTagCompound tagEnergy) {
-		 tagEnergy.setInteger(INT_ENERGY, strpo);
+		 tagEnergy.setDouble(INT_ENERGY, strpo);
 		
 	}
 
@@ -112,49 +109,49 @@ public abstract class TileEntityBase extends TileEntity implements ISidedInvento
 	}
 
 	public void readEnergyFromNBT(NBTTagCompound tagEnergy) {
-		strpo = tagEnergy.getInteger(INT_ENERGY);
+		strpo = tagEnergy.getDouble(INT_ENERGY);
 		
 	}
 
 	public abstract void readItemsFromNBT(NBTTagCompound tagItems);
 	
 
-	protected int strpo = 0;
+	protected double strpo = 0;
 	protected String error;
 	protected static int MAXIMUM_POWER = 4000;
 	protected boolean work;
 	
 	@Override
-	public int getStoredPower() {
+	public double getStoredPower() {
 		return strpo;
 	}
 
 	@Override
-	public void addPower(int power) {
+	public void addPower(double power) {
 		this.markDirty();
 		if(strpo >= MAXIMUM_POWER){
 			return;
 		}
-		strpo += EnergyUtils.inUE(power);
+		strpo += power;
 	}
 
 	@Override
-	public int getPower(int powerneed) {
+	public double getPower(double powerneed) {
 		return 0;
 	}
 
 	@Override
-	public boolean canGetPower(BlockPos p,int power) {
+	public boolean canGetPower(BlockPos p,double power) {
 		return false;
 	}
 
 	@Override
-	public boolean canAddPower(BlockPos p,int power) {
-		return strpo + EnergyUtils.inUE(power) <= MAXIMUM_POWER;
+	public boolean canAddPower(BlockPos p,double power) {
+		return strpo + power <= MAXIMUM_POWER;
 	}
 
 	@Override
-	public int getMaximalPower() {
+	public double getMaximalPower() {
 		return MAXIMUM_POWER;
 	}
 
@@ -169,7 +166,7 @@ public abstract class TileEntityBase extends TileEntity implements ISidedInvento
 	}
 
 	@Override
-	public void setEnergy(int coun) {
+	public void setEnergy(double coun) {
 		this.strpo = coun;
 	}
 	

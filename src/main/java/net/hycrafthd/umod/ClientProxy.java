@@ -1,15 +1,9 @@
 package net.hycrafthd.umod;
 
-import java.io.File;
-import java.net.MalformedURLException;
-import java.net.URISyntaxException;
 import java.util.List;
 
 import org.lwjgl.input.Keyboard;
 
-import com.google.common.reflect.Reflection;
-
-import net.hycrafthd.umod.VIA.VIAFile;
 import net.hycrafthd.umod.VIA.VIARegister;
 import net.hycrafthd.umod.block.BlockSolarPanel.EnumTypeSolarPanel;
 import net.hycrafthd.umod.entity.EntityInfectedCow;
@@ -26,10 +20,8 @@ import net.hycrafthd.umod.entity.render.RenderPipeFX;
 import net.hycrafthd.umod.entity.render.rail.RenderRailFX;
 import net.hycrafthd.umod.enumtype.EnumTypeBackPack;
 import net.hycrafthd.umod.enumtype.EnumTypeBaseStuff;
-import net.hycrafthd.umod.render.TileEntityCabelSpecialRender;
 import net.hycrafthd.umod.render.TileEntityEnergyPannelSpecialRender;
 import net.hycrafthd.umod.render.TileEntityPulverizerSpecialRender;
-import net.hycrafthd.umod.tileentity.TileEntityCable;
 import net.hycrafthd.umod.tileentity.TileEntityEnergyPannel;
 import net.hycrafthd.umod.tileentity.TileEntityPulverizer;
 import net.hycrafthd.umod.utils.ClientRegistryUtils;
@@ -40,12 +32,9 @@ import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
-import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import scala.reflect.runtime.ReflectionUtils;
 
 public class ClientProxy extends CommonProxy {
 
@@ -163,6 +152,7 @@ public class ClientProxy extends CommonProxy {
 		VIARegister.registerVIA();
 	}
 
+	@SuppressWarnings("rawtypes")
 	@Override
 	public void addTooltip(ItemStack stack, EntityPlayer player, List tooltip, boolean advanced) {
 		ClientRegistryUtils.addTooltip(stack, player, tooltip, advanced);

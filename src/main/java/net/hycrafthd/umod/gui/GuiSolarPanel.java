@@ -2,8 +2,6 @@ package net.hycrafthd.umod.gui;
 
 import java.io.IOException;
 
-import org.lwjgl.opengl.GL11;
-
 import net.hycrafthd.umod.UReference;
 import net.hycrafthd.umod.api.energy.IPowerProvieder;
 import net.hycrafthd.umod.block.BlockSolarPanel.EnumTypeSolarPanel;
@@ -11,8 +9,6 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;

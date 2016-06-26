@@ -7,7 +7,6 @@ import net.hycrafthd.umod.tileentity.TileEntityCable;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
-import scala.collection.TraversableOnce.OnceCanBuildFrom;
 
 public class TunnelHolder {
 

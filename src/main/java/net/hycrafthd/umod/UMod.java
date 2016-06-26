@@ -1,6 +1,5 @@
 package net.hycrafthd.umod;
 
-import net.hycrafthd.umod.VIA.VIARegister;
 import net.hycrafthd.umod.api.ProcessHandler;
 import net.hycrafthd.umod.event.EventDrawHUD;
 import net.hycrafthd.umod.event.EventExecuteRadiation;
@@ -11,21 +10,12 @@ import net.hycrafthd.umod.event.EventPlayerJoin;
 import net.hycrafthd.umod.event.EventToolTip;
 import net.hycrafthd.umod.network.PacketHandler;
 import net.hycrafthd.umod.utils.CommonRegistryUtils;
-import net.minecraft.client.Minecraft;
-import net.minecraftforge.fml.client.FMLClientHandler;
-import net.minecraftforge.fml.client.registry.ClientRegistry;
-import net.minecraftforge.fml.common.FMLCommonHandler;
-import net.minecraftforge.fml.common.FMLContainer;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
-import net.minecraftforge.fml.common.network.NetworkRegistry;
-import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 @Mod(modid = UReference.modid, version = UReference.version, name = UReference.name)
 public class UMod {

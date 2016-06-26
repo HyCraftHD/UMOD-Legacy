@@ -4,7 +4,6 @@ import net.hycrafthd.umod.armor.ArmorEmerald;
 import net.hycrafthd.umod.armor.ArmorRadiation;
 import net.hycrafthd.umod.item.tools.energy.ItemEnergyGlasses;
 import net.hycrafthd.umod.utils.CommonRegistryUtils;
-import net.minecraft.block.BlockDoor.EnumHingePosition;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraftforge.common.util.EnumHelper;

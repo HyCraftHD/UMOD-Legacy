@@ -8,7 +8,6 @@ import net.hycrafthd.umod.utils.StringReturnment;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
-import net.minecraft.client.renderer.GlStateManager;
 
 public class GuiCheckbox extends Gui{
 	

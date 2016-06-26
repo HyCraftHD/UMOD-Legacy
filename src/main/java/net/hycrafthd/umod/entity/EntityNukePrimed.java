@@ -120,7 +120,7 @@ public class EntityNukePrimed extends Entity {
 
 	@Override
 	protected void entityInit() {
-		this.fuse = this.fuseSec * 20;
+		this.fuse = fuseSec * 20;
 	}
 	
 	@SideOnly(Side.CLIENT)

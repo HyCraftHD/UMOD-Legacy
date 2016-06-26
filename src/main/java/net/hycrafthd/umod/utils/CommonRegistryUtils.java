@@ -43,6 +43,7 @@ public class CommonRegistryUtils {
 	}
 
 	// Entity
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public static void registerEntity(Class entityClass, String entityName, int trackingRange, int updateFrequency, boolean sendsVelocityUpdates, int solidColor, int spotColor, boolean hasSpawnEgg) {
 		int id = EntityRegistry.findGlobalUniqueEntityId();
 

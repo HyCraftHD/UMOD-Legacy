@@ -6,17 +6,17 @@ import net.minecraft.world.World;
 
 public interface IPowerProvieder extends IUpdatePlayerListBox{
 
-	public int getStoredPower();
+	public double getStoredPower();
 	
-	public void addPower(int power);
+	public void addPower(double power);
 	
-	public int getPower(int powerneed);
+	public double getPower(double powerneed);
 	
-	public boolean canGetPower(BlockPos pos,int power);
+	public boolean canGetPower(BlockPos pos,double power);
 	
-	public boolean canAddPower(BlockPos pos,int power);
+	public boolean canAddPower(BlockPos pos,double power);
 	
-	public int getMaximalPower();
+	public double getMaximalPower();
 	
 	public boolean isWorking();
 	
@@ -24,13 +24,13 @@ public interface IPowerProvieder extends IUpdatePlayerListBox{
 	
 	public boolean hasPower();
 	
-	public int getPowerProducNeeds();
+	public double getPowerProducNeeds();
 	
 	public BlockPos getPos();
 	
 	public World getWorld();
 	
-	public void setEnergy(int coun);
+	public void setEnergy(double coun);
 	
 	public String getEnergyClass();
 	

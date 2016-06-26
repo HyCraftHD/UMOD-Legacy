@@ -1,7 +1,6 @@
 package net.hycrafthd.umod.tileentity;
 
 import net.hycrafthd.umod.UMod;
-import net.hycrafthd.umod.api.energy.IPowerProvieder;
 import net.hycrafthd.umod.utils.DirectionUtils;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -10,13 +9,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.server.gui.IUpdatePlayerListBox;
-import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 
 public class TileEntityPainter extends TileEntityBase implements IUpdatePlayerListBox{
 
 	private ItemStack[] stack = new ItemStack[6];
-	private int energy;
 	
 	@Override
 	public int[] getSlotsForFace(EnumFacing side) {
@@ -237,18 +234,16 @@ public class TileEntityPainter extends TileEntityBase implements IUpdatePlayerLi
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
-	public int getPowerProducNeeds() {
+	public double getPowerProducNeeds() {
 		return 0;
 	}
 
 	@Override
 	public String getEnergyClass() {
-		// TODO Auto-generated method stub
-		return null;
+		return "";
 	}
 
 	@Override

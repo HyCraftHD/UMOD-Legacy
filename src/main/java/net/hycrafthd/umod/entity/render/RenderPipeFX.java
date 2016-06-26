@@ -4,10 +4,7 @@ import net.hycrafthd.umod.render.TileEntityCabelSpecialRender;
 import net.hycrafthd.umod.tileentity.TileEntityCable;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.RenderEntity;
-import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.item.EntityItem;
-import net.minecraft.util.BlockPos;
 import net.minecraft.util.Vec3i;
 
 public class RenderPipeFX extends RenderEntity{

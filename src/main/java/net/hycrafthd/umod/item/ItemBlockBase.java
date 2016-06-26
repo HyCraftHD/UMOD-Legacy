@@ -14,6 +14,7 @@ public class ItemBlockBase extends ItemBlock {
 		super(block);
 	}
 
+	@SuppressWarnings("rawtypes")
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer player, List tooltip, boolean advanced) {
 		UReference.proxy.addTooltip(stack, player, tooltip, advanced);

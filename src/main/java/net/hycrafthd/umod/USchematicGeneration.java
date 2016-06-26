@@ -5,9 +5,7 @@ import java.util.Random;
 import net.hycrafthd.umod.uschematic.USchematicGenerationBase;
 import net.hycrafthd.umod.uschematic.USchematicInfectedRuin;
 import net.hycrafthd.umod.utils.GenerationUtils;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldSavedData;
 import net.minecraft.world.chunk.IChunkProvider;
 
 public class USchematicGeneration extends USchematicGenerationBase {

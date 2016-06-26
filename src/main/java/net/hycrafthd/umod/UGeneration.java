@@ -7,7 +7,6 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class UGeneration {
 
-	private GameRegistry gameRegistry;
 	private ArrayList<UGenerator> generators;
 	
 	public UGeneration() {
@@ -16,11 +15,10 @@ public class UGeneration {
 
 	private void init() {
 		this.generators = new ArrayList<UGenerator>();
-		this.gameRegistry = new GameRegistry();
 	}
 	
 	public void register() {
-		for(UGenerator generator : this.generators) gameRegistry.registerWorldGenerator((IWorldGenerator) generator.getGenerator(), generator.getModGenerationWeight());
+		for(UGenerator generator : this.generators) GameRegistry.registerWorldGenerator((IWorldGenerator) generator.getGenerator(), generator.getModGenerationWeight());
 		Logger.debug(UGeneration.class, "register()", "All generators registered");
 	}
 	

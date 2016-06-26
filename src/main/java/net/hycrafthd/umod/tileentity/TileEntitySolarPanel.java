@@ -1,7 +1,6 @@
 package net.hycrafthd.umod.tileentity;
 
 import net.hycrafthd.umod.api.energy.IPowerProvieder;
-import net.hycrafthd.umod.utils.EnergyUtils;
 import net.hycrafthd.umod.utils.WorldUtils;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
@@ -12,9 +11,9 @@ import net.minecraft.util.BlockPos;
 
 public class TileEntitySolarPanel extends TileEntity implements IPowerProvieder {
 
-	public int storedpower = 0;
-	public int MAXIMUM_POWER = 0;
-	public int producing = 0;
+	public double storedpower = 0;
+	public double MAXIMUM_POWER = 0;
+	public double producing = 0;
 	public boolean work;
 	public String unlocalizedname;
 	public String er = null;
@@ -29,37 +28,37 @@ public class TileEntitySolarPanel extends TileEntity implements IPowerProvieder 
 	}
 
 	@Override
-	public int getStoredPower() {
+	public double getStoredPower() {
 		return storedpower;
 	}
 
 	@Override
-	public void setEnergy(int coun) {
+	public void setEnergy(double coun) {
 		storedpower = coun;
 	}
 	
 	@Override
-	public void addPower(int power) {
-		storedpower += EnergyUtils.inUE(power);
+	public void addPower(double power) {
+		storedpower += power;
 	}
 
 	@Override
-	public int getPower(int powerneed) {
-		storedpower -= EnergyUtils.inUE(powerneed);
-		return EnergyUtils.inUE(powerneed);
+	public double getPower(double powerneed) {
+		storedpower -= powerneed;
+		return powerneed;
 	}
 
 	@Override
-	public boolean canGetPower(BlockPos p,int power) {
-		if (storedpower - EnergyUtils.inUE(power) >= 0) {
+	public boolean canGetPower(BlockPos p,double power) {
+		if (storedpower - power >= 0) {
 			return true;
 		}
 		return false;
 	}
 
 	@Override
-	public boolean canAddPower(BlockPos p,int power) {
-		if (EnergyUtils.inUE(power) + storedpower <= MAXIMUM_POWER) {
+	public boolean canAddPower(BlockPos p,double power) {
+		if (power + storedpower <= MAXIMUM_POWER) {
 			return true;
 		}
 		return false;
@@ -88,8 +87,8 @@ public class TileEntitySolarPanel extends TileEntity implements IPowerProvieder 
 			work = false;
 			return;
 		}
-		if (canAddPower(this.pos,EnergyUtils.inUE(producing))) {
-			addPower(EnergyUtils.inUE(producing));
+		if (canAddPower(this.pos,producing)) {
+			addPower(producing);
 			er = null;
 			work = true;
 		} else {
@@ -101,17 +100,17 @@ public class TileEntitySolarPanel extends TileEntity implements IPowerProvieder 
 	@Override
 	public void writeToNBT(NBTTagCompound compound) {
 		super.writeToNBT(compound);
-		compound.setInteger("Stored", storedpower);
+		compound.setDouble("Stored", storedpower);
 	}
 
 	@Override
 	public void readFromNBT(NBTTagCompound compound) {
 		super.readFromNBT(compound);
-		this.storedpower = compound.getInteger("Stored");
+		this.storedpower = compound.getDouble("Stored");
 	}
 
 	@Override
-	public int getMaximalPower() {
+	public double getMaximalPower() {
 		return MAXIMUM_POWER;
 	}
 
@@ -131,8 +130,8 @@ public class TileEntitySolarPanel extends TileEntity implements IPowerProvieder 
 	}
 
 	@Override
-	public int getPowerProducNeeds() {
-		return EnergyUtils.inUE(producing);
+	public double getPowerProducNeeds() {
+		return producing;
 	}
 	
 	@Override

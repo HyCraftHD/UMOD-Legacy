@@ -99,6 +99,7 @@ public class BlockInfectedLeave extends BlockLeaves implements IInfectedBlock {
 		return 15;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<ItemStack> onSheared(ItemStack item, net.minecraft.world.IBlockAccess world, BlockPos pos, int fortune) {
 		return new ArrayList<ItemStack>(Arrays.asList(new ItemStack[] { new ItemStack(this) }));

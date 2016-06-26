@@ -1,7 +1,6 @@
 package net.hycrafthd.umod.container;
 
 import net.hycrafthd.umod.inventory.BaseBatteryInputSlot;
-import net.hycrafthd.umod.utils.ModRegistryUtils;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
@@ -36,7 +35,6 @@ public class ContainerChargeStation extends ContainerBase{
 	
 	@Override
 	public ItemStack transferStackInSlot(EntityPlayer playerIn, int index) {
-		int x = this.inventorySlots.size();
 		ItemStack itemstack = null;
         Slot slot = (Slot)this.inventorySlots.get(index);
 

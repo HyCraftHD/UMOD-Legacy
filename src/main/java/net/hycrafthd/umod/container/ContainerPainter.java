@@ -2,7 +2,6 @@ package net.hycrafthd.umod.container;
 
 import java.awt.Color;
 
-import net.hycrafthd.umod.UMod;
 import net.hycrafthd.umod.inventory.BaseSlotOutput;
 import net.hycrafthd.umod.inventory.ColorSlot;
 import net.minecraft.entity.player.EntityPlayer;

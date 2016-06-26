@@ -1,36 +1,27 @@
 package net.hycrafthd.umod.gui;
 
-import java.awt.Color;
 import java.util.Iterator;
 import java.util.List;
 
-import org.lwjgl.opengl.GL11;
-
 import net.hycrafthd.umod.api.energy.IPowerProvieder;
 import net.hycrafthd.umod.item.ItemEnergyDisplay;
-import net.hycrafthd.umod.render.RGBA;
 import net.hycrafthd.umod.tileentity.TileEntityPulverizer;
-import net.hycrafthd.umod.utils.LWJGLUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.client.gui.GuiIngame;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.EntityRenderer;
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
-import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.texture.TextureUtil;
 import net.minecraft.client.renderer.tileentity.TileEntityItemStackRenderer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.resources.model.IBakedModel;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ContainerPlayer;
 import net.minecraft.item.ItemStack;
@@ -40,9 +31,8 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Vec3i;
 import net.minecraft.world.World;
-import net.minecraftforge.client.GuiIngameForge;
-import net.minecraftforge.fml.common.gameevent.TickEvent;
 
+@SuppressWarnings("deprecation")
 public class GuiModIngame{
 
     private static int ticks = 0;

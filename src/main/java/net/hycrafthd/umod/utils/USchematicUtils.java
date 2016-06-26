@@ -97,7 +97,6 @@ public class USchematicUtils {
 
 		NBTTagList list = new NBTTagList();
 
-		int counter = 0;
 		for (int posy = min.getY(); posy < max.getY(); posy++) {
 			for (int posz = min.getZ(); posz < max.getZ(); posz++) {
 				for (int posx = min.getX(); posx < max.getX(); posx++) {
@@ -117,7 +116,6 @@ public class USchematicUtils {
 						nbt.setTag("tile", tilenbt);
 					}
 					list.appendTag(nbt);
-					counter++;
 				}
 			}
 		}

@@ -23,8 +23,8 @@ import net.minecraft.world.World;
 
 public class TileEntityCable extends TileEntity implements IPlugabel, ICabel, IUpdatePlayerListBox{
 
-	public int Maximum_Power;
-	public int stored;
+	public double Maximum_Power;
+	public double stored;
 	public int loos;
 	public boolean firstrun = false;
 	public ItemStack conduit = null;
@@ -84,15 +84,15 @@ public class TileEntityCable extends TileEntity implements IPlugabel, ICabel, IU
 	
 	@Override
 	public void writeToNBT(NBTTagCompound compound) {
-		compound.setShort("Stored", (short) stored);
-		compound.setInteger("Max", Maximum_Power);
+		compound.setDouble("Stored", (short) stored);
+		compound.setDouble("Max", Maximum_Power);
 		super.writeToNBT(compound);
 	}
 
 	@Override
 	public void readFromNBT(NBTTagCompound compound) {
-		this.stored = compound.getShort("Stored");
-		this.Maximum_Power = compound.getShort("Max");
+		this.stored = compound.getDouble("Stored");
+		this.Maximum_Power = compound.getDouble("Max");
 		super.readFromNBT(compound);
 		this.onBlockSetInWorld();
 	}
@@ -166,7 +166,7 @@ public class TileEntityCable extends TileEntity implements IPlugabel, ICabel, IU
 	}
 	
 	@Override
-	public void setEnergy(int coun) {
+	public void setEnergy(double coun) {
 		stored = coun;
 	}
 
@@ -176,7 +176,7 @@ public class TileEntityCable extends TileEntity implements IPlugabel, ICabel, IU
 	}
 
 	@Override
-	public int getEnergy() {
+	public double getEnergy() {
 		return stored;
 	}
 
@@ -205,7 +205,7 @@ public class TileEntityCable extends TileEntity implements IPlugabel, ICabel, IU
 	}
 
 	@Override
-	public int getMaxEnergy() {
+	public double getMaxEnergy() {
 		return Maximum_Power;
 	}
 

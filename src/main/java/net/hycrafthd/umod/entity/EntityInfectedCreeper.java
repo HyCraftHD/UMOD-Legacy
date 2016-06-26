@@ -34,6 +34,7 @@ public class EntityInfectedCreeper extends EntityCreeper implements IInfectedEnt
 	private int fuseTime = 20;
 	private int explosionRadius = 6;
 
+	@SuppressWarnings("rawtypes")
 	public EntityInfectedCreeper(World worldIn) {
 		super(worldIn);
 		this.tasks.addTask(1, new EntityAISwimming(this));

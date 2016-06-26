@@ -1,10 +1,8 @@
 package net.hycrafthd.umod.tileentity;
 
 import net.hycrafthd.umod.UItems;
-import net.hycrafthd.umod.api.energy.EnergyAPI;
 import net.hycrafthd.umod.api.energy.IPowerProvieder;
 import net.hycrafthd.umod.container.ContainerChargeStation;
-import net.hycrafthd.umod.enumtype.EnumTypeGui;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -45,7 +43,7 @@ public class TileEntityChargeStation extends TileEntityBase implements IPowerPro
 	}
 	
 	@Override
-	public void setEnergy(int coun) {
+	public void setEnergy(double coun) {
 		stored = coun;
 	}
 
@@ -139,8 +137,8 @@ public class TileEntityChargeStation extends TileEntityBase implements IPowerPro
 		return null;
 	}
 
-	int stored;
-	public static final int MAXIMAL_POWER = 50000;
+	private double stored;
+	public static final double MAXIMAL_POWER = 50000;
 	private boolean mode = false;
 
 	@Override
@@ -152,8 +150,6 @@ public class TileEntityChargeStation extends TileEntityBase implements IPowerPro
 			stored -= 2;
 			stack.setItemDamage(stack.getItemDamage() - 2);
 		}
-
-		EnergyAPI api = new EnergyAPI(this);
 	}
 
 	public void setMode(boolean m) {
@@ -161,33 +157,33 @@ public class TileEntityChargeStation extends TileEntityBase implements IPowerPro
 	}
 
 	@Override
-	public int getStoredPower() {
+	public double getStoredPower() {
 		return stored;
 	}
 
 	@Override
-	public void addPower(int power) {
+	public void addPower(double power) {
 		stored += power;
 	}
 
 	@Override
-	public int getPower(int powerneed) {
+	public double getPower(double powerneed) {
 		stored -= powerneed;
 		return powerneed;
 	}
 
 	@Override
-	public boolean canGetPower(BlockPos pos, int power) {
+	public boolean canGetPower(BlockPos pos, double power) {
 		return false;
 	}
 
 	@Override
-	public boolean canAddPower(BlockPos pos, int power) {
+	public boolean canAddPower(BlockPos pos, double power) {
 		return power + stored <= MAXIMAL_POWER;
 	}
 
 	@Override
-	public int getMaximalPower() {
+	public double getMaximalPower() {
 		return MAXIMAL_POWER;
 	}
 
@@ -207,7 +203,7 @@ public class TileEntityChargeStation extends TileEntityBase implements IPowerPro
 	}
 
 	@Override
-	public int getPowerProducNeeds() {
+	public double getPowerProducNeeds() {
 		return 2;
 	}
 
@@ -226,7 +222,7 @@ public class TileEntityChargeStation extends TileEntityBase implements IPowerPro
 
 	@Override
 	public void writeEnergyToNBT(NBTTagCompound tagEnergy) {
-		tagEnergy.setInteger("Stored", stored);
+		tagEnergy.setDouble("Stored", stored);
 	}
 
 	@Override
@@ -249,7 +245,7 @@ public class TileEntityChargeStation extends TileEntityBase implements IPowerPro
 
 	@Override
 	public void readEnergyFromNBT(NBTTagCompound tagEnergy) {
-		this.stored = tagEnergy.getInteger("Stored");
+		this.stored = tagEnergy.getDouble("Stored");
 		
 	}
 

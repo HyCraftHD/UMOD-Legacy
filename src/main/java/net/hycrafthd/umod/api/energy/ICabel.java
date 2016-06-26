@@ -5,9 +5,9 @@ import net.minecraft.world.World;
 
 public interface ICabel {
 
-	public int getEnergy();
+	public double getEnergy();
 	
-	public void setEnergy(int i);
+	public void setEnergy(double i);
 	
 	public void searchForInput(ICabel cab);
 	
@@ -21,7 +21,7 @@ public interface ICabel {
 	
 	public boolean isOutput();
 	
-	public int getMaxEnergy();
+	public double getMaxEnergy();
 	
 	public String getEnergyClass();
 	

@@ -58,7 +58,8 @@ public class CommandConduit extends CommandBase{
 	     }
 	}
 	
-	 public List addTabCompletionOptions(ICommandSender sender, String[] args, BlockPos pos)
+	@SuppressWarnings("rawtypes")
+	public List addTabCompletionOptions(ICommandSender sender, String[] args, BlockPos pos)
 	    {
 	        return args.length == 1 ? getListOfStringsMatchingLastWord(args, this.getPlayers()) : (args.length == 2 ? func_175762_a(args, Block.blockRegistry.getKeys()) : null);
 	    }

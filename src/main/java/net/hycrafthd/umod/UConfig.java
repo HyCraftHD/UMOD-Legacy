@@ -7,12 +7,12 @@ import net.minecraftforge.common.config.Configuration;
 
 public class UConfig {
 
-	public static Configuration config;
+	public Configuration config;
 	private File configFile;
 	
 	public UConfig(File file) {
 		this.configFile = file;
-		this.config = new Configuration(this.configFile);
+	    config = new Configuration(this.configFile);
 		init();
 	}
 	

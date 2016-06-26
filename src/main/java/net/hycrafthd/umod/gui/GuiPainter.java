@@ -6,7 +6,6 @@ import java.io.IOException;
 import org.lwjgl.input.Keyboard;
 
 import net.hycrafthd.umod.ClientProxy;
-import net.hycrafthd.umod.UMod;
 import net.hycrafthd.umod.container.ContainerBase.Mode;
 import net.hycrafthd.umod.render.RGBA;
 import net.hycrafthd.umod.utils.LWJGLUtils;

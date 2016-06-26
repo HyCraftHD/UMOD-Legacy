@@ -1,24 +1,11 @@
 package net.hycrafthd.umod.utils;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 
-import com.google.common.collect.ImmutableList;
-
-import net.hycrafthd.umod.UMod;
-import net.hycrafthd.umod.UReference;
 import net.hycrafthd.umod.api.CraftSmeltRecepie;
 import net.hycrafthd.umod.api.CraftSmeltRecepieShapless;
 import net.hycrafthd.umod.api.PulverizerRecepie;
-import net.hycrafthd.umod.api.SideBoolSet;
-import net.hycrafthd.umod.block.BlockCable;
-import net.minecraft.block.Block;
-import net.minecraft.block.state.BlockState;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumFacing;
 
 public class ModRegistryUtils {
 	

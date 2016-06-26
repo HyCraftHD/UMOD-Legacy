@@ -18,7 +18,6 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockPos;
 
 public class TileEntityPulverizerSpecialRender extends TileEntitySpecialRenderer{
 	
@@ -34,11 +33,9 @@ public class TileEntityPulverizerSpecialRender extends TileEntitySpecialRenderer
 		ItemStack ore = oven.getStackInSlot(3);
 		
 		final FontRenderer rend = Minecraft.getMinecraft().getRenderManager().getFontRenderer();
-	  byte b0 = 0;
 	  String st = "No Ore Detected";
 		if (ore != null)
 		{
-		b0 = 8;
 		GlStateManager.pushMatrix();
 		if(oven.isBurning){
 			if(time >= 360){
@@ -71,7 +68,6 @@ public class TileEntityPulverizerSpecialRender extends TileEntitySpecialRenderer
 		GlStateManager.popMatrix();
 		
 	   }
-		BlockPos pos = tileEntity.getPos();
 		GL11.glPushMatrix();
 		final String str = st;
 		GlStateManager.disableLighting();

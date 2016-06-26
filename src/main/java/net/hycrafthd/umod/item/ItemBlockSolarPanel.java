@@ -15,6 +15,7 @@ public class ItemBlockSolarPanel extends ItemBlockSubBase {
 		super(block);
 	}
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer playerIn, List tip, boolean advanced) {
 		if (this.block instanceof IEnergyMessage) {

@@ -5,8 +5,6 @@ import java.util.List;
 
 import org.lwjgl.opengl.GL11;
 
-import net.hycrafthd.umod.ClientProxy;
-import net.hycrafthd.umod.UReference;
 import net.hycrafthd.umod.VIA.VIADrawer;
 import net.hycrafthd.umod.VIA.VIARegister;
 import net.hycrafthd.umod.VIA.Vertex;

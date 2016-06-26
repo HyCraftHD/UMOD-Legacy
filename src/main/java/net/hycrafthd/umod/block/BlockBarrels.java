@@ -30,6 +30,7 @@ public class BlockBarrels extends BlockBase {
 		return type.getID();
 	}
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
 	public void getSubBlocks(Item item, CreativeTabs creativetab, List list) {
 		for (int i = 0; i < EnumTypeBarrels.values().length; i++) {

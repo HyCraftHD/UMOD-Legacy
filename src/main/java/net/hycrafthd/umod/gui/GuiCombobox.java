@@ -3,18 +3,14 @@ package net.hycrafthd.umod.gui;
 import java.awt.Color;
 import java.util.ArrayList;
 
-import akka.actor.dsl.Inbox.Select;
 import net.hycrafthd.umod.render.RGBA;
 import net.hycrafthd.umod.utils.LWJGLUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import scala.collection.GenTraversableLike;
 
 @SideOnly(Side.CLIENT)
 public class GuiCombobox extends Gui {

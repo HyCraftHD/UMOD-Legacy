@@ -38,6 +38,7 @@ public class BlockSolarPanel extends BlockBase implements ITileEntityProvider, I
 		return type.getMetadata();
 	}
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
 	public void getSubBlocks(Item item, CreativeTabs creativetab, List list) {
 		for (int i = 0; i < EnumTypeSolarPanel.values().length; i++) {

@@ -21,6 +21,7 @@ public class UPotion {
 		Logger.debug(UPotion.class, "init()", "Init Potions");
 	}
 	
+	@SuppressWarnings("unchecked")
 	public static int getHighestID(){
 		for (Field f : Potion.class.getDeclaredFields()) {
 			f.setAccessible(true);

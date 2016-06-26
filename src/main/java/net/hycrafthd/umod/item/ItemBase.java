@@ -16,6 +16,7 @@ public abstract class ItemBase extends Item {
 	}
 
 	@SideOnly(Side.CLIENT)
+	@SuppressWarnings("rawtypes")
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer player, List tooltip, boolean advanced) {
 		UReference.proxy.addTooltip(stack, player, tooltip, advanced);

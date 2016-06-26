@@ -13,7 +13,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
-import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -57,6 +56,7 @@ public class ClientRegistryUtils {
 		RenderingRegistry.registerEntityRenderingHandler(entityClass, renderer);
 	}
 
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public static void addTooltip(ItemStack stack, EntityPlayer player, List tooltip, boolean advanced) {
 		String tip = I18n.format("tooltip." + stack.getUnlocalizedName());
 		if (!tip.startsWith("tooltip.")) {

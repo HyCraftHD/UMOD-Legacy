@@ -1,12 +1,8 @@
 package net.hycrafthd.umod.tileentity;
 
-import com.sun.xml.internal.messaging.saaj.soap.ver1_1.Message1_1Impl;
-
-import net.hycrafthd.umod.Logger;
 import net.hycrafthd.umod.UMod;
 import net.hycrafthd.umod.api.IIOMode;
 import net.hycrafthd.umod.api.ISignable;
-import net.hycrafthd.umod.api.energy.EnergyAPI;
 import net.hycrafthd.umod.api.energy.IPowerProvieder;
 import net.hycrafthd.umod.block.BlockOres;
 import net.hycrafthd.umod.container.ContainerPulverizer;
@@ -50,7 +46,7 @@ public class TileEntityPulverizer extends TileEntityBase implements
 	}
 	
 	@Override
-	public void setEnergy(int coun) {
+	public void setEnergy(double coun) {
 		strpo = coun;
 	}
 
@@ -215,9 +211,6 @@ public class TileEntityPulverizer extends TileEntityBase implements
 	@Override
 	public void update() {
 		onCraft();
-		EnergyAPI api = new EnergyAPI(this);
-		api.transferEnergy();
-		api.tranferFromBattery(this.stack[4]);
 	}
 	
 	public int getTime(){
@@ -363,8 +356,8 @@ public class TileEntityPulverizer extends TileEntityBase implements
 	}
 	
 	@Override
-	public int getPowerProducNeeds() {
-		return EnergyUtils.inUE(10);
+	public double getPowerProducNeeds() {
+		return 10;
 	}
 
 	@Override

@@ -2,7 +2,6 @@ package net.hycrafthd.umod.event;
 
 import org.lwjgl.input.Keyboard;
 
-import net.hycrafthd.umod.UReference;
 import net.hycrafthd.umod.block.BlockConduit;
 import net.hycrafthd.umod.item.ItemEnergyDisplay;
 import net.hycrafthd.umod.utils.NBTUtils;

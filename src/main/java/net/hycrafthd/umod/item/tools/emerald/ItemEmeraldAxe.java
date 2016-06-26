@@ -16,6 +16,7 @@ public class ItemEmeraldAxe extends ItemAxe {
 		setCreativeTab(UReference.tab);
 	}
 
+	@SuppressWarnings("rawtypes")
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer player, List tooltip, boolean advanced) {

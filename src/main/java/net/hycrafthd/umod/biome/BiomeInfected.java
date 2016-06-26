@@ -15,6 +15,7 @@ public class BiomeInfected extends BiomeGenBase {
 	private final String name = "Infected Biome";
 	private GenInfectedTree tree;
 
+	@SuppressWarnings("unchecked")
 	public BiomeInfected(int id) {
 		super(id);
 		this.setBiomeName(name);

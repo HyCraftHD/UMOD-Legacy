@@ -8,7 +8,6 @@ import net.hycrafthd.umod.tileentity.TileEntityPulverizer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.util.BlockPos;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -46,7 +45,6 @@ public class GuiPulverizer extends GuiBase {
 	@Override
 	public void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
 		if (basecon.mode.equals(Mode.NORMAL)) {
-			TileEntityPulverizer p = (TileEntityPulverizer) this.ent;
 			fontRendererObj.drawString(((TileEntityPulverizer) this.ent).getTime() + "%", this.xSize / 2 - 5, this.ySize / 2 - 62, 0x00000);
 		}
 	}

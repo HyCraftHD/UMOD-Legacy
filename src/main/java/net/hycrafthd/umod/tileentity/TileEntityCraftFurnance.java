@@ -1,18 +1,14 @@
 package net.hycrafthd.umod.tileentity;
 
 import net.hycrafthd.umod.api.ISignable;
-import net.hycrafthd.umod.api.energy.EnergyAPI;
 import net.hycrafthd.umod.api.energy.IPowerProvieder;
 import net.hycrafthd.umod.container.ContainerCraftFurnace;
-import net.hycrafthd.umod.enumtype.EnumTypeGui;
-import net.hycrafthd.umod.utils.EnergyUtils;
 import net.hycrafthd.umod.utils.ModRegistryUtils;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 
 public class TileEntityCraftFurnance extends TileEntityBase implements IPowerProvieder,ISignable{
@@ -141,9 +137,6 @@ public class TileEntityCraftFurnance extends TileEntityBase implements IPowerPro
 	
 	@Override
 	public void update() {
-		EnergyAPI api = new EnergyAPI(this);
-		api.transferEnergy();
-		api.tranferFromBattery(stack[10]);
 		
 		ItemStack stac = ModRegistryUtils.isCraftSmelt(new ItemStack[] {stack[0],stack[1],stack[2]}, new ItemStack[] {stack[3],stack[4],stack[5]}, new ItemStack[] {stack[6],stack[7],stack[8]});
 		if(stac != null && this.strpo > 150){
@@ -215,7 +208,7 @@ public class TileEntityCraftFurnance extends TileEntityBase implements IPowerPro
 	}
 
 	@Override
-	public int getPowerProducNeeds() {
+	public double getPowerProducNeeds() {
 		return 10;
 	}
 

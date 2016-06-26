@@ -34,6 +34,7 @@ public class EntityTommahak extends Entity{
 		
 	}
 
+	@SuppressWarnings("rawtypes")
 	@Override
 	public void onUpdate() {
         this.lastTickPosX = this.posX;

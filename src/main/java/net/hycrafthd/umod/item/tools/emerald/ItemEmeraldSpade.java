@@ -16,6 +16,7 @@ public class ItemEmeraldSpade extends ItemSpade {
 		setCreativeTab(UReference.tab);
 	}
 
+	@SuppressWarnings("rawtypes")
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer player, List tooltip, boolean advanced) {

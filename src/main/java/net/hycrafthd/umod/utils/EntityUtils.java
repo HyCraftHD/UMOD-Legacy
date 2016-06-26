@@ -15,7 +15,8 @@ public class EntityUtils {
 		return (base instanceof IInfectedEntity);
 	}
 
-	 public static int getHighestID(){
+	@SuppressWarnings("unchecked")
+	public static int getHighestID(){
          int highest = 0;
          for (Field f : Potion.class.getDeclaredFields()) {
                  f.setAccessible(true);

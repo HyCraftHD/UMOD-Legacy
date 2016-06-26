@@ -13,13 +13,10 @@ import org.lwjgl.input.Keyboard;
 import com.google.common.collect.Sets;
 
 import net.hycrafthd.umod.UBlocks;
-import net.hycrafthd.umod.UMod;
-import net.hycrafthd.umod.UReference;
 import net.hycrafthd.umod.api.ISignable;
 import net.hycrafthd.umod.api.energy.IPowerProvieder;
 import net.hycrafthd.umod.container.ContainerBase;
 import net.hycrafthd.umod.container.ContainerBase.Mode;
-import net.hycrafthd.umod.enumtype.EnumTypeGui;
 import net.hycrafthd.umod.inventory.BaseBatteryInputSlot;
 import net.hycrafthd.umod.inventory.BaseSlot;
 import net.hycrafthd.umod.render.RGBA;

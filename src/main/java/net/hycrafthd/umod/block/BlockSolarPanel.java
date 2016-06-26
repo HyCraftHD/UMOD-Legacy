@@ -6,7 +6,6 @@ import net.hycrafthd.umod.UReference;
 import net.hycrafthd.umod.api.energy.IEnergyMessage;
 import net.hycrafthd.umod.enumtype.EnumTypeGui;
 import net.hycrafthd.umod.tileentity.TileEntitySolarPanel;
-import net.hycrafthd.umod.utils.EnergyUtils;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -117,15 +116,15 @@ public class BlockSolarPanel extends BlockBase implements ITileEntityProvider, I
 	public String getMessage(int meta) {
 		switch (EnumTypeSolarPanel.byMetadata(meta)) {
 		case LOWVOLTAGE:
-			return "Products " + EnergyUtils.inUE(2) + " UE/t";
+			return "Products 2UE/t";
 		case MEDIUMVOLTAGE:
-			return "Products "+ EnergyUtils.inUE(20) +"UE/t";
+			return "Products 20UE/t";
 		case HIGHVOLTAGE:
-			return "Products " + EnergyUtils.inUE(200) + "UE/t";
+			return "Products 200UE/t";
 		case ULTRAVOLTAGE:
-			return "Products "+ EnergyUtils.inUE(2000) +"UE/t";
+			return "Products 2000UE/t";
 		case EXTREMEVOLTAGE:
-			return "Products "+ EnergyUtils.inUE(20000) +"UE/t";
+			return "Products 20000UE/t";
 		}
 		return null;
 	}

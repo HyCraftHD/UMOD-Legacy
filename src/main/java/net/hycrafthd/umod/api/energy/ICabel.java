@@ -39,4 +39,13 @@ public interface ICabel {
 	
 	public void setTunnelID(int i);
 	
+	public double needsEnergy();
+	
+	public void addPowerToOutput(double i);
+	
+	public void removeFromInput(double i);
+	
+	public double hasEnergy(double i);
+	
+	public double getStoredEnrgy();
 }

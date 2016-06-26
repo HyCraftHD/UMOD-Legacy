@@ -9,7 +9,6 @@ import net.hycrafthd.umod.container.ContainerPulverizer;
 import net.hycrafthd.umod.network.PacketHandler;
 import net.hycrafthd.umod.network.message.MessageCallback;
 import net.hycrafthd.umod.utils.DirectionUtils;
-import net.hycrafthd.umod.utils.EnergyUtils;
 import net.hycrafthd.umod.utils.ModRegistryUtils;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
@@ -245,7 +244,7 @@ public class TileEntityPulverizer extends TileEntityBase implements
 			    	
 			    	time = 0;
 			    }
-			    strpo -= EnergyUtils.inUE(10);
+			    strpo -= 10;
 			    work = true;
 			    return;
 			}
@@ -264,7 +263,7 @@ public class TileEntityPulverizer extends TileEntityBase implements
 		    	}
 		    	time = 0;
 			    work = true;
-			    strpo -= EnergyUtils.inUE(10);
+			    strpo -= 10;
 			}
 			this.markDirty();
 		}else{

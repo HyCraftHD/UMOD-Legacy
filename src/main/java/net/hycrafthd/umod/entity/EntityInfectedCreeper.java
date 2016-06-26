@@ -1,5 +1,7 @@
 package net.hycrafthd.umod.entity;
 
+import com.google.common.base.Predicate;
+
 import net.hycrafthd.umod.UItems;
 import net.hycrafthd.umod.enumtype.EnumTypeBaseStuff;
 import net.hycrafthd.umod.interfaces.IInfectedEntity;
@@ -24,8 +26,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
-import com.google.common.base.Predicate;
 
 public class EntityInfectedCreeper extends EntityCreeper implements IInfectedEntity {
 

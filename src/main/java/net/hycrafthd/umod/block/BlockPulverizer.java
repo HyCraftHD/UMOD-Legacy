@@ -6,7 +6,6 @@ import net.hycrafthd.umod.UReference;
 import net.hycrafthd.umod.api.energy.IEnergyMessage;
 import net.hycrafthd.umod.enumtype.EnumTypeGui;
 import net.hycrafthd.umod.tileentity.TileEntityPulverizer;
-import net.hycrafthd.umod.utils.EnergyUtils;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
@@ -56,7 +55,7 @@ public class BlockPulverizer extends BlockBaseMachine implements IEnergyMessage 
 
 	@Override
 	public String getMessage(int n) {
-		return "Needs " + EnergyUtils.inUE(10) + "UE/t";
+		return "Needs 10UE/t";
 	}
 	
 	@Override

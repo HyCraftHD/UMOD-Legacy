@@ -9,7 +9,6 @@ import net.hycrafthd.umod.UReference;
 import net.hycrafthd.umod.api.energy.IEnergyMessage;
 import net.hycrafthd.umod.entity.EntityPipeFX;
 import net.hycrafthd.umod.tileentity.TileEntityCable;
-import net.hycrafthd.umod.utils.EnergyUtils;
 import net.hycrafthd.umod.utils.NBTUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
@@ -40,7 +39,7 @@ public class BlockCable extends Block implements ITileEntityProvider, IEnergyMes
 
 	public BlockCable(String name, int transf, int loos, boolean iso,String sp) {
 		super(Material.iron);
-		this.powertrans = EnergyUtils.inUE(transf);
+		this.powertrans = transf;
 		this.iso = iso;
 		this.setHardness(6F);
 		this.setResistance(5F);
@@ -215,7 +214,7 @@ public class BlockCable extends Block implements ITileEntityProvider, IEnergyMes
 
 	@Override
 	public String getMessage(int i) {
-		return "Transports " + EnergyUtils.inUE(powertrans) + "UE/t";
+		return "Transports " + powertrans + "UE/t";
 	}
 	
 	@Override

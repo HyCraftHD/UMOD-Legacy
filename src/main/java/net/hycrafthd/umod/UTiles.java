@@ -1,10 +1,10 @@
 package net.hycrafthd.umod;
 
+import net.hycrafthd.umod.tileentity.TileEntityCable;
 import net.hycrafthd.umod.tileentity.TileEntityChargeStation;
 import net.hycrafthd.umod.tileentity.TileEntityCraftFurnance;
 import net.hycrafthd.umod.tileentity.TileEntityEnergyPannel;
 import net.hycrafthd.umod.tileentity.TileEntityPainter;
-import net.hycrafthd.umod.tileentity.TileEntityCable;
 import net.hycrafthd.umod.tileentity.TileEntityPulverizer;
 import net.hycrafthd.umod.tileentity.TileEntitySolarPanel;
 import net.hycrafthd.umod.tileentity.rail.TileEntityRail;

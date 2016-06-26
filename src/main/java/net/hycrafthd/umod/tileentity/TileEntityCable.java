@@ -9,7 +9,6 @@ import net.hycrafthd.umod.api.energy.IPowerProvieder;
 import net.hycrafthd.umod.api.energy.TunnelHolder;
 import net.hycrafthd.umod.api.energy.UETunnel;
 import net.hycrafthd.umod.entity.EntityPipeFX;
-import net.hycrafthd.umod.utils.EnergyUtils;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
@@ -52,7 +51,7 @@ public class TileEntityCable extends TileEntity implements IPlugabel, ICabel, IU
 
 	
 	public TileEntityCable(int maxpower, int pipelooseone) {
-		Maximum_Power = EnergyUtils.inUE(maxpower);
+		Maximum_Power = maxpower;
 		loos = pipelooseone;
 	}
 
@@ -249,6 +248,36 @@ public class TileEntityCable extends TileEntity implements IPlugabel, ICabel, IU
 		    if(isInit)return;
 			onBlockSetInWorld();
 		    this.worldObj.spawnEntityInWorld(new EntityPipeFX(this.worldObj,this.pos));				 	    
+	}
+
+	@Override
+	public double needsEnergy() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void addPowerToOutput(double i) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void removeFromInput(double i) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public double hasEnergy(double i) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public double getStoredEnrgy() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

@@ -2,7 +2,6 @@ package net.hycrafthd.umod.api.energy;
 
 import java.util.ArrayList;
 
-import net.hycrafthd.umod.UMod;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 
@@ -17,11 +16,10 @@ public class UETunnel extends ArrayList<BlockPos> {
 	
 	public UETunnel(World w) {
 		this.w = w;
-		UMod.log.debug("New UETunnel");
 	}
 	
 	public boolean add(ICabel e) {
-		if(this.id == -1){throw new IllegalArgumentException("Not Init error");}
+		if(this.id >= -1){throw new IllegalArgumentException("Not Init error");}
 		e.setTunnelID(this.id);
 		return super.add(e.getPos());
 	}
@@ -59,7 +57,6 @@ public class UETunnel extends ArrayList<BlockPos> {
 	}
 	
 	public void setID(int id){
-		UMod.log.info("Set Tunnel Id to " + id);
 		this.id = id;
 		for(BlockPos pos : this){
 			ICabel cab = (ICabel) w.getTileEntity(pos);
@@ -75,5 +72,17 @@ public class UETunnel extends ArrayList<BlockPos> {
 	
 	public World getWorld(){
 		return w;
+	}
+	
+	public void transfare(){
+		ICabel[] out = getOutput();
+		ICabel[] in = getInput();
+		double d = 0;
+        for (ICabel cab : out) {
+			d = d + cab.needsEnergy();
+		}
+		for (ICabel cab : in) {
+			
+		}
 	}
 }

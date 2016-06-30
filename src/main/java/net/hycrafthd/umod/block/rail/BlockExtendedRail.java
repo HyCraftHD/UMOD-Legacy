@@ -95,7 +95,7 @@ public class BlockExtendedRail extends Block implements ITileEntityProvider{
 	public int getRenderType() {
 		return 3;
 	}
-	
+		
 	@Override
 	public boolean onBlockEventReceived(World worldIn, BlockPos pos, IBlockState state, int eventID, int eventParam) {
 		super.onBlockEventReceived(worldIn, pos, state, eventID, eventParam);

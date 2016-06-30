@@ -6,7 +6,6 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-import net.hycrafthd.umod.uschematic.BlockObject;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.nbt.CompressedStreamTools;
@@ -56,40 +55,7 @@ public class USchematicUtils {
 	public static int getLength(NBTTagCompound compound) throws Exception {
 		return compound.getInteger("length");
 	}
-
-	public static BlockObject[] readSchematic(NBTTagCompound nbtdata) throws Exception {
-
-		int width = nbtdata.getInteger("width");
-		int height = nbtdata.getInteger("height");
-		int length = nbtdata.getInteger("length");
-		int size = width * height * length;
-		BlockObject[] blockObjects = new BlockObject[size];
-
-		NBTTagList list = nbtdata.getTagList("blocks", 10);
-
-		int counter = 0;
-		for (int posy = 0; posy < height; posy++) {
-			for (int posz = 0; posz < length; posz++) {
-				for (int posx = 0; posx < width; posx++) {
-					BlockPos pos = new BlockPos(posx, posy, posz);
-					NBTTagCompound nbt = list.getCompoundTagAt(counter);
-					IBlockState state = ((Block) Block.blockRegistry.getObject(nbt.getString("block"))).getStateFromMeta(nbt.getInteger("meta"));
-					
-					if (nbt.hasKey("tile")) {
-						blockObjects[counter] = new BlockObject(pos, state, nbt.getCompoundTag("tile"));
-					} else {
-						blockObjects[counter] = new BlockObject(pos, state, null);
-					}
-
-					counter++;
-				}
-			}
-		}
-
-		return blockObjects;
-
-	}
-
+	
 	public static void saveSchematic(World world, String name, int x, int y, int z, int x1, int y1, int z1) throws Exception {
 
 		BlockPos min = new BlockPos(Math.min(x, x1), Math.min(y, y1), Math.min(z, z1));

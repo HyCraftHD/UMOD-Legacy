@@ -1,6 +1,6 @@
 package net.hycrafthd.umod.inventory;
 
-import net.hycrafthd.umod.render.RGBA;
+import net.hycrafthd.corelib.util.RGBA;
 import net.hycrafthd.umod.utils.StringMethod;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;

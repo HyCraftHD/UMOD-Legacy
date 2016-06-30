@@ -1,6 +1,6 @@
 package net.hycrafthd.umod.utils;
 
-import net.hycrafthd.umod.render.RGBA;
+import net.hycrafthd.corelib.util.RGBA;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 

@@ -41,11 +41,11 @@ public interface ICabel {
 	
 	public double needsEnergy();
 	
-	public void addPowerToOutput(double i);
+	public double addPowerToOutput(double i);
 	
-	public void removeFromInput(double i);
+	public double removeFromInput(double i);
 	
 	public double hasEnergy(double i);
 	
-	public double getStoredEnrgy();
+	public double getMaxEnergyOut();
 }

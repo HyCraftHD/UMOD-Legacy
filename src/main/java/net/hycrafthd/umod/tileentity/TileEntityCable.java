@@ -257,15 +257,15 @@ public class TileEntityCable extends TileEntity implements IPlugabel, ICabel, IU
 	}
 
 	@Override
-	public void addPowerToOutput(double i) {
+	public double addPowerToOutput(double i) {
 		// TODO Auto-generated method stub
-		
+		return 0;
 	}
 
 	@Override
-	public void removeFromInput(double i) {
+	public double removeFromInput(double i) {
 		// TODO Auto-generated method stub
-		
+		return 0;
 	}
 
 	@Override
@@ -275,7 +275,7 @@ public class TileEntityCable extends TileEntity implements IPlugabel, ICabel, IU
 	}
 
 	@Override
-	public double getStoredEnrgy() {
+	public double getMaxEnergyOut() {
 		// TODO Auto-generated method stub
 		return 0;
 	}

@@ -81,8 +81,24 @@ public class UETunnel extends ArrayList<BlockPos> {
         for (ICabel cab : out) {
 			d = d + cab.needsEnergy();
 		}
+        double x = d;
 		for (ICabel cab : in) {
-			
+			if(d - cab.getMaxEnergyOut() > 0){
+			d = d - cab.removeFromInput(cab.getMaxEnergyOut());
+			}else{
+				d = 0;
+				break;
+			}
 		}
+		double mins = x - d;
+		for(ICabel cab : out){
+		   if(cab.needsEnergy() < mins){
+			   mins -= cab.needsEnergy();
+			   cab.addPowerToOutput(cab.needsEnergy());
+		   }else if(cab.needsEnergy() >= mins){
+			   mins = 0;
+			   cab.addPowerToOutput(mins);
+		   }
+		}		
 	}
 }

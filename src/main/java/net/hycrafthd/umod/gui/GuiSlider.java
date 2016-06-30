@@ -1,7 +1,7 @@
 package net.hycrafthd.umod.gui;
 
-import net.hycrafthd.umod.render.RGBA;
-import net.hycrafthd.umod.utils.LWJGLUtils;
+import net.hycrafthd.corelib.util.LWJGLUtils;
+import net.hycrafthd.corelib.util.RGBA;
 import net.hycrafthd.umod.utils.StringMethod;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;

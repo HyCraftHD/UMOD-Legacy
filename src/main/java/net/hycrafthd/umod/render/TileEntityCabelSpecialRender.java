@@ -2,12 +2,13 @@ package net.hycrafthd.umod.render;
 
 import java.awt.Color;
 
+import net.hycrafthd.corelib.util.LWJGLUtils;
+import net.hycrafthd.corelib.util.RGBA;
 import net.hycrafthd.umod.UReference;
 import net.hycrafthd.umod.api.energy.IPowerProvieder;
 import net.hycrafthd.umod.block.BlockCable;
 import net.hycrafthd.umod.item.tools.energy.ItemEnergyGlasses;
 import net.hycrafthd.umod.tileentity.TileEntityCable;
-import net.hycrafthd.umod.utils.LWJGLUtils;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;

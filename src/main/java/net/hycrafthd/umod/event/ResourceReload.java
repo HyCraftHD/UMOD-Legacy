@@ -1,6 +1,6 @@
 package net.hycrafthd.umod.event;
 
-import net.hycrafthd.umod.VIA.VIARegister;
+import net.hycrafthd.umod.VIARegister;
 import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.client.resources.IResourceManagerReloadListener;
 

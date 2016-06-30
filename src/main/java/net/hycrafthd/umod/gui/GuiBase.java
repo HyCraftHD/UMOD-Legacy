@@ -12,6 +12,8 @@ import org.lwjgl.input.Keyboard;
 
 import com.google.common.collect.Sets;
 
+import net.hycrafthd.corelib.util.LWJGLUtils;
+import net.hycrafthd.corelib.util.RGBA;
 import net.hycrafthd.umod.UBlocks;
 import net.hycrafthd.umod.api.ISignable;
 import net.hycrafthd.umod.api.energy.IPowerProvieder;
@@ -19,8 +21,6 @@ import net.hycrafthd.umod.container.ContainerBase;
 import net.hycrafthd.umod.container.ContainerBase.Mode;
 import net.hycrafthd.umod.inventory.BaseBatteryInputSlot;
 import net.hycrafthd.umod.inventory.BaseSlot;
-import net.hycrafthd.umod.render.RGBA;
-import net.hycrafthd.umod.utils.LWJGLUtils;
 import net.hycrafthd.umod.utils.StringMethod;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;

@@ -79,7 +79,6 @@ public class UMod {
 	public void registerGenerators() {
 		UGeneration generation = new UGeneration();
 		generation.addGenerator(new UOreGeneration(), 0);
-		generation.addGenerator(new USchematicGeneration(), 0);
 		generation.register();
 		Logger.info("registerGenerators()", "Registered Mod Generators.");
 	}

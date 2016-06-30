@@ -1,6 +1,6 @@
 package net.hycrafthd.umod.entity.render.rail;
 
-import net.hycrafthd.umod.utils.LWJGLUtils;
+import net.hycrafthd.corelib.util.LWJGLUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.RenderEntity;
 import net.minecraft.entity.Entity;

@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.lwjgl.input.Keyboard;
 
-import net.hycrafthd.umod.VIA.VIARegister;
 import net.hycrafthd.umod.block.BlockSolarPanel.EnumTypeSolarPanel;
 import net.hycrafthd.umod.entity.EntityInfectedCow;
 import net.hycrafthd.umod.entity.EntityInfectedCreeper;

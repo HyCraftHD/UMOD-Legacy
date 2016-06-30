@@ -4,10 +4,11 @@ import java.awt.Color;
 
 import org.lwjgl.opengl.GL11;
 
+import net.hycrafthd.corelib.util.LWJGLUtils;
+import net.hycrafthd.corelib.util.RGBA;
 import net.hycrafthd.umod.api.energy.IPowerProvieder;
 import net.hycrafthd.umod.gui.GuiRescources;
 import net.hycrafthd.umod.tileentity.TileEntityPulverizer;
-import net.hycrafthd.umod.utils.LWJGLUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.GlStateManager;

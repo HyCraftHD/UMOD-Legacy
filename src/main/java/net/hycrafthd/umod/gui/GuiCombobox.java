@@ -3,8 +3,8 @@ package net.hycrafthd.umod.gui;
 import java.awt.Color;
 import java.util.ArrayList;
 
-import net.hycrafthd.umod.render.RGBA;
-import net.hycrafthd.umod.utils.LWJGLUtils;
+import net.hycrafthd.corelib.util.LWJGLUtils;
+import net.hycrafthd.corelib.util.RGBA;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;

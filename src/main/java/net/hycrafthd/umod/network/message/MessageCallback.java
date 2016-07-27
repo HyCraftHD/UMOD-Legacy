@@ -12,8 +12,8 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
 public class MessageCallback implements IMessage,IMessageHandler<MessageCallback, IMessage>{
 
-    public EnumFacing face;
-	public int mode;
+	private EnumFacing face;
+	private int mode;
     
 	public MessageCallback() {
 	}
@@ -28,9 +28,9 @@ public class MessageCallback implements IMessage,IMessageHandler<MessageCallback
 		GuiScreen sc = Minecraft.getMinecraft().currentScreen;
 		if(sc != null && sc instanceof GuiBase){
 			GuiBase bs = (GuiBase) sc;
-			bs.onCallBack(message.face,message.mode);
+			bs.onCallBack(message.getFace(),message.getMode());
 		}
-		return null;
+		return this;
 	}
 
 	@Override
@@ -43,6 +43,22 @@ public class MessageCallback implements IMessage,IMessageHandler<MessageCallback
 	public void toBytes(ByteBuf buf) {
 		buf.writeShort(DirectionUtils.getShortFromFacing(face));
 		buf.writeInt(mode);
+	}
+
+	public EnumFacing getFace() {
+		return face;
+	}
+
+	public void setFace(EnumFacing face) {
+		this.face = face;
+	}
+
+	public int getMode() {
+		return mode;
+	}
+
+	public void setMode(int mode) {
+		this.mode = mode;
 	}
 
 }

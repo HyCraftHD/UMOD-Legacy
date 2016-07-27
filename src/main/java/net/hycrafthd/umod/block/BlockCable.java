@@ -6,6 +6,9 @@ import net.hycrafthd.umod.ClientProxy;
 import net.hycrafthd.umod.UBlocks;
 import net.hycrafthd.umod.UDamageSource;
 import net.hycrafthd.umod.UReference;
+import net.hycrafthd.umod.api.IConduitBlock;
+import net.hycrafthd.umod.api.IConduitProvider;
+import net.hycrafthd.umod.api.ISpiritProvider;
 import net.hycrafthd.umod.api.energy.IEnergyMessage;
 import net.hycrafthd.umod.entity.EntityPipeFX;
 import net.hycrafthd.umod.tileentity.TileEntityCable;
@@ -14,6 +17,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -30,7 +34,7 @@ import net.minecraft.world.WorldServer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class BlockCable extends Block implements ITileEntityProvider, IEnergyMessage {
+public class BlockCable extends Block implements ITileEntityProvider, IEnergyMessage, ISpiritProvider,IConduitBlock{
 	
 	public int powertrans;
 	public int lo;
@@ -57,16 +61,18 @@ public class BlockCable extends Block implements ITileEntityProvider, IEnergyMes
 	
 	@Override
 	public Item getItem(World worldIn, BlockPos pos) {
-		if(worldIn.isRemote){
-			EntityPlayer pl = ClientProxy.player;
+		if(pos != null && worldIn != null && worldIn.isRemote){
+			EntityPlayer pl = Minecraft.getMinecraft().thePlayer;
+			if(pl == null)return super.getItem(worldIn, pos);
 			TileEntity en = worldIn.getTileEntity(pos);
-			if(en != null && en instanceof TileEntityCable && (((TileEntityCable)en).hasConduit() && (pl.getCurrentEquippedItem() == null || BlockCable.getBlockFromItem(pl.getCurrentEquippedItem().getItem()) != null && BlockCable.getBlockFromItem(pl.getCurrentEquippedItem().getItem()) instanceof BlockCable))){
-				return ((TileEntityCable)en).getConduit().getItem();
+			if(en != null && (!((IConduitProvider) en).hasConduit() || (pl.getCurrentEquippedItem() != null && Block.getBlockFromItem(pl.getCurrentEquippedItem().getItem()) != null && Block.getBlockFromItem(pl.getCurrentEquippedItem().getItem()) instanceof IConduitBlock))){}else{
+				return ((IConduitProvider)en).getConduit().getItem();
 			}
 		}
 		return super.getItem(worldIn, pos);
 	}
 
+	@Override
 	public String getSpirte() {
 		return asp;
 	}
@@ -204,7 +210,7 @@ public class BlockCable extends Block implements ITileEntityProvider, IEnergyMes
 	public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, Entity entityIn) {
 		super.onEntityCollidedWithBlock(worldIn, pos, entityIn);
 		if (!isIsolated()) {
-			entityIn.attackEntityFrom(UDamageSource.electroshock, 10);
+			entityIn.attackEntityFrom(UDamageSource.electroshock, 5);
 		}
 	}
 

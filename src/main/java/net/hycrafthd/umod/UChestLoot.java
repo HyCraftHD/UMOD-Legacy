@@ -1,11 +1,5 @@
 package net.hycrafthd.umod;
 
-import net.hycrafthd.umod.enumtype.EnumTypeBaseStuff;
-import net.hycrafthd.umod.enumtype.EnumTypeChestLooting;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
-
 public class UChestLoot {
 
 	public UChestLoot() {

@@ -1,5 +1,6 @@
 package net.hycrafthd.umod.block;
 
+import net.hycrafthd.umod.api.IConduitBlock;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -17,7 +18,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public abstract class BlockBaseMachine extends BlockBase implements ITileEntityProvider {
+public abstract class BlockBaseMachine extends BlockBase implements ITileEntityProvider ,IConduitBlock{
 
 	private NBTTagCompound compound;
 
@@ -33,6 +34,8 @@ public abstract class BlockBaseMachine extends BlockBase implements ITileEntityP
 		return true;
 	}
 	
+	
+	
 	@Override
 	public int getComparatorInputOverride(World world, BlockPos pos) {
 		TileEntity tileEntity = world.getTileEntity(pos);
@@ -45,9 +48,7 @@ public abstract class BlockBaseMachine extends BlockBase implements ITileEntityP
 		compound = new NBTTagCompound();
 		if(ent == null)return;
 		ent.writeToNBT(compound);
-		if (hasTileEntity(state)) {
-			world.removeTileEntity(pos);
-		}
+		world.removeTileEntity(pos);
 	}
 
 	@Override

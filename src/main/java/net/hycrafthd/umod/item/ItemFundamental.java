@@ -2,7 +2,6 @@ package net.hycrafthd.umod.item;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 
 public class ItemFundamental extends ItemBase {

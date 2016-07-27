@@ -1,8 +1,10 @@
 package net.hycrafthd.umod.tileentity;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import net.hycrafthd.umod.UMod;
+import net.hycrafthd.umod.api.IConduitProvider;
 import net.hycrafthd.umod.api.IPlugabel;
 import net.hycrafthd.umod.api.energy.ICabel;
 import net.hycrafthd.umod.api.energy.IPowerProvieder;
@@ -16,11 +18,12 @@ import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.server.gui.IUpdatePlayerListBox;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public class TileEntityCable extends TileEntity implements IPlugabel, ICabel, IUpdatePlayerListBox{
+public class TileEntityCable extends TileEntity implements IPlugabel, ICabel, IUpdatePlayerListBox ,IConduitProvider{
 
 	public double Maximum_Power;
 	public double stored;
@@ -59,10 +62,12 @@ public class TileEntityCable extends TileEntity implements IPlugabel, ICabel, IU
 		conduit = b;
 	}
 	
+	@Override
 	public boolean hasConduit(){
 		return conduit != null;
 	}
 	
+	@Override
 	public ItemStack getConduit(){
 		return conduit;
 	}
@@ -135,8 +140,7 @@ public class TileEntityCable extends TileEntity implements IPlugabel, ICabel, IU
 						this.isin = true;
 						UMod.log.debug("Input found");
 					}
-			}else
-			if(et instanceof ICabel){
+			}else if(et instanceof ICabel){
 					ICabel cab = (ICabel) et;
 					if(cab != null){
 						if(this.tun < 0){
@@ -230,7 +234,7 @@ public class TileEntityCable extends TileEntity implements IPlugabel, ICabel, IU
 
 	@Override
 	public int getTunnelIDofCabel() {
-		return tun;
+		return this.tun;
 	}
 
 	@Override
@@ -243,8 +247,13 @@ public class TileEntityCable extends TileEntity implements IPlugabel, ICabel, IU
 		this.tun = i;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void update() {
+		    List<EntityPipeFX> p = worldObj.getEntitiesWithinAABB(EntityPipeFX.class, new AxisAlignedBB(pos, pos.add(1, 1, 1)));
+            if(p.size() <= 0){
+    		    this.worldObj.spawnEntityInWorld(new EntityPipeFX(this.worldObj,this.pos));				 	    
+            }
 		    if(isInit)return;
 			onBlockSetInWorld();
 		    this.worldObj.spawnEntityInWorld(new EntityPipeFX(this.worldObj,this.pos));				 	    

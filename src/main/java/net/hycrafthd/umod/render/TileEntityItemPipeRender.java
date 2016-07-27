@@ -2,10 +2,9 @@ package net.hycrafthd.umod.render;
 
 import net.hycrafthd.corelib.util.LWJGLUtils;
 import net.hycrafthd.umod.UReference;
-import net.hycrafthd.umod.api.energy.IPowerProvieder;
-import net.hycrafthd.umod.block.BlockCable;
-import net.hycrafthd.umod.item.tools.energy.ItemEnergyGlasses;
-import net.hycrafthd.umod.tileentity.TileEntityCable;
+import net.hycrafthd.umod.api.ISpiritProvider;
+import net.hycrafthd.umod.block.BlockItemPipe;
+import net.hycrafthd.umod.tileentity.TileEntityItemPipe;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
@@ -15,28 +14,24 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
-public class TileEntityCabelSpecialRender 
-{
+public class TileEntityItemPipeRender {
 	
 	public static void renderTileEntityAt(TileEntity p_180535_1_, double posX, double posY, double posZ,
 			float p_180535_8_, int p_180535_9_) {
         EntityPlayer pl = Minecraft.getMinecraft().thePlayer;
-		if(pl.inventory.armorInventory[3] != null && pl.inventory.armorInventory[3].getItem() instanceof ItemEnergyGlasses && p_180535_1_ instanceof IPowerProvieder){
-        //		TODO Create Overlay only IO Pipes
-		}
 		if(ConduitRender.render(p_180535_1_, pl, posX, posY, posZ))return;
 		Block blo = p_180535_1_.getWorld().getBlockState(p_180535_1_.getPos()).getBlock();
-		if(blo != null && blo instanceof BlockCable){
-        BlockCable cab = (BlockCable) blo;
-		String name = cab.getSpirte();
-		TileEntityCable pip = (TileEntityCable) p_180535_1_;
+		if(blo != null && blo instanceof BlockItemPipe){
+		BlockItemPipe cab = (BlockItemPipe) blo;
+		String name = ((ISpiritProvider) cab).getSpirte();
+		TileEntityItemPipe pip = (TileEntityItemPipe) p_180535_1_;
 		World w = p_180535_1_.getWorld();
 		if(!w.isRemote)return;
 		BlockPos pos = pip.getPos(); 
 			if (Minecraft.isAmbientOcclusionEnabled()){
-	                GlStateManager.shadeModel(7425);
+	             GlStateManager.shadeModel(7425);
 	        }else{
-	                GlStateManager.shadeModel(7424);
+	             GlStateManager.shadeModel(7424);
 	        }
 			GlStateManager.disableCull();
 		    GlStateManager.blendFunc(770, 771);
@@ -80,7 +75,5 @@ public class TileEntityCabelSpecialRender
 		
 	}
 
-
 	}
-    
 }

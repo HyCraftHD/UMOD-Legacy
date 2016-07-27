@@ -74,7 +74,7 @@ public class ClientProxy extends CommonProxy {
 		ClientRegistryUtils.registerModelRenderer(UBlocks.pulver);
 		ClientRegistryUtils.registerModelRenderer(UBlocks.craftfurnance);
         ClientRegistryUtils.registerModelRenderer(UBlocks.painter);
-		// Cobble Dust
+		// cbbl Dust
 		ClientRegistryUtils.registerModelRenderer(UItems.cdust);
 		
 		ClientRegistryUtils.registerModelRenderer(UItems.battery);

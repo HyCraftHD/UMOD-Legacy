@@ -6,14 +6,12 @@ import net.hycrafthd.corelib.util.LWJGLUtils;
 import net.hycrafthd.corelib.util.RGBA;
 import net.hycrafthd.umod.tileentity.TileEntityEnergyPannel;
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 
-public class TileEntityEnergyPannelSpecialRender extends TileEntitySpecialRenderer{
+public class TileEntityEnergyPannelRender extends TileRender{
 
 	@Override
-	public void renderTileEntityAt(TileEntity ent, double posX, double posY, double posZ,
-			float p_180535_8_, int p_180535_9_) {
+	public void renderTileEntityAt(TileEntity ent, double posX, double posY, double posZ) {
 		TileEntityEnergyPannel tile = (TileEntityEnergyPannel) ent;
 		if(tile.hasBlockPos()){
         float f = 1.6F;

@@ -10,7 +10,7 @@ import net.hycrafthd.umod.api.IConduitBlock;
 import net.hycrafthd.umod.api.IConduitProvider;
 import net.hycrafthd.umod.api.ISpiritProvider;
 import net.hycrafthd.umod.api.energy.IEnergyMessage;
-import net.hycrafthd.umod.entity.EntityPipeFX;
+import net.hycrafthd.umod.entity.EntityFX;
 import net.hycrafthd.umod.tileentity.TileEntityCable;
 import net.hycrafthd.umod.utils.NBTUtils;
 import net.minecraft.block.Block;
@@ -255,8 +255,8 @@ public class BlockCable extends Block implements ITileEntityProvider, IEnergyMes
 	
 	private void entityClear(World worldIn,BlockPos pos){
 	@SuppressWarnings("unchecked")
-	  List<EntityPipeFX> p = worldIn.getEntitiesWithinAABB(EntityPipeFX.class, new AxisAlignedBB(pos, pos.add(1, 1, 1)));
-	   for(EntityPipeFX fx : p){
+	  List<EntityFX> p = worldIn.getEntitiesWithinAABB(EntityFX.class, new AxisAlignedBB(pos, pos.add(1, 1, 1)));
+	   for(EntityFX fx : p){
 	     fx.setDead();
 	   }
 	}

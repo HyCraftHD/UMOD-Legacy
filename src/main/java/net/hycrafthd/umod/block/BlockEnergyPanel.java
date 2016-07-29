@@ -10,6 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 public class BlockEnergyPanel extends BlockBaseMachine{
@@ -40,4 +41,8 @@ public class BlockEnergyPanel extends BlockBaseMachine{
 		super.onBlockPlacedBy(worldIn, pos, state, placer, stack);
 	}
 
+	@Override
+	public boolean shouldSideBeRendered(IBlockAccess worldIn, BlockPos pos, EnumFacing side) {
+		return false;
+	}
 }

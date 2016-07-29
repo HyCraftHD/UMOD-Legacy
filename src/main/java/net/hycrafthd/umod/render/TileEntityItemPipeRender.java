@@ -14,10 +14,10 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
-public class TileEntityItemPipeRender {
+public class TileEntityItemPipeRender extends TileRender{
 	
-	public static void renderTileEntityAt(TileEntity p_180535_1_, double posX, double posY, double posZ,
-			float p_180535_8_, int p_180535_9_) {
+	@Override
+	public void renderTileEntityAt(TileEntity p_180535_1_, double posX, double posY, double posZ) {
         EntityPlayer pl = Minecraft.getMinecraft().thePlayer;
 		if(ConduitRender.render(p_180535_1_, pl, posX, posY, posZ))return;
 		Block blo = p_180535_1_.getWorld().getBlockState(p_180535_1_.getPos()).getBlock();

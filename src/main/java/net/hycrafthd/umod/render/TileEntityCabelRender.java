@@ -15,11 +15,10 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
-public class TileEntityCabelSpecialRender 
-{
+public class TileEntityCabelRender extends TileRender{
 	
-	public static void renderTileEntityAt(TileEntity p_180535_1_, double posX, double posY, double posZ,
-			float p_180535_8_, int p_180535_9_) {
+	@Override
+	public void renderTileEntityAt(TileEntity p_180535_1_, double posX, double posY, double posZ) {
         EntityPlayer pl = Minecraft.getMinecraft().thePlayer;
 		if(pl.inventory.armorInventory[3] != null && pl.inventory.armorInventory[3].getItem() instanceof ItemEnergyGlasses && p_180535_1_ instanceof IPowerProvieder){
         //		TODO Create Overlay only IO Pipes

@@ -20,6 +20,7 @@ public class TunnelHolder {
 	}
 	
 	public static UETunnel getUETunnel(int i){
+		if(i >= tunnels.size() || i < 0)return null;
 		return tunnels.get(i);
 	}
 	

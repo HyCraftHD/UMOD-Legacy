@@ -19,7 +19,7 @@ public class UETunnel extends ArrayList<BlockPos> {
 	}
 	
 	public boolean add(ICabel e) {
-		if(this.id >= -1){throw new IllegalArgumentException("Not Init error");}
+		if(this.id >= -1){return false;}
 		e.setTunnelID(this.id);
 		return super.add(e.getPos());
 	}

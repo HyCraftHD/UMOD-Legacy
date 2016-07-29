@@ -5,23 +5,27 @@ import java.util.List;
 import org.lwjgl.input.Keyboard;
 
 import net.hycrafthd.umod.block.BlockSolarPanel.EnumTypeSolarPanel;
+import net.hycrafthd.umod.entity.EntityFX;
 import net.hycrafthd.umod.entity.EntityInfectedCow;
 import net.hycrafthd.umod.entity.EntityInfectedCreeper;
 import net.hycrafthd.umod.entity.EntityInfectedZombie;
 import net.hycrafthd.umod.entity.EntityNukePrimed;
-import net.hycrafthd.umod.entity.EntityPipeFX;
 import net.hycrafthd.umod.entity.rail.EntityRailFX;
+import net.hycrafthd.umod.entity.render.RenderFX;
 import net.hycrafthd.umod.entity.render.RenderInfectedCow;
 import net.hycrafthd.umod.entity.render.RenderInfectedCreeper;
 import net.hycrafthd.umod.entity.render.RenderInfectedZombie;
 import net.hycrafthd.umod.entity.render.RenderNukePrimed;
-import net.hycrafthd.umod.entity.render.RenderPipeFX;
 import net.hycrafthd.umod.entity.render.rail.RenderRailFX;
 import net.hycrafthd.umod.enumtype.EnumTypeBackPack;
 import net.hycrafthd.umod.enumtype.EnumTypeBaseStuff;
-import net.hycrafthd.umod.render.TileEntityEnergyPannelSpecialRender;
+import net.hycrafthd.umod.render.TileEntityCabelRender;
+import net.hycrafthd.umod.render.TileEntityEnergyPannelRender;
+import net.hycrafthd.umod.render.TileEntityItemPipeRender;
 import net.hycrafthd.umod.render.TileEntityPulverizerSpecialRender;
+import net.hycrafthd.umod.tileentity.TileEntityCable;
 import net.hycrafthd.umod.tileentity.TileEntityEnergyPannel;
+import net.hycrafthd.umod.tileentity.TileEntityItemPipe;
 import net.hycrafthd.umod.tileentity.TileEntityPulverizer;
 import net.hycrafthd.umod.utils.ClientRegistryUtils;
 import net.minecraft.client.Minecraft;
@@ -139,15 +143,18 @@ public class ClientProxy extends CommonProxy {
 
 	@Override
 	public void registerRenderer() {
+		RenderFX.register(TileEntityEnergyPannel.class, new TileEntityEnergyPannelRender());
+		RenderFX.register(TileEntityCable.class, new TileEntityCabelRender());
+		RenderFX.register(TileEntityItemPipe.class, new TileEntityItemPipeRender());
+		
 		ClientRegistryUtils.registerEntityRenderer(EntityInfectedCow.class, new RenderInfectedCow());
 		ClientRegistryUtils.registerEntityRenderer(EntityInfectedCreeper.class, new RenderInfectedCreeper());
 		ClientRegistryUtils.registerEntityRenderer(EntityNukePrimed.class, new RenderNukePrimed());
 		ClientRegistryUtils.registerEntityRenderer(EntityInfectedZombie.class, new RenderInfectedZombie());
-		ClientRegistryUtils.registerEntityRenderer(EntityPipeFX.class, new RenderPipeFX());
+		ClientRegistryUtils.registerEntityRenderer(EntityFX.class, new RenderFX());
 		ClientRegistryUtils.registerEntityRenderer(EntityRailFX.class, new RenderRailFX());
 		
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPulverizer.class, new TileEntityPulverizerSpecialRender());
-		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityEnergyPannel.class, new TileEntityEnergyPannelSpecialRender());
 		VIARegister.registerVIA();
 	}
 

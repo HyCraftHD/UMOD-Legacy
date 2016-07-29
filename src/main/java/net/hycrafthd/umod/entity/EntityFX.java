@@ -1,31 +1,50 @@
 package net.hycrafthd.umod.entity;
 
+import net.hycrafthd.umod.api.IBoundsProvider;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityHanging;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.Vec3;
+import net.minecraft.util.Vec3i;
 import net.minecraft.world.World;
 
-public class EntityPipeFX extends EntityHanging{
+public class EntityFX extends EntityHanging{
 
+	private Vec3 repos;  
+	private BlockPos reBlockPos;
 	
-	public EntityPipeFX(World w) {
+	public EntityFX(World w) {
          super(w);
          this.setSize(1F, 1F);
          this.field_174860_b = EnumFacing.NORTH;
-
 	}
-	public EntityPipeFX(World worldIn,BlockPos p) {
+	
+	public EntityFX(World worldIn,BlockPos p) {
 		super(worldIn,p);
 		this.setSize(1F, 1F);
         this.field_174860_b = EnumFacing.NORTH;
-        this.setPosition((double)p.getX() + 0.5D, (double)p.getY() + 0.5D, (double)p.getZ() + 0.5D);
+        this.setPosition((double)p.getX(), (double)p.getY(), (double)p.getZ());
+	    this.repos = this.getPositionVector();
+	    this.reBlockPos = this.getPosition();
 		this.setSize(1F, 1F);
         this.setEntityBoundingBox(new AxisAlignedBB(p, p.add(1, 1, 1)));
         this.setRotation(0, 180);
+        TileEntity ent = this.getEntityWorld().getTileEntity(this.getPosition().subtract(new Vec3i(0, 1, 0)));
+		 if(ent != null && ent instanceof IBoundsProvider){
+		 IBoundsProvider bp = (IBoundsProvider) ent;
+	     this.setSize((float)bp.getBounds().xCoord,(float)bp.getBounds().yCoord);
+		 }
+	    //this.setPosition(this.posX - (this.width/2), this.posY - (this.height/2), this.posZ + (this.width/2));
+	}
+	
+	public EntityFX(World worldIn,BlockPos p,float wh) {
+		this(worldIn,p);
+		this.setSize(wh, wh);
 	}
     
 	@Override
@@ -57,7 +76,6 @@ public class EntityPipeFX extends EntityHanging{
 		 this.prevPosX = this.posX;
 	     this.prevPosY = this.posY;
 	     this.prevPosZ = this.posZ;
-	     
 	}
 	
 	@Override
@@ -99,4 +117,13 @@ public class EntityPipeFX extends EntityHanging{
 	            enumfacing = EnumFacing.getHorizontal(tagCompund.getByte("Dir"));
 	        }
 	}
+
+	public Vec3 getRePos() {
+		return repos;
+	}
+
+	public BlockPos getReBlockPos() {
+		return reBlockPos;
+	}
+
 }

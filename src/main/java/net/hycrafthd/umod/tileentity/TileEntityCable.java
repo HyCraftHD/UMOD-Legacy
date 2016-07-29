@@ -10,7 +10,7 @@ import net.hycrafthd.umod.api.energy.ICabel;
 import net.hycrafthd.umod.api.energy.IPowerProvieder;
 import net.hycrafthd.umod.api.energy.TunnelHolder;
 import net.hycrafthd.umod.api.energy.UETunnel;
-import net.hycrafthd.umod.entity.EntityPipeFX;
+import net.hycrafthd.umod.entity.EntityFX;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
@@ -145,7 +145,13 @@ public class TileEntityCable extends TileEntity implements IPlugabel, ICabel, IU
 					if(cab != null){
 						if(this.tun < 0){
 						if(cab.getTunnelIDofCabel() >= 0){
-						this.tun = cab.getTunnel().getID();
+					    UETunnel tnl = cab.getTunnel();
+					    if(tnl == null){
+					    this.tun = TunnelHolder.addUETunnel(new UETunnel(worldObj));
+						TunnelHolder.getUETunnel(this.tun).add(this);
+					    }else{
+						this.tun = tnl.getID();
+					    }
 						}else{
 						this.tun = TunnelHolder.addUETunnel(new UETunnel(this.worldObj));
 						cab.setTunnelID(this.tun);
@@ -250,13 +256,15 @@ public class TileEntityCable extends TileEntity implements IPlugabel, ICabel, IU
 	@SuppressWarnings("unchecked")
 	@Override
 	public void update() {
-		    List<EntityPipeFX> p = worldObj.getEntitiesWithinAABB(EntityPipeFX.class, new AxisAlignedBB(pos, pos.add(1, 1, 1)));
+		    List<EntityFX> p = worldObj.getEntitiesWithinAABB(EntityFX.class, new AxisAlignedBB(pos, pos.add(1, 1, 1)));
             if(p.size() <= 0){
-    		    this.worldObj.spawnEntityInWorld(new EntityPipeFX(this.worldObj,this.pos));				 	    
+    		    this.worldObj.spawnEntityInWorld(new EntityFX(this.worldObj,this.pos));				 	    
             }
 		    if(isInit)return;
 			onBlockSetInWorld();
-		    this.worldObj.spawnEntityInWorld(new EntityPipeFX(this.worldObj,this.pos));				 	    
+		    this.worldObj.spawnEntityInWorld(new EntityFX(this.worldObj,this.pos));			
+		    System.out.println(pos);
+		    isInit = true;
 	}
 
 	@Override

@@ -5,7 +5,7 @@ import net.hycrafthd.umod.item.tools.emerald.ItemEmeraldHoe;
 import net.hycrafthd.umod.item.tools.emerald.ItemEmeraldPickaxe;
 import net.hycrafthd.umod.item.tools.emerald.ItemEmeraldSpade;
 import net.hycrafthd.umod.item.tools.emerald.ItemEmeraldSword;
-import net.hycrafthd.umod.utils.CommonRegistryUtils;
+import net.hycrafthd.umod.utils.Utils;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraftforge.common.util.EnumHelper;
@@ -33,16 +33,16 @@ public class UTools {
 		emeraldSword = new ItemEmeraldSword(emeraldToolMaterial).setUnlocalizedName("emerald_sword");
 		emeraldSpade = new ItemEmeraldSpade(emeraldToolMaterial).setUnlocalizedName("emerald_shovel");
 		emeraldHoe = new ItemEmeraldHoe(emeraldToolMaterial).setUnlocalizedName("emerald_hoe");
-		Logger.debug(UTools.class, "init()", "Init Tools");
+		UMod.log.debug("Init Tools");
 	}
 
 	private void register() {
-		CommonRegistryUtils.registerItem(emeraldAxe);
-		CommonRegistryUtils.registerItem(emeraldPickaxe);
-		CommonRegistryUtils.registerItem(emeraldSword);
-		CommonRegistryUtils.registerItem(emeraldSpade);
-		CommonRegistryUtils.registerItem(emeraldHoe);
-		Logger.debug(UTools.class, "register()", "Register Tools");
+		Utils.registerItem(emeraldAxe);
+		Utils.registerItem(emeraldPickaxe);
+		Utils.registerItem(emeraldSword);
+		Utils.registerItem(emeraldSpade);
+		Utils.registerItem(emeraldHoe);
+		UMod.log.debug("Register Tools");
 	}
 	
 }

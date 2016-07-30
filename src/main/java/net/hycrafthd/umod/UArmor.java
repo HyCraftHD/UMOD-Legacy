@@ -3,7 +3,7 @@ package net.hycrafthd.umod;
 import net.hycrafthd.umod.armor.ArmorEmerald;
 import net.hycrafthd.umod.armor.ArmorRadiation;
 import net.hycrafthd.umod.item.tools.energy.ItemEnergyGlasses;
-import net.hycrafthd.umod.utils.CommonRegistryUtils;
+import net.hycrafthd.umod.utils.Utils;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraftforge.common.util.EnumHelper;
@@ -58,26 +58,26 @@ public class UArmor {
 		emeraldLeggings = new ArmorEmerald(emeraldMaterial, 2).setUnlocalizedName("emeraldleggings");
 		emeraldBoots = new ArmorEmerald(emeraldMaterial, 3).setUnlocalizedName("emeraldboots");
 
-		Logger.debug(UArmor.class, "init()", "Init Armor");
+		UMod.log.debug("Init Armor");
 	}
 
 	private void register() {
 		// Radiation Suit
-		CommonRegistryUtils.registerItem(radiationSuitHelmet);
-		CommonRegistryUtils.registerItem(radiationSuitChestplate);
-		CommonRegistryUtils.registerItem(radiationSuitLeggings);
-		CommonRegistryUtils.registerItem(radiationSuitBoots);
+		Utils.registerItem(radiationSuitHelmet);
+		Utils.registerItem(radiationSuitChestplate);
+		Utils.registerItem(radiationSuitLeggings);
+		Utils.registerItem(radiationSuitBoots);
 
 		// Energy
-		CommonRegistryUtils.registerItem(energyglasses);
+		Utils.registerItem(energyglasses);
 
 		// Emerald
-		CommonRegistryUtils.registerItem(emeraldHelmet);
-		CommonRegistryUtils.registerItem(emeraldChestplate);
-		CommonRegistryUtils.registerItem(emeraldLeggings);
-		CommonRegistryUtils.registerItem(emeraldBoots);
+		Utils.registerItem(emeraldHelmet);
+		Utils.registerItem(emeraldChestplate);
+		Utils.registerItem(emeraldLeggings);
+		Utils.registerItem(emeraldBoots);
 
-		Logger.debug(UArmor.class, "register()", "Register Armor");
+		UMod.log.debug("Register Armor");
 	}
 
 }

@@ -1,5 +1,6 @@
 package net.hycrafthd.umod;
 
+import net.hycrafthd.corelib.util.ICustomGuiHandler;
 import net.hycrafthd.umod.api.energy.IPowerProvieder;
 import net.hycrafthd.umod.container.ContainerBackPack;
 import net.hycrafthd.umod.container.ContainerChargeStation;
@@ -22,9 +23,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.common.network.IGuiHandler;
 
-public class UGuiHandler implements IGuiHandler {
+public class UGuiHandler implements ICustomGuiHandler {
 
 	@SuppressWarnings("incomplete-switch")
 	@Override
@@ -86,6 +86,11 @@ public class UGuiHandler implements IGuiHandler {
 		}
 		return null;
 
+	}
+
+	@Override
+	public String getMod() {
+		return UReference.modid;
 	}
 
 }

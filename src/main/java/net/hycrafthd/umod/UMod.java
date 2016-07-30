@@ -1,5 +1,6 @@
 package net.hycrafthd.umod;
 
+import net.hycrafthd.corelib.registry.NetworkRegistry;
 import net.hycrafthd.umod.api.ProcessHandler;
 import net.hycrafthd.umod.event.EventDrawHUD;
 import net.hycrafthd.umod.event.EventExecuteRadiation;
@@ -9,7 +10,6 @@ import net.hycrafthd.umod.event.EventLoadWorld;
 import net.hycrafthd.umod.event.EventPlayerJoin;
 import net.hycrafthd.umod.event.EventToolTip;
 import net.hycrafthd.umod.network.PacketHandler;
-import net.hycrafthd.umod.utils.CommonRegistryUtils;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -41,7 +41,7 @@ public class UMod {
 		new UTools();
 		this.registerGenerators();
 		this.registerEvents();
-		Logger.info("init(e)", "Init Mod.");
+		UMod.log.info("Init Mod.");
 	}
 
 	@EventHandler
@@ -50,16 +50,16 @@ public class UMod {
 		new URecipes();
 		new UChestLoot();
 		new UAchievement();
-		CommonRegistryUtils.registerGuiHandler(new UGuiHandler());
+		NetworkRegistry.registerGuiHandler(new UGuiHandler());
 		UReference.proxy.registerModels();
 		UReference.proxy.registerRenderer();
-		Logger.info("postinit(e)", "Registered Mod.");
+		UMod.log.info("Registered Mod.");
 	}
 
 	@EventHandler
 	public void serverstarting(FMLServerStartingEvent event) {
 		new UCommands(event);
-		Logger.info("serverstarting(e)", "Registered Mod Commands.");
+		UMod.log.info("Registered Mod Commands.");
 	}
 
 	public void registerEvents() {
@@ -73,14 +73,14 @@ public class UMod {
 		event.addEvent(new EventPlayerJoin());
 		event.addEvent(new EventToolTip());
 		event.register();
-		Logger.info("registerEvents()", "Registered Mod Events.");
+		UMod.log.info("Registered Mod Events.");
 	}
 
 	public void registerGenerators() {
 		UGeneration generation = new UGeneration();
 		generation.addGenerator(new UOreGeneration(), 0);
 		generation.register();
-		Logger.info("registerGenerators()", "Registered Mod Generators.");
+		UMod.log.info("Registered Mod Generators.");
 	}
 
 }

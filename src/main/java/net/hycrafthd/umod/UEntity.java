@@ -6,7 +6,7 @@ import net.hycrafthd.umod.entity.EntityInfectedCreeper;
 import net.hycrafthd.umod.entity.EntityInfectedZombie;
 import net.hycrafthd.umod.entity.EntityNukePrimed;
 import net.hycrafthd.umod.entity.rail.EntityRailFX;
-import net.hycrafthd.umod.utils.CommonRegistryUtils;
+import net.hycrafthd.umod.utils.Utils;
 
 public class UEntity {
 	
@@ -15,13 +15,13 @@ public class UEntity {
 	}
 	
 	private void register() {
-		CommonRegistryUtils.registerEntity(EntityInfectedCow.class, "InfectedCow", 16, 1, true, 0x30311f, 0x648e42, true);
-		CommonRegistryUtils.registerEntity(EntityInfectedCreeper.class, "InfectedCreeper", 24, 1, true, 0x45b134, 0x164b0c, true);
-		CommonRegistryUtils.registerEntity(EntityNukePrimed.class, "PrimedNuke", 16, 1, true, 0, 0, false);
-		//CommonRegistryUtils.registerEntity(EntityTommahak.class, "Thommahak", 16, 1, true, 0, 0, false);
-		CommonRegistryUtils.registerEntity(EntityInfectedZombie.class, "InfectedZombie", 24, 1, true, 0x44b517, 0x22c970, true);
-		CommonRegistryUtils.registerEntity(EntityRailFX.class, "SWELL", 16, 1, true, 0, 0, false);
-		CommonRegistryUtils.registerEntity(EntityFX.class, "TileFX", 16, 1,true,0, 0, false);
-		Logger.debug(UEntity.class, "register()", "Register Entitys");
+		Utils.registerEntity(EntityInfectedCow.class, "InfectedCow", 16, 1, true, 0x30311f, 0x648e42, true);
+		Utils.registerEntity(EntityInfectedCreeper.class, "InfectedCreeper", 24, 1, true, 0x45b134, 0x164b0c, true);
+		Utils.registerEntity(EntityNukePrimed.class, "PrimedNuke", 16, 1, true, 0, 0, false);
+		//Utils.registerEntity(EntityTommahak.class, "Thommahak", 16, 1, true, 0, 0, false);
+		Utils.registerEntity(EntityInfectedZombie.class, "InfectedZombie", 24, 1, true, 0x44b517, 0x22c970, true);
+		Utils.registerEntity(EntityRailFX.class, "SWELL", 16, 1, true, 0, 0, false);
+		Utils.registerEntity(EntityFX.class, "TileFX", 16, 1,true,0, 0, false);
+		UMod.log.debug("Register Entitys");
 	}
 }

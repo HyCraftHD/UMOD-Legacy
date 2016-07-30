@@ -1,9 +1,10 @@
 package net.hycrafthd.umod;
 
+import net.hycrafthd.corelib.registry.RecipeRegistry;
+import net.hycrafthd.corelib.registry.SmeltingRegistry;
 import net.hycrafthd.umod.api.CraftSmeltRecepieShapless;
 import net.hycrafthd.umod.api.PulverizerRecepie;
 import net.hycrafthd.umod.enumtype.EnumTypeBaseStuff;
-import net.hycrafthd.umod.utils.CommonRegistryUtils;
 import net.hycrafthd.umod.utils.ModRegistryUtils;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -19,24 +20,24 @@ public class URecipes {
 	private void registerCraftingRecipes() {
 		// Ingots (Sulphur Chunk) -> Blocks
 		for (int i = 0; i < EnumTypeBaseStuff.values().length; i++) {
-			CommonRegistryUtils.registerShapedCraftingRecipe(new ItemStack(UBlocks.blocks, 1, i), new Object[] { "XXX", "XXX", "XXX", 'X', new ItemStack(UItems.ingots, 1, i) });
+			RecipeRegistry.registerShaped(new ItemStack(UBlocks.blocks, 1, i), new Object[] { "XXX", "XXX", "XXX", 'X', new ItemStack(UItems.ingots, 1, i) });
 		}
 
 		// Blocks -> Ingots (Sulphur Chunk)
 		for (int i = 0; i < EnumTypeBaseStuff.values().length; i++) {
-			CommonRegistryUtils.registerShaplessCraftingRecipe(new ItemStack(UItems.ingots, 9, i), new ItemStack(UBlocks.blocks, 1, i));
+			RecipeRegistry.registerShaped(new ItemStack(UItems.ingots, 9, i), new ItemStack(UBlocks.blocks, 1, i));
 		}
-		Logger.debug(URecipes.class, "registerCraftingRecipes()", "registerCraftingRecipes");
+		UMod.log.debug("registerCraftingRecipes");
 	}
 
 	private void registerFurnaceRecipes() {
 		// Ores -> Ingots (without Sulphur Chunk)
 		for (int i = 0; i < EnumTypeBaseStuff.values().length; i++) {
 			if (EnumTypeBaseStuff.byMetadata(i).getName() != "sulphur") {
-				CommonRegistryUtils.registerSmelting(new ItemStack(UBlocks.ores, 1, i), new ItemStack(UItems.ingots, 1, i), 0.7F);
+				SmeltingRegistry.register(new ItemStack(UBlocks.ores, 1, i), new ItemStack(UItems.ingots, 1, i), 1);
 			}
 		}
-		Logger.debug(URecipes.class, "registerFurnaceRecipes()", "registerFurnaceRecipes");
+		UMod.log.debug("registerFurnaceRecipes");
 	}
 	
 	private void registerPulverizerRecipes() {
@@ -50,7 +51,7 @@ public class URecipes {
 		}
 		
 		ModRegistryUtils.addCraftSmeltRecepieShapless(new CraftSmeltRecepieShapless(new ItemStack[] {new ItemStack(Items.iron_pickaxe)}, new ItemStack(Items.iron_ingot, 3)));
-		Logger.debug(URecipes.class, "registerPulverizerRecipes()", "registerPulverizerRecipes");
+		UMod.log.debug("registerPulverizerRecipes");
 	}
 
 }

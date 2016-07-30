@@ -18,7 +18,7 @@ public class UPotion {
 	
 	private void init() {
 		radiationPotion = new PotionRadiation();
-		Logger.debug(UPotion.class, "init()", "Init Potions");
+		UMod.log.debug("Init Potions");
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -41,7 +41,7 @@ public class UPotion {
                     return ints.size();
 				}
 			} catch (Exception e) {
-				Logger.error(UPotion.class, "getHighestID", "Severe error, please report this to the mod author:");
+				UMod.log.error("Severe error, please report this to the mod author:");
 				UMod.log.trace("getHighestID", e);
 			}
 		}

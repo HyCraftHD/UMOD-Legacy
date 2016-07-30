@@ -19,21 +19,21 @@ public class UGeneration {
 	
 	public void register() {
 		for(UGenerator generator : this.generators) GameRegistry.registerWorldGenerator((IWorldGenerator) generator.getGenerator(), generator.getModGenerationWeight());
-		Logger.debug(UGeneration.class, "register()", "All generators registered");
+		UMod.log.debug("All generators registered");
 	}
 	
 	public boolean addGenerator(Object generator, int modGenerationWeight){
 		UGenerator generator2 = new UGenerator(generator, modGenerationWeight);
 		if(generators.contains(generator2)) return false;
 		generators.add(generator2);
-		Logger.debug(UGeneration.class, "addGenerator(generator, modGenerationWeight)", "Add Generator to List");
+		UMod.log.debug("Add Generator to List");
 		return true;
 	}
 	
 	public boolean removeGenerator(UGenerator generator){
 		if(!generators.contains(generator)) return false;
 		generators.remove(generator);
-		Logger.debug(UGeneration.class, "removeGenerator(generator)", "Remove Generator from List");
+		UMod.log.debug("Remove Generator from List");
 		return true;
 	}
 	

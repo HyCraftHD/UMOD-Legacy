@@ -1,5 +1,6 @@
 package net.hycrafthd.umod;
 
+import net.hycrafthd.corelib.registry.TileEntityRegistry;
 import net.hycrafthd.umod.tileentity.TileEntityCable;
 import net.hycrafthd.umod.tileentity.TileEntityChargeStation;
 import net.hycrafthd.umod.tileentity.TileEntityCraftFurnance;
@@ -8,7 +9,6 @@ import net.hycrafthd.umod.tileentity.TileEntityPainter;
 import net.hycrafthd.umod.tileentity.TileEntityPulverizer;
 import net.hycrafthd.umod.tileentity.TileEntitySolarPanel;
 import net.hycrafthd.umod.tileentity.rail.TileEntityRail;
-import net.hycrafthd.umod.utils.CommonRegistryUtils;
 
 public class UTiles {
 
@@ -17,15 +17,15 @@ public class UTiles {
 	}
 
 	public void register() {
-		CommonRegistryUtils.registerTileEntity(TileEntityPulverizer.class, "tilepulver");
-		CommonRegistryUtils.registerTileEntity(TileEntitySolarPanel.class, "tilesolar");
-		CommonRegistryUtils.registerTileEntity(TileEntityCable.class, "tilepipe");
-		CommonRegistryUtils.registerTileEntity(TileEntityChargeStation.class, "tilecharge");
-		CommonRegistryUtils.registerTileEntity(TileEntityCraftFurnance.class, "tilecraftfurn");
-		CommonRegistryUtils.registerTileEntity(TileEntityEnergyPannel.class, "tileenergymonitor");
-		CommonRegistryUtils.registerTileEntity(TileEntityPainter.class, "tilepainter");
-		CommonRegistryUtils.registerTileEntity(TileEntityRail.class, "tilereail");
-		Logger.debug(UTiles.class, "register()", "Register TileEntitys");
+		TileEntityRegistry.register(TileEntityPulverizer.class, "tilepulver");
+		TileEntityRegistry.register(TileEntitySolarPanel.class, "tilesolar");
+		TileEntityRegistry.register(TileEntityCable.class, "tilepipe");
+		TileEntityRegistry.register(TileEntityChargeStation.class, "tilecharge");
+		TileEntityRegistry.register(TileEntityCraftFurnance.class, "tilecraftfurn");
+		TileEntityRegistry.register(TileEntityEnergyPannel.class, "tileenergymonitor");
+		TileEntityRegistry.register(TileEntityPainter.class, "tilepainter");
+		TileEntityRegistry.register(TileEntityRail.class, "tilereail");
+		UMod.log.debug("Register TileEntitys");
 	}
 
 }

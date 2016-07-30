@@ -18,12 +18,12 @@ public class UAchievement {
 	private void init() {
 		firstjoin = new Achievement("uachievement.firstjoin", "firstjoin", 0, 0, new ItemStack(Blocks.log), (Achievement) null).setIndependent();
 		uachievementpage = new AchievementPage("achievementpage.upage", new Achievement[] { firstjoin });
-		Logger.debug(UAchievement.class, "init()", "Init Achievements");
+		UMod.log.debug("Init Achievements");
 	}
 
 	private void register() {
 		firstjoin.registerStat();
 		AchievementPage.registerAchievementPage(uachievementpage);
-		Logger.debug(UAchievement.class, "register()", "Register Achievements");
+		UMod.log.debug("Register Achievements");
 	}
 }

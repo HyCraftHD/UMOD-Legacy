@@ -1,5 +1,6 @@
 package net.hycrafthd.umod.utils;
 
+import net.hycrafthd.umod.UMod;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 
@@ -25,7 +26,7 @@ public class DirectionUtils {
 	}
 	
 	public static short getShortFromFacing(EnumFacing face){
-		if(face == null){TLog.warn("Facinge is Null may it is a bug!");;return 0;}
+		if(face == null){UMod.log.warn("Facinge is Null may it is a bug!");return 0;}
 		switch (face) {
 		case DOWN:
 			return 0;

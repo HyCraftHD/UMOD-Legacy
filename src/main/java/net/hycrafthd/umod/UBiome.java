@@ -19,11 +19,11 @@ public class UBiome {
 	private void init() {
 		infectedBiomId = 80;
 		infectedBiomBase = new BiomeInfected(infectedBiomId);
-		Logger.debug(UBiome.class, "init()", "Init Bioms");
+		UMod.log.debug("Init Bioms");
 	}
 	
 	private void register() {
 		BiomeManager.addBiome(BiomeType.WARM, new BiomeEntry(infectedBiomBase, 8));
-		Logger.debug(UBiome.class, "register()", "Register Bioms");
+		UMod.log.debug("Register Bioms");
 	}
 }

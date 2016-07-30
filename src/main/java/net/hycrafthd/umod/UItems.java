@@ -1,5 +1,6 @@
 package net.hycrafthd.umod;
 
+import net.hycrafthd.corelib.registry.OreDictionaryRegistry;
 import net.hycrafthd.umod.item.ItemBackPack;
 import net.hycrafthd.umod.item.ItemBattery;
 import net.hycrafthd.umod.item.ItemCabletester;
@@ -11,7 +12,7 @@ import net.hycrafthd.umod.item.ItemInfectedCrop;
 import net.hycrafthd.umod.item.ItemInfectedMilk;
 import net.hycrafthd.umod.item.ItemIngots;
 import net.hycrafthd.umod.item.ItemSwellPlacer;
-import net.hycrafthd.umod.utils.CommonRegistryUtils;
+import net.hycrafthd.umod.utils.Utils;
 import net.minecraft.item.Item;
 
 public class UItems {
@@ -67,53 +68,53 @@ public class UItems {
 		backpack = new ItemBackPack().setUnlocalizedName("backpack");
 		
 		railplacer = new ItemSwellPlacer().setUnlocalizedName("railpl");
-		Logger.debug(UItems.class, "init()", "Init Items");
+		UMod.log.debug("Init Items");
 	}
 
 	private void register() {
 		// Ingot
-		CommonRegistryUtils.registerItem(ingots);
+		Utils.registerItem(ingots);
 		// Dust
-		CommonRegistryUtils.registerItem(dusts);
+		Utils.registerItem(dusts);
 		// Cobble Dust
-		CommonRegistryUtils.registerItem(cdust);
+		Utils.registerItem(cdust);
 		// Infected
-		CommonRegistryUtils.registerItem(infectedcrop);
-		CommonRegistryUtils.registerItem(infectedleather);
-		CommonRegistryUtils.registerItem(infectedbeef);
-		CommonRegistryUtils.registerItem(infectedmilk);
+		Utils.registerItem(infectedcrop);
+		Utils.registerItem(infectedleather);
+		Utils.registerItem(infectedbeef);
+		Utils.registerItem(infectedmilk);
 		// Battery
-		CommonRegistryUtils.registerItem(tester);
-		CommonRegistryUtils.registerItem(battery);
-		CommonRegistryUtils.registerItem(energydisplay);
+		Utils.registerItem(tester);
+		Utils.registerItem(battery);
+		Utils.registerItem(energydisplay);
 		// Backpack
-		CommonRegistryUtils.registerItem(backpack);
+		Utils.registerItem(backpack);
 		
-		CommonRegistryUtils.registerItem(railplacer);
-		Logger.debug(UItems.class, "register()", "Register Items");
+		Utils.registerItem(railplacer);
+		UMod.log.debug("Register Items");
 	}
 
 	private void oredirectionary() {
 		// Ingot
-		CommonRegistryUtils.registerOredirectionary(ingots);
+		OreDictionaryRegistry.register(ingots);
 		// Dust
-		CommonRegistryUtils.registerOredirectionary(dusts);
+		OreDictionaryRegistry.register(dusts);
 		// Cobble Dust
-		CommonRegistryUtils.registerOredirectionary(cdust);
+		OreDictionaryRegistry.register(cdust);
 		// Infected
-		CommonRegistryUtils.registerOredirectionary(infectedcrop);
-		CommonRegistryUtils.registerOredirectionary(infectedleather);
-		CommonRegistryUtils.registerOredirectionary(infectedbeef);
-		CommonRegistryUtils.registerOredirectionary(infectedmilk);
+		OreDictionaryRegistry.register(infectedcrop);
+		OreDictionaryRegistry.register(infectedleather);
+		OreDictionaryRegistry.register(infectedbeef);
+		OreDictionaryRegistry.register(infectedmilk);
 		// Battery
-		CommonRegistryUtils.registerOredirectionary(tester);
-		CommonRegistryUtils.registerOredirectionary(battery);
-		CommonRegistryUtils.registerOredirectionary(energydisplay);
+		OreDictionaryRegistry.register(tester);
+		OreDictionaryRegistry.register(battery);
+		OreDictionaryRegistry.register(energydisplay);
 		// Backpack
-		CommonRegistryUtils.registerOredirectionary(backpack);
+		OreDictionaryRegistry.register(backpack);
 		
-		CommonRegistryUtils.registerOredirectionary(railplacer);
-		Logger.debug(UItems.class, "oredirectionary()", "Oredirectionary");
+		OreDictionaryRegistry.register(railplacer);
+		UMod.log.debug("Oredirectionary");
 	}
 
 }

@@ -1,5 +1,6 @@
 package net.hycrafthd.umod.utils;
 
+import net.hycrafthd.umod.UMod;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
@@ -39,7 +40,7 @@ public class NBTUtils {
 		stack2.writeToNBT(comp);
 		stack.setTagInfo(NBTKEY,comp);
 		}else{
-			TLog.warn("The Stack(key "+ NBTKEY +") has a Conduit");
+			UMod.log.warn("The Stack(key "+ NBTKEY +") has a Conduit");
 		}
 	}
 	
@@ -51,7 +52,7 @@ public class NBTUtils {
 		if(stack.getTagCompound() != null && stack.getTagCompound().hasKey(NBTKEY)){
 			return ItemStack.loadItemStackFromNBT(stack.getTagCompound().getCompoundTag(NBTKEY));
 		}
-		TLog.warn("Return Null as Stack(key "+ NBTKEY +") From Conduit this isn't a good thing!");
+		UMod.log.warn("Return Null as Stack(key "+ NBTKEY +") From Conduit this isn't a good thing!");
 		return null;
 	}
 

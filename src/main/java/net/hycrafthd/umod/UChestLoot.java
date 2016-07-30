@@ -22,7 +22,7 @@ public class UChestLoot {
 //		ChestLootUtils.addStack(EnumTypeChestLooting.INFESTEDRUIN1, new ItemStack(UBlocks.infectedLog), 6, 14, 30);
 //		ChestLootUtils.addStack(EnumTypeChestLooting.INFESTEDRUIN1, new ItemStack(UBlocks.infectedPlank), 14, 19, 20);
 //		ChestLootUtils.addStack(EnumTypeChestLooting.INFESTEDRUIN1, new ItemStack(UItems.infectedcrop), 4, 10, 30);
-		Logger.debug(UChestLoot.class, "addinfestedruin", "Infestet Ruin 1");
+//		UMod.log.debug("Infestet Ruin 1");
 	}
 
 }

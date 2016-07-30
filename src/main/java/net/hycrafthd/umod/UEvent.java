@@ -23,14 +23,14 @@ public class UEvent {
 	public boolean addEvent(Object event){
 		if(events.contains(event)) return false;
 		events.add(event);
-		Logger.debug(UEvent.class, "addEvent(e)", "Add Mod Event to List");
+		UMod.log.debug("Add Mod Event to List");
 		return true;
 	}
 	
 	public boolean removeEvent(Object event){
 		if(!events.contains(event)) return false;
 		events.remove(event);
-		Logger.debug(UEvent.class, "removeEvent(e)", "Remove Mod Event from List");
+		UMod.log.debug("Remove Mod Event from List");
 		return true;
 	}
 	
@@ -39,7 +39,7 @@ public class UEvent {
 			bus.register(event);
 			FMLCommonHandler.instance().bus().register(event);
 		}
-		Logger.debug(UEvent.class, "register()", "All Events in the List registered");
+		UMod.log.debug("All Events in the List registered");
 	}
 
 	public void setEvents(ArrayList<Object> events) {

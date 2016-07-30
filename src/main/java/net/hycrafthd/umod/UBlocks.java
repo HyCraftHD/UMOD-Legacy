@@ -1,5 +1,6 @@
 package net.hycrafthd.umod;
 
+import net.hycrafthd.corelib.registry.OreDictionaryRegistry;
 import net.hycrafthd.umod.block.BlockBarrels;
 import net.hycrafthd.umod.block.BlockBlocks;
 import net.hycrafthd.umod.block.BlockCable;
@@ -29,7 +30,7 @@ import net.hycrafthd.umod.item.ItemBlockConduit;
 import net.hycrafthd.umod.item.ItemBlockEnergy;
 import net.hycrafthd.umod.item.ItemBlockOres;
 import net.hycrafthd.umod.item.ItemBlockSolarPanel;
-import net.hycrafthd.umod.utils.CommonRegistryUtils;
+import net.hycrafthd.umod.utils.Utils;
 import net.minecraft.block.Block;
 
 public class UBlocks {
@@ -111,85 +112,85 @@ public class UBlocks {
 		
 		rail = new BlockExtendedRail().setUnlocalizedName("ExRail");
 		rail2 = new Block2rail().setUnlocalizedName("railhelp");
-		Logger.debug(UBlocks.class, "init()", "Init Blocks");
+		UMod.log.debug("Init Blocks");
 	}
 
 	private void register() {
 		// Ore
-		CommonRegistryUtils.registerBlock(ores, ItemBlockOres.class);
-		CommonRegistryUtils.registerBlock(netherores, ItemBlockOres.class);
+		Utils.registerBlock(ores, ItemBlockOres.class);
+		Utils.registerBlock(netherores, ItemBlockOres.class);
 		// Blocks
-		CommonRegistryUtils.registerBlock(blocks, ItemBlockBlocks.class);
+		Utils.registerBlock(blocks, ItemBlockBlocks.class);
 		// Maschinen
-		CommonRegistryUtils.registerBlocks(craftfurnance, ItemBlockEnergy.class);
-		CommonRegistryUtils.registerBlocks(pulver, ItemBlockEnergy.class);
-		CommonRegistryUtils.registerBlock(energyMonitor);
-		CommonRegistryUtils.registerBlock(painter);
+		Utils.registerBlock(craftfurnance, ItemBlockEnergy.class);
+		Utils.registerBlock(pulver, ItemBlockEnergy.class);
+		Utils.registerBlock(energyMonitor);
+		Utils.registerBlock(painter);
 		// SolarPanel
-		CommonRegistryUtils.registerBlocks(solarpanel, ItemBlockSolarPanel.class);
-		CommonRegistryUtils.registerBlock(charge);
+		Utils.registerBlock(solarpanel, ItemBlockSolarPanel.class);
+		Utils.registerBlock(charge);
 		// Infected
-		CommonRegistryUtils.registerBlock(infectedGrass);
-		CommonRegistryUtils.registerBlock(infectedDirt);
-		CommonRegistryUtils.registerBlock(infectedLog);
-		CommonRegistryUtils.registerBlock(infectedLeave);
-		CommonRegistryUtils.registerBlock(infectedSapling);
-		CommonRegistryUtils.registerBlock(infectedPlank);
-		CommonRegistryUtils.registerBlock(infectedFruit);
+		Utils.registerBlock(infectedGrass);
+		Utils.registerBlock(infectedDirt);
+		Utils.registerBlock(infectedLog);
+		Utils.registerBlock(infectedLeave);
+		Utils.registerBlock(infectedSapling);
+		Utils.registerBlock(infectedPlank);
+		Utils.registerBlock(infectedFruit);
 
-		CommonRegistryUtils.registerBlock(infestedCleaner);
+		Utils.registerBlock(infestedCleaner);
 
 		// Pipes
-		CommonRegistryUtils.registerBlocks(alu_cable, ItemBlockEnergy.class);
-		CommonRegistryUtils.registerBlocks(silver_cable, ItemBlockEnergy.class);
-		CommonRegistryUtils.registerBlocks(zin_cable, ItemBlockEnergy.class);
+		Utils.registerBlock(alu_cable, ItemBlockEnergy.class);
+		Utils.registerBlock(silver_cable, ItemBlockEnergy.class);
+		Utils.registerBlock(zin_cable, ItemBlockEnergy.class);
 		// Normal Block
-		CommonRegistryUtils.registerBlock(nuke);
-		CommonRegistryUtils.registerBlocks(conduit, ItemBlockConduit.class);
+		Utils.registerBlock(nuke);
+		Utils.registerBlock(conduit, ItemBlockConduit.class);
 
-		CommonRegistryUtils.registerBlock(barrels, ItemBlockBarrels.class);
+		Utils.registerBlock(barrels, ItemBlockBarrels.class);
 		
-		CommonRegistryUtils.registerBlock(rail);
-		CommonRegistryUtils.registerBlock(rail2);
-		Logger.debug(UBlocks.class, "register()", "Register Blocks");
+		Utils.registerBlock(rail);
+		Utils.registerBlock(rail2);
+		UMod.log.debug("Register Blocks");
 	}
 
 	private void oredirectionary() {
 		// Ore
-		CommonRegistryUtils.registerOredirectionary(ores);
-		CommonRegistryUtils.registerOredirectionary(netherores);
+		OreDictionaryRegistry.register(ores);
+		OreDictionaryRegistry.register(netherores);
 		// Blocks
-		CommonRegistryUtils.registerOredirectionary(blocks);
+		OreDictionaryRegistry.register(blocks);
 		// Pulverizer
-		CommonRegistryUtils.registerOredirectionary(craftfurnance);
-		CommonRegistryUtils.registerOredirectionary(pulver);
-		CommonRegistryUtils.registerOredirectionary(energyMonitor);
-		CommonRegistryUtils.registerOredirectionary(painter);
+		OreDictionaryRegistry.register(craftfurnance);
+		OreDictionaryRegistry.register(pulver);
+		OreDictionaryRegistry.register(energyMonitor);
+		OreDictionaryRegistry.register(painter);
 		// SolarPanel
-		CommonRegistryUtils.registerOredirectionary(charge);
-		CommonRegistryUtils.registerOredirectionary(solarpanel);
+		OreDictionaryRegistry.register(charge);
+		OreDictionaryRegistry.register(solarpanel);
 		// Infected
-		CommonRegistryUtils.registerOredirectionary(infectedGrass);
-		CommonRegistryUtils.registerOredirectionary(infectedDirt);
-		CommonRegistryUtils.registerOredirectionary(infectedLog);
-		CommonRegistryUtils.registerOredirectionary(infectedLeave);
-		CommonRegistryUtils.registerOredirectionary(infectedSapling);
-		CommonRegistryUtils.registerOredirectionary(infectedPlank);
-		CommonRegistryUtils.registerOredirectionary(infectedFruit);
+		OreDictionaryRegistry.register(infectedGrass);
+		OreDictionaryRegistry.register(infectedDirt);
+		OreDictionaryRegistry.register(infectedLog);
+		OreDictionaryRegistry.register(infectedLeave);
+		OreDictionaryRegistry.register(infectedSapling);
+		OreDictionaryRegistry.register(infectedPlank);
+		OreDictionaryRegistry.register(infectedFruit);
 
-		CommonRegistryUtils.registerOredirectionary(infestedCleaner);
+		OreDictionaryRegistry.register(infestedCleaner);
 
 		// Pipes
-		CommonRegistryUtils.registerOredirectionary(alu_cable);
-		CommonRegistryUtils.registerOredirectionary(silver_cable);
-		CommonRegistryUtils.registerOredirectionary(zin_cable);
+		OreDictionaryRegistry.register(alu_cable);
+		OreDictionaryRegistry.register(silver_cable);
+		OreDictionaryRegistry.register(zin_cable);
 		// Normal Block
-		CommonRegistryUtils.registerOredirectionary(nuke);
-		CommonRegistryUtils.registerOredirectionary(conduit);
+		OreDictionaryRegistry.register(nuke);
+		OreDictionaryRegistry.register(conduit);
 		
-		CommonRegistryUtils.registerOredirectionary(rail);
-		CommonRegistryUtils.registerOredirectionary(rail2);
-		Logger.debug(UBlocks.class, "oredirectionary()", "Oredirectionary");
+		OreDictionaryRegistry.register(rail);
+		OreDictionaryRegistry.register(rail2);
+		UMod.log.debug("Oredirectionary");
 	}
 
 }

@@ -23,7 +23,8 @@ public class RenderFX extends RenderEntity{
 
 	@Override
 	public void doRender(Entity entity, double x, double y, double z, float p_76986_8_, float partialTicks) {
-		BlockPos pos = ((EntityFX) entity).getPosition().subtract(new Vec3i(0, 1, 0));
+		if(entity == null || entity.getPosition() == null)return;
+		BlockPos pos = entity.getPosition().subtract(new Vec3i(0, 1, 0));
 		//if(bsd){System.out.println(pos);bsd = false;}
 		TileEntity ent = entity.getEntityWorld().getTileEntity(pos);
 		if(ent == null){

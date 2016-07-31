@@ -25,7 +25,7 @@ public class URecipes {
 
 		// Blocks -> Ingots (Sulphur Chunk)
 		for (int i = 0; i < EnumTypeBaseStuff.values().length; i++) {
-			RecipeRegistry.registerShaped(new ItemStack(UItems.ingots, 9, i), new ItemStack(UBlocks.blocks, 1, i));
+			RecipeRegistry.registerShapeless(new ItemStack(UItems.ingots, 9, i), new ItemStack(UBlocks.blocks, 1, i));
 		}
 		UMod.log.debug("registerCraftingRecipes");
 	}

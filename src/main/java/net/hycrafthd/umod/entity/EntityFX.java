@@ -34,11 +34,11 @@ public class EntityFX extends EntityHanging{
 		this.setSize(1F, 1F);
         this.setEntityBoundingBox(new AxisAlignedBB(p, p.add(1, 1, 1)));
         this.setRotation(0, 180);
-        TileEntity ent = this.getEntityWorld().getTileEntity(this.getPosition().subtract(new Vec3i(0, 1, 0)));
-		 if(ent != null && ent instanceof IBoundsProvider){
-		 IBoundsProvider bp = (IBoundsProvider) ent;
-	     this.setSize((float)bp.getBounds().xCoord,(float)bp.getBounds().yCoord);
-		 }
+        //TileEntity ent = this.getEntityWorld().getTileEntity(this.getPosition().subtract(new Vec3i(0, 1, 0)));
+		// if(ent != null && ent instanceof IBoundsProvider){
+		 //IBoundsProvider bp = (IBoundsProvider) ent;
+	     //this.setSize((float)bp.getBounds().xCoord,(float)bp.getBounds().yCoord);
+//		 }
 	    //this.setPosition(this.posX - (this.width/2), this.posY - (this.height/2), this.posZ + (this.width/2));
 	}
 	

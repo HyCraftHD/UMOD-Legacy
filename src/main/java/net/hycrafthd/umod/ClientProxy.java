@@ -51,6 +51,7 @@ public class ClientProxy extends CommonProxy {
 	
 	@Override
 	public void registerModels() {
+		
 		// Ore and NetherOre
 		for (int i = 0; i < EnumTypeBaseStuff.values().length; i++) {
 			ModelBakery.addVariantName(Item.getItemFromBlock(UBlocks.ores), UReference.resource + "ore" + EnumTypeBaseStuff.byMetadata(i).getName());
@@ -76,6 +77,8 @@ public class ClientProxy extends CommonProxy {
 			ModelBakery.addVariantName(UItems.dusts, UReference.resource + "dust" + EnumTypeBaseStuff.byMetadata(i).getName());
 			ModelRegistry.register(UItems.dusts, i, new ModelResourceLocation(UReference.resource + "dust" + EnumTypeBaseStuff.byMetadata(i).getName(), "inventory"));
 		}
+		
+		ModelRegistry.register(UItems.manganoxid);
 
 		// Pulverizer
 		ModelRegistry.register(UBlocks.charge);
@@ -116,8 +119,12 @@ public class ClientProxy extends CommonProxy {
 		ModelRegistry.register(UItems.infectedleather);
 		ModelRegistry.register(UItems.infectedbeef);
 		ModelRegistry.register(UItems.infectedmilk);
-
+		
+		ModelRegistry.register(UItems.acid);
+		ModelRegistry.register(UItems.plastic);
+		
 		ModelRegistry.register(UBlocks.infestedCleaner);
+		
 		
 		// Pipes
 		ModelRegistry.register(UBlocks.alu_cable);

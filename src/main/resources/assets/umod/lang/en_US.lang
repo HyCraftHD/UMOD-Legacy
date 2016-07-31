@@ -17,6 +17,7 @@ item.ingoturan.name=Uran Ingot
 item.ingotzinc.name=Zinc Ingot
 
 #Dusts
+item.manganoxid.name=Manganoxid
 item.dustaluminium.name=Aluminium Dust
 item.dustcopper.name=Copper Dust
 item.dustlead.name=Lead Dust
@@ -43,6 +44,8 @@ item.infectedcrop.name=Infected Crop
 item.infectedleather.name=Infected Leather
 item.infectedbeef.name=Infected Beef
 item.infectedmilk.name=Infected Milk
+item.acid.name=Acid
+item.plastic.name=Plastic
 
 #Battery
 item.battery.name=Battery

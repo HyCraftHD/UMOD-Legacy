@@ -1,6 +1,7 @@
 package net.hycrafthd.umod;
 
 import net.hycrafthd.corelib.registry.OreDictionaryRegistry;
+import net.hycrafthd.umod.item.ItemAcid;
 import net.hycrafthd.umod.item.ItemBackPack;
 import net.hycrafthd.umod.item.ItemBattery;
 import net.hycrafthd.umod.item.ItemCabletester;
@@ -11,6 +12,8 @@ import net.hycrafthd.umod.item.ItemInfectedBeef;
 import net.hycrafthd.umod.item.ItemInfectedCrop;
 import net.hycrafthd.umod.item.ItemInfectedMilk;
 import net.hycrafthd.umod.item.ItemIngots;
+import net.hycrafthd.umod.item.ItemManganOxid;
+import net.hycrafthd.umod.item.ItemPlastic;
 import net.hycrafthd.umod.item.ItemSwellPlacer;
 import net.hycrafthd.umod.utils.Utils;
 import net.minecraft.item.Item;
@@ -22,7 +25,8 @@ public class UItems {
 
 	// Dust
 	public static Item dusts;
-
+	public static Item manganoxid;
+	
 	// Cobble Dust
 	public static Item cdust;
 
@@ -31,11 +35,14 @@ public class UItems {
 	public static Item infectedleather;
 	public static Item infectedbeef;
 	public static Item infectedmilk;
-
+	public static Item acid;
+	public static Item plastic;
+	
 	// Battery
 	public static Item battery;
 	public static Item tester;
     public static Item energydisplay;
+    
 	// Backpack
 	public static Item backpack;
 
@@ -48,10 +55,12 @@ public class UItems {
 	}
 
 	private void init() {
+		
 		// Ingot
 		ingots = new ItemIngots().setUnlocalizedName("ingots");
 		// Dust
 		dusts = new ItemDusts().setUnlocalizedName("dusts");
+		manganoxid = new ItemManganOxid().setUnlocalizedName("manganoxid");
 		// Cobble Dust
 		cdust = new ItemFundamental().setUnlocalizedName("cdust");
 		// Infected
@@ -59,6 +68,8 @@ public class UItems {
 		infectedleather = new ItemFundamental().setUnlocalizedName("infectedleather");
 		infectedbeef = new ItemInfectedBeef().setUnlocalizedName("infectedbeef");
 		infectedmilk = new ItemInfectedMilk().setUnlocalizedName("infectedmilk");
+		acid = new ItemAcid().setUnlocalizedName("acid");
+		plastic = new ItemPlastic().setUnlocalizedName("plastic");
 		// Battery
 		tester = new ItemCabletester().setUnlocalizedName("tester");
 		battery = new ItemBattery().setUnlocalizedName("battery");
@@ -72,10 +83,12 @@ public class UItems {
 	}
 
 	private void register() {
+		
 		// Ingot
 		Utils.registerItem(ingots);
 		// Dust
 		Utils.registerItem(dusts);
+		Utils.registerItem(manganoxid);
 		// Cobble Dust
 		Utils.registerItem(cdust);
 		// Infected
@@ -83,6 +96,8 @@ public class UItems {
 		Utils.registerItem(infectedleather);
 		Utils.registerItem(infectedbeef);
 		Utils.registerItem(infectedmilk);
+		Utils.registerItem(acid);
+		Utils.registerItem(plastic);
 		// Battery
 		Utils.registerItem(tester);
 		Utils.registerItem(battery);

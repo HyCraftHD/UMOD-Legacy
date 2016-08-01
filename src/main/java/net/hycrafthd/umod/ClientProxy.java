@@ -88,8 +88,12 @@ public class ClientProxy extends CommonProxy {
 		// cbbl Dust
 		ModelRegistry.register(UItems.cdust);
 		
+		//battery
 		ModelRegistry.register(UItems.battery);
-
+		ModelRegistry.register(UItems.copper_wire);
+		ModelRegistry.register(UItems.copper_coil);
+		ModelRegistry.register(UItems.transformer);
+		
 		// SolarPanel
 		for (int i = 0; i < EnumTypeSolarPanel.values().length; i++) {
 			ModelBakery.addVariantName(Item.getItemFromBlock(UBlocks.solarpanel), UReference.resource + "solarpanel" + EnumTypeSolarPanel.byMetadata(i).getName());

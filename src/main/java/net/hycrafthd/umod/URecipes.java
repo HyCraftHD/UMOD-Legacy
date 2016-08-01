@@ -6,6 +6,7 @@ import net.hycrafthd.umod.api.CraftSmeltRecepieShapless;
 import net.hycrafthd.umod.api.PulverizerRecepie;
 import net.hycrafthd.umod.enumtype.EnumTypeBaseStuff;
 import net.hycrafthd.umod.utils.ModRegistryUtils;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
@@ -31,7 +32,21 @@ public class URecipes {
 		
 		//Infeced
 		RecipeRegistry.registerShaped(new ItemStack(UItems.acid), new Object[] { "FFF", "FFF", "FBF", 'F', new ItemStack(UItems.infectedcrop), 'B', new ItemStack(Items.glass_bottle)});
+		RecipeRegistry.registerShapeless(new ItemStack(UItems.plastic, 2), new Object[]{new ItemStack(UItems.infectedmilk), new ItemStack(UItems.acid)});;
 		
+		//Battery
+		RecipeRegistry.registerShaped(new ItemStack(UItems.copper_wire), new Object[]{"AAA", "AAA", "CCC", 'C', new ItemStack(UItems.ingots, 1, 1)});
+		RecipeRegistry.registerShaped(new ItemStack(UItems.copper_coil), new Object[]{"CIC", "CIC", "AAA", 'C', new ItemStack(UItems.copper_wire), 'I', new ItemStack(Items.iron_ingot)});
+		RecipeRegistry.registerShaped(new ItemStack(UItems.copper_coil), new Object[]{"AAA", "CIC", "CIC", 'C', new ItemStack(UItems.copper_wire), 'I', new ItemStack(Items.iron_ingot)});
+		RecipeRegistry.registerShaped(new ItemStack(UItems.transformer), new Object[]{"SQS", "CQC", "SQS", 'S', new ItemStack(UBlocks.silver_cable), 'Q',
+				new ItemStack(Blocks.quartz_block), 'C', new ItemStack(UItems.copper_coil)});
+		RecipeRegistry.registerShaped(new ItemStack(UBlocks.charge), new Object[]{"OPO", "STS", "OPO", 'O', new ItemStack(Blocks.obsidian), 'P', new ItemStack(UItems.plastic), 
+				'S', new ItemStack(UBlocks.silver_cable), 'T', new ItemStack(UItems.transformer)});
+		RecipeRegistry.registerShaped(new ItemStack(UBlocks.alu_cable, 4), new Object[]{"PPP", "AAA", "PPP", 'A', new ItemStack(UItems.ingots, 1, 0), 'P', new ItemStack(UItems.plastic)});
+		RecipeRegistry.registerShaped(new ItemStack(UBlocks.silver_cable, 4), new Object[]{"PPP", "AAA", "PPP", 'A', new ItemStack(UItems.ingots, 1, 8), 'P', new ItemStack(UItems.plastic)});
+		RecipeRegistry.registerShaped(new ItemStack(UBlocks.zin_cable, 4), new Object[]{"PPP", "AAA", "PPP", 'A', new ItemStack(UItems.ingots, 1, 10), 'P', new ItemStack(UItems.plastic)});
+		RecipeRegistry.registerShaped(new ItemStack(UItems.battery), new Object[]{"BCB", "IMI", "ASA", 'B', new ItemStack(Blocks.iron_block), 'C', new ItemStack(Blocks.coal_block), 
+				'I', new ItemStack(Items.iron_ingot), 'M', new ItemStack(UItems.manganoxid), 'A', new ItemStack(UItems.ingots, 1, 0), 'S', new ItemStack(UItems.acid)});
 		UMod.log.debug("registerCraftingRecipes");
 	}
 

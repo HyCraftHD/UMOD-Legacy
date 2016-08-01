@@ -49,6 +49,9 @@ item.plastic.name=Plastic
 
 #Battery
 item.battery.name=Battery
+item.copper_wire.name=Copper Wire
+item.copper_coil.name=Copper Coil
+item.transformer.name=Transformer
 
 #Tools
 #Emerald

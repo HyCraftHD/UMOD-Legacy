@@ -5,6 +5,8 @@ import net.hycrafthd.umod.item.ItemAcid;
 import net.hycrafthd.umod.item.ItemBackPack;
 import net.hycrafthd.umod.item.ItemBattery;
 import net.hycrafthd.umod.item.ItemCabletester;
+import net.hycrafthd.umod.item.ItemCopperCoil;
+import net.hycrafthd.umod.item.ItemCopperWire;
 import net.hycrafthd.umod.item.ItemDusts;
 import net.hycrafthd.umod.item.ItemEnergyDisplay;
 import net.hycrafthd.umod.item.ItemFundamental;
@@ -15,6 +17,7 @@ import net.hycrafthd.umod.item.ItemIngots;
 import net.hycrafthd.umod.item.ItemManganOxid;
 import net.hycrafthd.umod.item.ItemPlastic;
 import net.hycrafthd.umod.item.ItemSwellPlacer;
+import net.hycrafthd.umod.item.ItemTransformer;
 import net.hycrafthd.umod.utils.Utils;
 import net.minecraft.item.Item;
 
@@ -42,12 +45,15 @@ public class UItems {
 	public static Item battery;
 	public static Item tester;
     public static Item energydisplay;
-    
+    public static Item copper_coil;
+	public static Item copper_wire;
+	public static Item transformer;
+	
 	// Backpack
 	public static Item backpack;
 
 	public static Item railplacer;
-	
+		
 	public UItems() {
 		init();
 		register();
@@ -74,11 +80,15 @@ public class UItems {
 		tester = new ItemCabletester().setUnlocalizedName("tester");
 		battery = new ItemBattery().setUnlocalizedName("battery");
         energydisplay = new ItemEnergyDisplay().setUnlocalizedName("energy");
+		copper_wire = new ItemCopperWire().setUnlocalizedName("copper_wire");
+		copper_coil = new ItemCopperCoil().setUnlocalizedName("copper_coil");
+		transformer = new ItemTransformer().setUnlocalizedName("transformer");
 		
 		// Backpack
 		backpack = new ItemBackPack().setUnlocalizedName("backpack");
 		
 		railplacer = new ItemSwellPlacer().setUnlocalizedName("railpl");
+		
 		UMod.log.debug("Init Items");
 	}
 
@@ -102,10 +112,14 @@ public class UItems {
 		Utils.registerItem(tester);
 		Utils.registerItem(battery);
 		Utils.registerItem(energydisplay);
+		Utils.registerItem(copper_wire);
+		Utils.registerItem(copper_coil);
+		Utils.registerItem(transformer);
 		// Backpack
 		Utils.registerItem(backpack);
 		
 		Utils.registerItem(railplacer);
+		
 		UMod.log.debug("Register Items");
 	}
 
@@ -114,6 +128,7 @@ public class UItems {
 		OreDictionaryRegistry.register(ingots);
 		// Dust
 		OreDictionaryRegistry.register(dusts);
+		OreDictionaryRegistry.register(manganoxid);
 		// Cobble Dust
 		OreDictionaryRegistry.register(cdust);
 		// Infected
@@ -121,10 +136,15 @@ public class UItems {
 		OreDictionaryRegistry.register(infectedleather);
 		OreDictionaryRegistry.register(infectedbeef);
 		OreDictionaryRegistry.register(infectedmilk);
+		OreDictionaryRegistry.register(plastic);
+		OreDictionaryRegistry.register(acid);
 		// Battery
 		OreDictionaryRegistry.register(tester);
 		OreDictionaryRegistry.register(battery);
 		OreDictionaryRegistry.register(energydisplay);
+		OreDictionaryRegistry.register(copper_wire);
+		OreDictionaryRegistry.register(copper_coil);
+		OreDictionaryRegistry.register(transformer);
 		// Backpack
 		OreDictionaryRegistry.register(backpack);
 		

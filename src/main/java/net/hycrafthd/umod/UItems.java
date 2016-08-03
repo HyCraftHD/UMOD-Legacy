@@ -16,7 +16,10 @@ import net.hycrafthd.umod.item.ItemInfectedMilk;
 import net.hycrafthd.umod.item.ItemIngots;
 import net.hycrafthd.umod.item.ItemManganOxid;
 import net.hycrafthd.umod.item.ItemPlastic;
+import net.hycrafthd.umod.item.ItemSolarCell;
 import net.hycrafthd.umod.item.ItemSwellPlacer;
+import net.hycrafthd.umod.item.ItemThickerCopperCoil;
+import net.hycrafthd.umod.item.ItemThickerCopperWire;
 import net.hycrafthd.umod.item.ItemTransformer;
 import net.hycrafthd.umod.utils.Utils;
 import net.minecraft.item.Item;
@@ -41,13 +44,16 @@ public class UItems {
 	public static Item acid;
 	public static Item plastic;
 	
-	// Battery
+	// Battery 
 	public static Item battery;
 	public static Item tester;
     public static Item energydisplay;
     public static Item copper_coil;
 	public static Item copper_wire;
 	public static Item transformer;
+	public static Item thicker_copper_wire;
+	public static Item thicker_copper_coil;
+	public static Item solar_cell;
 	
 	// Backpack
 	public static Item backpack;
@@ -59,16 +65,19 @@ public class UItems {
 		register();
 		oredirectionary();
 	}
-
+		
 	private void init() {
 		
 		// Ingot
 		ingots = new ItemIngots().setUnlocalizedName("ingots");
+		
 		// Dust
 		dusts = new ItemDusts().setUnlocalizedName("dusts");
 		manganoxid = new ItemManganOxid().setUnlocalizedName("manganoxid");
+		
 		// Cobble Dust
 		cdust = new ItemFundamental().setUnlocalizedName("cdust");
+		
 		// Infected
 		infectedcrop = new ItemInfectedCrop().setUnlocalizedName("infectedcrop");
 		infectedleather = new ItemFundamental().setUnlocalizedName("infectedleather");
@@ -76,6 +85,7 @@ public class UItems {
 		infectedmilk = new ItemInfectedMilk().setUnlocalizedName("infectedmilk");
 		acid = new ItemAcid().setUnlocalizedName("acid");
 		plastic = new ItemPlastic().setUnlocalizedName("plastic");
+		
 		// Battery
 		tester = new ItemCabletester().setUnlocalizedName("tester");
 		battery = new ItemBattery().setUnlocalizedName("battery");
@@ -83,6 +93,9 @@ public class UItems {
 		copper_wire = new ItemCopperWire().setUnlocalizedName("copper_wire");
 		copper_coil = new ItemCopperCoil().setUnlocalizedName("copper_coil");
 		transformer = new ItemTransformer().setUnlocalizedName("transformer");
+		thicker_copper_wire = new ItemThickerCopperWire().setUnlocalizedName("thicker_copper_wire");
+		solar_cell = new ItemSolarCell().setUnlocalizedName("solar_cell");
+		thicker_copper_coil = new ItemThickerCopperCoil().setUnlocalizedName("thicker_copper_coil");
 		
 		// Backpack
 		backpack = new ItemBackPack().setUnlocalizedName("backpack");
@@ -96,11 +109,14 @@ public class UItems {
 		
 		// Ingot
 		Utils.registerItem(ingots);
+		
 		// Dust
 		Utils.registerItem(dusts);
 		Utils.registerItem(manganoxid);
+		
 		// Cobble Dust
 		Utils.registerItem(cdust);
+		
 		// Infected
 		Utils.registerItem(infectedcrop);
 		Utils.registerItem(infectedleather);
@@ -108,6 +124,7 @@ public class UItems {
 		Utils.registerItem(infectedmilk);
 		Utils.registerItem(acid);
 		Utils.registerItem(plastic);
+		
 		// Battery
 		Utils.registerItem(tester);
 		Utils.registerItem(battery);
@@ -115,6 +132,10 @@ public class UItems {
 		Utils.registerItem(copper_wire);
 		Utils.registerItem(copper_coil);
 		Utils.registerItem(transformer);
+		Utils.registerItem(thicker_copper_wire);
+		Utils.registerItem(thicker_copper_coil);
+		Utils.registerItem(solar_cell);
+		
 		// Backpack
 		Utils.registerItem(backpack);
 		
@@ -124,13 +145,17 @@ public class UItems {
 	}
 
 	private void oredirectionary() {
+		
 		// Ingot
 		OreDictionaryRegistry.register(ingots);
+		
 		// Dust
 		OreDictionaryRegistry.register(dusts);
 		OreDictionaryRegistry.register(manganoxid);
+		
 		// Cobble Dust
 		OreDictionaryRegistry.register(cdust);
+		
 		// Infected
 		OreDictionaryRegistry.register(infectedcrop);
 		OreDictionaryRegistry.register(infectedleather);
@@ -138,6 +163,7 @@ public class UItems {
 		OreDictionaryRegistry.register(infectedmilk);
 		OreDictionaryRegistry.register(plastic);
 		OreDictionaryRegistry.register(acid);
+		
 		// Battery
 		OreDictionaryRegistry.register(tester);
 		OreDictionaryRegistry.register(battery);
@@ -145,6 +171,10 @@ public class UItems {
 		OreDictionaryRegistry.register(copper_wire);
 		OreDictionaryRegistry.register(copper_coil);
 		OreDictionaryRegistry.register(transformer);
+		OreDictionaryRegistry.register(thicker_copper_wire);
+		OreDictionaryRegistry.register(thicker_copper_coil);
+		OreDictionaryRegistry.register(solar_cell);
+		
 		// Backpack
 		OreDictionaryRegistry.register(backpack);
 		

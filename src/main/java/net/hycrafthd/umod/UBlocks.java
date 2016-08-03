@@ -18,6 +18,8 @@ import net.hycrafthd.umod.block.BlockInfectedSapling;
 import net.hycrafthd.umod.block.BlockInfestedCleaner;
 import net.hycrafthd.umod.block.BlockNetherOres;
 import net.hycrafthd.umod.block.BlockNuke;
+import net.hycrafthd.umod.block.BlockOilGlass;
+import net.hycrafthd.umod.block.BlockOilSand;
 import net.hycrafthd.umod.block.BlockOres;
 import net.hycrafthd.umod.block.BlockPainter;
 import net.hycrafthd.umod.block.BlockPulverizer;
@@ -55,7 +57,9 @@ public class UBlocks {
 	public static Block infectedSapling;
 	public static Block infectedPlank;
 	public static Block infectedFruit;
-
+	public static Block oilsand;
+	public static Block oilglass;
+	
 	public static Block infestedCleaner;
 	// Pipes
 	public static Block silver_cable;
@@ -98,7 +102,10 @@ public class UBlocks {
 		infectedSapling = new BlockInfectedSapling().setUnlocalizedName("infectedsapling");
 		infectedPlank = new BlockInfectedPlank().setUnlocalizedName("infectedplank");
 		infectedFruit = new BlockInfectedFruit().setUnlocalizedName("infectedfruit");
-
+		
+		oilglass = new BlockOilGlass().setUnlocalizedName("oilglass");
+		oilsand = new BlockOilSand().setUnlocalizedName("oilsand");
+		
 		infestedCleaner = new BlockInfestedCleaner().setUnlocalizedName("cleaner");
 		// Cable
 		silver_cable = new BlockCable("silvercable", 62, 62, false, "silver");
@@ -137,7 +144,10 @@ public class UBlocks {
 		Utils.registerBlock(infectedSapling);
 		Utils.registerBlock(infectedPlank);
 		Utils.registerBlock(infectedFruit);
-
+		
+		Utils.registerBlock(oilglass);
+		Utils.registerBlock(oilsand);
+		
 		Utils.registerBlock(infestedCleaner);
 
 		// Pipes
@@ -177,7 +187,10 @@ public class UBlocks {
 		OreDictionaryRegistry.register(infectedSapling);
 		OreDictionaryRegistry.register(infectedPlank);
 		OreDictionaryRegistry.register(infectedFruit);
-
+		
+		OreDictionaryRegistry.register(oilglass);
+		OreDictionaryRegistry.register(oilsand);
+		
 		OreDictionaryRegistry.register(infestedCleaner);
 
 		// Pipes

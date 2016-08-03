@@ -23,6 +23,7 @@ import net.hycrafthd.umod.entity.render.RenderNukePrimed;
 import net.hycrafthd.umod.entity.render.rail.RenderRailFX;
 import net.hycrafthd.umod.enumtype.EnumTypeBackPack;
 import net.hycrafthd.umod.enumtype.EnumTypeBaseStuff;
+import net.hycrafthd.umod.enumtype.EnumTypeTransformer;
 import net.hycrafthd.umod.render.TileEntityCabelRender;
 import net.hycrafthd.umod.render.TileEntityEnergyPannelRender;
 import net.hycrafthd.umod.render.TileEntityItemPipeRender;
@@ -71,7 +72,13 @@ public class ClientProxy extends CommonProxy {
 			ModelBakery.addVariantName(UItems.ingots, UReference.resource + "ingot" + EnumTypeBaseStuff.byMetadata(i).getName());
 			ModelRegistry.register(UItems.ingots, i, new ModelResourceLocation(UReference.resource + "ingot" + EnumTypeBaseStuff.byMetadata(i).getName(), "inventory"));
 		}
-
+				
+		// Transformer		
+		for (int i = 0; i < EnumTypeTransformer.values().length; i++) {
+			ModelBakery.addVariantName(UItems.transformer, UReference.resource + "transformer" + EnumTypeTransformer.byMetadata(i).getName());
+			ModelRegistry.register(UItems.transformer, i, new ModelResourceLocation(UReference.resource + "transformer" + EnumTypeTransformer.byMetadata(i).getName(), "inventory"));
+		}
+		
 		// Dust
 		for (int i = 0; i < EnumTypeBaseStuff.values().length; i++) {
 			ModelBakery.addVariantName(UItems.dusts, UReference.resource + "dust" + EnumTypeBaseStuff.byMetadata(i).getName());
@@ -85,6 +92,7 @@ public class ClientProxy extends CommonProxy {
 		ModelRegistry.register(UBlocks.pulver);
 		ModelRegistry.register(UBlocks.craftfurnance);
 		ModelRegistry.register(UBlocks.painter);
+		
 		// cbbl Dust
 		ModelRegistry.register(UItems.cdust);
 		
@@ -93,6 +101,7 @@ public class ClientProxy extends CommonProxy {
 		ModelRegistry.register(UItems.copper_wire);
 		ModelRegistry.register(UItems.copper_coil);
 		ModelRegistry.register(UItems.transformer);
+		ModelRegistry.register(UItems.thicker_copper_wire);
 		
 		// SolarPanel
 		for (int i = 0; i < EnumTypeSolarPanel.values().length; i++) {
@@ -126,6 +135,8 @@ public class ClientProxy extends CommonProxy {
 		
 		ModelRegistry.register(UItems.acid);
 		ModelRegistry.register(UItems.plastic);
+		ModelRegistry.register(UBlocks.oilsand);
+		ModelRegistry.register(UBlocks.oilglass);
 		
 		ModelRegistry.register(UBlocks.infestedCleaner);
 		
@@ -139,6 +150,7 @@ public class ClientProxy extends CommonProxy {
 		ModelRegistry.register(UBlocks.nuke);
         ModelRegistry.register(UBlocks.craftfurnance);
         ModelRegistry.register(UBlocks.rail);
+        
 		// Backpack
 		for (int i = 0; i < EnumTypeBackPack.values().length; i++) {
 			ModelBakery.addVariantName(UItems.backpack, UReference.resource + "backpack" + EnumTypeBackPack.byMetadata(i).getName());

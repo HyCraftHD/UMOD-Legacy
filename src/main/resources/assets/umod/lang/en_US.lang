@@ -46,12 +46,18 @@ item.infectedbeef.name=Infected Beef
 item.infectedmilk.name=Infected Milk
 item.acid.name=Acid
 item.plastic.name=Plastic
+tile.oilglass.name=Oilglass
+tile.oilsand.name=Oilsand
 
 #Battery
 item.battery.name=Battery
 item.copper_wire.name=Copper Wire
 item.copper_coil.name=Copper Coil
-item.transformer.name=Transformer
+item.transformerlow.name=Low Transformer
+item.transformermedium.name=Medium Transformer
+item.transformerhigh.name=High Transformer
+item.transformerextrem.name=Extrem Transformer
+item.transformerultra.name=Ultra Transformer
 
 #Tools
 #Emerald

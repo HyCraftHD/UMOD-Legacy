@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-        "layer0": "umod:items/transformer"
+        "layer0": "umod:items/transformer_extrem"
     },
     "display": {
         "thirdperson": {

@@ -1,5 +1,7 @@
 {
-    "variants": {
-        "normal": { "model": "umod:craftfurn" }
-    }
+	"variants": {
+		"normal": {
+			"model": "umod:craftfurn"
+		}
+	}
 }

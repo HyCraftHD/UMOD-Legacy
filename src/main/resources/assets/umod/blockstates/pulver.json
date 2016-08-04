@@ -1,5 +1,7 @@
 {
-    "variants": {
-        "normal": { "model": "umod:pulver" }
-    }
+	"variants": {
+		"normal": {
+			"model": "umod:pulver"
+		}
+	}
 }

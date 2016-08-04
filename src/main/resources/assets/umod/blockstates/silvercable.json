@@ -1,5 +1,7 @@
 {
-    "variants": {
-        "normal": { "model": "umod:silvercable" }
-    }
+	"variants": {
+		"normal": {
+			"model": "umod:silvercable"
+		}
+	}
 }

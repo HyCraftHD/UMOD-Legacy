@@ -1,10 +1,8 @@
 {
-"parent": "umod:block/Maschine",
-    "textures": {
-        "down": "umod:blocks/solarpanel/bottom",
-        "up": "umod:blocks/solarpanel/topextremevoltage",
-        "sides": "umod:blocks/solarpanel/side"
-    }
-
-
+	"parent": "umod:block/Maschine",
+	"textures": {
+		"down": "umod:blocks/solarpanel/bottom",
+		"up": "umod:blocks/solarpanel/topextremevoltage",
+		"sides": "umod:blocks/solarpanel/side"
+	}
 }

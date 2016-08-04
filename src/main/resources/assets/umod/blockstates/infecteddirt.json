@@ -1,5 +1,7 @@
 {
-    "variants": {
-        "normal": { "model": "umod:infected/infecteddirt" }
-    }
+	"variants": {
+		"normal": {
+			"model": "umod:infected/infecteddirt"
+		}
+	}
 }

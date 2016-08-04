@@ -1,7 +1,13 @@
 {
-    "variants": {
-        "normal": { "model": "umod:nuke" },
-        "explode=true": {"model": "umod:nuke" },
-        "explode=false": {"model": "umod:nuke" }
-    }
+	"variants": {
+		"normal": {
+			"model": "umod:nuke"
+		},
+		"explode=true": {
+			"model": "umod:nuke"
+		},
+		"explode=false": {
+			"model": "umod:nuke"
+		}
+	}
 }

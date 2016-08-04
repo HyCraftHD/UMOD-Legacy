@@ -21,24 +21,22 @@ public class EventToolTip {
 			if (itemStack.hasTagCompound() && itemStack.getTagCompound().hasKey(ItemEnergyDisplay.NBT_TAG)) {
 				event.toolTip.add("Bounded");
 			}
-			if (itemStack.hasTagCompound() && itemStack.getTagCompound().hasKey(EventGettingRadiationInv.TAG_MAIN)
-					&& ((NBTTagCompound) itemStack.getTagCompound().getTag(EventGettingRadiationInv.TAG_MAIN)).hasKey(EventGettingRadiationInv.TAG_INFECTED)) {
+			if (itemStack.hasTagCompound() && itemStack.getTagCompound().hasKey(EventGettingRadiationInv.TAG_MAIN) && ((NBTTagCompound) itemStack.getTagCompound().getTag(EventGettingRadiationInv.TAG_MAIN)).hasKey(EventGettingRadiationInv.TAG_INFECTED)) {
 				boolean flag = ((NBTTagCompound) itemStack.getTagCompound().getTag(EventGettingRadiationInv.TAG_MAIN)).getBoolean(EventGettingRadiationInv.TAG_INFECTED);
 				event.toolTip.add((flag ? EnumChatFormatting.RED : EnumChatFormatting.GREEN) + "Is Infected " + flag);
 			}
-			if (Block.getBlockFromItem(itemStack.getItem()) instanceof BlockConduit && itemStack.hasTagCompound()
-					&& itemStack.getTagCompound().hasKey(NBTUtils.NBTKEY)) {
+			if (Block.getBlockFromItem(itemStack.getItem()) instanceof BlockConduit && itemStack.hasTagCompound() && itemStack.getTagCompound().hasKey(NBTUtils.NBTKEY)) {
 				ItemStack flag = NBTUtils.getStackFromConduit(itemStack);
 				event.toolTip.add(flag.getDisplayName());
 			}
 		}
 		ItemStack itemStack = event.itemStack;
-		if(event.itemStack != null && Keyboard.isKeyDown(Keyboard.KEY_LSHIFT) && itemStack.hasTagCompound() && itemStack.getTagCompound().hasKey("NBTS")){
-				NBTTagCompound comp = itemStack.getTagCompound().getCompoundTag("NBTS");
-				for (Object str : comp.getKeySet()){
-					event.toolTip.add((String) str);
-				}
-		}else if(event.itemStack != null && itemStack.hasTagCompound() && itemStack.getTagCompound().hasKey("NBTS")){
+		if (event.itemStack != null && Keyboard.isKeyDown(Keyboard.KEY_LSHIFT) && itemStack.hasTagCompound() && itemStack.getTagCompound().hasKey("NBTS")) {
+			NBTTagCompound comp = itemStack.getTagCompound().getCompoundTag("NBTS");
+			for (Object str : comp.getKeySet()) {
+				event.toolTip.add((String) str);
+			}
+		} else if (event.itemStack != null && itemStack.hasTagCompound() && itemStack.getTagCompound().hasKey("NBTS")) {
 			event.toolTip.add("Press SHIFT for more Informations");
 		}
 	}

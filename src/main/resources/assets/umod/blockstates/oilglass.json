@@ -1,5 +1,7 @@
 {
-    "variants": {
-        "normal": { "model": "umod:oilglass" }
-    }
+	"variants": {
+		"normal": {
+			"model": "umod:oilglass"
+		}
+	}
 }

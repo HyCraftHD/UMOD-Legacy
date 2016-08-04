@@ -3,11 +3,11 @@ package net.hycrafthd.umod.utils;
 import java.io.File;
 
 public class FileUtils {
-
+	
 	public static File[] getFilesInDirectionary(File file) throws Exception {
 		return file.listFiles();
 	}
-
+	
 	public static String[] getFileNamesInDirectionary(File file, String toreplace, String replaced) throws Exception {
 		if (file.exists()) {
 			File[] files = FileUtils.getFilesInDirectionary(file);
@@ -21,5 +21,5 @@ public class FileUtils {
 		}
 		return new String[] {};
 	}
-
+	
 }

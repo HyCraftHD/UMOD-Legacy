@@ -1,17 +1,43 @@
 {
-    "variants": {
-        "type=aluminium": { "model": "umod:netherore/netherorealuminium" },
-        "type=copper": { "model": "umod:netherore/netherorecopper" },
-        "type=lead": { "model": "umod:netherore/netherorelead" },
-        "type=mangan": { "model": "umod:netherore/netheroremangan" },
-        "type=mercury": { "model": "umod:netherore/netheroremercury" },
-        "type=nickel": { "model": "umod:netherore/netherorenickel" },
-        "type=platinum": { "model": "umod:netherore/netheroreplatinum" },
-        "type=silicium": { "model": "umod:netherore/netheroresilicium" },
-        "type=silver": { "model": "umod:netherore/netheroresilver" },
-        "type=sulphur": { "model": "umod:netherore/netheroresulphur" },
-        "type=tin": { "model": "umod:netherore/netheroretin" },
-        "type=uran": { "model": "umod:netherore/netheroreuran" },
-        "type=zinc": { "model": "umod:netherore/netherorezinc" }
-    }
+	"variants": {
+		"type=aluminium": {
+			"model": "umod:netherore/netherorealuminium"
+		},
+		"type=copper": {
+			"model": "umod:netherore/netherorecopper"
+		},
+		"type=lead": {
+			"model": "umod:netherore/netherorelead"
+		},
+		"type=mangan": {
+			"model": "umod:netherore/netheroremangan"
+		},
+		"type=mercury": {
+			"model": "umod:netherore/netheroremercury"
+		},
+		"type=nickel": {
+			"model": "umod:netherore/netherorenickel"
+		},
+		"type=platinum": {
+			"model": "umod:netherore/netheroreplatinum"
+		},
+		"type=silicium": {
+			"model": "umod:netherore/netheroresilicium"
+		},
+		"type=silver": {
+			"model": "umod:netherore/netheroresilver"
+		},
+		"type=sulphur": {
+			"model": "umod:netherore/netheroresulphur"
+		},
+		"type=tin": {
+			"model": "umod:netherore/netheroretin"
+		},
+		"type=uran": {
+			"model": "umod:netherore/netheroreuran"
+		},
+		"type=zinc": {
+			"model": "umod:netherore/netherorezinc"
+		}
+	}
 }

@@ -1,33 +1,28 @@
 package net.hycrafthd.umod.event;
 
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
-import net.hycrafthd.umod.UItems;
-import net.hycrafthd.umod.UPotion;
-import net.hycrafthd.umod.UReference;
+import net.hycrafthd.umod.*;
 import net.hycrafthd.umod.armor.ArmorRadiation;
 import net.hycrafthd.umod.interfaces.IInfectedBlock;
 import net.hycrafthd.umod.utils.NBTUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.*;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.*;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class EventGettingRadiationInv {
-
+	
 	public static final String TAG_MAIN = UReference.name;
 	public static final String TAG_INFECTED = "isInfected";
-
+	
 	@SubscribeEvent
 	public void onUpdate(LivingUpdateEvent event) {
 		if (event.entityLiving instanceof EntityPlayer) {
@@ -54,7 +49,7 @@ public class EventGettingRadiationInv {
 			}
 		}
 	}
-
+	
 	@SuppressWarnings("unchecked")
 	@SubscribeEvent
 	public void onDrop(LivingUpdateEvent event) {
@@ -64,8 +59,7 @@ public class EventGettingRadiationInv {
 			double xCoord = sp.posX;
 			double yCoord = sp.posY;
 			double zCoord = sp.posZ;
-			List<Entity> entities = world.getEntitiesWithinAABB(Entity.class, AxisAlignedBB.fromBounds(xCoord - 10,
-					yCoord - 10, zCoord - 10, xCoord + 10, yCoord + 10, zCoord + 10));
+			List<Entity> entities = world.getEntitiesWithinAABB(Entity.class, AxisAlignedBB.fromBounds(xCoord - 10, yCoord - 10, zCoord - 10, xCoord + 10, yCoord + 10, zCoord + 10));
 			for (Entity entity : entities) {
 				if (entity instanceof EntityItem) {
 					BlockPos pos = entity.getPosition().add(0, -1, 0);
@@ -75,8 +69,7 @@ public class EventGettingRadiationInv {
 						EntityItem entityItem = (EntityItem) entity;
 						if (NBTUtils.isInfected(entityItem.getEntityItem(), TAG_MAIN, TAG_INFECTED))
 							continue;
-						ItemStack updatedItem = NBTUtils.setInfected(entityItem.getEntityItem(), TAG_MAIN, TAG_INFECTED,
-								true);
+						ItemStack updatedItem = NBTUtils.setInfected(entityItem.getEntityItem(), TAG_MAIN, TAG_INFECTED, true);
 						entityItem.setEntityItemStack(updatedItem);
 						System.out.println("Set");
 					}
@@ -84,7 +77,7 @@ public class EventGettingRadiationInv {
 			}
 		}
 	}
-
+	
 	private void addPotion(EntityLivingBase base, int amplifier) {
 		if (base instanceof EntityPlayer) {
 			EntityPlayer sp = (EntityPlayer) base;
@@ -104,5 +97,5 @@ public class EventGettingRadiationInv {
 		}
 		base.addPotionEffect(new PotionEffect(UPotion.radiationPotion.getId(), 10, amplifier, false, true));
 	}
-
+	
 }

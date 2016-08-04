@@ -1,14 +1,12 @@
 {
-"parent": "block/cube",
-    "textures": {
-      "particle": "umod:blocks/solarpanel/topmediumvoltage",
-        "down": "umod:blocks/solarpanel/bottom",
-        "up": "umod:blocks/solarpanel/topmediumvoltage",
-        "north": "umod:blocks/solarpanel/side",
-        "east": "umod:blocks/solarpanel/side",
-        "south": "umod:blocks/solarpanel/side",
-        "west": "umod:blocks/solarpanel/side"
-    }
-
-
+	"parent": "block/cube",
+	"textures": {
+		"particle": "umod:blocks/solarpanel/topmediumvoltage",
+		"down": "umod:blocks/solarpanel/bottom",
+		"up": "umod:blocks/solarpanel/topmediumvoltage",
+		"north": "umod:blocks/solarpanel/side",
+		"east": "umod:blocks/solarpanel/side",
+		"south": "umod:blocks/solarpanel/side",
+		"west": "umod:blocks/solarpanel/side"
+	}
 }

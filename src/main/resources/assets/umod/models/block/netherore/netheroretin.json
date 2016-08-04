@@ -1,6 +1,6 @@
 {
-    "parent": "block/cube_all",
-    "textures": {
-        "all": "umod:blocks/netherore/tin"
-    }
+	"parent": "block/cube_all",
+	"textures": {
+		"all": "umod:blocks/netherore/tin"
+	}
 }

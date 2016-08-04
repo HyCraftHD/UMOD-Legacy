@@ -1,21 +1,15 @@
 package net.hycrafthd.umod;
 
 import net.hycrafthd.corelib.registry.TileEntityRegistry;
-import net.hycrafthd.umod.tileentity.TileEntityCable;
-import net.hycrafthd.umod.tileentity.TileEntityChargeStation;
-import net.hycrafthd.umod.tileentity.TileEntityCraftFurnance;
-import net.hycrafthd.umod.tileentity.TileEntityEnergyPannel;
-import net.hycrafthd.umod.tileentity.TileEntityPainter;
-import net.hycrafthd.umod.tileentity.TileEntityPulverizer;
-import net.hycrafthd.umod.tileentity.TileEntitySolarPanel;
+import net.hycrafthd.umod.tileentity.*;
 import net.hycrafthd.umod.tileentity.rail.TileEntityRail;
 
 public class UTiles {
-
+	
 	public UTiles() {
 		register();
 	}
-
+	
 	public void register() {
 		TileEntityRegistry.register(TileEntityPulverizer.class, "tilepulver");
 		TileEntityRegistry.register(TileEntitySolarPanel.class, "tilesolar");
@@ -27,5 +21,5 @@ public class UTiles {
 		TileEntityRegistry.register(TileEntityRail.class, "tilereail");
 		UMod.log.debug("Register TileEntitys");
 	}
-
+	
 }

@@ -4,17 +4,17 @@ import net.minecraft.server.gui.IUpdatePlayerListBox;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 
-public interface IPowerProvieder extends IUpdatePlayerListBox{
-
+public interface IPowerProvieder extends IUpdatePlayerListBox {
+	
 	public double getStoredPower();
 	
 	public void addPower(double power);
 	
 	public double getPower(double powerneed);
 	
-	public boolean canGetPower(BlockPos pos,double power);
+	public boolean canGetPower(BlockPos pos, double power);
 	
-	public boolean canAddPower(BlockPos pos,double power);
+	public boolean canAddPower(BlockPos pos, double power);
 	
 	public double getMaximalPower();
 	

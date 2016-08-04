@@ -1,6 +1,6 @@
 {
-    "parent": "block/cross",
-    "textures": {
-        "cross": "umod:blocks/infected/sapling"
-    }
+	"parent": "block/cross",
+	"textures": {
+		"cross": "umod:blocks/infected/sapling"
+	}
 }

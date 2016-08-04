@@ -6,7 +6,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 
 public class BlockInfectedPlank extends BlockBase implements IInfectedBlock {
-
+	
 	public BlockInfectedPlank() {
 		super(Material.wood);
 		this.setHarvestLevel("axe", 0);
@@ -15,10 +15,10 @@ public class BlockInfectedPlank extends BlockBase implements IInfectedBlock {
 		this.setStepSound(soundTypeWood);
 		Blocks.fire.setFireInfo(this, 5, 20);
 	}
-
+	
 	@Override
 	public Block getNormalBlock() {
 		return Blocks.planks;
 	}
-
+	
 }

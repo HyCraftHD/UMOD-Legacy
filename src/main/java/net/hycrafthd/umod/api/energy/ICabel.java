@@ -4,7 +4,7 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 
 public interface ICabel {
-
+	
 	public double getEnergy();
 	
 	public void setEnergy(double i);

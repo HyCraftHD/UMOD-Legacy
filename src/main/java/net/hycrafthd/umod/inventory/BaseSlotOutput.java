@@ -6,8 +6,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 
-public class BaseSlotOutput extends BaseSlot{
-
+public class BaseSlotOutput extends BaseSlot {
+	
 	public BaseSlotOutput(IInventory inventoryIn, int index, int xPosition, int yPosition) {
 		super(inventoryIn, index, xPosition, yPosition);
 		RGBA n = new RGBA(255, 255, 70, 50);
@@ -21,7 +21,7 @@ public class BaseSlotOutput extends BaseSlot{
 			}
 		});
 	}
-
+	
 	@Override
 	public boolean isItemValid(ItemStack stack) {
 		return false;

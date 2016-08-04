@@ -2,24 +2,15 @@ package net.hycrafthd.umod;
 
 import net.hycrafthd.corelib.registry.NetworkRegistry;
 import net.hycrafthd.umod.api.ProcessHandler;
-import net.hycrafthd.umod.event.EventDrawHUD;
-import net.hycrafthd.umod.event.EventExecuteRadiation;
-import net.hycrafthd.umod.event.EventGettingRadiation;
-import net.hycrafthd.umod.event.EventGettingRadiationInv;
-import net.hycrafthd.umod.event.EventLoadWorld;
-import net.hycrafthd.umod.event.EventPlayerJoin;
-import net.hycrafthd.umod.event.EventToolTip;
+import net.hycrafthd.umod.event.*;
 import net.hycrafthd.umod.network.PacketHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
+import net.minecraftforge.fml.common.event.*;
 
 @Mod(modid = UReference.modid, version = UReference.version, name = UReference.name)
 public class UMod {
-
+	
 	public static org.apache.logging.log4j.Logger log;
 	
 	@EventHandler
@@ -28,7 +19,7 @@ public class UMod {
 		new UConfig(event.getSuggestedConfigurationFile());
 		new PacketHandler();
 	}
-
+	
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
 		new UPotion();
@@ -43,7 +34,7 @@ public class UMod {
 		this.registerEvents();
 		UMod.log.info("Init Mod.");
 	}
-
+	
 	@EventHandler
 	public void postinit(FMLPostInitializationEvent event) {
 		new UTiles();
@@ -55,13 +46,13 @@ public class UMod {
 		UReference.proxy.registerRenderer();
 		UMod.log.info("Registered Mod.");
 	}
-
+	
 	@EventHandler
 	public void serverstarting(FMLServerStartingEvent event) {
 		new UCommands(event);
 		UMod.log.info("Registered Mod Commands.");
 	}
-
+	
 	public void registerEvents() {
 		UEvent event = new UEvent();
 		event.addEvent(new EventGettingRadiation());
@@ -75,12 +66,12 @@ public class UMod {
 		event.register();
 		UMod.log.info("Registered Mod Events.");
 	}
-
+	
 	public void registerGenerators() {
 		UGeneration generation = new UGeneration();
 		generation.addGenerator(new UOreGeneration(), 0);
 		generation.register();
 		UMod.log.info("Registered Mod Generators.");
 	}
-
+	
 }

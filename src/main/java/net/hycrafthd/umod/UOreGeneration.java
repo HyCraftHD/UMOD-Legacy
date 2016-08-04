@@ -10,7 +10,7 @@ import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraftforge.fml.common.IWorldGenerator;
 
 public class UOreGeneration implements IWorldGenerator {
-
+	
 	private void nether(Random random, int x, int y, World world) {
 		GenerationUtils.generateOre(UBlocks.netherores.getStateFromMeta(EnumTypeBaseStuff.ALUMINIUM.getMetadata()), Blocks.netherrack, random, x, y, world, 10, 0, 128, 2, 15);
 		GenerationUtils.generateOre(UBlocks.netherores.getStateFromMeta(EnumTypeBaseStuff.COPPER.getMetadata()), Blocks.netherrack, random, x, y, world, 30, 0, 128, 2, 15);
@@ -26,7 +26,7 @@ public class UOreGeneration implements IWorldGenerator {
 		GenerationUtils.generateOre(UBlocks.netherores.getStateFromMeta(EnumTypeBaseStuff.URAN.getMetadata()), Blocks.netherrack, random, x, y, world, 10, 0, 128, 1, 10);
 		GenerationUtils.generateOre(UBlocks.netherores.getStateFromMeta(EnumTypeBaseStuff.ZINC.getMetadata()), Blocks.netherrack, random, x, y, world, 10, 0, 128, 2, 10);
 	}
-
+	
 	private void overworld(Random random, int x, int y, World world) {
 		GenerationUtils.generateOre(UBlocks.ores.getStateFromMeta(EnumTypeBaseStuff.ALUMINIUM.getMetadata()), random, x, y, world, 35, 0, 128, 2, 12);
 		GenerationUtils.generateOre(UBlocks.ores.getStateFromMeta(EnumTypeBaseStuff.COPPER.getMetadata()), random, x, y, world, 80, 0, 128, 2, 12);
@@ -42,11 +42,11 @@ public class UOreGeneration implements IWorldGenerator {
 		GenerationUtils.generateOre(UBlocks.ores.getStateFromMeta(EnumTypeBaseStuff.URAN.getMetadata()), random, x, y, world, 10, 4, 22, 1, 6);
 		GenerationUtils.generateOre(UBlocks.ores.getStateFromMeta(EnumTypeBaseStuff.ZINC.getMetadata()), random, x, y, world, 40, 0, 33, 2, 8);
 	}
-
+	
 	private void end(Random random, int x, int y, World world) {
-
+		
 	}
-
+	
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
 		int x = chunkX * 16;
@@ -61,8 +61,8 @@ public class UOreGeneration implements IWorldGenerator {
 		case 1:
 			end(random, x, z, world);
 			break;
-
+		
 		}
 	}
-
+	
 }

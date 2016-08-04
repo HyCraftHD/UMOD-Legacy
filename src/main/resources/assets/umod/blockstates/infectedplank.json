@@ -1,5 +1,7 @@
 {
-    "variants": {
-        "normal": { "model": "umod:infected/infectedplank" }
-    }
+	"variants": {
+		"normal": {
+			"model": "umod:infected/infectedplank"
+		}
+	}
 }

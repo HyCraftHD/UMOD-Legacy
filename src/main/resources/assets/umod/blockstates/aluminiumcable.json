@@ -1,5 +1,7 @@
 {
-    "variants": {
-        "normal": { "model": "umod:aluminiumcable" }
-    }
+	"variants": {
+		"normal": {
+			"model": "umod:aluminiumcable"
+		}
+	}
 }

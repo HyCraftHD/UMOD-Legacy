@@ -2,8 +2,7 @@ package net.hycrafthd.umod.event;
 
 import java.util.HashMap;
 
-import net.hycrafthd.umod.UDamageSource;
-import net.hycrafthd.umod.UPotion;
+import net.hycrafthd.umod.*;
 import net.hycrafthd.umod.armor.ArmorRadiation;
 import net.hycrafthd.umod.utils.EntityUtils;
 import net.minecraft.entity.EntityLivingBase;
@@ -14,17 +13,17 @@ import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class EventExecuteRadiation {
-
+	
 	private HashMap<EntityPlayer, Integer> timer = new HashMap<EntityPlayer, Integer>();
-
+	
 	@SubscribeEvent
 	public void onUpdateEntity(LivingUpdateEvent event) {
 		EntityLivingBase base = event.entityLiving;
 		if (base.isPotionActive(UPotion.radiationPotion)) {
-
+			
 			if (EntityUtils.isInfectedEntity(base))
 				return;
-
+			
 			if (base instanceof EntityPlayer) {
 				EntityPlayer sp = (EntityPlayer) base;
 				if (sp.capabilities.isCreativeMode)
@@ -51,10 +50,10 @@ public class EventExecuteRadiation {
 					return;
 				}
 			}
-
+			
 			PotionEffect effect = base.getActivePotionEffect(UPotion.radiationPotion);
 			base.attackEntityFrom(UDamageSource.radiationDamageSource, effect.getAmplifier() + 0.5F);
 		}
 	}
-
+	
 }

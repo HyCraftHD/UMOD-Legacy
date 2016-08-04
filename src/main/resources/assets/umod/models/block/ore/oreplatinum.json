@@ -1,6 +1,6 @@
 {
-    "parent": "block/cube_all",
-    "textures": {
-        "all": "umod:blocks/ore/platinum"
-    }
+	"parent": "block/cube_all",
+	"textures": {
+		"all": "umod:blocks/ore/platinum"
+	}
 }

@@ -2,20 +2,9 @@ package net.hycrafthd.umod;
 
 import net.hycrafthd.corelib.util.ICustomGuiHandler;
 import net.hycrafthd.umod.api.energy.IPowerProvieder;
-import net.hycrafthd.umod.container.ContainerBackPack;
-import net.hycrafthd.umod.container.ContainerChargeStation;
-import net.hycrafthd.umod.container.ContainerCraftFurnace;
-import net.hycrafthd.umod.container.ContainerPainter;
-import net.hycrafthd.umod.container.ContainerPulverizer;
-import net.hycrafthd.umod.enumtype.EnumTypeBackPack;
-import net.hycrafthd.umod.enumtype.EnumTypeGui;
-import net.hycrafthd.umod.gui.GuiBackPack;
-import net.hycrafthd.umod.gui.GuiBattery;
-import net.hycrafthd.umod.gui.GuiChargstation;
-import net.hycrafthd.umod.gui.GuiCraftFurnance;
-import net.hycrafthd.umod.gui.GuiPainter;
-import net.hycrafthd.umod.gui.GuiPulverizer;
-import net.hycrafthd.umod.gui.GuiSolarPanel;
+import net.hycrafthd.umod.container.*;
+import net.hycrafthd.umod.enumtype.*;
+import net.hycrafthd.umod.gui.*;
 import net.hycrafthd.umod.inventory.InventoryBackPack;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -25,13 +14,13 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 
 public class UGuiHandler implements ICustomGuiHandler {
-
+	
 	@SuppressWarnings("incomplete-switch")
 	@Override
 	public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
 		BlockPos p = new BlockPos(x, y, z);
 		TileEntity ent = world.getTileEntity(p);
-
+		
 		switch (EnumTypeGui.byID(ID)) {
 		case PULVERISER:
 			return new ContainerPulverizer((IInventory) ent, player, world);
@@ -48,20 +37,20 @@ public class UGuiHandler implements ICustomGuiHandler {
 			}
 			break;
 		case BARRELS:
-			//return new ContainerBarrels(player.get);
+			// return new ContainerBarrels(player.get);
 			break;
 		case PAINTER:
 			return new ContainerPainter((IInventory) ent, player, world);
 		}
 		return null;
 	}
-
+	
 	@SuppressWarnings("incomplete-switch")
 	@Override
 	public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
 		BlockPos p = new BlockPos(x, y, z);
 		TileEntity ent = world.getTileEntity(p);
-
+		
 		switch (EnumTypeGui.byID(ID)) {
 		case PULVERISER:
 			return new GuiPulverizer(player, (IInventory) ent, world, p);
@@ -85,12 +74,12 @@ public class UGuiHandler implements ICustomGuiHandler {
 			return new GuiPainter(player, (IInventory) ent, new ContainerPainter((IInventory) ent, player, world));
 		}
 		return null;
-
+		
 	}
-
+	
 	@Override
 	public String getMod() {
 		return UReference.modid;
 	}
-
+	
 }

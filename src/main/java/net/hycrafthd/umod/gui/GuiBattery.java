@@ -5,23 +5,17 @@ import java.io.IOException;
 import net.hycrafthd.umod.UReference;
 import net.hycrafthd.umod.api.ISignable;
 import net.hycrafthd.umod.api.energy.IPowerProvieder;
-import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.client.gui.GuiButton;
-import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.gui.*;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.*;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.relauncher.*;
 
 @SideOnly(Side.CLIENT)
 public class GuiBattery extends GuiScreen {
-
+	
 	protected int xSize = 176;
 	protected int ySize = 166;
 	public IPowerProvieder pro;
@@ -29,14 +23,14 @@ public class GuiBattery extends GuiScreen {
 	public BlockPos pos;
 	public int ag;
 	private World worldObj;
-
+	
 	public GuiBattery(World w, IPowerProvieder po, EntityPlayer pl, BlockPos pos, int ag) {
 		pro = po;
 		this.pl = pl;
 		this.pos = pos;
 		worldObj = w;
 	}
-
+	
 	@Override
 	protected void keyTyped(char p_73869_1_, int p_73869_2_) throws IOException {
 		super.keyTyped(p_73869_1_, p_73869_2_);
@@ -44,30 +38,30 @@ public class GuiBattery extends GuiScreen {
 			pl.closeScreen();
 		}
 	}
-
+	
 	@Override
 	public void initGui() {
 		super.initGui();
 	}
-
+	
 	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
 		super.drawScreen(mouseX, mouseY, partialTicks);
 		this.mc.getTextureManager().bindTexture(new ResourceLocation(UReference.modid, "textures/gui/solar.png"));
-
+		
 		int k = (this.width - this.xSize) / 2;
 		int l = (this.height - this.ySize) / 2;
-
+		
 		this.drawTexturedModalRect(k, l, 0, 0, this.xSize, this.ySize);
-
+		
 		int high = 0;
 		if (pro.hasPower()) {
 			double ps = pro.getStoredPower() * 100 / pro.getMaximalPower();
 			high = (int) (ps * 0.01 * 152);
 		}
-
+		
 		this.drawStorage(k, l, high);
-
+		
 		this.drawCenteredString(this.fontRendererObj, I18n.format(worldObj.getBlockState(pos).getBlock().getUnlocalizedName() + ".name"), k + xSize / 2 - 37 / 2, l + 10, 4210752, false);
 		int maxstringlength = 119;
 		String s1 = "Needs: ";
@@ -82,23 +76,23 @@ public class GuiBattery extends GuiScreen {
 				this.fontRendererObj.drawSplitString(s4 + pro.getErrorMessage(), k + 10, l + 110, maxstringlength, 4210752);
 			}
 		}
-
+		
 	}
-
+	
 	public int drawCenteredString(FontRenderer fontRendererIn, String text, int x, int y, int color, boolean shadow) {
 		return fontRendererIn.drawString(text, (float) (x - fontRendererIn.getStringWidth(text) / 2), (float) y, color, shadow);
 	}
-
+	
 	public void drawStorage(int l, int k, int height) {
 		int x = l + 169, y = k + 159;
 		drawTexturedModalRect(x, y, 206, height + 7, -30, -height);
 	}
-
+	
 	@Override
 	public boolean doesGuiPauseGame() {
 		return false;
 	}
-
+	
 	@Override
 	protected void actionPerformed(GuiButton button) throws IOException {
 		switch (button.id) {

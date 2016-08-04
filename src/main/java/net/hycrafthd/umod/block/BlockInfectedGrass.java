@@ -13,7 +13,7 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 
 public class BlockInfectedGrass extends BlockBase implements IInfectedBlock {
-
+	
 	public BlockInfectedGrass() {
 		super(Material.grass);
 		this.setHarvestLevel("spade", 2);
@@ -21,7 +21,7 @@ public class BlockInfectedGrass extends BlockBase implements IInfectedBlock {
 		this.setStepSound(soundTypeGrass);
 		this.setTickRandomly(true);
 	}
-
+	
 	@Override
 	public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
 		if (!worldIn.isRemote) {
@@ -46,15 +46,15 @@ public class BlockInfectedGrass extends BlockBase implements IInfectedBlock {
 		}
 		super.updateTick(worldIn, pos, state, rand);
 	}
-
+	
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune) {
 		return UBlocks.infectedDirt.getItemDropped(Blocks.dirt.getDefaultState(), rand, fortune);
 	}
-
+	
 	@Override
 	public Block getNormalBlock() {
 		return Blocks.grass;
 	}
-
+	
 }

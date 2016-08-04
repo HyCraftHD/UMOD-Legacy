@@ -1,8 +1,16 @@
 {
-    "variants": {
-        "check_decay=true,decayable=true": { "model": "umod:infected/infectedleave" },
-        "check_decay=true,decayable=false": { "model": "umod:infected/infectedleave" },
-        "check_decay=false,decayable=true": { "model": "umod:infected/infectedleave" },
-        "check_decay=false,decayable=false": { "model": "umod:infected/infectedleave" }
-    }
+	"variants": {
+		"check_decay=true,decayable=true": {
+			"model": "umod:infected/infectedleave"
+		},
+		"check_decay=true,decayable=false": {
+			"model": "umod:infected/infectedleave"
+		},
+		"check_decay=false,decayable=true": {
+			"model": "umod:infected/infectedleave"
+		},
+		"check_decay=false,decayable=false": {
+			"model": "umod:infected/infectedleave"
+		}
+	}
 }

@@ -1,5 +1,7 @@
 {
-    "variants": {
-        "normal": { "model": "umod:block/charge" }
-    }
+	"variants": {
+		"normal": {
+			"model": "umod:block/charge"
+		}
+	}
 }

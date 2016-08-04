@@ -1,6 +1,6 @@
 {
-    "parent": "block/leaves",
-    "textures": {
-        "all": "umod:blocks/infected/leave"
-    }
+	"parent": "block/leaves",
+	"textures": {
+		"all": "umod:blocks/infected/leave"
+	}
 }

@@ -1,5 +1,7 @@
 {
-    "variants": {
-        "normal": { "model": "umod:painter" }
-    }
+	"variants": {
+		"normal": {
+			"model": "umod:painter"
+		}
+	}
 }

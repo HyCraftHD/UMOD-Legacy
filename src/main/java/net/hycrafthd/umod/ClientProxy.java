@@ -4,50 +4,29 @@ import java.util.List;
 
 import org.lwjgl.input.Keyboard;
 
-import net.hycrafthd.corelib.registry.KeybindingRegistry;
-import net.hycrafthd.corelib.registry.ModelRegistry;
-import net.hycrafthd.corelib.registry.RenderRegistry;
+import net.hycrafthd.corelib.registry.*;
 import net.hycrafthd.corelib.util.ItemUtil;
 import net.hycrafthd.umod.block.BlockSolarPanel.EnumTypeSolarPanel;
-import net.hycrafthd.umod.entity.EntityFX;
-import net.hycrafthd.umod.entity.EntityInfectedCow;
-import net.hycrafthd.umod.entity.EntityInfectedCreeper;
-import net.hycrafthd.umod.entity.EntityInfectedZombie;
-import net.hycrafthd.umod.entity.EntityNukePrimed;
+import net.hycrafthd.umod.entity.*;
 import net.hycrafthd.umod.entity.rail.EntityRailFX;
-import net.hycrafthd.umod.entity.render.RenderFX;
-import net.hycrafthd.umod.entity.render.RenderInfectedCow;
-import net.hycrafthd.umod.entity.render.RenderInfectedCreeper;
-import net.hycrafthd.umod.entity.render.RenderInfectedZombie;
-import net.hycrafthd.umod.entity.render.RenderNukePrimed;
+import net.hycrafthd.umod.entity.render.*;
 import net.hycrafthd.umod.entity.render.rail.RenderRailFX;
-import net.hycrafthd.umod.enumtype.EnumTypeBackPack;
-import net.hycrafthd.umod.enumtype.EnumTypeBaseStuff;
-import net.hycrafthd.umod.enumtype.EnumTypeTransformer;
-import net.hycrafthd.umod.render.TileEntityCabelRender;
-import net.hycrafthd.umod.render.TileEntityEnergyPannelRender;
-import net.hycrafthd.umod.render.TileEntityItemPipeRender;
-import net.hycrafthd.umod.render.TileEntityPulverizerSpecialRender;
-import net.hycrafthd.umod.tileentity.TileEntityCable;
-import net.hycrafthd.umod.tileentity.TileEntityEnergyPannel;
-import net.hycrafthd.umod.tileentity.TileEntityItemPipe;
-import net.hycrafthd.umod.tileentity.TileEntityPulverizer;
+import net.hycrafthd.umod.enumtype.*;
+import net.hycrafthd.umod.render.*;
+import net.hycrafthd.umod.tileentity.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;
-import net.minecraft.client.resources.model.ModelBakery;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.*;
 import net.minecraft.util.EnumChatFormatting;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.relauncher.*;
 
 public class ClientProxy extends CommonProxy {
-
+	
 	public static KeyBinding info = new KeyBinding("Infromation", Keyboard.KEY_I, "UMod");
-    @SideOnly(Side.CLIENT)
+	@SideOnly(Side.CLIENT)
 	public static EntityPlayer player = Minecraft.getMinecraft().thePlayer;
 	
 	@Override
@@ -55,38 +34,38 @@ public class ClientProxy extends CommonProxy {
 		
 		// Ore and NetherOre
 		for (int i = 0; i < EnumTypeBaseStuff.values().length; i++) {
-			ModelBakery.addVariantName(Item.getItemFromBlock(UBlocks.ores), UReference.resource + "ore" + EnumTypeBaseStuff.byMetadata(i).getName());
+			ModelRegistry.registerVariants(Item.getItemFromBlock(UBlocks.ores), UReference.resource + "ore" + EnumTypeBaseStuff.byMetadata(i).getName());
 			ModelRegistry.register(ItemUtil.from(UBlocks.ores), i, new ModelResourceLocation(UReference.resource + "ore" + EnumTypeBaseStuff.byMetadata(i).getName(), "inventory"));
-			ModelBakery.addVariantName(Item.getItemFromBlock(UBlocks.netherores), UReference.resource + "netherore" + EnumTypeBaseStuff.byMetadata(i).getName());
+			ModelRegistry.registerVariants(Item.getItemFromBlock(UBlocks.netherores), UReference.resource + "netherore" + EnumTypeBaseStuff.byMetadata(i).getName());
 			ModelRegistry.register(ItemUtil.from(UBlocks.netherores), i, new ModelResourceLocation(UReference.resource + "netherore" + EnumTypeBaseStuff.byMetadata(i).getName(), "inventory"));
 		}
-
+		
 		// Blocks
 		for (int i = 0; i < EnumTypeBaseStuff.values().length; i++) {
-			ModelBakery.addVariantName(Item.getItemFromBlock(UBlocks.blocks), UReference.resource + "block" + EnumTypeBaseStuff.byMetadata(i).getName());
+			ModelRegistry.registerVariants(Item.getItemFromBlock(UBlocks.blocks), UReference.resource + "block" + EnumTypeBaseStuff.byMetadata(i).getName());
 			ModelRegistry.register(ItemUtil.from(UBlocks.blocks), i, new ModelResourceLocation(UReference.resource + "block" + EnumTypeBaseStuff.byMetadata(i).getName(), "inventory"));
 		}
-
+		
 		// Ingot (and Sulphur Chunk)
 		for (int i = 0; i < EnumTypeBaseStuff.values().length; i++) {
-			ModelBakery.addVariantName(UItems.ingots, UReference.resource + "ingot" + EnumTypeBaseStuff.byMetadata(i).getName());
+			ModelRegistry.registerVariants(UItems.ingots, UReference.resource + "ingot" + EnumTypeBaseStuff.byMetadata(i).getName());
 			ModelRegistry.register(UItems.ingots, i, new ModelResourceLocation(UReference.resource + "ingot" + EnumTypeBaseStuff.byMetadata(i).getName(), "inventory"));
 		}
-				
-		// Transformer		
+		
+		// Transformer
 		for (int i = 0; i < EnumTypeTransformer.values().length; i++) {
-			ModelBakery.addVariantName(UItems.transformer, UReference.resource + "transformer" + EnumTypeTransformer.byMetadata(i).getName());
+			ModelRegistry.registerVariants(UItems.transformer, UReference.resource + "transformer" + EnumTypeTransformer.byMetadata(i).getName());
 			ModelRegistry.register(UItems.transformer, i, new ModelResourceLocation(UReference.resource + "transformer" + EnumTypeTransformer.byMetadata(i).getName(), "inventory"));
 		}
 		
 		// Dust
 		for (int i = 0; i < EnumTypeBaseStuff.values().length; i++) {
-			ModelBakery.addVariantName(UItems.dusts, UReference.resource + "dust" + EnumTypeBaseStuff.byMetadata(i).getName());
+			ModelRegistry.registerVariants(UItems.dusts, UReference.resource + "dust" + EnumTypeBaseStuff.byMetadata(i).getName());
 			ModelRegistry.register(UItems.dusts, i, new ModelResourceLocation(UReference.resource + "dust" + EnumTypeBaseStuff.byMetadata(i).getName(), "inventory"));
 		}
 		
 		ModelRegistry.register(UItems.manganoxid);
-
+		
 		// Pulverizer
 		ModelRegistry.register(UBlocks.charge);
 		ModelRegistry.register(UBlocks.pulver);
@@ -96,7 +75,7 @@ public class ClientProxy extends CommonProxy {
 		// cbbl Dust
 		ModelRegistry.register(UItems.cdust);
 		
-		//battery
+		// battery
 		ModelRegistry.register(UItems.battery);
 		ModelRegistry.register(UItems.copper_wire);
 		ModelRegistry.register(UItems.copper_coil);
@@ -106,11 +85,11 @@ public class ClientProxy extends CommonProxy {
 		
 		// SolarPanel
 		for (int i = 0; i < EnumTypeSolarPanel.values().length; i++) {
-			ModelBakery.addVariantName(Item.getItemFromBlock(UBlocks.solarpanel), UReference.resource + "solarpanel" + EnumTypeSolarPanel.byMetadata(i).getName());
+			ModelRegistry.registerVariants(Item.getItemFromBlock(UBlocks.solarpanel), UReference.resource + "solarpanel" + EnumTypeSolarPanel.byMetadata(i).getName());
 			ModelRegistry.register(ItemUtil.from(UBlocks.solarpanel), i, new ModelResourceLocation(UReference.resource + "solarpanel" + EnumTypeSolarPanel.byMetadata(i).getName(), "inventory"));
 		}
-
-		//Armor
+		
+		// Armor
 		ModelRegistry.register(UArmor.radiationSuitHelmet);
 		ModelRegistry.register(UArmor.radiationSuitChestplate);
 		ModelRegistry.register(UArmor.radiationSuitLeggings);
@@ -141,34 +120,36 @@ public class ClientProxy extends CommonProxy {
 		
 		ModelRegistry.register(UBlocks.infestedCleaner);
 		
-		
 		// Pipes
 		ModelRegistry.register(UBlocks.alu_cable);
 		ModelRegistry.register(UBlocks.silver_cable);
 		ModelRegistry.register(UBlocks.zin_cable);
-
+		
 		// Normal Blocks
 		ModelRegistry.register(UBlocks.nuke);
-        ModelRegistry.register(UBlocks.craftfurnance);
-        ModelRegistry.register(UBlocks.rail);
-        
+		ModelRegistry.register(UBlocks.craftfurnance);
+		ModelRegistry.register(UBlocks.rail);
+		
+		// Stone - Stairs
+		ModelRegistry.register(UBlocks.stonestairstone);
+		
 		// Backpack
 		for (int i = 0; i < EnumTypeBackPack.values().length; i++) {
-			ModelBakery.addVariantName(UItems.backpack, UReference.resource + "backpack" + EnumTypeBackPack.byMetadata(i).getName());
+			ModelRegistry.registerVariants(UItems.backpack, UReference.resource + "backpack" + EnumTypeBackPack.byMetadata(i).getName());
 			ModelRegistry.register(UItems.backpack, i, new ModelResourceLocation(UReference.resource + "backpack" + EnumTypeBackPack.byMetadata(i).getName(), "inventory"));
 		}
-
-		//Tools
+		
+		// Tools
 		ModelRegistry.register(UTools.emeraldAxe);
 		ModelRegistry.register(UTools.emeraldPickaxe);
 		ModelRegistry.register(UTools.emeraldSword);
 		ModelRegistry.register(UTools.emeraldSpade);
 		ModelRegistry.register(UTools.emeraldHoe);
 		
-		//Keybinding
-	    KeybindingRegistry.register(info);
+		// Keybinding
+		KeybindingRegistry.register(info);
 	}
-
+	
 	@Override
 	public void registerRenderer() {
 		RenderFX.register(TileEntityEnergyPannel.class, new TileEntityEnergyPannelRender());
@@ -185,7 +166,7 @@ public class ClientProxy extends CommonProxy {
 		RenderRegistry.registerTileEntity(TileEntityPulverizer.class, new TileEntityPulverizerSpecialRender());
 		VIARegister.registerVIA();
 	}
-
+	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
 	public void addTooltip(ItemStack stack, EntityPlayer player, List tooltip, boolean advanced) {
@@ -194,5 +175,5 @@ public class ClientProxy extends CommonProxy {
 			tooltip.add(EnumChatFormatting.BLUE + tip + EnumChatFormatting.RESET);
 		}
 	}
-
+	
 }

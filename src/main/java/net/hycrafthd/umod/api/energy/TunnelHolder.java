@@ -9,7 +9,7 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 
 public class TunnelHolder {
-
+	
 	private static ArrayList<UETunnel> tunnels = new ArrayList<UETunnel>();
 	
 	public static int addUETunnel(UETunnel tn) {
@@ -19,55 +19,56 @@ public class TunnelHolder {
 		return num;
 	}
 	
-	public static UETunnel getUETunnel(int i){
-		if(i >= tunnels.size() || i < 0)return null;
+	public static UETunnel getUETunnel(int i) {
+		if (i >= tunnels.size() || i < 0)
+			return null;
 		return tunnels.get(i);
 	}
 	
-	public static int merge(int i,int i2){
+	public static int merge(int i, int i2) {
 		System.out.println("Try to Merge UETunnel " + i + " and " + i2);
 		UETunnel tnl1 = TunnelHolder.getUETunnel(i);
 		UETunnel tnl2 = TunnelHolder.getUETunnel(i2);
 		UETunnel newT = new UETunnel(tnl1.getWorld());
 		tunnels.remove(i);
-		if(i > i2){
-		tunnels.remove(i2);
-		}else{
-		tunnels.remove(i2 - 1);
+		if (i > i2) {
+			tunnels.remove(i2);
+		} else {
+			tunnels.remove(i2 - 1);
 		}
-		for(int y = i;y < tunnels.size();y++){
+		for (int y = i; y < tunnels.size(); y++) {
 			tunnels.get(i).setID(y);
 			UETunnel tnl = tunnels.get(i);
-			for(BlockPos cab : tnl){
+			for (BlockPos cab : tnl) {
 				ICabel cabs = (ICabel) tnl.getWorld().getTileEntity((BlockPos) cab);
 				cabs.setTunnelID(tnl.getID());
 			}
 		}
 		int id = addUETunnel(newT);
-		for(BlockPos cab : tnl1){
+		for (BlockPos cab : tnl1) {
 			TunnelHolder.getUETunnel(id).add(cab);
 		}
-		for(BlockPos cab : tnl2){
+		for (BlockPos cab : tnl2) {
 			TunnelHolder.getUETunnel(id).add(cab);
 		}
 		UMod.log.debug("Merged UETunnel " + i + " and " + i2);
 		return id;
 	}
 	
-	public static int regenUETunnel(int id,World w){
-		if(id >= tunnels.size()){
+	public static int regenUETunnel(int id, World w) {
+		if (id >= tunnels.size() || id < 0) {
 			return TunnelHolder.addUETunnel(new UETunnel(w));
 		}
 		UETunnel tun = getUETunnel(id);
 		tunnels.remove(id);
-		for(int i = id;i < tunnels.size();i++){
+		for (int i = id; i < tunnels.size(); i++) {
 			tunnels.get(i).setID(i);
 		}
-		for(BlockPos cad : tun){
+		for (BlockPos cad : tun) {
 			TileEntity ca = tun.getWorld().getTileEntity(cad);
-			if(ca instanceof TileEntityCable){
-				if(ca != null){
-				((TileEntityCable) ca).onBlockSetInWorld();
+			if (ca instanceof TileEntityCable) {
+				if (ca != null) {
+					((TileEntityCable) ca).onBlockSetInWorld();
 				}
 			}
 		}

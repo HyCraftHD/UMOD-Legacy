@@ -1,49 +1,21 @@
 package net.hycrafthd.umod;
 
 import net.hycrafthd.corelib.registry.OreDictionaryRegistry;
-import net.hycrafthd.umod.block.BlockBarrels;
-import net.hycrafthd.umod.block.BlockBlocks;
-import net.hycrafthd.umod.block.BlockCable;
-import net.hycrafthd.umod.block.BlockChargeStation;
-import net.hycrafthd.umod.block.BlockConduit;
-import net.hycrafthd.umod.block.BlockCraftFurnance;
-import net.hycrafthd.umod.block.BlockEnergyPanel;
-import net.hycrafthd.umod.block.BlockInfectedDirt;
-import net.hycrafthd.umod.block.BlockInfectedFruit;
-import net.hycrafthd.umod.block.BlockInfectedGrass;
-import net.hycrafthd.umod.block.BlockInfectedLeave;
-import net.hycrafthd.umod.block.BlockInfectedLog;
-import net.hycrafthd.umod.block.BlockInfectedPlank;
-import net.hycrafthd.umod.block.BlockInfectedSapling;
-import net.hycrafthd.umod.block.BlockInfestedCleaner;
-import net.hycrafthd.umod.block.BlockNetherOres;
-import net.hycrafthd.umod.block.BlockNuke;
-import net.hycrafthd.umod.block.BlockOilGlass;
-import net.hycrafthd.umod.block.BlockOilSand;
-import net.hycrafthd.umod.block.BlockOres;
-import net.hycrafthd.umod.block.BlockPainter;
-import net.hycrafthd.umod.block.BlockPulverizer;
-import net.hycrafthd.umod.block.BlockSolarPanel;
-import net.hycrafthd.umod.block.rail.Block2rail;
-import net.hycrafthd.umod.block.rail.BlockExtendedRail;
-import net.hycrafthd.umod.item.ItemBlockBarrels;
-import net.hycrafthd.umod.item.ItemBlockBlocks;
-import net.hycrafthd.umod.item.ItemBlockConduit;
-import net.hycrafthd.umod.item.ItemBlockEnergy;
-import net.hycrafthd.umod.item.ItemBlockOres;
-import net.hycrafthd.umod.item.ItemBlockSolarPanel;
+import net.hycrafthd.umod.block.*;
+import net.hycrafthd.umod.block.rail.*;
+import net.hycrafthd.umod.item.*;
 import net.hycrafthd.umod.utils.Utils;
-import net.minecraft.block.Block;
+import net.minecraft.block.*;
 
 public class UBlocks {
-
+	
 	// Ores
 	public static Block ores, netherores;
 	// Blocks
 	public static Block blocks;
 	// SolarPanel
 	public static Block solarpanel;
-	// Mashiens
+	// Machinery
 	public static Block pulver;
 	public static Block charge;
 	public static Block painter;
@@ -68,18 +40,20 @@ public class UBlocks {
 	// Normal Blocks
 	public static Block nuke;
 	public static Block conduit;
-
+	
 	public static Block barrels;
 	
 	public static Block rail;
-    public static Block rail2;
+	public static Block rail2;
+	// Stone - Stair
+	public static Block stonestairstone;
 	
 	public UBlocks() {
 		init();
 		register();
 		oredirectionary();
 	}
-
+	
 	private void init() {
 		// Ore
 		ores = new BlockOres().setUnlocalizedName("ores");
@@ -114,14 +88,16 @@ public class UBlocks {
 		// Normal Blocks
 		nuke = new BlockNuke().setUnlocalizedName("nuke");
 		conduit = new BlockConduit().setUnlocalizedName("conduit");
-
+		
 		barrels = new BlockBarrels().setUnlocalizedName("barrels");
-				
+		
 		rail = new BlockExtendedRail().setUnlocalizedName("ExRail");
 		rail2 = new Block2rail().setUnlocalizedName("railhelp");
+		// Stone - Stair
+		stonestairstone = new BlockStoneStairs(BlockStone.EnumType.STONE);
 		UMod.log.debug("Init Blocks");
 	}
-
+	
 	private void register() {
 		// Ore
 		Utils.registerBlock(ores, ItemBlockOres.class);
@@ -149,7 +125,7 @@ public class UBlocks {
 		Utils.registerBlock(oilsand);
 		
 		Utils.registerBlock(infestedCleaner);
-
+		
 		// Pipes
 		Utils.registerBlock(alu_cable, ItemBlockEnergy.class);
 		Utils.registerBlock(silver_cable, ItemBlockEnergy.class);
@@ -157,14 +133,17 @@ public class UBlocks {
 		// Normal Block
 		Utils.registerBlock(nuke);
 		Utils.registerBlock(conduit, ItemBlockConduit.class);
-
+		
 		Utils.registerBlock(barrels, ItemBlockBarrels.class);
 		
 		Utils.registerBlock(rail);
 		Utils.registerBlock(rail2);
+		
+		// Stone - Stair
+		Utils.registerBlock(stonestairstone);
 		UMod.log.debug("Register Blocks");
 	}
-
+	
 	private void oredirectionary() {
 		
 		// Ore
@@ -193,7 +172,7 @@ public class UBlocks {
 		OreDictionaryRegistry.register(oilsand);
 		
 		OreDictionaryRegistry.register(infestedCleaner);
-
+		
 		// Pipes
 		OreDictionaryRegistry.register(alu_cable);
 		OreDictionaryRegistry.register(silver_cable);
@@ -204,8 +183,10 @@ public class UBlocks {
 		
 		OreDictionaryRegistry.register(rail);
 		OreDictionaryRegistry.register(rail2);
+		// Stone - Stair
+		OreDictionaryRegistry.register(stonestairstone);
 		UMod.log.debug("Oredirectionary");
 		
 	}
-
+	
 }

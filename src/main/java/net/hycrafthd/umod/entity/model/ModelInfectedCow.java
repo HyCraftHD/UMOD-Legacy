@@ -1,11 +1,11 @@
 package net.hycrafthd.umod.entity.model;
 
-import net.minecraft.client.model.ModelBase;
-import net.minecraft.client.model.ModelRenderer;
+import net.minecraft.client.model.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.MathHelper;
 
 public class ModelInfectedCow extends ModelBase {
+	
 	// fields
 	ModelRenderer head;
 	ModelRenderer body;
@@ -19,11 +19,11 @@ public class ModelInfectedCow extends ModelBase {
 	ModelRenderer horn4;
 	ModelRenderer udders;
 	ModelRenderer head2;
-
+	
 	public ModelInfectedCow() {
 		textureWidth = 64;
 		textureHeight = 64;
-
+		
 		head = new ModelRenderer(this, 0, 0);
 		head.addBox(-5F, -4F, -6F, 8, 8, 6);
 		head.setRotationPoint(0F, 4F, -8F);
@@ -97,7 +97,7 @@ public class ModelInfectedCow extends ModelBase {
 		head2.mirror = true;
 		setRotation(head2, -0.0743572F, -0.3346075F, 0.0743572F);
 	}
-
+	
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
 		super.render(entity, f, f1, f2, f3, f4, f5);
@@ -115,34 +115,34 @@ public class ModelInfectedCow extends ModelBase {
 		udders.render(f5);
 		head2.render(f5);
 	}
-
+	
 	private void setRotation(ModelRenderer model, float x, float y, float z) {
 		model.rotateAngleX = x;
 		model.rotateAngleY = y;
 		model.rotateAngleZ = z;
 	}
-
+	
 	@Override
 	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity) {
 		super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
-
+		
 		this.head.rotateAngleX = f4 / (180F / (float) Math.PI);
 		this.head.rotateAngleY = f4 / (180F / (float) Math.PI);
-
+		
 		this.head2.rotateAngleX = -(f4 / (180F / (float) Math.PI));
 		this.head2.rotateAngleY = -(f4 / (180F / (float) Math.PI));
-
+		
 		this.body.rotateAngleX = ((float) Math.PI / 2F);
-
+		
 		this.leg1.rotateAngleX = MathHelper.cos(f * 0.6662F) * 1.4F * f1;
 		this.leg2.rotateAngleX = MathHelper.cos(f * 0.6662F + (float) Math.PI) * 1.4F * f1;
 		this.leg1.rotateAngleY = 0.0F;
 		this.leg2.rotateAngleY = 0.0F;
-
+		
 		this.leg4.rotateAngleX = MathHelper.cos(f * 0.6662F) * 1.4F * f1;
 		this.leg3.rotateAngleX = MathHelper.cos(f * 0.6662F + (float) Math.PI) * 1.4F * f1;
 		this.leg4.rotateAngleY = 0.0F;
 		this.leg3.rotateAngleY = 0.0F;
 	}
-
+	
 }

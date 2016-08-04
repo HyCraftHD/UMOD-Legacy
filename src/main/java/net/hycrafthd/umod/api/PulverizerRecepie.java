@@ -10,32 +10,32 @@ public class PulverizerRecepie {
 	private ItemStack output;
 	private ItemStack randomoutut;
 	private boolean randomoutput;
-
-	public PulverizerRecepie(ItemStack input,ItemStack output,ItemStack randomoutut,boolean randomoutput) {
+	
+	public PulverizerRecepie(ItemStack input, ItemStack output, ItemStack randomoutut, boolean randomoutput) {
 		this.input = input;
 		this.output = output;
 		this.randomoutut = randomoutut;
 	}
 	
-	public ItemStack getInput(){
+	public ItemStack getInput() {
 		return input;
 	}
 	
-	public ItemStack getOutput(){
+	public ItemStack getOutput() {
 		return output;
 	}
 	
-	public ItemStack getRandomSecondoutput(){
+	public ItemStack getRandomSecondoutput() {
 		
-		if(randomoutput){
+		if (randomoutput) {
 			int i = new Random().nextInt(10);
-			if(i > 5){
+			if (i > 5) {
 				return randomoutut;
 			}
 			
 			return null;
 			
-		}else{
+		} else {
 			
 			return randomoutut;
 		}
@@ -48,9 +48,9 @@ public class PulverizerRecepie {
 	
 	@Override
 	public boolean equals(Object obj) {
-		if(obj instanceof PulverizerRecepie){
+		if (obj instanceof PulverizerRecepie) {
 			PulverizerRecepie re = (PulverizerRecepie) obj;
-			if(input != null && re.getInput() != null && re.getInput().isItemEqual(this.input)){
+			if (input != null && re.getInput() != null && re.getInput().isItemEqual(this.input)) {
 				return true;
 			}
 		}

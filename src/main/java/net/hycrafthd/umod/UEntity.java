@@ -1,10 +1,6 @@
 package net.hycrafthd.umod;
 
-import net.hycrafthd.umod.entity.EntityFX;
-import net.hycrafthd.umod.entity.EntityInfectedCow;
-import net.hycrafthd.umod.entity.EntityInfectedCreeper;
-import net.hycrafthd.umod.entity.EntityInfectedZombie;
-import net.hycrafthd.umod.entity.EntityNukePrimed;
+import net.hycrafthd.umod.entity.*;
 import net.hycrafthd.umod.entity.rail.EntityRailFX;
 import net.hycrafthd.umod.utils.Utils;
 

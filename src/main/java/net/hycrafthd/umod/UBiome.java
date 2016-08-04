@@ -3,8 +3,7 @@ package net.hycrafthd.umod;
 import net.hycrafthd.umod.biome.BiomeInfected;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.BiomeManager;
-import net.minecraftforge.common.BiomeManager.BiomeEntry;
-import net.minecraftforge.common.BiomeManager.BiomeType;
+import net.minecraftforge.common.BiomeManager.*;
 
 public class UBiome {
 

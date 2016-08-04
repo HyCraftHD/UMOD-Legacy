@@ -2,8 +2,7 @@ package net.hycrafthd.umod.inventory;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
+import net.minecraft.nbt.*;
 
 public class InventoryBackPack extends InventoryBackPackBase {
 

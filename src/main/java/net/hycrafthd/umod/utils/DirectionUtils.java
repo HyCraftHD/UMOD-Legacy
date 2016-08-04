@@ -1,8 +1,7 @@
 package net.hycrafthd.umod.utils;
 
 import net.hycrafthd.umod.UMod;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.EnumFacing;
+import net.minecraft.util.*;
 
 public class DirectionUtils {
 

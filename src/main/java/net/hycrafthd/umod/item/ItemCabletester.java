@@ -5,10 +5,7 @@ import net.hycrafthd.umod.tileentity.TileEntityCable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.util.EnumFacing;
+import net.minecraft.util.*;
 import net.minecraft.world.World;
 
 public class ItemCabletester extends ItemBase{

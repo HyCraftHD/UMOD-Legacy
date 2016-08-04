@@ -1,26 +1,7 @@
 package net.hycrafthd.umod;
 
 import net.hycrafthd.corelib.registry.OreDictionaryRegistry;
-import net.hycrafthd.umod.item.ItemAcid;
-import net.hycrafthd.umod.item.ItemBackPack;
-import net.hycrafthd.umod.item.ItemBattery;
-import net.hycrafthd.umod.item.ItemCabletester;
-import net.hycrafthd.umod.item.ItemCopperCoil;
-import net.hycrafthd.umod.item.ItemCopperWire;
-import net.hycrafthd.umod.item.ItemDusts;
-import net.hycrafthd.umod.item.ItemEnergyDisplay;
-import net.hycrafthd.umod.item.ItemFundamental;
-import net.hycrafthd.umod.item.ItemInfectedBeef;
-import net.hycrafthd.umod.item.ItemInfectedCrop;
-import net.hycrafthd.umod.item.ItemInfectedMilk;
-import net.hycrafthd.umod.item.ItemIngots;
-import net.hycrafthd.umod.item.ItemManganOxid;
-import net.hycrafthd.umod.item.ItemPlastic;
-import net.hycrafthd.umod.item.ItemSolarCell;
-import net.hycrafthd.umod.item.ItemSwellPlacer;
-import net.hycrafthd.umod.item.ItemThickerCopperCoil;
-import net.hycrafthd.umod.item.ItemThickerCopperWire;
-import net.hycrafthd.umod.item.ItemTransformer;
+import net.hycrafthd.umod.item.*;
 import net.hycrafthd.umod.utils.Utils;
 import net.minecraft.item.Item;
 

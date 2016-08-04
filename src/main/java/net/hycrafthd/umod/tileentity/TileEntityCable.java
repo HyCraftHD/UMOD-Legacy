@@ -1,27 +1,19 @@
 package net.hycrafthd.umod.tileentity;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import net.hycrafthd.umod.UMod;
-import net.hycrafthd.umod.api.IConduitProvider;
-import net.hycrafthd.umod.api.IPlugabel;
-import net.hycrafthd.umod.api.energy.ICabel;
-import net.hycrafthd.umod.api.energy.IPowerProvieder;
-import net.hycrafthd.umod.api.energy.TunnelHolder;
-import net.hycrafthd.umod.api.energy.UETunnel;
+import net.hycrafthd.umod.api.*;
+import net.hycrafthd.umod.api.energy.*;
 import net.hycrafthd.umod.entity.EntityFX;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.NetworkManager;
-import net.minecraft.network.Packet;
+import net.minecraft.network.*;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.server.gui.IUpdatePlayerListBox;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
-import net.minecraft.world.IBlockAccess;
-import net.minecraft.world.World;
+import net.minecraft.util.*;
+import net.minecraft.world.*;
 
 public class TileEntityCable extends TileEntity implements IPlugabel, ICabel, IUpdatePlayerListBox ,IConduitProvider{
 

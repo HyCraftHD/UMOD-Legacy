@@ -1,7 +1,6 @@
 package net.hycrafthd.umod;
 
-import net.hycrafthd.umod.armor.ArmorEmerald;
-import net.hycrafthd.umod.armor.ArmorRadiation;
+import net.hycrafthd.umod.armor.*;
 import net.hycrafthd.umod.item.tools.energy.ItemEnergyGlasses;
 import net.hycrafthd.umod.utils.Utils;
 import net.minecraft.item.Item;

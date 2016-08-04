@@ -8,9 +8,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.RenderEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.Vec3;
-import net.minecraft.util.Vec3i;
+import net.minecraft.util.*;
 
 public class RenderFX extends RenderEntity{
 

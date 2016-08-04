@@ -2,9 +2,7 @@ package net.hycrafthd.umod.utils;
 
 import java.util.ArrayList;
 
-import net.hycrafthd.umod.api.CraftSmeltRecepie;
-import net.hycrafthd.umod.api.CraftSmeltRecepieShapless;
-import net.hycrafthd.umod.api.PulverizerRecepie;
+import net.hycrafthd.umod.api.*;
 import net.minecraft.item.ItemStack;
 
 public class ModRegistryUtils {

@@ -1,8 +1,7 @@
 package net.hycrafthd.umod;
 
 import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.*;
 
 import net.hycrafthd.umod.potion.PotionRadiation;
 import net.minecraft.potion.Potion;

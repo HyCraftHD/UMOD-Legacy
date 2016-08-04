@@ -4,8 +4,7 @@ import java.util.List;
 
 import net.hycrafthd.umod.enumtype.EnumTypeBaseStuff;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.*;
 
 public class ItemIngots extends ItemBase {
 

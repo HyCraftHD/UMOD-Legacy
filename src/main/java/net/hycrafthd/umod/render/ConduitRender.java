@@ -1,8 +1,7 @@
 package net.hycrafthd.umod.render;
 
 import net.hycrafthd.corelib.util.LWJGLUtils;
-import net.hycrafthd.umod.api.IConduitBlock;
-import net.hycrafthd.umod.api.IConduitProvider;
+import net.hycrafthd.umod.api.*;
 import net.hycrafthd.umod.block.BlockCable;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.GlStateManager;

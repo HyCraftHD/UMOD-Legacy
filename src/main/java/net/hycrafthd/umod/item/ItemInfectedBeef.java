@@ -2,11 +2,9 @@ package net.hycrafthd.umod.item;
 
 import java.util.List;
 
-import net.hycrafthd.umod.UPotion;
-import net.hycrafthd.umod.UReference;
+import net.hycrafthd.umod.*;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemFood;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.*;
 
 public class ItemInfectedBeef extends ItemFood {
 

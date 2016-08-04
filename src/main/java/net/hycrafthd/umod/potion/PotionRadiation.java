@@ -1,10 +1,8 @@
 package net.hycrafthd.umod.potion;
 
-import net.hycrafthd.umod.UPotion;
-import net.hycrafthd.umod.UReference;
+import net.hycrafthd.umod.*;
 import net.minecraft.potion.Potion;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.StatCollector;
+import net.minecraft.util.*;
 
 public class PotionRadiation extends Potion {
 

@@ -5,18 +5,15 @@ import java.io.IOException;
 
 import org.lwjgl.input.Keyboard;
 
-import net.hycrafthd.corelib.util.LWJGLUtils;
-import net.hycrafthd.corelib.util.RGBA;
+import net.hycrafthd.corelib.util.*;
 import net.hycrafthd.umod.ClientProxy;
 import net.hycrafthd.umod.container.ContainerBase.Mode;
 import net.hycrafthd.umod.utils.StringMethod;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.RenderHelper;
+import net.minecraft.client.renderer.*;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.Container;
-import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.*;
 
 public class GuiPainter extends GuiBase {
 

@@ -2,65 +2,37 @@ package net.hycrafthd.umod.gui;
 
 import java.awt.Color;
 import java.io.IOException;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import org.lwjgl.input.Keyboard;
 
 import com.google.common.collect.Sets;
 
-import net.hycrafthd.corelib.util.LWJGLUtils;
-import net.hycrafthd.corelib.util.RGBA;
+import net.hycrafthd.corelib.util.*;
 import net.hycrafthd.umod.UBlocks;
 import net.hycrafthd.umod.api.ISignable;
 import net.hycrafthd.umod.api.energy.IPowerProvieder;
 import net.hycrafthd.umod.container.ContainerBase;
 import net.hycrafthd.umod.container.ContainerBase.Mode;
-import net.hycrafthd.umod.inventory.BaseBatteryInputSlot;
-import net.hycrafthd.umod.inventory.BaseSlot;
+import net.hycrafthd.umod.inventory.*;
 import net.hycrafthd.umod.utils.StringMethod;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.client.gui.GuiButton;
-import net.minecraft.client.gui.GuiLabel;
-import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.client.renderer.EntityRenderer;
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.OpenGlHelper;
-import net.minecraft.client.renderer.RenderHelper;
-import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.WorldRenderer;
-import net.minecraft.client.renderer.block.model.BakedQuad;
-import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
-import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.client.renderer.texture.TextureMap;
-import net.minecraft.client.renderer.texture.TextureUtil;
+import net.minecraft.client.gui.*;
+import net.minecraft.client.renderer.*;
+import net.minecraft.client.renderer.block.model.*;
+import net.minecraft.client.renderer.texture.*;
 import net.minecraft.client.renderer.tileentity.TileEntityItemStackRenderer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.resources.model.IBakedModel;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.entity.player.*;
 import net.minecraft.init.Blocks;
-import net.minecraft.inventory.Container;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.Slot;
-import net.minecraft.item.EnumDyeColor;
-import net.minecraft.item.ItemStack;
+import net.minecraft.inventory.*;
+import net.minecraft.item.*;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.MathHelper;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.Vec3i;
+import net.minecraft.util.*;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.relauncher.*;
 
 @SuppressWarnings("deprecation")
 @SideOnly(Side.CLIENT)

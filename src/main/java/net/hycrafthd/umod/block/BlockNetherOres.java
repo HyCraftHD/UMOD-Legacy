@@ -1,22 +1,16 @@
 package net.hycrafthd.umod.block;
 
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 import net.hycrafthd.umod.UItems;
 import net.hycrafthd.umod.enumtype.EnumTypeBaseStuff;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.IProperty;
-import net.minecraft.block.properties.PropertyEnum;
-import net.minecraft.block.state.BlockState;
-import net.minecraft.block.state.IBlockState;
+import net.minecraft.block.properties.*;
+import net.minecraft.block.state.*;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.MathHelper;
-import net.minecraft.world.IBlockAccess;
-import net.minecraft.world.World;
+import net.minecraft.item.*;
+import net.minecraft.util.*;
+import net.minecraft.world.*;
 
 public class BlockNetherOres extends BlockBase {
 

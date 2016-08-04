@@ -3,9 +3,7 @@ package net.hycrafthd.umod.biome;
 import java.util.Random;
 
 import net.hycrafthd.umod.UBlocks;
-import net.hycrafthd.umod.entity.EntityInfectedCow;
-import net.hycrafthd.umod.entity.EntityInfectedCreeper;
-import net.hycrafthd.umod.entity.EntityInfectedZombie;
+import net.hycrafthd.umod.entity.*;
 import net.hycrafthd.umod.world.GenInfectedTree;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;

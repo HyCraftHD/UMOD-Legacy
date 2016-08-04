@@ -4,45 +4,24 @@ import java.util.List;
 
 import org.lwjgl.input.Keyboard;
 
-import net.hycrafthd.corelib.registry.KeybindingRegistry;
-import net.hycrafthd.corelib.registry.ModelRegistry;
-import net.hycrafthd.corelib.registry.RenderRegistry;
+import net.hycrafthd.corelib.registry.*;
 import net.hycrafthd.corelib.util.ItemUtil;
 import net.hycrafthd.umod.block.BlockSolarPanel.EnumTypeSolarPanel;
-import net.hycrafthd.umod.entity.EntityFX;
-import net.hycrafthd.umod.entity.EntityInfectedCow;
-import net.hycrafthd.umod.entity.EntityInfectedCreeper;
-import net.hycrafthd.umod.entity.EntityInfectedZombie;
-import net.hycrafthd.umod.entity.EntityNukePrimed;
+import net.hycrafthd.umod.entity.*;
 import net.hycrafthd.umod.entity.rail.EntityRailFX;
-import net.hycrafthd.umod.entity.render.RenderFX;
-import net.hycrafthd.umod.entity.render.RenderInfectedCow;
-import net.hycrafthd.umod.entity.render.RenderInfectedCreeper;
-import net.hycrafthd.umod.entity.render.RenderInfectedZombie;
-import net.hycrafthd.umod.entity.render.RenderNukePrimed;
+import net.hycrafthd.umod.entity.render.*;
 import net.hycrafthd.umod.entity.render.rail.RenderRailFX;
-import net.hycrafthd.umod.enumtype.EnumTypeBackPack;
-import net.hycrafthd.umod.enumtype.EnumTypeBaseStuff;
-import net.hycrafthd.umod.enumtype.EnumTypeTransformer;
-import net.hycrafthd.umod.render.TileEntityCabelRender;
-import net.hycrafthd.umod.render.TileEntityEnergyPannelRender;
-import net.hycrafthd.umod.render.TileEntityItemPipeRender;
-import net.hycrafthd.umod.render.TileEntityPulverizerSpecialRender;
-import net.hycrafthd.umod.tileentity.TileEntityCable;
-import net.hycrafthd.umod.tileentity.TileEntityEnergyPannel;
-import net.hycrafthd.umod.tileentity.TileEntityItemPipe;
-import net.hycrafthd.umod.tileentity.TileEntityPulverizer;
+import net.hycrafthd.umod.enumtype.*;
+import net.hycrafthd.umod.render.*;
+import net.hycrafthd.umod.tileentity.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;
-import net.minecraft.client.resources.model.ModelBakery;
-import net.minecraft.client.resources.model.ModelResourceLocation;
+import net.minecraft.client.resources.model.*;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.*;
 import net.minecraft.util.EnumChatFormatting;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.relauncher.*;
 
 public class ClientProxy extends CommonProxy {
 

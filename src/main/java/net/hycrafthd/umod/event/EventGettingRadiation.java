@@ -2,9 +2,7 @@ package net.hycrafthd.umod.event;
 
 import java.util.Random;
 
-import net.hycrafthd.umod.UBiome;
-import net.hycrafthd.umod.UBlocks;
-import net.hycrafthd.umod.UPotion;
+import net.hycrafthd.umod.*;
 import net.hycrafthd.umod.armor.ArmorRadiation;
 import net.hycrafthd.umod.enumtype.EnumTypeBaseStuff;
 import net.hycrafthd.umod.interfaces.IInfectedBlock;

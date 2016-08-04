@@ -2,37 +2,23 @@ package net.hycrafthd.umod.block;
 
 import java.util.List;
 
-import net.hycrafthd.umod.ClientProxy;
-import net.hycrafthd.umod.UBlocks;
-import net.hycrafthd.umod.UDamageSource;
-import net.hycrafthd.umod.UReference;
-import net.hycrafthd.umod.api.IConduitBlock;
-import net.hycrafthd.umod.api.IConduitProvider;
-import net.hycrafthd.umod.api.ISpiritProvider;
+import net.hycrafthd.umod.*;
+import net.hycrafthd.umod.api.*;
 import net.hycrafthd.umod.api.energy.IEnergyMessage;
 import net.hycrafthd.umod.entity.EntityFX;
 import net.hycrafthd.umod.tileentity.TileEntityCable;
 import net.hycrafthd.umod.utils.NBTUtils;
-import net.minecraft.block.Block;
-import net.minecraft.block.ITileEntityProvider;
+import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.*;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.*;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.world.Explosion;
-import net.minecraft.world.IBlockAccess;
-import net.minecraft.world.World;
-import net.minecraft.world.WorldServer;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraft.util.*;
+import net.minecraft.world.*;
+import net.minecraftforge.fml.relauncher.*;
 
 public class BlockCable extends Block implements ITileEntityProvider, IEnergyMessage, ISpiritProvider,IConduitBlock{
 	

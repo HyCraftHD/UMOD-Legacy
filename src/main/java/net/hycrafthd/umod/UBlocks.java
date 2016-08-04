@@ -116,7 +116,7 @@ public class UBlocks {
 		conduit = new BlockConduit().setUnlocalizedName("conduit");
 
 		barrels = new BlockBarrels().setUnlocalizedName("barrels");
-		
+				
 		rail = new BlockExtendedRail().setUnlocalizedName("ExRail");
 		rail2 = new Block2rail().setUnlocalizedName("railhelp");
 		UMod.log.debug("Init Blocks");
@@ -166,6 +166,7 @@ public class UBlocks {
 	}
 
 	private void oredirectionary() {
+		
 		// Ore
 		OreDictionaryRegistry.register(ores);
 		OreDictionaryRegistry.register(netherores);
@@ -204,6 +205,7 @@ public class UBlocks {
 		OreDictionaryRegistry.register(rail);
 		OreDictionaryRegistry.register(rail2);
 		UMod.log.debug("Oredirectionary");
+		
 	}
 
 }

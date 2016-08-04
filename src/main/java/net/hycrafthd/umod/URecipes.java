@@ -48,6 +48,8 @@ public class URecipes {
 		RecipeRegistry.registerShaped(new ItemStack(UItems.battery), new Object[]{"BCB", "IMI", "ASA", 'B', new ItemStack(Blocks.iron_block), 'C', new ItemStack(Blocks.coal_block), 
 				'I', new ItemStack(Items.iron_ingot), 'M', new ItemStack(UItems.manganoxid), 'A', new ItemStack(UItems.ingots, 1, 0), 'S', new ItemStack(UItems.acid)});
 		UMod.log.debug("registerCraftingRecipes");
+		RecipeRegistry.registerShaped(new ItemStack(UItems.petrol), new Object[]{"SSS", "SSS", "SBS", 'S', new ItemStack(UBlocks.oilsand), 'B', new ItemStack(Items.glass_bottle)});
+		
 	}
 
 	private void registerFurnaceRecipes() {
@@ -72,11 +74,14 @@ public class URecipes {
 				if(i + 1 >= EnumTypeBaseStuff.values().length){
 					b = 0;
 				}
-				ModRegistryUtils.addPulverRiecepie(new PulverizerRecepie(new ItemStack(UBlocks.ores, 1, i), new ItemStack(UItems.dusts, 1, i), new ItemStack(UItems.dusts, 1, b)));
+				ModRegistryUtils.addPulverRiecepie(new PulverizerRecepie(new ItemStack(UBlocks.ores, 1, i), new ItemStack(UItems.dusts, 1, i), new ItemStack(UItems.dusts, 1, b), true));
 		}
+		
+		ModRegistryUtils.addPulverRiecepie(new PulverizerRecepie(new ItemStack(UBlocks.oilsand), new ItemStack(Blocks.sand), new ItemStack(UItems.petrol), false));
 		
 		ModRegistryUtils.addCraftSmeltRecepieShapless(new CraftSmeltRecepieShapless(new ItemStack[] {new ItemStack(Items.iron_pickaxe)}, new ItemStack(Items.iron_ingot, 3)));
 		UMod.log.debug("registerPulverizerRecipes");
+		
 	}
 
 }

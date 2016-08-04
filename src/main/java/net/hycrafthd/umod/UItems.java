@@ -15,6 +15,7 @@ import net.hycrafthd.umod.item.ItemInfectedCrop;
 import net.hycrafthd.umod.item.ItemInfectedMilk;
 import net.hycrafthd.umod.item.ItemIngots;
 import net.hycrafthd.umod.item.ItemManganOxid;
+import net.hycrafthd.umod.item.ItemPetrol;
 import net.hycrafthd.umod.item.ItemPlastic;
 import net.hycrafthd.umod.item.ItemSolarCell;
 import net.hycrafthd.umod.item.ItemSwellPlacer;
@@ -54,6 +55,7 @@ public class UItems {
 	public static Item thicker_copper_wire;
 	public static Item thicker_copper_coil;
 	public static Item solar_cell;
+	public static Item petrol;
 	
 	// Backpack
 	public static Item backpack;
@@ -96,6 +98,7 @@ public class UItems {
 		thicker_copper_wire = new ItemThickerCopperWire().setUnlocalizedName("thicker_copper_wire");
 		solar_cell = new ItemSolarCell().setUnlocalizedName("solar_cell");
 		thicker_copper_coil = new ItemThickerCopperCoil().setUnlocalizedName("thicker_copper_coil");
+		petrol = new ItemPetrol().setUnlocalizedName("petrol");
 		
 		// Backpack
 		backpack = new ItemBackPack().setUnlocalizedName("backpack");
@@ -135,6 +138,7 @@ public class UItems {
 		Utils.registerItem(thicker_copper_wire);
 		Utils.registerItem(thicker_copper_coil);
 		Utils.registerItem(solar_cell);
+		Utils.registerItem(petrol);
 		
 		// Backpack
 		Utils.registerItem(backpack);
@@ -174,6 +178,7 @@ public class UItems {
 		OreDictionaryRegistry.register(thicker_copper_wire);
 		OreDictionaryRegistry.register(thicker_copper_coil);
 		OreDictionaryRegistry.register(solar_cell);
+		OreDictionaryRegistry.register(petrol);
 		
 		// Backpack
 		OreDictionaryRegistry.register(backpack);

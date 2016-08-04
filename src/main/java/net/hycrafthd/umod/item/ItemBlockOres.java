@@ -6,11 +6,11 @@ import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 
 public class ItemBlockOres extends ItemBlockSubBase {
-
+	
 	public ItemBlockOres(Block block) {
 		super(block);
 	}
-
+	
 	@Override
 	public String getUnlocalizedName(ItemStack stack) {
 		EnumTypeBaseStuff type = EnumTypeBaseStuff.byMetadata(stack.getMetadata());
@@ -22,5 +22,5 @@ public class ItemBlockOres extends ItemBlockSubBase {
 			return "";
 		}
 	}
-
+	
 }

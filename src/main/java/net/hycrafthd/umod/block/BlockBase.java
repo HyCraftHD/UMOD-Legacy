@@ -5,10 +5,10 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 
 public abstract class BlockBase extends Block {
-
+	
 	public BlockBase(Material mat) {
 		super(mat);
 		this.setCreativeTab(UReference.tab);
 	}
-
+	
 }

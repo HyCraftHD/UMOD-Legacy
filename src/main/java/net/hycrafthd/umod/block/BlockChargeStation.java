@@ -10,21 +10,21 @@ import net.minecraft.util.*;
 import net.minecraft.world.World;
 
 public class BlockChargeStation extends BlockBaseMachine {
-
+	
 	public BlockChargeStation() {
-
+		
 	}
-
+	
 	@Override
 	public TileEntity createNewTileEntity(World worldIn, int meta) {
 		return new TileEntityChargeStation();
 	}
-
+	
 	@Override
 	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumFacing side, float hitX, float hitY, float hitZ) {
-        if(!world.isRemote){
-		playerIn.openGui(UReference.modid, EnumTypeGui.CHARGESTATION.getID(), world, pos.getX(), pos.getY(), pos.getZ());
-        }
+		if (!world.isRemote) {
+			playerIn.openGui(UReference.modid, EnumTypeGui.CHARGESTATION.getID(), world, pos.getX(), pos.getY(), pos.getZ());
+		}
 		return true;
 	}
 }

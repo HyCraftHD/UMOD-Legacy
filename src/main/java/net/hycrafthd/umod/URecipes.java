@@ -1,13 +1,10 @@
 package net.hycrafthd.umod;
 
-import net.hycrafthd.corelib.registry.RecipeRegistry;
-import net.hycrafthd.corelib.registry.SmeltingRegistry;
-import net.hycrafthd.umod.api.CraftSmeltRecepieShapless;
-import net.hycrafthd.umod.api.PulverizerRecepie;
+import net.hycrafthd.corelib.registry.*;
+import net.hycrafthd.umod.api.*;
 import net.hycrafthd.umod.enumtype.EnumTypeBaseStuff;
 import net.hycrafthd.umod.utils.ModRegistryUtils;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
+import net.minecraft.init.*;
 import net.minecraft.item.ItemStack;
 
 public class URecipes {

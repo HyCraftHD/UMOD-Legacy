@@ -5,12 +5,12 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.IBlockAccess;
 
-public class TileEntityItemPipe extends TileEntity implements IPlugabel{
-
+public class TileEntityItemPipe extends TileEntity implements IPlugabel {
+	
 	public TileEntityItemPipe() {
 		
 	}
-
+	
 	@Override
 	public boolean canConnect(IBlockAccess w, BlockPos p) {
 		return false;

@@ -6,7 +6,7 @@ import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.common.BiomeManager.*;
 
 public class UBiome {
-
+	
 	public static BiomeGenBase infectedBiomBase;
 	public static int infectedBiomId;
 	
@@ -14,7 +14,7 @@ public class UBiome {
 		init();
 		register();
 	}
-
+	
 	private void init() {
 		infectedBiomId = 80;
 		infectedBiomBase = new BiomeInfected(infectedBiomId);

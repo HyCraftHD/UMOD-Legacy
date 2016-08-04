@@ -19,10 +19,10 @@ import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class EventGettingRadiationInv {
-
+	
 	public static final String TAG_MAIN = UReference.name;
 	public static final String TAG_INFECTED = "isInfected";
-
+	
 	@SubscribeEvent
 	public void onUpdate(LivingUpdateEvent event) {
 		if (event.entityLiving instanceof EntityPlayer) {
@@ -49,7 +49,7 @@ public class EventGettingRadiationInv {
 			}
 		}
 	}
-
+	
 	@SuppressWarnings("unchecked")
 	@SubscribeEvent
 	public void onDrop(LivingUpdateEvent event) {
@@ -59,8 +59,7 @@ public class EventGettingRadiationInv {
 			double xCoord = sp.posX;
 			double yCoord = sp.posY;
 			double zCoord = sp.posZ;
-			List<Entity> entities = world.getEntitiesWithinAABB(Entity.class, AxisAlignedBB.fromBounds(xCoord - 10,
-					yCoord - 10, zCoord - 10, xCoord + 10, yCoord + 10, zCoord + 10));
+			List<Entity> entities = world.getEntitiesWithinAABB(Entity.class, AxisAlignedBB.fromBounds(xCoord - 10, yCoord - 10, zCoord - 10, xCoord + 10, yCoord + 10, zCoord + 10));
 			for (Entity entity : entities) {
 				if (entity instanceof EntityItem) {
 					BlockPos pos = entity.getPosition().add(0, -1, 0);
@@ -70,8 +69,7 @@ public class EventGettingRadiationInv {
 						EntityItem entityItem = (EntityItem) entity;
 						if (NBTUtils.isInfected(entityItem.getEntityItem(), TAG_MAIN, TAG_INFECTED))
 							continue;
-						ItemStack updatedItem = NBTUtils.setInfected(entityItem.getEntityItem(), TAG_MAIN, TAG_INFECTED,
-								true);
+						ItemStack updatedItem = NBTUtils.setInfected(entityItem.getEntityItem(), TAG_MAIN, TAG_INFECTED, true);
 						entityItem.setEntityItemStack(updatedItem);
 						System.out.println("Set");
 					}
@@ -79,7 +77,7 @@ public class EventGettingRadiationInv {
 			}
 		}
 	}
-
+	
 	private void addPotion(EntityLivingBase base, int amplifier) {
 		if (base instanceof EntityPlayer) {
 			EntityPlayer sp = (EntityPlayer) base;
@@ -99,5 +97,5 @@ public class EventGettingRadiationInv {
 		}
 		base.addPotionEffect(new PotionEffect(UPotion.radiationPotion.getId(), 10, amplifier, false, true));
 	}
-
+	
 }

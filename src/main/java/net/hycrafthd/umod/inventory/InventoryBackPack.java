@@ -5,18 +5,18 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.*;
 
 public class InventoryBackPack extends InventoryBackPackBase {
-
+	
 	public InventoryBackPack(ItemStack itemStack, EntityPlayer player, int backpacksize) {
 		size = backpacksize;
 		inv = new ItemStack[size];
 		readFromNBT(itemStack.getTagCompound());
 	}
-
+	
 	@Override
 	public String getName() {
 		return "backpack";
 	}
-
+	
 	@Override
 	public void readFromNBT(NBTTagCompound tag) {
 		NBTTagList list = tag.getTagList("backpackinventory", 10);
@@ -29,9 +29,9 @@ public class InventoryBackPack extends InventoryBackPackBase {
 				inv[ii] = null;
 			}
 		}
-
+		
 	}
-
+	
 	@Override
 	public void writeToNBT(NBTTagCompound tag) {
 		NBTTagList list = new NBTTagList();
@@ -45,27 +45,27 @@ public class InventoryBackPack extends InventoryBackPackBase {
 		}
 		tag.setTag("backpackinventory", list);
 	}
-
+	
 	@Override
 	public void markDirty() {
 	}
-
+	
 	@Override
 	public int getField(int id) {
 		return 0;
 	}
-
+	
 	@Override
 	public void setField(int id, int value) {
 	}
-
+	
 	@Override
 	public int getFieldCount() {
 		return 0;
 	}
-
+	
 	@Override
 	public void clear() {
 	}
-
+	
 }

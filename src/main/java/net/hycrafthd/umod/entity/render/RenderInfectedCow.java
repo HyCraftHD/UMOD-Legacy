@@ -9,12 +9,12 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.*;
 
 @SideOnly(Side.CLIENT)
-public class RenderInfectedCow extends RenderLiving{
-
+public class RenderInfectedCow extends RenderLiving {
+	
 	public RenderInfectedCow() {
 		super(Minecraft.getMinecraft().getRenderManager(), new ModelInfectedCow(), 0);
 	}
-
+	
 	@Override
 	protected ResourceLocation getEntityTexture(Entity entity) {
 		return new ResourceLocation(UReference.resource + "textures/entity/InfectedCow.png");

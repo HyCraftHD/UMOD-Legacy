@@ -6,7 +6,7 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 
 public class UETunnel extends ArrayList<BlockPos> {
-
+	
 	/**
 	 * 
 	 */
@@ -19,86 +19,88 @@ public class UETunnel extends ArrayList<BlockPos> {
 	}
 	
 	public boolean add(ICabel e) {
-		if(this.id >= -1){return false;}
+		if (this.id >= -1) {
+			return false;
+		}
 		e.setTunnelID(this.id);
 		return super.add(e.getPos());
 	}
 	
 	public ICabel[] getOutput() {
 		ArrayList<ICabel> cabs = new ArrayList<ICabel>();
-		for(BlockPos pos : this){
+		for (BlockPos pos : this) {
 			ICabel cab = (ICabel) w.getTileEntity(pos);
-			if(cab.isOutput())
-			cabs.add(cab);
+			if (cab.isOutput())
+				cabs.add(cab);
 		}
 		ICabel[] outputs = new ICabel[cabs.size()];
 		int i = 0;
-		for(ICabel cab : cabs){
+		for (ICabel cab : cabs) {
 			outputs[i] = cab;
 			i++;
 		}
 		return outputs;
 	}
-
+	
 	public ICabel[] getInput() {
 		ArrayList<ICabel> cabs = new ArrayList<ICabel>();
-		for(BlockPos pos : this){
+		for (BlockPos pos : this) {
 			ICabel cab = (ICabel) w.getTileEntity(pos);
-			if(cab.isOutput())
-			cabs.add(cab);
+			if (cab.isOutput())
+				cabs.add(cab);
 		}
 		ICabel[] inputs = new ICabel[cabs.size()];
 		int i = 0;
-		for(ICabel cab : cabs){
+		for (ICabel cab : cabs) {
 			inputs[i] = cab;
 			i++;
 		}
 		return inputs;
 	}
 	
-	public void setID(int id){
+	public void setID(int id) {
 		this.id = id;
-		for(BlockPos pos : this){
+		for (BlockPos pos : this) {
 			ICabel cab = (ICabel) w.getTileEntity(pos);
-			if(cab != null){
-			cab.setTunnelID(id);
+			if (cab != null) {
+				cab.setTunnelID(id);
 			}
 		}
 	}
 	
-	public int getID(){
+	public int getID() {
 		return id;
 	}
 	
-	public World getWorld(){
+	public World getWorld() {
 		return w;
 	}
 	
-	public void transfare(){
+	public void transfare() {
 		ICabel[] out = getOutput();
 		ICabel[] in = getInput();
 		double d = 0;
-        for (ICabel cab : out) {
+		for (ICabel cab : out) {
 			d = d + cab.needsEnergy();
 		}
-        double x = d;
+		double x = d;
 		for (ICabel cab : in) {
-			if(d - cab.getMaxEnergyOut() > 0){
-			d = d - cab.removeFromInput(cab.getMaxEnergyOut());
-			}else{
+			if (d - cab.getMaxEnergyOut() > 0) {
+				d = d - cab.removeFromInput(cab.getMaxEnergyOut());
+			} else {
 				d = 0;
 				break;
 			}
 		}
 		double mins = x - d;
-		for(ICabel cab : out){
-		   if(cab.needsEnergy() < mins){
-			   mins -= cab.needsEnergy();
-			   cab.addPowerToOutput(cab.needsEnergy());
-		   }else if(cab.needsEnergy() >= mins){
-			   mins = 0;
-			   cab.addPowerToOutput(mins);
-		   }
-		}		
+		for (ICabel cab : out) {
+			if (cab.needsEnergy() < mins) {
+				mins -= cab.needsEnergy();
+				cab.addPowerToOutput(cab.needsEnergy());
+			} else if (cab.needsEnergy() >= mins) {
+				mins = 0;
+				cab.addPowerToOutput(mins);
+			}
+		}
 	}
 }

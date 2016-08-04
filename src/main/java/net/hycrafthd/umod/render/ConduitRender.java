@@ -9,14 +9,15 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 
 public class ConduitRender {
-
-	public static boolean render(TileEntity pip,EntityPlayer pl, double posX, double posY, double posZ) {
-		if(!(pip instanceof IConduitProvider))return false;
+	
+	public static boolean render(TileEntity pip, EntityPlayer pl, double posX, double posY, double posZ) {
+		if (!(pip instanceof IConduitProvider))
+			return false;
 		if (pip != null && (!((IConduitProvider) pip).hasConduit() || (pl.getCurrentEquippedItem() != null && Block.getBlockFromItem(pl.getCurrentEquippedItem().getItem()) != null && Block.getBlockFromItem(pl.getCurrentEquippedItem().getItem()) instanceof IConduitBlock))) {
-        return false;
-		}else if(pip != null){
-			if(pl.getCurrentEquippedItem() == null || !(Block.getBlockFromItem(pl.getCurrentEquippedItem().getItem()) instanceof BlockCable)){
-			    GlStateManager.enableLighting();
+			return false;
+		} else if (pip != null) {
+			if (pl.getCurrentEquippedItem() == null || !(Block.getBlockFromItem(pl.getCurrentEquippedItem().getItem()) instanceof BlockCable)) {
+				GlStateManager.enableLighting();
 				LWJGLUtils.renderBlockConduit(((IConduitProvider) pip).getConduit(), posX, posY, posZ);
 				GlStateManager.disableLighting();
 				return true;

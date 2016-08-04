@@ -5,6 +5,6 @@ import net.minecraft.world.IBlockAccess;
 
 public interface IPlugabel {
 	
-	public boolean canConnect(IBlockAccess w,BlockPos p);
-
+	public boolean canConnect(IBlockAccess w, BlockPos p);
+	
 }

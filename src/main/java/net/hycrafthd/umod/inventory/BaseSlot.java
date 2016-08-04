@@ -13,16 +13,16 @@ public class BaseSlot extends Slot {
 	private RGBA start = null;
 	private RGBA end = null;
 	private StringMethod ret = null;
-
+	
 	public BaseSlot(IInventory inventoryIn, int index, int xPosition, int yPosition) {
 		super(inventoryIn, index, xPosition, yPosition);
 	}
-
-	public boolean isVisible(){
+	
+	public boolean isVisible() {
 		return this.visible;
 	}
 	
-	public void setVisible(boolean vis){
+	public void setVisible(boolean vis) {
 		this.visible = vis;
 	}
 	
@@ -33,18 +33,18 @@ public class BaseSlot extends Slot {
 	
 	@Override
 	public ItemStack getStack() {
-		return isVisible() ? super.getStack():null;
-	}	
+		return isVisible() ? super.getStack() : null;
+	}
 	
-	public void setHoverColor(RGBA nstart,RGBA nend,RGBA start,RGBA end){
+	public void setHoverColor(RGBA nstart, RGBA nend, RGBA start, RGBA end) {
 		this.start = start;
 		this.end = end;
 		this.nstart = nstart;
 		this.nend = nend;
 	}
 	
-	public RGBA getHoverColor(int b){
-		switch(b){
+	public RGBA getHoverColor(int b) {
+		switch (b) {
 		case 0:
 			return nstart;
 		case 1:
@@ -57,51 +57,51 @@ public class BaseSlot extends Slot {
 		return null;
 	}
 	
-	public boolean hasColor(){
+	public boolean hasColor() {
 		return start != null && end != null;
 	}
 	
-	public boolean hasString(){
+	public boolean hasString() {
 		return ret != null && ret.getString() != null;
 	}
 	
-	public String getString(){
+	public String getString() {
 		return ret.getString();
 	}
 	
-	public void setStringRet(StringMethod returnm){
+	public void setStringRet(StringMethod returnm) {
 		ret = returnm;
 	}
 	
-	public int getWidth(){
+	public int getWidth() {
 		int size;
-        size = ret.getString().length()*5; 
-        if(hasMoreLines()){
-        	size = 0;
-        	String[] str = ret.getString().split("\n");
-        	for(int i = 0;i < str.length;i++){
-        		if(str[i].length()*5 > size){
-        			size = str[i].length()*5;
-        		}
-        	}
-        }
+		size = ret.getString().length() * 5;
+		if (hasMoreLines()) {
+			size = 0;
+			String[] str = ret.getString().split("\n");
+			for (int i = 0; i < str.length; i++) {
+				if (str[i].length() * 5 > size) {
+					size = str[i].length() * 5;
+				}
+			}
+		}
 		return size + 10;
 	}
 	
-	public int getHeight(){
+	public int getHeight() {
 		int size = 16;
-		if(hasMoreLines()){
-		    String[] str = ret.getString().split("\n");
-		    size = size * str.length;
+		if (hasMoreLines()) {
+			String[] str = ret.getString().split("\n");
+			size = size * str.length;
 		}
 		return size;
 	}
 	
-	public boolean hasMoreLines(){
+	public boolean hasMoreLines() {
 		return ret.getString().contains("\n");
 	}
 	
-	public int getFontColor(){
+	public int getFontColor() {
 		return 0xFFFFFF;
 	}
 }

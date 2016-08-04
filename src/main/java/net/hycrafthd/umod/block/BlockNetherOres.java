@@ -13,32 +13,32 @@ import net.minecraft.util.*;
 import net.minecraft.world.*;
 
 public class BlockNetherOres extends BlockBase {
-
+	
 	public static final PropertyEnum TYPE = PropertyEnum.create("type", EnumTypeBaseStuff.class);
-
+	
 	public BlockNetherOres() {
 		super(Material.rock);
 		this.setResistance(5.0F);
 		this.setStepSound(soundTypePiston);
 	}
-
+	
 	@Override
 	public float getBlockHardness(World world, BlockPos pos) {
 		EnumTypeBaseStuff type = EnumTypeBaseStuff.byMetadata(world.getBlockState(pos).getBlock().getMetaFromState(world.getBlockState(pos)));
-		return type.getOreHardness()-1;
+		return type.getOreHardness() - 1;
 	}
-
+	
 	@Override
 	public int getHarvestLevel(IBlockState state) {
 		EnumTypeBaseStuff type = (EnumTypeBaseStuff) state.getValue(TYPE);
 		return type.getOreHarvestLevel();
 	}
-
+	
 	@Override
 	public String getHarvestTool(IBlockState state) {
 		return "pickaxe";
 	}
-
+	
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune) {
 		EnumTypeBaseStuff type = (EnumTypeBaseStuff) state.getValue(TYPE);
@@ -47,7 +47,7 @@ public class BlockNetherOres extends BlockBase {
 		}
 		return super.getItemDropped(state, rand, fortune);
 	}
-
+	
 	@Override
 	public int quantityDropped(IBlockState state, int fortune, Random random) {
 		EnumTypeBaseStuff type = (EnumTypeBaseStuff) state.getValue(TYPE);
@@ -60,13 +60,13 @@ public class BlockNetherOres extends BlockBase {
 		}
 		return 1;
 	}
-
+	
 	@Override
 	public int damageDropped(IBlockState state) {
 		EnumTypeBaseStuff type = (EnumTypeBaseStuff) state.getValue(TYPE);
 		return type.getMetadata();
 	}
-
+	
 	@Override
 	public int getExpDrop(IBlockAccess world, BlockPos pos, int fortune) {
 		Random rand = world instanceof World ? ((World) world).rand : new Random();
@@ -76,7 +76,7 @@ public class BlockNetherOres extends BlockBase {
 		}
 		return 0;
 	}
-
+	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
 	public void getSubBlocks(Item item, CreativeTabs creativetab, List list) {
@@ -84,22 +84,22 @@ public class BlockNetherOres extends BlockBase {
 			list.add(new ItemStack(item, 1, i));
 		}
 	}
-
+	
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
 		EnumTypeBaseStuff type = EnumTypeBaseStuff.byMetadata(meta);
 		return this.getDefaultState().withProperty(TYPE, type);
 	}
-
+	
 	@Override
 	public int getMetaFromState(IBlockState state) {
 		EnumTypeBaseStuff type = (EnumTypeBaseStuff) state.getValue(TYPE);
 		return type.getMetadata();
 	}
-
+	
 	@Override
 	protected BlockState createBlockState() {
 		return new BlockState(this, new IProperty[] { TYPE });
 	}
-
+	
 }

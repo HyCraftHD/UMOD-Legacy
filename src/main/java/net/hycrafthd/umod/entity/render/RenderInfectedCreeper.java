@@ -9,15 +9,15 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.*;
 
 @SideOnly(Side.CLIENT)
-public class RenderInfectedCreeper extends RenderLiving{
-
-		public RenderInfectedCreeper() {
-			super(Minecraft.getMinecraft().getRenderManager(), new ModelInfectedCreeper(), 0);
-		}
-
-		@Override
-		protected ResourceLocation getEntityTexture(Entity entity) {
-			return new ResourceLocation(UReference.resource + "textures/entity/InfectedCreeper.png");
-		}
+public class RenderInfectedCreeper extends RenderLiving {
+	
+	public RenderInfectedCreeper() {
+		super(Minecraft.getMinecraft().getRenderManager(), new ModelInfectedCreeper(), 0);
+	}
+	
+	@Override
+	protected ResourceLocation getEntityTexture(Entity entity) {
+		return new ResourceLocation(UReference.resource + "textures/entity/InfectedCreeper.png");
+	}
 	
 }

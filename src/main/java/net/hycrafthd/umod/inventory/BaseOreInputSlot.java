@@ -8,9 +8,9 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 
-public class BaseOreInputSlot extends BaseSlot{
-
-	public BaseOreInputSlot(IInventory to,int index, int xPosition, int yPosition) {
+public class BaseOreInputSlot extends BaseSlot {
+	
+	public BaseOreInputSlot(IInventory to, int index, int xPosition, int yPosition) {
 		super(to, index, xPosition, yPosition);
 		RGBA n = new RGBA(0, 255, 0, 50);
 		RGBA e = new RGBA(0, 255, 0, 125);
@@ -23,12 +23,12 @@ public class BaseOreInputSlot extends BaseSlot{
 			}
 		});
 	}
-
+	
 	@Override
 	public boolean isItemValid(ItemStack stack) {
 		Block bl = Block.getBlockFromItem(stack.getItem());
-		if(bl != null){
-			if(bl instanceof BlockOres){
+		if (bl != null) {
+			if (bl instanceof BlockOres) {
 				return true;
 			}
 		}
@@ -45,7 +45,7 @@ public class BaseOreInputSlot extends BaseSlot{
 		super.onSlotChanged();
 		this.inventory.markDirty();
 	}
-
+	
 	@Override
 	public int getFontColor() {
 		return 0xFFFFFF;

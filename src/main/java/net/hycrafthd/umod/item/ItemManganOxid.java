@@ -1,5 +1,5 @@
 package net.hycrafthd.umod.item;
 
-public class ItemManganOxid extends ItemBase{
-
+public class ItemManganOxid extends ItemBase {
+	
 }

@@ -8,17 +8,17 @@ import net.hycrafthd.umod.utils.Utils;
 import net.minecraft.world.World;
 
 public class NuclearExplosion implements IProcess {
-
+	
 	private World worldObj;
 	private int xCoord;
 	private int yCoord;
 	private int zCoord;
 	private float power;
 	private Random random = new Random();
-
+	
 	private double expansion = 0;
 	private boolean isDead = false;
-
+	
 	public NuclearExplosion(World world, int x, int y, int z, float power) {
 		this.worldObj = world;
 		this.xCoord = x;
@@ -27,14 +27,14 @@ public class NuclearExplosion implements IProcess {
 		this.power = power;
 		isDead = world.isRemote;
 	}
-
+	
 	@Override
 	public void updateProcess() {
-
+		
 		int OD = (int) expansion;
 		int ID = OD - 1;
 		int size = (int) expansion;
-
+		
 		for (int x = xCoord - size; x < xCoord + size; x++) {
 			for (int z = zCoord - size; z < zCoord + size; z++) {
 				double dist = Utils.getDistanceAtoB(x, z, xCoord, zCoord);
@@ -45,14 +45,14 @@ public class NuclearExplosion implements IProcess {
 				}
 			}
 		}
-
+		
 		isDead = expansion >= power * 10;
 		expansion += 1;
 		if (isDead()) {
 			System.out.println("Fertig!");
 		}
 	}
-
+	
 	@Override
 	public boolean isDead() {
 		return isDead;

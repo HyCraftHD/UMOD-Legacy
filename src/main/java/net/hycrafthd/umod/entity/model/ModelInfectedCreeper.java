@@ -5,6 +5,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.util.MathHelper;
 
 public class ModelInfectedCreeper extends ModelBase {
+	
 	// fields
 	ModelRenderer headleft;
 	ModelRenderer headright;
@@ -19,11 +20,11 @@ public class ModelInfectedCreeper extends ModelBase {
 	ModelRenderer sideleft2;
 	ModelRenderer sideright1;
 	ModelRenderer sideright2;
-
+	
 	public ModelInfectedCreeper() {
 		textureWidth = 64;
 		textureHeight = 64;
-
+		
 		headleft = new ModelRenderer(this, 24, 24);
 		headleft.addBox(-4F, -8F, -4F, 10, 10, 10);
 		headleft.setRotationPoint(5F, -5F, -1F);
@@ -103,7 +104,7 @@ public class ModelInfectedCreeper extends ModelBase {
 		sideright2.mirror = true;
 		setRotation(sideright2, 0F, 0F, -0.0698132F);
 	}
-
+	
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
 		super.render(entity, f, f1, f2, f3, f4, f5);
@@ -122,13 +123,13 @@ public class ModelInfectedCreeper extends ModelBase {
 		sideright1.render(f5);
 		sideright2.render(f5);
 	}
-
+	
 	private void setRotation(ModelRenderer model, float x, float y, float z) {
 		model.rotateAngleX = x;
 		model.rotateAngleY = y;
 		model.rotateAngleZ = z;
 	}
-
+	
 	@Override
 	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity) {
 		super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
@@ -137,5 +138,5 @@ public class ModelInfectedCreeper extends ModelBase {
 		this.leg3.rotateAngleX = MathHelper.cos(f * 0.6662F + (float) Math.PI) * 1.4F * f1;
 		this.leg4.rotateAngleX = MathHelper.cos(f * 0.6662F) * 1.4F * f1;
 	}
-
+	
 }

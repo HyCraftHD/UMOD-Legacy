@@ -19,34 +19,34 @@ import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class EventGettingRadiation {
-
+	
 	@SubscribeEvent
 	public void onUpdate(LivingUpdateEvent event) {
 		EntityLivingBase base = event.entityLiving;
-
+		
 		if (base instanceof EntityPlayer) {
 			EntityPlayer sp = (EntityPlayer) base;
 			if (sp.capabilities.isCreativeMode)
 				return;
 		}
-
+		
 		World world = base.worldObj;
-
+		
 		double x = base.posX;
 		double y = base.posY;
 		double z = base.posZ;
-
+		
 		if (GenerationUtils.getBiomeGenForCoords(world, base.getPosition(), UBiome.infectedBiomBase)) {
 			addPotion(base, 0);
 			return;
 		} else {
-
+			
 			double range = 3;
-
+			
 			double xRange = range;
 			double yRange = range;
 			double zRange = range;
-
+			
 			for (double xPos = x - xRange; xPos <= x + xRange; xPos++) {
 				for (double yPos = y - yRange; yPos <= y + yRange; yPos++) {
 					for (double zPos = z - zRange; zPos <= z + zRange; zPos++) {
@@ -72,7 +72,7 @@ public class EventGettingRadiation {
 			}
 		}
 	}
-
+	
 	private void addPotion(EntityLivingBase base, int amplifier) {
 		if (base instanceof EntityPlayer) {
 			EntityPlayer sp = (EntityPlayer) base;

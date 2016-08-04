@@ -9,15 +9,15 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.*;
 
 @SideOnly(Side.CLIENT)
-public class RenderInfectedZombie extends RenderLiving{
-
-		public RenderInfectedZombie() {
-			super(Minecraft.getMinecraft().getRenderManager(), new ModelInfectedZombie(), 0);
-		}
-
-		@Override
-		protected ResourceLocation getEntityTexture(Entity entity) {
-			return new ResourceLocation(UReference.resource + "textures/entity/InfectedZombie.png");
-		}
+public class RenderInfectedZombie extends RenderLiving {
+	
+	public RenderInfectedZombie() {
+		super(Minecraft.getMinecraft().getRenderManager(), new ModelInfectedZombie(), 0);
+	}
+	
+	@Override
+	protected ResourceLocation getEntityTexture(Entity entity) {
+		return new ResourceLocation(UReference.resource + "textures/entity/InfectedZombie.png");
+	}
 	
 }

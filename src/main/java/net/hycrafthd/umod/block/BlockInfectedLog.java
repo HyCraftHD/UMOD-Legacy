@@ -8,7 +8,7 @@ import net.minecraft.block.state.*;
 import net.minecraft.init.Blocks;
 
 public class BlockInfectedLog extends BlockLog implements IInfectedBlock {
-
+	
 	public BlockInfectedLog() {
 		this.setCreativeTab(UReference.tab);
 		this.setHarvestLevel("axe", 1);
@@ -18,11 +18,11 @@ public class BlockInfectedLog extends BlockLog implements IInfectedBlock {
 		this.setDefaultState(this.blockState.getBaseState().withProperty(LOG_AXIS, BlockLog.EnumAxis.Y));
 		Blocks.fire.setFireInfo(this, 5, 5);
 	}
-
+	
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
 		IBlockState iblockstate = this.getDefaultState();
-
+		
 		switch (meta) {
 		case 0:
 			iblockstate = iblockstate.withProperty(LOG_AXIS, BlockLog.EnumAxis.Y);
@@ -36,37 +36,38 @@ public class BlockInfectedLog extends BlockLog implements IInfectedBlock {
 		default:
 			iblockstate = iblockstate.withProperty(LOG_AXIS, BlockLog.EnumAxis.NONE);
 		}
-
+		
 		return iblockstate;
 	}
-
+	
 	@Override
 	public int getMetaFromState(IBlockState state) {
 		return BlockInfectedLog.SwitchEnumAxis.AXIS_LOOKUP[((BlockInfectedLog.EnumAxis) state.getValue(LOG_AXIS)).ordinal()];
-
+		
 	}
-
+	
 	@Override
 	public BlockState createBlockState() {
 		return new BlockState(this, new IProperty[] { LOG_AXIS });
 	}
-
+	
 	static final class SwitchEnumAxis {
+		
 		static final int[] AXIS_LOOKUP = new int[BlockLog.EnumAxis.values().length];
-
+		
 		static {
 			try {
 				AXIS_LOOKUP[BlockLog.EnumAxis.X.ordinal()] = 1;
 			} catch (NoSuchFieldError var3) {
 				;
 			}
-
+			
 			try {
 				AXIS_LOOKUP[BlockLog.EnumAxis.Z.ordinal()] = 2;
 			} catch (NoSuchFieldError var2) {
 				;
 			}
-
+			
 			try {
 				AXIS_LOOKUP[BlockLog.EnumAxis.NONE.ordinal()] = 3;
 			} catch (NoSuchFieldError var1) {
@@ -74,7 +75,7 @@ public class BlockInfectedLog extends BlockLog implements IInfectedBlock {
 			}
 		}
 	}
-
+	
 	@Override
 	public Block getNormalBlock() {
 		return Blocks.log;

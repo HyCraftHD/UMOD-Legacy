@@ -8,7 +8,7 @@ import net.minecraft.potion.Potion;
 import net.minecraft.util.ResourceLocation;
 
 public class UPotion {
-
+	
 	public static Potion radiationPotion;
 	
 	public UPotion() {
@@ -21,23 +21,23 @@ public class UPotion {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public static int getHighestID(){
+	public static int getHighestID() {
 		for (Field f : Potion.class.getDeclaredFields()) {
 			f.setAccessible(true);
 			try {
 				if (f.getName().equals("field_180150_I")) {
-		            f.setAccessible(true);
-                    HashMap<ResourceLocation, Potion> potions = (HashMap<ResourceLocation, Potion>) f.get(Potion.class);
-                    ArrayList<Integer> ints = new ArrayList<Integer>();
-                    for(Potion potion : potions.values()){
-                       ints.add(new Integer(potion.getId()));
-                    }
-                    for(int i = 0;i < ints.size();i++){
-                      if(!ints.contains(new Integer(i))){
-                    	  return i;
-                      }
-                    }
-                    return ints.size();
+					f.setAccessible(true);
+					HashMap<ResourceLocation, Potion> potions = (HashMap<ResourceLocation, Potion>) f.get(Potion.class);
+					ArrayList<Integer> ints = new ArrayList<Integer>();
+					for (Potion potion : potions.values()) {
+						ints.add(new Integer(potion.getId()));
+					}
+					for (int i = 0; i < ints.size(); i++) {
+						if (!ints.contains(new Integer(i))) {
+							return i;
+						}
+					}
+					return ints.size();
 				}
 			} catch (Exception e) {
 				UMod.log.error("Severe error, please report this to the mod author:");

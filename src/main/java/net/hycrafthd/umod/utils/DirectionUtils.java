@@ -4,7 +4,7 @@ import net.hycrafthd.umod.UMod;
 import net.minecraft.util.*;
 
 public class DirectionUtils {
-
+	
 	public static EnumFacing getDirectory(BlockPos pos1, BlockPos pos2) {
 		if (pos1.getY() > pos2.getY()) {
 			return EnumFacing.DOWN;
@@ -24,8 +24,11 @@ public class DirectionUtils {
 		return EnumFacing.EAST;
 	}
 	
-	public static short getShortFromFacing(EnumFacing face){
-		if(face == null){UMod.log.warn("Facinge is Null may it is a bug!");return 0;}
+	public static short getShortFromFacing(EnumFacing face) {
+		if (face == null) {
+			UMod.log.warn("Facinge is Null may it is a bug!");
+			return 0;
+		}
 		switch (face) {
 		case DOWN:
 			return 0;
@@ -45,7 +48,7 @@ public class DirectionUtils {
 		return 0;
 	}
 	
-	public static EnumFacing getFacingFromShort(short face){
+	public static EnumFacing getFacingFromShort(short face) {
 		switch (face) {
 		case 0:
 			return EnumFacing.DOWN;
@@ -65,10 +68,10 @@ public class DirectionUtils {
 		return null;
 	}
 	
-	public static BlockPos getPosfromFacing(EnumFacing face,BlockPos p){
-		switch(face){
+	public static BlockPos getPosfromFacing(EnumFacing face, BlockPos p) {
+		switch (face) {
 		case DOWN:
-			return p.down(); 
+			return p.down();
 		case EAST:
 			return p.east();
 		case NORTH:
@@ -84,5 +87,5 @@ public class DirectionUtils {
 		}
 		return null;
 	}
-
+	
 }

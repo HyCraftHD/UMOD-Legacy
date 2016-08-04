@@ -10,11 +10,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
 
 public class ItemBlockSolarPanel extends ItemBlockSubBase {
-
+	
 	public ItemBlockSolarPanel(Block block) {
 		super(block);
 	}
-
+	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer playerIn, List tip, boolean advanced) {
@@ -22,11 +22,11 @@ public class ItemBlockSolarPanel extends ItemBlockSubBase {
 			tip.add(EnumChatFormatting.BLUE + ((IEnergyMessage) this.block).getMessage(stack.getMetadata()));
 		}
 	}
-
+	
 	@Override
 	public String getUnlocalizedName(ItemStack stack) {
 		EnumTypeSolarPanel type = EnumTypeSolarPanel.byMetadata(stack.getMetadata());
 		return "tile.solarpanel" + type.getName();
 	}
-
+	
 }

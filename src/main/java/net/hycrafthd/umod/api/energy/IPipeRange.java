@@ -11,5 +11,5 @@ public interface IPipeRange {
 	public void remove(int count);
 	
 	public void clearPast();
-
+	
 }

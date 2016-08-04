@@ -10,7 +10,7 @@ import net.minecraftforge.fml.common.event.*;
 
 @Mod(modid = UReference.modid, version = UReference.version, name = UReference.name)
 public class UMod {
-
+	
 	public static org.apache.logging.log4j.Logger log;
 	
 	@EventHandler
@@ -19,7 +19,7 @@ public class UMod {
 		new UConfig(event.getSuggestedConfigurationFile());
 		new PacketHandler();
 	}
-
+	
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
 		new UPotion();
@@ -34,7 +34,7 @@ public class UMod {
 		this.registerEvents();
 		UMod.log.info("Init Mod.");
 	}
-
+	
 	@EventHandler
 	public void postinit(FMLPostInitializationEvent event) {
 		new UTiles();
@@ -46,13 +46,13 @@ public class UMod {
 		UReference.proxy.registerRenderer();
 		UMod.log.info("Registered Mod.");
 	}
-
+	
 	@EventHandler
 	public void serverstarting(FMLServerStartingEvent event) {
 		new UCommands(event);
 		UMod.log.info("Registered Mod Commands.");
 	}
-
+	
 	public void registerEvents() {
 		UEvent event = new UEvent();
 		event.addEvent(new EventGettingRadiation());
@@ -66,12 +66,12 @@ public class UMod {
 		event.register();
 		UMod.log.info("Registered Mod Events.");
 	}
-
+	
 	public void registerGenerators() {
 		UGeneration generation = new UGeneration();
 		generation.addGenerator(new UOreGeneration(), 0);
 		generation.register();
 		UMod.log.info("Registered Mod Generators.");
 	}
-
+	
 }

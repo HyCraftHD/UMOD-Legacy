@@ -14,13 +14,13 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 
 public class UGuiHandler implements ICustomGuiHandler {
-
+	
 	@SuppressWarnings("incomplete-switch")
 	@Override
 	public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
 		BlockPos p = new BlockPos(x, y, z);
 		TileEntity ent = world.getTileEntity(p);
-
+		
 		switch (EnumTypeGui.byID(ID)) {
 		case PULVERISER:
 			return new ContainerPulverizer((IInventory) ent, player, world);
@@ -37,20 +37,20 @@ public class UGuiHandler implements ICustomGuiHandler {
 			}
 			break;
 		case BARRELS:
-			//return new ContainerBarrels(player.get);
+			// return new ContainerBarrels(player.get);
 			break;
 		case PAINTER:
 			return new ContainerPainter((IInventory) ent, player, world);
 		}
 		return null;
 	}
-
+	
 	@SuppressWarnings("incomplete-switch")
 	@Override
 	public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
 		BlockPos p = new BlockPos(x, y, z);
 		TileEntity ent = world.getTileEntity(p);
-
+		
 		switch (EnumTypeGui.byID(ID)) {
 		case PULVERISER:
 			return new GuiPulverizer(player, (IInventory) ent, world, p);
@@ -74,12 +74,12 @@ public class UGuiHandler implements ICustomGuiHandler {
 			return new GuiPainter(player, (IInventory) ent, new ContainerPainter((IInventory) ent, player, world));
 		}
 		return null;
-
+		
 	}
-
+	
 	@Override
 	public String getMod() {
 		return UReference.modid;
 	}
-
+	
 }

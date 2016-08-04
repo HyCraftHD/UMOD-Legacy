@@ -10,9 +10,9 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.*;
 
 public class BlockBlocks extends BlockBase {
-
+	
 	public static final PropertyEnum TYPE = PropertyEnum.create("type", EnumTypeBaseStuff.class);
-
+	
 	public BlockBlocks() {
 		super(Material.rock);
 		this.setResistance(5.0F);
@@ -20,13 +20,13 @@ public class BlockBlocks extends BlockBase {
 		this.setHarvestLevel("pickaxe", 1);
 		this.setStepSound(soundTypePiston);
 	}
-
+	
 	@Override
 	public int damageDropped(IBlockState state) {
 		EnumTypeBaseStuff type = (EnumTypeBaseStuff) state.getValue(TYPE);
 		return type.getMetadata();
 	}
-
+	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
 	public void getSubBlocks(Item item, CreativeTabs creativetab, List list) {
@@ -34,22 +34,22 @@ public class BlockBlocks extends BlockBase {
 			list.add(new ItemStack(item, 1, i));
 		}
 	}
-
+	
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
 		EnumTypeBaseStuff type = EnumTypeBaseStuff.byMetadata(meta);
 		return this.getDefaultState().withProperty(TYPE, type);
 	}
-
+	
 	@Override
 	public int getMetaFromState(IBlockState state) {
 		EnumTypeBaseStuff type = (EnumTypeBaseStuff) state.getValue(TYPE);
 		return type.getMetadata();
 	}
-
+	
 	@Override
 	protected BlockState createBlockState() {
 		return new BlockState(this, new IProperty[] { TYPE });
 	}
-
+	
 }

@@ -6,17 +6,17 @@ import net.hycrafthd.umod.entity.EntityNukePrimed;
 import net.minecraftforge.common.config.Configuration;
 
 public class UConfig {
-
+	
 	public Configuration config;
 	private File configFile;
 	
 	public UConfig(File file) {
 		this.configFile = file;
-	    config = new Configuration(this.configFile);
+		config = new Configuration(this.configFile);
 		init();
 	}
 	
-	private void init(){
+	private void init() {
 		UMod.log.debug("Loading Config now.");
 		this.config.load();
 		load();

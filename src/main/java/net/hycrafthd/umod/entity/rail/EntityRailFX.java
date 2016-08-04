@@ -1,12 +1,8 @@
 package net.hycrafthd.umod.entity.rail;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityHanging;
+import net.minecraft.entity.*;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.EnumFacing;
+import net.minecraft.util.*;
 import net.minecraft.world.World;
 
 public class EntityRailFX extends EntityHanging{

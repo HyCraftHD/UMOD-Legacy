@@ -1,8 +1,6 @@
 package net.hycrafthd.umod.network;
 
-import net.hycrafthd.umod.network.message.MessageCallback;
-import net.hycrafthd.umod.network.message.MessageIOMode;
-import net.hycrafthd.umod.network.message.MessageIORequest;
+import net.hycrafthd.umod.network.message.*;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.relauncher.Side;

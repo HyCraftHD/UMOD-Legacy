@@ -1,42 +1,22 @@
 package net.hycrafthd.umod;
 
 import net.hycrafthd.corelib.registry.OreDictionaryRegistry;
-import net.hycrafthd.umod.item.ItemAcid;
-import net.hycrafthd.umod.item.ItemBackPack;
-import net.hycrafthd.umod.item.ItemBattery;
-import net.hycrafthd.umod.item.ItemCabletester;
-import net.hycrafthd.umod.item.ItemCopperCoil;
-import net.hycrafthd.umod.item.ItemCopperWire;
-import net.hycrafthd.umod.item.ItemDusts;
-import net.hycrafthd.umod.item.ItemEnergyDisplay;
-import net.hycrafthd.umod.item.ItemFundamental;
-import net.hycrafthd.umod.item.ItemInfectedBeef;
-import net.hycrafthd.umod.item.ItemInfectedCrop;
-import net.hycrafthd.umod.item.ItemInfectedMilk;
-import net.hycrafthd.umod.item.ItemIngots;
-import net.hycrafthd.umod.item.ItemManganOxid;
-import net.hycrafthd.umod.item.ItemPetrol;
-import net.hycrafthd.umod.item.ItemPlastic;
-import net.hycrafthd.umod.item.ItemSolarCell;
-import net.hycrafthd.umod.item.ItemSwellPlacer;
-import net.hycrafthd.umod.item.ItemThickerCopperCoil;
-import net.hycrafthd.umod.item.ItemThickerCopperWire;
-import net.hycrafthd.umod.item.ItemTransformer;
+import net.hycrafthd.umod.item.*;
 import net.hycrafthd.umod.utils.Utils;
 import net.minecraft.item.Item;
 
 public class UItems {
-
+	
 	// Ingot
 	public static Item ingots;
-
+	
 	// Dust
 	public static Item dusts;
 	public static Item manganoxid;
 	
 	// Cobble Dust
 	public static Item cdust;
-
+	
 	// Infected
 	public static Item infectedcrop;
 	public static Item infectedleather;
@@ -45,11 +25,11 @@ public class UItems {
 	public static Item acid;
 	public static Item plastic;
 	
-	// Battery 
+	// Battery
 	public static Item battery;
 	public static Item tester;
-    public static Item energydisplay;
-    public static Item copper_coil;
+	public static Item energydisplay;
+	public static Item copper_coil;
 	public static Item copper_wire;
 	public static Item transformer;
 	public static Item thicker_copper_wire;
@@ -59,15 +39,15 @@ public class UItems {
 	
 	// Backpack
 	public static Item backpack;
-
+	
 	public static Item railplacer;
-		
+	
 	public UItems() {
 		init();
 		register();
 		oredirectionary();
 	}
-		
+	
 	private void init() {
 		
 		// Ingot
@@ -91,7 +71,7 @@ public class UItems {
 		// Battery
 		tester = new ItemCabletester().setUnlocalizedName("tester");
 		battery = new ItemBattery().setUnlocalizedName("battery");
-        energydisplay = new ItemEnergyDisplay().setUnlocalizedName("energy");
+		energydisplay = new ItemEnergyDisplay().setUnlocalizedName("energy");
 		copper_wire = new ItemCopperWire().setUnlocalizedName("copper_wire");
 		copper_coil = new ItemCopperCoil().setUnlocalizedName("copper_coil");
 		transformer = new ItemTransformer().setUnlocalizedName("transformer");
@@ -107,7 +87,7 @@ public class UItems {
 		
 		UMod.log.debug("Init Items");
 	}
-
+	
 	private void register() {
 		
 		// Ingot
@@ -147,7 +127,7 @@ public class UItems {
 		
 		UMod.log.debug("Register Items");
 	}
-
+	
 	private void oredirectionary() {
 		
 		// Ingot
@@ -186,5 +166,5 @@ public class UItems {
 		OreDictionaryRegistry.register(railplacer);
 		UMod.log.debug("Oredirectionary");
 	}
-
+	
 }

@@ -8,14 +8,12 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.RenderEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.Vec3;
-import net.minecraft.util.Vec3i;
+import net.minecraft.util.*;
 
 public class RenderFX extends RenderEntity{
 
 	private static HashMap<Class<? extends TileEntity>,TileRender> list = new HashMap<Class<? extends TileEntity>,TileRender>();
-	private boolean bsd = true;
+	//private boolean bsd = true;
 		
 	public RenderFX() {
 		super(Minecraft.getMinecraft().getRenderManager());
@@ -23,8 +21,9 @@ public class RenderFX extends RenderEntity{
 
 	@Override
 	public void doRender(Entity entity, double x, double y, double z, float p_76986_8_, float partialTicks) {
-		BlockPos pos = ((EntityFX) entity).getReBlockPos().subtract(new Vec3i(0, 1, 0));
-		if(bsd){System.out.println(pos);bsd = false;}
+		if(entity == null || entity.getPosition() == null)return;
+		BlockPos pos = entity.getPosition().subtract(new Vec3i(0, 1, 0));
+		//if(bsd){System.out.println(pos);bsd = false;}
 		TileEntity ent = entity.getEntityWorld().getTileEntity(pos);
 		if(ent == null){
 			entity.setDead();
@@ -32,7 +31,7 @@ public class RenderFX extends RenderEntity{
 		}
 		TileRender ren = list.get(ent.getClass());
 		if(ren == null)return;
-		Vec3 vc = ((EntityFX) entity).getRePos();
+		Vec3 vc = ((EntityFX) entity).getPositionVector();
     	ren.renderTileEntityAt(ent,vc.xCoord - 0.5, vc.yCoord- 0.5, vc.zCoord- 0.5);
 	}
 	

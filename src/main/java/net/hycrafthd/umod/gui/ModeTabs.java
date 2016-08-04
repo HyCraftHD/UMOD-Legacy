@@ -1,30 +1,20 @@
 package net.hycrafthd.umod.gui;
 
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 import com.google.common.collect.Lists;
 
 import net.hycrafthd.umod.container.ContainerBase.Mode;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.client.gui.Gui;
-import net.minecraft.client.renderer.EntityRenderer;
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.RenderHelper;
-import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.WorldRenderer;
-import net.minecraft.client.renderer.block.model.BakedQuad;
-import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
-import net.minecraft.client.renderer.texture.TextureMap;
-import net.minecraft.client.renderer.texture.TextureUtil;
+import net.minecraft.client.gui.*;
+import net.minecraft.client.renderer.*;
+import net.minecraft.client.renderer.block.model.*;
+import net.minecraft.client.renderer.texture.*;
 import net.minecraft.client.renderer.tileentity.TileEntityItemStackRenderer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.client.resources.model.IBakedModel;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.Vec3i;
+import net.minecraft.util.*;
 
 @SuppressWarnings("deprecation")
 public abstract class ModeTabs extends Gui{

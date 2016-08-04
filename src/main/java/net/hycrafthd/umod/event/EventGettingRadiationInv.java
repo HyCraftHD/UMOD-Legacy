@@ -1,24 +1,19 @@
 package net.hycrafthd.umod.event;
 
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
-import net.hycrafthd.umod.UItems;
-import net.hycrafthd.umod.UPotion;
-import net.hycrafthd.umod.UReference;
+import net.hycrafthd.umod.*;
 import net.hycrafthd.umod.armor.ArmorRadiation;
 import net.hycrafthd.umod.interfaces.IInfectedBlock;
 import net.hycrafthd.umod.utils.NBTUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.*;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.*;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;

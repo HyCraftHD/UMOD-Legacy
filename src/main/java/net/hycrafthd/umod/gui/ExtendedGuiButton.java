@@ -2,8 +2,7 @@ package net.hycrafthd.umod.gui;
 
 import net.hycrafthd.umod.utils.StringMethod;
 import net.minecraft.client.gui.GuiButton;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.relauncher.*;
 
 @SideOnly(Side.CLIENT)
 public class ExtendedGuiButton extends GuiButton{

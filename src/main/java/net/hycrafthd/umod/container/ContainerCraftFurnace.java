@@ -1,10 +1,8 @@
 package net.hycrafthd.umod.container;
 
-import net.hycrafthd.umod.inventory.BaseCraftSlot;
-import net.hycrafthd.umod.inventory.BaseSlotOutput;
+import net.hycrafthd.umod.inventory.*;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.Slot;
+import net.minecraft.inventory.*;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 

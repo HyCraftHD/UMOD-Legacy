@@ -3,8 +3,7 @@ package net.hycrafthd.umod.item;
 import net.hycrafthd.umod.UPotion;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
-import net.minecraft.item.EnumAction;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.*;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 

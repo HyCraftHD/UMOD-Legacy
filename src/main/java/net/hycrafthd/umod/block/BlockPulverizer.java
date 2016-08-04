@@ -9,9 +9,7 @@ import net.hycrafthd.umod.tileentity.TileEntityPulverizer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.*;
 import net.minecraft.world.World;
 
 public class BlockPulverizer extends BlockBaseMachine implements IEnergyMessage {

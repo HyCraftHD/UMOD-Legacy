@@ -36,7 +36,7 @@ import net.hycrafthd.umod.utils.Utils;
 import net.minecraft.block.Block;
 
 public class UBlocks {
-
+	
 	// Ores
 	public static Block ores, netherores;
 	// Blocks
@@ -68,18 +68,18 @@ public class UBlocks {
 	// Normal Blocks
 	public static Block nuke;
 	public static Block conduit;
-
+	
 	public static Block barrels;
 	
 	public static Block rail;
-    public static Block rail2;
+	public static Block rail2;
 	
 	public UBlocks() {
 		init();
 		register();
 		oredirectionary();
 	}
-
+	
 	private void init() {
 		// Ore
 		ores = new BlockOres().setUnlocalizedName("ores");
@@ -114,14 +114,14 @@ public class UBlocks {
 		// Normal Blocks
 		nuke = new BlockNuke().setUnlocalizedName("nuke");
 		conduit = new BlockConduit().setUnlocalizedName("conduit");
-
+		
 		barrels = new BlockBarrels().setUnlocalizedName("barrels");
-				
+		
 		rail = new BlockExtendedRail().setUnlocalizedName("ExRail");
 		rail2 = new Block2rail().setUnlocalizedName("railhelp");
 		UMod.log.debug("Init Blocks");
 	}
-
+	
 	private void register() {
 		// Ore
 		Utils.registerBlock(ores, ItemBlockOres.class);
@@ -149,7 +149,7 @@ public class UBlocks {
 		Utils.registerBlock(oilsand);
 		
 		Utils.registerBlock(infestedCleaner);
-
+		
 		// Pipes
 		Utils.registerBlock(alu_cable, ItemBlockEnergy.class);
 		Utils.registerBlock(silver_cable, ItemBlockEnergy.class);
@@ -157,14 +157,14 @@ public class UBlocks {
 		// Normal Block
 		Utils.registerBlock(nuke);
 		Utils.registerBlock(conduit, ItemBlockConduit.class);
-
+		
 		Utils.registerBlock(barrels, ItemBlockBarrels.class);
 		
 		Utils.registerBlock(rail);
 		Utils.registerBlock(rail2);
 		UMod.log.debug("Register Blocks");
 	}
-
+	
 	private void oredirectionary() {
 		
 		// Ore
@@ -193,7 +193,7 @@ public class UBlocks {
 		OreDictionaryRegistry.register(oilsand);
 		
 		OreDictionaryRegistry.register(infestedCleaner);
-
+		
 		// Pipes
 		OreDictionaryRegistry.register(alu_cable);
 		OreDictionaryRegistry.register(silver_cable);
@@ -207,5 +207,5 @@ public class UBlocks {
 		UMod.log.debug("Oredirectionary");
 		
 	}
-
+	
 }

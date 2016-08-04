@@ -1,8 +1,6 @@
 package net.hycrafthd.umod.api;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 import net.hycrafthd.umod.interfaces.IProcess;
 import net.minecraftforge.event.world.WorldEvent;

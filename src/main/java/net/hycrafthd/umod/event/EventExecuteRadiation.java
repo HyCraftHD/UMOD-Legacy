@@ -2,8 +2,7 @@ package net.hycrafthd.umod.event;
 
 import java.util.HashMap;
 
-import net.hycrafthd.umod.UDamageSource;
-import net.hycrafthd.umod.UPotion;
+import net.hycrafthd.umod.*;
 import net.hycrafthd.umod.armor.ArmorRadiation;
 import net.hycrafthd.umod.utils.EntityUtils;
 import net.minecraft.entity.EntityLivingBase;

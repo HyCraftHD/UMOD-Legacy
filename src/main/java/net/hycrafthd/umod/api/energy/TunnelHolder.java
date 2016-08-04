@@ -55,7 +55,7 @@ public class TunnelHolder {
 	}
 	
 	public static int regenUETunnel(int id,World w){
-		if(id >= tunnels.size()){
+		if(id >= tunnels.size() || id < 0){
 			return TunnelHolder.addUETunnel(new UETunnel(w));
 		}
 		UETunnel tun = getUETunnel(id);

@@ -4,10 +4,8 @@ import java.util.List;
 
 import net.hycrafthd.umod.UReference;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemPickaxe;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraft.item.*;
+import net.minecraftforge.fml.relauncher.*;
 
 public class ItemEmeraldPickaxe extends ItemPickaxe {
 

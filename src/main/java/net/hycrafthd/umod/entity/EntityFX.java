@@ -1,16 +1,8 @@
 package net.hycrafthd.umod.entity;
 
-import net.hycrafthd.umod.api.IBoundsProvider;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityHanging;
+import net.minecraft.entity.*;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.Vec3;
-import net.minecraft.util.Vec3i;
+import net.minecraft.util.*;
 import net.minecraft.world.World;
 
 public class EntityFX extends EntityHanging{
@@ -34,11 +26,11 @@ public class EntityFX extends EntityHanging{
 		this.setSize(1F, 1F);
         this.setEntityBoundingBox(new AxisAlignedBB(p, p.add(1, 1, 1)));
         this.setRotation(0, 180);
-        TileEntity ent = this.getEntityWorld().getTileEntity(this.getPosition().subtract(new Vec3i(0, 1, 0)));
-		 if(ent != null && ent instanceof IBoundsProvider){
-		 IBoundsProvider bp = (IBoundsProvider) ent;
-	     this.setSize((float)bp.getBounds().xCoord,(float)bp.getBounds().yCoord);
-		 }
+        //TileEntity ent = this.getEntityWorld().getTileEntity(this.getPosition().subtract(new Vec3i(0, 1, 0)));
+		// if(ent != null && ent instanceof IBoundsProvider){
+		 //IBoundsProvider bp = (IBoundsProvider) ent;
+	     //this.setSize((float)bp.getBounds().xCoord,(float)bp.getBounds().yCoord);
+//		 }
 	    //this.setPosition(this.posX - (this.width/2), this.posY - (this.height/2), this.posZ + (this.width/2));
 	}
 	

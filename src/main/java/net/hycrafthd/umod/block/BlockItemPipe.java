@@ -1,7 +1,6 @@
 package net.hycrafthd.umod.block;
 
-import net.hycrafthd.umod.api.IConduitBlock;
-import net.hycrafthd.umod.api.ISpiritProvider;
+import net.hycrafthd.umod.api.*;
 import net.hycrafthd.umod.tileentity.TileEntityItemPipe;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;

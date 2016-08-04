@@ -2,11 +2,9 @@ package net.hycrafthd.umod.block;
 
 import net.hycrafthd.umod.UReference;
 import net.hycrafthd.umod.interfaces.IInfectedBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockLog;
+import net.minecraft.block.*;
 import net.minecraft.block.properties.IProperty;
-import net.minecraft.block.state.BlockState;
-import net.minecraft.block.state.IBlockState;
+import net.minecraft.block.state.*;
 import net.minecraft.init.Blocks;
 
 public class BlockInfectedLog extends BlockLog implements IInfectedBlock {

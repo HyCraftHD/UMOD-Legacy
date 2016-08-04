@@ -1,10 +1,6 @@
 package net.hycrafthd.umod;
 
-import net.hycrafthd.umod.item.tools.emerald.ItemEmeraldAxe;
-import net.hycrafthd.umod.item.tools.emerald.ItemEmeraldHoe;
-import net.hycrafthd.umod.item.tools.emerald.ItemEmeraldPickaxe;
-import net.hycrafthd.umod.item.tools.emerald.ItemEmeraldSpade;
-import net.hycrafthd.umod.item.tools.emerald.ItemEmeraldSword;
+import net.hycrafthd.umod.item.tools.emerald.*;
 import net.hycrafthd.umod.utils.Utils;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;

@@ -3,30 +3,25 @@ package net.hycrafthd.umod.block;
 import net.hycrafthd.umod.entity.EntityNukePrimed;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.IProperty;
-import net.minecraft.block.properties.PropertyBool;
-import net.minecraft.block.state.BlockState;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.block.properties.*;
+import net.minecraft.block.state.*;
+import net.minecraft.entity.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.world.Explosion;
-import net.minecraft.world.World;
+import net.minecraft.util.*;
+import net.minecraft.world.*;
 
 
-public class BlockNuke extends BlockBase{
+public class BlockNuke extends BlockBase{
 	public static final PropertyBool EXPLODE = PropertyBool.create("explode");
 	
 
 	public BlockNuke() {
 		super(Material.tnt);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(EXPLODE, Boolean.valueOf(false)));;
-	}
+	}
     @Override
 	public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state)
     {

@@ -2,20 +2,11 @@ package net.hycrafthd.umod;
 
 import net.hycrafthd.corelib.registry.NetworkRegistry;
 import net.hycrafthd.umod.api.ProcessHandler;
-import net.hycrafthd.umod.event.EventDrawHUD;
-import net.hycrafthd.umod.event.EventExecuteRadiation;
-import net.hycrafthd.umod.event.EventGettingRadiation;
-import net.hycrafthd.umod.event.EventGettingRadiationInv;
-import net.hycrafthd.umod.event.EventLoadWorld;
-import net.hycrafthd.umod.event.EventPlayerJoin;
-import net.hycrafthd.umod.event.EventToolTip;
+import net.hycrafthd.umod.event.*;
 import net.hycrafthd.umod.network.PacketHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
+import net.minecraftforge.fml.common.event.*;
 
 @Mod(modid = UReference.modid, version = UReference.version, name = UReference.name)
 public class UMod {

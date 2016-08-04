@@ -2,8 +2,7 @@ package net.hycrafthd.umod.inventory;
 
 import net.hycrafthd.corelib.util.RGBA;
 import net.hycrafthd.umod.utils.StringMethod;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.Slot;
+import net.minecraft.inventory.*;
 import net.minecraft.item.ItemStack;
 
 public class BaseSlot extends Slot {

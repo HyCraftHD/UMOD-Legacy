@@ -3,9 +3,7 @@ package net.hycrafthd.umod;
 import java.util.Map;
 
 import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin;
-import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin.MCVersion;
-import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin.Name;
-import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin.TransformerExclusions;
+import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin.*;
 
 @MCVersion(UReference.mcversion)
 @Name(UReference.name)

@@ -1,12 +1,9 @@
 package net.hycrafthd.umod.item;
 
-import net.hycrafthd.umod.UBlocks;
-import net.hycrafthd.umod.UReference;
+import net.hycrafthd.umod.*;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.EnumFacing;
+import net.minecraft.item.*;
+import net.minecraft.util.*;
 import net.minecraft.world.World;
 
 public class ItemSwellPlacer extends Item{

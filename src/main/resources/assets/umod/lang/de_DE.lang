@@ -68,119 +68,109 @@ tile.conduit.name=Rohr
 tile.barrelsmall.name=Kleines Fass
 tile.barrelmedium.name=Mittlers Fass
 tile.barrelbig.name=Groﬂes Fass
-item.thicker_copper_coil.name=Thicker Copper Coil
-item.solar_cell.name=Solar Cell
+item.thicker_copper_coil.name=Dicker Kupferdraht
+item.solar_cell.name=Solarzelle
 
 #Tools
 #Emerald
-item.emerald_axe.name=Emerald Axe
-item.emerald_pickaxe.name=Emerald Pickaxe
-item.emerald_sword.name=Emerald Sword
-item.emerald_shovel.name=Emerald Shovel
-item.emerald_hoe.name=Emerald Hoe
+item.emerald_axe.name=Smaragd Axt
+item.emerald_pickaxe.name=Smaragd Spitzhacke
+item.emerald_sword.name=Smaragd Schwert
+item.emerald_shovel.name=Smaragd Schaufel
+item.emerald_hoe.name=Smaragd Hacke
 
 #Ores
-tile.orealuminium.name=Aluminium Ore
-tile.orecopper.name=Copper Ore
-tile.orelead.name=Lead Ore
-tile.oremangan.name=Mangan Ore
-tile.oremercury.name=Mercury Ore
-tile.orenickel.name=Nickel Ore
-tile.oreplatinum.name=Platinum Ore
-tile.oresilicium.name=Silicium Ore
-tile.oresilver.name=Silver Ore
-tile.oresulphur.name=Sulphur Ore
-tile.oretin.name=Tin Ore
-tile.oreuran.name=Uran Ore
-tile.orezinc.name=Zinc Ore
+tile.orealuminium.name=Aluminium Erz
+tile.orecopper.name=Kupfer Erz
+tile.orelead.name=Blei Erz
+tile.oremangan.name=Mangan Erz
+tile.oremercury.name=Quecksilber Erz
+tile.orenickel.name=Nickel Erz
+tile.oreplatinum.name=Platin Erz
+tile.oresilicium.name=Silizium Erz
+tile.oresilver.name=Silber Erz
+tile.oresulphur.name=Schwefel Erz
+tile.oretin.name=Zinn Erz
+tile.oreuran.name=Uran Erz
+tile.orezinc.name=Zink Erz
 
 #Nether Ores
-tile.netherorealuminium.name=Nether Aluminium Ore
-tile.netherorecopper.name=Nether Copper Ore
-tile.netherorelead.name=Nether Lead Ore
-tile.netheroremangan.name=Nether Mangan Ore
-tile.netheroremercury.name=Nether Mercury Ore
-tile.netherorenickel.name=Nether Nickel Ore
-tile.netheroreplatinum.name=Nether Platinum Ore
-tile.netheroresilicium.name=Nether Silicium Ore
-tile.netheroresilver.name=Nether Silver Ore
-tile.netheroresulphur.name=Nether Sulphur Ore
-tile.netheroretin.name=Nether Tin Ore
-tile.netheroreuran.name=Nether Uran Ore
-tile.netherorezinc.name=Nether Zinc Ore
+tile.netherorealuminium.name=Nether Aluminium Erz
+tile.netherorecopper.name=Nether Kupfer Erz
+tile.netherorelead.name=Nether Blei Erz
+tile.netheroremangan.name=Nether Mangan Erz
+tile.netheroremercury.name=Nether Quecksilber Erz
+tile.netherorenickel.name=Nether Nickel Erz
+tile.netheroreplatinum.name=Nether Platin Erz
+tile.netheroresilicium.name=Nether Silizium Erz
+tile.netheroresilver.name=Nether Silber Erz
+tile.netheroresulphur.name=Nether Schwefel Erz
+tile.netheroretin.name=Nether Zinn Erz
+tile.netheroreuran.name=Nether Uran Erz
+tile.netherorezinc.name=Nether Zink Erz
 
 #Blocks
 tile.blockaluminium.name=Aluminium Block
-tile.blockcopper.name=Copper Block
-tile.blocklead.name=Lead Block
+tile.blockcopper.name=Kupfer Block
+tile.blocklead.name=Blei Block
 tile.blockmangan.name=Mangan Block
-tile.blockmercury.name=Mercury Block
+tile.blockmercury.name=Quecksilber Block
 tile.blocknickel.name=Nickel Block
-tile.blockplatinum.name=Platinum Block
-tile.blocksilicium.name=Silicium Block
-tile.blocksilver.name=Silver Block
-tile.blocksulphur.name=Sulphur Block
-tile.blocktin.name=Tin Block
+tile.blockplatinum.name=Platin Block
+tile.blocksilicium.name=Silizium Block
+tile.blocksilver.name=Silber Block
+tile.blocksulphur.name=Schwefel Block
+tile.blocktin.name=Zinn Block
 tile.blockuran.name=Uran Block
-tile.blockzinc.name=Zinc Block
-tile.nuke.name=Nuke
+tile.blockzinc.name=Zink Block
+tile.nuke.name=Atombombe
 
 #Infected
-tile.infectedgrass.name=Infected Grass
-tile.infecteddirt.name=Infected Dirt
-tile.infectedlog.name=Infected Log
-tile.infectedleave.name=Infected Leave
-tile.infectedplank.name=Infected Plank
-tile.infectedfruit.name=Infected Fruit
+tile.infectedgrass.name=Infiziertes Gras
+tile.infecteddirt.name=Infizierte Erde
+tile.infectedlog.name=Infizierter Stamm
+tile.infectedleave.name=Infizierte Bl‰tter
+tile.infectedplank.name=Infizierte Planken
+tile.infectedfruit.name=Infizierte Frucht
 
 #Pulverizer
-tile.pulver.name=Pulverizer
-tile.charge.name=Battery
+tile.pulver.name=Pulverisator
+tile.charge.name=Batterie
 
 #Solarpanel
-tile.solarpanellowvoltage.name=Lowvoltage Solarpanel
-tile.solarpanelmediumvoltage.name=Mediumvoltage Solarpanel
-tile.solarpanelhighvoltage.name=Highvoltage Solarpanel
-tile.solarpanelultravoltage.name=Ultravoltage Solarpanel
-tile.solarpanelextremevoltage.name=Extremevoltage Solarpanel
-
-#Tooltip
-
+tile.solarpanellowvoltage.name=Niederspannungs Solaranlage
+tile.solarpanelmediumvoltage.name=Mittelspannungs Solaranlage
+tile.solarpanelhighvoltage.name=Hochspannungs Solaranlage
+tile.solarpanelultravoltage.name=Ultraspannungs Solaranlage
+tile.solarpanelextremevoltage.name=Extremspannungs Solaranlage
 
 #Potion
-potion.radiation.name=Radiation
+potion.radiation.name=Strahlung
 
 #DamageSource
-death.attack.radiation=%1$s died from Radiation
-death.attack.elec=%1$s died from a Electronic Shock
-death.attack.nuclearexplosion=%1$s was killed by Nuclear Explosion
+death.attack.radiation=%1$s starb durch Verstrahlung.
+death.attack.elec=%1$s starb durch einen elektrischen Schlag.
+death.attack.nuclearexplosion=%1$s wurde von einer nuklearen Explosion pulverisiert. 
 
 #Cables
-tile.aluminiumcable.name=Aluminium Energy Cable
-tile.silvercable.name=Silver Energy Cable
-tile.zincable.name=Tin Energy Cable
+tile.aluminiumcable.name=Aluminium Kabel
+tile.silvercable.name=Silber Kabel
+tile.zincable.name=Zinn Kabel
 
 
 #Entity
-entity.InfectedCow.name=Infected Cow
-entity.InfectedCreeper.name=Infected Creeper
-entity.PrimedNuke.name=Nuke
-entity.InfectedZombie.name=Infected Zombie
+entity.InfectedCow.name=Infizierte Kuh
+entity.InfectedCreeper.name=Infizierter Creeper
+entity.PrimedNuke.name=Atombombe
+entity.InfectedZombie.name=Infizierter Zombie
 
 #Backpack
-item.backpacksmall.name=Small Backpack
-item.backpackmedium.name=Medium Backpack
-item.backpackbig.name=Big Backpack
-
-#Command
-commands.uschematic.usage=/uschematic <save> <name> <x1> <y1> <z1> <x2> <y2> <z2> OR /uschematic <load> <name>
-commands.uschematic.success.save=USchematic successfully saved under %d.uschematic from %d to %d
-commands.uschematic.success.load=USchematic successfully loaded from %d.uschematic from %d to %d
-commands.uschematic.failed.save=Failed to save the uschematic file
-commands.uschematic.failed.load=Failed to load the uschematic file
+item.backpacksmall.name=Kleiner Rucksack
+item.backpackmedium.name=Mittlerer Rucksack
+item.backpackbig.name=Groﬂer Rucksack
 
 #Achievement
 achievementpage.upage=UMOD
 
-achievement.firstjoin=First Join
-achievement.firstjoin.desc=Join a world at the first time.
+achievement.firstjoin=Erster Schritt
+achievement.firstjoin.desc=Betrete eine Welt das erste mal.

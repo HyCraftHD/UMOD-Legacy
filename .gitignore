@@ -116,4 +116,7 @@ LICENSE-fml.txt
 MinecraftForge-License.txt
 MinecraftForge-Credits.txt
 Paulscode SoundSystem CodecIBXM License.txt
+eclipse/
+/eclipse/
 eclipse
+libs

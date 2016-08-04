@@ -9,8 +9,9 @@ public class PulverizerRecepie {
 	private ItemStack input;
 	private ItemStack output;
 	private ItemStack randomoutut;
+	private boolean randomoutput;
 
-	public PulverizerRecepie(ItemStack input,ItemStack output,ItemStack randomoutut) {
+	public PulverizerRecepie(ItemStack input,ItemStack output,ItemStack randomoutut,boolean randomoutput) {
 		this.input = input;
 		this.output = output;
 		this.randomoutut = randomoutut;
@@ -25,11 +26,20 @@ public class PulverizerRecepie {
 	}
 	
 	public ItemStack getRandomSecondoutput(){
-		int i = new Random().nextInt(10);
-		if(i > 5){
+		
+		if(randomoutput){
+			int i = new Random().nextInt(10);
+			if(i > 5){
+				return randomoutut;
+			}
+			
+			return null;
+			
+		}else{
+			
 			return randomoutut;
 		}
-		return null;
+		
 	}
 	
 	public ItemStack getSecondOutput() {

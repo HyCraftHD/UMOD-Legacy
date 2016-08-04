@@ -6,17 +6,17 @@ import net.hycrafthd.umod.utils.Utils;
 import net.minecraft.item.Item;
 
 public class UItems {
-
+	
 	// Ingot
 	public static Item ingots;
-
+	
 	// Dust
 	public static Item dusts;
 	public static Item manganoxid;
 	
 	// Cobble Dust
 	public static Item cdust;
-
+	
 	// Infected
 	public static Item infectedcrop;
 	public static Item infectedleather;
@@ -25,28 +25,29 @@ public class UItems {
 	public static Item acid;
 	public static Item plastic;
 	
-	// Battery 
+	// Battery
 	public static Item battery;
 	public static Item tester;
-    public static Item energydisplay;
-    public static Item copper_coil;
+	public static Item energydisplay;
+	public static Item copper_coil;
 	public static Item copper_wire;
 	public static Item transformer;
 	public static Item thicker_copper_wire;
 	public static Item thicker_copper_coil;
 	public static Item solar_cell;
+	public static Item petrol;
 	
 	// Backpack
 	public static Item backpack;
-
+	
 	public static Item railplacer;
-		
+	
 	public UItems() {
 		init();
 		register();
 		oredirectionary();
 	}
-		
+	
 	private void init() {
 		
 		// Ingot
@@ -70,13 +71,14 @@ public class UItems {
 		// Battery
 		tester = new ItemCabletester().setUnlocalizedName("tester");
 		battery = new ItemBattery().setUnlocalizedName("battery");
-        energydisplay = new ItemEnergyDisplay().setUnlocalizedName("energy");
+		energydisplay = new ItemEnergyDisplay().setUnlocalizedName("energy");
 		copper_wire = new ItemCopperWire().setUnlocalizedName("copper_wire");
 		copper_coil = new ItemCopperCoil().setUnlocalizedName("copper_coil");
 		transformer = new ItemTransformer().setUnlocalizedName("transformer");
 		thicker_copper_wire = new ItemThickerCopperWire().setUnlocalizedName("thicker_copper_wire");
 		solar_cell = new ItemSolarCell().setUnlocalizedName("solar_cell");
 		thicker_copper_coil = new ItemThickerCopperCoil().setUnlocalizedName("thicker_copper_coil");
+		petrol = new ItemPetrol().setUnlocalizedName("petrol");
 		
 		// Backpack
 		backpack = new ItemBackPack().setUnlocalizedName("backpack");
@@ -85,7 +87,7 @@ public class UItems {
 		
 		UMod.log.debug("Init Items");
 	}
-
+	
 	private void register() {
 		
 		// Ingot
@@ -116,6 +118,7 @@ public class UItems {
 		Utils.registerItem(thicker_copper_wire);
 		Utils.registerItem(thicker_copper_coil);
 		Utils.registerItem(solar_cell);
+		Utils.registerItem(petrol);
 		
 		// Backpack
 		Utils.registerItem(backpack);
@@ -124,7 +127,7 @@ public class UItems {
 		
 		UMod.log.debug("Register Items");
 	}
-
+	
 	private void oredirectionary() {
 		
 		// Ingot
@@ -155,6 +158,7 @@ public class UItems {
 		OreDictionaryRegistry.register(thicker_copper_wire);
 		OreDictionaryRegistry.register(thicker_copper_coil);
 		OreDictionaryRegistry.register(solar_cell);
+		OreDictionaryRegistry.register(petrol);
 		
 		// Backpack
 		OreDictionaryRegistry.register(backpack);
@@ -162,5 +166,5 @@ public class UItems {
 		OreDictionaryRegistry.register(railplacer);
 		UMod.log.debug("Oredirectionary");
 	}
-
+	
 }

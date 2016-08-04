@@ -130,6 +130,9 @@ public class ClientProxy extends CommonProxy {
 		ModelRegistry.register(UBlocks.craftfurnance);
 		ModelRegistry.register(UBlocks.rail);
 		
+		// Stone - Stairs
+		ModelRegistry.register(UBlocks.stonestairstone);
+		
 		// Backpack
 		for (int i = 0; i < EnumTypeBackPack.values().length; i++) {
 			ModelRegistry.registerVariants(UItems.backpack, UReference.resource + "backpack" + EnumTypeBackPack.byMetadata(i).getName());

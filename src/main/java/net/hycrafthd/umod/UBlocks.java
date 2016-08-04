@@ -5,7 +5,7 @@ import net.hycrafthd.umod.block.*;
 import net.hycrafthd.umod.block.rail.*;
 import net.hycrafthd.umod.item.*;
 import net.hycrafthd.umod.utils.Utils;
-import net.minecraft.block.Block;
+import net.minecraft.block.*;
 
 public class UBlocks {
 	
@@ -15,7 +15,7 @@ public class UBlocks {
 	public static Block blocks;
 	// SolarPanel
 	public static Block solarpanel;
-	// Mashiens
+	// Machinery
 	public static Block pulver;
 	public static Block charge;
 	public static Block painter;
@@ -45,6 +45,8 @@ public class UBlocks {
 	
 	public static Block rail;
 	public static Block rail2;
+	// Stone - Stair
+	public static Block stonestairstone;
 	
 	public UBlocks() {
 		init();
@@ -91,6 +93,8 @@ public class UBlocks {
 		
 		rail = new BlockExtendedRail().setUnlocalizedName("ExRail");
 		rail2 = new Block2rail().setUnlocalizedName("railhelp");
+		// Stone - Stair
+		stonestairstone = new BlockStoneStairs(BlockStone.EnumType.STONE);
 		UMod.log.debug("Init Blocks");
 	}
 	
@@ -134,6 +138,9 @@ public class UBlocks {
 		
 		Utils.registerBlock(rail);
 		Utils.registerBlock(rail2);
+		
+		// Stone - Stair
+		Utils.registerBlock(stonestairstone);
 		UMod.log.debug("Register Blocks");
 	}
 	
@@ -176,6 +183,8 @@ public class UBlocks {
 		
 		OreDictionaryRegistry.register(rail);
 		OreDictionaryRegistry.register(rail2);
+		// Stone - Stair
+		OreDictionaryRegistry.register(stonestairstone);
 		UMod.log.debug("Oredirectionary");
 		
 	}

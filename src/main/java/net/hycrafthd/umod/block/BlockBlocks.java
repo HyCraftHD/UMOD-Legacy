@@ -48,7 +48,7 @@ public class BlockBlocks extends BlockBase {
 	}
 	
 	@Override
-	protected BlockState createBlockState() {
+	public BlockState createBlockState() {
 		return new BlockState(this, new IProperty[] { TYPE });
 	}
 	

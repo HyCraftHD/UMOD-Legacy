@@ -14,6 +14,7 @@ import net.hycrafthd.umod.entity.render.rail.RenderRailFX;
 import net.hycrafthd.umod.enumtype.*;
 import net.hycrafthd.umod.render.*;
 import net.hycrafthd.umod.tileentity.*;
+import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.resources.model.ModelResourceLocation;
@@ -130,8 +131,10 @@ public class ClientProxy extends CommonProxy {
 		ModelRegistry.register(UBlocks.craftfurnance);
 		ModelRegistry.register(UBlocks.rail);
 		
-		// Stone - Stairs
-		ModelRegistry.register(UBlocks.stonestairstone);
+		// Stone Stairs
+		for (Block block : UBlocks.stonestairs) {
+			ModelRegistry.register(block);
+		}
 		
 		// Backpack
 		for (int i = 0; i < EnumTypeBackPack.values().length; i++) {

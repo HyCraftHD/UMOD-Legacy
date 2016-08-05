@@ -18,14 +18,16 @@ public class Utils {
 	
 	public static void registerItem(Item item) {
 		ItemRegistry.register(item, item.getUnlocalizedName().substring(5));
+		OreDictionaryRegistry.register(item);
 	}
 	
-	public static void registerBlock(Block item) {
-		BlockRegistry.register(item, ItemBlockBase.class, item.getUnlocalizedName().substring(5));
+	public static void registerBlock(Block block) {
+		registerBlock(block, ItemBlockBase.class);
 	}
 	
-	public static void registerBlock(Block item, Class<? extends ItemBlock> bl) {
-		BlockRegistry.register(item, bl, item.getUnlocalizedName().substring(5));
+	public static void registerBlock(Block block, Class<? extends ItemBlockBase> bl) {
+		BlockRegistry.register(block, bl, block.getUnlocalizedName().substring(5));
+		OreDictionaryRegistry.register(block);
 	}
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })

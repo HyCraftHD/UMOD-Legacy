@@ -1,6 +1,5 @@
 package net.hycrafthd.umod;
 
-import net.hycrafthd.corelib.registry.OreDictionaryRegistry;
 import net.hycrafthd.umod.item.*;
 import net.hycrafthd.umod.utils.Utils;
 import net.minecraft.item.Item;
@@ -45,7 +44,6 @@ public class UItems {
 	public UItems() {
 		init();
 		register();
-		oredirectionary();
 	}
 	
 	private void init() {
@@ -126,45 +124,6 @@ public class UItems {
 		Utils.registerItem(railplacer);
 		
 		UMod.log.debug("Register Items");
-	}
-	
-	private void oredirectionary() {
-		
-		// Ingot
-		OreDictionaryRegistry.register(ingots);
-		
-		// Dust
-		OreDictionaryRegistry.register(dusts);
-		OreDictionaryRegistry.register(manganoxid);
-		
-		// Cobble Dust
-		OreDictionaryRegistry.register(cdust);
-		
-		// Infected
-		OreDictionaryRegistry.register(infectedcrop);
-		OreDictionaryRegistry.register(infectedleather);
-		OreDictionaryRegistry.register(infectedbeef);
-		OreDictionaryRegistry.register(infectedmilk);
-		OreDictionaryRegistry.register(plastic);
-		OreDictionaryRegistry.register(acid);
-		
-		// Battery
-		OreDictionaryRegistry.register(tester);
-		OreDictionaryRegistry.register(battery);
-		OreDictionaryRegistry.register(energydisplay);
-		OreDictionaryRegistry.register(copper_wire);
-		OreDictionaryRegistry.register(copper_coil);
-		OreDictionaryRegistry.register(transformer);
-		OreDictionaryRegistry.register(thicker_copper_wire);
-		OreDictionaryRegistry.register(thicker_copper_coil);
-		OreDictionaryRegistry.register(solar_cell);
-		OreDictionaryRegistry.register(petrol);
-		
-		// Backpack
-		OreDictionaryRegistry.register(backpack);
-		
-		OreDictionaryRegistry.register(railplacer);
-		UMod.log.debug("Oredirectionary");
 	}
 	
 }

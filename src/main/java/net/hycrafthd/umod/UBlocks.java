@@ -1,6 +1,5 @@
 package net.hycrafthd.umod;
 
-import net.hycrafthd.corelib.registry.OreDictionaryRegistry;
 import net.hycrafthd.umod.block.*;
 import net.hycrafthd.umod.block.rail.*;
 import net.hycrafthd.umod.item.*;
@@ -45,13 +44,12 @@ public class UBlocks {
 	
 	public static Block rail;
 	public static Block rail2;
-	// Stone - Stair
-	public static Block stonestairstone, stonestairgranite;
+	// Stone Stairs
+	public static Block[] stonestairs;
 	
 	public UBlocks() {
 		init();
 		register();
-		oredirectionary();
 	}
 	
 	private void init() {
@@ -60,7 +58,7 @@ public class UBlocks {
 		netherores = new BlockNetherOres().setUnlocalizedName("netherores");
 		// Blocks
 		blocks = new BlockBlocks().setUnlocalizedName("blocks");
-		// Pulverizer
+		// Machinery
 		pulver = new BlockPulverizer().setUnlocalizedName("pulver");
 		craftfurnance = new BlockCraftFurnance().setUnlocalizedName("craftfurn");
 		energyMonitor = new BlockEnergyPanel().setUnlocalizedName("energymonitor");
@@ -82,8 +80,8 @@ public class UBlocks {
 		
 		infestedCleaner = new BlockInfestedCleaner().setUnlocalizedName("cleaner");
 		// Cable
-		silver_cable = new BlockCable("silvercable", 62, 62, false, "silver");
-		alu_cable = new BlockCable("aluminiumcable", 38, 38, false, "aluminium");
+		silver_cable = new BlockCable("silvercable", 62, 62, false, "Cable");
+		alu_cable = new BlockCable("aluminiumcable", 38, 38, false, "Cable");
 		zin_cable = new BlockCable("zincable", 9, 9, false, "Cable");
 		// Normal Blocks
 		nuke = new BlockNuke().setUnlocalizedName("nuke");
@@ -93,8 +91,11 @@ public class UBlocks {
 		
 		rail = new BlockExtendedRail().setUnlocalizedName("ExRail");
 		rail2 = new Block2rail().setUnlocalizedName("railhelp");
-		// Stone - Stair
-		stonestairstone = new BlockStoneStairs(BlockStone.EnumType.STONE);
+		// Stone Stairs
+		stonestairs = new Block[BlockStone.EnumType.values().length];
+		for (int i = 0; i < BlockStone.EnumType.values().length; i++) {
+			stonestairs[i] = new BlockStoneStairs(BlockStone.EnumType.byMetadata(i));
+		}
 		UMod.log.debug("Init Blocks");
 	}
 	
@@ -104,7 +105,7 @@ public class UBlocks {
 		Utils.registerBlock(netherores, ItemBlockOres.class);
 		// Blocks
 		Utils.registerBlock(blocks, ItemBlockBlocks.class);
-		// Maschinen
+		// Machinery
 		Utils.registerBlock(craftfurnance, ItemBlockEnergy.class);
 		Utils.registerBlock(pulver, ItemBlockEnergy.class);
 		Utils.registerBlock(energyMonitor);
@@ -139,54 +140,11 @@ public class UBlocks {
 		Utils.registerBlock(rail);
 		Utils.registerBlock(rail2);
 		
-		// Stone - Stair
-		Utils.registerBlock(stonestairstone);
+		// Stone Stairs
+		for (Block block : stonestairs) {
+			Utils.registerBlock(block);
+		}
 		UMod.log.debug("Register Blocks");
-	}
-	
-	private void oredirectionary() {
-		
-		// Ore
-		OreDictionaryRegistry.register(ores);
-		OreDictionaryRegistry.register(netherores);
-		// Blocks
-		OreDictionaryRegistry.register(blocks);
-		// Pulverizer
-		OreDictionaryRegistry.register(craftfurnance);
-		OreDictionaryRegistry.register(pulver);
-		OreDictionaryRegistry.register(energyMonitor);
-		OreDictionaryRegistry.register(painter);
-		// SolarPanel
-		OreDictionaryRegistry.register(charge);
-		OreDictionaryRegistry.register(solarpanel);
-		// Infected
-		OreDictionaryRegistry.register(infectedGrass);
-		OreDictionaryRegistry.register(infectedDirt);
-		OreDictionaryRegistry.register(infectedLog);
-		OreDictionaryRegistry.register(infectedLeave);
-		OreDictionaryRegistry.register(infectedSapling);
-		OreDictionaryRegistry.register(infectedPlank);
-		OreDictionaryRegistry.register(infectedFruit);
-		
-		OreDictionaryRegistry.register(oilglass);
-		OreDictionaryRegistry.register(oilsand);
-		
-		OreDictionaryRegistry.register(infestedCleaner);
-		
-		// Pipes
-		OreDictionaryRegistry.register(alu_cable);
-		OreDictionaryRegistry.register(silver_cable);
-		OreDictionaryRegistry.register(zin_cable);
-		// Normal Block
-		OreDictionaryRegistry.register(nuke);
-		OreDictionaryRegistry.register(conduit);
-		
-		OreDictionaryRegistry.register(rail);
-		OreDictionaryRegistry.register(rail2);
-		// Stone - Stair
-		OreDictionaryRegistry.register(stonestairstone);
-		UMod.log.debug("Oredirectionary");
-		
 	}
 	
 }

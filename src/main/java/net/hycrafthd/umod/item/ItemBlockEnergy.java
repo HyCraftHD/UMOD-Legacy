@@ -8,7 +8,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.*;
 import net.minecraft.util.EnumChatFormatting;
 
-public class ItemBlockEnergy extends ItemBlock {
+public class ItemBlockEnergy extends ItemBlockBase {
 	
 	public ItemBlockEnergy(Block block) {
 		super(block);

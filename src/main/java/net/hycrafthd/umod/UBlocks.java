@@ -46,7 +46,7 @@ public class UBlocks {
 	public static Block rail;
 	public static Block rail2;
 	// Stone - Stair
-	public static Block stonestairstone;
+	public static Block stonestairstone, stonestairgranite;
 	
 	public UBlocks() {
 		init();

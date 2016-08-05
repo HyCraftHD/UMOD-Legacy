@@ -141,6 +141,11 @@ public class ClientProxy extends CommonProxy {
 			ModelRegistry.register(block);
 		}
 		
+		// Wool Stairs
+		for (Block block : UBlocks.claystairs) {
+			ModelRegistry.register(block);
+		}
+		
 		// Backpack
 		for (int i = 0; i < EnumTypeBackPack.values().length; i++) {
 			ModelRegistry.registerVariants(UItems.backpack, UReference.resource + "backpack" + EnumTypeBackPack.byMetadata(i).getName());

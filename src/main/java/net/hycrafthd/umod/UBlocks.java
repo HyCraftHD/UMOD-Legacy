@@ -5,6 +5,7 @@ import net.hycrafthd.umod.block.rail.*;
 import net.hycrafthd.umod.item.*;
 import net.hycrafthd.umod.utils.Utils;
 import net.minecraft.block.*;
+import net.minecraft.item.EnumDyeColor;
 
 public class UBlocks {
 	
@@ -46,6 +47,9 @@ public class UBlocks {
 	public static Block rail2;
 	// Stone Stairs
 	public static Block[] stonestairs;
+	
+	// Wool Stairs
+	public static Block[] woolstairs;
 	
 	public UBlocks() {
 		init();
@@ -91,11 +95,19 @@ public class UBlocks {
 		
 		rail = new BlockExtendedRail().setUnlocalizedName("ExRail");
 		rail2 = new Block2rail().setUnlocalizedName("railhelp");
+		
 		// Stone Stairs
 		stonestairs = new Block[BlockStone.EnumType.values().length];
 		for (int i = 0; i < BlockStone.EnumType.values().length; i++) {
 			stonestairs[i] = new BlockStoneStairs(BlockStone.EnumType.byMetadata(i));
 		}
+		
+		// Wool Stairs
+		woolstairs = new Block[EnumDyeColor.values().length];
+		for (int i = 0; i < EnumDyeColor.values().length; i++) {
+			woolstairs[i] = new BlockWoolStairs(EnumDyeColor.byMetadata(i));
+		}
+		
 		UMod.log.debug("Init Blocks");
 	}
 	
@@ -142,6 +154,11 @@ public class UBlocks {
 		
 		// Stone Stairs
 		for (Block block : stonestairs) {
+			Utils.registerBlock(block);
+		}
+		
+		// Wool Stairs
+		for (Block block : woolstairs) {
 			Utils.registerBlock(block);
 		}
 		UMod.log.debug("Register Blocks");

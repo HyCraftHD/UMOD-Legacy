@@ -6,39 +6,28 @@ import net.minecraft.util.*;
 import net.minecraft.world.World;
 
 public class EntityFX extends EntityHanging {
-	
-	private Vec3 repos;
-	private BlockPos reBlockPos;
-	
+		
 	public EntityFX(World w) {
 		super(w);
 		this.setSize(1F, 1F);
 		this.field_174860_b = EnumFacing.NORTH;
 	}
 	
-	public EntityFX(World worldIn, BlockPos p) {
-		super(worldIn, p);
-		this.setSize(1F, 1F);
+	public EntityFX(World worldIn,BlockPos p) {
+		super(worldIn,p);
+        this.setSize(1F, 1F);
 		this.field_174860_b = EnumFacing.NORTH;
+		this.setSize(1F, 1F);
 		this.setPosition((double) p.getX(), (double) p.getY(), (double) p.getZ());
-		this.repos = this.getPositionVector();
-		this.reBlockPos = this.getPosition();
 		this.setSize(1F, 1F);
 		this.setEntityBoundingBox(new AxisAlignedBB(p, p.add(1, 1, 1)));
 		this.setRotation(0, 180);
-		// TileEntity ent = this.getEntityWorld().getTileEntity(this.getPosition().subtract(new Vec3i(0, 1, 0)));
-		// if(ent != null && ent instanceof IBoundsProvider){
-		// IBoundsProvider bp = (IBoundsProvider) ent;
-		// this.setSize((float)bp.getBounds().xCoord,(float)bp.getBounds().yCoord);
-		// }
-		// this.setPosition(this.posX - (this.width/2), this.posY - (this.height/2), this.posZ + (this.width/2));
 	}
-	
-	public EntityFX(World worldIn, BlockPos p, float wh) {
-		this(worldIn, p);
-		this.setSize(wh, wh);
-	}
-	
+	//public EntityFX(World worldIn,BlockPos p,float wh) {
+		//this(worldIn,p);
+		//this.setSize(wh, wh);
+//	}
+    
 	@Override
 	public boolean isEntityInvulnerable(DamageSource p_180431_1_) {
 		return true;
@@ -65,11 +54,10 @@ public class EntityFX extends EntityHanging {
 	
 	@Override
 	public void onUpdate() {
-		if (this.isDead)
-			return;
-		this.prevPosX = this.posX;
-		this.prevPosY = this.posY;
-		this.prevPosZ = this.posZ;
+		 if(this.isDead)return;
+		 this.prevPosX = this.posX;
+	     this.prevPosY = this.posY;
+	     this.prevPosZ = this.posZ;
 	}
 	
 	@Override
@@ -104,12 +92,24 @@ public class EntityFX extends EntityHanging {
 		}
 	}
 	
-	public Vec3 getRePos() {
-		return repos;
-	}
-	
-	public BlockPos getReBlockPos() {
-		return reBlockPos;
+	@Override
+	public void writeToNBT(NBTTagCompound tagCompund){
+		 this.hangingPosition = new BlockPos(tagCompund.getInteger("TileX"), tagCompund.getInteger("TileY"), tagCompund.getInteger("TileZ"));
+	        EnumFacing enumfacing;
+
+	        if (tagCompund.hasKey("Direction", 99))
+	        {
+	            enumfacing = EnumFacing.getHorizontal(tagCompund.getByte("Direction"));
+	            this.hangingPosition = this.hangingPosition.offset(enumfacing);
+	        }
+	        else if (tagCompund.hasKey("Facing", 99))
+	        {
+	            enumfacing = EnumFacing.getHorizontal(tagCompund.getByte("Facing"));
+	        }
+	        else
+	        {
+	            enumfacing = EnumFacing.getHorizontal(tagCompund.getByte("Dir"));
+	        }
 	}
 	
 }

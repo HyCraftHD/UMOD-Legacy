@@ -80,8 +80,8 @@ public class UBlocks {
 		
 		infestedCleaner = new BlockInfestedCleaner().setUnlocalizedName("cleaner");
 		// Cable
-		silver_cable = new BlockCable("silvercable", 62, 62, false, "silver");
-		alu_cable = new BlockCable("aluminiumcable", 38, 38, false, "aluminium");
+		silver_cable = new BlockCable("silvercable", 62, 62, false, "Cable");
+		alu_cable = new BlockCable("aluminiumcable", 38, 38, false, "Cable");
 		zin_cable = new BlockCable("zincable", 9, 9, false, "Cable");
 		// Normal Blocks
 		nuke = new BlockNuke().setUnlocalizedName("nuke");

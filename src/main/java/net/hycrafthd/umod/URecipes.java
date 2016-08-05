@@ -69,10 +69,10 @@ public class URecipes {
 			if (i + 1 >= EnumTypeBaseStuff.values().length) {
 				b = 0;
 			}
-			ModRegistryUtils.addPulverRiecepie(new PulverizerRecepie(new ItemStack(UBlocks.ores, 1, i), new ItemStack(UItems.dusts, 1, i), new ItemStack(UItems.dusts, 1, b), true));
+			ModRegistryUtils.addPulverRiecepie(new PulverizerRecepie(new ItemStack(UBlocks.ores, 1, i), new ItemStack(UItems.dusts, 1, i), new ItemStack(UItems.dusts, 1, b), 5, true));
 		}
 		
-		ModRegistryUtils.addPulverRiecepie(new PulverizerRecepie(new ItemStack(UBlocks.oilsand), new ItemStack(Blocks.sand), new ItemStack(UItems.petrol), false));
+		ModRegistryUtils.addPulverRiecepie(new PulverizerRecepie(new ItemStack(UBlocks.oilsand), new ItemStack(Blocks.sand), new ItemStack(UItems.petrol), 0, false));
 		
 		ModRegistryUtils.addCraftSmeltRecepieShapless(new CraftSmeltRecepieShapless(new ItemStack[] { new ItemStack(Items.iron_pickaxe) }, new ItemStack(Items.iron_ingot, 3)));
 		UMod.log.debug("registerPulverizerRecipes");

@@ -5,7 +5,7 @@ import net.hycrafthd.umod.UReference;
 import net.hycrafthd.umod.item.ItemBlockBase;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityList;
-import net.minecraft.item.*;
+import net.minecraft.item.Item;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 
 public class Utils {

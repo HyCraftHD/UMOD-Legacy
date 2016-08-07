@@ -52,6 +52,8 @@ public class UBlocks {
 	public static Block[] woolstairs;
 	// Clay Stairs
 	public static Block[] claystairs;
+	// Stone Slabs
+	public static Block[] stoneslabs;
 	
 	public UBlocks() {
 		init();
@@ -117,6 +119,11 @@ public class UBlocks {
 		}
 		claystairs[EnumDyeColor.values().length] = new BlockClayStairs();
 		
+		// Stone Slabs
+		stoneslabs = new Block[BlockStone.EnumType.values().length];
+		for (int i = 0; i < BlockStone.EnumType.values().length; i++) {
+			// stonestairs[i] = new BlockStoneSlabs(BlockStone.EnumType.byMetadata(i));
+		}
 		UMod.log.debug("Init Blocks");
 	}
 	
@@ -171,6 +178,10 @@ public class UBlocks {
 		}
 		// Clay Stairs
 		for (Block block : claystairs) {
+			Utils.registerBlock(block);
+		}
+		// Stone Stairs
+		for (Block block : stoneslabs) {
 			Utils.registerBlock(block);
 		}
 		UMod.log.debug("Register Blocks");

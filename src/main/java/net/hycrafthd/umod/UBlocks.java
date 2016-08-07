@@ -5,6 +5,7 @@ import net.hycrafthd.umod.block.rail.*;
 import net.hycrafthd.umod.item.*;
 import net.hycrafthd.umod.utils.Utils;
 import net.minecraft.block.*;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.EnumDyeColor;
 
 public class UBlocks {
@@ -53,7 +54,7 @@ public class UBlocks {
 	// Clay Stairs
 	public static Block[] claystairs;
 	// Stone Slabs
-	public static Block[] stoneslabs;
+	public static Block[][] stoneslabs;
 	
 	public UBlocks() {
 		init();
@@ -120,9 +121,10 @@ public class UBlocks {
 		claystairs[EnumDyeColor.values().length] = new BlockClayStairs();
 		
 		// Stone Slabs
-		stoneslabs = new Block[BlockStone.EnumType.values().length];
+		stoneslabs = new Block[BlockStone.EnumType.values().length][2];
 		for (int i = 0; i < BlockStone.EnumType.values().length; i++) {
-			// stonestairs[i] = new BlockStoneSlabs(BlockStone.EnumType.byMetadata(i));
+			stoneslabs[i][0] = new BlockHalfCustomSlab(Blocks.stone.getDefaultState(), "stonehalfslab" + BlockStone.EnumType.byMetadata(i).getName());
+			stoneslabs[i][1] = new BlockDoubleCustomSlab(Blocks.stone.getDefaultState(), "stonedoubleslab" + BlockStone.EnumType.byMetadata(i).getName());
 		}
 		UMod.log.debug("Init Blocks");
 	}
@@ -181,8 +183,8 @@ public class UBlocks {
 			Utils.registerBlock(block);
 		}
 		// Stone Stairs
-		for (Block block : stoneslabs) {
-			Utils.registerBlock(block);
+		for (Block[] blocks : stoneslabs) {
+			Utils.registerHalfSlabs(blocks[0], blocks[1]);
 		}
 		UMod.log.debug("Register Blocks");
 	}

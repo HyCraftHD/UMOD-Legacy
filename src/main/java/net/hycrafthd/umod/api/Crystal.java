@@ -8,15 +8,8 @@ public abstract class Crystal extends ItemBase{
 	public abstract int energyUnits();
 	
 	public static boolean isStackCrystal(ItemStack is){
-		
-		if(is != null){
-			if(is.getItem() instanceof Crystal){
-				return true;
-			}
-		}
-		
+		if(is != null && is.getItem() instanceof Crystal)return true;
 		return false;
-		
 	}
 	
 }

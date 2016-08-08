@@ -6,7 +6,6 @@ import net.hycrafthd.umod.container.*;
 import net.hycrafthd.umod.enumtype.*;
 import net.hycrafthd.umod.gui.*;
 import net.hycrafthd.umod.inventory.InventoryBackPack;
-import net.hycrafthd.umod.tileentity.TileEntityMagicCrafter;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
@@ -43,7 +42,7 @@ public class UGuiHandler implements ICustomGuiHandler {
 		case PAINTER:
 			return new ContainerPainter((IInventory) ent, player, world);
 		case MAGIC_CRAFTER:
-			return new ContainerMagicCrafter(player.inventory, (TileEntityMagicCrafter) world.getTileEntity(new BlockPos(x, y, z)));
+			return new ContainerMagicCrafter((IInventory) ent, player, p, world);
 		}
 		return null;
 	}
@@ -76,7 +75,7 @@ public class UGuiHandler implements ICustomGuiHandler {
 		case PAINTER:
 			return new GuiPainter(player, (IInventory) ent, new ContainerPainter((IInventory) ent, player, world));
 		case MAGIC_CRAFTER:
-			return new GUIMagicCrafter(new ContainerMagicCrafter(player.inventory, (TileEntityMagicCrafter) world.getTileEntity(new BlockPos(x, y, z))));
+			return new GuiMagicCrafter(player,(IInventory)ent,new ContainerMagicCrafter((IInventory) ent, player, p, world));
 		}
 		return null;
 		

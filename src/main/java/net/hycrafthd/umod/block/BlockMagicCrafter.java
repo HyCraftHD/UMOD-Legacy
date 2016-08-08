@@ -2,7 +2,6 @@ package net.hycrafthd.umod.block;
 
 import net.hycrafthd.umod.*;
 import net.hycrafthd.umod.enumtype.EnumTypeGui;
-import net.hycrafthd.umod.gui.GUIMagicCrafter;
 import net.hycrafthd.umod.tileentity.TileEntityMagicCrafter;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -26,10 +25,7 @@ public class BlockMagicCrafter extends BlockContainer{
 			
 			TileEntity tileentity = worldIn.getTileEntity(pos);
 			if(tileentity instanceof TileEntityMagicCrafter){
-				
-				GUIMagicCrafter.setLocation(pos, worldIn);
 				playerIn.openGui(UReference.instance, EnumTypeGui.MAGIC_CRAFTER.getID(), worldIn, pos.getX(), pos.getY(), pos.getZ());
-				
 			}
 			
 		}

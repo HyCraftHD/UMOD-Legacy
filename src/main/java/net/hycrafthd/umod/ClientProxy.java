@@ -6,7 +6,7 @@ import org.lwjgl.input.Keyboard;
 
 import net.hycrafthd.corelib.registry.*;
 import net.hycrafthd.corelib.util.ItemUtil;
-import net.hycrafthd.umod.block.BlockSlabCreator;
+import net.hycrafthd.umod.block.*;
 import net.hycrafthd.umod.block.BlockSolarPanel.EnumTypeSolarPanel;
 import net.hycrafthd.umod.entity.*;
 import net.hycrafthd.umod.entity.rail.EntityRailFX;
@@ -15,7 +15,6 @@ import net.hycrafthd.umod.entity.render.rail.RenderRailFX;
 import net.hycrafthd.umod.enumtype.*;
 import net.hycrafthd.umod.render.*;
 import net.hycrafthd.umod.tileentity.*;
-import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.resources.model.ModelResourceLocation;
@@ -132,22 +131,20 @@ public class ClientProxy extends CommonProxy {
 		ModelRegistry.register(UBlocks.craftfurnance);
 		ModelRegistry.register(UBlocks.rail);
 		
-		// Stone Stairs
-		for (Block block : UBlocks.stonestairs) {
-			ModelRegistry.register(block);
+		// Stairs
+		for (BlockStairCreator creator : UBlocks.stonestairs) {
+			ModelRegistry.register(creator.getStair());
 		}
 		
-		// Wool Stairs
-		for (Block block : UBlocks.woolstairs) {
-			ModelRegistry.register(block);
+		for (BlockStairCreator creator : UBlocks.woolstairs) {
+			ModelRegistry.register(creator.getStair());
 		}
 		
-		// Wool Stairs
-		for (Block block : UBlocks.claystairs) {
-			ModelRegistry.register(block);
+		for (BlockStairCreator creator : UBlocks.claystairs) {
+			ModelRegistry.register(creator.getStair());
 		}
 		
-		// Stone Slabs
+		// Slabs
 		for (BlockSlabCreator creator : UBlocks.stoneslabs) {
 			ModelRegistry.register(creator.getSlab());
 		}

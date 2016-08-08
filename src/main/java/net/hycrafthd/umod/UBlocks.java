@@ -47,13 +47,11 @@ public class UBlocks {
 	public static Block rail;
 	public static Block rail2;
 	
-	// Stone Stairs
-	public static Block[] stonestairs;
-	// Wool Stairs
-	public static Block[] woolstairs;
-	// Clay Stairs
-	public static Block[] claystairs;
-	// Stone Slabs
+	// Stairs
+	public static BlockStairCreator[] stonestairs;
+	public static BlockStairCreator[] woolstairs;
+	public static BlockStairCreator[] claystairs;
+	// Slabs
 	public static BlockSlabCreator[] stoneslabs;
 	
 	public UBlocks() {
@@ -101,26 +99,24 @@ public class UBlocks {
 		rail = new BlockExtendedRail().setUnlocalizedName("ExRail");
 		rail2 = new Block2rail().setUnlocalizedName("railhelp");
 		
-		// Stone Stairs
-		stonestairs = new Block[BlockStone.EnumType.values().length];
+		// Stairs
+		stonestairs = new BlockStairCreator[BlockStone.EnumType.values().length];
 		for (int i = 0; i < BlockStone.EnumType.values().length; i++) {
-			stonestairs[i] = new BlockStoneStairs(BlockStone.EnumType.byMetadata(i));
+			stonestairs[i] = new BlockStairCreator(Blocks.stone.getDefaultState().withProperty(BlockStone.VARIANT, BlockStone.EnumType.byMetadata(i)), "stone_" + BlockStone.EnumType.byMetadata(i).getName());
 		}
 		
-		// Wool Stairs
-		woolstairs = new Block[EnumDyeColor.values().length];
+		woolstairs = new BlockStairCreator[EnumDyeColor.values().length];
 		for (int i = 0; i < EnumDyeColor.values().length; i++) {
-			woolstairs[i] = new BlockWoolStairs(EnumDyeColor.byMetadata(i));
+			woolstairs[i] = new BlockStairCreator(Blocks.wool.getDefaultState().withProperty(BlockColored.COLOR, EnumDyeColor.byMetadata(i)), "wool_" + EnumDyeColor.byDyeDamage(i).getName());
 		}
 		
-		// Clay Stairs
-		claystairs = new Block[EnumDyeColor.values().length + 1];
+		claystairs = new BlockStairCreator[EnumDyeColor.values().length + 1];
 		for (int i = 0; i < EnumDyeColor.values().length; i++) {
-			claystairs[i] = new BlockClayStairs(EnumDyeColor.byMetadata(i));
+			claystairs[i] = new BlockStairCreator(Blocks.stained_hardened_clay.getDefaultState().withProperty(BlockColored.COLOR, EnumDyeColor.byMetadata(i)), "clay_stained_" + EnumDyeColor.byDyeDamage(i).getName());
 		}
-		claystairs[EnumDyeColor.values().length] = new BlockClayStairs();
+		claystairs[EnumDyeColor.values().length] = new BlockStairCreator(Blocks.hardened_clay.getDefaultState(), "clay_hardened");
 		
-		// Stone Slabs
+		// Slabs
 		stoneslabs = new BlockSlabCreator[BlockStone.EnumType.values().length];
 		for (int i = 0; i < BlockStone.EnumType.values().length; i++) {
 			stoneslabs[i] = new BlockSlabCreator(Blocks.stone.getDefaultState().withProperty(BlockStone.VARIANT, BlockStone.EnumType.byMetadata(i)), "stone_" + BlockStone.EnumType.byMetadata(i).getName());
@@ -169,19 +165,17 @@ public class UBlocks {
 		URegistryUtils.registerBlock(rail);
 		URegistryUtils.registerBlock(rail2);
 		
-		// Stone Stairs
-		for (Block block : stonestairs) {
-			URegistryUtils.registerBlock(block);
+		// Stairs
+		for (BlockStairCreator creator : stonestairs) {
+			URegistryUtils.registerBlock(creator.getStair());
 		}
-		// Wool Stairs
-		for (Block block : woolstairs) {
-			URegistryUtils.registerBlock(block);
+		for (BlockStairCreator creator : woolstairs) {
+			URegistryUtils.registerBlock(creator.getStair());
 		}
-		// Clay Stairs
-		for (Block block : claystairs) {
-			URegistryUtils.registerBlock(block);
+		for (BlockStairCreator creator : claystairs) {
+			URegistryUtils.registerBlock(creator.getStair());
 		}
-		// Stone Stairs
+		// Slabs
 		for (BlockSlabCreator creator : stoneslabs) {
 			URegistryUtils.registerHalfSlabs(creator);
 		}

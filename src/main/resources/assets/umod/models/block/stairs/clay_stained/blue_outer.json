@@ -1,0 +1,8 @@
+{
+	"parent": "block/outer_stairs",
+	"textures": {
+		"bottom": "blocks/hardened_clay_stained_blue",
+		"top": "blocks/hardened_clay_stained_blue",
+		"side": "blocks/hardened_clay_stained_blue"
+	}
+}

@@ -68,6 +68,10 @@ public abstract class GuiBase extends GuiScreen {
 		this.worldObj = Minecraft.getMinecraft().getIntegratedServer().worldServers[0];
 	}
 	
+	public GuiBase(ResourceLocation loc,EntityPlayer pl, IInventory tile, Container con) {
+		this(loc, new GuiRescources("battery.png"), new GuiRescources("IOMode.png"),pl,tile,con);
+	}
+	
 	public IPowerProvieder pro;
 	public EntityPlayer pl;
 	public int ag;
@@ -1017,16 +1021,7 @@ public abstract class GuiBase extends GuiScreen {
 		}
 	}
 	
-	public void onIOModeSwitched() {
-		if (face != null && this.getIOFaceing().equals(face)) {
-			box.setSelected(0);
-		} else if (face2 != null && this.getIOFaceing().equals(face2)) {
-			box.setSelected(1);
-		} else {
-			box.setSelected(2);
-		}
-		
-	}
+	public abstract void onIOModeSwitched();
 	
 	/**
 	 * Called when a mouse button is released. Args : mouseX, mouseY, releaseButton

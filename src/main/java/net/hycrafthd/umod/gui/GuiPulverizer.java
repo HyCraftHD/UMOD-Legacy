@@ -17,7 +17,7 @@ public class GuiPulverizer extends GuiBase {
 	public BlockPos pos;
 	
 	public GuiPulverizer(EntityPlayer pl, IInventory tile, World w, BlockPos pos) {
-		super(new GuiRescources("pulver.png"), new GuiRescources("battery.png"), new GuiRescources("IOMode.png"), pl, tile, new ContainerPulverizer(tile, pl, w));
+		super(new GuiRescources("pulver.png"),pl, tile, new ContainerPulverizer(tile, pl, w));
 		this.pos = pos;
 	}
 	
@@ -53,6 +53,12 @@ public class GuiPulverizer extends GuiBase {
 		box2.getItems().add("Input");
 		box2.getItems().add("Outputs");
 		box2.setSelected(0);
+	}
+
+	@Override
+	public void onIOModeSwitched() {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

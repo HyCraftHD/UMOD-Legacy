@@ -1,0 +1,8 @@
+{
+	"parent": "block/inner_stairs",
+	"textures": {
+		"bottom": "blocks/wool_colored_lime",
+		"top": "blocks/wool_colored_lime",
+		"side": "blocks/wool_colored_lime"
+	}
+}

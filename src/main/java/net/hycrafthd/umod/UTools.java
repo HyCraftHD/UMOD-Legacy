@@ -1,7 +1,7 @@
 package net.hycrafthd.umod;
 
 import net.hycrafthd.umod.item.tools.emerald.*;
-import net.hycrafthd.umod.utils.Utils;
+import net.hycrafthd.umod.utils.URegistryUtils;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraftforge.common.util.EnumHelper;
@@ -33,11 +33,11 @@ public class UTools {
 	}
 	
 	private void register() {
-		Utils.registerItem(emeraldAxe);
-		Utils.registerItem(emeraldPickaxe);
-		Utils.registerItem(emeraldSword);
-		Utils.registerItem(emeraldSpade);
-		Utils.registerItem(emeraldHoe);
+		URegistryUtils.registerItem(emeraldAxe);
+		URegistryUtils.registerItem(emeraldPickaxe);
+		URegistryUtils.registerItem(emeraldSword);
+		URegistryUtils.registerItem(emeraldSpade);
+		URegistryUtils.registerItem(emeraldHoe);
 		UMod.log.debug("Register Tools");
 	}
 	

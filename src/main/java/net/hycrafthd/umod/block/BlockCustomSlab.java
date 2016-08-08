@@ -6,7 +6,7 @@ import net.hycrafthd.corelib.util.ItemUtil;
 import net.hycrafthd.umod.UReference;
 import net.minecraft.block.*;
 import net.minecraft.block.material.MapColor;
-import net.minecraft.block.properties.*;
+import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.player.EntityPlayer;

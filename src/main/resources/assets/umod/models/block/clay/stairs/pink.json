@@ -1,8 +1,0 @@
-{
-	"parent": "block/stairs",
-	"textures": {
-		"bottom": "blocks/hardened_clay_stained_pink",
-		"top": "blocks/hardened_clay_stained_pink",
-		"side": "blocks/hardened_clay_stained_pink"
-	}
-}

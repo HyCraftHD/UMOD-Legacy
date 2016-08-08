@@ -1,8 +1,0 @@
-{
-	"parent": "block/inner_stairs",
-	"textures": {
-		"bottom": "blocks/hardened_clay_stained_red",
-		"top": "blocks/hardened_clay_stained_red",
-		"side": "blocks/hardened_clay_stained_red"
-	}
-}

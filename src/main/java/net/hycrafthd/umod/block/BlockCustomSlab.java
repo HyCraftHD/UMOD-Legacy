@@ -2,15 +2,16 @@ package net.hycrafthd.umod.block;
 
 import java.util.Random;
 
+import net.hycrafthd.corelib.util.ItemUtil;
 import net.hycrafthd.umod.UReference;
 import net.minecraft.block.*;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.properties.*;
 import net.minecraft.block.state.*;
-import net.minecraft.entity.Entity;
+import net.minecraft.entity.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
 import net.minecraftforge.fml.relauncher.*;
@@ -19,8 +20,9 @@ public abstract class BlockCustomSlab extends BlockSlab {
 	
 	private final Block modelBlock;
 	private final IBlockState modelState;
+	private final Block itemslab;
 	
-	public BlockCustomSlab(IBlockState modelState) {
+	BlockCustomSlab(IBlockState modelState, Block itemslab) {
 		super(modelState.getBlock().getMaterial());
 		this.modelBlock = modelState.getBlock();
 		this.modelState = modelState;
@@ -31,14 +33,41 @@ public abstract class BlockCustomSlab extends BlockSlab {
 		IBlockState blockState = this.blockState.getBaseState();
 		if (!this.isDouble()) {
 			blockState = blockState.withProperty(HALF, EnumBlockHalf.BOTTOM);
-			this.setCreativeTab(UReference.tab);
 		}
-		setDefaultState(blockState);
+		this.setCreativeTab(UReference.tab);
+		this.setDefaultState(blockState);
+		this.itemslab = itemslab;
+	}
+	
+	@Override
+	public Item getItemDropped(IBlockState state, Random rand, int fortune) {
+		if (itemslab == null && !this.isDouble()) {
+			return ItemUtil.from(this);
+		}
+		return ItemUtil.from(itemslab);
+	}
+	
+	@SideOnly(Side.CLIENT)
+	@Override
+	public Item getItem(World worldIn, BlockPos pos) {
+		if (itemslab == null && !this.isDouble()) {
+			return ItemUtil.from(this);
+		}
+		return ItemUtil.from(itemslab);
 	}
 	
 	@Override
 	public String getUnlocalizedName(int meta) {
 		return this.getUnlocalizedName();
+	}
+	
+	@Override
+	public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
+		IBlockState iblockstate = this.getStateFromMeta(meta);
+		if (!this.isDouble()) {
+			iblockstate = iblockstate.withProperty(HALF, BlockSlab.EnumBlockHalf.BOTTOM);
+		}
+		return this.isDouble() ? iblockstate : (facing != EnumFacing.DOWN && (facing == EnumFacing.UP || (double) hitY <= 0.5D) ? iblockstate : iblockstate.withProperty(HALF, BlockSlab.EnumBlockHalf.TOP));
 	}
 	
 	@Override

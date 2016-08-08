@@ -6,6 +6,7 @@ import org.lwjgl.input.Keyboard;
 
 import net.hycrafthd.corelib.registry.*;
 import net.hycrafthd.corelib.util.ItemUtil;
+import net.hycrafthd.umod.block.BlockSlabCreator;
 import net.hycrafthd.umod.block.BlockSolarPanel.EnumTypeSolarPanel;
 import net.hycrafthd.umod.entity.*;
 import net.hycrafthd.umod.entity.rail.EntityRailFX;
@@ -144,6 +145,11 @@ public class ClientProxy extends CommonProxy {
 		// Wool Stairs
 		for (Block block : UBlocks.claystairs) {
 			ModelRegistry.register(block);
+		}
+		
+		// Stone Slabs
+		for (BlockSlabCreator creator : UBlocks.stoneslabs) {
+			ModelRegistry.register(creator.getSlab());
 		}
 		
 		// Backpack

@@ -4,8 +4,8 @@ import net.minecraft.block.state.IBlockState;
 
 public class BlockHalfCustomSlab extends BlockCustomSlab {
 	
-	public BlockHalfCustomSlab(IBlockState modelState, String name) {
-		super(modelState);
+	BlockHalfCustomSlab(IBlockState modelState, String name) {
+		super(modelState, null);
 		this.setUnlocalizedName(name);
 	}
 	

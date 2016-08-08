@@ -3,7 +3,7 @@ package net.hycrafthd.umod;
 import net.hycrafthd.umod.block.*;
 import net.hycrafthd.umod.block.rail.*;
 import net.hycrafthd.umod.item.*;
-import net.hycrafthd.umod.utils.Utils;
+import net.hycrafthd.umod.utils.URegistryUtils;
 import net.minecraft.block.*;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.EnumDyeColor;
@@ -54,7 +54,7 @@ public class UBlocks {
 	// Clay Stairs
 	public static Block[] claystairs;
 	// Stone Slabs
-	public static Block[][] stoneslabs;
+	public static BlockSlabCreator[] stoneslabs;
 	
 	public UBlocks() {
 		init();
@@ -121,70 +121,69 @@ public class UBlocks {
 		claystairs[EnumDyeColor.values().length] = new BlockClayStairs();
 		
 		// Stone Slabs
-		stoneslabs = new Block[BlockStone.EnumType.values().length][2];
+		stoneslabs = new BlockSlabCreator[BlockStone.EnumType.values().length];
 		for (int i = 0; i < BlockStone.EnumType.values().length; i++) {
-			stoneslabs[i][0] = new BlockHalfCustomSlab(Blocks.stone.getDefaultState(), "stonehalfslab" + BlockStone.EnumType.byMetadata(i).getName());
-			stoneslabs[i][1] = new BlockDoubleCustomSlab(Blocks.stone.getDefaultState(), "stonedoubleslab" + BlockStone.EnumType.byMetadata(i).getName());
+			stoneslabs[i] = new BlockSlabCreator(Blocks.stone.getDefaultState().withProperty(BlockStone.VARIANT, BlockStone.EnumType.byMetadata(i)), "stone_" + BlockStone.EnumType.byMetadata(i).getName());
 		}
 		UMod.log.debug("Init Blocks");
 	}
 	
 	private void register() {
 		// Ore
-		Utils.registerBlock(ores, ItemBlockOres.class);
-		Utils.registerBlock(netherores, ItemBlockOres.class);
+		URegistryUtils.registerBlock(ores, ItemBlockOres.class);
+		URegistryUtils.registerBlock(netherores, ItemBlockOres.class);
 		// Blocks
-		Utils.registerBlock(blocks, ItemBlockBlocks.class);
+		URegistryUtils.registerBlock(blocks, ItemBlockBlocks.class);
 		// Machinery
-		Utils.registerBlock(craftfurnance, ItemBlockEnergy.class);
-		Utils.registerBlock(pulver, ItemBlockEnergy.class);
-		Utils.registerBlock(energyMonitor);
-		Utils.registerBlock(painter);
+		URegistryUtils.registerBlock(craftfurnance, ItemBlockEnergy.class);
+		URegistryUtils.registerBlock(pulver, ItemBlockEnergy.class);
+		URegistryUtils.registerBlock(energyMonitor);
+		URegistryUtils.registerBlock(painter);
 		// SolarPanel
-		Utils.registerBlock(solarpanel, ItemBlockSolarPanel.class);
-		Utils.registerBlock(charge);
+		URegistryUtils.registerBlock(solarpanel, ItemBlockSolarPanel.class);
+		URegistryUtils.registerBlock(charge);
 		// Infected
-		Utils.registerBlock(infectedGrass);
-		Utils.registerBlock(infectedDirt);
-		Utils.registerBlock(infectedLog);
-		Utils.registerBlock(infectedLeave);
-		Utils.registerBlock(infectedSapling);
-		Utils.registerBlock(infectedPlank);
-		Utils.registerBlock(infectedFruit);
+		URegistryUtils.registerBlock(infectedGrass);
+		URegistryUtils.registerBlock(infectedDirt);
+		URegistryUtils.registerBlock(infectedLog);
+		URegistryUtils.registerBlock(infectedLeave);
+		URegistryUtils.registerBlock(infectedSapling);
+		URegistryUtils.registerBlock(infectedPlank);
+		URegistryUtils.registerBlock(infectedFruit);
 		
-		Utils.registerBlock(oilglass);
-		Utils.registerBlock(oilsand);
+		URegistryUtils.registerBlock(oilglass);
+		URegistryUtils.registerBlock(oilsand);
 		
-		Utils.registerBlock(infestedCleaner);
+		URegistryUtils.registerBlock(infestedCleaner);
 		
 		// Pipes
-		Utils.registerBlock(alu_cable, ItemBlockEnergy.class);
-		Utils.registerBlock(silver_cable, ItemBlockEnergy.class);
-		Utils.registerBlock(zin_cable, ItemBlockEnergy.class);
+		URegistryUtils.registerBlock(alu_cable, ItemBlockEnergy.class);
+		URegistryUtils.registerBlock(silver_cable, ItemBlockEnergy.class);
+		URegistryUtils.registerBlock(zin_cable, ItemBlockEnergy.class);
 		// Normal Block
-		Utils.registerBlock(nuke);
-		Utils.registerBlock(conduit, ItemBlockConduit.class);
+		URegistryUtils.registerBlock(nuke);
+		URegistryUtils.registerBlock(conduit, ItemBlockConduit.class);
 		
-		Utils.registerBlock(barrels, ItemBlockBarrels.class);
+		URegistryUtils.registerBlock(barrels, ItemBlockBarrels.class);
 		
-		Utils.registerBlock(rail);
-		Utils.registerBlock(rail2);
+		URegistryUtils.registerBlock(rail);
+		URegistryUtils.registerBlock(rail2);
 		
 		// Stone Stairs
 		for (Block block : stonestairs) {
-			Utils.registerBlock(block);
+			URegistryUtils.registerBlock(block);
 		}
 		// Wool Stairs
 		for (Block block : woolstairs) {
-			Utils.registerBlock(block);
+			URegistryUtils.registerBlock(block);
 		}
 		// Clay Stairs
 		for (Block block : claystairs) {
-			Utils.registerBlock(block);
+			URegistryUtils.registerBlock(block);
 		}
 		// Stone Stairs
-		for (Block[] blocks : stoneslabs) {
-			Utils.registerHalfSlabs(blocks[0], blocks[1]);
+		for (BlockSlabCreator creator : stoneslabs) {
+			URegistryUtils.registerHalfSlabs(creator);
 		}
 		UMod.log.debug("Register Blocks");
 	}

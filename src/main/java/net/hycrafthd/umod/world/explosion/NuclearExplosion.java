@@ -4,7 +4,7 @@ import java.util.Random;
 
 import net.hycrafthd.umod.api.ProcessHandler;
 import net.hycrafthd.umod.interfaces.IProcess;
-import net.hycrafthd.umod.utils.Utils;
+import net.hycrafthd.umod.utils.URegistryUtils;
 import net.minecraft.world.World;
 
 public class NuclearExplosion implements IProcess {
@@ -37,7 +37,7 @@ public class NuclearExplosion implements IProcess {
 		
 		for (int x = xCoord - size; x < xCoord + size; x++) {
 			for (int z = zCoord - size; z < zCoord + size; z++) {
-				double dist = Utils.getDistanceAtoB(x, z, xCoord, zCoord);
+				double dist = URegistryUtils.getDistanceAtoB(x, z, xCoord, zCoord);
 				if (dist < OD && dist >= ID) {
 					float tracePower = power - (float) (expansion / 10D);
 					tracePower *= 1.5F + ((random.nextFloat() - 0.5F) * 0.1);

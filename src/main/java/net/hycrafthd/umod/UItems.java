@@ -1,7 +1,7 @@
 package net.hycrafthd.umod;
 
 import net.hycrafthd.umod.item.*;
-import net.hycrafthd.umod.utils.Utils;
+import net.hycrafthd.umod.utils.URegistryUtils;
 import net.minecraft.item.Item;
 
 public class UItems {
@@ -93,42 +93,42 @@ public class UItems {
 	private void register() {
 		
 		// Ingot
-		Utils.registerItem(ingots);
+		URegistryUtils.registerItem(ingots);
 		
 		// Dust
-		Utils.registerItem(dusts);
-		Utils.registerItem(manganoxid);
+		URegistryUtils.registerItem(dusts);
+		URegistryUtils.registerItem(manganoxid);
 		
 		//magic crafter
-		Utils.registerItem(magic_diamond);
+		URegistryUtils.registerItem(magic_diamond);
 		
 		// Cobble Dust
-		Utils.registerItem(cdust);
+		URegistryUtils.registerItem(cdust);
 		
 		// Infected
-		Utils.registerItem(infectedcrop);
-		Utils.registerItem(infectedleather);
-		Utils.registerItem(infectedbeef);
-		Utils.registerItem(infectedmilk);
-		Utils.registerItem(acid);
-		Utils.registerItem(plastic);
+		URegistryUtils.registerItem(infectedcrop);
+		URegistryUtils.registerItem(infectedleather);
+		URegistryUtils.registerItem(infectedbeef);
+		URegistryUtils.registerItem(infectedmilk);
+		URegistryUtils.registerItem(acid);
+		URegistryUtils.registerItem(plastic);
 		
 		// Battery
-		Utils.registerItem(tester);
-		Utils.registerItem(battery);
-		Utils.registerItem(energydisplay);
-		Utils.registerItem(copper_wire);
-		Utils.registerItem(copper_coil);
-		Utils.registerItem(transformer);
-		Utils.registerItem(thicker_copper_wire);
-		Utils.registerItem(thicker_copper_coil);
-		Utils.registerItem(solar_cell);
-		Utils.registerItem(petrol);
+		URegistryUtils.registerItem(tester);
+		URegistryUtils.registerItem(battery);
+		URegistryUtils.registerItem(energydisplay);
+		URegistryUtils.registerItem(copper_wire);
+		URegistryUtils.registerItem(copper_coil);
+		URegistryUtils.registerItem(transformer);
+		URegistryUtils.registerItem(thicker_copper_wire);
+		URegistryUtils.registerItem(thicker_copper_coil);
+		URegistryUtils.registerItem(solar_cell);
+		URegistryUtils.registerItem(petrol);
 		
 		// Backpack
-		Utils.registerItem(backpack);
+		URegistryUtils.registerItem(backpack);
 		
-		Utils.registerItem(railplacer);
+		URegistryUtils.registerItem(railplacer);
 		
 		UMod.log.debug("Register Items");
 	}

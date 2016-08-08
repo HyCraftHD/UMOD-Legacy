@@ -245,4 +245,9 @@ public class BlockCable extends Block implements ITileEntityProvider, IEnergyMes
 			fx.setDead();
 		}
 	}
+	
+	@Override
+	public int getMetaFromState(IBlockState state) {
+		return 0;
+	}
 }

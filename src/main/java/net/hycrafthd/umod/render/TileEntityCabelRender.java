@@ -18,9 +18,10 @@ public class TileEntityCabelRender extends TileRender {
 	@Override
 	public void renderTileEntityAt(TileEntity p_180535_1_, double posX, double posY, double posZ) {
 		EntityPlayer pl = Minecraft.getMinecraft().thePlayer;
-		if (pl.inventory.armorInventory[3] != null && pl.inventory.armorInventory[3].getItem() instanceof ItemEnergyGlasses && p_180535_1_ instanceof IPowerProvieder) {
+//		if (pl.inventory.armorInventory[3] != null && pl.inventory.armorInventory[3].getItem() instanceof ItemEnergyGlasses && p_180535_1_ instanceof IPowerProvieder) {
 			// TODO Create Overlay only IO Pipes
-		}
+//		}
+		System.out.println("Cable Render Started");
 		Block blo = p_180535_1_.getWorld().getBlockState(p_180535_1_.getPos()).getBlock();
 		if(blo != null && p_180535_1_ instanceof TileEntityCable && blo instanceof BlockCable){
         BlockCable cab = (BlockCable) blo;
@@ -28,6 +29,7 @@ public class TileEntityCabelRender extends TileRender {
 		TileEntityCable pip = (TileEntityCable) p_180535_1_;
 		World w = p_180535_1_.getWorld();
 		if(!w.isRemote)return;
+		System.out.println("World is Remote");
 		BlockPos pos = pip.getPos(); 
 			if (Minecraft.isAmbientOcclusionEnabled()){
 	                GlStateManager.shadeModel(7425);
@@ -71,7 +73,8 @@ public class TileEntityCabelRender extends TileRender {
 			}
 			
 			if((!cdown && !ceast && !cnorth && !csouth && !cup && !cwest) || (lr && fb) || (lr && ud) || (ud && fb) || (ud && fb && lr)){
-				LWJGLUtils.drawBlock(loc, posX, posY, posZ, 0.205, 0.205, 0.205);
+				LWJGLUtils.drawTexturedCube(loc, posX, posY, posZ, 0.205, 0.205, 0.205);
+				System.out.println("Draw main block at Pos[" + posX + "," + posY + "," + posZ + "]");
 			}			
 		}
 		GlStateManager.enableCull();

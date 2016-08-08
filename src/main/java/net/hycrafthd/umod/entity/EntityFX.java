@@ -1,5 +1,6 @@
 package net.hycrafthd.umod.entity;
 
+import net.hycrafthd.umod.UMod;
 import net.minecraft.entity.*;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.*;
@@ -10,23 +11,16 @@ public class EntityFX extends EntityHanging {
 	public EntityFX(World w) {
 		super(w);
 		this.setSize(1F, 1F);
-		this.field_174860_b = EnumFacing.NORTH;
 	}
 	
 	public EntityFX(World worldIn,BlockPos p) {
 		super(worldIn,p);
-        this.setSize(1F, 1F);
 		this.field_174860_b = EnumFacing.NORTH;
-		this.setSize(1F, 1F);
-		this.setPosition((double) p.getX(), (double) p.getY(), (double) p.getZ());
-		this.setSize(1F, 1F);
+        this.setSize(1F, 1F);
+        this.setRotation(0, 0);
 		this.setEntityBoundingBox(new AxisAlignedBB(p, p.add(1, 1, 1)));
-		this.setRotation(0, 180);
+		this.setPosition((double) p.getX(), (double) p.getY(), (double) p.getZ());
 	}
-	//public EntityFX(World worldIn,BlockPos p,float wh) {
-		//this(worldIn,p);
-		//this.setSize(wh, wh);
-//	}
     
 	@Override
 	public boolean isEntityInvulnerable(DamageSource p_180431_1_) {
@@ -65,6 +59,11 @@ public class EntityFX extends EntityHanging {
 		return false;
 	}
 	
+	@Override
+	public BlockPos getPosition() {
+		return super.getPosition();
+	}
+	
 	public void setPosition(double x, double y, double z) {
 		this.posX = x;
 		this.posY = y;
@@ -75,41 +74,13 @@ public class EntityFX extends EntityHanging {
 		if (!this.hangingPosition.equals(blockpos)) {
 			this.isAirBorne = true;
 		}
+		//UMod.log.info(this.hangingPosition.toString());
 	}
 	
 	@Override
-	public void readFromNBT(NBTTagCompound tagCompund) {
-		this.hangingPosition = new BlockPos(tagCompund.getInteger("TileX"), tagCompund.getInteger("TileY"), tagCompund.getInteger("TileZ"));
-		EnumFacing enumfacing;
-		
-		if (tagCompund.hasKey("Direction", 99)) {
-			enumfacing = EnumFacing.getHorizontal(tagCompund.getByte("Direction"));
-			this.hangingPosition = this.hangingPosition.offset(enumfacing);
-		} else if (tagCompund.hasKey("Facing", 99)) {
-			enumfacing = EnumFacing.getHorizontal(tagCompund.getByte("Facing"));
-		} else {
-			enumfacing = EnumFacing.getHorizontal(tagCompund.getByte("Dir"));
-		}
-	}
+	public void readFromNBT(NBTTagCompound tagCompund) {}
 	
 	@Override
-	public void writeToNBT(NBTTagCompound tagCompund){
-		 this.hangingPosition = new BlockPos(tagCompund.getInteger("TileX"), tagCompund.getInteger("TileY"), tagCompund.getInteger("TileZ"));
-	        EnumFacing enumfacing;
-
-	        if (tagCompund.hasKey("Direction", 99))
-	        {
-	            enumfacing = EnumFacing.getHorizontal(tagCompund.getByte("Direction"));
-	            this.hangingPosition = this.hangingPosition.offset(enumfacing);
-	        }
-	        else if (tagCompund.hasKey("Facing", 99))
-	        {
-	            enumfacing = EnumFacing.getHorizontal(tagCompund.getByte("Facing"));
-	        }
-	        else
-	        {
-	            enumfacing = EnumFacing.getHorizontal(tagCompund.getByte("Dir"));
-	        }
-	}
+	public void writeToNBT(NBTTagCompound tagCompund){}
 	
 }

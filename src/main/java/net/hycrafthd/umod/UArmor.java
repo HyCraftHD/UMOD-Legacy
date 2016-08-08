@@ -2,7 +2,7 @@ package net.hycrafthd.umod;
 
 import net.hycrafthd.umod.armor.*;
 import net.hycrafthd.umod.item.tools.energy.ItemEnergyGlasses;
-import net.hycrafthd.umod.utils.Utils;
+import net.hycrafthd.umod.utils.URegistryUtils;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraftforge.common.util.EnumHelper;
@@ -62,19 +62,19 @@ public class UArmor {
 	
 	private void register() {
 		// Radiation Suit
-		Utils.registerItem(radiationSuitHelmet);
-		Utils.registerItem(radiationSuitChestplate);
-		Utils.registerItem(radiationSuitLeggings);
-		Utils.registerItem(radiationSuitBoots);
+		URegistryUtils.registerItem(radiationSuitHelmet);
+		URegistryUtils.registerItem(radiationSuitChestplate);
+		URegistryUtils.registerItem(radiationSuitLeggings);
+		URegistryUtils.registerItem(radiationSuitBoots);
 		
 		// Energy
-		Utils.registerItem(energyglasses);
+		URegistryUtils.registerItem(energyglasses);
 		
 		// Emerald
-		Utils.registerItem(emeraldHelmet);
-		Utils.registerItem(emeraldChestplate);
-		Utils.registerItem(emeraldLeggings);
-		Utils.registerItem(emeraldBoots);
+		URegistryUtils.registerItem(emeraldHelmet);
+		URegistryUtils.registerItem(emeraldChestplate);
+		URegistryUtils.registerItem(emeraldLeggings);
+		URegistryUtils.registerItem(emeraldBoots);
 		
 		UMod.log.debug("Register Armor");
 	}

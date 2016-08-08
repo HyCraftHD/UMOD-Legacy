@@ -9,7 +9,8 @@ public enum EnumTypeGui {
 	CRAFTFURNANCE(4),
 	BACKPACK(5),
 	BARRELS(6),
-	PAINTER(7);
+	PAINTER(7),
+	MAGIC_CRAFTER(8);
 	
 	public int getID() {
 		return id;

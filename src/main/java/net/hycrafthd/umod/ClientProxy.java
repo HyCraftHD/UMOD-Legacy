@@ -84,6 +84,10 @@ public class ClientProxy extends CommonProxy {
 		ModelRegistry.register(UItems.thicker_copper_wire);
 		ModelRegistry.register(UItems.petrol);
 		
+		//magic crafter
+		ModelRegistry.register(UBlocks.magic_crafter);
+		ModelRegistry.register(UItems.magic_diamond);
+		
 		// SolarPanel
 		for (int i = 0; i < EnumTypeSolarPanel.values().length; i++) {
 			ModelRegistry.registerVariants(Item.getItemFromBlock(UBlocks.solarpanel), UReference.resource + "solarpanel" + EnumTypeSolarPanel.byMetadata(i).getName());

@@ -1,0 +1,7 @@
+{
+	"variants": {
+		"normal": {
+			"model": "umod:block/magic_crafter"
+		}
+	}
+}

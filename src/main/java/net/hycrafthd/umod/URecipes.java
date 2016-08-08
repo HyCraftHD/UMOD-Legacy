@@ -10,9 +10,17 @@ import net.minecraft.item.ItemStack;
 public class URecipes {
 	
 	public URecipes() {
+		registerMagicCrafterRecipes();
 		registerCraftingRecipes();
 		registerFurnaceRecipes();
 		registerPulverizerRecipes();
+	}
+	
+	private void registerMagicCrafterRecipes(){
+		
+		ModRegistryUtils.addMagicCrafterRecipe(new MagicCrafterRecipe(4, new ItemStack(Items.diamond), 
+				new ItemStack(Items.emerald), new ItemStack(UItems.magic_diamond)));
+		
 	}
 	
 	private void registerCraftingRecipes() {
@@ -45,6 +53,12 @@ public class URecipes {
 		UMod.log.debug("registerCraftingRecipes");
 		RecipeRegistry.registerShaped(new ItemStack(UItems.petrol), new Object[] { "SSS", "SSS", "SBS", 'S', new ItemStack(UBlocks.oilsand), 'B', new ItemStack(Items.glass_bottle) });
 		
+		//stairs
+//		for (int i = 0; i < BlockStone.EnumType.values().length; i++) {
+//			//UBlocks.stonestairs[i] = new BlockStoneStairs(BlockStone.EnumType.byMetadata(i));
+//			RecipeRegistry.registerShaped(new ItemStack(UBlocks.stonestairs[i]), new Object[]{"BAA", "BBA", "BBB", 'B', 
+//				new ItemStack(BlockStone.EnumType.byMetadata(i))}); //dERROR
+//		}		
 	}
 	
 	private void registerFurnaceRecipes() {

@@ -11,6 +11,10 @@ public class ModRegistryUtils {
 	private static ArrayList<CraftSmeltRecepie> craftlist = new ArrayList<CraftSmeltRecepie>();
 	private static ArrayList<CraftSmeltRecepieShapless> craftlist2 = new ArrayList<CraftSmeltRecepieShapless>();
 	
+	public static void addMagicCrafterRecipe(MagicCrafterRecipe mcr){
+		MagicCrafterRecipe.register(mcr);
+	}
+	
 	public static void addPulverRiecepie(PulverizerRecepie re) {
 		list.add(re);
 	}

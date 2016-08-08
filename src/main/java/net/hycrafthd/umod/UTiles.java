@@ -19,6 +19,7 @@ public class UTiles {
 		TileEntityRegistry.register(TileEntityEnergyPannel.class, "tileenergymonitor");
 		TileEntityRegistry.register(TileEntityPainter.class, "tilepainter");
 		TileEntityRegistry.register(TileEntityRail.class, "tilereail");
+		TileEntityRegistry.register(TileEntityMagicCrafter.class, "tile_magic_crafter");
 		UMod.log.debug("Register TileEntitys");
 	}
 	

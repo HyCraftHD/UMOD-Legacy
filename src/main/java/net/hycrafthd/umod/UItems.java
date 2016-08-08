@@ -12,7 +12,8 @@ public class UItems {
 	// Dust
 	public static Item dusts;
 	public static Item manganoxid;
-	
+	//magic crafter
+	public static Item magic_diamond;
 	// Cobble Dust
 	public static Item cdust;
 	
@@ -55,6 +56,9 @@ public class UItems {
 		dusts = new ItemDusts().setUnlocalizedName("dusts");
 		manganoxid = new ItemManganOxid().setUnlocalizedName("manganoxid");
 		
+		//magic crafter
+		magic_diamond = new ItemMagicDiamond().setUnlocalizedName("magic_diamond");
+		
 		// Cobble Dust
 		cdust = new ItemFundamental().setUnlocalizedName("cdust");
 		
@@ -94,6 +98,9 @@ public class UItems {
 		// Dust
 		Utils.registerItem(dusts);
 		Utils.registerItem(manganoxid);
+		
+		//magic crafter
+		Utils.registerItem(magic_diamond);
 		
 		// Cobble Dust
 		Utils.registerItem(cdust);

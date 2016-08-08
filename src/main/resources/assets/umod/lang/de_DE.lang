@@ -33,6 +33,9 @@ item.dusturan.name=Uranstaub
 item.dustzinc.name=Zinkstaub
 item.cdust.name=Bruchsteinstaub
 
+#magic crafter
+item.magic_diamond.name=Magischer Diamant
+
 #Radiation Suit
 item.radiationsuithelmet.name=Strahlungsschutzmaske
 item.radiationsuitchestplate.name=Strahlungsschutzhemt

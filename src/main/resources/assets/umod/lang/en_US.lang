@@ -33,8 +33,11 @@ item.dusturan.name=Uran Dust
 item.dustzinc.name=Zinc Dust
 item.cdust.name=Cobblestone Dust
 
-#magic crafter
+#magic
 item.magic_diamond.name=Magic Diamond
+item.magic_ingot.name=Magic Ingot
+item.charged_quartz.name=Charged Quartz
+item.magic_brew.name=Magic Brew
 
 #Radiation Suit
 item.radiationsuithelmet.name=Radiation Suit Mask

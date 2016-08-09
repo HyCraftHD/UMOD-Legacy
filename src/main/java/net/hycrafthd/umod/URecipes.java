@@ -18,8 +18,15 @@ public class URecipes {
 	
 	private void registerMagicCrafterRecipes(){
 		
-		ModRegistryUtils.addMagicCrafterRecipe(new MagicCrafterRecipe(4, new ItemStack(Items.diamond), 
-				new ItemStack(Items.emerald), new ItemStack(UItems.magic_diamond)));
+		//magic brew
+		ModRegistryUtils.addMagicCrafterRecipe(new MagicCrafterRecipe(0, new ItemStack(Items.potionitem, 1, 8227), 
+				new ItemStack(UItems.acid), new ItemStack(UItems.magic_brew)));
+		//magic ingot
+		ModRegistryUtils.addMagicCrafterRecipe(new MagicCrafterRecipe(0, new ItemStack(Items.iron_ingot), 
+				new ItemStack(UItems.magic_brew), new ItemStack(UItems.magic_ingot)));
+		//magic quartz
+		ModRegistryUtils.addMagicCrafterRecipe(new MagicCrafterRecipe(0, new ItemStack(Items.quartz), 
+				new ItemStack(UItems.magic_brew), new ItemStack(UItems.charged_quartz)));
 		
 	}
 	

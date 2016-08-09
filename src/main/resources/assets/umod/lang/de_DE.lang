@@ -35,6 +35,9 @@ item.cdust.name=Bruchsteinstaub
 
 #magic crafter
 item.magic_diamond.name=Magischer Diamant
+item.magic_ingot.name=Magischer Barren
+item.charged_quartz.name=Geladener Quarz
+item.magic_brew.name=Magisches Gebräu
 
 #Radiation Suit
 item.radiationsuithelmet.name=Strahlungsschutzmaske

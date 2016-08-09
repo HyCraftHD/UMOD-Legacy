@@ -12,8 +12,12 @@ public class UItems {
 	// Dust
 	public static Item dusts;
 	public static Item manganoxid;
-	//magic crafter
+	//magic
 	public static Item magic_diamond;
+	public static Item magic_ingot;
+	public static Item charged_quartz;
+	public static Item magic_brew;
+	
 	// Cobble Dust
 	public static Item cdust;
 	
@@ -56,8 +60,11 @@ public class UItems {
 		dusts = new ItemDusts().setUnlocalizedName("dusts");
 		manganoxid = new ItemManganOxid().setUnlocalizedName("manganoxid");
 		
-		//magic crafter
+		//magic
 		magic_diamond = new ItemMagicDiamond().setUnlocalizedName("magic_diamond");
+		magic_ingot = new ItemMagicIngot().setUnlocalizedName("magic_ingot");
+		charged_quartz = new ItemChargedQuartz().setUnlocalizedName("charged_quartz");
+		magic_brew = new ItemMagicBrew().setUnlocalizedName("magic_brew");
 		
 		// Cobble Dust
 		cdust = new ItemFundamental().setUnlocalizedName("cdust");
@@ -99,8 +106,12 @@ public class UItems {
 		URegistryUtils.registerItem(dusts);
 		URegistryUtils.registerItem(manganoxid);
 		
-		//magic crafter
+		//magic
 		URegistryUtils.registerItem(magic_diamond);
+		URegistryUtils.registerItem(magic_ingot);
+		URegistryUtils.registerItem(charged_quartz);
+		URegistryUtils.registerItem(magic_brew);
+		//implements Erlenmeyer flask
 		
 		// Cobble Dust
 		URegistryUtils.registerItem(cdust);

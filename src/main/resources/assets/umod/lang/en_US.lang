@@ -38,12 +38,25 @@ item.magic_diamond.name=Magic Diamond
 item.magic_ingot.name=Magic Ingot
 item.charged_quartz.name=Charged Quartz
 item.magic_brew.name=Magic Brew
+tile.magic_glass.name=Magic Glass
+item.magic_bottle.name=Magic Bottle
+item.magic_axe.name=Magic Axe
+item.magic_pickaxe.name=Magic Pickaxe
+item.magic_shovel.name=Magic Shovel
+item.magic_sword.name=Magic Sword
+item.magic_hoe.name=Magic Hoe
 
 #Radiation Suit
 item.radiationsuithelmet.name=Radiation Suit Mask
 item.radiationsuitchestplate.name=Radiation Suit Chestplate
 item.radiationsuitleggings.name=Radiation Suit Leggings
 item.radiationsuitboots.name=Radiation Suit Boots
+
+#magic armor
+item.magic_helmet.name=Magic Helmet
+item.magic_chestplate.name=Magic Chestplate
+item.magic_leggings.name=Magic Leggings
+item.magic_boots.name=Magic Boots
 
 #Infected
 item.infectedcrop.name=Infected Crop

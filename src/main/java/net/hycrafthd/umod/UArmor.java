@@ -15,6 +15,8 @@ public class UArmor {
 	public static ArmorMaterial enrgy;
 	// Emerald
 	public static ArmorMaterial emeraldMaterial;
+	// Magic
+	public static ArmorMaterial magicMaterial;
 	
 	// Radiation Suit
 	public static Item radiationSuitHelmet;
@@ -28,6 +30,11 @@ public class UArmor {
 	public static Item emeraldChestplate;
 	public static Item emeraldLeggings;
 	public static Item emeraldBoots;
+	// Magic
+	public static Item magicHelmet;
+	public static Item magicChestplate;
+	public static Item magicLeggings;
+	public static Item magicBoots;
 	
 	public UArmor() {
 		init();
@@ -41,6 +48,8 @@ public class UArmor {
 		enrgy = EnumHelper.addArmorMaterial("Energy", "", 5, new int[] { 1, 3, 1, 1 }, 1);
 		// Emerald
 		emeraldMaterial = EnumHelper.addArmorMaterial("EMERALDARMOR", "", 28, new int[] { 3, 7, 5, 3 }, 20);
+		// Magic
+		magicMaterial = EnumHelper.addArmorMaterial("MAGICARMOR", "", 15, new int[]{ 3, 8, 6, 3 }, 30);
 		
 		// Radiation Suit
 		radiationSuitHelmet = new ArmorRadiation(radiationSuitMaterial, 0).setUnlocalizedName("radiationsuithelmet");
@@ -57,6 +66,12 @@ public class UArmor {
 		emeraldLeggings = new ArmorEmerald(emeraldMaterial, 2).setUnlocalizedName("emeraldleggings");
 		emeraldBoots = new ArmorEmerald(emeraldMaterial, 3).setUnlocalizedName("emeraldboots");
 		
+		// Magic
+		magicHelmet = new ArmorMagic(magicMaterial, 0).setUnlocalizedName("magic_helmet");
+		magicChestplate = new ArmorMagic(magicMaterial, 1).setUnlocalizedName("magic_chestplate");
+		magicLeggings = new ArmorMagic(magicMaterial, 2).setUnlocalizedName("magic_leggings");
+		magicBoots = new ArmorMagic(magicMaterial, 3).setUnlocalizedName("magic_boots");
+
 		UMod.log.debug("Init Armor");
 	}
 	
@@ -76,6 +91,12 @@ public class UArmor {
 		URegistryUtils.registerItem(emeraldLeggings);
 		URegistryUtils.registerItem(emeraldBoots);
 		
+		//Magic
+		URegistryUtils.registerItem(magicHelmet);
+		URegistryUtils.registerItem(magicChestplate);
+		URegistryUtils.registerItem(magicLeggings);
+		URegistryUtils.registerItem(magicBoots);
+
 		UMod.log.debug("Register Armor");
 	}
 	

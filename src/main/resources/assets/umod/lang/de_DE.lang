@@ -33,17 +33,30 @@ item.dusturan.name=Uranstaub
 item.dustzinc.name=Zinkstaub
 item.cdust.name=Bruchsteinstaub
 
-#magic crafter
+#magic
 item.magic_diamond.name=Magischer Diamant
 item.magic_ingot.name=Magischer Barren
 item.charged_quartz.name=Geladener Quarz
 item.magic_brew.name=Magisches Gebräu
+tile.magic_glass.name=Magisches Glas
+item.magic_bottle.name=Magische Flasche
+item.magic_axe.name=Magische Axt 
+item.magic_pickaxe.name=Magische Spitzhacke
+item.magic_shovel.name=Magische Schaufel
+item.magic_sword.name=Magisches Schwert
+item.magic_hoe.name=Magische Hacke
 
 #Radiation Suit
 item.radiationsuithelmet.name=Strahlungsschutzmaske
 item.radiationsuitchestplate.name=Strahlungsschutzhemt
 item.radiationsuitleggings.name=Strahlungsschutzmaske
 item.radiationsuitboots.name=Strahlungsschutzschuhe
+
+#magic armor
+item.magic_helmet.name=Magischer Helm
+item.magic_chestplate.name=Magische Brustplatte
+item.magic_leggings.name=Magische Hose
+item.magic_boots.name=Magische Schuhe
 
 #Infected
 item.infectedcrop.name=Infizierte Frucht

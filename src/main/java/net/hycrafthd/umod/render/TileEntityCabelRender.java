@@ -1,27 +1,24 @@
 package net.hycrafthd.umod.render;
 
 import net.hycrafthd.corelib.util.LWJGLUtils;
-import net.hycrafthd.umod.api.energy.IPowerProvieder;
 import net.hycrafthd.umod.block.BlockCable;
-import net.hycrafthd.umod.item.tools.energy.ItemEnergyGlasses;
 import net.hycrafthd.umod.tileentity.TileEntityCable;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.client.renderer.*;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.*;
 import net.minecraft.world.World;
 
 public class TileEntityCabelRender extends TileRender {
 	
 	@Override
 	public void renderTileEntityAt(TileEntity p_180535_1_, double posX, double posY, double posZ) {
-		EntityPlayer pl = Minecraft.getMinecraft().thePlayer;
+//		EntityPlayer pl = Minecraft.getMinecraft().thePlayer;
 //		if (pl.inventory.armorInventory[3] != null && pl.inventory.armorInventory[3].getItem() instanceof ItemEnergyGlasses && p_180535_1_ instanceof IPowerProvieder) {
 			// TODO Create Overlay only IO Pipes
 //		}
-		System.out.println("Cable Render Started");
+
 		Block blo = p_180535_1_.getWorld().getBlockState(p_180535_1_.getPos()).getBlock();
 		if(blo != null && p_180535_1_ instanceof TileEntityCable && blo instanceof BlockCable){
         BlockCable cab = (BlockCable) blo;
@@ -29,16 +26,8 @@ public class TileEntityCabelRender extends TileRender {
 		TileEntityCable pip = (TileEntityCable) p_180535_1_;
 		World w = p_180535_1_.getWorld();
 		if(!w.isRemote)return;
-		System.out.println("World is Remote");
+		GlStateManager.disableCull();
 		BlockPos pos = pip.getPos(); 
-			if (Minecraft.isAmbientOcclusionEnabled()){
-	                GlStateManager.shadeModel(7425);
-	        }else{
-	                GlStateManager.shadeModel(7424);
-	        }
-			GlStateManager.disableCull();
-			GlStateManager.blendFunc(770, 771);
-			GlStateManager.enableBlend();
 			boolean csouth = pip.canConnect(w, pos.south());
 			boolean cnorth = pip.canConnect(w, pos.north());
 			boolean cdown = pip.canConnect(w, pos.down());
@@ -73,11 +62,40 @@ public class TileEntityCabelRender extends TileRender {
 			}
 			
 			if((!cdown && !ceast && !cnorth && !csouth && !cup && !cwest) || (lr && fb) || (lr && ud) || (ud && fb) || (ud && fb && lr)){
-				LWJGLUtils.drawTexturedCube(loc, posX, posY, posZ, 0.205, 0.205, 0.205);
-				System.out.println("Draw main block at Pos[" + posX + "," + posY + "," + posZ + "]");
-			}			
+				LWJGLUtils.drawBlock(loc, posX, posY, posZ, 0.205, 0.205, 0.205);
+			}	
+			GlStateManager.enableCull();
 		}
-		GlStateManager.enableCull();
 	}
 	
+	public static void renderCube(ResourceLocation loc,double x,double y,double z,double witdh,double height,double depth){
+		GlStateManager.pushMatrix();
+		GlStateManager.disableAlpha();
+		GlStateManager.disableBlend();
+		GlStateManager.enableCull();
+		GlStateManager.enableDepth();
+		GlStateManager.enableTexture2D();
+		Minecraft.getMinecraft().getTextureManager().bindTexture(loc);
+		Vec3 Start1 = new Vec3(x, y, z);
+		Vec3 Start2 = new Vec3(x, y + height, z);
+		Vec3 End1Side1 = new Vec3(x + witdh, y, z);
+		Vec3 End2Side1 = new Vec3(x + witdh, y + height, z);
+		Vec3 End1Side2 = new Vec3(x + witdh, y, z + depth);
+		Vec3 End2Side2 = new Vec3(x + witdh, y + height, z + depth);
+		
+		Tessellator ts = Tessellator.getInstance();
+		WorldRenderer ren = ts.getWorldRenderer();
+		ren.startDrawingQuads();
+		ren.setBrightness(255);
+		VertexUV(ren, Start1, 0, 0);
+		VertexUV(ren, Start2, 0, 0);
+		VertexUV(ren, End1Side1, 0, 0);
+		VertexUV(ren, End2Side1, 0, 0);
+		ts.draw();
+		GlStateManager.popMatrix();
+	}
+	
+	private static void VertexUV(WorldRenderer rend,Vec3 ve,double u,double v){
+		rend.addVertexWithUV(ve.xCoord, ve.yCoord, ve.zCoord, u, v);
+	}
 }

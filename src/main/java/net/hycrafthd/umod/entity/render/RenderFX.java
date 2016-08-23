@@ -22,22 +22,21 @@ public class RenderFX extends RenderEntity{
 	public void doRender(Entity entity, double x, double y, double z, float p_76986_8_, float partialTicks) {
 		if (entity == null || entity.getPosition() == null)
 			return;
-		BlockPos pos = entity.getPosition();
-		System.out.println(pos.toString());
+		BlockPos pos = entity.getPosition().add(0, -1, 0);
 		TileEntity ent = entity.getEntityWorld().getTileEntity(pos);
 		if (ent == null) {
 			entity.setDead();
 			return;
 		}
-		System.out.println("Tile not null");
 		TileRender ren = list.get(ent.getClass());
 		if (ren == null)return;
-		System.out.println("Pass to Render");
-		Vec3 vc = ((EntityFX) entity).getPositionVector().add(new Vec3(-0.5, -0.5, -0.5));
+		Vec3 vc = new Vec3(x-0.5, y-0.5, z-0.5);
     	ren.render(ent,vc.xCoord, vc.yCoord, vc.zCoord);
 	}
 	
 	public static void register(Class<? extends TileEntity> ent, TileRender rend) {
 		list.put(ent, rend);
 	}
+	
+	
 }

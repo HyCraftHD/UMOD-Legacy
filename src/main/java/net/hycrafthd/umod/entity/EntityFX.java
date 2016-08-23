@@ -1,6 +1,5 @@
 package net.hycrafthd.umod.entity;
 
-import net.hycrafthd.umod.UMod;
 import net.minecraft.entity.*;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.*;
@@ -11,15 +10,16 @@ public class EntityFX extends EntityHanging {
 	public EntityFX(World w) {
 		super(w);
 		this.setSize(1F, 1F);
+        this.field_174860_b = EnumFacing.NORTH;
 	}
 	
 	public EntityFX(World worldIn,BlockPos p) {
 		super(worldIn,p);
-		this.field_174860_b = EnumFacing.NORTH;
-        this.setSize(1F, 1F);
-        this.setRotation(0, 0);
-		this.setEntityBoundingBox(new AxisAlignedBB(p, p.add(1, 1, 1)));
-		this.setPosition((double) p.getX(), (double) p.getY(), (double) p.getZ());
+		this.setSize(1F, 1F);
+        this.field_174860_b = EnumFacing.NORTH;
+        this.setPosition((double)p.getX() + 0.5D, (double)p.getY() + 0.5D, (double)p.getZ() + 0.5D);
+        this.setEntityBoundingBox(new AxisAlignedBB(p, p.add(1, 1, 1)));
+        this.setRotation(0, 180);
 	}
     
 	@Override
@@ -74,13 +74,27 @@ public class EntityFX extends EntityHanging {
 		if (!this.hangingPosition.equals(blockpos)) {
 			this.isAirBorne = true;
 		}
-		//UMod.log.info(this.hangingPosition.toString());
 	}
 	
 	@Override
-	public void readFromNBT(NBTTagCompound tagCompund) {}
+	public void readFromNBT(NBTTagCompound tagCompund) {
+		 this.hangingPosition = new BlockPos(tagCompund.getInteger("TileX"), tagCompund.getInteger("TileY"), tagCompund.getInteger("TileZ"));
+	        EnumFacing enumfacing;
+
+	        if (tagCompund.hasKey("Direction", 99))
+	        {
+	            enumfacing = EnumFacing.getHorizontal(tagCompund.getByte("Direction"));
+	            this.hangingPosition = this.hangingPosition.offset(enumfacing);
+	        }
+	        else if (tagCompund.hasKey("Facing", 99))
+	        {
+	            enumfacing = EnumFacing.getHorizontal(tagCompund.getByte("Facing"));
+	        }
+	        else
+	        {
+	            enumfacing = EnumFacing.getHorizontal(tagCompund.getByte("Dir"));
+	        }
+	}
 	
-	@Override
-	public void writeToNBT(NBTTagCompound tagCompund){}
 	
 }

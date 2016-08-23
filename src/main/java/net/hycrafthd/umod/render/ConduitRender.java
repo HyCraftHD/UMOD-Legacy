@@ -4,6 +4,7 @@ import net.hycrafthd.corelib.util.LWJGLUtils;
 import net.hycrafthd.umod.api.*;
 import net.hycrafthd.umod.block.BlockCable;
 import net.minecraft.block.Block;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;

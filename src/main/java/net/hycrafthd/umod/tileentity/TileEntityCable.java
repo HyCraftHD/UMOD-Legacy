@@ -248,13 +248,12 @@ public class TileEntityCable extends TileEntity implements IPlugabel, ICabel, IU
 	public void update() {
 		List<EntityFX> p = worldObj.getEntitiesWithinAABB(EntityFX.class, new AxisAlignedBB(pos, pos.add(1, 1, 1)));
 		if (p.size() <= 0) {
-			//this.worldObj.spawnEntityInWorld(new EntityFX(this.worldObj, this.pos));
+			this.worldObj.spawnEntityInWorld(new EntityFX(this.worldObj, this.pos));
 		}
 		if (isInit)
 			return;
 		onBlockSetInWorld();
 		this.worldObj.spawnEntityInWorld(new EntityFX(this.worldObj, this.pos));
-		System.out.println(pos);
 		isInit = true;
 	}
 	

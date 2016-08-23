@@ -18,7 +18,7 @@ public class BlockInfectedSapling extends BlockBush implements IGrowable, IInfec
 	
 	public BlockInfectedSapling() {
 		super();
-		this.setCreativeTab(UReference.tab);
+		this.setCreativeTab(UReference.infected);
 		this.setLightOpacity(1);
 		this.setStepSound(soundTypeGrass);
 		this.setBlockBounds(0.1F, 0.0F, 0.1F, 0.9F, 0.8F, 0.9F);

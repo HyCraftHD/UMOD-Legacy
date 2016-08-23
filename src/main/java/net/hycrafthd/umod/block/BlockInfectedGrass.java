@@ -2,7 +2,7 @@ package net.hycrafthd.umod.block;
 
 import java.util.Random;
 
-import net.hycrafthd.umod.UBlocks;
+import net.hycrafthd.umod.*;
 import net.hycrafthd.umod.interfaces.IInfectedBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -16,6 +16,7 @@ public class BlockInfectedGrass extends BlockBase implements IInfectedBlock {
 	
 	public BlockInfectedGrass() {
 		super(Material.grass);
+		this.setCreativeTab(UReference.infected);
 		this.setHarvestLevel("spade", 2);
 		this.setHardness(0.6F);
 		this.setStepSound(soundTypeGrass);

@@ -11,7 +11,7 @@ public class ItemEmeraldAxe extends ItemAxe {
 	
 	public ItemEmeraldAxe(ToolMaterial material) {
 		super(material);
-		setCreativeTab(UReference.tab);
+		setCreativeTab(UReference.things);
 	}
 	
 	@SuppressWarnings("rawtypes")

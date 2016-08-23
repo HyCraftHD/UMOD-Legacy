@@ -9,7 +9,7 @@ public class BlockCustomStair extends BlockStairs {
 	BlockCustomStair(IBlockState modelState, String name) {
 		super(modelState);
 		this.setUnlocalizedName(name);
-		this.setCreativeTab(UReference.tab);
+		this.setCreativeTab(UReference.blocks);
 	}
 	
 }

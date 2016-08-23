@@ -37,7 +37,7 @@ public class UBlocks {
 	// Pipes
 	public static Block silver_cable;
 	public static Block alu_cable;
-	public static Block zin_cable;
+	public static Block lowvoltage_cable;
 	//magic crafter
 	public static Block magic_crafter;
 	public static Block magic_glass;
@@ -95,7 +95,7 @@ public class UBlocks {
 		// Cable
 		silver_cable = new BlockCable("silvercable", 62, 62, false, "Cable");
 		alu_cable = new BlockCable("aluminiumcable", 38, 38, false, "Cable");
-		zin_cable = new BlockCable("zincable", 9, 9, false, "Cable");
+		lowvoltage_cable = new BlockCable("lowvoltage_cable", 9, 9, false, "low_voltage_cable");
 		// Normal Blocks
 		nuke = new BlockNuke().setUnlocalizedName("nuke");
 		conduit = new BlockConduit().setUnlocalizedName("conduit");
@@ -164,7 +164,7 @@ public class UBlocks {
 		// Pipes
 		URegistryUtils.registerBlock(alu_cable, ItemBlockEnergy.class);
 		URegistryUtils.registerBlock(silver_cable, ItemBlockEnergy.class);
-		URegistryUtils.registerBlock(zin_cable, ItemBlockEnergy.class);
+		URegistryUtils.registerBlock(lowvoltage_cable, ItemBlockEnergy.class);
 		// Normal Block
 		URegistryUtils.registerBlock(nuke);
 		URegistryUtils.registerBlock(conduit, ItemBlockConduit.class);

@@ -8,7 +8,7 @@ import net.minecraft.inventory.*;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.*;
 import net.minecraft.server.gui.IUpdatePlayerListBox;
-import net.minecraft.tileentity.*;
+import net.minecraft.tileentity.TileEntityLockable;
 import net.minecraft.util.EnumFacing;
 
 public class TileEntityMagicCrafter extends TileEntityLockable implements IUpdatePlayerListBox , ISidedInventory{

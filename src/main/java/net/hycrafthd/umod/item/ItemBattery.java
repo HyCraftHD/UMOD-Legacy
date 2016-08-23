@@ -2,6 +2,7 @@ package net.hycrafthd.umod.item;
 
 import java.util.List;
 
+import net.hycrafthd.umod.UReference;
 import net.hycrafthd.umod.entity.EntityTommahak;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -12,6 +13,7 @@ public class ItemBattery extends ItemBase {
 	public ItemBattery() {
 		this.setMaxDamage(500);
 		this.setMaxStackSize(1);
+		setCreativeTab(UReference.maschines);
 	}
 	
 	@Override

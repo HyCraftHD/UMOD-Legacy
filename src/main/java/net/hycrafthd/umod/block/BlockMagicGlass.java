@@ -2,6 +2,7 @@ package net.hycrafthd.umod.block;
 
 import java.util.Random;
 
+import net.hycrafthd.umod.UReference;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -15,7 +16,7 @@ public class BlockMagicGlass extends BlockBase {
 		super(Material.glass);
 		this.setHardness(0.6F);
 		this.setStepSound(soundTypeGlass);
-		
+		this.setCreativeTab(UReference.magic);
 	}
 	
 	public int quantityDropped(Random random) {

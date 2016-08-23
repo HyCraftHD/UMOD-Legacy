@@ -2,6 +2,7 @@ package net.hycrafthd.umod.item;
 
 import java.util.List;
 
+import net.hycrafthd.umod.UReference;
 import net.hycrafthd.umod.enumtype.EnumTypeTransformer;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.*;
@@ -10,6 +11,7 @@ public class ItemTransformer extends ItemBase {
 	
 	public ItemTransformer() {
 		super();
+		this.setCreativeTab(UReference.maschines);
 		this.hasSubtypes = true;
 	}
 	

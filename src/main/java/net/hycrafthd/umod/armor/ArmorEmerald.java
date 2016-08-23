@@ -11,7 +11,7 @@ public class ArmorEmerald extends ItemArmor {
 	
 	public ArmorEmerald(ArmorMaterial material, int armorType) {
 		super(material, 0, armorType);
-		this.setCreativeTab(UReference.tab);
+		this.setCreativeTab(UReference.things);
 	}
 	
 	@Override

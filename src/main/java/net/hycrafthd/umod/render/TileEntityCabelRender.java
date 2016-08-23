@@ -4,7 +4,6 @@ import net.hycrafthd.corelib.util.LWJGLUtils;
 import net.hycrafthd.umod.block.BlockCable;
 import net.hycrafthd.umod.tileentity.TileEntityCable;
 import net.minecraft.block.Block;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.*;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
@@ -68,34 +67,4 @@ public class TileEntityCabelRender extends TileRender {
 		}
 	}
 	
-	public static void renderCube(ResourceLocation loc,double x,double y,double z,double witdh,double height,double depth){
-		GlStateManager.pushMatrix();
-		GlStateManager.disableAlpha();
-		GlStateManager.disableBlend();
-		GlStateManager.enableCull();
-		GlStateManager.enableDepth();
-		GlStateManager.enableTexture2D();
-		Minecraft.getMinecraft().getTextureManager().bindTexture(loc);
-		Vec3 Start1 = new Vec3(x, y, z);
-		Vec3 Start2 = new Vec3(x, y + height, z);
-		Vec3 End1Side1 = new Vec3(x + witdh, y, z);
-		Vec3 End2Side1 = new Vec3(x + witdh, y + height, z);
-		Vec3 End1Side2 = new Vec3(x + witdh, y, z + depth);
-		Vec3 End2Side2 = new Vec3(x + witdh, y + height, z + depth);
-		
-		Tessellator ts = Tessellator.getInstance();
-		WorldRenderer ren = ts.getWorldRenderer();
-		ren.startDrawingQuads();
-		ren.setBrightness(255);
-		VertexUV(ren, Start1, 0, 0);
-		VertexUV(ren, Start2, 0, 0);
-		VertexUV(ren, End1Side1, 0, 0);
-		VertexUV(ren, End2Side1, 0, 0);
-		ts.draw();
-		GlStateManager.popMatrix();
-	}
-	
-	private static void VertexUV(WorldRenderer rend,Vec3 ve,double u,double v){
-		rend.addVertexWithUV(ve.xCoord, ve.yCoord, ve.zCoord, u, v);
-	}
 }

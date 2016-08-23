@@ -20,7 +20,7 @@ public class BlockInfectedLeave extends BlockLeaves implements IInfectedBlock {
 	
 	public BlockInfectedLeave() {
 		super();
-		this.setCreativeTab(UReference.tab);
+		this.setCreativeTab(UReference.infected);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(CHECK_DECAY, Boolean.valueOf(true)).withProperty(DECAYABLE, Boolean.valueOf(true)));
 		Blocks.fire.setFireInfo(this, 30, 60);
 	}

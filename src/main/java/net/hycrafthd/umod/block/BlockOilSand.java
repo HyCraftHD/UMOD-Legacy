@@ -10,7 +10,7 @@ public class BlockOilSand extends BlockFalling implements IInfectedBlock {
 	
 	public BlockOilSand() {
 		super(Material.sand);
-		this.setCreativeTab(UReference.tab);
+		this.setCreativeTab(UReference.blocks);
 		this.setHarvestLevel("spade", 2);
 		this.setHardness(0.8F);
 		this.setStepSound(soundTypeSand);

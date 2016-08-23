@@ -11,7 +11,7 @@ public class ItemEmeraldHoe extends ItemHoe {
 	
 	public ItemEmeraldHoe(ToolMaterial material) {
 		super(material);
-		setCreativeTab(UReference.tab);
+		setCreativeTab(UReference.things);
 	}
 	
 	@SuppressWarnings("rawtypes")

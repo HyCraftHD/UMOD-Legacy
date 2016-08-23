@@ -1,5 +1,6 @@
 package net.hycrafthd.umod.item;
 
+import net.hycrafthd.umod.UReference;
 import net.hycrafthd.umod.api.energy.IPowerProvieder;
 import net.hycrafthd.umod.tileentity.TileEntityCable;
 import net.minecraft.entity.player.EntityPlayer;
@@ -12,6 +13,7 @@ public class ItemCabletester extends ItemBase {
 	
 	public ItemCabletester() {
 		this.setMaxDamage(400);
+		this.setCreativeTab(UReference.maschines);
 	}
 	
 	@Override

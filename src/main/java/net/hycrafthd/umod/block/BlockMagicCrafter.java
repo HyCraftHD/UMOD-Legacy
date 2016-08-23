@@ -1,6 +1,6 @@
 package net.hycrafthd.umod.block;
 
-import net.hycrafthd.umod.*;
+import net.hycrafthd.umod.UReference;
 import net.hycrafthd.umod.enumtype.EnumTypeGui;
 import net.hycrafthd.umod.tileentity.TileEntityMagicCrafter;
 import net.minecraft.block.BlockContainer;
@@ -15,7 +15,7 @@ public class BlockMagicCrafter extends BlockContainer{
 
 	public BlockMagicCrafter() {
 		super(Material.piston);
-		this.setCreativeTab(UReference.tab);
+		this.setCreativeTab(UReference.magic);
 	}
 
 	@Override

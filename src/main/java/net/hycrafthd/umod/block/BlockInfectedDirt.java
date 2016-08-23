@@ -1,5 +1,6 @@
 package net.hycrafthd.umod.block;
 
+import net.hycrafthd.umod.UReference;
 import net.hycrafthd.umod.interfaces.IInfectedBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -12,6 +13,7 @@ public class BlockInfectedDirt extends BlockBase implements IInfectedBlock {
 		this.setHarvestLevel("spade", 2);
 		this.setHardness(0.6F);
 		this.setStepSound(soundTypeGrass);
+		this.setCreativeTab(UReference.infected);
 	}
 	
 	@Override

@@ -10,7 +10,7 @@ import net.minecraft.init.Blocks;
 public class BlockInfectedLog extends BlockLog implements IInfectedBlock {
 	
 	public BlockInfectedLog() {
-		this.setCreativeTab(UReference.tab);
+		this.setCreativeTab(UReference.infected);
 		this.setHarvestLevel("axe", 1);
 		this.setHardness(2.0F);
 		this.setResistance(5.0F);

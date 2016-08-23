@@ -1,5 +1,6 @@
 package net.hycrafthd.umod.block;
 
+import net.hycrafthd.umod.UReference;
 import net.hycrafthd.umod.interfaces.IInfectedBlock;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -16,6 +17,7 @@ public class BlockInfestedCleaner extends BlockBase {
 		this.setHarvestLevel("pickaxe", 2);
 		this.setHardness(1F);
 		this.setStepSound(soundTypeMetal);
+		this.setCreativeTab(UReference.maschines);
 	}
 	
 	@Override

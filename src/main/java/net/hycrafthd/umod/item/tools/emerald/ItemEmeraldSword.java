@@ -11,7 +11,7 @@ public class ItemEmeraldSword extends ItemSword {
 	
 	public ItemEmeraldSword(ToolMaterial material) {
 		super(material);
-		setCreativeTab(UReference.tab);
+		setCreativeTab(UReference.things);
 	}
 	
 	@SuppressWarnings("rawtypes")

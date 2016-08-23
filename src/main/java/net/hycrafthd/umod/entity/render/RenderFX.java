@@ -2,7 +2,6 @@ package net.hycrafthd.umod.entity.render;
 
 import java.util.HashMap;
 
-import net.hycrafthd.umod.entity.EntityFX;
 import net.hycrafthd.umod.render.TileRender;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.RenderEntity;

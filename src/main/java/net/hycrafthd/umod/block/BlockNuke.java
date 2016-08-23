@@ -1,5 +1,6 @@
 package net.hycrafthd.umod.block;
 
+import net.hycrafthd.umod.UReference;
 import net.hycrafthd.umod.entity.EntityNukePrimed;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -20,7 +21,7 @@ public class BlockNuke extends BlockBase {
 	public BlockNuke() {
 		super(Material.tnt);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(EXPLODE, Boolean.valueOf(false)));
-		;
+		this.setCreativeTab(UReference.things);
 	}
 	
 	@Override

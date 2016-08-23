@@ -2,7 +2,7 @@ package net.hycrafthd.umod.block.rail;
 
 import java.util.List;
 
-import net.hycrafthd.umod.*;
+import net.hycrafthd.umod.UItems;
 import net.hycrafthd.umod.entity.rail.EntityRailFX;
 import net.hycrafthd.umod.tileentity.rail.TileEntityRail;
 import net.minecraft.block.*;
@@ -22,7 +22,6 @@ public class BlockExtendedRail extends Block implements ITileEntityProvider {
 		super(Material.iron);
 		this.isBlockContainer = true;
 		this.setBlockBounds(0F, 0F, 0.3F, 1F, 0.2F, 0.7F);
-		this.setCreativeTab(UReference.tab);
 	}
 	
 	private NBTTagCompound compound;

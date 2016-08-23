@@ -2,7 +2,7 @@ package net.hycrafthd.umod.block;
 
 import java.util.*;
 
-import net.hycrafthd.umod.UItems;
+import net.hycrafthd.umod.*;
 import net.hycrafthd.umod.interfaces.IInfectedBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -18,6 +18,7 @@ public class BlockInfectedFruit extends BlockBase implements IInfectedBlock {
 		super(Material.plants);
 		this.setBlockBounds(5.5F / 16F, 7.5F / 16F, 5.5F / 16F, 10.5F / 16F, 16F / 16F, 10.5F / 16F);
 		this.setBlockBoundsForItemRender();
+		this.setCreativeTab(UReference.infected);
 	}
 	
 	@Override

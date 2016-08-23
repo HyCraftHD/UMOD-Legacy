@@ -34,7 +34,7 @@ public abstract class BlockCustomSlab extends BlockSlab {
 		if (!this.isDouble()) {
 			blockState = blockState.withProperty(HALF, EnumBlockHalf.BOTTOM);
 		}
-		this.setCreativeTab(UReference.tab);
+		this.setCreativeTab(UReference.blocks);
 		this.setDefaultState(blockState);
 		this.itemslab = itemslab;
 	}

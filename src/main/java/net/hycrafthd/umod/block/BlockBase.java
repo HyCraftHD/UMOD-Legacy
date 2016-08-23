@@ -8,7 +8,7 @@ public abstract class BlockBase extends Block {
 	
 	public BlockBase(Material mat) {
 		super(mat);
-		this.setCreativeTab(UReference.tab);
+		this.setCreativeTab(UReference.blocks);
 	}
 	
 }

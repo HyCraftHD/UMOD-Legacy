@@ -5,14 +5,13 @@ import java.util.List;
 import net.hycrafthd.umod.UReference;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemArmor;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.*;
 
 public class ArmorMagic extends ItemArmor{
 
 	public ArmorMagic(ArmorMaterial material, int armorType) {
 		super(material, 0, armorType);
-		this.setCreativeTab(UReference.tab);
+		this.setCreativeTab(UReference.magic);
 
 	}
 	

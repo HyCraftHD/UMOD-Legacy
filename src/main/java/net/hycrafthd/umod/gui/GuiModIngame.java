@@ -25,7 +25,6 @@ import net.minecraft.world.World;
 public class GuiModIngame {
 	
 	private static int ticks = 0;
-	private static int zLevel = 0;
 	public static ScaledResolution res;
 	
 	public static void renderGameOverlay(float partialTicks, ScaledResolution reso) {
@@ -48,35 +47,7 @@ public class GuiModIngame {
 		}
 	}
 	
-	protected void drawGradientRect(int left, int top, int right, int bottom, int startColor, int endColor) {
-		float f = (float) (startColor >> 24 & 255) / 255.0F;
-		float f1 = (float) (startColor >> 16 & 255) / 255.0F;
-		float f2 = (float) (startColor >> 8 & 255) / 255.0F;
-		float f3 = (float) (startColor & 255) / 255.0F;
-		float f4 = (float) (endColor >> 24 & 255) / 255.0F;
-		float f5 = (float) (endColor >> 16 & 255) / 255.0F;
-		float f6 = (float) (endColor >> 8 & 255) / 255.0F;
-		float f7 = (float) (endColor & 255) / 255.0F;
-		GlStateManager.disableTexture2D();
-		GlStateManager.enableBlend();
-		GlStateManager.disableAlpha();
-		GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
-		GlStateManager.shadeModel(7425);
-		Tessellator tessellator = Tessellator.getInstance();
-		WorldRenderer worldrenderer = tessellator.getWorldRenderer();
-		worldrenderer.startDrawingQuads();
-		worldrenderer.setColorRGBA_F(f1, f2, f3, f);
-		worldrenderer.addVertex((double) right, (double) top, (double) zLevel);
-		worldrenderer.addVertex((double) left, (double) top, (double) zLevel);
-		worldrenderer.setColorRGBA_F(f5, f6, f7, f4);
-		worldrenderer.addVertex((double) left, (double) bottom, (double) zLevel);
-		worldrenderer.addVertex((double) right, (double) bottom, (double) zLevel);
-		tessellator.draw();
-		GlStateManager.shadeModel(7424);
-		GlStateManager.disableBlend();
-		GlStateManager.enableAlpha();
-		GlStateManager.enableTexture2D();
-	}
+	private static int tT;
 	
 	private static void drawScreen(EntityPlayer pl) {
 		ticks++;
@@ -105,6 +76,7 @@ public class GuiModIngame {
 			GlStateManager.pushMatrix();
 			{
 				GlStateManager.translate(screenwidth / 2, height, 0);
+				GlStateManager.scale(tT/400, 1, 1);
 				rend.drawStringWithShadow(name, -rend.getStringWidth(name) / 2, -14, 0xFFFFFF);
 				rend.drawStringWithShadow(pos, -rend.getStringWidth(pos) / 2, -1, 0xFFFFFF);
 				rend.drawStringWithShadow(str, -rend.getStringWidth(str) / 2, 9, 0xFFFFFF);
@@ -113,6 +85,7 @@ public class GuiModIngame {
 			}
 			GlStateManager.popMatrix();
 			
+			if(tT > 400){
 			GlStateManager.pushMatrix();
 			{
 				RenderHelper.enableGUIStandardItemLighting();
@@ -121,14 +94,17 @@ public class GuiModIngame {
 				renderItemIntoGUI(new ItemStack(w.getBlockState(p).getBlock()), -10, -40);
 			}
 			GlStateManager.popMatrix();
+			}
 			
 		} else {
 			GlStateManager.pushMatrix();
 			GlStateManager.enableDepth();
 			GlStateManager.translate(width, height, 0);
+			GlStateManager.scale(tT/400, 1, 1);
 			rend.drawStringWithShadow("Out of range", -rend.getStringWidth("Out of range") / 2, -14, 0xFFFFFF);
 			GlStateManager.popMatrix();
 		}
+		tT++;
 	}
 	
 	private static int trans = 45;

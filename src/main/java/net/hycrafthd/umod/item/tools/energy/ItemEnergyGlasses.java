@@ -7,7 +7,7 @@ public class ItemEnergyGlasses extends ItemArmor {
 	
 	public ItemEnergyGlasses(ArmorMaterial material) {
 		super(material, 0, 0);
-		this.setCreativeTab(UReference.tab);
+		setCreativeTab(UReference.maschines);
 	}
 	
 }

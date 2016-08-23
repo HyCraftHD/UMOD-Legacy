@@ -1,5 +1,6 @@
 package net.hycrafthd.umod.block;
 
+import net.hycrafthd.umod.UReference;
 import net.hycrafthd.umod.api.IConduitBlock;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
@@ -22,6 +23,7 @@ public abstract class BlockBaseMachine extends BlockBase implements ITileEntityP
 		this.isBlockContainer = true;
 		this.setHarvestLevel("pickaxe", 3);
 		this.setHardness(5);
+		this.setCreativeTab(UReference.maschines);
 	}
 	
 	@Override

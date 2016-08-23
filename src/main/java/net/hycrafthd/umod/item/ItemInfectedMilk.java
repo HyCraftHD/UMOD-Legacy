@@ -1,6 +1,6 @@
 package net.hycrafthd.umod.item;
 
-import net.hycrafthd.umod.UPotion;
+import net.hycrafthd.umod.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.*;
@@ -11,6 +11,7 @@ public class ItemInfectedMilk extends ItemBase {
 	
 	public ItemInfectedMilk() {
 		this.setMaxStackSize(1);
+		this.setCreativeTab(UReference.infected);
 	}
 	
 	public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityPlayer playerIn) {

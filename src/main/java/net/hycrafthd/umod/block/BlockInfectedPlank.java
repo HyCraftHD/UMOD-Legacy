@@ -1,5 +1,6 @@
 package net.hycrafthd.umod.block;
 
+import net.hycrafthd.umod.UReference;
 import net.hycrafthd.umod.interfaces.IInfectedBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -11,6 +12,7 @@ public class BlockInfectedPlank extends BlockBase implements IInfectedBlock {
 		super(Material.wood);
 		this.setHarvestLevel("axe", 0);
 		this.setHardness(2.0F);
+		this.setCreativeTab(UReference.infected);
 		this.setResistance(5.0F);
 		this.setStepSound(soundTypeWood);
 		Blocks.fire.setFireInfo(this, 5, 20);

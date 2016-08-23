@@ -9,7 +9,7 @@ import net.minecraft.world.World;
 public class ItemSwellPlacer extends Item {
 	
 	public ItemSwellPlacer() {
-		this.setCreativeTab(UReference.tab);
+		this.setCreativeTab(UReference.rail);
 	}
 	
 	@Override

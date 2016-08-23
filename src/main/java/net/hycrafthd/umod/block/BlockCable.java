@@ -34,7 +34,7 @@ public class BlockCable extends Block implements ITileEntityProvider, IEnergyMes
 		this.setHardness(6F);
 		this.setResistance(5F);
 		this.setUnlocalizedName(name);
-		this.setCreativeTab(UReference.tab);
+		this.setCreativeTab(UReference.maschines);
 		this.lo = loos;
 		this.asp = sp;
 		this.setBlockBounds(0.4F, 0.4F, 0.4F, 0.6F, 0.6F, 0.6F);
@@ -91,7 +91,7 @@ public class BlockCable extends Block implements ITileEntityProvider, IEnergyMes
 	
 	@SideOnly(Side.CLIENT)
 	public boolean shouldSideBeRendered(IBlockAccess w, BlockPos pos, EnumFacing side) {
-		return side == EnumFacing.DOWN ? super.shouldSideBeRendered(w, pos, side) : true;
+		return false;
 	}
 	
 	@Override

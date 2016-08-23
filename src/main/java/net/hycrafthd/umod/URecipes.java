@@ -79,7 +79,7 @@ public class URecipes {
 		RecipeRegistry.registerShaped(new ItemStack(UBlocks.charge), new Object[] { "OPO", "STS", "OPO", 'O', new ItemStack(Blocks.obsidian), 'P', new ItemStack(UItems.plastic), 'S', new ItemStack(UBlocks.silver_cable), 'T', new ItemStack(UItems.transformer) });
 		RecipeRegistry.registerShaped(new ItemStack(UBlocks.alu_cable, 4), new Object[] { "PPP", "AAA", "PPP", 'A', new ItemStack(UItems.ingots, 1, 0), 'P', new ItemStack(UItems.plastic) });
 		RecipeRegistry.registerShaped(new ItemStack(UBlocks.silver_cable, 4), new Object[] { "PPP", "AAA", "PPP", 'A', new ItemStack(UItems.ingots, 1, 8), 'P', new ItemStack(UItems.plastic) });
-		RecipeRegistry.registerShaped(new ItemStack(UBlocks.zin_cable, 4), new Object[] { "PPP", "AAA", "PPP", 'A', new ItemStack(UItems.ingots, 1, 10), 'P', new ItemStack(UItems.plastic) });
+		RecipeRegistry.registerShaped(new ItemStack(UBlocks.lowvoltage_cable, 4), new Object[] { "PPP", "AAA", "PPP", 'A', new ItemStack(UItems.ingots, 1, 10), 'P', new ItemStack(UItems.plastic) });
 		RecipeRegistry.registerShaped(new ItemStack(UItems.battery), new Object[] { "BCB", "IMI", "ASA", 'B', new ItemStack(Blocks.iron_block), 'C', new ItemStack(Blocks.coal_block), 'I', new ItemStack(Items.iron_ingot), 'M', new ItemStack(UItems.manganoxid), 'A', new ItemStack(UItems.ingots, 1, 0), 'S', new ItemStack(UItems.acid) });
 		UMod.log.debug("registerCraftingRecipes");
 		RecipeRegistry.registerShaped(new ItemStack(UItems.petrol), new Object[] { "SSS", "SSS", "SBS", 'S', new ItemStack(UBlocks.oilsand), 'B', new ItemStack(UItems.magic_bottle) });

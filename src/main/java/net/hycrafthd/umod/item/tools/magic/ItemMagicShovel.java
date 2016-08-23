@@ -4,17 +4,14 @@ import java.util.List;
 
 import net.hycrafthd.umod.UReference;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemSpade;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemSword;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraft.item.*;
+import net.minecraftforge.fml.relauncher.*;
 
 public class ItemMagicShovel extends ItemSpade{
 
 	public ItemMagicShovel(ToolMaterial material) {
 		super(material);
-		setCreativeTab(UReference.tab);
+		setCreativeTab(UReference.magic);
 	}
 
 	@SuppressWarnings("rawtypes")

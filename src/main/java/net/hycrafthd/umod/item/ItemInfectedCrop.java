@@ -10,7 +10,7 @@ public class ItemInfectedCrop extends ItemFood {
 	
 	public ItemInfectedCrop() {
 		super(1, 0.2F, false);
-		this.setCreativeTab(UReference.tab);
+		this.setCreativeTab(UReference.infected);
 		this.setPotionEffect(UPotion.radiationPotion.getId(), 5, 1, 0.8F);
 	}
 	

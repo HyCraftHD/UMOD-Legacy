@@ -23,6 +23,7 @@ public class BlockSolarPanel extends BlockBase implements ITileEntityProvider, I
 	
 	public BlockSolarPanel() {
 		super(Material.iron);
+		this.setCreativeTab(UReference.maschines);
 	}
 	
 	@Override

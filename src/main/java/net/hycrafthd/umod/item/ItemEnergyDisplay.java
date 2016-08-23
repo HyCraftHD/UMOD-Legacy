@@ -1,5 +1,6 @@
 package net.hycrafthd.umod.item;
 
+import net.hycrafthd.umod.UReference;
 import net.hycrafthd.umod.block.BlockBaseMachine;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
@@ -12,6 +13,7 @@ public class ItemEnergyDisplay extends ItemBase {
 	
 	public ItemEnergyDisplay() {
 		this.setMaxStackSize(1);
+		setCreativeTab(UReference.maschines);
 	}
 	
 	public static final String NBT_TAG = "coorde";

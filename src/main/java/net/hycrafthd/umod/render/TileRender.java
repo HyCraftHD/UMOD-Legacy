@@ -1,7 +1,6 @@
 package net.hycrafthd.umod.render;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.tileentity.TileEntity;
 
 public abstract class TileRender {

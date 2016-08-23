@@ -1,5 +1,10 @@
 #Tab
-itemGroup.utab=UMod Tab
+itemGroup.utab=UMod Energie Zeug
+itemGroup.magic=UMod Magie Zeug
+itemGroup.rail=UMod Schienen Zeug
+itemGroup.infected=UMod Infiziertes Zeug
+itemGroup.blocks=UMod Blöcke
+itemGroup.things=UMod Verschidenes
 
 #Ingots
 item.ingotaluminium.name=Aluminiumbarren

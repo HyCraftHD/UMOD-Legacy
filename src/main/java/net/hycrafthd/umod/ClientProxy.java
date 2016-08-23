@@ -136,9 +136,9 @@ public class ClientProxy extends CommonProxy {
 		ModelRegistry.register(UBlocks.infestedCleaner);
 		
 		// Pipes
-		ModelRegistry.register(UBlocks.alu_cable);
-		ModelRegistry.register(UBlocks.silver_cable);
-		ModelRegistry.register(UBlocks.lowvoltage_cable);
+		ModelRegistry.register(UBlocks.medium_voltage_cable);
+		ModelRegistry.register(UBlocks.high_voltage_cable);
+		ModelRegistry.register(UBlocks.low_voltage_cable);
 		
 		// Normal Blocks
 		ModelRegistry.register(UBlocks.nuke);

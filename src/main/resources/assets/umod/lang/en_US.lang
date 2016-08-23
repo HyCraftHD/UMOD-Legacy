@@ -1,5 +1,10 @@
 #Tab
-itemGroup.utab=UMod Tab
+itemGroup.utab=UMod Energy Stuff
+itemGroup.magic=UMod Magic Stuff
+itemGroup.rail=UMod Rail Stuff
+itemGroup.infected=UMod Infected Stuff
+itemGroup.blocks=UMod Blocks
+itemGroup.things=UMod Random Things
 
 #Ingots
 item.ingotaluminium.name=Aluminium Ingot

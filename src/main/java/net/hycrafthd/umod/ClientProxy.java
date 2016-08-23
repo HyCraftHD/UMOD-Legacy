@@ -84,9 +84,14 @@ public class ClientProxy extends CommonProxy {
 		ModelRegistry.register(UItems.thicker_copper_wire);
 		ModelRegistry.register(UItems.petrol);
 		
-		//magic crafter
+		//magic
 		ModelRegistry.register(UBlocks.magic_crafter);
 		ModelRegistry.register(UItems.magic_diamond);
+		ModelRegistry.register(UItems.magic_ingot);
+		ModelRegistry.register(UItems.charged_quartz);
+		ModelRegistry.register(UItems.magic_brew);
+		ModelRegistry.register(UBlocks.magic_glass);
+		ModelRegistry.register(UItems.magic_bottle);
 		
 		// SolarPanel
 		for (int i = 0; i < EnumTypeSolarPanel.values().length; i++) {
@@ -105,6 +110,11 @@ public class ClientProxy extends CommonProxy {
 		ModelRegistry.register(UArmor.emeraldLeggings);
 		ModelRegistry.register(UArmor.emeraldBoots);
 		
+		ModelRegistry.register(UArmor.magicHelmet);
+		ModelRegistry.register(UArmor.magicChestplate);
+		ModelRegistry.register(UArmor.magicLeggings);
+		ModelRegistry.register(UArmor.magicBoots);
+
 		// Infected
 		ModelRegistry.register(UBlocks.infectedGrass);
 		ModelRegistry.register(UBlocks.infectedDirt);
@@ -166,6 +176,12 @@ public class ClientProxy extends CommonProxy {
 		ModelRegistry.register(UTools.emeraldSpade);
 		ModelRegistry.register(UTools.emeraldHoe);
 		
+		ModelRegistry.register(UTools.magicAxe);
+		ModelRegistry.register(UTools.magicPickaxe);
+		ModelRegistry.register(UTools.magicShovel);
+		ModelRegistry.register(UTools.magicSword);
+		ModelRegistry.register(UTools.magicHoe);
+
 		// Keybinding
 		KeybindingRegistry.register(info);
 	}

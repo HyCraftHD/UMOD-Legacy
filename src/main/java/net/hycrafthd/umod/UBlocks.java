@@ -40,6 +40,7 @@ public class UBlocks {
 	public static Block zin_cable;
 	//magic crafter
 	public static Block magic_crafter;
+	public static Block magic_glass;
 	// Normal Blocks
 	public static Block nuke;
 	public static Block conduit;
@@ -64,6 +65,7 @@ public class UBlocks {
 	private void init() {
 		//magic crafter
 		magic_crafter = new BlockMagicCrafter().setUnlocalizedName("magic_crafter");
+		magic_glass = new BlockMagicGlass().setUnlocalizedName("magic_glass");
 		// Ore
 		ores = new BlockOres().setUnlocalizedName("ores");
 		netherores = new BlockNetherOres().setUnlocalizedName("netherores");
@@ -134,8 +136,9 @@ public class UBlocks {
 		URegistryUtils.registerBlock(netherores, ItemBlockOres.class);
 		// Blocks
 		URegistryUtils.registerBlock(blocks, ItemBlockBlocks.class);
-		//Magic crfafter
+		//Magic
 		URegistryUtils.registerBlock(magic_crafter);
+		URegistryUtils.registerBlock(magic_glass);
 		// Machinery
 		URegistryUtils.registerBlock(craftfurnance, ItemBlockEnergy.class);
 		URegistryUtils.registerBlock(pulver, ItemBlockEnergy.class);

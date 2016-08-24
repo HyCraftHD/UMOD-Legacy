@@ -1,7 +1,7 @@
 {
 	"variants": {
 		"normal": {
-			"model": "umod:zincable"
+			"model": "umod:cable/mid_block"
 		}
 	}
 }

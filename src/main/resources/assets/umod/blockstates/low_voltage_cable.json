@@ -1,0 +1,7 @@
+{
+	"variants": {
+		"normal": {
+			"model": "umod:cable/low_block"
+		}
+	}
+}

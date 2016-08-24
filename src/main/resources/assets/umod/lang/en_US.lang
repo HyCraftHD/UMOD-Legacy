@@ -180,9 +180,9 @@ death.attack.elec=%1$s died from a Electronic Shock
 death.attack.nuclearexplosion=%1$s was killed by Nuclear Explosion
 
 #Cables
-tile.aluminiumcable.name=Aluminium Energy Cable
-tile.silvercable.name=Silver Energy Cable
-tile.zincable.name=Tin Energy Cable
+tile.medium_voltage_cable.name=Medium Voltage Cable
+tile.high_voltage_cable.name=High Voltage Cable
+tile.low_voltage_cable.name=Low Voltage Cable
 
 
 #Entity

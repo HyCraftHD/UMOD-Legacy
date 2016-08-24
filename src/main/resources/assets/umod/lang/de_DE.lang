@@ -177,9 +177,9 @@ death.attack.elec=%1$s starb durch einen elektrischen Schlag.
 death.attack.nuclearexplosion=%1$s wurde von einer nuklearen Explosion pulverisiert. 
 
 #Cables
-tile.aluminiumcable.name=Aluminium Kabel
-tile.silvercable.name=Silber Kabel
-tile.zincable.name=Zinn Kabel
+tile.medium_voltage_cable.name=Mittlere Kabel
+tile.high_voltage_cable.name=Starke Kabel
+tile.low_voltage_cable.name=Schwache Kabel
 
 
 #Entity

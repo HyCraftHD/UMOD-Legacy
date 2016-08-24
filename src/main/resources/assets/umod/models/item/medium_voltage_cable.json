@@ -1,5 +1,5 @@
 {
-	"parent": "umod:block/aluminiumcable_1",
+	"parent": "umod:block/cable/mid",
 	"display": {
 		"thirdperson": {
 			"rotation": [

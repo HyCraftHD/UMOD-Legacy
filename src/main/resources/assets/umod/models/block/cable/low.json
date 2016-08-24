@@ -1,0 +1,7 @@
+{
+	"parent": "umod:block/cable/Cable",
+	"textures": {
+		"texture": "umod:render/low_voltage_cable",
+		"particle": "umod:render/low_voltage_cable"
+	}
+}

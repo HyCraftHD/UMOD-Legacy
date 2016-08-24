@@ -215,11 +215,6 @@ public class BlockCable extends Block implements ITileEntityProvider, IEnergyMes
 	}
 	
 	@Override
-	public void onNeighborBlockChange(World world, BlockPos pos, IBlockState state, Block neighborBlock) {
-		((TileEntityCable) world.getTileEntity(pos)).onBlockSetInWorld();
-	}
-	
-	@Override
 	public void onBlockDestroyedByExplosion(World worldIn, BlockPos pos, Explosion explosionIn) {
 		entityClear(worldIn, pos);
 		super.onBlockDestroyedByExplosion(worldIn, pos, explosionIn);
@@ -234,7 +229,6 @@ public class BlockCable extends Block implements ITileEntityProvider, IEnergyMes
 	@Override
 	public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
 		entityClear(worldIn, pos);
-		((TileEntityCable) worldIn.getTileEntity(pos)).onBlockBreak();
 		super.breakBlock(worldIn, pos, state);
 	}
 	

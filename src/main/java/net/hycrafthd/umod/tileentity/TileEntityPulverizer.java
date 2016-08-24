@@ -455,4 +455,14 @@ public class TileEntityPulverizer extends TileEntityBase implements IPowerProvie
 			PacketHandler.INSTANCE.sendToAll(new MessageCallback(enumfO, mode));
 		}
 	}
+
+	@Override
+	public boolean isInput() {
+		return false;
+	}
+
+	@Override
+	public boolean isOutput() {
+		return true;
+	}
 }

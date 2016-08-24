@@ -4,15 +4,7 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 
 public interface ICabel {
-	
-	public double getEnergy();
-	
-	public void setEnergy(double i);
-	
-	public void searchForInput(ICabel cab);
-	
-	public void tranferTo(ICabel cab);
-	
+			
 	public BlockPos getPos();
 	
 	public World getWorld();
@@ -20,9 +12,7 @@ public interface ICabel {
 	public boolean isInput();
 	
 	public boolean isOutput();
-	
-	public double getMaxEnergy();
-	
+		
 	public String getEnergyClass();
 	
 	public void addToTunnel(ICabel cab);
@@ -32,20 +22,15 @@ public interface ICabel {
 	public ICabel[] getInputsFromTunnel();
 	
 	public int getTunnelIDofCabel();
-	
-	public boolean hasConnectedOutput();
-	
+		
 	public UETunnel getTunnel();
 	
 	public void setTunnelID(int i);
 	
-	public double needsEnergy();
+	public double getRate();
 	
-	public double addPowerToOutput(double i);
+	public BlockPos[] getInputs();
 	
-	public double removeFromInput(double i);
+	public BlockPos[] getOutputs();
 	
-	public double hasEnergy(double i);
-	
-	public double getMaxEnergyOut();
 }

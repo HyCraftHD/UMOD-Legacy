@@ -215,5 +215,17 @@ public class TileEntityCraftFurnance extends TileEntityBase implements IPowerPro
 	public boolean productsPower() {
 		return false;
 	}
+
+	@Override
+	public boolean isInput() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isOutput() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 	
 }

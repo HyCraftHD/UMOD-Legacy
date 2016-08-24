@@ -37,4 +37,8 @@ public interface IPowerProvieder extends IUpdatePlayerListBox {
 	public boolean needsPower();
 	
 	public boolean productsPower();
+	
+    public boolean isInput();
+	
+	public boolean isOutput();
 }

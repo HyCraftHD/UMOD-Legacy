@@ -3,8 +3,6 @@ package net.hycrafthd.umod.api.energy;
 import java.util.ArrayList;
 
 import net.hycrafthd.umod.UMod;
-import net.hycrafthd.umod.tileentity.TileEntityCable;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 
@@ -12,11 +10,34 @@ public class TunnelHolder {
 	
 	private static ArrayList<UETunnel> tunnels = new ArrayList<UETunnel>();
 	
+	public static int getMax(){
+		return tunnels.size();
+	}
+	
 	public static int addUETunnel(UETunnel tn) {
 		int num = tunnels.size();
 		tn.setID(num);
 		tunnels.add(tn);
+		System.out.println("Added " + num);
 		return num;
+	}
+	
+	public static boolean contains(BlockPos p){
+		for(UETunnel tnl : tunnels){
+			if(tnl.contains(p)){
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public static int getTunnelFromPos(BlockPos p){
+		for(UETunnel tnl : tunnels){
+			if(tnl.contains(p)){
+				return tnl.getID();
+			}
+		}
+		return -1;
 	}
 	
 	public static UETunnel getUETunnel(int i) {
@@ -25,54 +46,56 @@ public class TunnelHolder {
 		return tunnels.get(i);
 	}
 	
-	public static int merge(int i, int i2) {
-		System.out.println("Try to Merge UETunnel " + i + " and " + i2);
-		UETunnel tnl1 = TunnelHolder.getUETunnel(i);
-		UETunnel tnl2 = TunnelHolder.getUETunnel(i2);
-		UETunnel newT = new UETunnel(tnl1.getWorld());
-		tunnels.remove(i);
-		if (i > i2) {
-			tunnels.remove(i2);
-		} else {
-			tunnels.remove(i2 - 1);
-		}
-		for (int y = i; y < tunnels.size(); y++) {
-			tunnels.get(i).setID(y);
-			UETunnel tnl = tunnels.get(i);
-			for (BlockPos cab : tnl) {
-				ICabel cabs = (ICabel) tnl.getWorld().getTileEntity((BlockPos) cab);
-				cabs.setTunnelID(tnl.getID());
-			}
-		}
-		int id = addUETunnel(newT);
-		for (BlockPos cab : tnl1) {
-			TunnelHolder.getUETunnel(id).add(cab);
-		}
-		for (BlockPos cab : tnl2) {
-			TunnelHolder.getUETunnel(id).add(cab);
-		}
+	public static int merge(int i, int i2,World w) {
+		if(i == i2)return i;
+		if(getUETunnel(i) == null || getUETunnel(i2) == null)return -1;
+	    ArrayList<BlockPos> psses = new ArrayList<BlockPos>(getUETunnel(i));
+	    psses.addAll(getUETunnel(i2));
+	    if(i > i2){
+	    	tunnels.remove(i);
+	    	tunnels.remove(i2);
+	    }else{
+	    	tunnels.remove(i2);
+	    	tunnels.remove(i);
+	    }
+	    int id = TunnelHolder.addUETunnel(new UETunnel(w));
+	    for(BlockPos pos : psses){
+	    	ICabel cab = (ICabel) w.getTileEntity(pos);
+	    	TunnelHolder.getUETunnel(id).add(cab);
+	    }
 		UMod.log.debug("Merged UETunnel " + i + " and " + i2);
 		return id;
 	}
 	
 	public static int regenUETunnel(int id, World w) {
-		if (id >= tunnels.size() || id < 0) {
-			return TunnelHolder.addUETunnel(new UETunnel(w));
-		}
-		UETunnel tun = getUETunnel(id);
 		tunnels.remove(id);
-		for (int i = id; i < tunnels.size(); i++) {
-			tunnels.get(i).setID(i);
-		}
-		for (BlockPos cad : tun) {
-			TileEntity ca = tun.getWorld().getTileEntity(cad);
-			if (ca instanceof TileEntityCable) {
-				if (ca != null) {
-					((TileEntityCable) ca).onBlockSetInWorld();
-				}
+		for (int y = 0; y < tunnels.size(); y++) {
+			tunnels.get(y).setID(y);
+			UETunnel tnl = tunnels.get(y);
+			for (BlockPos cab : tnl) {
+				ICabel cabs = (ICabel) tnl.getWorld().getTileEntity((BlockPos) cab);
+				cabs.setTunnelID(tnl.getID());
 			}
 		}
 		UMod.log.debug("Readd " + id);
 		return id;
+	}
+	
+	public static boolean remove(int id){ 
+		if(getUETunnel(id) == null)return true;
+		if(getUETunnel(id).size() <= 0){
+			tunnels.remove(id);
+			for (int y = 0; y < tunnels.size(); y++) {
+				tunnels.get(y).setID(y);
+				UETunnel tnl = tunnels.get(y);
+				for (BlockPos cab : tnl) {
+					ICabel cabs = (ICabel) tnl.getWorld().getTileEntity((BlockPos) cab);
+					if(cabs == null)continue;
+					cabs.setTunnelID(tnl.getID());
+				}
+			}
+			return true;
+		}
+		return false;
 	}
 }

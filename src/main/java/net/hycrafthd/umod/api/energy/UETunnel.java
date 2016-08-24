@@ -19,19 +19,24 @@ public class UETunnel extends ArrayList<BlockPos> {
 	}
 	
 	public boolean add(ICabel e) {
-		if (this.id >= -1) {
-			return false;
-		}
+		if(TunnelHolder.contains(e.getPos()))return false;
 		e.setTunnelID(this.id);
-		return super.add(e.getPos());
+		return this.add(e.getPos());
 	}
 	
 	public ICabel[] getOutput() {
 		ArrayList<ICabel> cabs = new ArrayList<ICabel>();
+		ArrayList<BlockPos> remos = new ArrayList<BlockPos>();
 		for (BlockPos pos : this) {
 			ICabel cab = (ICabel) w.getTileEntity(pos);
-			if (cab.isOutput())
+			if(cab == null){
+				remos.add(pos);
+			}else if (cab.isOutput()){
 				cabs.add(cab);
+			}
+		}
+		for(BlockPos pos : remos){
+			this.remove(pos);
 		}
 		ICabel[] outputs = new ICabel[cabs.size()];
 		int i = 0;
@@ -46,8 +51,9 @@ public class UETunnel extends ArrayList<BlockPos> {
 		ArrayList<ICabel> cabs = new ArrayList<ICabel>();
 		for (BlockPos pos : this) {
 			ICabel cab = (ICabel) w.getTileEntity(pos);
-			if (cab.isOutput())
+			if (cab.isInput()){
 				cabs.add(cab);
+			}
 		}
 		ICabel[] inputs = new ICabel[cabs.size()];
 		int i = 0;
@@ -76,30 +82,69 @@ public class UETunnel extends ArrayList<BlockPos> {
 		return w;
 	}
 	
-	public void transfare() {
-		ICabel[] out = getOutput();
-		ICabel[] in = getInput();
-		double d = 0;
-		for (ICabel cab : out) {
-			d = d + cab.needsEnergy();
-		}
-		double x = d;
-		for (ICabel cab : in) {
-			if (d - cab.getMaxEnergyOut() > 0) {
-				d = d - cab.removeFromInput(cab.getMaxEnergyOut());
-			} else {
-				d = 0;
-				break;
+	public void onTick(){
+		if(TunnelHolder.remove(id))return;
+		System.out.println("======TUNNEL======");
+		System.out.println("ID:" + this.id);
+		System.out.println("HOLDING:" + this.size());
+		ICabel[] outs = this.getOutput();
+		ICabel[] inpts = this.getInput();
+		System.out.println("OUTPUTS:" + outs.length);
+		System.out.println("INPUTS:" + inpts.length);
+		System.out.println("==================");
+		double max = 0;
+		for(ICabel cab : inpts){
+			for(BlockPos p : cab.getInputs()){
+				IPowerProvieder pro = (IPowerProvieder) this.w.getTileEntity(p);
+				if(0 <= pro.getStoredPower() - cab.getRate()){
+					pro.getPower(cab.getRate());
+					max += cab.getRate();
+				}else{
+					double d = pro.getStoredPower();
+					pro.getPower(d);
+					max += d;
+				}
 			}
 		}
-		double mins = x - d;
-		for (ICabel cab : out) {
-			if (cab.needsEnergy() < mins) {
-				mins -= cab.needsEnergy();
-				cab.addPowerToOutput(cab.needsEnergy());
-			} else if (cab.needsEnergy() >= mins) {
-				mins = 0;
-				cab.addPowerToOutput(mins);
+		for(ICabel cab : outs){
+			for(BlockPos p : cab.getOutputs()){
+				IPowerProvieder pro = (IPowerProvieder) this.w.getTileEntity(p);
+				if(max <= 0)return;
+				if(pro.getMaximalPower() > pro.getStoredPower() + cab.getRate()){
+					if(max < cab.getRate()){
+						pro.addPower(max);
+						max = 0;
+						return;
+					}
+					pro.addPower(cab.getRate());
+					max -= cab.getRate();
+				}else{
+					double d = pro.getMaximalPower() - pro.getStoredPower();
+					if(max < d){
+						pro.addPower(max);
+						max = 0;
+						return;
+					}
+					pro.addPower(d);
+					max -= d;
+				}
+			}
+		}
+		if(max > 0){
+			for(ICabel cab : inpts){
+				for(BlockPos p : cab.getInputs()){
+					IPowerProvieder pro = (IPowerProvieder) this.w.getTileEntity(p);
+					if(max <= 0)return;
+					if(pro.getMaximalPower() > pro.getStoredPower() + max){
+						pro.addPower(max);
+						max = 0;
+						return;
+					}else{
+						double d = pro.getMaximalPower() - pro.getStoredPower();
+						pro.addPower(d);
+						max -= d;
+					}
+				}
 			}
 		}
 	}

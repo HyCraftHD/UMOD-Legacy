@@ -4,9 +4,9 @@ import net.hycrafthd.corelib.util.LWJGLUtils;
 import net.hycrafthd.umod.block.BlockCable;
 import net.hycrafthd.umod.tileentity.TileEntityCable;
 import net.minecraft.block.Block;
-import net.minecraft.client.renderer.*;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.*;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 
 public class TileEntityCabelRender extends TileRender {

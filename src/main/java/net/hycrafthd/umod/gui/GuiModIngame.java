@@ -76,7 +76,7 @@ public class GuiModIngame {
 			GlStateManager.pushMatrix();
 			{
 				GlStateManager.translate(screenwidth / 2, height, 0);
-				GlStateManager.scale(tT/400, 1, 1);
+//				GlStateManager.scale(tT/400, 1, 1);
 				rend.drawStringWithShadow(name, -rend.getStringWidth(name) / 2, -14, 0xFFFFFF);
 				rend.drawStringWithShadow(pos, -rend.getStringWidth(pos) / 2, -1, 0xFFFFFF);
 				rend.drawStringWithShadow(str, -rend.getStringWidth(str) / 2, 9, 0xFFFFFF);
@@ -100,7 +100,7 @@ public class GuiModIngame {
 			GlStateManager.pushMatrix();
 			GlStateManager.enableDepth();
 			GlStateManager.translate(width, height, 0);
-			GlStateManager.scale(tT/400, 1, 1);
+			//GlStateManager.scale(tT/400, 1, 1);
 			rend.drawStringWithShadow("Out of range", -rend.getStringWidth("Out of range") / 2, -14, 0xFFFFFF);
 			GlStateManager.popMatrix();
 		}

@@ -57,7 +57,7 @@ public class UGuiHandler implements ICustomGuiHandler {
 		case PULVERISER:
 			return new GuiPulverizer(player, (IInventory) ent, world, p);
 		case SOLARPANEL:
-			return new GuiSolarPanel(world, (IPowerProvieder) ent);
+			return new GuiEnergy(world, (IPowerProvieder) ent);
 		case BATTERIE:
 			return new GuiBattery(world, (IPowerProvieder) ent, player, p, 0);
 		case CHARGESTATION:

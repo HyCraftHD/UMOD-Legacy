@@ -47,7 +47,7 @@ public class GuiModIngame {
 		}
 	}
 	
-	private static int tT;
+	public static int tT;
 	
 	private static void drawScreen(EntityPlayer pl) {
 		ticks++;
@@ -76,16 +76,19 @@ public class GuiModIngame {
 			GlStateManager.pushMatrix();
 			{
 				GlStateManager.translate(screenwidth / 2, height, 0);
-//				GlStateManager.scale(tT/400, 1, 1);
+				GlStateManager.scale(tT/400, 1, 1);
 				rend.drawStringWithShadow(name, -rend.getStringWidth(name) / 2, -14, 0xFFFFFF);
 				rend.drawStringWithShadow(pos, -rend.getStringWidth(pos) / 2, -1, 0xFFFFFF);
 				rend.drawStringWithShadow(str, -rend.getStringWidth(str) / 2, 9, 0xFFFFFF);
 				rend.drawStringWithShadow(energy, -rend.getStringWidth(energy) / 2, 19, 0xFFFFFF);
 				rend.drawStringWithShadow(stat, -rend.getStringWidth(stat) / 2, 29, 0xFFFFFF);
+				if(tT < 400){
+					tT++;
+				}
 			}
 			GlStateManager.popMatrix();
 			
-			if(tT > 400){
+			if(tT >= 400){
 			GlStateManager.pushMatrix();
 			{
 				RenderHelper.enableGUIStandardItemLighting();
@@ -104,7 +107,6 @@ public class GuiModIngame {
 			rend.drawStringWithShadow("Out of range", -rend.getStringWidth("Out of range") / 2, -14, 0xFFFFFF);
 			GlStateManager.popMatrix();
 		}
-		tT++;
 	}
 	
 	private static int trans = 45;

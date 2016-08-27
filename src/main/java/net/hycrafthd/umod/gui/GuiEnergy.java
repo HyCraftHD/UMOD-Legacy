@@ -2,31 +2,40 @@ package net.hycrafthd.umod.gui;
 
 import java.io.IOException;
 
-import net.hycrafthd.umod.UReference;
 import net.hycrafthd.umod.api.energy.IPowerProvieder;
+import net.hycrafthd.umod.block.BlockSolarPanel;
 import net.hycrafthd.umod.block.BlockSolarPanel.EnumTypeSolarPanel;
+import net.hycrafthd.umod.utils.EnergyUtils;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.*;
+import net.minecraft.client.renderer.*;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.*;
 
 @SideOnly(Side.CLIENT)
-public class GuiSolarPanel extends GuiScreen {
+public class GuiEnergy extends GuiScreen {
 	
-	int xSize;
-	int ySize;
-	IPowerProvieder pro;
+	private int xSize;
+	private int ySize;
+	private IPowerProvieder pro;
 	private World w;
+	private boolean back;
 	
-	public GuiSolarPanel(World w, IPowerProvieder po) {
-		xSize = 176;
-		ySize = 166;
-		pro = po;
+	public GuiEnergy(World w, IPowerProvieder po,boolean back) {
+		super();
+		this.xSize = 176;
+		this.ySize = 166;
+		this.pro = po;
 		this.w = w;
+		this.back = back;
+		super.initGui();
+	}
+	
+	public GuiEnergy(World w, IPowerProvieder po) {
+		this(w, po, true);
 	}
 	
 	@Override
@@ -39,13 +48,14 @@ public class GuiSolarPanel extends GuiScreen {
 	
 	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
-		
-		this.mc.getTextureManager().bindTexture(new ResourceLocation(UReference.modid, "textures/gui/solar.png"));
+		Minecraft.getMinecraft().getTextureManager().bindTexture(new GuiRescources("solar.png"));
 		
 		int k = (this.width - this.xSize) / 2;
 		int l = (this.height - this.ySize) / 2;
 		
+		if(back){
 		this.drawTexturedModalRect(k, l, 0, 0, this.xSize, this.ySize);
+		}
 		
 		int high = 0;
 		if (pro.hasPower()) {
@@ -57,19 +67,18 @@ public class GuiSolarPanel extends GuiScreen {
 		IBlockState ste = w.getBlockState(((TileEntity) pro).getPos());
 		EnumTypeSolarPanel type = EnumTypeSolarPanel.byMetadata(ste.getBlock().getMetaFromState(ste));
 		
-		this.drawCenteredString(this.fontRendererObj, I18n.format(ste.getBlock().getUnlocalizedName() + type.getName() + ".name"), k + xSize / 2 - 37 / 2, l + 10, 4210752, false);
+		this.drawCenteredString(this.fontRendererObj, I18n.format(ste.getBlock().getUnlocalizedName() + (ste.getBlock() instanceof BlockSolarPanel ? type.getName():"") + ".name"), k + xSize / 2 - 37 / 2, l + 10, 4210752, false);
 		int maxstringlength = 119;
 		String s1 = "Generate: ";
 		String s2 = "Stored: ";
 		String s3 = "Status: ";
 		String s4 = "Error: ";
-		this.fontRendererObj.drawSplitString(s1 + (pro.isWorking() ? (pro.getPowerProducNeeds() + " UE/t") : "0 UE/t"), k + 10, l + 50, maxstringlength, 4210752);
-		this.fontRendererObj.drawSplitString(s2 + pro.getStoredPower() + " / " + pro.getMaximalPower(), k + 10, l + 80, maxstringlength, 4210752);
+		this.fontRendererObj.drawSplitString(s1 + (pro.isWorking() ? (EnergyUtils.translate(pro.getPowerProducNeeds()) + " UE/t") : "0 UE/t"), k + 10, l + 50, maxstringlength, 4210752);
+		this.fontRendererObj.drawSplitString(s2 + EnergyUtils.translate(pro.getStoredPower()) + " / " + EnergyUtils.translate(pro.getMaximalPower()), k + 10, l + 80, maxstringlength, 4210752);
 		this.fontRendererObj.drawSplitString(s3 + (pro.isWorking() ? "On" : "Off"), k + 10, l + 110, maxstringlength, 4210752);
 		if (!pro.isWorking() && pro.getErrorMessage() != null && pro.getErrorMessage() != "") {
 			this.fontRendererObj.drawSplitString(s4 + pro.getErrorMessage(), k + 10, l + 140, maxstringlength, 4210752);
 		}
-		super.drawScreen(mouseX, mouseY, partialTicks);
 		
 	}
 	
@@ -78,8 +87,20 @@ public class GuiSolarPanel extends GuiScreen {
 	}
 	
 	public void drawStorage(int l, int k, int height) {
-		int x = l + 169, y = k + 159;
-		drawTexturedModalRect(x, y, 206, height + 7, -30, -height);
+		float f = 0.00390625F;
+	    float f1 = 0.00390625F;
+		int x = l + 139, y = k;
+		GlStateManager.pushMatrix();
+		GlStateManager.translate(x, y + 159, 0);
+		Tessellator ts = Tessellator.getInstance();
+		WorldRenderer ren = ts.getWorldRenderer();
+		ren.startDrawingQuads();
+		ren.addVertexWithUV(30D, -(double)height, 0D,206D*f,6D*f1);
+		ren.addVertexWithUV(0D, -(double)height, 0D,176D*f,6D*f1);
+		ren.addVertexWithUV(0D, 0, 0D,176D*f,(6D + (double)height)*f1);
+		ren.addVertexWithUV(30D, 0, 0D,206D*f,(6D + (double)height)*f1);
+		ts.draw();
+		GlStateManager.popMatrix();
 	}
 	
 	@Override

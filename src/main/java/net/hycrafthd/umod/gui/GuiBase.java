@@ -9,7 +9,7 @@ import org.lwjgl.input.Keyboard;
 import com.google.common.collect.Sets;
 
 import net.hycrafthd.corelib.util.*;
-import net.hycrafthd.umod.UBlocks;
+import net.hycrafthd.umod.*;
 import net.hycrafthd.umod.api.ISignable;
 import net.hycrafthd.umod.api.energy.IPowerProvieder;
 import net.hycrafthd.umod.container.ContainerBase;
@@ -23,7 +23,6 @@ import net.minecraft.client.renderer.block.model.*;
 import net.minecraft.client.renderer.texture.*;
 import net.minecraft.client.renderer.tileentity.TileEntityItemStackRenderer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.client.resources.model.IBakedModel;
 import net.minecraft.entity.player.*;
 import net.minecraft.init.Blocks;
@@ -43,7 +42,6 @@ public abstract class GuiBase extends GuiScreen {
 	public ResourceLocation loc2;
 	public ResourceLocation loc3;
 	public static final ResourceLocation CLEAR_GUI = new GuiRescources("clear.png");
-	public static final ResourceLocation SOLAR_GUI = new GuiRescources("clear.png");
 	public EntityPlayer play;
 	public TileEntity ent;
 	public BlockPos pos;
@@ -61,11 +59,13 @@ public abstract class GuiBase extends GuiScreen {
 		this.loc3 = loc3;
 		this.play = pl;
 		this.ent = (TileEntity) tile;
-		if (tile instanceof IPowerProvieder)
-			this.pro = (IPowerProvieder) tile;
+		if(tile instanceof IPowerProvieder)
+		   this.pro = (IPowerProvieder) tile;
 		this.pos = ent.getPos();
 		this.basecon = (ContainerBase) con;
 		this.worldObj = Minecraft.getMinecraft().getIntegratedServer().worldServers[0];
+		if(pro != null)
+		   this.eng = new GuiEnergy(worldObj, pro,false);
 	}
 	
 	public GuiBase(ResourceLocation loc,EntityPlayer pl, IInventory tile, Container con) {
@@ -75,47 +75,15 @@ public abstract class GuiBase extends GuiScreen {
 	public IPowerProvieder pro;
 	public EntityPlayer pl;
 	public int ag;
+	private GuiEnergy eng;
+
 	
 	public void drawToSMScreen(int mouseX, int mouseY, float partialTicks) {
-		
-		int k = (this.width - this.xSize) / 2;
-		int l = (this.height - this.ySize) / 2;
-		
-		if (pro != null) {
-			int high = 0;
-			if (pro.hasPower()) {
-				double ps = pro.getStoredPower() * 100 / pro.getMaximalPower();
-				high = (int) (ps * 0.01 * 152);
-			}
-			
-			this.drawStorage(k, l, high);
-			
-			this.drawCenteredString(this.fontRendererObj, I18n.format(worldObj.getBlockState(pos).getBlock().getUnlocalizedName() + ".name"), k + xSize / 2 - 37 / 2, l + 10, 4210752, false);
-			int maxstringlength = 119;
-			String s1 = "Needs: ";
-			String s2 = "Stored: ";
-			String s3 = "Status: ";
-			String s4 = "Error: ";
-			this.fontRendererObj.drawSplitString(s1 + pro.getPowerProducNeeds() + " UE/t", k + 10, l + 50, maxstringlength, 4210752);
-			this.fontRendererObj.drawSplitString(s2 + pro.getStoredPower() + " / " + pro.getMaximalPower(), k + 10, l + 70, maxstringlength, 4210752);
-			if (ag != -1) {
-				this.fontRendererObj.drawSplitString(s3 + (pro.isWorking() ? "On" : "Off"), k + 10, l + 90, maxstringlength, 4210752);
-				if (!pro.isWorking() && pro.getErrorMessage() != null && pro.getErrorMessage() != "") {
-					this.fontRendererObj.drawSplitString(s4 + pro.getErrorMessage(), k + 10, l + 110, maxstringlength, 4210752);
-				}
-			}
-		} else {
-			this.drawCenteredString(this.fontRendererObj, "NO POWER PROVIDER", k + xSize / 2 - 37 / 2, l + 10, 4210752, false);
-		}
+		eng.drawScreen(mouseX, mouseY, partialTicks);
 	}
 	
 	public int drawCenteredString(FontRenderer fontRendererIn, String text, int x, int y, int color, boolean shadow) {
 		return fontRendererIn.drawString(text, (float) (x - fontRendererIn.getStringWidth(text) / 2), (float) y, color, shadow);
-	}
-	
-	public void drawStorage(int l, int k, int height) {
-		int x = l + 169, y = k + 159;
-		drawTexturedModalRect(x, y, 206, height + 7, -30, -height);
 	}
 	
 	@Override
@@ -135,6 +103,12 @@ public abstract class GuiBase extends GuiScreen {
 			}
 			break;
 		}
+	}
+	
+	@Override
+	public void setWorldAndResolution(Minecraft mc, int width, int height) {
+		super.setWorldAndResolution(mc, width, height);
+		eng.setWorldAndResolution(mc, width, height);
 	}
 	
 	protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
@@ -236,7 +210,7 @@ public abstract class GuiBase extends GuiScreen {
 					}
 					is = false;
 					basecon.setMode(m);
-					loc = SOLAR_GUI;
+					loc = new GuiRescources("solar.png");
 					for (int i = 0; i < basecon.inventorySlots.size(); i++) {
 						if (basecon.inventorySlots.get(i) instanceof BaseSlot) {
 							basecon.setVisisble(i, false);

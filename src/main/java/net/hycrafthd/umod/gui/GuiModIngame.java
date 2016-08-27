@@ -37,6 +37,8 @@ public class GuiModIngame {
 			EntityPlayer pl = Minecraft.getMinecraft().thePlayer;
 			if (pl != null && pl.getCurrentEquippedItem() != null && (pl.getCurrentEquippedItem().getItem() instanceof ItemEnergyDisplay) && pl.getCurrentEquippedItem().hasTagCompound() && pl.getCurrentEquippedItem().getTagCompound().hasKey(ItemEnergyDisplay.NBT_TAG) && (pl.openContainer == null || pl.openContainer instanceof ContainerPlayer)) {
 				drawScreen(pl);
+			}else{
+				tT = 0;
 			}
 		} catch (Exception e) {
 			System.err.println(e.toString());
@@ -76,19 +78,19 @@ public class GuiModIngame {
 			GlStateManager.pushMatrix();
 			{
 				GlStateManager.translate(screenwidth / 2, height, 0);
-				GlStateManager.scale(tT/400, 1, 1);
+				GlStateManager.scale(tT/4000, 1, 1);
 				rend.drawStringWithShadow(name, -rend.getStringWidth(name) / 2, -14, 0xFFFFFF);
-				rend.drawStringWithShadow(pos, -rend.getStringWidth(pos) / 2, -1, 0xFFFFFF);
-				rend.drawStringWithShadow(str, -rend.getStringWidth(str) / 2, 9, 0xFFFFFF);
-				rend.drawStringWithShadow(energy, -rend.getStringWidth(energy) / 2, 19, 0xFFFFFF);
-				rend.drawStringWithShadow(stat, -rend.getStringWidth(stat) / 2, 29, 0xFFFFFF);
-				if(tT < 400){
+				rend.drawStringWithShadow(str, -rend.getStringWidth(str) / 2, -1, 0xFFFFFF);
+				rend.drawStringWithShadow(energy, -rend.getStringWidth(energy) / 2, 9, 0xFFFFFF);
+				rend.drawStringWithShadow(stat, -rend.getStringWidth(stat) / 2, 19, 0xFFFFFF);
+				if(tT < 4000){
+					rend.drawStringWithShadow(pos, -rend.getStringWidth(pos) / 2, 150, 0xFFFFFF);
 					tT++;
 				}
 			}
 			GlStateManager.popMatrix();
 			
-			if(tT >= 400){
+			if(tT >= 4000){
 			GlStateManager.pushMatrix();
 			{
 				RenderHelper.enableGUIStandardItemLighting();

@@ -10,8 +10,8 @@ public class BaseBatteryInputSlot extends BaseSlot {
 	
 	public BaseBatteryInputSlot(IInventory inventoryIn, int index, int xPosition, int yPosition) {
 		super(inventoryIn, index, xPosition, yPosition);
-		RGBA back = new RGBA(255, 0, 0, 125);
-		RGBA nback = new RGBA(255, 0, 0, 50);
+		RGBA back = new RGBA(255, 0, 0, 255);
+		RGBA nback = new RGBA(255, 0, 0, 25);
 		this.setStringRet(new StringMethod() {
 			
 			@Override

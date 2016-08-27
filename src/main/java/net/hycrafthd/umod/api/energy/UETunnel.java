@@ -2,7 +2,6 @@ package net.hycrafthd.umod.api.energy;
 
 import java.util.ArrayList;
 
-import net.hycrafthd.umod.UMod;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 
@@ -85,15 +84,12 @@ public class UETunnel extends ArrayList<BlockPos> {
 	
 	public void onTick(){
 		if(TunnelHolder.remove(id))return;
-		UMod.log.info("=====TUNNEL " + id + "=====");
 		ICabel[] outs = this.getOutput();
 		ICabel[] inpts = this.getInput();
 		double max = 0;
-		UMod.log.info("-----Inputs-----");
 		for(ICabel cab : inpts){
 			for(BlockPos p : cab.getInputs()){
 				IPowerProvieder pro = (IPowerProvieder) this.w.getTileEntity(p);
-				UMod.log.info(p.toString());
 				if(0 <= pro.getStoredPower() - cab.getRate()){
 					pro.getPower(cab.getRate());
 					max += cab.getRate();
@@ -104,9 +100,6 @@ public class UETunnel extends ArrayList<BlockPos> {
 				}
 			}
 		}
-		UMod.log.info("----------------");
-		UMod.log.info("Energy:" + max);
-		UMod.log.info("-----Outputs-----");
 		for(ICabel cab : outs){
 			for(BlockPos p : cab.getOutputs()){
 				IPowerProvieder pro = (IPowerProvieder) this.w.getTileEntity(p);
@@ -131,9 +124,6 @@ public class UETunnel extends ArrayList<BlockPos> {
 				}
 			}
 		}
-		UMod.log.info("----------------");
-		UMod.log.info("Energy:" + max);
-		UMod.log.info("-----Relay-----");
 		if(max > 0){
 			for(ICabel cab : inpts){
 				for(BlockPos p : cab.getInputs()){
@@ -151,6 +141,5 @@ public class UETunnel extends ArrayList<BlockPos> {
 				}
 			}
 		}
-		UMod.log.info("--------------");
 	}
 }

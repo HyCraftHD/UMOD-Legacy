@@ -1,7 +1,6 @@
 package net.hycrafthd.umod.container;
 
 import net.hycrafthd.umod.inventory.*;
-import net.hycrafthd.umod.utils.ModRegistryUtils;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.*;
 import net.minecraft.item.ItemStack;
@@ -36,7 +35,7 @@ public class ContainerPulverizer extends ContainerBase {
 	
 	@Override
 	public ItemStack transferStackInSlot(EntityPlayer playerIn, int index) {
-		ItemStack itemstack = null;
+/*		ItemStack itemstack = null;
 		Slot slot = (Slot) this.inventorySlots.get(index);
 		
 		if (slot != null && slot.getHasStack()) {
@@ -78,6 +77,10 @@ public class ContainerPulverizer extends ContainerBase {
 			slot.onPickupFromSlot(playerIn, itemstack1);
 		}
 		
-		return itemstack;
+		return itemstack;*/
+		return null;
 	}
+	
+	@Override
+	protected void retrySlotClick(int p_75133_1_, int p_75133_2_, boolean p_75133_3_, EntityPlayer p_75133_4_) {}
 }

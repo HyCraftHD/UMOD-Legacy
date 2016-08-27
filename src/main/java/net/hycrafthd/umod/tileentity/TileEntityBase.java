@@ -130,16 +130,6 @@ public abstract class TileEntityBase extends TileEntity implements ISidedInvento
 	}
 	
 	@Override
-	public boolean canGetPower(BlockPos p, double power) {
-		return false;
-	}
-	
-	@Override
-	public boolean canAddPower(BlockPos p, double power) {
-		return strpo + power <= MAXIMUM_POWER;
-	}
-	
-	@Override
 	public double getMaximalPower() {
 		return MAXIMUM_POWER;
 	}

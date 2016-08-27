@@ -140,13 +140,13 @@ public class TileEntityChargeStation extends TileEntityBase implements IPowerPro
 	
 	@Override
 	public void update() {
-		if (stack != null && stack.getItemDamage() > 0 && this.canAddPower(pos, 2) && mode) {
-			stack.setItemDamage(stack.getItemDamage() + 2);
-			stored += 2;
-		} else if (!mode && stack != null && stack.getItemDamage() < stack.getMaxDamage() && stored - 2 >= 0) {
-			stored -= 2;
-			stack.setItemDamage(stack.getItemDamage() - 2);
-		}
+//		if (stack != null && stack.getItemDamage() > 0 && this.canAddPower(pos, 2) && mode) {
+//			stack.setItemDamage(stack.getItemDamage() + 2);
+//			stored += 2;
+//		} else if (!mode && stack != null && stack.getItemDamage() < stack.getMaxDamage() && stored - 2 >= 0) {
+//			stored -= 2;
+//			stack.setItemDamage(stack.getItemDamage() - 2);
+//		}
 	}
 	
 	public void setMode(boolean m) {
@@ -167,16 +167,6 @@ public class TileEntityChargeStation extends TileEntityBase implements IPowerPro
 	public double getPower(double powerneed) {
 		stored -= powerneed;
 		return powerneed;
-	}
-	
-	@Override
-	public boolean canGetPower(BlockPos pos, double power) {
-		return false;
-	}
-	
-	@Override
-	public boolean canAddPower(BlockPos pos, double power) {
-		return power + stored <= MAXIMAL_POWER;
 	}
 	
 	@Override

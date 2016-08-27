@@ -46,16 +46,7 @@ public class TileEntitySolarPanel extends TileEntity implements IPowerProvieder 
 		storedpower -= powerneed;
 		return powerneed;
 	}
-	
-	@Override
-	public boolean canGetPower(BlockPos p, double power) {
-		if (storedpower - power >= 0) {
-			return true;
-		}
-		return false;
-	}
-	
-	@Override
+
 	public boolean canAddPower(BlockPos p, double power) {
 		if (power + storedpower <= MAXIMUM_POWER) {
 			return true;

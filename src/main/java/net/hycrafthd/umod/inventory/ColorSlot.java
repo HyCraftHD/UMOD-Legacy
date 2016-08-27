@@ -13,7 +13,7 @@ public class ColorSlot extends BaseSlot {
 	public ColorSlot(Color c, IInventory inventoryIn, int index, int xPosition, int yPosition) {
 		super(inventoryIn, index, xPosition, yPosition);
 		color = c;
-		this.setHoverColor(new RGBA(color).setAlpha(75), new RGBA(color).setAlpha(75), new RGBA(color).setAlpha(125), new RGBA(color).setAlpha(125));
+		this.setHoverColor(new RGBA(color).setAlpha(25), new RGBA(color).setAlpha(25), new RGBA(color).setAlpha(255), new RGBA(color).setAlpha(255));
 		this.setStringRet(new StringMethod() {
 			
 			@Override

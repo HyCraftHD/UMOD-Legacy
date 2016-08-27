@@ -12,10 +12,6 @@ public interface IPowerProvieder extends IUpdatePlayerListBox {
 	
 	public double getPower(double powerneed);
 	
-	public boolean canGetPower(BlockPos pos, double power);
-	
-	public boolean canAddPower(BlockPos pos, double power);
-	
 	public double getMaximalPower();
 	
 	public boolean isWorking();

@@ -77,7 +77,6 @@ public class TunnelHolder {
 				cabs.setTunnelID(tnl.getID());
 			}
 		}
-		UMod.log.debug("Readd " + id);
 		return id;
 	}
 	

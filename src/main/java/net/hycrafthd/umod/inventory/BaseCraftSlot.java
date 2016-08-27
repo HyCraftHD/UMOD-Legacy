@@ -21,8 +21,8 @@ public class BaseCraftSlot extends BaseSlot {
 		
 		RGBA rgb = new RGBA(Color.orange);
 		RGBA rgb2 = new RGBA(Color.orange);
-		rgb2.setAlpha(125);
-		rgb.setAlpha(50);
+		rgb2.setAlpha(255);
+		rgb.setAlpha(25);
 		this.setHoverColor(rgb, rgb, rgb2, rgb2);
 	}
 	

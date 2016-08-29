@@ -27,7 +27,7 @@ public class GuiPainter extends GuiBase {
 		super.initGui();
 		int x = this.guiLeft + 36;
 		int y = this.guiTop;
-		red = new GuiSlider(x, y + 11, new RGBA(Color.red).setAlpha(155), new RGBA(Color.black), new RGBA(Color.WHITE), 0);
+		red = new GuiSlider(x, y + 11, new RGBA(Color.red).setAlpha(155), new RGBA(Color.black), new RGBA(Color.WHITE), 0, 0,pos);
 		red.setStringRet(new StringMethod() {
 			
 			@Override
@@ -35,7 +35,7 @@ public class GuiPainter extends GuiBase {
 				return "Red Color: " + red.getValue();
 			}
 		});
-		green = new GuiSlider(x, y + 32, new RGBA(Color.green).setAlpha(155), new RGBA(Color.black), new RGBA(Color.WHITE), 0);
+		green = new GuiSlider(x, y + 32, new RGBA(Color.green).setAlpha(155), new RGBA(Color.black), new RGBA(Color.WHITE), 1,0,pos);
 		green.setStringRet(new StringMethod() {
 			
 			@Override
@@ -43,7 +43,7 @@ public class GuiPainter extends GuiBase {
 				return "Green Color: " + green.getValue();
 			}
 		});
-		blue = new GuiSlider(x, y + 53, new RGBA(Color.blue).setAlpha(155), new RGBA(Color.black), new RGBA(Color.WHITE), 0);
+		blue = new GuiSlider(x, y + 53, new RGBA(Color.blue).setAlpha(155), new RGBA(Color.black), new RGBA(Color.WHITE), 2,0,pos);
 		blue.setStringRet(new StringMethod() {
 			
 			@Override
@@ -51,15 +51,14 @@ public class GuiPainter extends GuiBase {
 				return "Blue Color: " + blue.getValue();
 			}
 		});
-		sat = new GuiSlider(x, y + 67, new RGBA(Color.WHITE).setAlpha(155), new RGBA(Color.black).setAlpha(155), new RGBA(Color.WHITE).setAlpha(155), 0);
+		sat = new GuiSlider(x, y + 67, new RGBA(Color.WHITE).setAlpha(155), new RGBA(Color.black).setAlpha(155), new RGBA(Color.WHITE).setAlpha(155), 3,100,pos);
 		sat.setStringRet(new StringMethod() {
 			
 			@Override
 			public String getString() {
-				return "Saturation of Color: " + sat.getValue();
+				return "Alpha of Color: " + sat.getValue();
 			}
 		});
-		sat.setValue(100);
 	}
 	
 	@Override

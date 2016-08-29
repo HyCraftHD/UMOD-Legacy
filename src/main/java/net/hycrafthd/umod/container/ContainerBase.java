@@ -47,8 +47,7 @@ public class ContainerBase extends Container {
 	}
 	
 	@Override
-	protected void retrySlotClick(int p_75133_1_, int p_75133_2_, boolean p_75133_3_, EntityPlayer p_75133_4_) {
-	}
+	protected void retrySlotClick(int p_75133_1_, int p_75133_2_, boolean p_75133_3_, EntityPlayer p_75133_4_) {}
 	
 	@Override
 	public void onContainerClosed(EntityPlayer entityPlayer) {

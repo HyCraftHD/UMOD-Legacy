@@ -2,6 +2,7 @@ package net.hycrafthd.umod.item;
 
 import java.util.List;
 
+import net.hycrafthd.corelib.util.ColorUtils;
 import net.hycrafthd.umod.UReference;
 import net.hycrafthd.umod.container.ContainerBackPack;
 import net.hycrafthd.umod.enumtype.*;

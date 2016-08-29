@@ -13,7 +13,7 @@ public class TileEntityItemPipe extends TileEntity implements IPlugabel {
 	
 	@Override
 	public boolean canConnect(IBlockAccess w, BlockPos p) {
-		return false;
+		return ((IPlugabel)w.getBlockState(getPos()).getBlock()).canConnect(w, p);
 	}
 	
 }

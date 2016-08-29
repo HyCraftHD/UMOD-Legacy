@@ -210,11 +210,6 @@ public class BlockCable extends Block implements ITileEntityProvider, IEnergyMes
 	}
 	
 	@Override
-	public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
-		return super.onBlockPlaced(worldIn, pos, facing, hitX, hitY, hitZ, meta, placer);
-	}
-	
-	@Override
 	public void onBlockDestroyedByExplosion(World worldIn, BlockPos pos, Explosion explosionIn) {
 		entityClear(worldIn, pos);
 		super.onBlockDestroyedByExplosion(worldIn, pos, explosionIn);

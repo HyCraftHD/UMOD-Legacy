@@ -20,6 +20,7 @@ public class UTiles {
 		TileEntityRegistry.register(TileEntityPainter.class, "tilepainter");
 		TileEntityRegistry.register(TileEntityRail.class, "tilereail");
 		TileEntityRegistry.register(TileEntityMagicCrafter.class, "tile_magic_crafter");
+		TileEntityRegistry.register(TileEntityItemPipe.class, "tile_item_pipe");
 		UMod.log.debug("Register TileEntitys");
 	}
 	

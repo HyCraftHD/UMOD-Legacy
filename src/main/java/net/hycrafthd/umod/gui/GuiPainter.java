@@ -59,6 +59,7 @@ public class GuiPainter extends GuiBase {
 				return "Saturation of Color: " + sat.getValue();
 			}
 		});
+		sat.setValue(100);
 	}
 	
 	@Override
@@ -71,13 +72,13 @@ public class GuiPainter extends GuiBase {
 			green.draw(mc);
 			blue.draw(mc);
 			sat.draw(mc);
-			LWJGLUtils.drawGradientRect(297, 73, 315, 115, new RGBA(red.getValue() * 255 / 100, green.getValue() * 255 / 100, blue.getValue() * 255 / 100, sat.getValue() * 255 / 100));
+			LWJGLUtils.drawGradientRect(297, 53 + this.guiTop, 315, 53 + this.guiTop + 19, new RGBA(red.getValue() * 255 / 100, green.getValue() * 255 / 100, blue.getValue() * 255 / 100, sat.getValue() * 255 / 100));
 			if (Keyboard.isKeyDown(ClientProxy.info.getKeyCode())) {
 				red.drawOverlay(mc, mouseX, mouseY);
 				green.drawOverlay(mc, mouseX, mouseY);
 				blue.drawOverlay(mc, mouseX, mouseY);
 				sat.drawOverlay(mc, mouseX, mouseY);
-				if (mouseX > 297 && mouseX < 315 && mouseY > 73 && mouseY < 115) {
+				if (mouseX > 297 && mouseX < 315 && mouseY > 53 + this.guiTop && mouseY < 53 + this.guiTop + 19) {
 					FontRenderer rend = Minecraft.getMinecraft().getRenderManager().getFontRenderer();
 					String blued = "Blue: " + blue.getValue();
 					String redd = "Red: " + red.getValue();

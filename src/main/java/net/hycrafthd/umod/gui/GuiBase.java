@@ -9,8 +9,7 @@ import org.lwjgl.input.Keyboard;
 import com.google.common.collect.Sets;
 
 import net.hycrafthd.corelib.util.*;
-import net.hycrafthd.umod.UBlocks;
-import net.hycrafthd.umod.api.ISignable;
+import net.hycrafthd.umod.*;
 import net.hycrafthd.umod.api.energy.IPowerProvieder;
 import net.hycrafthd.umod.container.ContainerBase;
 import net.hycrafthd.umod.container.ContainerBase.Mode;
@@ -88,21 +87,6 @@ public abstract class GuiBase extends GuiScreen {
 	
 	@Override
 	protected void actionPerformed(GuiButton button) throws IOException {
-		switch (button.id) {
-		case 0:
-			if (this.pro instanceof ISignable) {
-				ISignable p = (ISignable) this.pro;
-				if (button.displayString.equals("Sign with Player")) {
-					p.signPlayer(this.mc.thePlayer);
-					button.displayString = "Unsign";
-				} else {
-					this.mc.thePlayer.addChatMessage(new ChatComponentText(EnumChatFormatting.RED + "Unsigned Pulverizer"));
-					p.signPlayer(null);
-				}
-				((TileEntity) this.pro).markDirty();
-			}
-			break;
-		}
 	}
 	
 	@Override
@@ -448,42 +432,6 @@ public abstract class GuiBase extends GuiScreen {
 						}
 						if (slot instanceof BaseSlot) {
 							LWJGLUtils.drawFrame(j1, k1, 16, 16, new RGBA(Color.BLACK));
-							GlStateManager.popMatrix();
-							if (((BaseSlot) slot).hasString()) {
-								Tessellator ts = Tessellator.getInstance();
-								BaseSlot slt = (BaseSlot) slot;
-								RGBA sl1 = slt.getHoverColor(0);
-								RGBA sli = new RGBA(sl1.toAWTColor().darker().darker().darker()).setAlpha(180);
-								GlStateManager.disableTexture2D();
-								GlStateManager.enableBlend();
-								GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
-								GlStateManager.shadeModel(7425);
-								WorldRenderer rend = ts.getWorldRenderer();
-								rend.startDrawingQuads();
-								rend.setColorRGBA(sl1.getRed(), sl1.getGreen(), sl1.getBlue(), sl1.getAlpha());
-								rend.addVertex(mouseX + slt.getWidth(), mouseY, 0);
-								rend.setColorRGBA(sli.getRed(), sli.getGreen(), sli.getBlue(), sli.getAlpha());
-								rend.addVertex(mouseX, mouseY, 0);
-								rend.addVertex(mouseX, mouseY + slt.getHeight(), 0);
-								rend.setColorRGBA(sl1.getRed(), sl1.getGreen(), sl1.getBlue(), sl1.getAlpha());
-								rend.addVertex(mouseX + slt.getWidth(), mouseY + slt.getHeight(), 0);
-								ts.draw();
-								GlStateManager.shadeModel(7424);
-								GlStateManager.disableBlend();
-								GlStateManager.enableAlpha();
-								GlStateManager.enableTexture2D();
-								if (((BaseSlot) slot).hasMoreLines()) {
-									String[] str = ((BaseSlot) slot).getString().split("\n");
-									for (int i = 0; i < str.length; i++)
-										this.fontRendererObj.drawString(str[i], mouseX + 4, mouseY + 4 + (i * 16), ((BaseSlot) slot).getFontColor());
-								} else {
-									this.fontRendererObj.drawString(((BaseSlot) slot).getString(), mouseX + 4, mouseY + 4, ((BaseSlot) slot).getFontColor());
-								}
-							}
-							GlStateManager.pushMatrix();
-							GlStateManager.translate((float) k, (float) l, 0.0F);
-							GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-							GlStateManager.enableRescaleNormal();
 						}
 					}
 				}
@@ -492,6 +440,48 @@ public abstract class GuiBase extends GuiScreen {
 		GlStateManager.popMatrix();
 		GlStateManager.enableLighting();
 		GlStateManager.enableDepth();
+		for (Object sl : this.basecon.inventorySlots) {
+			Slot slot = (Slot) sl;
+		    if(slot != null && this.isMouseOverSlot(slot, mouseX, mouseY) && slot.canBeHovered()){
+				if (slot instanceof BaseSlot && ((BaseSlot) slot).hasString() && ((BaseSlot) slot).isVisible() && !(Keyboard.isKeyDown(ClientProxy.info.getKeyCode()) && slot.getHasStack())) {
+					GlStateManager.pushMatrix();
+					Tessellator ts = Tessellator.getInstance();
+					BaseSlot slt = (BaseSlot) slot;
+					RGBA sl1 = slt.getHoverColor(0);
+					RGBA sli = new RGBA(sl1.toAWTColor().darker().darker().darker()).setAlpha(180);
+					GlStateManager.disableTexture2D();
+					GlStateManager.enableBlend();
+					GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
+					GlStateManager.shadeModel(7425);
+					WorldRenderer rend = ts.getWorldRenderer();
+					rend.startDrawingQuads();
+					rend.setColorRGBA(sl1.getRed(), sl1.getGreen(), sl1.getBlue(), sl1.getAlpha());
+					rend.addVertex(mouseX + slt.getWidth(), mouseY, this.zLevel);
+					rend.setColorRGBA(sli.getRed(), sli.getGreen(), sli.getBlue(), sli.getAlpha());
+					rend.addVertex(mouseX, mouseY, this.zLevel);
+					rend.addVertex(mouseX, mouseY + slt.getHeight(), this.zLevel);
+					rend.setColorRGBA(sl1.getRed(), sl1.getGreen(), sl1.getBlue(), sl1.getAlpha());
+					rend.addVertex(mouseX + slt.getWidth(), mouseY + slt.getHeight(), this.zLevel);
+					ts.draw();
+					GlStateManager.shadeModel(7424);
+					GlStateManager.disableBlend();
+					GlStateManager.enableAlpha();
+					GlStateManager.enableTexture2D();
+					if (((BaseSlot) slot).hasMoreLines()) {
+						String[] str = ((BaseSlot) slot).getString().split("\n");
+						for (int i = 0; i < str.length; i++)
+							this.fontRendererObj.drawString(str[i], mouseX + 4, mouseY + 4 + (i * 16), ((BaseSlot) slot).getFontColor());
+					} else {
+						this.fontRendererObj.drawString(((BaseSlot) slot).getString(), mouseX + 4, mouseY + 4, ((BaseSlot) slot).getFontColor());
+					}
+					GlStateManager.popMatrix();
+					GlStateManager.enableLighting();
+					GlStateManager.enableDepth();
+		    }else if(slot != null && slot.getHasStack()){
+				     this.renderToolTip(slot.getStack(), mouseX, mouseY);
+		    }
+		}
+		}
 		RenderHelper.enableStandardItemLighting();
 		
 	}

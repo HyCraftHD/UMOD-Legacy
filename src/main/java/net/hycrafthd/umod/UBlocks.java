@@ -99,7 +99,7 @@ public class UBlocks {
 		medium_voltage_cable = new BlockCable("medium_voltage_cable", 38, 38, false, "medium_voltage_cable");
 		low_voltage_cable = new BlockCable("low_voltage_cable", 9, 9, false, "low_voltage_cable");
 		
-		itempipe_normal = new BlockItemPipe("").setUnlocalizedName("itempipe_normal");
+		itempipe_normal = new BlockItemPipe("normal_item_pipe").setUnlocalizedName("itempipe_normal");
 		// Normal Blocks
 		nuke = new BlockNuke().setUnlocalizedName("nuke");
 		conduit = new BlockConduit().setUnlocalizedName("conduit");

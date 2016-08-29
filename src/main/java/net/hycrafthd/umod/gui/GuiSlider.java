@@ -90,6 +90,10 @@ public class GuiSlider extends Gui {
 		return val;
 	}
 	
+	public void setValue(int i){
+		val = i;
+	}
+	
 	public void handelMouseClicked(int mousex, int mousey) {
 		if (mousex >= x && mousex <= x + 100 && mousey >= y && mousey <= y + 8) {
 			val = mousex - x;

@@ -43,6 +43,7 @@ public class TileEntityCable extends TileEntity implements IPlugabel, ICabel, IU
 		rate = maxpower;
 	}
 	
+	@Override
 	public void setConduit(ItemStack b) {
 		conduit = b;
 	}

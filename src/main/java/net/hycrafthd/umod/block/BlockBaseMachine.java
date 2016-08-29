@@ -33,8 +33,7 @@ public abstract class BlockBaseMachine extends BlockBase implements ITileEntityP
 	
 	@Override
 	public int getComparatorInputOverride(World world, BlockPos pos) {
-		TileEntity tileEntity = world.getTileEntity(pos);
-		return Container.calcRedstone(tileEntity);
+		return Container.calcRedstone(world.getTileEntity(pos));
 	}
 	
 	@Override
@@ -90,7 +89,7 @@ public abstract class BlockBaseMachine extends BlockBase implements ITileEntityP
 	
 	@Override
 	public int isProvidingStrongPower(IBlockAccess w, BlockPos pos, IBlockState state, EnumFacing side) {
-		return Container.calcRedstoneFromInventory((IInventory) w.getTileEntity(pos));
+		return Container.calcRedstone(w.getTileEntity(pos));
 	}
 	
 	@Override

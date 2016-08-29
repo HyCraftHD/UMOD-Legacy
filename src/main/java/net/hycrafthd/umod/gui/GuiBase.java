@@ -9,7 +9,7 @@ import org.lwjgl.input.Keyboard;
 import com.google.common.collect.Sets;
 
 import net.hycrafthd.corelib.util.*;
-import net.hycrafthd.umod.*;
+import net.hycrafthd.umod.UBlocks;
 import net.hycrafthd.umod.api.ISignable;
 import net.hycrafthd.umod.api.energy.IPowerProvieder;
 import net.hycrafthd.umod.container.ContainerBase;

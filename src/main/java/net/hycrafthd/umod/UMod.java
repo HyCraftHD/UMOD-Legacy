@@ -1,6 +1,5 @@
 package net.hycrafthd.umod;
 
-import net.hycrafthd.corelib.registry.NetworkRegistry;
 import net.hycrafthd.umod.api.ProcessHandler;
 import net.hycrafthd.umod.event.*;
 import net.hycrafthd.umod.network.PacketHandler;
@@ -8,7 +7,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.*;
 
-@Mod(modid = UReference.modid, version = UReference.version, name = UReference.name)
+@Mod(modid = UReference.modid, version = UReference.version, name = UReference.name, dependencies="required-after:corelib")
 public class UMod {
 	
 	public static org.apache.logging.log4j.Logger log;
@@ -41,7 +40,7 @@ public class UMod {
 		new URecipes();
 		new UChestLoot();
 		new UAchievement();
-		NetworkRegistry.registerGuiHandler(new UGuiHandler());
+		net.hycrafthd.corelib.registry.NetworkRegistry.registerGuiHandler(new UGuiHandler());
 		UReference.proxy.registerModels();
 		UReference.proxy.registerRenderer();
 		UMod.log.info("Registered Mod.");

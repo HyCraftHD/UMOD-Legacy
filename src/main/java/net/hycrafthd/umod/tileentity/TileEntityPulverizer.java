@@ -12,6 +12,8 @@ import net.minecraft.entity.player.*;
 import net.minecraft.inventory.*;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.*;
+import net.minecraft.network.*;
+import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntityLockable;
 import net.minecraft.util.*;
 
@@ -152,6 +154,19 @@ public class TileEntityPulverizer extends TileEntityLockable implements IPowerPr
 	public boolean work = false;
 	
 	@Override
+	public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
+		NBTTagCompound tagCom = pkt.getNbtCompound();
+		this.readFromNBT(tagCom);
+	}
+	
+	@Override
+	public Packet getDescriptionPacket() {
+		NBTTagCompound tagCom = new NBTTagCompound();
+		this.writeToNBT(tagCom);
+		return new S35PacketUpdateTileEntity(pos, getBlockMetadata(), tagCom);
+	}
+	
+	@Override
 	public void update() {
 		ItemStack[] args = ModRegistryUtils.isRecepie(stack[3]);
 		if(args != null && this.strpo > 10){
@@ -181,8 +196,8 @@ public class TileEntityPulverizer extends TileEntityLockable implements IPowerPr
 							}
 						}
 						this.markDirty();
+						this.getPower(1000);
 					}
-					//strpo -= 10;
 					time++;	
 				}else{
 					time = 0;
@@ -284,6 +299,7 @@ public class TileEntityPulverizer extends TileEntityLockable implements IPowerPr
 	
 	@Override
 	public void writeToNBT(NBTTagCompound tag) {
+		super.writeToNBT(tag);
 		tag.setByte(SHORT_TIME, (byte) time);
 		tag.setByte(ENUMFACING_OUTPUT, (byte) DirectionUtils.getShortFromFacing(enumfO));
 		tag.setByte(ENUMFACING_INPUT, (byte) DirectionUtils.getShortFromFacing(enumfI));
@@ -301,6 +317,7 @@ public class TileEntityPulverizer extends TileEntityLockable implements IPowerPr
 	
 	@Override
 	public void readFromNBT(NBTTagCompound tag) {
+		super.readFromNBT(tag);
 		enumfI = DirectionUtils.getFacingFromShort(tag.getByte(ENUMFACING_INPUT));
 		enumfO = DirectionUtils.getFacingFromShort(tag.getByte(ENUMFACING_OUTPUT));
 		time = tag.getByte(SHORT_TIME);

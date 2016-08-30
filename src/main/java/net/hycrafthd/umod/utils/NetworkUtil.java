@@ -6,9 +6,9 @@ import net.minecraft.util.BlockPos;
 public class NetworkUtil {
 
 	public static void addPosToBuffer(ByteBuf buf,BlockPos ps){
-		buf.writeByte(ps.getX());
-		buf.writeByte(ps.getY());
-		buf.writeByte(ps.getZ());
+		buf.writeInt(ps.getX());
+		buf.writeInt(ps.getY());
+		buf.writeInt(ps.getZ());
 	}
 	
 	public static BlockPos getPosFromBuffer(ByteBuf buf){

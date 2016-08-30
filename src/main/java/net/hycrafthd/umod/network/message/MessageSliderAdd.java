@@ -31,16 +31,16 @@ public class MessageSliderAdd implements IMessage, IMessageHandler<MessageSlider
 
 	@Override
 	public void fromBytes(ByteBuf buf) {
-		NetworkUtil.addPosToBuffer(buf, pos);
-		buf.writeByte(id);
-		buf.writeByte(val);
+		 this.pos = NetworkUtil.getPosFromBuffer(buf);
+	     this.id = buf.readInt();
+	     this.val = buf.readInt();
 	}
 
 	@Override
 	public void toBytes(ByteBuf buf) {
-        this.pos = NetworkUtil.getPosFromBuffer(buf);
-        this.id = buf.readInt();
-        this.val = buf.readInt();
+		NetworkUtil.addPosToBuffer(buf, pos);
+		buf.writeInt(id);
+		buf.writeInt(val);
 	}
 
 }

@@ -2,6 +2,7 @@ package net.hycrafthd.umod;
 
 import net.hycrafthd.umod.api.ProcessHandler;
 import net.hycrafthd.umod.event.*;
+import net.hycrafthd.umod.ext.ExtensionList;
 import net.hycrafthd.umod.network.PacketHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -15,12 +16,14 @@ public class UMod {
 	@EventHandler
 	public void preinit(FMLPreInitializationEvent event) {
 		log = event.getModLog();
+		ExtensionList.onStart(event);
 		new UConfig(event.getSuggestedConfigurationFile());
 		new PacketHandler();
 	}
 	
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
+		ExtensionList.onInit(event);
 		new UPotion();
 		new UItems();
 		new UBlocks();
@@ -36,6 +39,7 @@ public class UMod {
 	
 	@EventHandler
 	public void postinit(FMLPostInitializationEvent event) {
+		ExtensionList.onPostInit(event);
 		new UTiles();
 		new URecipes();
 		new UChestLoot();
@@ -48,6 +52,7 @@ public class UMod {
 	
 	@EventHandler
 	public void serverstarting(FMLServerStartingEvent event) {
+		ExtensionList.onServer(event);
 		new UCommands(event);
 		UMod.log.info("Registered Mod Commands.");
 	}

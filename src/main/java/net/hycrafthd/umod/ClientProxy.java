@@ -13,6 +13,7 @@ import net.hycrafthd.umod.entity.rail.EntityRailFX;
 import net.hycrafthd.umod.entity.render.*;
 import net.hycrafthd.umod.entity.render.rail.RenderRailFX;
 import net.hycrafthd.umod.enumtype.*;
+import net.hycrafthd.umod.ext.ExtensionList;
 import net.hycrafthd.umod.render.*;
 import net.hycrafthd.umod.tileentity.*;
 import net.minecraft.client.Minecraft;
@@ -188,6 +189,8 @@ public class ClientProxy extends CommonProxy {
 	
 	@Override
 	public void registerRenderer() {
+		ExtensionList.onClientProxy();
+		
 		RenderFX.register(TileEntityEnergyPannel.class, new TileEntityEnergyPannelRender());
 		RenderFX.register(TileEntityCable.class, new TileEntityCabelRender());
 		RenderFX.register(TileEntityItemPipe.class, new TileEntityItemPipeRender());

@@ -64,9 +64,6 @@ public abstract class TileEntityBase extends TileEntity implements ISidedInvento
 		NBTTagCompound tagSonstiges = new NBTTagCompound();
 		this.writeOtherToNBT(tagSonstiges);
 		compound.setTag(OTHER_NBT, tagSonstiges);
-		/**
-		 * @author MrTroble <strong>IMPORTANT</strong>: have to be last
-		 */
 		NBTTagCompound tagItems = new NBTTagCompound();
 		this.writeItemsToNBT(tagItems);
 		compound.setTag(ITEM_NBT, tagItems);

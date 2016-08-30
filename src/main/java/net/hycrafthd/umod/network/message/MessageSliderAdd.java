@@ -12,6 +12,9 @@ public class MessageSliderAdd implements IMessage, IMessageHandler<MessageSlider
 	public int id,val;
 	public BlockPos pos;
 	
+	public MessageSliderAdd() {
+	}
+	
 	public MessageSliderAdd(int id,int val,BlockPos ps) {
            this.id = id;
            this.val = val;

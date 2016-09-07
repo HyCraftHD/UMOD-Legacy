@@ -56,7 +56,7 @@ public class ExtensionList {
 	}
 	
 	private static void onInit(){
-		ex.add(new Extension("Divex", "cdm", DiveceModExtension.class));
+//		ex.add(new Extension("Divex", "cdm", DiveceModExtension.class));
 	}
 	
 }

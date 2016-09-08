@@ -1,7 +1,7 @@
 package net.hycrafthd.umod.tileentity;
 
 import net.hycrafthd.umod.UMod;
-import net.hycrafthd.umod.api.ISliderEntry;
+import net.hycrafthd.umod.api.*;
 import net.hycrafthd.umod.utils.DirectionUtils;
 import net.minecraft.entity.player.*;
 import net.minecraft.inventory.Container;
@@ -10,7 +10,7 @@ import net.minecraft.nbt.*;
 import net.minecraft.server.gui.IUpdatePlayerListBox;
 import net.minecraft.util.EnumFacing;
 
-public class TileEntityPainter extends TileEntityBase implements IUpdatePlayerListBox ,ISliderEntry{
+public class TileEntityPainter extends TileEntityBase implements IUpdatePlayerListBox ,ISliderEntry, IWorldView{
 	
 	private ItemStack[] stack = new ItemStack[6];
 	
@@ -255,6 +255,16 @@ public class TileEntityPainter extends TileEntityBase implements IUpdatePlayerLi
 	@Override
 	public int getValueFromId(int id) {
 		return ids[id];
+	}
+
+	@Override
+	public boolean showPower() {
+		return true;
+	}
+
+	@Override
+	public String[] textToAdd() {
+		return null;
 	}
 	
 }

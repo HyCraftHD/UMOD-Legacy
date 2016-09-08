@@ -2,7 +2,6 @@ package net.hycrafthd.umod.ext;
 
 import java.util.ArrayList;
 
-import net.hycrafthd.umod.ext.divmod.DiveceModExtension;
 import net.minecraftforge.fml.common.*;
 import net.minecraftforge.fml.common.event.*;
 

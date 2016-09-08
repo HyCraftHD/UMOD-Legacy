@@ -24,4 +24,24 @@ public class BlockPainter extends BlockBaseMachine {
 		return new TileEntityPainter();
 	}
 	
+	@Override
+	public boolean isOpaqueCube() {
+		return false;
+	}
+	
+	@Override
+	public boolean isFullCube() {
+		return true;
+	}
+	
+	@Override
+	public boolean isFullBlock() {
+		return true;
+	}
+	
+	@Override
+	public IBlockState getStateForEntityRender(IBlockState state) {
+		return this.getDefaultState();
+	}
+	
 }

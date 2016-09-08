@@ -203,6 +203,7 @@ public class ClientProxy extends CommonProxy {
 		RenderRegistry.registerEntity(EntityRailFX.class, new RenderRailFX());
 		
 		RenderRegistry.registerTileEntity(TileEntityPulverizer.class, new TileEntityPulverizerSpecialRender());
+		RenderRegistry.registerTileEntity(TileEntityPainter.class, new TileEntityPainterSpecialRender());
 		VIARegister.registerVIA();
 	}
 	

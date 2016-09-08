@@ -1,6 +1,6 @@
 package net.hycrafthd.umod.tileentity;
 
-import net.hycrafthd.umod.api.IIOMode;
+import net.hycrafthd.umod.api.*;
 import net.hycrafthd.umod.api.energy.IPowerProvieder;
 import net.hycrafthd.umod.block.BlockOres;
 import net.hycrafthd.umod.container.ContainerPulverizer;
@@ -17,7 +17,8 @@ import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntityLockable;
 import net.minecraft.util.*;
 
-public class TileEntityPulverizer extends TileEntityLockable implements IPowerProvieder, IIOMode, ISidedInventory{
+public class TileEntityPulverizer extends TileEntityLockable implements IPowerProvieder, IIOMode,
+                                                                        ISidedInventory, IWorldView{
 	
 	private ItemStack[] stack = new ItemStack[5];
 	private EnumFacing enumfI;
@@ -443,5 +444,19 @@ public class TileEntityPulverizer extends TileEntityLockable implements IPowerPr
 	public boolean hasPower() {
 		return false;
 	}
+
+	@Override
+	public boolean showPower() {
+		return true;
+	}
+
+	@Override
+	public String[] textToAdd() {
+		if(this.getStackInSlot(3) != null){
+		return new String[] {this.getStackInSlot(3).getDisplayName(),"Progress " + this.getField(0) + "/100"};
+		}
+		return null;
+	}
+
 
 }

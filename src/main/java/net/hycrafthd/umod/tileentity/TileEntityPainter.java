@@ -1,7 +1,9 @@
 package net.hycrafthd.umod.tileentity;
 
+import net.hycrafthd.corelib.util.*;
 import net.hycrafthd.umod.UMod;
 import net.hycrafthd.umod.api.*;
+import net.hycrafthd.umod.item.ItemBackPack;
 import net.hycrafthd.umod.utils.DirectionUtils;
 import net.minecraft.entity.player.*;
 import net.minecraft.inventory.Container;
@@ -212,7 +214,12 @@ public class TileEntityPainter extends TileEntityBase implements IUpdatePlayerLi
 	
 	@Override
 	public void update() {
-		// TODO Auto-generated method stub
+		if(this.getStackInSlot(3) != null){
+			if(this.getStackInSlot(3).getItem() instanceof ItemBackPack){
+			ColorUtils.setColor(this.getStackInSlot(3), new RGBA(this.getValueFromId(0),this.getValueFromId(1),this.getValueFromId(2),this.getValueFromId(3)).toAWTColor().getRGB());
+			}
+//			if(Block.getBlockFromItem(((Slot)this.inventorySlots.get(3)).getStack().getItem()) != null && Block.getBlockFromItem(((Slot)this.inventorySlots.get(3)).getStack().getItem()) instanceof BlockConduit){}
+		}
 	}
 	
 	@Override

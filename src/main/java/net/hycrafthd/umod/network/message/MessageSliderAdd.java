@@ -3,6 +3,7 @@ package net.hycrafthd.umod.network.message;
 import io.netty.buffer.ByteBuf;
 import net.hycrafthd.umod.api.ISliderEntry;
 import net.hycrafthd.umod.utils.NetworkUtil;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.simpleimpl.*;
@@ -23,9 +24,14 @@ public class MessageSliderAdd implements IMessage, IMessageHandler<MessageSlider
 	
 	@Override
 	public IMessage onMessage(MessageSliderAdd message, MessageContext ctx) {
+		if(ctx.side.isServer()){
 		World w = ctx.getServerHandler().playerEntity.worldObj;
-		ISliderEntry ent = (ISliderEntry) w.getTileEntity(message.pos);
-		ent.storeValueForId(id, val);
+		TileEntity ent = w.getTileEntity(message.pos);
+		if (ent instanceof ISliderEntry) {
+			ISliderEntry en = (ISliderEntry) ent;
+			en.storeValueForId(message.id, message.val);
+		}
+		}
 		return null;
 	}
 

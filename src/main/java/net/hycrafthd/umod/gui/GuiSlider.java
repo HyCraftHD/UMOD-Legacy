@@ -2,7 +2,7 @@ package net.hycrafthd.umod.gui;
 
 import net.hycrafthd.corelib.util.*;
 import net.hycrafthd.umod.network.PacketHandler;
-import net.hycrafthd.umod.network.message.MessageSliderAdd;
+import net.hycrafthd.umod.network.message.*;
 import net.hycrafthd.umod.utils.StringMethod;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
@@ -18,15 +18,15 @@ public class GuiSlider extends Gui {
 	private BlockPos ps;
 	private int id;
 	
-	public GuiSlider(int x, int y, RGBA color1, RGBA color2, RGBA color3, int id,int val,BlockPos pos) {
+	public GuiSlider(int x, int y, RGBA color1, RGBA color2, RGBA color3, int id,BlockPos pos) {
 		this.x = x;
 		this.y = y;
 		back = color1;
 		slid = color2;
 		slid2 = color3;
-		this.val = val;
 		this.id = id;
 		this.ps = pos;
+		PacketHandler.INSTANCE.sendToServer(new MessageSliderRequest(id, pos));
 	}
 	
 	public void draw(Minecraft mc) {

@@ -16,20 +16,16 @@ import net.hycrafthd.umod.enumtype.*;
 import net.hycrafthd.umod.ext.ExtensionList;
 import net.hycrafthd.umod.render.*;
 import net.hycrafthd.umod.tileentity.*;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.*;
 import net.minecraft.util.EnumChatFormatting;
-import net.minecraftforge.fml.relauncher.*;
 
 public class ClientProxy extends CommonProxy {
 	
 	public static KeyBinding info = new KeyBinding("Infromation", Keyboard.KEY_I, "UMod");
-	@SideOnly(Side.CLIENT)
-	public static EntityPlayer player = Minecraft.getMinecraft().thePlayer;
 	
 	@Override
 	public void registerModels() {

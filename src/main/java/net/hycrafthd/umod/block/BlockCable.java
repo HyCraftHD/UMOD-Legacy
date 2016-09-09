@@ -136,7 +136,7 @@ public class BlockCable extends Block implements ITileEntityProvider, IEnergyMes
 			return;
 		IBlockAccess w = worldIn;
 		if (w instanceof WorldServer && ((WorldServer) w).isRemote) {
-			EntityPlayer pl = ClientProxy.player;
+			EntityPlayer pl = Minecraft.getMinecraft().thePlayer;
 			if (cab.hasConduit() && (pl.getCurrentEquippedItem() == null || Block.getBlockFromItem(pl.getCurrentEquippedItem().getItem()) == null || !(Block.getBlockFromItem(pl.getCurrentEquippedItem().getItem()) instanceof BlockCable))) {
 				this.setBlockBounds(0, 0, 0, 1, 1, 1);
 				return;

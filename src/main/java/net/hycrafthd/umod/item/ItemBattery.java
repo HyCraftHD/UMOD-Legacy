@@ -17,12 +17,6 @@ public class ItemBattery extends ItemBase {
 	}
 	
 	@Override
-	public ItemStack onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn) {
-		worldIn.spawnEntityInWorld(new EntityTommahak(worldIn, playerIn.getPosition().getX(), playerIn.getPosition().getY(), playerIn.getPosition().getZ(), playerIn));
-		return super.onItemRightClick(itemStackIn, worldIn, playerIn);
-	}
-	
-	@Override
 	public void addInformation(ItemStack stack, EntityPlayer player, @SuppressWarnings("rawtypes") List tooltip, boolean advanced) {
 	}
 	

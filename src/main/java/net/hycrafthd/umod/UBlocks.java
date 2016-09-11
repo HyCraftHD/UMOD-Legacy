@@ -52,10 +52,13 @@ public class UBlocks {
 	public static Block rail;
 	public static Block rail2;
 	
+	public static Block blockbreaker;
+	
 	// Stairs
 	public static BlockStairCreator[] stonestairs;
 	public static BlockStairCreator[] woolstairs;
 	public static BlockStairCreator[] claystairs;
+	
 	// Slabs
 	public static BlockSlabCreator[] stoneslabs;
 	
@@ -106,6 +109,8 @@ public class UBlocks {
 		
 		barrels = new BlockBarrels().setUnlocalizedName("barrels");
 		
+		blockbreaker = new BlockBreaker().setUnlocalizedName("blockbreacker");
+		
 		rail = new BlockExtendedRail().setUnlocalizedName("ExRail");
 		rail2 = new Block2rail().setUnlocalizedName("railhelp");
 		
@@ -131,6 +136,7 @@ public class UBlocks {
 		for (int i = 0; i < BlockStone.EnumType.values().length; i++) {
 			stoneslabs[i] = new BlockSlabCreator(Blocks.stone.getDefaultState().withProperty(BlockStone.VARIANT, BlockStone.EnumType.byMetadata(i)), "stone_" + BlockStone.EnumType.byMetadata(i).getName());
 		}
+		
 		UMod.log.debug("Init Blocks");
 	}
 	
@@ -179,6 +185,8 @@ public class UBlocks {
 		
 		URegistryUtils.registerBlock(rail);
 		URegistryUtils.registerBlock(rail2);
+		
+		URegistryUtils.registerBlock(blockbreaker);
 		
 		// Stairs
 		for (BlockStairCreator creator : stonestairs) {

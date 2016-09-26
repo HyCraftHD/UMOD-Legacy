@@ -68,6 +68,7 @@ public class UMod {
 		event.addEvent(new EventPlayerJoin());
 		event.addEvent(new EventToolTip());
 		event.addEvent(new EventOnTick());
+		event.addEvent(new EventChestInventory());
 		event.register();
 		UMod.log.info("Registered Mod Events.");
 	}

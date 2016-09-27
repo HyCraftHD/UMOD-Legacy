@@ -2,7 +2,7 @@ package net.hycrafthd.umod.network.message;
 
 import io.netty.buffer.ByteBuf;
 import net.hycrafthd.umod.api.IIOMode;
-import net.hycrafthd.umod.utils.DirectionUtils;
+import net.hycrafthd.umod.utils.*;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.world.World;
@@ -37,16 +37,14 @@ public class MessageIOMode implements IMessage, IMessageHandler<MessageIOMode, I
 	
 	@Override
 	public void fromBytes(ByteBuf buf) {
-		pos = new BlockPos(buf.readInt(), buf.readInt(), buf.readInt());
+		pos = NetworkUtil.getPosFromBuffer(buf);
 		ei = DirectionUtils.getFacingFromShort(buf.readShort());
 		eo = DirectionUtils.getFacingFromShort(buf.readShort());
 	}
 	
 	@Override
 	public void toBytes(ByteBuf buf) {
-		buf.writeInt(pos.getX());
-		buf.writeInt(pos.getY());
-		buf.writeInt(pos.getZ());
+		NetworkUtil.addPosToBuffer(buf, pos);
 		buf.writeShort(DirectionUtils.getShortFromFacing(ei));
 		buf.writeShort(DirectionUtils.getShortFromFacing(eo));
 	}

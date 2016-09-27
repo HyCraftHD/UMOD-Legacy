@@ -57,8 +57,7 @@ public class GuiPulverizer extends GuiBase {
 
 	@Override
 	public void onIOModeSwitched() {
-		// TODO Auto-generated method stub
-		
+  		
 	}
 	
 }

@@ -4,8 +4,6 @@ import net.hycrafthd.umod.api.*;
 import net.hycrafthd.umod.api.energy.IPowerProvieder;
 import net.hycrafthd.umod.block.BlockOres;
 import net.hycrafthd.umod.container.ContainerPulverizer;
-import net.hycrafthd.umod.network.PacketHandler;
-import net.hycrafthd.umod.network.message.MessageCallback;
 import net.hycrafthd.umod.utils.*;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.*;
@@ -360,13 +358,12 @@ public class TileEntityPulverizer extends TileEntityLockable implements IPowerPr
 	
 	@Override
 	public int hasSomefacing(EnumFacing i) {
-		if (i.equals(enumfI)) {
+		if (enumfI.equals(i)) {
 			return 0;
 		}
-		if (i.equals(enumfO)) {
+		if (enumfO.equals(i)) {
 			return 1;
 		}
-		
 		return -1;
 	}
 	
@@ -388,15 +385,6 @@ public class TileEntityPulverizer extends TileEntityLockable implements IPowerPr
 	@Override
 	public boolean productsPower() {
 		return false;
-	}
-	
-	@Override
-	public void request(int mode) {
-		if (mode == 0) {
-			PacketHandler.INSTANCE.sendToAll(new MessageCallback(enumfI, mode));
-		} else if (mode == 1) {
-			PacketHandler.INSTANCE.sendToAll(new MessageCallback(enumfO, mode));
-		}
 	}
 
 	@Override

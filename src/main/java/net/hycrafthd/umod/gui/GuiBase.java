@@ -14,6 +14,8 @@ import net.hycrafthd.umod.api.energy.IPowerProvieder;
 import net.hycrafthd.umod.container.ContainerBase;
 import net.hycrafthd.umod.container.ContainerBase.Mode;
 import net.hycrafthd.umod.inventory.*;
+import net.hycrafthd.umod.network.PacketHandler;
+import net.hycrafthd.umod.network.message.MessageIORequest;
 import net.hycrafthd.umod.utils.StringMethod;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.*;
@@ -103,6 +105,12 @@ public abstract class GuiBase extends GuiScreen {
 	}
 	
 	public ModeTabs[] tabs;
+	
+	public void checkAndAdd(EnumFacing fc,int item){
+		if(this.hal.equals(fc)){
+			this.box.setSelected(item);
+		}
+	}
 	
 	@Override
 	public void initGui() {
@@ -915,22 +923,28 @@ public abstract class GuiBase extends GuiScreen {
 			posY = mouseY;
 			if (sclay >= 45 && sclay <= 135) {
 				hal = EnumFacing.UP;
+				imp_facingchange();
 			}
 			if (sclay <= -45 && sclay >= -215) {
 				hal = EnumFacing.DOWN;
+				imp_facingchange();
 			}
 			if (sclay >= -45 && sclay <= 45) {
 				if (sclax >= -45 && sclax <= 45) {
 					hal = EnumFacing.NORTH;
+					imp_facingchange();
 				}
 				if (sclax <= 135 && sclax >= 45) {
 					hal = EnumFacing.EAST;
+					imp_facingchange();
 				}
 				if (sclax <= -45 && sclax >= -135) {
 					hal = EnumFacing.WEST;
+					imp_facingchange();
 				}
 				if (sclax <= -135 && sclax >= -210) {
 					hal = EnumFacing.SOUTH;
+					imp_facingchange();
 				}
 			}
 			onIOModeSwitched();
@@ -968,21 +982,11 @@ public abstract class GuiBase extends GuiScreen {
 		}
 	}
 	
-	public void onMouseClickMoved(int mouseX, int mouseY) {
+	private void imp_facingchange() {
+		PacketHandler.INSTANCE.sendToServer(new MessageIORequest(this.pos, this.hal));
 	}
-	
-	public EnumFacing face, face2;
-	
-	public void onCallBack(EnumFacing fc, int mode) {
-		switch (mode) {
-		case 0:
-			this.face = fc;
-			break;
-		case 1:
-			this.face2 = fc;
-		default:
-			break;
-		}
+
+	public void onMouseClickMoved(int mouseX, int mouseY) {
 	}
 	
 	public abstract void onIOModeSwitched();

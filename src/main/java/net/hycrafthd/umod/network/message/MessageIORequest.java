@@ -2,46 +2,45 @@ package net.hycrafthd.umod.network.message;
 
 import io.netty.buffer.ByteBuf;
 import net.hycrafthd.umod.api.IIOMode;
+import net.hycrafthd.umod.utils.*;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.*;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.simpleimpl.*;
 
-public class MessageIORequest implements IMessage, IMessageHandler<MessageIORequest, IMessage> {
+public class MessageIORequest implements IMessage, IMessageHandler<MessageIORequest, MessageIOCallback> {
 	
 	public BlockPos pos;
-	public int mode;
+	public EnumFacing prov;
 	
 	public MessageIORequest() {
 	}
 	
-	public MessageIORequest(BlockPos pos, int mode) {
+	public MessageIORequest(BlockPos pos, EnumFacing prov) {
 		this.pos = pos;
-		this.mode = mode;
+		this.prov = prov;
 	}
 	
 	@Override
-	public IMessage onMessage(MessageIORequest message, MessageContext ctx) {
+	public MessageIOCallback onMessage(MessageIORequest message, MessageContext ctx) {
 		World w = ctx.getServerHandler().playerEntity.worldObj;
 		TileEntity ent = w.getTileEntity(message.pos);
-		if (ent instanceof IIOMode) {
-			((IIOMode) ent).request(message.mode);
+		if (ent != null && ent instanceof IIOMode && ((IIOMode) ent).hasSomefacing(prov) > -1) {
+			return new MessageIOCallback(this.prov,((IIOMode) ent).hasSomefacing(prov));
 		}
 		return null;
 	}
 	
 	@Override
 	public void fromBytes(ByteBuf buf) {
-		pos = new BlockPos(buf.readInt(), buf.readInt(), buf.readInt());
-		mode = buf.readInt();
+		pos = NetworkUtil.getPosFromBuffer(buf);
+		prov = DirectionUtils.getFacingFromShort(buf.readShort());
 	}
 	
 	@Override
 	public void toBytes(ByteBuf buf) {
-		buf.writeInt(pos.getX());
-		buf.writeInt(pos.getY());
-		buf.writeInt(pos.getZ());
-		buf.writeInt(mode);
+		NetworkUtil.addPosToBuffer(buf, pos);
+		buf.writeShort(DirectionUtils.getShortFromFacing(this.prov));
 	}
 	
 }

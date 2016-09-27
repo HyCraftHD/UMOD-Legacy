@@ -8,55 +8,40 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.fml.common.network.simpleimpl.*;
 
-public class MessageCallback implements IMessage, IMessageHandler<MessageCallback, IMessage> {
+public class MessageIOCallback implements IMessage, IMessageHandler<MessageIOCallback, IMessage> {
 	
-	private EnumFacing face;
-	private int mode;
+	public EnumFacing face;
+	public int item;
 	
-	public MessageCallback() {
+	public MessageIOCallback() {
 	}
 	
-	public MessageCallback(EnumFacing fc, int mode) {
+	public MessageIOCallback(EnumFacing fc, int item) {
 		this.face = fc;
-		this.mode = mode;
+		this.item = item;
 	}
 	
 	@Override
-	public IMessage onMessage(MessageCallback message, MessageContext ctx) {
+	public IMessage onMessage(MessageIOCallback message, MessageContext ctx) {
 		GuiScreen sc = Minecraft.getMinecraft().currentScreen;
 		if (sc != null && sc instanceof GuiBase) {
 			GuiBase bs = (GuiBase) sc;
-			bs.onCallBack(message.getFace(), message.getMode());
+			System.out.println(message.face + " " + message.item);
+			bs.checkAndAdd(message.face, message.item);
 		}
-		return this;
+		return null;
 	}
 	
 	@Override
 	public void fromBytes(ByteBuf buf) {
 		this.face = DirectionUtils.getFacingFromShort(buf.readShort());
-		this.mode = buf.readInt();
+		this.item = buf.readInt();
 	}
 	
 	@Override
 	public void toBytes(ByteBuf buf) {
 		buf.writeShort(DirectionUtils.getShortFromFacing(face));
-		buf.writeInt(mode);
-	}
-	
-	public EnumFacing getFace() {
-		return face;
-	}
-	
-	public void setFace(EnumFacing face) {
-		this.face = face;
-	}
-	
-	public int getMode() {
-		return mode;
-	}
-	
-	public void setMode(int mode) {
-		this.mode = mode;
+		buf.writeInt(item);
 	}
 	
 }

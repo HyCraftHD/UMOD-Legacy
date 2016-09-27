@@ -16,5 +16,4 @@ public interface IIOMode {
 	
 	public void setEnumOutput(EnumFacing fac);
 	
-	public void request(int mode);
 }

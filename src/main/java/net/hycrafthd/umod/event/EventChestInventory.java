@@ -2,7 +2,7 @@ package net.hycrafthd.umod.event;
 
 import net.minecraft.block.*;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.*;
@@ -15,14 +15,13 @@ public class EventChestInventory {
 	
 	@SubscribeEvent
 	public void onChestDrop(BlockEvent.BreakEvent ev){
-		if(ev.state.getBlock() instanceof BlockChest){
+		if(ev.state.getBlock() instanceof ITileEntityProvider){
 			TileEntity et = ev.world.getTileEntity(ev.pos);
-			if(et != null && et instanceof TileEntityChest){
-				TileEntityChest chest = (TileEntityChest) et;
+			if(et != null){
 				NBTTagCompound comp = new NBTTagCompound();
-				chest.writeToNBT(comp);
-				chest.clear();
-				ItemStack st = new ItemStack(Blocks.chest, 1);
+				et.writeToNBT(comp);
+				if(et instanceof IInventory)((IInventory) et).clear();
+				ItemStack st = new ItemStack(ev.state.getBlock(), 1);
 				st.setTagInfo(KEY, comp);
 				Block.spawnAsEntity(ev.world, ev.pos, st);
 				ev.world.setBlockToAir(ev.pos);
@@ -33,20 +32,20 @@ public class EventChestInventory {
 	
 	@SubscribeEvent
 	public void onChestPlaced(BlockEvent.PlaceEvent ev){
-		if(ev.state.getBlock() instanceof BlockChest){
+		if(ev.state.getBlock() instanceof ITileEntityProvider){
 			TileEntity et = ev.world.getTileEntity(ev.pos);
-			if(et != null && et instanceof TileEntityChest){
-				TileEntityChest chest = (TileEntityChest) et;
+			if(et != null){
 				NBTTagCompound comp = ev.itemInHand.getSubCompound(KEY, false);
 				if(comp != null){
-					chest.readFromNBT(comp);
-					chest.setPos(ev.pos);
-					chest.setWorldObj(ev.world);
+					et.readFromNBT(comp);
+					et.setPos(ev.pos);
+					et.setWorldObj(ev.world);
 					EntityPlayer pl = ev.player;
 					ItemStack st = pl.getCurrentEquippedItem();
-					if(st != null){
+					if(st != null && pl.capabilities.isCreativeMode){
 						if(st.stackSize > 1){
-							pl.getCurrentEquippedItem().stackSize--;
+							ItemStack std = pl.inventory.mainInventory[pl.inventory.currentItem];
+							pl.inventory.mainInventory[pl.inventory.currentItem] = new ItemStack(std.getItem(),std.stackSize - 1,std.getMetadata());
 						}else{
 							pl.inventory.mainInventory[pl.inventory.currentItem] = null;
 						}

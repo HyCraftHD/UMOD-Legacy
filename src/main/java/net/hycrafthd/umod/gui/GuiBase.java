@@ -107,8 +107,14 @@ public abstract class GuiBase extends GuiScreen {
 	public ModeTabs[] tabs;
 	
 	public void checkAndAdd(EnumFacing fc,int item){
+		if(item == Byte.MAX_VALUE){
+			this.box.setSelected(this.box.getItems().size() - 1);
+			return;
+		}
 		if(this.hal.equals(fc)){
 			this.box.setSelected(item);
+		}else{
+			this.box.setSelected(0);
 		}
 	}
 	

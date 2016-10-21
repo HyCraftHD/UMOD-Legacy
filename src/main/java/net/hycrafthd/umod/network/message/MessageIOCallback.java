@@ -26,7 +26,6 @@ public class MessageIOCallback implements IMessage, IMessageHandler<MessageIOCal
 		GuiScreen sc = Minecraft.getMinecraft().currentScreen;
 		if (sc != null && sc instanceof GuiBase) {
 			GuiBase bs = (GuiBase) sc;
-			System.out.println(message.face + " " + message.item);
 			bs.checkAndAdd(message.face, message.item);
 		}
 		return null;

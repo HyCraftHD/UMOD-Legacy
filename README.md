@@ -1,4 +1,7 @@
 # UMOD
+
+#This is only the legacy build for 1.8! Please take a look here for updated versions: https://github.com/MC-U-Team/UMod-1.10
+
 ####You are welcome to help in the development! Just install git and request for pulls.
 
 ##People who already helped in the development
